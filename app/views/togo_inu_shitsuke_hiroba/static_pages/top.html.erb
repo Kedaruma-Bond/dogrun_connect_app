@@ -1,4 +1,15 @@
-<div>
-  <h1 class="font-bold text-blue-400 text-4xl">StaticPages#top</h1>
-  <p>Find me in app/views/static_pages/top.html.erb</p>
+<div class="text-center mt-10">
+  <h1 class="text-4xl text-green-400 font-semibold"><%= t'.dogrun' %></h1>
+  <%= link_to '#' do %>
+    <button class="inline-flex text-2xl mt-20 btn text-white bg-blue-500 transform hover:scale-110 hover:bg-blue-400 duration-500 focus:outline-none focus:shadow-outline">
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path></svg>
+      &nbsp;
+      <%= t'.sign_up' %>
+    </button>
+  <% end %>
+
+  <%= link_to '/togo_inu_shitsuke_hiroba/static_pages/compliance_confirmations' do %>
+    <p class="mt-10 text-3xl text-center font-semibold text-blue-500 underline transform hover:scale-110 hover:text-blue-400 duration-500">
+      <%= t'.before_using_dogrun' %>
+  <% end %>
 </div>

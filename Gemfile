@@ -53,6 +53,16 @@ gem "bootsnap", require: false
 
 # scheme情報をモデルファイルの先頭に書き出してくれる
 gem 'annotate'
+# ログイン機能
+gem 'sorcery'
+# i18n
+gem 'rails-i18n'
+# 環境変数を扱いやすく
+gem 'dotenv-rails'
+# 定数管理
+gem 'config'
+# 環境変数
+gem 'dotenv-rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -72,6 +82,10 @@ group :development do
   gem "binding_of_caller"
   # Code補完
   gem "solargraph"
+  # 開発環境にはdevelopmentと書かれたリボンを表示してもらう
+  gem "rack-dev-mark"
+  # 模擬メール機能
+  gem "letter_opener_web"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

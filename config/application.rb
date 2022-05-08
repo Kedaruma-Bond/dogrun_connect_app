@@ -23,6 +23,15 @@ module DogrunConnectApp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
+
+    config.generators do |g|
+      g.stylesheets false
+      g.javascript false
+      g.helper false
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -33,5 +42,8 @@ module DogrunConnectApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.i18n.default_locale = :ja
+    config.i18n.load_path += Dir[Rails.root.join('config/locales/**/*.{rb,yml}').to_s]
   end
 end

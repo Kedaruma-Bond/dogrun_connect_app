@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   namespace :togo_inu_shitsuke_hiroba do
     get 'static_pages/top'
     get 'static_pages/privacy_policy'
