@@ -1,4 +1,19 @@
 ja:
+  simple_form:
+    "yes": 'はい'
+    "no": 'いいえ'
+    required:
+      text: '必須'
+    labels:
+      defaults:
+        name: '氏名'
+        email: 'メールアドレス'
+        message: '内容'
+      togo_inu_shitsuke_hiroba:
+        contacts:
+          new:
+            submit: '入力内容確認'
+
   activerecord:
     errors:
       messages:

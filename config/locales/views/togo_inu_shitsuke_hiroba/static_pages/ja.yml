@@ -15,16 +15,3 @@ ja:
         title: 'プライバシーポリシー'
       compliance_confirmations:
         title: '遵守・確認事項'
-    shared:
-      navbar:
-        app_name: 'DogrunConnect'
-        login: 'ログイン'
-        sign_up: '新規登録'
-      footer:
-        app_name: 'DogrunConnect'
-        support: 'サポート'
-        compliance_confirmations: '遵守・確認事項'
-        terms_of_service: '利用規約'
-        privacy_policy: 'プライバシーポリシー'
-        contact: 'お問い合わせ'
-

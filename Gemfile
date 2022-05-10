@@ -61,8 +61,13 @@ gem 'rails-i18n'
 gem 'dotenv-rails'
 # 定数管理
 gem 'config'
-# 環境変数
-gem 'dotenv-rails'
+# フォームを簡単に書く
+gem 'simple_form'
+# enum使うぞ！
+gem 'enum'
+gem 'enum_help'
+# デコっちゃえ
+gem 'draper'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

@@ -4,10 +4,13 @@ Rails.application.routes.draw do
     get 'static_pages/top'
     get 'static_pages/privacy_policy'
     get 'static_pages/terms_of_service'
-    get 'static_pages/contact'
     get 'static_pages/compliance_confirmations'
-    namespace :admin do
 
+    resources :contacts, only: %i[new create]
+    post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
+    post 'contacts/back', to: 'contacts#confirm', as: 'back'
+
+    namespace :admin do
     end
   end
 end
