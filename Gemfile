@@ -57,8 +57,6 @@ gem 'annotate'
 gem 'sorcery'
 # i18n
 gem 'rails-i18n'
-# 環境変数を扱いやすく
-gem 'dotenv-rails'
 # 定数管理
 gem 'config'
 # フォームを簡単に書く
