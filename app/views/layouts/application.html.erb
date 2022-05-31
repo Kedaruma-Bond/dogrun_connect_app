@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
-    <title>DogrunConnectApp</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,11 +9,19 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= render 'layouts/shim' %>
+
+    <title>DogrunConnectApp</title>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
+  <body class="pb-420 box-border">
+    <main>
+      <%= render 'togo_inu_shitsuke_hiroba/shared/navbar' %>
+      <%= render partial: 'shared/flash' %>
+      <div class="w-full">
+        <%= yield %>
+        <%= render 'togo_inu_shitsuke_hiroba/shared/footer' %>
+      </div>
     </main>
   </body>
 </html>

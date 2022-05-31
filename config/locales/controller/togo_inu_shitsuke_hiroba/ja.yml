@@ -1,0 +1,6 @@
+ja:
+  togo_inu_shitsuke_hiroba:
+    contacts:
+      create:
+        notice: "お問い合わせメールを送信しました"
+  activerecord:

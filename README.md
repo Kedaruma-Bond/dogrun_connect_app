@@ -39,9 +39,9 @@
 ## スケジュール
 ---
 Readme ~ ER図: 2022/4/14 - 2022/4/30<br>
-メイン機能実装： 2022/5/1 - 2022/6/14<br>
-β版を一部利用者向けリリース(MVP): 2022/5/31<br>
-本番リリース：2022/6/14<br>
+メイン機能実装： 2022/5/1 - 2022/7/8<br>
+β版を一部利用者向けリリース(MVP): 2022/6/23<br>
+本番リリース：2022/7/8<br>
 
 サイトマップリンク：https://www.figma.com/file/nC1UVkNgDSNCIsTBfFqCTR/%E3%82%B5%E3%82%A4%E3%83%88%E3%83%9E%E3%83%83%E3%83%97?node-id=0%3A<br>
 カスタマージャーニー：https://docs.google.com/spreadsheets/d/1Y86lZ6QhWGJPKJPeijmvoa3fCzvfFuRIXMXUhExtZoc/edit?usp=sharing<br>
