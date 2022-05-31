@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
     resources :contacts, only: %i[new create]
     post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
-    post 'contacts/back', to: 'contacts#confirm', as: 'back'
+    post 'contacts/back', to: 'contacts#back', as: 'back'
 
     namespace :admin do
     end

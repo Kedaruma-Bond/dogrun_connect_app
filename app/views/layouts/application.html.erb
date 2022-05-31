@@ -17,7 +17,7 @@
   <body class="pb-420 box-border">
     <main>
       <%= render 'togo_inu_shitsuke_hiroba/shared/navbar' %>
-      <%#= render 'togo_inu_shitsuke_hiroba/shared/flash_message' %>
+      <%= render partial: 'shared/flash' %>
       <div class="w-full">
         <%= yield %>
         <%= render 'togo_inu_shitsuke_hiroba/shared/footer' %>

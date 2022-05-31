@@ -1,4 +1,7 @@
-<%= @contact.name %> 様 から問い合わせがありました。<br>
-【送信元アドレス】:<%= @contact.email %><br>
-【お問い合わせ内容】<br>
-<span style="white-space: pre-wrap;"><%= @contact.message %></span>
+<h3><%= t'.dogrun_name' %></h3>
+<p>
+  <%= @contact.name %> 様 から問い合わせがありました。<br>
+  【送信元アドレス】:<%= @contact.email %><br>
+  【お問い合わせ内容】<br>
+</p>
+<span style="white-space: pre-wrap;"><%= simple_format(h(@contact.message)) %></span>

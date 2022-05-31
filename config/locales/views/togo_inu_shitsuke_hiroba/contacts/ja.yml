@@ -3,4 +3,9 @@ ja:
     contacts:
       new:
         title: 'お問い合わせ'
+      confirm:
+        title: 'お問い合わせ内容確認'
+        name: 氏名 
+        email: メールアドレス
+        message: 内容
 

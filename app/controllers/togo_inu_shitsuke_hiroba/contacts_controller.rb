@@ -6,23 +6,23 @@ module TogoInuShitsukeHiroba
 
     def confirm
       @contact = Contact.new(contact_params)
-      if @contact.invalid?
-        render :new
-      end
+      return unless @contact.invalid?
+
+      render :new
     end
 
     def back
       @contact = Contact.new(contact_params)
-      render :new
+      render action: 'new', status: :unprocessable_entity
     end
 
     def create
       @contact = Contact.new(contact_params)
       if @contact.save
         ContactMailer.send_mail(@contact).deliver_now
-        redirect_to '/togo_inu_shitsuke_hiroba/static_pages/top'
+        redirect_to '/togo_inu_shitsuke_hiroba/static_pages/top', notice: t('.notice')
       else
-        render :new
+        render action: 'new', status: :unprocessable_entity
       end
     end
 

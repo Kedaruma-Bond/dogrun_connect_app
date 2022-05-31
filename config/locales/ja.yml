@@ -3,7 +3,7 @@ ja:
     "yes": 'はい'
     "no": 'いいえ'
     required:
-      text: '必須'
+      html: '<abbr title="required" class="text-xs">[必須]</abbr>'
     labels:
       defaults:
         name: '氏名'
