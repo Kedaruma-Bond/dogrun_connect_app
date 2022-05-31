@@ -20,7 +20,7 @@ module TogoInuShitsukeHiroba
       @contact = Contact.new(contact_params)
       if @contact.save
         ContactMailer.send_mail(@contact).deliver_now
-        redirect_to '/togo_inu_shitsuke_hiroba/static_pages/top', notice: t('.notice')
+        redirect_to '/togo_inu_shitsuke_hiroba/top', notice: t('.notice')
       else
         render action: 'new', status: :unprocessable_entity
       end
