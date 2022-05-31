@@ -112,10 +112,6 @@ GEM
     deep_merge (1.2.2)
     diff-lcs (1.5.0)
     digest (3.1.0)
-    dotenv (2.7.6)
-    dotenv-rails (2.7.6)
-      dotenv (= 2.7.6)
-      railties (>= 3.2)
     draper (4.0.2)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -401,7 +397,6 @@ DEPENDENCIES
   capybara
   config
   debug
-  dotenv-rails
   draper
   enum
   enum_help
