@@ -112,8 +112,6 @@ GEM
     deep_merge (1.2.2)
     diff-lcs (1.5.0)
     digest (3.1.0)
-    domain_name (0.5.20190701)
-      unf (>= 0.0.5, < 1.0.0)
     draper (4.0.2)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -171,9 +169,6 @@ GEM
     faraday-net_http (2.0.2)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    http-accept (1.7.0)
-    http-cookie (1.0.5)
-      domain_name (~> 0.5)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.0.3)
@@ -208,9 +203,6 @@ GEM
     marcel (1.0.2)
     matrix (0.4.2)
     method_source (1.0.0)
-    mime-types (3.4.1)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     minitest (5.15.0)
     msgpack (1.5.1)
@@ -230,7 +222,6 @@ GEM
       digest
       net-protocol
       timeout
-    netrc (0.11.0)
     nio4r (2.5.8)
     nokogiri (1.13.5-x86_64-darwin)
       racc (~> 1.4)
@@ -292,11 +283,6 @@ GEM
       io-console (~> 0.5)
     request_store (1.5.1)
       rack (>= 1.4)
-    rest-client (2.1.0)
-      http-accept (>= 1.7.0, < 2.0)
-      http-cookie (>= 1.0.2, < 2.0)
-      mime-types (>= 1.16, < 4.0)
-      netrc (~> 0.8)
     reverse_markdown (2.1.1)
       nokogiri
     rexml (3.2.5)
@@ -379,9 +365,6 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.8.2)
     unicode-display_width (2.1.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
@@ -427,7 +410,6 @@ DEPENDENCIES
   rack-dev-mark
   rails (~> 7.0.2, >= 7.0.2.4)
   rails-i18n
-  rest-client
   rspec-rails
   simple_form
   solargraph
