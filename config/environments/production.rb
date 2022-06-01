@@ -75,7 +75,7 @@ Rails.application.configure do
     :user_name => Rails.application.credentials.contacts[:MAILER_USER_ID],
     :password => Rails.application.credentials.contacts[:MAILER_PASSWORD],
     :domain => 'example.com',
-    :address => 'smtp.protonmail.com',
+    :address => 'smtp.gmail.com',
     :port => 587,
     :authentication => :login,
     :enable_starttls_auto => true
