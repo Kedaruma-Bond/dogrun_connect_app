@@ -3,7 +3,6 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
-import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
 
 import FlashController from "./flash_controller.js"
 application.register("flash", FlashController)
