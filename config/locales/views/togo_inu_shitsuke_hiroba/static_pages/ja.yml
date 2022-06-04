@@ -6,12 +6,6 @@ ja:
         sign_up: '新規登録'
         before_using_dogrun: '広場の利用にあたって'
         title: 'トップ'
-      contact:
-        title: 'お問い合わせ'
-        send: '送信'
-      terms_of_service:
-        title: '利用規約'
-      privacy_policy:
-        title: 'プライバシーポリシー'
       compliance_confirmations:
-        title: '遵守・確認事項'
+        title: '利用上の遵守・確認事項'
+        title_dogrun: 利用上の遵守・確認事項 | 犬のしつけ広場
