@@ -1,11 +1,5 @@
-module TogoInuShitsukeHiroba
-  class StaticPagesController < ApplicationController
-    def top; end
-
-    def privacy_policy; end
-
-    def terms_of_service; end
-
-    def compliance_confirmations; end
-  end
+class TogoInuShitsukeHiroba::StaticPagesController < ApplicationController
+  layout 'togo_inu_shitsuke_hiroba'
+  def top; end
+  def compliance_confirmations; end
 end

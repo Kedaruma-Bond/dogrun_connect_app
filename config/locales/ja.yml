@@ -9,10 +9,11 @@ ja:
         name: '氏名'
         email: 'メールアドレス'
         message: '内容'
-      togo_inu_shitsuke_hiroba:
-        contacts:
-          new:
-            submit: '入力内容確認'
+  attributes:
+    name: 氏名
+    email: メールアドレス
+    message: 内容
+    app_name: "DogrunConnect"
 
   activerecord:
     errors:
