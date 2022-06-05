@@ -41,10 +41,6 @@ RSpec.configure do |config|
   # 強制的にCapybara::DSLを読み込む
   config.include Capybara::DSL
 
-  # 作成したテストヘルパーを追加
-  config.include TestHelper
-  config.include SystemHelper
-
   # 全てのテストにaggregate_failuresを適用する（ブロックまとめて書いても全部実行する）
   config.define_derived_metadata do |meta|
     meta[:aggregate_failures] = true unless meta.key?(:aggregate_failures)
