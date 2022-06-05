@@ -21,7 +21,7 @@
               <%= f.hidden_field :email %>
               <%= f.hidden_field :message %>
               <div class="inline-flex w-full overflow-hidden shadow sm:w-auto sm:mx-3 ">
-                <%= f.button :submit, t'.send', class: "items-center justify-center w-full px-10 py-4 text-base font-semibold text-white bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" %> 
+                <%= f.button :submit, t('.send'), class: "items-center justify-center w-full px-10 py-4 text-base font-semibold text-white bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" %> 
               </div>
             <% end %>
             <%= simple_form_for @contact, url: 'back', data: { trubo: false } do |f| %>
@@ -29,7 +29,7 @@
               <%= f.hidden_field :email %>
               <%= f.hidden_field :message %>
               <div class="inline-flex w-full mt-4 overflow-hidden shadow sm:w-auto sm:mx-3 sm:mt-0">
-                <%= f.button :submit, t'.back', class: "items-center justify-center w-full px-10 py-4 text-base font-semibold text-white bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" %>
+                <%= f.button :submit, t('.back'), class: "items-center justify-center w-full px-10 py-4 text-base font-semibold text-white bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" %>
               </div>
             <% end %>
           </div>
