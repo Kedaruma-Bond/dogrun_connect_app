@@ -9,8 +9,8 @@ gem 'rails', '~> 7.0.2', '>= 7.0.2.4'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 
-# # Use postgresql as the database for Active Record
-# gem 'pg', '~> 1.1'
+# Use postgresql as the database for Active Record
+gem 'pg', '~> 1.1'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
@@ -74,9 +74,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'launchy'
-  # gem 'rspec-rails'
+  gem 'rspec-rails'
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
-  gem 'sqlite3'
   gem 'webdrivers'
 end
 
@@ -98,8 +97,4 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem 'spring'
-end
-
-group :production do
-  gem 'pg', '~> 1.1'
 end

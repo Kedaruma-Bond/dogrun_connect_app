@@ -6,7 +6,7 @@
     <%= simple_form_for @contact, url: confirm_path, data: { turbo: false } do |f| %>
       <%= render 'shared/error_messages', object: f.object %> 
       <div class="md:flex items-center mt-12">
-        <div class="w-full md:w-1/2 flex flex-col">
+        <div class="w-full md:w-1/2 flex flex-col"> 
           <%= f.label :name, label_html: { class: "font-bold leading-none" } %>
           <%= f.input :name, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" },  label: false, hint_html: { class: "text-sm block;" }, hint: "ワンちゃんでも飼い主さんでもどちらでも結構です", required: true, error: false %>
         </div>
@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="flex items-center justify-center w-full">
-          <%= f.button :submit, t'.confirm', class: "mt-9 font-bold leading-none text-white py-4 px-10 bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" %>
+          <%= f.button :submit, t('.confirm'), class: "mt-9 font-bold leading-none text-white py-4 px-10 bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" %>
       </div>
     <% end %>
   </div>
