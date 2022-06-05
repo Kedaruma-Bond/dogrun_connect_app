@@ -2,7 +2,17 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+// import { application } from "./application"
 
-import FlashController from "./flash_controller.js"
-application.register("flash", FlashController)
+// import FlashController from "./flash_controller.js"
+// application.register("flash", FlashController)
+
+import { Application } from "@hotwired/stimulus"
+
+const application = Application.start()
+
+// Configure Stimulus development experience
+application.debug = false
+window.Stimulus   = application
+
+export { application }
