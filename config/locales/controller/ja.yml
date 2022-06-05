@@ -1,0 +1,5 @@
+ja:
+  contacts:
+    create:
+      notice: "お問い合わせメールを送信しました"
+  activerecord:
