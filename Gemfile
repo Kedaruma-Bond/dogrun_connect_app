@@ -51,8 +51,6 @@ gem 'bootsnap', require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem 'image_processing', '~> 1.2'
 
-# scheme情報をモデルファイルの先頭に書き出してくれる
-gem 'annotate'
 # ログイン機能
 gem 'sorcery'
 # i18n
@@ -69,13 +67,16 @@ gem 'draper'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  # scheme情報をモデルファイルの先頭に書き出してくれる
+  gem 'annotate'
   gem 'capybara'
   gem 'debug', platforms: %i[mri mingw x64_mingw], require: false
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'launchy'
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
-  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
+  gem 'shoulda-matchers'#, git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
   gem 'webdrivers'
 end
 
