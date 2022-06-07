@@ -3,7 +3,7 @@ ja:
     "yes": 'はい'
     "no": 'いいえ'
     required:
-      html: '<abbr title="required" class="text-xs">[必須]</abbr>'
+      html: '<abbr title="required" class="text-xs" style="text-decoration: none; color: purple;">[必須]</abbr>'
     labels:
       defaults:
         name: '氏名'
@@ -14,7 +14,11 @@ ja:
     email: メールアドレス
     message: 内容
     app_name: "DogrunConnect"
-
+  enums:
+    user:
+      dogrun_place:
+        togo_inu_shitsuke_hiroba: 犬のしつけ広場    
+        dog_with: Dog with
   activerecord:
     errors:
       messages:

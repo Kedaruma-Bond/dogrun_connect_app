@@ -8,9 +8,16 @@ Rails.application.routes.draw do
   post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
   post 'contacts/back', to: 'contacts#back', as: 'back'
 
+  resources :users do
+    member do
+      get :activate
+    end
+  end
+  
   namespace :togo_inu_shitsuke_hiroba do
     get 'top', to: 'static_pages#top'
     get 'compliance_confirmations', to: 'static_pages#compliance_confirmations'
+    get 'signup', to: 'users#new'
 
     namespace :admin do
     end
