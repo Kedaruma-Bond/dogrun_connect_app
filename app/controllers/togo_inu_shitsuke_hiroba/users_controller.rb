@@ -1,6 +1,6 @@
 class TogoInuShitsukeHiroba::UsersController < ApplicationController
   layout 'togo_inu_shitsuke_hiroba'
-  skip_before_action :require_login, only: %i[index new create activate update]
+  skip_before_action :require_login, only: %i[index new create activate update], raise: false
   before_action :user_params, only: :confirm
 
   def index; end
