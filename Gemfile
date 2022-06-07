@@ -64,6 +64,8 @@ gem 'enum'
 gem 'enum_help'
 # デコっちゃえ
 gem 'draper'
+# Redis 使うぞ
+gem 'redis-actionpack'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

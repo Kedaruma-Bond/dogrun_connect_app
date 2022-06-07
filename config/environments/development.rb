@@ -74,4 +74,6 @@ Rails.application.configure do
   config.action_mailer.default_url_options = Settings.default_url_options.to_h
 
   config.assets.prefix = '/dev-assets'
+
+  config.session_store :cookie_store, expire_after: 1.week
 end
