@@ -1,17 +1,20 @@
 class ContactsController < ApplicationController
   before_action :contact_params, only: :confirm
 
+  def index
+    @contacs = Contacts.all
+  end
+  
   def new
     session.delete(:contact)
     @contact = Contact.new
   end
 
   def confirm
-    @contact = Contact.new(@contact_params)
-    session[:contact] = @contact.hash
-    return unless @contact.invalid?
-
-    render :new
+    # editとnewに対応させるためfind_or_initializeする
+    @contact = Contact.find_or_initialize_by(id: params[:id])
+    session[:contact] = contact_params
+    @contact.assign_attributes(session[:contact])
   end
 
   def back
@@ -21,11 +24,11 @@ class ContactsController < ApplicationController
   end
 
   def create
-    # @contact = Contact.new(session[:contact])
-    if Contact.create(session[:contact])
+    @contact = Contact.new(session[:contact])
+    if @contact.save
       ContactMailer.send_mail(@contact).deliver_now
-      redirect_to '/', notice: t('.notice')
       session.delete(:cotact)
+      redirect_to '/', notice: t('.notice')
     else
       render :new, status: :unprocessable_entit, error: t('.send_mail_fail')
     end
@@ -34,6 +37,6 @@ class ContactsController < ApplicationController
   private
 
   def contact_params
-    @contact_params = params.require(:contact).permit(:name, :email, :message)
+    params.require(:contact).permit(:name, :email, :message)
   end
 end
