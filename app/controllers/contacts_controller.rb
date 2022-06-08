@@ -4,34 +4,31 @@ class ContactsController < ApplicationController
   def index
     @contacs = Contacts.all
   end
-  
+
   def new
     session.delete(:contact)
     @contact = Contact.new
   end
 
   def confirm
-    # editとnewに対応させるためfind_or_initializeする
-    @contact = Contact.find_or_initialize_by(id: params[:id])
+    @contact = Contact.new(contact_params)
     session[:contact] = contact_params
-    @contact.assign_attributes(session[:contact])
-  end
-
-  def back
-    @contact = Contact.new(session[:contact])
-    session.delete(:contact)
-    render :new, status: :unprocessable_entity
   end
 
   def create
-    @contact = Contact.new(session[:contact])
+    @contact = Contact.new(session[:contact].to_hash)
+    if params[:back]
+      render :new, status: :unprocessable_entity
+      return
+    end
+
     if @contact.save
       ContactMailer.send_mail(@contact).deliver_now
-      session.delete(:cotact)
-      redirect_to '/', notice: t('.notice')
-    else
-      render :new, status: :unprocessable_entit, error: t('.send_mail_fail')
+      session.delete(:contact)
+      redirect_to '/', success: t('.success')
+      return
     end
+    render :new, status: :unprocessable_entity, error: t('.send_mail_fail')
   end
 
   private
