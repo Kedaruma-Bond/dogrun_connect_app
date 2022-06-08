@@ -8,12 +8,12 @@ ja:
       defaults:
         name: '氏名'
         email: 'メールアドレス'
+      contacts:
         message: '内容'
-  attributes:
-    name: 氏名
-    email: メールアドレス
-    message: 内容
-    app_name: "DogrunConnect"
+      users:
+        password: 'パスワード'
+        password_confirmation: 'パスワード 確認'
+        number_of_dogs: '登録頭数'
   enums:
     user:
       dogrun_place:

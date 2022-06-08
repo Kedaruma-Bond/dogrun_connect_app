@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
+  include ActiveModel::Model
+  attr_accessor :number_of_dogs
 
   validates :password, length: { minimum: 6 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
@@ -10,6 +12,8 @@ class User < ApplicationRecord
   validates :dogrun_place, presence: true
   validates :deactivation, presence: true
   validates :enable_notification, presence: true
+
+  validates :number_of_dogs, presence: true
 
   enum dogrun_place: { togo_inu_shitsuke_hiroba: 0, dog_with: 1 }
 end

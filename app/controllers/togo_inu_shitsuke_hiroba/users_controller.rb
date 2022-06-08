@@ -1,11 +1,12 @@
 class TogoInuShitsukeHiroba::UsersController < ApplicationController
   layout 'togo_inu_shitsuke_hiroba'
-  skip_before_action :require_login, only: %i[index new create activate update], raise: false
+  # skip_before_action :require_login, only: %i[index new create activate update]
   before_action :user_params, only: :confirm
 
   def index; end
 
   def new
+    
     @user = User.new
   end
 
@@ -19,6 +20,8 @@ class TogoInuShitsukeHiroba::UsersController < ApplicationController
       redirect_to '/', error: t('.error')
     end
   end
+
+  def confirm; end
 
   def activate
     if @user == User.load_from_activation_token(params[:id])

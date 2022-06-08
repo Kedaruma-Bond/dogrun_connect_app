@@ -1,6 +1,6 @@
 ja:
   togo_inu_shitsuke_hiroba:
     users:
-      create:
-        error: ユーザー登録エラー：所属ドッグランが不明
-        
+      new:
+        title: 新規登録
+        next: 次へ
