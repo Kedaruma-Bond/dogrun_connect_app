@@ -428,7 +428,7 @@ DEPENDENCIES
   rails (~> 7.0.2, >= 7.0.2.4)
   rails-controller-testing
   rails-i18n
-  redis (~> 4.0)
+  redis
   redis-actionpack
   rspec-rails
   shoulda-matchers
