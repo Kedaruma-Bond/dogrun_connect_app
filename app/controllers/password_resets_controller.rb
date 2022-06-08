@@ -1,5 +1,5 @@
 class PasswordResetsController < ApplicationController
-  skip_before_action :require_login
+  # skip_before_action :require_login
   layout 'togo_inu_shitsuke_hiroba'
 
   def create
