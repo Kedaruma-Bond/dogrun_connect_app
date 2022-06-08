@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   # セッションのCSRF対策について 後日調査します
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
 
   def not_authenticated
     redirect_to '/', error: t('.require_login')
