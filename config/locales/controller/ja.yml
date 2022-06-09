@@ -2,7 +2,7 @@ ja:
   contacts:
     create:
       send_mail_fail: お問い合わせメールの送信に失敗しました
-      notice: お問い合わせメールを送信しました
+      success: お問い合わせメールを送信しました
   users:
     create:
       error: ユーザー登録エラー：所属ドッグラン不明
