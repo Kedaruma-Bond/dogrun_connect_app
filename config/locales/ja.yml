@@ -3,18 +3,22 @@ ja:
     "yes": 'はい'
     "no": 'いいえ'
     required:
-      html: '<abbr title="required" class="text-xs">[必須]</abbr>'
+      html: '<abbr title="required" class="text-xs" style="text-decoration: none; color: purple;">[必須]</abbr>'
     labels:
       defaults:
         name: '氏名'
         email: 'メールアドレス'
+      contacts:
         message: '内容'
-  attributes:
-    name: 氏名
-    email: メールアドレス
-    message: 内容
-    app_name: "DogrunConnect"
-
+      users:
+        password: 'パスワード'
+        password_confirmation: 'パスワード 確認'
+        number_of_dogs: '登録頭数'
+  enums:
+    user:
+      dogrun_place:
+        togo_inu_shitsuke_hiroba: 犬のしつけ広場    
+        dog_with: Dog with
   activerecord:
     errors:
       messages:

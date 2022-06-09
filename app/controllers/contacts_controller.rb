@@ -1,28 +1,34 @@
 class ContactsController < ApplicationController
+  before_action :contact_params, only: :confirm
+
+  def index
+    @contacs = Contacts.all
+  end
+
   def new
+    session.delete(:contact)
     @contact = Contact.new
   end
 
   def confirm
     @contact = Contact.new(contact_params)
-    return unless @contact.invalid?
-
-    render :new
-  end
-
-  def back
-    @contact = Contact.new(contact_params)
-    render action: 'new', status: :unprocessable_entity
+    session[:contact] = contact_params
   end
 
   def create
-    @contact = Contact.new(contact_params)
+    @contact = Contact.new(session[:contact].to_hash)
+    if params[:back]
+      render :new, status: :unprocessable_entity
+      return
+    end
+
     if @contact.save
       ContactMailer.send_mail(@contact).deliver_now
-      redirect_to '/', notice: t('.notice')
-    else
-      render action: 'new', status: :unprocessable_entity
+      session.delete(:contact)
+      redirect_to '/', success: t('.success')
+      return
     end
+    render :new, status: :unprocessable_entity, error: t('.send_mail_fail')
   end
 
   private
