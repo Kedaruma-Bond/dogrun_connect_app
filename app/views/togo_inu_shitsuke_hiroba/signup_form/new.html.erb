@@ -1,0 +1,57 @@
+<% content_for(:title, t('.title')) %>
+<div class="max-w-5xl mx-auto px-6 sm:px-6 lg:px-8 mt-5">
+  <p class="text-3xl font-bold leading-7 text-center mb-10"><%= t'.dogrun' %></p>
+  <div class="bg-purple-200 w-full shadow rounded p-8 sm:p-12">
+    <p class="text-3xl font-bold leading-7 text-center mb-5"><%= t'.title' %></p>
+    <%= simple_form_for @registration, url: togo_inu_shitsuke_hiroba_singup_confirm_path, data: { turbo: false } do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div class="w-full flex flex-col mt-8">
+        <div class="md:flex items-center">
+          <div class="w-full md:w-1/2 flex flex-col"> 
+            <%= f.label :name, label_html: { class: "font-bold leading-none" } %>
+            <%= f.input :name, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint: false, error: false %>
+          </div>
+          <div class="w-full md:w-1/2 flex flex-col md:mt-0 mt-7">
+            <%= f.label :email, label_html: { class: "font-bold leading-none" } %>
+            <%= f.input :email, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint: false, error: false %>
+          </div>
+        </div>
+        <div class="md:flex items-center">
+          <div class="w-full md:w-1/2 flex flex-col mt-7"> 
+            <%= f.label :password, label_html: { class: "font-bold leading-none" } %>
+            <%= f.input :password, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint_html: { class: "text-sm block;"}, hint: 'パスワードは6文字以上にしてください', required: true, error: false %>
+          </div>
+          <div class="w-full md:w-1/2 flex flex-col md:mt-0 mt-7">
+            <%= f.label :password_confirmation, label_html: { class: "font-bold leading-none" } %>
+            <%= f.input :password_confirmation, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint: false, error: false %>
+          </div>
+        </div>
+        <p class="text-left mt-7"><%= t('.input_dog_info') %></p>
+        <div class="md:flex items-center mt-7">
+          <div class="w-full md:w-1/4 flex flex-col">
+            <%= f.label t('.registration_number'), label_html: { class: "font-bold leading-none" } %>
+            <%= f.input :registration_number, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint: false, error: false %>
+          </div>
+          <div class="w-full md:w-1/4 flex flex-col md:mt-0 mt-7">
+            <%= f.label :dog_name, label_html: { class: "font-bold leading-none" } %>
+            <%= f.input :dog_name, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint: false, error: false %>
+          </div>
+          <div class="w-full md:w-1/4 flex flex-col items-center justify-center md:mt-0 mt-7">
+            <%= f.label :castration, label_html: { class: "font-bold leading-none" } %>
+            <%= f.input :castration, as: :boolean, checked_value: true, unchecked_value: false, label: false, hint: false, error: false %>
+          </div>
+          <div class="w-full md:w-1/4 flex flex-col items-center justify-center md:mt-0 mt-7">
+            <%= f.label :public, label_html: { class: "font-bold leading-none" } %>
+            <%= f.input :public, as: :boolean, checked_value: true, unchecked_value: false, label: false, hint: false, error: false %>
+          </div>
+        </div>
+      <%= f.hidden_field :enable_notification, value: false %>
+      <%= f.hidden_field :deactivation, value: false %>
+      <%= f.hidden_field :dogrun_place, value: '0' %>
+      </div>
+      <div class="flex items-center justify-center mt-3">
+        <%= f.button :submit, t('.confirm'), class: "mt-3 font-bold leading-none text-white py-4 px-10 bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" %>
+      </div>
+    <% end %> 
+  </div>
+</div>

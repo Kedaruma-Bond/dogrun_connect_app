@@ -4,11 +4,19 @@ ja:
       send_mail_fail: お問い合わせメールの送信に失敗しました
       success: お問い合わせメールを送信しました
   users:
-    create:
-      error: ユーザー登録エラー：所属ドッグラン不明
     activate:
       success: アカウントを有効化しました
+  dogs:
+  togo_inu_shitsuke_hiroba:
+    signup_form:
+      create:
+        send_mail: アカウント有効化メールを送信しました
+        error: ユーザー登録エラー
   activerecord:
+    models:
+      dog: 犬
+      user: ユーザー
+      registration_number: 登録番号
     attributes:
       contact:
         name: 氏名
@@ -19,5 +27,32 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード 確認
-        number_of_dogs: 登録頭数
+        deactivation: アカウント非有効化
+        enable_notification: 通知有効化
+      dog:
+        dog_name: 犬の名前
+        castration: 避妊・去勢
+        public: 利用状況公開
+        breed: 犬種
+        birthday: 誕生日
+        weight: 体重
+        owner_comment: 飼い主さんから一言
+      registration_number:
+        dogrun_place: 登録ドッグラン
+        registration_number: 登録番号
+  activemodel:
+    attributes:
+      signup_form:
+        name: 氏名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード 確認
+        registration_number: 登録番号
+        dog_name: 犬の名前
+        public: 利用状況公開
+        castration: 避妊・去勢
+
+  attributes:
+    created_at: 作成日
+    updated_at: 更新日
 

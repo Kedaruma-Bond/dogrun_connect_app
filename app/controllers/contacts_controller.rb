@@ -1,10 +1,6 @@
 class ContactsController < ApplicationController
   before_action :contact_params, only: :confirm
 
-  def index
-    @contacs = Contacts.all
-  end
-
   def new
     session.delete(:contact)
     @contact = Contact.new
@@ -12,7 +8,11 @@ class ContactsController < ApplicationController
 
   def confirm
     @contact = Contact.new(contact_params)
-    session[:contact] = contact_params
+    if @contact.valid?
+      session[:contact] = contact_params
+    else
+      render :new
+    end
   end
 
   def create

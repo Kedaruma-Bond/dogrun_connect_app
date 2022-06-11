@@ -66,6 +66,8 @@ gem 'enum_help'
 gem 'draper'
 # Redis 使うぞ
 gem 'redis-actionpack'
+# 画像uploader
+gem 'carrierwave'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
