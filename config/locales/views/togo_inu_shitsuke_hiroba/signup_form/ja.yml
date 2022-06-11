@@ -1,0 +1,27 @@
+ja:
+  togo_inu_shitsuke_hiroba:
+    signup_form:
+      new:
+        dogrun: 犬のしつけ広場
+        title: 新規登録
+        confirm: 確認画面へ
+        registration_number: パスポート番号
+        input_dog_info: 犬の登録情報を入力してください
+      confirm:
+        dogrun: 犬のしつけ広場
+        title: 登録内容確認
+        registration_number: パスポート番号
+        registration: 登録
+        back: 戻る
+        name: 氏名
+        email: メールアドレス
+        password: パスワード
+        dog_name: 犬の名前
+        castration: 避妊・去勢
+        castrated: 済
+        non_castrated: 未
+        public: 利用状況
+        public_view: 公開
+        non_public: 非公開 
+        
+

@@ -2,15 +2,8 @@ ja:
   togo_inu_shitsuke_hiroba:
     shared:
       navbar:
-        app_name: 'DogrunConnect'
-        login: 'ログイン'
-        sign_up: '新規登録'
       footer:
-        app_name: 'DogrunConnect'
-        support: 'サポート'
+        dogrun: 犬のしつけ広場
         compliance_confirmations: '遵守・確認事項'
-        terms_of_service: '利用規約'
-        privacy_policy: 'プライバシーポリシー'
-        contact: 'お問い合わせ'
 
 

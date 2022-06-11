@@ -11,12 +11,14 @@ Rails.application.routes.draw do
     member do
       get :activate
     end
+    resources :dogs, shallow: true
   end
+
   namespace :togo_inu_shitsuke_hiroba do
     get 'top', to: 'static_pages#top'
     get 'compliance_confirmations', to: 'static_pages#compliance_confirmations'
-    get 'signup', to: 'users#new'
-    post 'signup/confirm', to: 'users#confirm', as: 'confirm'
+    resources :signup_form, only: %i[new create]
+    post 'signup_form/confirm', to: 'signup_form#confirm', as: 'singup_confirm'
 
     namespace :admin do
     end

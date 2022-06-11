@@ -8,11 +8,11 @@
       <div class="md:flex items-center mt-12">
         <div class="w-full md:w-1/2 flex flex-col"> 
           <%= f.label :name, label_html: { class: "font-bold leading-none" } %>
-          <%= f.input :name, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint_html: { class: "text-sm block;" }, hint: "ワンちゃんでも飼い主さんでもどちらでも結構です", required: true, error: false %>
+          <%= f.input :name, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint_html: { class: "text-sm block;" }, hint: "ワンちゃんでも飼い主さんでもどちらでも結構です", error: false %>
         </div>
         <div class="w-full md:w-1/2 flex flex-col md:ml-6 md:mt-0 mt-4">
           <%= f.label :email, label_html: { class: "font-bold leading-none" } %>
-          <%= f.input :email, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint: false, required: true, error: false %>
+          <%= f.input :email, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint: '　', error: false %>
         </div>
       </div>
       <div class="w-full flex flex-col mt-8">

@@ -1,8 +1,6 @@
 ja:
   togo_inu_shitsuke_hiroba:
-    users:
+    dogs:
       new:
         dogrun: 犬のしつけ広場
-        title: 新規登録
-        next: 次へ
-        back: 戻る
+        title: ワンちゃんの登録

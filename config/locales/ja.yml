@@ -1,4 +1,16 @@
 ja:
+  defaults:
+    name: 氏名
+    email: メールアドレス
+    password: パスワード
+    password_confirmation: パスワード 確認
+    app_name: DogrunConnect
+    login: ログイン
+    sign_up: 新規登録
+    support: 'サポート'
+    terms_of_service: '利用規約'
+    privacy_policy: 'プライバシーポリシー'
+    contact: 'お問い合わせ'
   simple_form:
     "yes": 'はい'
     "no": 'いいえ'
@@ -8,18 +20,23 @@ ja:
       defaults:
         name: '氏名'
         email: 'メールアドレス'
-      contacts:
-        message: '内容'
-      users:
         password: 'パスワード'
         password_confirmation: 'パスワード 確認'
-        number_of_dogs: '登録頭数'
+        dog_name: '登録犬の名前'
+        castration: '避妊・去勢済'
+        public: '利用状況公開'
+        dogrun_place: 'ドッグラン名'
+      contacts:
+        message: '内容'
   enums:
     user:
       dogrun_place:
         togo_inu_shitsuke_hiroba: 犬のしつけ広場    
         dog_with: Dog with
   activerecord:
+    attributes:
+      signup_form:
+        email: メールアドレス
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
