@@ -6,6 +6,7 @@ class TogoInuShitsukeHiroba::SignupFormController < ApplicationController
   def new
     session.delete(:signup_form)
     @registration = SignupForm.new
+    @registration.password_confirmation = @registration.password
   end
 
   def confirm
