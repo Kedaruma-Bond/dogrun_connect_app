@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
-import FlashController from "./flash_controller"
-application.register("flash", FlashController)  
+import CheckboxEffectsController from "./checkbox_effects_controller.js"
+application.register("checkbox-effects", CheckboxEffectsController)
+
+import FlashController from "./flash_controller.js"
+application.register("flash", FlashController)

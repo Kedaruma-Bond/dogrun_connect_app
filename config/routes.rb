@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'user_sessions/new'
+  get 'user_sessions/destroy'
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   root 'static_pages#top'
   get 'privacy_policy', to: 'static_pages#privacy_policy'
