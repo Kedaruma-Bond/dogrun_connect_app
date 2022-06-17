@@ -6,6 +6,12 @@ ja:
   users:
     activate:
       success: アカウントを有効化しました
+  user_sessions:
+    create:
+      login_successfully: ログインしました！
+      login_failed: ログインできませんでした
+    destroy:
+      logout: ログアウトしました
   dogs:
   togo_inu_shitsuke_hiroba:
     signup_form:

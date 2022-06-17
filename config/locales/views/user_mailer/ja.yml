@@ -1,0 +1,6 @@
+ja:
+  user_mailer:
+    activation_needed_email:
+      subject: '[ようこそ DogrunConnectへ]'
+    activation_success_email:
+      subject: '[DogrunConnect アカウントを有効化しました！]'
