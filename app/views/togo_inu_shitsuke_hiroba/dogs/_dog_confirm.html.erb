@@ -1,0 +1,32 @@
+<div class="col-span-1 text-right sm:text-left"><%= t'.registration_number' %> : </div>
+<div class="col-span-1 text-left ml-3 mb-4"><%= @registration.registration_number %></div>
+
+<div class="col-span-1 text-right sm:text-left"><%= t'defaults.dog_name' %> : </div>
+<div class="col-span-1 text-left ml-3 mb-4"><%= @registration.dog_name %></div>
+
+<div class="col-span-1 text-right sm:text-left"><%= t'defaults.castration' %> : </div>
+<% if @registration.castration == 'true' %>
+  <div class="col-span-1 text-left ml-3 mb-4"><%= t'.castrated' %></div>
+<% else %>
+  <div class="col-span-1 text-left ml-3 mb-4"><%= t'.non_castrated' %></div>
+<% end %>
+
+<div class="col-span-1 text-right sm:text-left"><%= t'defaults.public' %> : </div>
+<% if @registration.castration == 'true' %>
+  <div class="col-span-1 text-left ml-3 mb-4"><%= t'.public' %></div>
+<% else %>
+  <div class="col-span-1 text-left ml-3 mb-4"><%= t'.non_public' %></div>
+<% end %>
+
+<div class="mt-6 md:flex justify-center">
+  <%= simple_form_for (model: @dog, local: true) data: { trubo: false } do |f| %>
+    <div class="w-full mt-4 overflow-hidden shadow sm:w-auto sm:mx-3 sm:mt-0 m-auto">
+      <%= f.button :submit, t('.back'), name: 'back', class: "items-center justify-center w-full px-10 py-4 text-base font-semibold text-white bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none"%>
+    </div>
+  <% end %>
+  <%= simple_form_for (model: @dog, local: true) data: { trubo: false } do |f| %>
+    <div class="w-full overflow-hidden shadow sm:w-auto sm:mx-3 sm:mt-0 mt-4">
+      <%= f.button :submit, t('.registration'), class: "items-center justify-center w-full px-10 py-4 text-base font-semibold text-white bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" %> 
+    </div>
+  <% end %>
+</div>

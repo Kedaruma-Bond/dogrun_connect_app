@@ -3,21 +3,21 @@ ja:
     create:
       send_mail_fail: お問い合わせメールの送信に失敗しました
       success: お問い合わせメールを送信しました
-  users:
-    activate:
-      success: アカウントを有効化しました
-  user_sessions:
-    create:
-      login_successfully: ログインしました！
-      login_failed: ログインできませんでした
-    destroy:
-      logout: ログアウトしました
-  dogs:
   togo_inu_shitsuke_hiroba:
-    signup_form:
+    users:
       create:
-        send_mail: アカウント有効化メールを送信しました
-        error: ユーザー登録エラー
+        user_create: |
+          ユーザーを登録しました!
+          引き続きワンちゃんの登録をお願いします
+        somethingwrong: ユーザー登録エラー
+    sessions:
+      create:
+        login_successfully: ログインしました！
+        login_failed: |
+          ログインできませんでした
+          入力内容を見直してください
+      destroy:
+        logout: ログアウトしました
   activerecord:
     models:
       dog: 犬
@@ -35,8 +35,9 @@ ja:
         password_confirmation: パスワード 確認
         deactivation: アカウント非有効化
         enable_notification: 通知有効化
+        agreement: 利用規約とプライバシーポリシー
       dog:
-        dog_name: 犬の名前
+        name: 犬の名前
         castration: 避妊・去勢
         public: 利用状況公開
         breed: 犬種
@@ -48,15 +49,7 @@ ja:
         registration_number: 登録番号
   activemodel:
     attributes:
-      signup_form:
-        name: 氏名
-        email: メールアドレス
-        password: パスワード
-        password_confirmation: パスワード 確認
-        registration_number: 登録番号
-        dog_name: 犬の名前
-        public: 利用状況公開
-        castration: 避妊・去勢
+      # form objectを使用する場合はlocaleはここに書く
 
   attributes:
     created_at: 作成日

@@ -5,12 +5,24 @@ ja:
     password: パスワード
     password_confirmation: パスワード 確認
     app_name: DogrunConnect
+    dog_name: 犬の名前
+    breed: 犬種
+    sex: 性別
+    age: 年齢
+    birthday: 生年月日
+    castration: 不妊・去勢
+    public: 利用状況
     login: ログイン
+    logout: ログアウト
+    mypage: マイページ
+    inform_dogrun: ドッグランの連絡
     sign_up: 新規登録
     support: 'サポート'
     terms_of_service: '利用規約'
     privacy_policy: 'プライバシーポリシー'
     contact: 'お問い合わせ'
+    agree: '利用規約とプライバシーポリシー'
+    registration: '登録'
   simple_form:
     "yes": 'はい'
     "no": 'いいえ'
@@ -22,7 +34,6 @@ ja:
         email: 'メールアドレス'
         password: 'パスワード'
         password_confirmation: 'パスワード 確認'
-        dog_name: '登録犬の名前'
         castration: '避妊・去勢済'
         public: '利用状況公開'
         dogrun_place: 'ドッグラン名'
@@ -36,7 +47,6 @@ ja:
   activerecord:
     attributes:
       signup_form:
-        email: メールアドレス
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -145,7 +155,7 @@ ja:
   errors:
     format: "%{attribute}%{message}"
     messages:
-      accepted: を受諾してください
+      accepted: に同意してください 
       blank: を入力してください
       confirmation: と%{attribute}の入力が一致しません
       empty: を入力してください

@@ -68,6 +68,8 @@ gem 'draper'
 gem 'redis-actionpack'
 # 画像uploader
 gem 'carrierwave'
+# emailのformat validation
+gem 'validates_email_format_of'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
