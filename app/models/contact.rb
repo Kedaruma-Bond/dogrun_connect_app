@@ -5,3 +5,15 @@ class Contact < ApplicationRecord
                     format: { with: VALID_EMAIL_REGEX }
   validates :message, presence: true, length: { maximum: 1000 }
 end
+
+# == Schema Information
+#
+# Table name: contacts
+#
+#  id         :bigint           not null, primary key
+#  email      :string           not null
+#  message    :string           not null
+#  name       :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#

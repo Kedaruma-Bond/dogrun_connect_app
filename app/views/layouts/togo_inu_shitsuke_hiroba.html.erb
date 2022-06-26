@@ -16,7 +16,11 @@
 
   <body class="pb-420 box-border">
     <main>
-      <%= render 'togo_inu_shitsuke_hiroba/shared/navbar' %>
+      <% if logged_in? %>
+        <%= render 'togo_inu_shitsuke_hiroba/shared/login_navbar' %>
+      <% else %>
+        <%= render 'togo_inu_shitsuke_hiroba/shared/navbar' %>
+      <% end %>
       <%= render partial: 'shared/flash' %>
       <div class="w-full">
         <%= yield %>

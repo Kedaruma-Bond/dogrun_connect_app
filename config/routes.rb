@@ -10,15 +10,19 @@ Rails.application.routes.draw do
   namespace :togo_inu_shitsuke_hiroba do
     get 'top', to: 'static_pages#top'
     get 'compliance_confirmations', to: 'static_pages#compliance_confirmations'
-    resources :users, only: %i[new create edit update] do
-      resources :dogs, shallow: true
+    resources :users, only: %i[new create edit show update edit update] do
+      resource :dogs
     end
-    get  'signup', to: 'users#new', as: 'sign_up'
-    get  'login', to: 'sessions#new', as: 'login'
+    get 'signup', to: 'users#new', as: :signup
+    resources :sessions, only: %i[new create destroy]
+    get 'login', to: 'sessions#new'
     post 'login', to: 'sessions#create'
-    post 'logout', to: 'sessions#destroy', as: 'logout'
+    delete 'logout', to: 'sessions#destroy', as: :logout
 
     namespace :admin do
     end
   end
 end
+
+# == Route Map
+#

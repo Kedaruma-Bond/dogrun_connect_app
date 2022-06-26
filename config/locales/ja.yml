@@ -16,13 +16,14 @@ ja:
     logout: ログアウト
     mypage: マイページ
     inform_dogrun: ドッグランの連絡
-    sign_up: 新規登録
+    signup: 新規登録
     support: 'サポート'
     terms_of_service: '利用規約'
     privacy_policy: 'プライバシーポリシー'
     contact: 'お問い合わせ'
     agree: '利用規約とプライバシーポリシー'
     registration: '登録'
+    here: こちら
   simple_form:
     "yes": 'はい'
     "no": 'いいえ'

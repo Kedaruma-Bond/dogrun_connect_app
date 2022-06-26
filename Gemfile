@@ -94,8 +94,6 @@ group :development do
   gem 'binding_of_caller'
   # Code補完
   gem 'solargraph'
-  # 開発環境にはdevelopmentと書かれたリボンを表示してもらう
-  gem 'rack-dev-mark'
   # 模擬メール機能
   gem 'letter_opener_web'
 

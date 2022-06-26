@@ -3,18 +3,20 @@ class TogoInuShitsukeHiroba::SessionsController < ApplicationController
   def new; end
 
   def create
-    @user = login(params[:email], params[:password])
-
-    if @user
-      redirect_to(togo_inu_shitsuke_hiroba_top_path, success: t('.login_successfully'))
+    user = User.find_by(email: params[:session][:email].downcase)
+    if user && login(params[:session][:email], params[:session][:password])
+      redirect_back_or_to(togo_inu_shitsuke_hiroba_top_path, success: t('.login_successfully'))
     else
-      flash.now[:alert] = t('.login_failed')
+      flash.now[:error] = t('.login_failed')
       render :new
     end
   end
 
   def destroy
     logout
-    rediret_to(:top, notice: t('.logout'))
+    respond_to do |format|
+      format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, notice: t('.logout'), status: :see_other }
+      format.json { head :no_content }
+    end
   end
 end

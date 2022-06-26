@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_22_023432) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_23_013026) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,30 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_22_023432) do
     t.string "message", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "dogs", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "castration", default: false, null: false
+    t.boolean "public", default: false, null: false
+    t.string "breed", default: ""
+    t.integer "sex"
+    t.date "birthday"
+    t.integer "weight"
+    t.text "owner_comment", default: ""
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_dogs_on_user_id"
+  end
+
+  create_table "registration_numbers", force: :cascade do |t|
+    t.integer "dogrun_place", null: false
+    t.string "registration_number", null: false
+    t.bigint "dog_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dog_id"], name: "index_registration_numbers_on_dog_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -34,4 +58,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_22_023432) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "dogs", "users"
+  add_foreign_key "registration_numbers", "dogs"
 end
