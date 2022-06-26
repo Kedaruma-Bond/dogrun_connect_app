@@ -7,7 +7,6 @@ class Dog < ApplicationRecord
   validates :public, presence: true
   validates :breed, length: { maximum: 50 }
   validates :sex, allow_nil: true, numericality: { in: 0..1 }
-  validates :birthday, allow_nil: true
   validates :weight, allow_nil: true, numericality: { greater_than: 0 }
   validates :owner_comment, length: { maximum: 400 }
 
