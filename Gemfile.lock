@@ -256,8 +256,6 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
-    rack-dev-mark (0.7.9)
-      rack (>= 1.1, < 2.3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (7.0.2.4)
@@ -443,7 +441,6 @@ DEPENDENCIES
   letter_opener_web
   pg (~> 1.1)
   puma (~> 5.0)
-  rack-dev-mark
   rails (~> 7.0.2, >= 7.0.2.4)
   rails-controller-testing
   rails-i18n
