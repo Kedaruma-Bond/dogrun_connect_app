@@ -15,17 +15,17 @@
         <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3"><%= t'defaults.support' %></h2>
         <nav class="list-none mb-10">
           <li>
-            <%= link_to '/terms_of_service', class: "text-gray-600 hover:text-gray-800" do %>
+            <%= link_to '/terms_of_service', target: "_blank", rel: "noopener noreferrer", class: "text-gray-600 hover:text-gray-800" do %>
               <%= t'defaults.terms_of_service' %>
             <% end %>
           </li>
           <li>
-            <%= link_to '/privacy_policy', class: "my-2 text-gray-600 hover:text-gray-800 text-sm" do %>
+            <%= link_to '/privacy_policy', target: "_blank", rel: "noopener noreferrer", class: "my-2 text-gray-600 hover:text-gray-800 text-sm" do %>
               <%= t'defaults.privacy_policy' %>
             <% end %>
           </li>
           <li>
-            <%= link_to '/contacts/new', class: "text-gray-600 hover:text-gray-800" do %>
+            <%= link_to '/contacts/new', target: "_blank", rel: "noopener noreferrer", class: "text-gray-600 hover:text-gray-800" do %>
               <%= t'defaults.contact' %>
             <% end %>
           </li>
@@ -35,7 +35,7 @@
         <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3"><%= t'.dogrun' %></h2>
         <nav class="list-none mb-10">
           <li>
-            <%= link_to '/togo_inu_shitsuke_hiroba/compliance_confirmations' do %>
+            <%= link_to '/togo_inu_shitsuke_hiroba/compliance_confirmations', target: "_blank", rel: "noopener noreferrer" do %>
               <%= t'.compliance_confirmations' %>
             <% end %>
           </li>

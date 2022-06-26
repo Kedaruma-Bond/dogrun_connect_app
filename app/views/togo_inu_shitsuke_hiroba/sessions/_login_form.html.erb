@@ -5,12 +5,17 @@
       <div class="w-full md:w-1/2 flex flex-col">
         <%= f.label t('defaults.email') %>
         <%= f.email_field :email, class: "w-8/12 block leading-none text-gray-900 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" %>
+        <br>
       </div>
       &nbsp; 
       &nbsp; 
       <div class="w-full md:w-1/2 flex flex-col">
         <%= f.label t('defaults.password') %>
         <%= f.password_field :password, class: "w-8/12 block leading-none text-gray-900 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" %>
+        <div>
+          <%= check_box_tag :remember, params[:remember], true %>
+          <%= label_tag t('defaults.remember') %>
+        </div>
       </div>
     </div>
     <%# <div class="flex mt-5 justify-center">

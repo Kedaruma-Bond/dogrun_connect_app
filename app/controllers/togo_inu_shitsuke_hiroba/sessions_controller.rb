@@ -4,7 +4,7 @@ class TogoInuShitsukeHiroba::SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
-    if user && login(params[:session][:email], params[:session][:password])
+    if user && login(params[:session][:email], params[:session][:password], params[:session][:remember])
       redirect_back_or_to(togo_inu_shitsuke_hiroba_top_path, success: t('.login_successfully'))
     else
       flash.now[:error] = t('.login_failed')
