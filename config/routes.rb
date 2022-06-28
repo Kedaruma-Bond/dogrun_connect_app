@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'password_resets/create'
+  get 'password_resets/edit'
+  get 'password_resets/update'
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   root 'static_pages#top'
   get 'privacy_policy', to: 'static_pages#privacy_policy'
@@ -6,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :contacts, only: %i[new create]
   post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
+
+  resources :password_resets, only: %i[new create edit update]
 
   namespace :togo_inu_shitsuke_hiroba do
     get 'top', to: 'static_pages#top'

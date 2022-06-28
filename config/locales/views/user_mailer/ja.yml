@@ -1,6 +1,6 @@
 ja:
   user_mailer:
-    activation_needed_email:
+    user_registrated_success:
       subject: '[ようこそ DogrunConnectへ]'
-    activation_success_email:
-      subject: '[DogrunConnect アカウントを有効化しました！]'
+    reset_password_email:
+      subject: '[DogrunConnect パスワードリセット]'

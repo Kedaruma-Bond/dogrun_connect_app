@@ -3,6 +3,13 @@ ja:
     create:
       send_mail_fail: お問い合わせメールの送信に失敗しました
       success: お問い合わせメールを送信しました
+  password_resets:
+    create:
+      instruction: |
+        パスワードリセット案内メールを送信しました
+        ご確認ください
+    update:
+      success: パスワードが更新されました
   togo_inu_shitsuke_hiroba:
     users:
       create:

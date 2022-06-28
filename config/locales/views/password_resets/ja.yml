@@ -1,0 +1,13 @@
+ja:
+  password_resets:
+    edit:
+      title: パスワードの更新
+      update: 更新する
+      new_password: 新しいパスワード
+      new_password_confirmation: 新しいパスワード 確認 
+    new:
+      title: パスワードのリセット
+      input_email: |
+        登録したメールアドレスを入力してください
+        パスワードリセット案内メールを送信します
+      email_form: メールアドレスを入力

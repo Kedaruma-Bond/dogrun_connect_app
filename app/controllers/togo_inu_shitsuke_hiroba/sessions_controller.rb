@@ -1,5 +1,6 @@
 class TogoInuShitsukeHiroba::SessionsController < ApplicationController
   layout 'togo_inu_shitsuke_hiroba'
+  skip_before_action :require_login, only: %i[new create]
   def new; end
 
   def create

@@ -3,14 +3,14 @@
   <div class="w-full flex flex-col mt-8">
     <div class="md:flex items-center">
       <div class="w-full md:w-1/2 flex flex-col">
-        <%= f.label t('defaults.email') %>
+        <%= f.label :email, t('defaults.email') %>
         <%= f.email_field :email, class: "w-8/12 block leading-none text-gray-900 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" %>
         <br>
       </div>
       &nbsp; 
       &nbsp; 
       <div class="w-full md:w-1/2 flex flex-col">
-        <%= f.label t('defaults.password') %>
+        <%= f.label :password, t('defaults.password') %>
         <%= f.password_field :password, class: "w-8/12 block leading-none text-gray-900 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" %>
         <div>
           <%= check_box_tag :remember, params[:remember], true %>
@@ -18,9 +18,13 @@
         </div>
       </div>
     </div>
-    <%# <div class="flex mt-5 justify-center">
-
-    </div> %>
+    <div class="flex mt-5 justify-center">
+      <%= t('.password_reset') %>
+      &nbsp;
+      <a href="/password_resets/new", target="_blank", rel="noopener noreferrer" class="text-gray-600 hover:text-gray-400">
+        <%= t('defaults.here') %>
+      </a>
+    </div>
     <div class="flex items-center justify-center mt-3">
       <%= button_tag type: 'submit', class: "flex mt-3 font-bold h-4 leading-4 text-white py-4 px-10 bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -33,8 +37,8 @@
       <% end %>
     </div>
     <div class="flex mt-3 justify-center">
-      <%= t('defaults.signup') %>
-      は&nbsp;
+      <%= t('defaults.signup_is') %>
+      &nbsp;
       <a href="/togo_inu_shitsuke_hiroba/signup/", target="_blank", rel="noopener noreferrer" class="text-gray-600 hover:text-gray-400">
         <%= t('defaults.here') %>
       </a>
