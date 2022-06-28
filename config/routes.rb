@@ -12,10 +12,6 @@ Rails.application.routes.draw do
 
   resources :password_resets, only: %i[new create edit update]
 
-  # scope module: :accounts do
-  #   get 'unlock_accounts/:token', to: 'unlock_accounts#show', as: 'unlock_accounts'
-  # end
-
   namespace :togo_inu_shitsuke_hiroba do
     get 'top', to: 'static_pages#top'
     get 'compliance_confirmations', to: 'static_pages#compliance_confirmations'
