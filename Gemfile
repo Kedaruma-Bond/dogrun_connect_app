@@ -72,11 +72,10 @@ gem 'carrierwave'
 gem 'validates_email_format_of'
 
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   # scheme情報をモデルファイルの先頭に書き出してくれる
   gem 'annotate'
   gem 'capybara'
-  gem 'debug', platforms: %i[mri mingw x64_mingw], require: false
+  gem 'debug', git: 'git@github.com:ruby/debug.git', branch: 'master'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'launchy'

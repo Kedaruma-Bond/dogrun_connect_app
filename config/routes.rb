@@ -11,18 +11,22 @@ Rails.application.routes.draw do
   post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
 
   resources :password_resets, only: %i[new create edit update]
+  scope module: :users do
+    get 'unlock_accounts/:token', to: 'unlock_accounts#show', as: 'unlock_accounts'
+  end
 
   namespace :togo_inu_shitsuke_hiroba do
     get 'top', to: 'static_pages#top'
     get 'compliance_confirmations', to: 'static_pages#compliance_confirmations'
-    resources :users, only: %i[new create edit show update edit update] do
-      resource :dogs
-    end
     get 'signup', to: 'users#new', as: :signup
     resources :sessions, only: %i[new create destroy]
     get 'login', to: 'sessions#new'
     post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy', as: :logout
+
+    resources :users, only: %i[new create edit show update edit update] do
+      resource :dogs
+    end
 
     namespace :admin do
     end

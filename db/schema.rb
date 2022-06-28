@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_26_141040) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_28_005520) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,9 +61,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_26_141040) do
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
     t.integer "access_count_to_reset_password_page", default: 0
+    t.integer "failed_logins_count", default: 0
+    t.datetime "lock_expires_at"
+    t.string "unlock_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
+    t.index ["unlock_token"], name: "index_users_on_unlock_token"
   end
 
   add_foreign_key "dogs", "users"

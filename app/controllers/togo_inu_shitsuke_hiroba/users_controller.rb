@@ -10,7 +10,7 @@ class TogoInuShitsukeHiroba::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      UserMailer.user_registrated_success(@user).deliver_now
+      UserMailer.user_registration_success(@user).deliver_now
       login(params[:user][:email], params[:user][:password])
       redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.user_create')
       return

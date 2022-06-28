@@ -4,7 +4,7 @@
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging,
 # :magic_login, :external
-Rails.application.config.sorcery.submodules = %i[remember_me session_timeout reset_password]
+Rails.application.config.sorcery.submodules = %i[brute_force_protection remember_me session_timeout reset_password]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -488,12 +488,12 @@ Rails.application.config.sorcery.configure do |config|
     # How many failed logins are allowed.
     # Default: `50`
     #
-    # user.consecutive_login_retries_amount_limit =
+    user.consecutive_login_retries_amount_limit = 2 # timed
 
     # How long the user should be banned, in seconds. 0 for permanent.
     # Default: `60 * 60`
     #
-    # user.login_lock_time_period =
+    user.login_lock_time_period = (60 * 5) # sec
 
     # Unlock token attribute name
     # Default: `:unlock_token`
@@ -509,13 +509,13 @@ Rails.application.config.sorcery.configure do |config|
     # send email with the unlock token
     # Default: `false`
     #
-    # user.unlock_token_mailer_disabled = true
+    user.unlock_token_mailer_disabled = true
 
     # REQUIRED:
     # Unlock token mailer class.
     # Default: `nil`
     #
-    # user.unlock_token_mailer =
+    user.unlock_token_mailer = UserMailer
 
     # -- activity logging --
     # Last login attribute name.
@@ -562,5 +562,5 @@ Rails.application.config.sorcery.configure do |config|
 
   # This line must come after the 'user config' block.
   # Define which model authenticates with sorcery.
-  config.user_class = "User"
+  config.user_class = 'User'
 end

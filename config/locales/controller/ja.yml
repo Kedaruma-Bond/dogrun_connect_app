@@ -10,6 +10,10 @@ ja:
         ご確認ください
     update:
       success: パスワードが更新されました
+  unlock_account:
+    show:
+      login_unlock: |
+        アカウントロックを解除しました
   togo_inu_shitsuke_hiroba:
     users:
       create:
@@ -23,6 +27,10 @@ ja:
         login_failed: |
           ログインできませんでした
           入力内容を見直してください
+        account_locked: |
+          短時間に複数回のログイン試行に失敗したので
+          一時的にアカウントをロックしました
+          時間をおいてからまたお試しください
       destroy:
         logout: ログアウトしました
   activerecord:
