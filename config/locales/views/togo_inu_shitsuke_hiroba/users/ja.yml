@@ -1,12 +1,11 @@
 ja:
   togo_inu_shitsuke_hiroba:
-    signup_form:
+    users:
       new:
         dogrun: 犬のしつけ広場
+        title: 犬のしつけ広場 | 新規登録
+      signup_form:
         title: 新規登録
-        confirm: 確認画面へ
-        registration_number: パスポート番号
-        input_dog_info: 犬の登録情報を入力してください
       confirm:
         dogrun: 犬のしつけ広場
         title: 登録内容確認

@@ -1,0 +1,21 @@
+    <p class="text-left mt-7"><%= t('.input_dog_info') %></p>
+    <div class="md:flex items-center mt-7">
+      <div class="w-full md:w-1/4 flex flex-col">
+        <%= f.label t('.registration_number'), label_html: { class: "font-bold leading-none" } %>
+        <%= f.input :registration_number, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint: false, error: false %>
+      </div>
+      <div class="w-full md:w-1/4 flex flex-col md:mt-0 mt-7">
+        <%= f.label :dog_name, label_html: { class: "font-bold leading-none" } %>
+        <%= f.input :dog_name, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint: false, error: false %>
+      </div>
+      <div class="w-full md:w-1/4 flex flex-col items-center justify-center md:mt-0 mt-7">
+        <%= f.label :castration, label_html: { class: "font-bold leading-none" } %>
+        <%= f.input :castration, as: :boolean, checked_value: true, unchecked_value: false, label: false, hint: false, error: false %>
+      </div>
+      <div class="w-full md:w-1/4 flex flex-col items-center justify-center md:mt-0 mt-7">
+        <%= f.label :public, label_html: { class: "font-bold leading-none" } %>
+        <%= f.input :public, as: :boolean, checked_value: true, unchecked_value: false, label: false, hint: false, error: false %>
+      </div>
+    </div>
+
+    <%= f.hidden_field :dogrun_place, value: '0' %>

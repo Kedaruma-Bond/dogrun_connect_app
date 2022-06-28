@@ -1,15 +1,40 @@
 class Dog < ApplicationRecord
   belongs_to :user
-  has_many :registration_numbers
+  has_many :registration_numbers, dependent: :destroy
 
-  validates :dog_name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 50 }
+  validates :castration, presence: true
+  validates :public, presence: true
   validates :breed, length: { maximum: 50 }
+  validates :sex, allow_nil: true, numericality: { in: 0..1 }
+  validates :weight, allow_nil: true, numericality: { greater_than: 0 }
   validates :owner_comment, length: { maximum: 400 }
-  # validate :pretend_future
 
-  # birthdayが日付形式になってない？からエラーが出てる模様
-  # purseメソッドで変換してやる？
-  # def pretend_future
-  #   errors.add(:birthday, '誕生日のエラーです') if birthday > Time.zone.today
-  # end
+  enum sex: { male: 0, female: 1 }
 end
+
+# == Schema Information
+#
+# Table name: dogs
+#
+#  id            :bigint           not null, primary key
+#  birthday      :date
+#  breed         :string           default("")
+#  castration    :boolean          default(FALSE), not null
+#  name          :string           not null
+#  owner_comment :text             default("")
+#  public        :boolean          default(FALSE), not null
+#  sex           :integer
+#  weight        :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  user_id       :bigint           not null
+#
+# Indexes
+#
+#  index_dogs_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#

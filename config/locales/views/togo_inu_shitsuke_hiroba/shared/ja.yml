@@ -1,9 +1,12 @@
 ja:
   togo_inu_shitsuke_hiroba:
     shared:
-      navbar:
+      login_navbar:
+        site_information: 広場の連絡
+        logout_confirmation: ログアウトしてよろしいですか？
       footer:
         dogrun: 犬のしつけ広場
         compliance_confirmations: '遵守・確認事項'
+
 
 

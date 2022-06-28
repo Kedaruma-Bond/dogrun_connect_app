@@ -4,7 +4,7 @@
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging,
 # :magic_login, :external
-Rails.application.config.sorcery.submodules = %i[remember_me reset_password user_activation]
+Rails.application.config.sorcery.submodules = %i[brute_force_protection remember_me session_timeout reset_password]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -41,12 +41,12 @@ Rails.application.config.sorcery.configure do |config|
   # How long in seconds to keep the session alive.
   # Default: `3600`
   #
-  # config.session_timeout =
+  config.session_timeout = 720.hours
 
   # Use the last action as the beginning of session timeout.
   # Default: `false`
   #
-  # config.session_timeout_from_last_action =
+  config.session_timeout_from_last_action = true
 
   # Invalidate active sessions. Requires an `invalidate_sessions_before` timestamp column
   # Default: `false`
@@ -226,7 +226,6 @@ Rails.application.config.sorcery.configure do |config|
   # config.line.bot_prompt = "normal"
   # config.line.user_info_mapping = {name: 'displayName'}
 
-  
   # For information about Discord API
   # https://discordapp.com/developers/docs/topics/oauth2
   # config.discord.key = "xxxxxx"
@@ -352,7 +351,7 @@ Rails.application.config.sorcery.configure do |config|
     # User activation mailer class.
     # Default: `nil`
     #
-    user.user_activation_mailer = UserMailer
+    # user.user_activation_mailer =
 
     # When true, sorcery will not automatically
     # send the activation details email, and allow you to
@@ -489,12 +488,12 @@ Rails.application.config.sorcery.configure do |config|
     # How many failed logins are allowed.
     # Default: `50`
     #
-    # user.consecutive_login_retries_amount_limit =
+    user.consecutive_login_retries_amount_limit = 2 # timed
 
     # How long the user should be banned, in seconds. 0 for permanent.
     # Default: `60 * 60`
     #
-    # user.login_lock_time_period =
+    user.login_lock_time_period = (60 * 5) # sec
 
     # Unlock token attribute name
     # Default: `:unlock_token`
@@ -510,13 +509,13 @@ Rails.application.config.sorcery.configure do |config|
     # send email with the unlock token
     # Default: `false`
     #
-    # user.unlock_token_mailer_disabled = true
+    user.unlock_token_mailer_disabled = true
 
     # REQUIRED:
     # Unlock token mailer class.
     # Default: `nil`
     #
-    # user.unlock_token_mailer =
+    user.unlock_token_mailer = UserMailer
 
     # -- activity logging --
     # Last login attribute name.

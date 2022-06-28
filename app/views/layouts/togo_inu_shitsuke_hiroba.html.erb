@@ -9,7 +9,6 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <%= render 'layouts/shim' %>
 
     <title><%= page_title(yield(:title)) %></title>
     <%= favicon_link_tag('dogrun_logo.png') %>
@@ -17,7 +16,11 @@
 
   <body class="pb-420 box-border">
     <main>
-      <%= render 'togo_inu_shitsuke_hiroba/shared/navbar' %>
+      <% if logged_in? %>
+        <%= render 'togo_inu_shitsuke_hiroba/shared/login_navbar' %>
+      <% else %>
+        <%= render 'togo_inu_shitsuke_hiroba/shared/navbar' %>
+      <% end %>
       <%= render partial: 'shared/flash' %>
       <div class="w-full">
         <%= yield %>

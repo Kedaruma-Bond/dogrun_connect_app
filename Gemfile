@@ -68,13 +68,14 @@ gem 'draper'
 gem 'redis-actionpack'
 # 画像uploader
 gem 'carrierwave'
+# emailのformat validation
+gem 'validates_email_format_of'
 
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   # scheme情報をモデルファイルの先頭に書き出してくれる
   gem 'annotate'
   gem 'capybara'
-  gem 'debug', platforms: %i[mri mingw x64_mingw], require: false
+  gem 'debug', git: 'git@github.com:ruby/debug.git', branch: 'master'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'launchy'
@@ -92,8 +93,6 @@ group :development do
   gem 'binding_of_caller'
   # Code補完
   gem 'solargraph'
-  # 開発環境にはdevelopmentと書かれたリボンを表示してもらう
-  gem 'rack-dev-mark'
   # 模擬メール機能
   gem 'letter_opener_web'
 

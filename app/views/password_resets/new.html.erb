@@ -1,0 +1,32 @@
+<% content_for(:title, t('.title')) %>
+<section class="text-gray-600">
+  <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
+    <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0 sm:text-center">
+      <h1 class="text-3xl text-gray-900"><%= t'.title' %></h1>
+      <p class="leading-relaxed mt-4"><%= simple_format(t'.input_email') %></p>
+    </div>
+    <div class="lg:w-2/6 md:w-1/2 bg-purple-200 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+      <h2 class="text-2xl text-gray-900"><%= t'.email_form' %></h2>
+      <%= form_with url: password_resets_path, local: true, data: { turbo: false }, method: :post do |f| %>
+        <div class="block mt-12">
+          <div class="flex flex-col">
+          <%= f.label :email, t('defaults.email'), class: "font-bold leading-none" %>
+          <%= f.email_field :email, class: "md:w-2/5 w-full leading-none text-gray-900 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" %>
+        </div>
+        <div class="flex items-center justify-center mt-10">
+          <%= button_tag type: 'submit', class: "flex mt-3 font-bold h-4 leading-4 text-white py-4 px-10 bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+            </svg>
+            &nbsp;
+            <span class="text">
+              <%= t('defaults.send') %>
+            </span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
