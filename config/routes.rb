@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
 
   resources :password_resets, only: %i[new create edit update]
-  scope module: :users do
+
+  scope module: :accounts do
     get 'unlock_accounts/:token', to: 'unlock_accounts#show', as: 'unlock_accounts'
   end
 
