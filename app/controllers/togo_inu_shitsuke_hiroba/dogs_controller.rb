@@ -1,7 +1,7 @@
 class TogoInuShitsukeHiroba::DogsController < ApplicationController
   layout 'togo_inu_shitsuke_hiroba'
   before_action :dog_params, only: :confirm
-  begore_action :set_dog, only: %i[edit update show destroy]
+  before_action :set_dog, only: %i[edit update show destroy]
 
   def index; end
 
