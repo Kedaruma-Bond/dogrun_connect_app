@@ -21,8 +21,12 @@ Rails.application.routes.draw do
     post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy', as: :logout
 
-    resources :users, only: %i[new create edit show update edit update] do
-      resource :dogs
+    get 'dog_registration', to: 'dog_registration#new'
+    post 'dog_registration', to: 'dog_registration#create'
+    post 'dog_registration/confirm', to: 'dog_registration#confirm'
+
+    resources :users, only: %i[new create edit update show] do
+      resource :dogs, only: %i[index new create edit update show]
     end
 
     namespace :admin do

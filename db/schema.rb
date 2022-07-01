@@ -24,8 +24,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_005520) do
 
   create_table "dogs", force: :cascade do |t|
     t.string "name", null: false
-    t.boolean "castration", default: false, null: false
-    t.boolean "public", default: false, null: false
+    t.boolean "castration", null: false
+    t.boolean "public", null: false
     t.string "breed", default: ""
     t.integer "sex"
     t.date "birthday"

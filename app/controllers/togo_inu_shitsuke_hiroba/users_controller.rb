@@ -1,6 +1,6 @@
 class TogoInuShitsukeHiroba::UsersController < ApplicationController
   layout 'togo_inu_shitsuke_hiroba'
-  skip_before_action :require_login, only: %i[index new create activate update]
+  skip_before_action :require_login, only: %i[new create]
   before_action :user_params, only: :create
 
   def new
@@ -12,7 +12,7 @@ class TogoInuShitsukeHiroba::UsersController < ApplicationController
     if @user.save
       UserMailer.user_registration_success(@user).deliver_now
       login(params[:user][:email], params[:user][:password])
-      redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.user_create')
+      redirect_to togo_inu_shitsuke_hiroba_dog_registration_path, success: t('.user_create')
       return
     end
     render :new, status: :unprocessable_entity, error: t('.somethingwrong')

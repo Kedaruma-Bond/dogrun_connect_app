@@ -1,0 +1,37 @@
+<p class="text-xl font-bold leading-7 text-center mb-5"><%= t'.title' %></p>
+<div class="w-full flex flex-col mt-8">
+  <div class="md:flex items-center">
+    <div class="w-full md:w-1/4 flex flex-col items-center justify-center">
+      <p class="font-bold leading-none"><%= t('.registration_number') %></p> 
+      <p class="block leading-none text-gray-900 p-3 mt-4"><%= @dog_registration.registration_number %></p>
+    </div>
+    <div class="w-full md:w-1/4 flex flex-col md:mt-0 mt-7 items-center justify-center">
+      <p class="font-bold leading-none"><%= t('.name') %></p>
+      <p class="block leading-none text-gray-900 p-3 mt-4"><%= @dog_registration.name %></p>
+    </div>
+    <div class="w-full md:w-1/4 flex flex-col md:mt-0 mt-7 items-center justify-center"> 
+      <p class="font-bold leading-none"><%= t('.castration') %></p>
+      <% if @dog_registration.castration == 'castrated' %>
+        <p class="block leading-none p-3 mt-4">
+          <%= t('.castrated') %>
+        </p>
+      <% else %>
+        <p class="block leading-none p-3 mt-4">
+          <%= t('.non_castrated') %>
+        </p>
+      <% end %>
+    </div>
+    <div class="w-full md:w-1/4 flex flex-col md:mt-0 mt-7 items-center justify-center"> 
+      <p class="font-bold leading-none"><%= t('.public') %></p>
+      <% if @dog_registration.public == 'public_view' %>
+        <p class="block leading-none p-3 mt-4">
+          <%= t('.public_view') %>
+        </p>
+      <% else %>
+        <p class="block leading-none p-3 mt-4">
+          <%= t('.non_public') %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>

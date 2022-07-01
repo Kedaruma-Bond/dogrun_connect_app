@@ -5,11 +5,13 @@ class Dog < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :castration, presence: true
   validates :public, presence: true
-  validates :breed, length: { maximum: 50 }
+  validates :breed, allow_nil: true, length: { maximum: 50 }
   validates :sex, allow_nil: true, numericality: { in: 0..1 }
   validates :weight, allow_nil: true, numericality: { greater_than: 0 }
-  validates :owner_comment, length: { maximum: 400 }
+  validates :owner_comment, allow_nil: true, length: { maximum: 400 }
 
+  enum castration: { castrated: true, non_castrated: false }
+  enum public: { public_view: true, non_public: false }
   enum sex: { male: 0, female: 1 }
 end
 
@@ -20,10 +22,10 @@ end
 #  id            :bigint           not null, primary key
 #  birthday      :date
 #  breed         :string           default("")
-#  castration    :boolean          default(FALSE), not null
+#  castration    :boolean          not null
 #  name          :string           not null
 #  owner_comment :text             default("")
-#  public        :boolean          default(FALSE), not null
+#  public        :boolean          not null
 #  sex           :integer
 #  weight        :integer
 #  created_at    :datetime         not null

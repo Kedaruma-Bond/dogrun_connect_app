@@ -11,10 +11,10 @@ end
 #  id            :bigint           not null, primary key
 #  birthday      :date
 #  breed         :string           default("")
-#  castration    :boolean          default(FALSE), not null
+#  castration    :boolean          not null
 #  name          :string           not null
 #  owner_comment :text             default("")
-#  public        :boolean          default(FALSE), not null
+#  public        :boolean          not null
 #  sex           :integer
 #  weight        :integer
 #  created_at    :datetime         not null

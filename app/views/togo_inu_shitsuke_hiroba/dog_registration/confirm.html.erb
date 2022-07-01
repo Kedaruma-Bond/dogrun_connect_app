@@ -1,0 +1,19 @@
+<% content_for(:title, t('.title')) %>
+<div class="max-w-5xl mx-auto px-6 sm:px-6 lg:px-8 mt-5">
+  <p class="text-3xl font-bold leading-7 text-center mb-10"><%= t'.dogrun' %></p>
+  <div class="container bg-purple-200 w-full shadow rounded p-8 sm:p-10">
+    <%= render 'togo_inu_shitsuke_hiroba/dog_registration/dog_registration_confirm' %>
+    <div class="mt-6 md:flex justify-center">
+      <%= simple_form_for @dog_registration, url: togo_inu_shitsuke_hiroba_dog_registration_path, data: { trubo: false } do |f| %>
+        <div class="w-full mt-4 overflow-hidden shadow sm:w-auto sm:mx-3 sm:mt-0">
+          <%= f.button :submit, t('defaults.back'), name: 'back', class: "items-center w-full px-10 py-4 text-base font-semibold text-white bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" %>
+        </div>
+      <% end %> 
+      <%= simple_form_for @dog_registration, url: togo_inu_shitsuke_hiroba_dog_registration_path, data: { trubo: false } do |f| %>
+        <div class="w-full overflow-hidden shadow sm:w-auto sm:mx-3 sm:mt-0 mt-4">
+          <%= f.button :submit, t('defaults.registration'), class: "inline-block items-center w-full px-10 py-4 text-base font-semibold text-white bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
