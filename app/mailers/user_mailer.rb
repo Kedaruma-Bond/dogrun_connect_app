@@ -18,14 +18,4 @@ class UserMailer < ApplicationMailer
       subject: t('.subject')
     )
   end
-
-  # def send_unlock_token_email(user_id)
-  #   @user = User.find(user_id)
-  #   @url = unlock_accounts_url(@user.unlock_token)
-  #   mail(
-  #     from: Rails.application.credentials.users[:MAILER_USER_ID],
-  #     to: @user.email,
-  #     subject: t('.subject')
-  #   )
-  # end
 end
