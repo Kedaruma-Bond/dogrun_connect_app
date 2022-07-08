@@ -1,0 +1,9 @@
+ja:
+  togo_inu_shitsuke_hiroba:
+    dogs:
+      new:
+        dogrun: 犬のしつけ広場
+        title: 犬の登録 | 犬のしつけ広場
+      dog_form:
+        title: 犬の登録
+        confirm: 確認画面へ

@@ -1,0 +1,15 @@
+ja:
+  togo_inu_shitsuke_hiroba:
+    static_pages:
+      top:
+        dogrun: '犬のしつけ広場'
+        signup: '新規登録'
+        before_using_dogrun: '広場の利用にあたって'
+        site_in: 今、ドッグランには
+        playing: 頭の仔が遊んでいます
+        detail: 広場にいる仔の詳細
+
+      compliance_confirmations:
+        title: '利用上の遵守・確認事項'
+        dogrun: 犬のしつけ広場
+        title_dogrun: 利用上の遵守・確認事項 | 犬のしつけ広場

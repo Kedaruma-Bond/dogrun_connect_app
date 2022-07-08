@@ -1,0 +1,76 @@
+ja:
+  contacts:
+    create:
+      success: お問い合わせメールを送信しました
+  password_resets:
+    create:
+      instruction: |
+        パスワードリセット案内メールを送信しました
+        ご確認ください
+    update:
+      success: パスワードが更新されました
+  unlock_account:
+    show:
+      login_unlock: |
+        アカウントロックを解除しました
+  togo_inu_shitsuke_hiroba:
+    dog_registration:
+      create:
+        dog_registration: |
+          ワンちゃんを登録できました！
+          DogrunConnectを是非ドッグランで活用してください!
+    users:
+      create:
+        user_create: |
+          ユーザーを登録しました!
+          引き続きワンちゃんの登録をお願いします
+    sessions:
+      create:
+        login_successfully: ログインしました！
+        login_failed: |
+          ログインできませんでした
+          入力内容を見直してください
+        account_locked: |
+          短時間に複数回のログイン試行に失敗したので
+          一時的にアカウントをロックしました
+          時間をおいてからまたお試しください
+      destroy:
+        logout: ログアウトしました
+  activerecord:
+    models:
+      contact: お問い合わせ
+      dog: 犬
+      user: ユーザー
+      registration_number: 登録番号
+    attributes:
+      contact:
+        name: 氏名
+        email: メールアドレス
+        message: 内容
+      user:
+        name: 氏名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード 確認
+        deactivation: アカウント非有効化
+        enable_notification: 通知有効化
+        agreement: 利用規約とプライバシーポリシー
+      dog:
+        name: 犬の名前
+        castration: 避妊・去勢
+        public: 利用状況公開
+        breed: 犬種
+        birthday: 誕生日
+        weight: 体重
+        owner_comment: 飼い主さんから一言
+      registration_number:
+        dogrun_place: 登録ドッグラン
+        registration_number: 登録番号
+  activemodel:
+    attributes:
+      # form objectを使用する場合はlocaleはここに書く
+
+  attributes:
+    created_at: 作成日
+    updated_at: 更新日
+

@@ -1,0 +1,4 @@
+ja:
+  contact_mailer:
+    send_mail:
+      subject: '[お問い合わせ]'

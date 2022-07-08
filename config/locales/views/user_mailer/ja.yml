@@ -1,0 +1,8 @@
+ja:
+  user_mailer:
+    user_registration_success:
+      subject: '[ようこそ DogrunConnectへ]'
+    reset_password_email:
+      subject: '[DogrunConnect パスワードリセット]'
+    send_unlock_token_email:
+      subject: '[DogrunConnect アカウントロック解除]'

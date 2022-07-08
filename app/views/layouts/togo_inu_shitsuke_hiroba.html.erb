@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <title><%= page_title(yield(:title)) %></title>
+    <%= favicon_link_tag('dogrun_logo.png') %>
+  </head>
+
+  <body class="pb-420 box-border">
+    <main>
+      <% if logged_in? %>
+        <%= render 'togo_inu_shitsuke_hiroba/shared/login_navbar' %>
+      <% else %>
+        <%= render 'togo_inu_shitsuke_hiroba/shared/navbar' %>
+      <% end %>
+      <%= render partial: 'shared/flash' %>
+      <div class="w-full">
+        <%= yield %>
+        <%= render 'togo_inu_shitsuke_hiroba/shared/footer' %>
+      </div>
+    </main>
+  </body>
+</html>
