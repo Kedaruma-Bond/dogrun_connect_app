@@ -1,11 +1,15 @@
 import { Controller } from "@hotwired/stimulus"
-import { useClickOutside } from "stimulus-use"
+import { useClickOutside,useIntersection } from "stimulus-use"
 
 export default class extends Controller {
   static targets = ["toggleable"]
+  static values = {
+    visible: Boolean
+  }
 
   connect() {
     useClickOutside(this)
+    useIntersection(this, this.options)
   }
 
   toggle(event) {
@@ -16,11 +20,20 @@ export default class extends Controller {
     })
   }
 
+  appear(entry) {
+    this.visibleValue = true
+  }
+
+  disappear(entry) {
+    this.visibleValue = false
+  }
+
   clickOutside(event) {
     event.preventDefault()
-    console.log('it works')
-    this.toggleableTargets.forEach((target) => {
-    target.classList.add(target.dataset.cssClass)
-    })
+    if (this.visibleValue === true) {
+      this.toggleableTargets.forEach((target) => {
+      target.classList.add(target.dataset.cssClass)
+      })
+    }
   }
 }

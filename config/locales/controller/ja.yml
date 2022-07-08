@@ -24,6 +24,8 @@ ja:
         user_create: |
           ユーザーを登録しました!
           引き続きワンちゃんの登録をお願いします
+          ２頭目以降のワンちゃんはプロフィール画面から
+          登録できます
     sessions:
       create:
         login_successfully: ログインしました！
