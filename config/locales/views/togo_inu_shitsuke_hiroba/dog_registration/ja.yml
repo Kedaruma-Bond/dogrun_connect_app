@@ -8,6 +8,7 @@ ja:
         title: 犬の登録
         name: 犬の名前
         registration_number: パスポート番号
+        add: 追加
       confirm:
         title: 犬の情報の入力内容確認 | 犬のしつけ広場
         dogrun: 犬のしつけ広場
