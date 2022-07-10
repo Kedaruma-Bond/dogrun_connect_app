@@ -18,8 +18,12 @@ Rails.application.routes.draw do
     delete 'logout', to: 'sessions#destroy', as: :logout
 
     resources :users, only: %i[new create edit update show] do
-      resources :dogs, only: %i[index new create update show]
+      resources :dogs, only: %i[index new create update show] do
+        resource :registration_numbers
+        resource :entries, only: %i[create update]
+      end
     end
+
     get 'signup', to: 'users#new', as: :signup
 
     get 'dog_registration', to: 'dog_registration#new'
