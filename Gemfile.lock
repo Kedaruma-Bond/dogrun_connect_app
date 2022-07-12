@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: e36fb2bc4a75d8eb1116a6514c356c2bcf951538
+  branch: master
+  specs:
+    faker (2.21.0)
+      i18n (>= 1.8.11, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -111,8 +119,6 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
-    faker (2.21.0)
-      i18n (>= 1.8.11, < 2)
     faraday (2.3.0)
       faraday-net_http (~> 2.0)
       ruby2_keywords (>= 0.0.4)
@@ -367,7 +373,7 @@ DEPENDENCIES
   enum
   enum_help
   factory_bot_rails
-  faker
+  faker!
   importmap-rails
   jbuilder
   letter_opener_web

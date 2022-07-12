@@ -3,7 +3,7 @@ class Entry < ApplicationRecord
   belongs_to :registration_number
 
   # validates
-  validates :entry_at, presense: true
+  validates :entry_at, presence: true
 end
 
 # == Schema Information
@@ -11,8 +11,8 @@ end
 # Table name: entries
 #
 #  id                     :bigint           not null, primary key
-#  entry_at               :date             not null
-#  exit_at                :date
+#  entry_at               :datetime         not null
+#  exit_at                :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  dog_id                 :bigint           not null
@@ -22,6 +22,7 @@ end
 #
 #  index_entries_on_dog_id                  (dog_id)
 #  index_entries_on_registration_number_id  (registration_number_id)
+#  registration_dog_entry_time_index        (dog_id,registration_number_id,entry_at) UNIQUE
 #
 # Foreign Keys
 #
