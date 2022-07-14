@@ -5,7 +5,7 @@ User.create!(name: 'へのへの もへじ',
 
 10.times do |n|
   name = Faker::Name.name
-  email = "example-#{n + 1}@test.com"
+  email = "test-#{n}@exmple.com"
   password = 'password'
   User.create!(name: name,
               email: email,
@@ -13,15 +13,50 @@ User.create!(name: 'へのへの もへじ',
               password_confirmation: password)
 end
 
-users = User.order(:created_at).take(6)
+user = User.first
 castration = 'castrated'
 public = 'public_view'
-users.each { |user| user.dogs.create!(name: Faker::Creature::Dog.name, castration: castration, public: public) }
+2.times do
+  user.dogs.create!(
+    name: Faker::Creature::Dog.name,
+    castration: castration,
+    public: public,
+    breed: Faker::Creature::Dog.breed,
+    sex: Faker::Number.between(from: 0, to: 1),
+    weight: Faker::Number.between(from: 1, to: 40),
+    owner_comment: Faker::Lorem.sentences(number: 1)
+  )
+end
 
-users = User.order(:created_at).take(5)
+users = User.order(:created_at).first(6)
+castration = 'castrated'
+public = 'public_view'
+users.each do |u|
+  u.dogs.create!(
+    name: Faker::Creature::Dog.name,
+    castration: castration,
+    public: public,
+    breed: Faker::Creature::Dog.breed,
+    sex: Faker::Number.between(from: 0, to: 1),
+    weight: Faker::Number.between(from: 1, to: 40),
+    owner_comment: Faker::Lorem.sentences(number: 1)
+  )
+end
+
+users = User.order(:created_at).last(5)
 castration = 'non_castrated'
 public = 'non_public'
-users.each { |user| user.dogs.create!(name: Faker::Creature::Dog.name, castration: castration, public: public) }
+users.each do |u|
+  u.dogs.create!(
+    name: Faker::Creature::Dog.name,
+    castration: castration,
+    public: public,
+    breed: Faker::Creature::Dog.breed,
+    sex: Faker::Number.between(from: 0, to: 1),
+    weight: Faker::Number.between(from: 1, to: 40),
+    owner_comment: Faker::Lorem.sentences(number: 1)
+  )
+end
 
 n = Dog.count
 dogs = Dog.all
@@ -29,4 +64,11 @@ n.times do
   dogrun_place = 0
   registration_number = Faker::Number.between(from: 1, to: 2000)
   dogs.each { |dog| dog.registration_numbers.create!(dogrun_place: dogrun_place, registration_number: registration_number) }
+end
+
+registration_numbers = RegistrationNumber.all
+3.times do |t|
+  entry_at = Time.zone.now - "#{t}" # rubocop:disable Style/RedundantInterpolation
+  exit_at = Time.zone.now
+  registration_numbers.each { |registration_number| registration_number.entries.create!(entry_at: entry_at, exit_at: exit_at, dog_id: registration_number.dog_id) }
 end

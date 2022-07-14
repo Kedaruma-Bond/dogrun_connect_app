@@ -1,22 +1,19 @@
-class TogoInuShitsukeHiroba::StaticPagesController < ApplicationController
+class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::MainController
   layout 'togo_inu_shitsuke_hiroba'
   skip_before_action :require_login
-  before_action :set_dog, only: %i[create update]
-  before_action :set_registration_number, only: %i[create update]
+  before_action :set_dogs, :set_registration_numbers, :get_entry_data, :clear_entry_flag, only: %i[top]
 
   def top
     @entry = Entry.new
+    @number_of_dogs = @entry_data.size || 0
   end
 
   def compliance_confirmations; end
 
   private
 
-  def set_dog
-    @dog = Dog.where(user_id: current_user.id)
-  end
-
-  def set_registration_number
-    @registration_number = RegistrationNumber.where(dog_id: @dog.id).merge(RegistrationNumber.where(dogrun_place: 'togo_inu_shitsuke_hiroba'))
+  def get_entry_data
+    @entry_data = []
+    @entry_data = Entry.where.not(entry_at: nil).where(exit_at: nil).joins(:registration_number).where(registration_numbers: { dogrun_place: 'togo_inu_shituke_hiroba' })
   end
 end
