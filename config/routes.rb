@@ -17,10 +17,11 @@ Rails.application.routes.draw do
     post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy', as: :logout
 
-    resources :users, only: %i[new create edit update show] do
-      resources :dogs, only: %i[index new create update show] do
+    resource :entries, only: %i[create update]
+
+    resources :users, only: %i[new create] do
+      resources :dogs, only: %i[index new create edit update] do
         resource :registration_numbers
-        resource :entries, only: %i[create update]
       end
     end
 

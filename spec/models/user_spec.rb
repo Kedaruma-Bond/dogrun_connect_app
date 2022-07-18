@@ -1,7 +1,52 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context '全てのフィールドが有効な場合' do
+    it '有効であること' do
+      user = build(:user)
+      expect(user).to be_valid
+    end
+  end
+
+  context 'nameが空欄の場合' do
+    it '無効であること' do
+      user = build(:user, name: nil)
+      expect(user).to be_invalid
+      expect(user.errors[:name]).to include('を入力してください')
+    end
+  end
+
+  context 'emailが空欄の場合' do
+    it '無効であること' do
+      user = build(:user, email: nil)
+      expect(user).to be_invalid
+      expect(user.errors[:email]).to include('を入力してください')
+    end
+  end
+
+  context 'emailの様式が正しくない場合' do
+    it '無効であること' do
+      user = build(:user, email: 'user_at_foo.org')
+      expect(user).to be_invalid
+      expect(user.errors[:email]).to include('の様式が正しくありません')
+    end
+  end
+
+  context 'passwordが空欄の場合' do
+    it '無効であること' do
+      user = build(:user, password: nil)
+      expect(user).to be_invalid
+      expect(user.errors[:password]).to include('は6文字以上で入力してください')
+    end
+  end
+
+  context 'password_confirmが空欄の場合' do
+    it '無効であること' do
+      user = build(:user, password_confirmation: nil)
+      expect(user).to be_invalid
+      expect(user.errors[:password_confirmation]).to include('を入力してください')
+    end
+  end
 end
 
 # == Schema Information

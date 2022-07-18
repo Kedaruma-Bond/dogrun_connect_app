@@ -17,8 +17,13 @@ ja:
     entries:
       create:
         entry_success: 入場しました
+        select_entry_dog: |
+          入場するワンちゃんを
+          選択してください
       update:
-        exit_success: 退場しました
+        exit_success: |
+          退場しました
+          またのご来場をお待ちしています
     dog_registration:
       create:
         dog_registration: |

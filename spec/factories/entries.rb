@@ -1,8 +1,10 @@
-class Entry < ApplicationRecord
-  belongs_to :dog
-  belongs_to :registration_number
-
-  attr_accessor :select_dog
+FactoryBot.define do
+  factory :entry do
+    entry_at { Faker::Time.between(from: DateTime.now - 1, to: DateTime.now) }
+    exit_at { Time.zone.now }
+    association :dog
+    association :registration_number
+  end
 end
 
 # == Schema Information

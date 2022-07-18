@@ -1,6 +1,7 @@
 class Dog < ApplicationRecord
   belongs_to :user
   has_many :registration_numbers, dependent: :destroy
+  has_many :entries, dependent: :destroy
 
   # validates
   validates :name, presence: true, length: { maximum: 50 }

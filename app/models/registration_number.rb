@@ -1,5 +1,6 @@
 class RegistrationNumber < ApplicationRecord
   belongs_to :dog
+  has_many :entries
 
   # validates
   validates :dogrun_place, presence: true, numericality: true

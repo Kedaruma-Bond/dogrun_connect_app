@@ -40,10 +40,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_09_015400) do
   create_table "entries", force: :cascade do |t|
     t.bigint "dog_id", null: false
     t.bigint "registration_number_id", null: false
-    t.date "entry_at", null: false
-    t.date "exit_at"
+    t.datetime "entry_at", null: false
+    t.datetime "exit_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["dog_id", "registration_number_id", "entry_at"], name: "registration_dog_entry_time_index", unique: true
     t.index ["dog_id"], name: "index_entries_on_dog_id"
     t.index ["registration_number_id"], name: "index_entries_on_registration_number_id"
   end
