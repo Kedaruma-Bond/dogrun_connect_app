@@ -1,4 +1,4 @@
-class TogoInuShitsukeHiroba::SessionsController < ApplicationController
+class TogoInuShitsukeHiroba::SessionsController < TogoInuShitsukeHiroba::DogrunPlaceController
   layout 'togo_inu_shitsuke_hiroba'
   skip_before_action :require_login, only: %i[new create]
   def new; end

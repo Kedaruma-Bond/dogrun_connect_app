@@ -11,8 +11,6 @@ ja:
         detail: 広場にいる仔の詳細
       login_top_content:
         select_entry_dog: 入場するワンちゃんを選択してください
-        select_exit_dog: 退場するワンちゃんを選択してください
-
 
       compliance_confirmations:
         title: '利用上の遵守・確認事項'

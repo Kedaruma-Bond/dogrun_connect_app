@@ -2,11 +2,7 @@ class Entry < ApplicationRecord
   belongs_to :dog
   belongs_to :registration_number
 
-  attr_accessor :select_dog, :entry_flag
-
-  def clear_entry_flag
-    @entry_flag = false
-  end
+  attr_accessor :select_dog
 end
 
 # == Schema Information

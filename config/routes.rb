@@ -19,8 +19,8 @@ Rails.application.routes.draw do
 
     resource :entries, only: %i[create update]
 
-    resources :users, only: %i[new create edit update show] do
-      resources :dogs, only: %i[index new create update show] do
+    resources :users, only: %i[new create] do
+      resources :dogs, only: %i[index new create edit update] do
         resource :registration_numbers
       end
     end

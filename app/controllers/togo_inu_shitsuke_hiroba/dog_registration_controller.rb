@@ -1,4 +1,4 @@
-class TogoInuShitsukeHiroba::DogRegistrationController < ApplicationController
+class TogoInuShitsukeHiroba::DogRegistrationController < TogoInuShitsukeHiroba::DogrunPlaceController
   layout 'togo_inu_shitsuke_hiroba'
   before_action :dog_registration_params, only: :confirm
 
@@ -28,7 +28,7 @@ class TogoInuShitsukeHiroba::DogRegistrationController < ApplicationController
       redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.dog_registration')
       return
     end
-    render :new, status: :unprocessable_entity, error: t('.something_wrong')
+    render :new, status: :unprocessable_entity
   end
 
   private
