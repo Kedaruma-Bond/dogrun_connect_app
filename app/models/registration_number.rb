@@ -3,7 +3,7 @@ class RegistrationNumber < ApplicationRecord
   has_many :entries
 
   # validates
-  validates :dogrun_place, presence: true, numericality: true
+  validates :dogrun_place, presence: true
   validates :registration_number, presence: true, numericality: true
 
   # enum
