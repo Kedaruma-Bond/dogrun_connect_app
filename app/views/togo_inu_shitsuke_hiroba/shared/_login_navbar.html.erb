@@ -91,6 +91,12 @@
       </svg>
       <span><%= t('.site_information') %></span>
     <% end %>
+    <%= link_to '#', class: "flex mr-5 hover:text-gray-900" do %>
+      <svg class="w-5 h-5 mx-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+      </svg>
+      <span><%= t('defaults.friend_list') %></span>
+    <% end %>
     <%= link_to togo_inu_shitsuke_hiroba_logout_path, data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation') }, class: "flex mr-5 hover:text-gray-900" do %>
       <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 12H19M19 12L16 15M19 12L16 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
