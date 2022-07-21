@@ -21,7 +21,7 @@
       </button>
     </div>
     <!-- Dropdown menu -->
-    <div data-menu-target="toggleable" data-css-class="hidden" id= "dropdown_menu" class="hidden absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl">
+    <div data-menu-target="toggleable" data-css-class="hidden" id="dropdown_menu" class="hidden absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl">
       <%= link_to "#", class: "flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-200 transform hover:bg-gray-100" do %>
         <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path>
@@ -91,6 +91,12 @@
       </svg>
       <span><%= t('.site_information') %></span>
     <% end %>
+    <%= link_to '#', class: "flex mr-5 hover:text-gray-900" do %>
+      <svg class="w-5 h-5 mx-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+      </svg>
+      <span><%= t('defaults.friend_list') %></span>
+    <% end %>
     <%= link_to togo_inu_shitsuke_hiroba_logout_path, data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation') }, class: "flex mr-5 hover:text-gray-900" do %>
       <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 12H19M19 12L16 15M19 12L16 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
@@ -100,4 +106,3 @@
     <% end %>
   </nav>
 </header>
-

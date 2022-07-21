@@ -11,6 +11,10 @@ ja:
         detail: 広場にいる仔の詳細
       login_top_content:
         select_entry_dog: 入場するワンちゃんを選択してください
+        entry_confirm: 入場してよろしいですか？
+        exit_confirm: 退場前の見回りは実施しましたか？
+        check_before_exit: 退場前の見回り
+        during_entry_your_dogs: 入場中のあなたのワンちゃん
 
       compliance_confirmations:
         title: '利用上の遵守・確認事項'
