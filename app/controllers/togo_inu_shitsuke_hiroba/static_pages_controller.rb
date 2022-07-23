@@ -1,7 +1,7 @@
 class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::DogrunPlaceController
   layout 'togo_inu_shitsuke_hiroba'
   skip_before_action :require_login
-  before_action :set_dogs, :set_registration_numbers, :get_entry_data, :during_entries, :get_during_entry_user_dogs, only: %i[top]
+  before_action :set_dogs, :set_registration_numbers_in_togo_inu_shitsuke_hiroba, :get_entry_data, :during_entries, :get_during_entry_user_dogs, only: %i[top]
 
   def top
     @entry = Entry.new

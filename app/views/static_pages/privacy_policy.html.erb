@@ -1,16 +1,106 @@
 <% content_for(:title, t('.title')) %>
 <body class="my-auto mx-auto">
     <div class='py-10'>
-      <div class="max-w-md mx-auto xl:max-w-5xl lg:max-w-5xl md:max-w-2xl bg-gray-700 max-h-screen shadow-2xl flex-row rounded relative">
+      <div class="max-w-md mx-auto xl:max-w-5xl lg:max-w-5xl md:max-w-2xl bg-gray-700 shadow-2xl flex-row rounded relative">
         <div class="p-2 bg-gray-600 text-blue-900 rounded-t">
           <h5 class="text-white text-2xl capitalize"><%= t'.title' %></h5>
         </div>
         <div class="p-2 w-full h-full overflow-y-auto text-gray-100">
-          <p class="text-justify py-2">
-            HotSymbol is a simple and easy online tool to copy <a class="text-blue-300 hover:text-gray-400" href="https://www.hotsymbol.com/symbols" title="copy symbol">symbol</a>, text <a class="text-blue-300 hover:text-gray-400" href="https://www.hotsymbol.com/emojis" title="copy emoji">emoji</a> characters, and signs to Facebook posts, Instagram bio, blog posts, WhatsApp, Snapchat chat and comments, nicknames in games, or wherever else - these symbols work just about everywhere.
-          </p>
-          <p class="text-justify py-2">
-            We are growing this website timely. and adding more stunning features to make the web and mobile easy keeping care of the whole range of audiences. when we build the HotSymbol website we take care of many tiny details such as website User experience, Website performance, speed, design, etc. This is the reason you will find the HotSymbol website faster and feature reach than any other website available on the internet.
+          <h3 class="text-lg mt-2 font-bold">
+            お客様から取得する情報
+          </h3>
+          <h5 class="text-base mb-2 pl-2">
+            当社は、お客様から以下の情報を取得します。
+          </h5>
+          <nav class="list-disc list-outside mb-3">
+            <li class="mb-1">氏名(ニックネームやペンネームを含む)</li>
+            <li class="mb-1">メールアドレス</li>
+            <li class="mb-1">クレジットカード、銀行口座、電子マネー等のお客様の決済手段に関する情報</li>
+            <li class="mb-1">外部サービスでお客様が利用するID、その他外部サービスのプライバシー設定によりお客様が連携先に開示を認めた情報</li>
+            <li class="mb-1">Cookie(クッキー)を用いて生成された認識情報</li>
+            <li class="mb-1">当社ウェブサイトの滞在時間、入力履歴、購買履歴等の当社ウェブサイトにおけるお客様の行動履歴</li>
+            <li class="mb-1">当社アプリの起動時間、入力履歴、購買履歴等の当社アプリの利用履歴</li>
+          </nav>
+          <h3 class="text-lg mt-2 font-bold">
+            お客様の情報を利用する目的
+          </h3>
+          <h5 class="text-base mb-2 pl-2">
+            当社は、お客様から取得した情報を、以下の目的のために利用します。
+          </h5>
+          <nav class="list-disc list-outside mb-3">
+            <li class="mb-1">当社サービスに関する登録の受付、お客様の本人確認、認証のため</li>
+            <li class="mb-1">お客様の当社サービスの利用履歴を管理するため</li>
+            <li class="mb-1">利用料金の決済のため</li>
+            <li class="mb-1">当社サービスにおけるお客様の行動履歴を分析し、当社サービスの維持改善に役立てるため</li>
+            <li class="mb-1">当社サービスに関するご案内をするため</li>
+            <li class="mb-1">お客様からのお問い合わせに対応するため</li>
+            <li class="mb-1">当社の規約や法令に違反する行為に対応するため</li>
+            <li class="mb-1">当社サービスの変更、提供中止、終了、契約解除をご連絡するため</li>
+            <li class="mb-1">当社規約の変更等を通知するため</li>
+            <li class="mb-1">以上の他、当社サービスの提供、維持、保護及び改善のため</li>
+          </nav>
+          <h3 class="text-lg mt-2 font-bold">
+            安全管理のために講じた措置
+          </h3>
+          <h5 class="text-base mb-2 pl-2">
+            当社が、お客樣から取得した情報に関して安全管理のために講じた措置につきましては、末尾記載のお問い合わせ先にご連絡をいただきましたら、法令の定めに従い個別にご回答させていただきます。
+          </h5>
+          <h3 class="text-lg mt-2 font-bold">
+            第三者提供
+          </h3>
+          <h5 class="text-base mb-2 pl-2">
+            当社は、お客様から取得する情報のうち、個人データ(個人情報保護法第2条第6項)に該当するものについては、あらかじめお客様の同意を得ずに、第三者(日本国外にある者を含みます。)に提供しません。<br>
+            但し、次の場合は除きます。
+          </h5> 
+          <nav class="list-disc list-outside mb-3">
+            <li class="mb-1">個人データの取り扱いを外部に委託する場合</li>
+            <li class="mb-1">当社や当社サービスが買収された場合</li>
+            <li class="mb-1">事業パートナーと共同利用する場合(具体的な共同利用がある場合は、その内容を別途公表します。)</li>
+            <li class="mb-1">その他、法律によって合法的に第三者提供が許されている場合</li>
+          </nav> 
+          <h3 class="text-lg mt-2 font-bold">
+            アクセス解析ツール
+          </h3>
+          <h5 class="text-base pl-2">
+            当社は、お客様のアクセス解析のために、「Googleアナリティクス」を利用しています。Googleアナリティクスは、トラフィックデータの収集のためにCookieを使用しています。トラフィックデータは匿名で収集されており、個人を特定するものではありません。<br>
+            Cookieを無効にすれば、これらの情報の収集を拒否することができます。詳しくはお使いのブラウザの設定をご確認ください。<br>
+            Googleアナリティクスについて、詳しくは以下からご確認ください。<br>
+          </h5>  
+          <a href="https://marketingplatform.google.com/about/analytics/terms/jp/" class="pl-2 underline mb-2">
+            Google アナリティクス利用規約
+          </a>
+          <h3 class="text-lg mt-2 font-bold">
+            プライバシーポリシーの変更
+          </h3>
+          <h5 class="text-base mb-2 pl-2">
+            当社は、必要に応じて、このプライバシーポリシーの内容を変更します。<br>
+            この場合、変更後のプライバシーポリシーの施工時期と内容を適切な方法により周知または通知します。
+          </h5> 
+          <h3 class="text-lg mt-2 font-bold">
+            お問い合わせ
+          </h3>
+          <h5 class="text-base mb-2 pl-2">
+            お客様の情報の開示、情報の訂正、利用停止、削除をご希望の場合は、以下のメールアドレスにご連絡ください。<br>
+            <br>
+            dogrunconnect@gmail.com<br>
+            <br>
+            この場合、必ず、運転免許証のご提示等当社が指定する方法により、ご本人からのご請求であることの確認をさせていただきます。
+            なお、情報の開示請求については、開示の有無に関わらず、ご申請時に一件あたり1,000円の事務手数料を申し受けます。
+          </h5> 
+          <h3 class="text-lg mt-2 font-bold">
+            事業者の氏名
+          </h3>
+          <h5 class="text-base mb-2 pl-2">
+            大野 保臣
+          </h5> 
+          <h3 class="text-lg mt-2 font-bold">
+            事業者の住所
+          </h3>
+          <h5 class="text-base mb-2 pl-2">
+            愛知県愛知郡東郷町白鳥３−２４−２１
+          </h5> 
+          <p>
+            2022年05月19日制定
           </p>
         </div>
       </div>

@@ -1,7 +1,8 @@
 class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlaceController
   layout 'togo_inu_shitsuke_hiroba'
   skip_before_action :require_login, only: %i[new create]
-  before_action :user_params, only: :create
+  before_action :user_params, only: %i[create]
+  before_action :set_dogs, :set_registration_numbers_in_togo_inu_shitsuke_hiroba, only: %i[show]
 
   def new
     @user = User.new
@@ -16,6 +17,15 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
       return
     end
     render :new, status: :unprocessable_entity
+  end
+
+  def show
+    @registration_numbers_for_profile = []
+    @registration_numbers.each do |registration_number|
+      @registration_numbers_for_profile << registration_number.registration_number
+    end
+    @end = @dogs.size - 1
+    @times = 0
   end
 
   private

@@ -13,20 +13,20 @@ User.create!(name: 'へのへの もへじ',
               password_confirmation: password)
 end
 
-user = User.first
-castration = 'castrated'
-public = 'public_view'
-2.times do
-  user.dogs.create!(
-    name: Faker::Creature::Dog.name,
-    castration: castration,
-    public: public,
-    breed: Faker::Creature::Dog.breed,
-    sex: Faker::Number.between(from: 0, to: 1),
-    weight: Faker::Number.between(from: 1, to: 40),
-    owner_comment: Faker::Lorem.sentences(number: 1)
-  )
-end
+# user = User.first
+# castration = 'castrated'
+# public = 'public_view'
+# 2.times do
+#   user.dogs.create!(
+#     name: Faker::Creature::Dog.name,
+#     castration: castration,
+#     public: public,
+#     breed: Faker::Creature::Dog.breed,
+#     sex: Faker::Number.between(from: 0, to: 1),
+#     weight: Faker::Number.between(from: 1, to: 40),
+#     owner_comment: Faker::Lorem.sentences(number: 1)
+#   )
+# end
 
 users = User.order(:created_at).first(6)
 castration = 'castrated'
@@ -58,12 +58,16 @@ users.each do |u|
   )
 end
 
-n = Dog.count
 dogs = Dog.all
-n.times do
-  dogrun_place = 0
+dogrun_place = 0
+dogs.each do |dog|
   registration_number = Faker::Number.between(from: 1, to: 2000)
-  dogs.each { |dog| dog.registration_numbers.create!(dogrun_place: dogrun_place, registration_number: registration_number) }
+  dog.registration_numbers.create!(dogrun_place: dogrun_place, registration_number: registration_number)
+end
+dogrun_place = 1
+dogs.each do |dog|
+  registration_number = Faker::Number.between(from: 1, to: 2000)
+  dog.registration_numbers.create!(dogrun_place: dogrun_place, registration_number: registration_number)
 end
 
 registration_numbers = RegistrationNumber.all

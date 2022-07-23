@@ -6,21 +6,11 @@ ja:
         title: 犬のしつけ広場 | 新規登録
       signup_form:
         title: 新規登録
-      confirm:
-        dogrun: 犬のしつけ広場
-        title: 登録内容確認
-        registration_number: パスポート番号
-        registration: 登録
-        back: 戻る
+      show:
+        title: プロフィール
         name: 氏名
         email: メールアドレス
-        password: パスワード
-        dog_name: 犬の名前
-        castration: 避妊・去勢
-        castrated: 済
-        non_castrated: 未
-        public: 利用状況
-        public_view: 公開
-        non_public: 非公開 
-        
+        registration_dogs_num: 登録頭数  
+        of_dogs: 頭
+        add: 追加
 

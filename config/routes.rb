@@ -19,10 +19,8 @@ Rails.application.routes.draw do
 
     resource :entries, only: %i[create update]
 
-    resources :users, only: %i[new create] do
-      resources :dogs, only: %i[index new create edit update] do
-        resource :registration_numbers
-      end
+    resources :users, only: %i[new create show] do
+      resources :dogs, only: %i[show edit update]
     end
 
     get 'signup', to: 'users#new', as: :signup

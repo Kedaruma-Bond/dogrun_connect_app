@@ -1,6 +1,6 @@
 class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPlaceController
   layout 'togo_inu_shitsuke_hiroba'
-  before_action :set_dogs, :set_registration_numbers, only: %i[create]
+  before_action :set_dogs, :set_registration_numbers_in_togo_inu_shitsuke_hiroba, only: %i[create]
   before_action :set_entries_array, only: %i[create update]
 
   def create

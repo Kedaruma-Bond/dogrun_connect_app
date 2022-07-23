@@ -1,0 +1,111 @@
+<%= while @times <= @end do %>
+  <div class="grid-inline md:grid gap-2 grid-rows-1 grid-cols-12 mt-5">
+    <div class="sm:w-16 sm:h-16 h-40 w-40 rounded-full bg-indigo-100 flex-shrink-0 mx-auto mb-3 md:mb-0">
+      <%= image_tag 'run_dog_smile.png' %>
+    </div>
+    <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
+      <div class="text-gray-600 text-xs font-light">
+        <%= simple_format((t'.registration_number'), {}, wrapper_tag: "div") %>
+      </div>
+      <h1 class="mt-1 text-lg text-gray-700">
+        <%= @registration_numbers_for_profile[@times] %>
+      </h1>
+    </div>
+    <div class="col-span-2 flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
+      <p class="text-gray-600 text-xs font-light">
+        <%= t'defaults.dog_name' %>
+      </p>
+      <h1 class="mt-1 text-xl text-gray-700">
+        <%= @dogs[@times].name %>
+      </h1>
+    </div>
+    <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
+      <p class="text-gray-600 text-xs font-light">
+        <%= t'defaults.age' %>
+      </p>
+      <div class="flex">
+        <h1 class="mt-1 text-xl text-gray-700 px-2">
+          <% if @dogs[@times].birthday == nil %>
+            -
+          <% else %>
+            <%= @dogs[@times].age %>
+          <% end %>
+        </h1>
+        <p class="text-xs pt-4"><%= t'.japanese_age_unit' %></p>
+      </div>
+    </div>
+    <div class="col-span-2 flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
+      <p class="text-gray-600 text-xs font-light">
+        <%= t'defaults.breed' %>
+      </p>
+      <h1 class="mt-1 text-base text-gray-700">
+        <% if @dogs[@times].breed == '' %>
+          -
+        <% else %>
+          <%= @dogs[@times].breed %>
+        <% end %>
+      </h1>
+    </div>
+    <div class="flex flex-col  flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
+      <p class="text-gray-600 text-xs font-light">
+        <%= t'defaults.sex' %>
+      </p>
+      <h1 class="mt-1 text-xl text-gray-700">
+        <% if @dogs[@times].sex == 'male' %>
+          <%= t'enums.dog.sex.male' %>
+        <% elsif @dogs[@times].sex == 'female' %>
+          <%= t'enums.dog.sex.female' %>
+        <% else %>
+          -
+        <% end %>
+      </h1>
+    </div>
+    <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
+      <p class="text-gray-600 text-xs font-light">
+        <%= t'defaults.weight' %>
+      </p>
+      <div class="flex">
+        <h1 class="mt-1 text-xl text-gray-700 px-2">
+          <% if @dogs[@times].weight == nil %>
+            -
+          <% else %>
+            <%= @dogs[@times].weight %>
+          <% end %>
+        </h1>
+        <p class="text-xs pt-4"><%= t'defaults.weight_unit' %></p>
+      </div>
+    </div>
+    <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
+      <p class="text-gray-600 text-xs font-light">
+        <%= t'defaults.castration' %>
+      </p>
+      <h1 class="mt-1 text-xl text-gray-700 mx-auto">
+        <% if @dogs[@times].castration == 'castrated' %>
+          <%= t'enums.dog.castration.castrated' %>
+        <% else %>
+          <%= t'enums.dog.castration.non_castrated' %>
+        <% end %>
+      </h1>
+    </div>
+    <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center md:mr-2 mb-3 md:mb-0">
+      <p class="text-gray-600 text-xs font-light">
+        <%= t'defaults.public' %>
+      </p>
+      <h1 class="mt-1 text-xl text-gray-700">
+        <% if @dogs[@times].public == 'public_view' %>
+          <%= t'enums.dog.public.public_view' %>
+        <% else %>
+          <%= t'enums.dog.public.public_view' %>
+        <% end %>
+      </h1>
+    </div>
+    <div class="flex flex-shrink-0 items-center">
+      <%= link_to edit_togo_inu_shitsuke_hiroba_user_dog_path(current_user.id, @dogs[@times].id) do %>
+        <button class="flex items-center px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+          <span class="mx-1"><%= t'defaults.detail' %></span>
+        </button>
+      <% end %>
+    </div>
+  </div>
+  <% @times += 1 %>
+<% end %>

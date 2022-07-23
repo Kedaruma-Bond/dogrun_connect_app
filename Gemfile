@@ -63,12 +63,14 @@ gem 'enum'
 gem 'enum_help'
 # emailのformat validation
 gem 'validates_email_format_of'
+# decorator
+gem 'active_decorator'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'annotate'
   gem 'capybara'
-  gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'debug'
   gem 'factory_bot_rails'
   gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'rails-controller-testing'
