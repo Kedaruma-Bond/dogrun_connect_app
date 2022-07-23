@@ -380,6 +380,9 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   letter_opener_web
+  net-imap
+  net-pop
+  net-smtp
   pg
   puma
   rails (~> 7.0.3)
