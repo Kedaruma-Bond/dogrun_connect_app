@@ -65,11 +65,6 @@ gem 'enum_help'
 gem 'validates_email_format_of'
 # decorator
 gem 'active_decorator'
-# 標準ライブラリから抜けたものを補完
-gem 'net-ftp'
-gem 'net-imap'
-gem 'net-pop'
-gem 'net-smtp'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
