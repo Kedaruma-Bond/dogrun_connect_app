@@ -1,0 +1,66 @@
+<section class="relative py-8 bg-blueGray-50">
+  <div class="w-full px-4">
+    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-gray-600 text-white">
+      <div class="rounded-t mb-0 px-4 py-3 border-0">
+        <div class="flex flex-wrap items-center">
+          <div class="relative w-full px-4 max-w-full flex-grow flex-1 ">
+            <h3 class="font-semibold text-lg text-white">
+              <%= I18n.t("shared.entries_table.table_of_entries_latest_max_five", times: @t) %>
+            </h3>
+          </div>
+        </div>
+      </div>
+      <div class="block w-full overflow-x-auto ">
+        <table class="table-auto items-center w-full bg-transparent border-collapse">
+          <thead>
+            <tr>
+              <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-purple-200 text-gray-600">
+                <%= t'.date' %>
+              </th>
+              <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-purple-200 text-gray-600">
+                <%= t'.entry_time' %>
+              </th>
+              <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-purple-200 text-gray-600">
+                <%= t'.exit_time' %>
+              </th>
+              <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-purple-200 text-gray-600">
+                <%= t'.playing_together' %>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @t.times do |t| %>
+              <% if @entries[t].nil? %>
+                <tr>
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-left flex items-center">
+                  </td>
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                  </td>
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                  </td>
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                  </td>
+                </tr>
+              <% else %>
+                <tr>
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-left flex items-center">
+                    <span class="ml-3 font-bold text-white"><%= l @entries[t].entry_at, format: :long2 %></span>
+                  </td>
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                    <%= l @entries[t].entry_at, format: :short2 %>
+                  </td>
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                    <%= l @entries[t].exit_at, format: :short2 %>
+                  </td>
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                    will be applied later...
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

@@ -29,6 +29,7 @@ ja:
     here: こちら
     remember: ログインを保持する
     require_login: ログインしてください
+    require_correct_account: 正しいアカウントでアクセスしてください
     send: 送信
     confirm: 入力内容確認
     back: 戻る
@@ -37,6 +38,8 @@ ja:
     entry: 入場
     exit: 退場
     detail: 詳細
+    update: 更新
+    owner_comment: 飼い主さんから一言
   simple_form:
     "yes": はい
     "no": いいえ
@@ -118,6 +121,7 @@ ja:
     formats:
       default: "%Y/%m/%d"
       long: "%Y年%m月%d日(%a)"
+      long2: "%Y年%-m月%-d日"
       short: "%m/%d"
     month_names:
     -
@@ -279,6 +283,8 @@ ja:
     am: 午前
     formats:
       default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+      long2: "%Y年%-m月%-d日 (%a)"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
+      short2: "%-H:%M"
     pm: 午後

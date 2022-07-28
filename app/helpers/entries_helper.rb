@@ -27,9 +27,13 @@ module EntriesHelper
   end
 
   def select_dogs_allocation(select_dogs)
+    @select_dogs_values = []
+    return unless select_dogs.present?
+
+    # .valuesでハッシュの全値を配列にして返してくれる
     @select_dogs_values = select_dogs.values
   end
-
+  
   def clear_zero
     @num = 0
     @zero_count = 0

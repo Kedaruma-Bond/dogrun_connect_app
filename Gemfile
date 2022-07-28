@@ -65,6 +65,8 @@ gem 'enum_help'
 gem 'validates_email_format_of'
 # decorator
 gem 'active_decorator'
+# sitemap generatorでSEO対策
+gem 'sitemap_generator'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
