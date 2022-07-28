@@ -12,7 +12,7 @@ class TogoInuShitsukeHiroba::DogRegistrationController < TogoInuShitsukeHiroba::
     if @dog_registration.valid?
       session[:dog_registration_form] = dog_registration_params
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

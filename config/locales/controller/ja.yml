@@ -46,6 +46,11 @@ ja:
           時間をおいてからまたお試しください
       destroy:
         logout: ログアウトしました
+    dogs:
+      update:
+        dog_profile_updated: |
+          ワンちゃんのプロフィールを
+          更新しました！
   activerecord:
     models:
       contact: お問い合わせ

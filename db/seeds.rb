@@ -39,7 +39,7 @@ users.each do |u|
     breed: Faker::Creature::Dog.breed,
     sex: Faker::Number.between(from: 0, to: 1),
     weight: Faker::Number.between(from: 1, to: 40),
-    owner_comment: Faker::Lorem.sentences(number: 1)
+    owner_comment: Faker::Lorem.paragraph(sentence_count: 5)
   )
 end
 
@@ -54,7 +54,7 @@ users.each do |u|
     breed: Faker::Creature::Dog.breed,
     sex: Faker::Number.between(from: 0, to: 1),
     weight: Faker::Number.between(from: 1, to: 40),
-    owner_comment: Faker::Lorem.sentences(number: 1)
+    owner_comment: Faker::Lorem.paragraph(sentence_count: 5)
   )
 end
 
@@ -71,8 +71,9 @@ dogs.each do |dog|
 end
 
 registration_numbers = RegistrationNumber.all
-3.times do |t|
-  entry_at = Time.zone.now - "#{t}" # rubocop:disable Style/RedundantInterpolation
-  exit_at = Time.zone.now
+10.times do |t|
+  # 加減している数値は秒数
+  entry_at = Time.zone.now - (86400 * (10 - t))
+  exit_at = Time.zone.now - (86400 * (10 + t)) + 1800
   registration_numbers.each { |registration_number| registration_number.entries.create!(entry_at: entry_at, exit_at: exit_at, dog_id: registration_number.dog_id) }
 end

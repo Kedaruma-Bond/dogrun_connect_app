@@ -8,7 +8,6 @@ class Dog < ApplicationRecord
   validates :castration, presence: true
   validates :public, presence: true
   validates :breed, allow_nil: true, length: { maximum: 50 }
-  validates :sex, allow_nil: true, numericality: { in: 0..1 }
   validates :weight, allow_nil: true, numericality: { greater_than: 0 }
   validates :owner_comment, allow_nil: true, length: { maximum: 400 }
 
@@ -16,6 +15,7 @@ class Dog < ApplicationRecord
   enum castration: { castrated: true, non_castrated: false }
   enum public: { public_view: true, non_public: false }
   enum sex: { male: 0, female: 1 }
+
 end
 
 # == Schema Information
