@@ -31,7 +31,7 @@
             <%= @dogs[@times].age %>
           <% end %>
         </h1>
-        <p class="text-xs pt-4"><%= t'.japanese_age_unit' %></p>
+        <p class="text-xs pt-4"><%= t'.age_unit' %></p>
       </div>
     </div>
     <div class="col-span-2 flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
@@ -95,12 +95,12 @@
         <% if @dogs[@times].public == 'public_view' %>
           <%= t'enums.dog.public.public_view' %>
         <% else %>
-          <%= t'enums.dog.public.public_view' %>
+          <%= t'enums.dog.public.non_public' %>
         <% end %>
       </h1>
     </div>
     <div class="flex flex-shrink-0 justify-center items-center">
-      <%= link_to togo_inu_shitsuke_hiroba_user_dog_path(current_user.id, @dogs[@times].id) do %>
+      <%= link_to togo_inu_shitsuke_hiroba_dog_path(@dogs[@times].id) do %>
         <button class="flex items-center px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
           <span class="mx-1"><%= t'defaults.detail' %></span>
         </button>

@@ -28,7 +28,7 @@ RSpec.describe 'contacts', type: :system do
 
       it '送信ボタンを押したらTop画面になりメッセージが表示すること' do
         click_button '送信'
-        expect(page).to have_content('様々な付加価値も')
+        expect(page).to have_content('様々な付加価値があります')
         expect(page).to have_content('お問い合わせメールを送信しました')
       end
     end

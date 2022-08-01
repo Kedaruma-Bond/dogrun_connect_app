@@ -4,7 +4,7 @@ ja:
       registration_number: |
         パスポート
         番号
-      japanese_age_unit: 歳
+      age_unit: 歳
     entries_table:
       table_of_entries_latest_max_five: "過去%{times}回の利用状況"
       date: 日付

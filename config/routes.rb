@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   namespace :togo_inu_shitsuke_hiroba do
     get 'top', to: 'static_pages#top'
+    get 'detail', to: 'static_pages#detail'
     get 'compliance_confirmations', to: 'static_pages#compliance_confirmations'
     resources :sessions, only: %i[new create destroy]
     get 'login', to: 'sessions#new'
@@ -19,9 +20,8 @@ Rails.application.routes.draw do
 
     resource :entries, only: %i[create update]
 
-    resources :users, only: %i[new create show] do
-      resources :dogs, only: %i[show edit update]
-    end
+    resources :users, only: %i[new create show]
+    resources :dogs, only: %i[show edit update]
 
     get 'signup', to: 'users#new', as: :signup
 

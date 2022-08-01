@@ -2,7 +2,7 @@
 <div class="max-w-6xl mx-auto px-6 sm:px-6 lg:px-8 mt-5">
   <p class="text-3xl font-bold leading-7 text-center mb-10"><%= t'.dogrun' %></p>
   <div class="container bg-purple-200 w-full shadow rounded p-8 sm:p-10">
-    <%= simple_form_for @dog, url:togo_inu_shitsuke_hiroba_user_dog_path, methdo: :patch, data: { turbo: false } do |f| %>
+    <%= simple_form_for @dog, url:togo_inu_shitsuke_hiroba_dog_path, methdo: :patch, data: { turbo: false } do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <div class="text-3xl font-bold text-center mb-5">
         <p><%= t'.title' %></p>
