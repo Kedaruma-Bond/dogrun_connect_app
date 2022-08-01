@@ -8,18 +8,18 @@
       </p>
       <div class="text-2xl flex text-center mt-4 mx-auto relative left-12">
         <h1 class="flex text-6xl pb-2">
-          <%= @number_of_dogs %>
+          <%= @num_of_playing_dogs %>
         </h1>
         <span class="ml-10 text-left">
           <%= simple_format(t'.playing1') %>
           <%= simple_format(t'.playing2') %>
-          </span>
+        </span>
       </div>
     </div>
 
     <%= render 'togo_inu_shitsuke_hiroba/static_pages/login_top_content' %>
 
-    <%= link_to '#' do %>
+    <%= link_to togo_inu_shitsuke_hiroba_detail_path do %>
       <button class="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
         <svg class="fill-current w-6 h-6 mr-2" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9 0 010 12.728m-9.9-2.829a5 5 0 010-7.07m7.072 0a5 5 0 010 7.07M13 12a1 1 0 11-2 0 1 1 0 012 0z"></path>

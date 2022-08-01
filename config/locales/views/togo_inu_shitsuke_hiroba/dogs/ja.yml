@@ -2,15 +2,14 @@ ja:
   togo_inu_shitsuke_hiroba:
     dogs:
       show:
-        title: "プロフィール"
+        title: プロフィール
         registration_number: パスポート番号
         dogrun: 犬のしつけ広場
-        japanese_age_unit: 歳
         edit: 編集
       edit:
-        title: "プロフィール編集"
+        title: プロフィール編集
         dogrun: 犬のしつけ広場
-        japanese_age_unit: 歳
+        age_unit: 歳
         change_image: 画像変更
         registration_number: パスポート番号
         dog_name: 犬の名前

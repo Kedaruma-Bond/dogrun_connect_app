@@ -42,13 +42,13 @@
                   </p>
                   <div class="flex">
                     <h1 class="mt-1 text-2xl text-gray-700 px-2">
-                      <% if @dog.birthday == nil %>
+                      <% if @dog.birthday.blank? %>
                         -
                       <% else %>
                         <%= @dog.age %>
                       <% end %>
                     </h1>
-                    <p class="text-xs pt-4 font-light"><%= t'.japanese_age_unit' %></p>
+                    <p class="text-xs pt-4 font-light"><%= t'defaults.age_unit' %></p>
                   </div>
                 </div>
               </div>
@@ -116,7 +116,7 @@
                   <% if @dog.public == 'public_view' %>
                     <%= t'enums.dog.public.public_view' %>
                   <% else %>
-                    <%= t'enums.dog.public.public_view' %>
+                    <%= t'enums.dog.public.non_public' %>
                   <% end %>
                 </h1>
               </div>
@@ -134,7 +134,7 @@
       </section>
       <% if correct_user?(@user) %>
         <div class="flex items-center mt-1 flex-row justify-center text-left">
-          <%= link_to edit_togo_inu_shitsuke_hiroba_user_dog_path(current_user.id, @dog.id) do %>
+          <%= link_to edit_togo_inu_shitsuke_hiroba_dog_path(@dog.id) do %>
             <button class="flex items-center px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
@@ -148,4 +148,3 @@
     </div>
   </div>
 </div>
-

@@ -1,0 +1,23 @@
+<% content_for(:title, I18n.t('togo_inu_shitsuke_hiroba.static_pages.detail.title', dogrun: t('.dogrun')))%>
+<div class="max-w-6xl mx-auto px-1 sm:px-6 lg:px-8 mt-5">
+  <h1 class='text-3xl text-indigo-800 font-semibold text-center'>
+    <%= simple_format(I18n.t('togo_inu_shitsuke_hiroba.static_pages.detail.title', dogrun: t('.dogrun'))) %>
+  </h1>
+  <div class="container bg-purple-200 w-full shadow rounded sm:p-10 pt-3">
+    <div class="md:flex justify-center text-2xl md:text-3xl font-bold mb-5">
+      <p class='text-center text-2xl mrelative right-5 md:right-10'>
+        <%= t'.site_in' %>
+      </p>
+      <div class="flex text-2xl mt-4 ml-20 md:ml-0">
+        <h1 class="text-6xl pb-2">
+          <%= @num_of_playing_dogs %>
+        </h1>
+        <span class="ml-10 text-left">
+          <%= simple_format(t'.playing1') %>
+          <%= simple_format(t'.playing2') %>
+        </span>
+      </div>
+    </div>
+    <%= render 'togo_inu_shitsuke_hiroba/static_pages/detail_content' %>
+  </div>
+</div>

@@ -15,13 +15,13 @@ class TogoInuShitsukeHiroba::DogsController < TogoInuShitsukeHiroba::DogrunPlace
 
   def update
     if params[:back]
-      redirect_to togo_inu_shitsuke_hiroba_user_dog_path(current_user.id, @dog.id)
+      redirect_to togo_inu_shitsuke_hiroba_dog_path(@dog.id)
       return
     end
 
     if @dog.valid?
       @dog.update(dog_params)
-      redirect_to togo_inu_shitsuke_hiroba_user_dog_path(current_user.id, @dog.id), success: t('.dog_profile_updated')
+      redirect_to togo_inu_shitsuke_hiroba_dog_path(@dog.id), success: t('.dog_profile_updated')
       return
     else
       render :edit, status: :unprocessable_entity
@@ -31,7 +31,7 @@ class TogoInuShitsukeHiroba::DogsController < TogoInuShitsukeHiroba::DogrunPlace
   private
 
   def set_dog_and_registration_number
-    @dog = current_user.dogs.find(params[:id])
+    @dog = Dog.find(params[:id])
     @registration_number = RegistrationNumber.where(dog_id: @dog.id).merge(RegistrationNumber.where(dogrun_place: 'togo_inu_shitsuke_hiroba'))
   end
 

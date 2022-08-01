@@ -50,7 +50,11 @@
                     <%= l @entries[t].entry_at, format: :short2 %>
                   </td>
                   <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                    <%= l @entries[t].exit_at, format: :short2 %>
+                    <% if @entries[t].exit_at.nil? %>
+                      入場中
+                    <% else %>
+                      <%= l @entries[t].exit_at, format: :short2 %>
+                    <% end %>
                   </td>
                   <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
                     will be applied later...

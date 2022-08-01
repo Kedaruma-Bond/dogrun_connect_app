@@ -1,20 +1,29 @@
 class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::DogrunPlaceController
   layout 'togo_inu_shitsuke_hiroba'
-  skip_before_action :require_login
-  before_action :set_dogs, :set_registration_numbers_in_togo_inu_shitsuke_hiroba, :get_entry_data, :during_entries, :get_during_entry_user_dogs, only: %i[top]
+  skip_before_action :require_login, except: %i[detail]
+  before_action :set_dogs, :set_registration_numbers_in_togo_inu_shitsuke_hiroba, :during_entries, :get_during_entry_user_dogs, only: %i[top]
+  before_action :get_dogrun_entry_data, only: %i[top detail]
 
   def top
     @entry = Entry.new
-    @number_of_dogs = @entry_data.size || 0
+  end
+
+  def detail
+    @dogs = []
+    return if @dogrun_entry_data.blank?
+    @dogrun_entry_data.each do |entry_data|
+      @dogs << Dog.find(entry_data.dog_id)
+    end
   end
 
   def compliance_confirmations; end
 
   private
-
-  def get_entry_data
-    @entry_data = []
-    @entry_data = Entry.where.not(entry_at: nil).where(exit_at: nil).joins(:registration_number).where(registration_numbers: { dogrun_place: 'togo_inu_shitsuke_hiroba' })
+  
+  def get_dogrun_entry_data
+    @dogrun_entry_data = []
+    @dogrun_entry_data = Entry.where.not(entry_at: nil).where(exit_at: nil).joins(:registration_number).where(registration_numbers: { dogrun_place: 'togo_inu_shitsuke_hiroba' })
+    @num_of_playing_dogs = @dogrun_entry_data.size || 0
   end
 
   def get_during_entry_user_dogs

@@ -9,6 +9,7 @@ ja:
     breed: 犬種
     sex: 性別
     age: 年齢
+    age_unit: 歳
     weight: 体重
     weight_unit: kg
     birthday: 生年月日
@@ -36,10 +37,12 @@ ja:
     friend_list: フレンドリスト
     email_message: の様式が正しくありません
     entry: 入場
+    entry_at: 入場時間
     exit: 退場
     detail: 詳細
     update: 更新
     owner_comment: 飼い主さんから一言
+    thumbnail: サムネイル
   simple_form:
     "yes": はい
     "no": いいえ

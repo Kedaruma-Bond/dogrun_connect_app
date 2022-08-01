@@ -5,7 +5,7 @@ User.create!(name: 'へのへの もへじ',
 
 10.times do |n|
   name = Faker::Name.name
-  email = "test-#{n}@exmple.com"
+  email = "test-#{n}@example.com"
   password = 'password'
   User.create!(name: name,
               email: email,
