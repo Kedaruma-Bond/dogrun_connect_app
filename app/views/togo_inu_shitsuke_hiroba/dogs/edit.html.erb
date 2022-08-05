@@ -16,8 +16,8 @@
                 <%= f.input :thumbnail_photo, as: :file, input_html: { data: { target: "preview.imageUploader", action: "preview#updatePreview" }, class: "block w-full px-3 py-1.5 text-sm text-white font-normal bg-gray-700 bg-clip-padding rounded border border-soild border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
                 <%= f.hidden_field :thumbnail_photo_cache %>
               </div>
-              <div class="h-40 w-40 rounded-full flex-shrink-0 mx-auto mb-3 md:mb-0">
-                <%= image_tag @dog.thumbnail_photo.url(:thumbnail), "data-preview-target": "imagePreview", alt: "preview_of_dog_photo" %>
+              <div class="h-40 w-40 flex-shrink-0 mx-auto mb-3 md:mb-0">
+                <%= image_tag @dog.thumbnail_photo.url(:thumbnail), "data-preview-target": "imagePreview", alt: "preview_of_dog_photo", class: "rounded-full"%>
               </div>
               <div class="text-gray-600 text-xs font-light mt-5">
                 <%= simple_format((t'.registration_number'), {}, wrapper_tag: "div") %>

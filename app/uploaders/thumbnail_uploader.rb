@@ -41,8 +41,10 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
   version :thumbnail do
     if Rails.env.production?
       process eager: true
-      process resize_to_fit: [40, 40]
-      cloudinary_transformation radius: :max
+      cloudinary_transformation crop: :thumb
+    end
+    if Rails.env.development?
+
     end
   end
   # Add an allowlist of extensions which are allowed to be uploaded.
@@ -56,6 +58,10 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  def size_range
+    1..5.megabytes
+  end
 
 
   def public_id
