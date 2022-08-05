@@ -7,11 +7,14 @@ ja:
         dogrun: 犬のしつけ広場
         edit: 編集
       edit:
-        title: プロフィール編集
+        title: |
+          プロフィール
+          編集
         dogrun: 犬のしつけ広場
         age_unit: 歳
-        change_image: 画像変更
+        change_image: サムネイル変更
         registration_number: パスポート番号
         dog_name: 犬の名前
+        clear: クリア
         
 

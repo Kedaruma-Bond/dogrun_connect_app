@@ -1,6 +1,6 @@
 ja:
   defaults:
-    name: 氏名
+    name: 飼い主さんの名前
     email: メールアドレス
     password: パスワード
     password_confirmation: パスワード 確認
@@ -50,7 +50,7 @@ ja:
       html: '<abbr title="required" class="text-xs" style="text-decoration: none; color: purple;">[必須]</abbr>'
     labels:
       defaults:
-        name: '氏名'
+        name: '飼い主さんの名前'
         email: 'メールアドレス'
         password: 'パスワード'
         password_confirmation: 'パスワード 確認'

@@ -77,7 +77,9 @@ ja:
         breed: 犬種
         birthday: 誕生日
         weight: 体重
+        sex: 性別
         owner_comment: 飼い主さんから一言
+        thumbnail_image: サムネイル
       registration_number:
         dogrun_place: 登録ドッグラン
         registration_number: 登録番号
