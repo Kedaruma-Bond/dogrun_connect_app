@@ -45,7 +45,7 @@ end
 #  owner_comment   :text             default("")
 #  public          :boolean          not null
 #  sex             :integer
-#  thumbnail_image :string
+#  thumbnail_photo :string
 #  weight          :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

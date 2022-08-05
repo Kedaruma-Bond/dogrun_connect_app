@@ -5,12 +5,15 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
     CarrierWave.configure do |config|
       config.cache_storage = :file
     end
+    
+    process convert: 'png'
+    process tags: ['dog_thumbnail']
   else
+    include CarrierWave::MiniMagick
     storage :file
   end
   # include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
@@ -36,13 +39,12 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumbnail do
-    process eager: true
-    process resize_to_fit: [50, 50]
-    cloudinary_transformation transformation: [
-      { crop: :thumb, radius: :max }
-    ] 
+    if Rails.env.production?
+      process eager: true
+      process resize_to_fit: [40, 40]
+      cloudinary_transformation crop: :thumb, radius: :max
+    end
   end
-
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_allowlist
@@ -55,8 +57,6 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
-  process :convert => 'png'
-  process :tags => ['dog_thumbnail']
 
   def public_id
     return model.name

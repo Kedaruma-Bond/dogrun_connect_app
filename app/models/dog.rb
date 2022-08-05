@@ -2,7 +2,7 @@ class Dog < ApplicationRecord
   belongs_to :user
   has_many :registration_numbers, dependent: :destroy
   has_many :entries
-  mount_uploader :thumbnail_image, ThumbnailUploader
+  mount_uploader :thumbnail_photo, ThumbnailUploader
 
   # validates
   validates :name, presence: true, length: { maximum: 50 }
@@ -31,7 +31,7 @@ end
 #  owner_comment   :text             default("")
 #  public          :boolean          not null
 #  sex             :integer
-#  thumbnail_image :string
+#  thumbnail_photo :string
 #  weight          :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

@@ -32,14 +32,15 @@ users = User.order(:created_at).first(6)
 castration = 'castrated'
 public = 'public_view'
 users.each do |u|
-  u.dogs.create!(
+  u.dogs.create(
     name: Faker::Creature::Dog.name,
     castration: castration,
     public: public,
     breed: Faker::Creature::Dog.breed,
     sex: Faker::Number.between(from: 0, to: 1),
     weight: Faker::Number.between(from: 1, to: 40),
-    owner_comment: Faker::Lorem.paragraph(sentence_count: 5)
+    owner_comment: Faker::Lorem.paragraph(sentence_count: 5),
+    thumbnail_photo: nil
   )
 end
 
