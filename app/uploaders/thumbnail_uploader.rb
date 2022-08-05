@@ -42,7 +42,7 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
     if Rails.env.production?
       process eager: true
       process resize_to_fit: [40, 40]
-      cloudinary_transformation crop: :thumb, radius: :max
+      cloudinary_transformation radius: :max
     end
   end
   # Add an allowlist of extensions which are allowed to be uploaded.
