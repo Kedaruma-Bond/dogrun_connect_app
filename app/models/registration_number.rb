@@ -16,7 +16,6 @@ end
 # Table name: registration_numbers
 #
 #  id                  :bigint           not null, primary key
-#  dogrun              :integer          not null
 #  registration_number :string           not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
