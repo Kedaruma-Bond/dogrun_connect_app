@@ -71,6 +71,10 @@ gem 'sitemap_generator'
 gem 'carrierwave'
 # 画像ストレージ先
 gem 'cloudinary'
+# chart作図
+gem 'chartkick'
+# Active Recordをhash化してくれる
+gem 'chartable'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

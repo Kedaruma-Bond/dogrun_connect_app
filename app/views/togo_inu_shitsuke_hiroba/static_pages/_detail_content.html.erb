@@ -37,8 +37,8 @@
               <% else %>
                 <div class="col-span-2 md:col-span-1 pl-2 text-sm whitespace-nowrap self-center font-semibold text-left bg-purple-200 text-gray-600">
                   <%= link_to togo_inu_shitsuke_hiroba_dog_path(@dogs[t].id) do %>
-                    <div class="w-15 h-15 flex-shrink-0 mx-auto mb-3 md:md-0 inline-flex items-center justify-center bg-indigo-100">
-                      <%= image_tag @dogs[t].thumbnail_photo.url(:thumbnail), alt: @dogs[t].name, class: "rounded-full" %>
+                    <div class="w-15 h-15 flex-shrink-0 mx-auto mb-3 md:md-0 inline-flex items-center justify-center">
+                      <%= image_tag @dogs[t].thumbnail_photo.url(:std_thumb), alt: @dogs[t].name %>
                     </div>
                   <% end %>
                 </div>

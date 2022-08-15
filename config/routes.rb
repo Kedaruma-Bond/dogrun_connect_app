@@ -3,33 +3,41 @@ Rails.application.routes.draw do
   root 'static_pages#top'
   get 'privacy_policy', to: 'static_pages#privacy_policy'
   get 'terms_of_service', to: 'static_pages#terms_of_service'
-
+  
   resource :contacts, only: %i[new create]
   post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
-
+  
   resources :password_resets, only: %i[new create edit update]
-
+  
   namespace :togo_inu_shitsuke_hiroba do
     get 'top', to: 'static_pages#top'
     get 'detail', to: 'static_pages#detail'
     get 'compliance_confirmations', to: 'static_pages#compliance_confirmations'
-    resources :sessions, only: %i[new create destroy]
+    resource :sessions, only: %i[new create destroy]
     get 'login', to: 'sessions#new'
     post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy', as: :logout
-
+    
     resource :entries, only: %i[create update]
-
+    
     resources :users, only: %i[new create show]
     resources :dogs, only: %i[show edit update]
-
+    
     get 'signup', to: 'users#new', as: :signup
-
+    
     get 'dog_registration', to: 'dog_registration#new'
     post 'dog_registration', to: 'dog_registration#create'
     post 'dog_registration/confirm', to: 'dog_registration#confirm'
+  end
 
-    namespace :admin do
-    end
+  namespace :admin do
+    root 'dashboards#index'
+    resources :dogrun_places, only: %i[index create]
+    resources :users, only: %i[index edit update]
+    resources :entries, only: %i[index edit update]
+    resource :sessions, only: %i[new create destroy]
+    get 'login', to: 'sessions#new'
+    post 'login', to: 'sessions#create'
+    delete 'logout', to: 'sessions#destroy'
   end
 end

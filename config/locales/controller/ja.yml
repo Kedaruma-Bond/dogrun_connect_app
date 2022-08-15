@@ -1,4 +1,16 @@
 ja:
+  admin:
+    dogrun_places:
+      create_success: ドッグランを新規登録しました
+    base:
+      not_authenticated:
+        require_login: ログインしてください
+    sessions:
+      create:
+        admin_login: 管理者としてログインしました
+        login_fail: 入力内容確認してください
+      destroy:
+        logout: ログアウトしました
   contacts:
     create:
       success: お問い合わせメールを送信しました

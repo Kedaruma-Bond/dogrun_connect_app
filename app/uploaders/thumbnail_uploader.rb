@@ -38,19 +38,17 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  version :thumbnail do
+  version :std_thumb do
     if Rails.env.production?
       process eager: true
-      cloudinary_transformation crop: :thumb
-    end
-    if Rails.env.development?
-
+      cloudinary_transformation aspect_ratio: 1.0, crop: :fill, gravity: :auto, radius: :max, quality_auto: :good  
     end
   end
+
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_allowlist
-    %w(jpg jpeg gif png)
+    %w(jpg jpeg gif png heic)
   end
 
   # Override the filename of the uploaded files:
@@ -60,7 +58,7 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
   # end
 
   def size_range
-    1..5.megabytes
+    1..10.megabytes
   end
 
 

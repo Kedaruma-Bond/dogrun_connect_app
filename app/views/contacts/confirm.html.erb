@@ -31,12 +31,12 @@
       <div class="mt-6 md:flex justify-center">
         <%= simple_form_for @contact, data: { trubo: false } do |f| %>
           <div class="w-full mt-4 overflow-hidden shadow sm:w-auto sm:mx-3 sm:mt-0">
-            <%= f.button :submit, t('defaults.back'), name: 'back', class: "items-center w-full px-10 py-4 text-base font-semibold text-white bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" %>
+            <%= f.button :submit, t('defaults.back'), name: 'back', class: "items-center w-full px-10 py-4 text-base font-semibold text-white bg-red-700 rounded hover:bg-red-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" %>
           </div>
         <% end %>
         <%= simple_form_for @contact, url: contacts_path, data: { turbo: false } do |f| %>
           <div class="w-full overflow-hidden shadow sm:w-auto sm:mx-3 sm:mt-0 mt-4">
-            <%= f.button :submit, t('.send'), class: "inline-block items-center w-full px-10 py-4 text-base font-semibold text-white bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" %> 
+            <%= f.button :submit, t('.send'), class: "inline-block items-center w-full px-10 py-4 text-base font-semibold text-white bg-green-700 rounded hover:bg-green-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" %> 
           </div>
         <% end %>
         </div>

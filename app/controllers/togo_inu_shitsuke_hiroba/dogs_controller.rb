@@ -1,12 +1,11 @@
 class TogoInuShitsukeHiroba::DogsController < TogoInuShitsukeHiroba::DogrunPlaceController
-  layout 'togo_inu_shitsuke_hiroba'
   before_action :set_dog_and_registration_number, only: %i[show edit update] 
   before_action :correct_dog_owner, only: %i[edit update]
   before_action :dog_params, only: %i[update]
 
   def show
     @user = User.find(@dog.user_id)
-    @entries = Entry.where(dog_id: @dog.id).merge(Entry.where(registration_number_id: @registration_number[0].id))
+    @entries = Entry.where(dog_id: @dog.id).merge(Entry.where(registration_number_id: @registration_number[0].id)).joins(:registration_number).where(registration_number: { dogrun_place_id: 2 })
     @entries = @entries.sort.reverse
     @t = 5
   end
@@ -32,7 +31,7 @@ class TogoInuShitsukeHiroba::DogsController < TogoInuShitsukeHiroba::DogrunPlace
 
   def set_dog_and_registration_number
     @dog = Dog.find(params[:id])
-    @registration_number = RegistrationNumber.where(dog_id: @dog.id).merge(RegistrationNumber.where(dogrun_place: 'togo_inu_shitsuke_hiroba'))
+    @registration_number = RegistrationNumber.where(dog_id: @dog.id).merge(RegistrationNumber.where(dogrun_place_id: 2))
   end
 
   def dog_params

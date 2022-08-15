@@ -1,0 +1,9 @@
+<main class="container bg-gray-300">
+  <div class="header">
+    <h1><%= t('.registered_dogrun') %></h1>
+  </div>
+  <%= render partial: 'admin/dogrun_places/form' %>
+  <ul class="mt-10">
+    <%= render @dogrun_places %>
+  </ul>
+</main>

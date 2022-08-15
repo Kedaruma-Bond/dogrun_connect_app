@@ -15,6 +15,8 @@ ja:
         exit_confirm: 退場前の見回りは実施しましたか？
         check_before_exit: 退場前の見回り
         during_entry_your_dogs: 入場中のあなたのワンちゃん
+        entry: 入場します
+        exit: 退場します
       compliance_confirmations:
         title: '利用上の遵守・確認事項'
         dogrun: 犬のしつけ広場

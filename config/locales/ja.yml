@@ -18,7 +18,7 @@ ja:
     login: ログイン
     logout: ログアウト
     profile: プロフィール
-    inform_dogrun: ドッグランの連絡
+    site_information: ドッグランの連絡
     signup: 新規登録
     support: サポート
     terms_of_service: 利用規約
@@ -43,6 +43,7 @@ ja:
     update: 更新
     owner_comment: 飼い主さんから一言
     thumbnail: サムネイル
+    not_authorized: 権限がありません
   simple_form:
     "yes": はい
     "no": いいえ
