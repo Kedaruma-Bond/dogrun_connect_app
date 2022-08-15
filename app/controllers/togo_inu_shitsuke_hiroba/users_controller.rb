@@ -1,5 +1,4 @@
 class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlaceController
-  layout 'togo_inu_shitsuke_hiroba'
   skip_before_action :require_login, only: %i[new create]
   before_action :user_params, only: %i[create]
   before_action :correct_user, :set_dogs, :set_registration_numbers_in_togo_inu_shitsuke_hiroba, only: %i[show]

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
   has_many :dogs, dependent: :destroy
+  belongs_to :dogrun_place, optional: true
 
   attr_accessor :agreement
 
@@ -14,6 +15,9 @@ class User < ApplicationRecord
   validates :deactivation, inclusion: { in: [true, false] }
   validates :enable_notification, inclusion: { in: [true, false] }
   validates :agreement, acceptance: true
+
+  #enum
+  enum role: { general: 0, admin: 1 }
 end
 
 # == Schema Information
@@ -34,15 +38,22 @@ end
 #  reset_password_email_sent_at        :datetime
 #  reset_password_token                :string
 #  reset_password_token_expires_at     :datetime
+#  role                                :integer          default("general"), not null
 #  salt                                :string
 #  unlock_token                        :string
 #  created_at                          :datetime         not null
 #  updated_at                          :datetime         not null
+#  dogrun_place_id                     :bigint
 #
 # Indexes
 #
+#  index_users_on_dogrun_place_id       (dogrun_place_id)
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_remember_me_token     (remember_me_token)
 #  index_users_on_reset_password_token  (reset_password_token)
 #  index_users_on_unlock_token          (unlock_token)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (dogrun_place_id => dogrun_places.id)
 #

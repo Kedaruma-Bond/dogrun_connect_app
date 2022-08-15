@@ -1,0 +1,193 @@
+<div id="main" class="main-content flex-1 bg-gray-100 mt-10 md:mt-2 pb-24 md:pb-5">
+  <div class="bg-gray-800 pt-2">
+    <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
+      <h1 class="font-bold pl-2">
+        <%= t('.dogrun_analytics')%>
+      </h1>
+    </div>
+  </div>
+  <!--Card Section-->
+  <div class="flex flex-wrap">
+    <!--Total entries at this month Card-->
+    <% if current_user.name == 'grand_admin' %>
+      <div class="w-1/2 p-6">
+    <% else %>
+      <div class="w-full p-6">
+    <% end %>
+      <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-5">
+        <div class="flex flex-row items-center">
+          <div class="flex-shrink pr-4">
+            <div class="rounded-full p-5 bg-green-600">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="flex-1 text-right md:text-center">
+            <h2 class="font-bold uppercase text-gray-600">
+              <%= t('.total_entries_over_the_past_month')%>
+            </h2>
+            <p class="font-bold text-3xl">
+              <%= @entries_over_the_past_month.count %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/Total entries at this month Card-->
+
+    <% if current_user.name == 'grand_admin' %>
+    <!--Total Users Card-->
+      <div class="w-1/2 p-6">
+        <div class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-5">
+          <div class="flex flex-row items-center">
+            <div class="flex-shrink pr-4">
+              <div class="rounded-full p-5 bg-pink-600">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="flex-1 text-right md:text-center">
+              <h2 class="font-bold uppercase text-gray-600">
+                <%= t('.total_users') %>
+              </h2>
+              <p class="font-bold text-3xl">
+                <%= @users.count %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!--Total Users Card-->
+    <% end %>
+
+    <!--Total Registration dogs Card-->
+    <div class="w-1/2 p-6">
+      <div class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-5">
+        <div class="flex flex-row items-center">
+          <div class="flex-shrink pr-4">
+            <div class="rounded-full p-5 bg-yellow-600">
+              <%= image_tag 'dog_logo.svg', class: "w-7 h-7 text-gray-200" %>
+            </div>
+          </div>
+          <div class="flex-1 text-right md:text-center">
+            <h2 class="font-bold uppercase text-gray-600">
+              <%= t('.total_registration_dogs')%>
+            </h2>
+            <p class="font-bold text-3xl">
+              <%= @registration_dogs.count %>
+              <span class="text-yellow-600">
+                <i class="fas fa-caret-up"></i>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/Total Registration dogs Card-->
+    <!--New Registration dogs at this month Card-->
+    <div class="w-1/2 p-6">
+      <div class="bg-gradient-to-b from-blue-200 to-blue-100 border-b-4 border-blue-500 rounded-lg shadow-xl p-5">
+        <div class="flex flex-row items-center">
+          <div class="flex-shrink pr-4">
+            <div class="rounded-full p-5 bg-blue-600">
+              <svg class="w-6 h-6 font-bold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="flex-1 text-right md:text-center">
+            <h2 class="font-bold uppercase text-gray-600">
+              <%= t('.new_registration_dogs_over_the_past_month') %>
+            </h2>
+            <p class="font-bold text-3xl">
+              <%= @new_registration_dogs_over_the_past_month.count %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/New Registration dogs at this month Card-->
+    <!--dogrun information at this month Card-->
+    <div class="w-1/2 p-6">
+      <div class="bg-gradient-to-b from-indigo-200 to-indigo-100 border-b-4 border-indigo-500 rounded-lg shadow-xl p-5">
+        <div class="flex flex-row items-center">
+          <div class="flex-shrink pr-4">
+            <div class="rounded-full p-5 bg-indigo-600">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="flex-1 text-right md:text-center">
+            <h2 class="font-bold uppercase text-gray-600">
+              <%= t('.dogrun_information_over_the_past_month') %>
+            </h2>
+            <p class="font-bold text-3xl">
+              xx
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/dogrun information at this month Card-->
+    <!--Total Staff Card-->
+    <div class="w-1/2 p-6">
+      <div class="bg-gradient-to-b from-red-200 to-red-100 border-b-4 border-red-500 rounded-lg shadow-xl p-5">
+        <div class="flex flex-row items-center">
+          <div class="flex-shrink pr-4">
+            <div class="rounded-full p-5 bg-red-600">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="flex-1 text-right md:text-center">
+            <h2 class="font-bold uppercase text-gray-600">
+              <%= t('.total_staffs') %>
+            </h2>
+            <p class="font-bold text-3xl">
+              xx
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/Total Staff Card-->
+    <!--/Card Section-->
+
+    <!--Graph Section-->
+    <div class="flex flex-row flex-wrap flex-grow mt-2">
+      <!--Daily Total Entries Graph-->
+      <div class="w-full p-6">
+        <div class="bg-white border-transparent rounded-lg shadow-xl">
+          <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+            <h class="font-bold uppercase text-gray-600">
+              <%= t('.daily_entries_graph') %>
+            </h>
+          </div>
+          <div class="p-5">
+            <%= area_chart @entries.analytics(:daily, on: 'entry_at'), curve: false, width: "100%", height: "300px" ,min: 0, max: "undefined", xmin: @two_weeks_ago, xmax: @today, label: false, xtitle: t('.date'), ytitle: t('.total_entries') %>
+          </div>
+        </div>
+      </div>
+      <!--/Daily Total Entries Graph-->
+
+      <!--Monthly Total Entries Graph-->
+      <div class="w-full p-6">
+        <div class="bg-white border-transparent rounded-lg shadow-xl">
+          <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+            <h2 class="font-bold uppercase text-gray-600">
+              <%= t('.monthly_entries_graph') %>
+            </h2>
+          </div>
+          <div class="p-5">
+            <%= area_chart @entries.analytics(:monthly, on: 'entry_at'), colors: ["#7fffd4"], curve: false, width: "100%", height: "300px" ,min: 0, max: "undefined", xmin: @one_year_ago, xmax: @today, label: false, xtitle: t('.month'), ytitle: t('.total_entries') %>
+          </div>
+        </div>
+      </div>
+      <!--/Monthly Total Entries Graph-->
+    </div>
+  </div>
+</div>

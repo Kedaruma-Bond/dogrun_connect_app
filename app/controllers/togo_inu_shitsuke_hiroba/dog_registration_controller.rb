@@ -1,5 +1,4 @@
 class TogoInuShitsukeHiroba::DogRegistrationController < TogoInuShitsukeHiroba::DogrunPlaceController
-  layout 'togo_inu_shitsuke_hiroba'
   before_action :dog_registration_params, only: :confirm
 
   def new
@@ -34,11 +33,13 @@ class TogoInuShitsukeHiroba::DogRegistrationController < TogoInuShitsukeHiroba::
   private
 
   def dog_registration_params
+    dogrun_place_id = 2
     params.require(:dog_registration).permit(
       :name, :castration, :public, :user_id,
-      :dogrun_place, :registration_number
+      :dogrun, :registration_number
     ).merge(
-      user_id: current_user.id
+      user_id: current_user.id,
+      dogrun_place_id: dogrun_place_id
     )
   end
 end

@@ -1,0 +1,12 @@
+ja:
+  admin:
+    shared:
+      navbar:
+        logout_confirmation: 管理者ユーザーからログアウトしますか？
+      sidebar:
+        entry_list: 利用記録一覧
+        user_list: 利用者一覧
+        dogrun_information_list: ドッグランの連絡一覧
+        staff_list: スタッフ一覧
+        dogrun_place_list: ドッグラン一覧
+

@@ -1,0 +1,32 @@
+<header>
+  <!--Nav-->
+  <nav class="bg-gray-600 pt-1 pb-1 px-1 mt-0 h-auto flexed w-full z-20 top-0">
+    <div class="flex items-center">
+      <div class="flex flex-shrink w-1/3 justify-start text-white">
+        <%= link_to admin_root_path do %>
+          <%= image_tag 'dogrun_logo.png', class: "rounded-full w-10 h-10 bg-indigo-200", alt: "dogrunconnect_logo" %>
+        <% end %>
+      </div>
+      <div class="pt-2 content-center w-2/3 justify-end">
+        <ul class="flex justify-between flex-none items-center">
+          <li class="flex-none mr-3">
+            <span class="inline-block py-2 px-4 text-white">
+              <%= current_user.dogrun_place.name %>
+            </span>
+          </li>
+          <li class="flex-none mr-3">
+            <%= link_to admin_logout_path, data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation') }, class: "flex text-white hover:text-gray-200 py-2 px-4" do %>
+              <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 12H19M19 12L16 15M19 12L16 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19 6V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>
+                <%= t('defaults.logout') %>
+              </span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_05_044315) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_060112) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_044315) do
     t.string "name", null: false
     t.string "email", null: false
     t.string "message", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "dogrun_places", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -51,12 +57,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_044315) do
   end
 
   create_table "registration_numbers", force: :cascade do |t|
-    t.integer "dogrun_place", null: false
+    t.integer "dogrun", null: false
     t.string "registration_number", null: false
     t.bigint "dog_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "dogrun_place_id", null: false
     t.index ["dog_id"], name: "index_registration_numbers_on_dog_id"
+    t.index ["dogrun_place_id"], name: "index_registration_numbers_on_dogrun_place_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,6 +85,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_044315) do
     t.integer "failed_logins_count", default: 0
     t.datetime "lock_expires_at"
     t.string "unlock_token"
+    t.integer "role", default: 0, null: false
+    t.bigint "dogrun_place_id"
+    t.index ["dogrun_place_id"], name: "index_users_on_dogrun_place_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
@@ -86,5 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_044315) do
   add_foreign_key "dogs", "users"
   add_foreign_key "entries", "dogs"
   add_foreign_key "entries", "registration_numbers"
+  add_foreign_key "registration_numbers", "dogrun_places"
   add_foreign_key "registration_numbers", "dogs"
+  add_foreign_key "users", "dogrun_places"
 end

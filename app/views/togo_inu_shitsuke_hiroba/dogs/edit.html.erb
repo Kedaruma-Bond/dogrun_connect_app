@@ -17,7 +17,7 @@
                 <%= f.hidden_field :thumbnail_photo_cache %>
               </div>
               <div class="flex-shrink-0 mx-auto mb-3 md:mb-0">
-                <%= image_tag @dog.thumbnail_photo.url(:std_thumb), "data-preview-target": "imagePreview", alt: "preview_of_dog_photo", class: "rounded-full object-cover"%>
+                <%= image_tag @dog.thumbnail_photo.url(:std_thumb), "data-preview-target": "imagePreview", alt: "preview_of_dog_photo", class: "rounded-full object-cover", style: "aspect-ratio: 1 / 1;" %>
               </div>
               <div class="text-gray-600 text-xs font-light mt-5">
                 <%= simple_format((t'.registration_number'), {}, wrapper_tag: "div") %>
