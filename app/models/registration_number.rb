@@ -1,6 +1,6 @@
 class RegistrationNumber < ApplicationRecord
   belongs_to :dog
-  belongs_to :dogrun_place
+  belongs_to :dogrun_place, optional: true
   has_many :entries
 
   self.ignored_columns = [:dogrun_place] 
@@ -21,7 +21,7 @@ end
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  dog_id              :bigint           not null
-#  dogrun_place_id     :bigint           not null
+#  dogrun_place_id     :bigint
 #
 # Indexes
 #

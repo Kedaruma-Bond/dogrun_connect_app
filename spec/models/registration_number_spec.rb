@@ -35,7 +35,7 @@ end
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  dog_id              :bigint           not null
-#  dogrun_place_id     :bigint           not null
+#  dogrun_place_id     :bigint
 #
 # Indexes
 #

@@ -62,7 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_060112) do
     t.bigint "dog_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "dogrun_place_id", null: false
+    t.bigint "dogrun_place_id"
     t.index ["dog_id"], name: "index_registration_numbers_on_dog_id"
     t.index ["dogrun_place_id"], name: "index_registration_numbers_on_dogrun_place_id"
   end
