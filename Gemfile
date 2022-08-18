@@ -77,6 +77,8 @@ gem 'chartkick'
 gem 'kaminari'
 # 検索機能
 gem 'ransack'
+# PWA化
+gem 'serviceworker-rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -102,6 +104,8 @@ group :development do
   gem 'solargraph'
   # 模擬メール機能
   gem 'letter_opener_web'
+  # favicon生成
+  gem 'rails_real_favicon'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem 'rack-mini-profiler'

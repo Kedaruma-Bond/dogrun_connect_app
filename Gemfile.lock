@@ -272,6 +272,10 @@ GEM
     rails-i18n (7.0.3)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
+    rails_real_favicon (0.1.1)
+      json (>= 1.7, < 3)
+      rails
+      rubyzip (~> 2)
     railties (7.0.3)
       actionpack (= 7.0.3)
       activesupport (= 7.0.3)
@@ -345,6 +349,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    serviceworker-rails (0.6.0)
+      railties (>= 3.1)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
     simple_form (5.1.0)
@@ -450,10 +456,12 @@ DEPENDENCIES
   rails (~> 7.0.3)
   rails-controller-testing
   rails-i18n
+  rails_real_favicon
   ransack
   redis
   redis-actionpack
   rspec-rails
+  serviceworker-rails
   shoulda-matchers
   simple_form
   sitemap_generator
