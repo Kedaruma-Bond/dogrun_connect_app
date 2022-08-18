@@ -79,6 +79,8 @@ gem 'kaminari'
 gem 'ransack'
 # PWA化
 gem 'serviceworker-rails'
+# meta tag管理
+gem 'meta-tags'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

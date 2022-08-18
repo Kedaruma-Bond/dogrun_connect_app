@@ -1,5 +1,6 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "http://www.example.com"
+SitemapGenerator::Sitemap.default_host = "https://www.dogrunconnect.com"
+SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
 
 SitemapGenerator::Sitemap.create do
   # Put links creation logic here.
@@ -24,4 +25,6 @@ SitemapGenerator::Sitemap.create do
   #   Article.find_each do |article|
   #     add article_path(article), :lastmod => article.updated_at
   #   end
+  add '/togo_inu_shitsuke_hiroba', :priority => 0.75, :changefreq => 'daily'
+
 end
