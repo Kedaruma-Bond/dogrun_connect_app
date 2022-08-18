@@ -5,8 +5,7 @@ class TogoInuShitsukeHiroba::DogsController < TogoInuShitsukeHiroba::DogrunPlace
 
   def show
     @user = User.find(@dog.user_id)
-    @entries = Entry.where(dog_id: @dog.id).merge(Entry.where(registration_number_id: @registration_number[0].id)).joins(:registration_number).where(registration_number: { dogrun_place_id: 2 })
-    @entries = @entries.sort.reverse
+    @entries = Entry.where(dog_id: @dog.id).merge(Entry.where(registration_number_id: @registration_number.ids)).joins(:registration_number).where(registration_number: { dogrun_place_id: 2 } ).sort.reverse
     @t = 5
   end
 

@@ -1,0 +1,70 @@
+ja:
+  ransack:
+    all: "全て"
+    and: "かつ"
+    any: "いずれかの"
+    asc: "昇順"
+    attribute: "属性"
+    combinator: "結合子"
+    condition: "条件"
+    desc: "降順"
+    or: "または"
+    predicate: "述語"
+    predicates:
+      blank: "空である"
+      cont: "含む"
+      cont_all: "全て含む"
+      cont_any: "いずれかを含む"
+      does_not_match: "マッチしない"
+      does_not_match_all: "全てマッチしない"
+      does_not_match_any: "いずれかにマッチしない"
+      end: "で終わる"
+      end_all:
+      end_any: "いずれかで終わる"
+      eq: "等しい"
+      eq_all: "全て等しい"
+      eq_any: "いずれかが等しい"
+      'false': "が false である"
+      gt: "より大きい"
+      gt_all: "全てより大きい"
+      gt_any: "いずれかより大きい"
+      gteq: "以上"
+      gteq_all: "全て以下"
+      gteq_any: "いずれかが以下"
+      in: "含む"
+      in_all: "全てを含む"
+      in_any: "いずれかを含む"
+      lt: "より小さい"
+      lt_all: "全てより小さい"
+      lt_any: "いずれかより小さい"
+      lteq: "以下"
+      lteq_all: "全て以下"
+      lteq_any: "いずれかが以下"
+      matches: "とマッチする"
+      matches_all: "全てに一致する"
+      matches_any: "いずれかに一致する"
+      not_cont: "含まない"
+      not_cont_all: "いずれも含まない"
+      not_cont_any: "いずれかを含まない"
+      not_end: "で終わらない"
+      not_end_all: "全てで終わらない"
+      not_end_any: "いずれかで終わらない"
+      not_eq: "等しくない"
+      not_eq_all: "全てと等しくない"
+      not_eq_any: "いずれかと等しくない"
+      not_in: "含まない"
+      not_in_all:
+      not_in_any:
+      not_null: null ではない
+      not_start: "で始まらない"
+      not_start_all:
+      not_start_any:
+      'null': null ではない
+      present: "存在する"
+      start: "ではじまる"
+      start_all:
+      start_any:
+      'true': true である
+    search: "検索する"
+    sort: "ソートする"
+    value: "値"

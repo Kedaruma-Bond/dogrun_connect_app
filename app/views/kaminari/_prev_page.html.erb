@@ -1,0 +1,11 @@
+<%# Link to the "Previous" page
+  - available local variables
+    url:           url to the previous page
+    current_page:  a page object for the currently displayed page
+    total_pages:   total number of pages
+    per_page:      number of items to fetch per page
+    remote:        data-remote
+-%>
+<span class="prev">
+  <%= link_to_unless current_page.first?, t('views.pagination.previous').html_safe, url, rel: 'prev', remote: remote, class: "text-black no-underline p-2 border border-solid border-gray-600 hover:border hover:border-solid hover:border-white hover:bg-gray-700 hover:text-gray-200" %>
+</span>

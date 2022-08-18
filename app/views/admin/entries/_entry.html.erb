@@ -1,0 +1,31 @@
+<tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+    <%= l entry.entry_at, format: :long2 %>
+  </td>
+  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+    <%= entry.registration_number.registration_number%>
+  </td>
+  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+    <%= entry.dog.user.name %>
+  </td>
+  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+    <%= entry.dog.name %>
+  </td>
+  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+    <%= l entry.entry_at, format: :short2 %>
+  </td>
+  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+    <% if entry.exit_at.nil? %>
+      <%= t('.entering') %>
+    <% else %>
+      <%= l entry.exit_at, format: :short2 %>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to admin_entry_path(entry), data: { turbo_method: :delete, turbo_confirm: t('.destroy_confirmation') }, class: "flex justify-left ml-2 text-sm text-gray-900 hover:text-gray-500 py-2 px-4" do %>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+    <% end %>
+  </td>
+</tr>

@@ -3,11 +3,13 @@ ja:
   admin:
     dogrun_places:
       index:
+        title: ドッグラン一覧
         registered_dogrun: 登録ドッグラン
       form:
         dogrun_name: 登録するドッグランの名前
     dashboards:
       index:
+        title: ダッシュボード
         dogrun_analytics: Dogrun Analytics
         total_entries_over_the_past_month: 過去ひと月の利用頭数
         total_users: 登録者数
@@ -20,7 +22,6 @@ ja:
         total_entries: 利用頭数
         date: 日付
         month: 月
-        breed_lank: 犬種別登録数
 
 
 

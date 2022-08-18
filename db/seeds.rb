@@ -48,11 +48,11 @@ User.create!(name: 'へのへの もへじ',
               password_confirmation: password)
 end
 
-users = User.order(:created_at).limit(6).offset(2)
+users = User.order(:created_at).limit(9).offset(3)
 castration = 'castrated'
 public = 'public_view'
 users.each do |u|
-  u.dogs.create(
+  u.dogs.create!(
     name: Faker::Creature::Dog.name,
     castration: castration,
     public: public,
@@ -82,18 +82,23 @@ end
 dogs = Dog.all
 dogs.each do |dog|
   registration_number = Faker::Number.between(from: 1, to: 2000)
-  dog.registration_numbers.create!(registration_number: registration_number, dogrun: 0, dogrun_place: dogrun_place_2)
+  dog.registration_numbers.create!(registration_number: registration_number, dogrun_place: dogrun_place_2)
 end
 dogs.each do |dog|
   registration_number = Faker::Number.between(from: 1, to: 2000)
-  dog.registration_numbers.create!(registration_number: registration_number, dogrun: 1, dogrun_place: dogrun_place_3)
+  dog.registration_numbers.create!(registration_number: registration_number, dogrun_place: dogrun_place_3)
 end
 
 registration_numbers = RegistrationNumber.all
 
-50.times do |t|
-  #計算している数値は秒数
-  entry_at = Time.zone.now - (86_400 * t)
-  exit_at = Time.zone.now - (86_400 * t) + 1_800
-  registration_numbers.each { |registration_number| registration_number.entries.create!(entry_at: entry_at, exit_at: exit_at, dog_id: registration_number.dog_id) }
+registration_numbers.each do |registration_number| 
+  entry_at_1 = Time.zone.now - 1.days
+  exit_at_1 = Time.zone.now - 1.days + 1_800
+  entry_at_2 = Time.zone.now - 7.days
+  exit_at_2 = Time.zone.now - 7.days + 1_800
+  entry_at_3 = Time.zone.now - 30.days
+  exit_at_3 = Time.zone.now - 30.days + 1_800
+  registration_number.entries.create!(entry_at: entry_at_1, exit_at: exit_at_1, dog_id: registration_number.dog_id)
+  registration_number.entries.create!(entry_at: entry_at_2, exit_at: exit_at_2, dog_id: registration_number.dog_id)
+  registration_number.entries.create!(entry_at: entry_at_3, exit_at: exit_at_3, dog_id: registration_number.dog_id)
 end

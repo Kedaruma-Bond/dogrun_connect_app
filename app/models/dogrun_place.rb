@@ -4,6 +4,9 @@ class DogrunPlace < ApplicationRecord
 
 end
 
+# 1: grand_admin
+# 2: 犬のしつけ広場
+
 # == Schema Information
 #
 # Table name: dogrun_places

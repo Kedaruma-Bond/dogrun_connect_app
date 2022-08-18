@@ -40,14 +40,14 @@
             <svg class="w-5 h-5 mx-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
-            <span class="mx-3">ドッグランを利用中の仔を遠隔確認</span>
+            <span class="mx-3">ドッグランを利用中の仔をアプリで遠隔確認</span>
           </div>
 
           <div class="flex items-center text-gray-800 -px-3">
             <svg class="w-5 h-5 mx-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
-            <span class="mx-3">ユーザーの利用状況をweb上で確認</span>
+            <span class="mx-3">ユーザーの利用状況を<br>アプリで確認</span>
           </div>
 
           <div class="flex items-center text-gray-800 -px-3">
@@ -61,7 +61,7 @@
             <svg class="w-5 h-5 mx-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
-            <span class="mx-3">ドッグラン運営管理もデジタルで</span>
+            <span class="mx-3">ドッグラン運営管理も<br>デジタルで</span>
           </div>
         </div>
       </div>
@@ -97,7 +97,7 @@
             <%= image_tag "togo_inu_shitsuke_hiroba_logo.png", class: "object-cover w-full rounded-xl aspect-square", alt: "togo_inu_shitsuke_hiriba" %>
             <div class ="text-center">
               <h1 class="mt-4 text-2xl font-semibold text-gray-700">
-                <%= t'.togo_inu_shitsuke_hiroba' %>
+                <%= DogrunPlace.find(2).name %>
               </h1>
             </div>
           <% end %>

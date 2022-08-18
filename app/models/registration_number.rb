@@ -3,12 +3,9 @@ class RegistrationNumber < ApplicationRecord
   belongs_to :dogrun_place, optional: true
   has_many :entries
 
-  self.ignored_columns = [:dogrun_place] 
   # validates
   validates :registration_number, presence: true, numericality: true
 
-  # enum
-  enum dogrun: { togo_inu_shitsuke_hiroba: 0, dog_with: 1 }
 end
 
 # == Schema Information
