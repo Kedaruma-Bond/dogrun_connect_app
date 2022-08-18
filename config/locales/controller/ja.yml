@@ -1,5 +1,7 @@
 ja:
   admin:
+    entries:
+      destroy_successfully: 削除しました
     dogrun_places:
       create_success: ドッグランを新規登録しました
     base:

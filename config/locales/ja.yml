@@ -38,12 +38,16 @@ ja:
     email_message: の様式が正しくありません
     entry: 入場
     entry_at: 入場時間
+    exit_at: 退場時間
     exit: 退場
     detail: 詳細
     update: 更新
+    delete: 削除
     owner_comment: 飼い主さんから一言
     thumbnail: サムネイル
     not_authorized: 権限がありません
+    date: 日付
+    registration_number: 登録番号
   simple_form:
     "yes": はい
     "no": いいえ

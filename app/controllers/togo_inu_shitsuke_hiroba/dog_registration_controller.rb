@@ -36,7 +36,7 @@ class TogoInuShitsukeHiroba::DogRegistrationController < TogoInuShitsukeHiroba::
     dogrun_place_id = 2
     params.require(:dog_registration).permit(
       :name, :castration, :public, :user_id,
-      :dogrun, :registration_number
+      :registration_number
     ).merge(
       user_id: current_user.id,
       dogrun_place_id: dogrun_place_id

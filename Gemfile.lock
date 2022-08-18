@@ -94,6 +94,9 @@ GEM
     bootsnap (1.12.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    bullet (7.0.3)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     capybara (3.37.1)
       addressable
       matrix
@@ -111,12 +114,8 @@ GEM
       marcel (~> 1.0.0)
       mini_mime (>= 0.1.3)
       ssrf_filter (~> 1.0)
-    chartable (0.0.0.3)
-      activesupport (>= 3.0.0)
-      chronic (~> 0.10)
     chartkick (4.2.1)
     childprocess (4.1.0)
-    chronic (0.10.2)
     cloudinary (1.23.0)
       aws_cf_signer
       rest-client (>= 2.0.0)
@@ -167,6 +166,18 @@ GEM
       activesupport (>= 5.0.0)
     json (2.6.2)
     jwt (2.4.1)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     kramdown (2.4.0)
       rexml
     kramdown-parser-gfm (1.1.0)
@@ -270,6 +281,10 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
+    ransack (3.2.1)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     redis (4.7.1)
     redis-actionpack (5.3.0)
       actionpack (>= 5, < 8)
@@ -384,6 +399,7 @@ GEM
       unf_ext
     unf_ext (0.0.8.2)
     unicode-display_width (2.2.0)
+    uniform_notifier (1.16.0)
     validates_email_format_of (1.6.3)
       i18n
     web-console (4.2.0)
@@ -415,9 +431,9 @@ DEPENDENCIES
   annotate
   better_errors
   bootsnap
+  bullet
   capybara
   carrierwave
-  chartable
   chartkick
   cloudinary
   debug
@@ -427,12 +443,14 @@ DEPENDENCIES
   faker!
   importmap-rails
   jbuilder
+  kaminari
   letter_opener_web
   pg
   puma
   rails (~> 7.0.3)
   rails-controller-testing
   rails-i18n
+  ransack
   redis
   redis-actionpack
   rspec-rails

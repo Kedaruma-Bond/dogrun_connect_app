@@ -3,6 +3,8 @@ class Entry < ApplicationRecord
   belongs_to :registration_number, optional: true
 
   attr_accessor :select_dog
+
+  scope :dogrun_place_id, -> (id) { joins(:registration_number).where(registration_numbers: { dogrun_place_id: id }).includes(:registration_number, dog: [:user]).order(entry_at: :desc) }
 end
 
 # == Schema Information

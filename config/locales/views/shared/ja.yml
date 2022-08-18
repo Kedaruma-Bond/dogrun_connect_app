@@ -8,7 +8,6 @@ ja:
     entries_table:
       table_of_entries_latest_max_five: "過去%{times}回の利用状況"
       date: 日付
-      entry_time: 入場時間
-      exit_time: 退場時間
       playing_together: 一緒に遊んだワンちゃん
+      entering: 入場中
       

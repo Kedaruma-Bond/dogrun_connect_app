@@ -1,5 +1,7 @@
 class Admin::DogrunPlacesController < Admin::BaseController
+  before_action :check_grand_admin
   before_action :dogrun_place_params, only: :create
+  
   def index
     @dogrun_places = DogrunPlace.all
     @dogrun_place = DogrunPlace.new
