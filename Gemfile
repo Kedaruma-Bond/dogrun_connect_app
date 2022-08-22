@@ -77,8 +77,6 @@ gem 'chartkick'
 gem 'kaminari'
 # 検索機能
 gem 'ransack'
-# PWA化
-gem 'serviceworker-rails'
 # meta tag管理
 gem 'meta-tags'
 # aws接続用
