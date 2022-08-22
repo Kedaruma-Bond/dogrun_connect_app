@@ -22,5 +22,13 @@
         <%= render partial: 'admin/shared/footer' %>
       </div>
     </main>
+    <script>
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.register('/serviceworker.js', { scope: './' })
+          .then(function(reg) {
+            console.log('[Companion]', 'Service worker registered!');
+          });
+      }
+    </script>
   </body>
 </html>
