@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+  get 'sitemap', to: redirect("https://s3-ap-northeast-1.amazonaws.com/#{Rails.application.credentials.aws[:s3_bucket_name]}/sitemaps/sitemap.xml.gz")
   root 'static_pages#top'
   get 'privacy_policy', to: 'static_pages#privacy_policy'
   get 'terms_of_service', to: 'static_pages#terms_of_service'
