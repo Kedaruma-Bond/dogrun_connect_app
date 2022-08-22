@@ -82,7 +82,7 @@ gem 'serviceworker-rails'
 # meta tag管理
 gem 'meta-tags'
 # aws接続用
-gem 'fog-aws'
+gem 'aws-sdk-s3'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
