@@ -16,11 +16,13 @@
 
   <body class="pb-420 box-border break-words">
     <main>
-      <%= render 'shared/navbar' %>
-      <%= render 'shared/flash' %>
-      <div class="w-full"  data-controller="service-worker">
-        <%= yield %>
-        <%= render 'shared/footer' %>
+      <div data-controller="service-worker">
+        <%= render 'shared/navbar' %>
+        <%= render 'shared/flash' %>
+        <div class="w-full"  data-controller="service_worker">
+          <%= yield %>
+          <%= render 'shared/footer' %>
+        </div>
       </div>
     </main>
   </body>

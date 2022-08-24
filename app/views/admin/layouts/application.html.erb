@@ -19,11 +19,13 @@
     <%= render partial: 'admin/shared/navbar' %>
     <%= render partial: 'shared/flash' %>
     <main>
-      <div class="flex flex-row" data-controller="service_worker">
-        <%= render partial: 'admin/shared/sidebar' %>
-        <%= yield %>
+      <div data-controller="service-worker">
+        <div class="flex flex-row" data-controller="service_worker">
+          <%= render partial: 'admin/shared/sidebar' %>
+          <%= yield %>
+        </div>
+        <%= render partial: 'admin/shared/footer' %>
       </div>
-      <%= render partial: 'admin/shared/footer' %>
     </main>
   </body>
 </html>
