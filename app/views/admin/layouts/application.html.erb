@@ -19,19 +19,11 @@
     <%= render partial: 'admin/shared/navbar' %>
     <%= render partial: 'shared/flash' %>
     <main>
-      <div class="flex flex-row">
+      <div class="flex flex-row" data-controller="service_worker">
         <%= render partial: 'admin/shared/sidebar' %>
         <%= yield %>
       </div>
       <%= render partial: 'admin/shared/footer' %>
     </main>
-    <script>
-      if (navigator.serviceWorker) {
-        navigator.serviceWorker.register('/serviceworker.js', { scope: './' })
-          .then(function(reg) {
-            console.log('[Companion]', 'Service worker registered!');
-          });
-      }
-    </script>
   </body>
 </html>

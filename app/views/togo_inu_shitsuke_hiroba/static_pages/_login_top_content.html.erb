@@ -5,18 +5,24 @@
         <p class="text-lg">
           <%= t('.select_entry_dog') %>
         </p>
-        <ul list-style="none" class="mt-5 flex flex-col text-center mx-auto">
-          <% @dogs.each do |dog| %>
-            <li class="mb-5 text-left">
-              <label for=<%= dog.id %>>
-                <%= check_box "select_dog", dog.name, id: dog.id, checked_value: 'true', unchecked_value: 'false', class: "scale-125" %>
-                <span class="text-left text-xl font-bold ml-2">
-                  <%= dog.name %>
-                </span>
-              </label>
-            </li>
-          <% end %>
-        </ul>
+        <% if @dogs.count == 0 %>
+          <p class="text-base font-bold mt-3 mb-3 text-red-700">
+            <%= t('.please_register_dog') %>
+          </p>
+        <% else %>
+          <ul list-style="none" class="mt-5 flex flex-col text-center mx-auto">
+            <% @dogs.each do |dog| %>
+              <li class="mb-5 text-left">
+                <label for=<%= dog.id %>>
+                  <%= check_box "select_dog", dog.name, id: dog.id, checked_value: 'true', unchecked_value: 'false', class: "scale-125" %>
+                  <span class="text-left text-xl font-bold ml-2">
+                    <%= dog.name %>
+                  </span>
+                </label>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
         <div class="flex-col">
           <%= button_tag type: 'submit', class: "flex mt-4 mx-auto items-center justify-center font-bold h-14 text-white py-4 px-10 bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
             <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
