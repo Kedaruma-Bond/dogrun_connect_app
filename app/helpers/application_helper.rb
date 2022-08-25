@@ -16,12 +16,19 @@ module ApplicationHelper
         description: Rails.application.credentials.meta_tags[:description],
         type: 'website',
         url: request.original_url,
-        # image: image_url('ogp.png'),
+        image: image_url('https://res.cloudinary.com/hryerpkcw/image/upload/v1661386829/ogp_ey7hpa.png'),
         locale: 'ja_JP',
       },
       twitter: {
-        # card: 'summary_large_image',
+        card: 'summary_large_image',
         site: Rails.application.credentials.meta_tags[:twitter_account],
+        title: page_title( "<%= yield :title %>" ),
+        og: {
+          title: page_title( "<%= yield :title %>" )
+        },
+        text: {
+          title: "DogrunConnect's tweet"
+        },
       },
       fb: {
         # app_id: '¥facebookのID'
