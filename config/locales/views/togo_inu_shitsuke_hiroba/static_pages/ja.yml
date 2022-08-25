@@ -17,6 +17,7 @@ ja:
         during_entry_your_dogs: 入場中のあなたのワンちゃん
         entry: 入場します
         exit: 退場します
+        please_register_dog: ワンちゃんを登録してください
       compliance_confirmations:
         title: '利用上の遵守・確認事項'
         dogrun: 犬のしつけ広場

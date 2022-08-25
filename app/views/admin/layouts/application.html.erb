@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,18 +11,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
 
     <title><%= page_title(yield(:title)) %></title>
-    <%= favicon_link_tag('dogrun_logo.png') %>
+    <%= render 'application/favicon' %>
+    <%= display_meta_tags(default_meta_tags) %>
   </head>
 
   <body class="bg-gray-800 font-sans leading-normal tracking-normal">
     <%= render partial: 'admin/shared/navbar' %>
     <%= render partial: 'shared/flash' %>
     <main>
-      <div class="flex flex-row">
-        <%= render partial: 'admin/shared/sidebar' %>
-        <%= yield %>
+      <div data-controller="service-worker">
+        <div class="flex flex-row" data-controller="service_worker">
+          <%= render partial: 'admin/shared/sidebar' %>
+          <%= yield %>
+        </div>
+        <%= render partial: 'admin/shared/footer' %>
       </div>
-      <%= render partial: 'admin/shared/footer' %>
     </main>
   </body>
 </html>

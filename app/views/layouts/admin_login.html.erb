@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,15 +10,18 @@
     <%= javascript_importmap_tags %>
 
     <title><%= page_title(yield(:title)) %></title>
-    <%= favicon_link_tag('dogrun_logo.png') %>
+    <%= render 'application/favicon' %>
+    <%= display_meta_tags(default_meta_tags) %>
   </head>
 
   <body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
     <main>
-      <%= render partial: 'shared/flash' %>
-      <div class="w-full">
-        <%= yield %>
-        <%= render partial: 'admin/shared/footer' %>
+      <div data-controller="service-worker">
+        <%= render partial: 'shared/flash' %>
+        <div class="w-full">
+          <%= yield %>
+          <%= render partial: 'admin/shared/footer' %>
+        </div>
       </div>
     </main>
   </body>

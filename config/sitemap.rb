@@ -1,5 +1,15 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "http://www.example.com"
+SitemapGenerator::Sitemap.default_host = "https://www.dogrunconnect.com"
+SitemapGenerator::Sitemap.public_path = 'tmp/'
+SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(
+  Rails.application.credentials.aws[:s3_bucket_name],
+  aws_access_key_id: Rails.application.credentials.aws[:access_key_id],
+  aws_secret_access_key: Rails.application.credentials.aws[:secret_access_key],
+  aws_region: 'ap-northeast-1'
+)
+SitemapGenerator::Sitemap.sitemaps_host = "https//s3-ap-northeast-1.amazonaws.com/#{Rails.application.credentials.aws[:s3_bucket_name]}"
+SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
+
 
 SitemapGenerator::Sitemap.create do
   # Put links creation logic here.
@@ -24,4 +34,6 @@ SitemapGenerator::Sitemap.create do
   #   Article.find_each do |article|
   #     add article_path(article), :lastmod => article.updated_at
   #   end
+  add '/togo_inu_shitsuke_hiroba', :priority => 0.75, :changefreq => 'daily'
+
 end

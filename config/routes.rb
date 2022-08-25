@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
-  root 'static_pages#top'
-  get 'privacy_policy', to: 'static_pages#privacy_policy'
-  get 'terms_of_service', to: 'static_pages#terms_of_service'
+  get '/service-worker.js', to: 'service_worker#service_worker'
+  get '/offline.html', to: 'service_worker#offline'
+  get 'sitemap', to: redirect("https://s3-ap-northeast-1.amazonaws.com/#{Rails.application.credentials.aws[:s3_bucket_name]}/sitemaps/sitemap.xml.gz")
   
   resource :contacts, only: %i[new create]
   post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     post 'dog_registration', to: 'dog_registration#create'
     post 'dog_registration/confirm', to: 'dog_registration#confirm'
   end
-
+  
   namespace :admin do
     root 'dashboards#index'
     resources :dogrun_places, only: %i[index create]
@@ -52,4 +52,8 @@ Rails.application.routes.draw do
     post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy'
   end
+
+  get 'privacy_policy', to: 'static_pages#privacy_policy'
+  get 'terms_of_service', to: 'static_pages#terms_of_service'
+  root 'static_pages#top'
 end
