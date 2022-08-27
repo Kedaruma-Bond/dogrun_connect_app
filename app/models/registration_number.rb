@@ -1,7 +1,7 @@
 class RegistrationNumber < ApplicationRecord
   belongs_to :dog
   belongs_to :dogrun_place, optional: true
-  has_many :entries
+  has_many :entries, dependent: :nullify
 
   # validates
   validates :registration_number, presence: true, numericality: true

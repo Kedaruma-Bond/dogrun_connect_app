@@ -22,9 +22,9 @@ module ApplicationHelper
       twitter: {
         card: 'summary_large_image',
         site: Rails.application.credentials.meta_tags[:twitter_account],
-        title: page_title( "<%= yield :title %>" ),
+        title: page_title( "DogrunConnect" ),
         og: {
-          title: page_title( "<%= yield :title %>" )
+          title: page_title( "DogrunConnect" )
         },
         text: {
           title: "DogrunConnect's tweet"

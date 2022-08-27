@@ -8,7 +8,7 @@ class Admin::EntriesController < Admin::BaseController
   def destroy
     @entry.destroy
     respond_to do |format|
-      format.html { redirect_back_or_to admin_entries_path, success: t('.destroy_successfully'), status: :see_other }
+      format.html { redirect_back_or_to admin_entries_path, success: t('defaults.destroy_successfully'), status: :see_other }
       format.json { head :no_content }
     end
   end
@@ -20,7 +20,7 @@ class Admin::EntriesController < Admin::BaseController
   private
 
     def set_entries
-      @entries = Entry.dogrun_place_id(2).page(params[:page])
+      @entries = Entry.dogrun_place_id(current_user.dogrun_place_id).page(params[:page])
     end
 
     def set_q

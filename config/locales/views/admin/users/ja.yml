@@ -1,0 +1,14 @@
+ja:
+  admin:
+    users:
+      index:
+        title: 利用者一覧
+        account_frozen: 凍結
+        admin_user_create: 管理者ユーザー作成
+      search_form:
+        search_field: 飼い主さんの名前/メールアドレス
+      new:
+        title: 管理ユーザー作成
+      user:
+        
+        

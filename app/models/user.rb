@@ -18,6 +18,12 @@ class User < ApplicationRecord
 
   #enum
   enum role: { general: 0, admin: 1 }
+  enum deactivation: { account_frozen: true, account_activated: false }
+
+  # sorceryの垢BAN method
+  def active_for_authentication?
+    !account_frozen?
+  end
 end
 
 # == Schema Information
