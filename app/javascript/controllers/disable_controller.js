@@ -19,6 +19,6 @@ export default class extends Controller {
   }
 
   submitButtons() {
-    return this.element.querySelectorAll("input[type='submit']")
+    return this.element.querySelectorAll("input[type='submit']:not(name='back')")
   }
 }
