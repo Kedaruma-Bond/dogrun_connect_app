@@ -26,4 +26,15 @@ class UserMailer < ApplicationMailer
       subject: t('.subject')
     )
   end
+
+  def force_exit_notification(user, dog, dogrun)
+    @user = user
+    @dog = dog
+    @dogrun = dogrun
+    mail(
+      from: Rails.application.credentials.users[:MAILER_USER_ID],
+      to: @user.email,
+      sbject: t('.subject')
+    )
+  end
 end

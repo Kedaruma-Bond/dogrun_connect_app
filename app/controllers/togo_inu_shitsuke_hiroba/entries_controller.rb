@@ -3,6 +3,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
   before_action :set_entries_array, only: %i[create update]
 
   def create
+    exit_from_dogrun
     clear_zero
     select_dogs_allocation(params[:select_dog])
     while @num <= @dogs.count - 1
