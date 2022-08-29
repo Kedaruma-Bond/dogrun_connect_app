@@ -1,5 +1,6 @@
 class TogoInuShitsukeHiroba::SessionsController < TogoInuShitsukeHiroba::DogrunPlaceController
   skip_before_action :require_login, only: %i[new create]
+  before_action :remember_checked, only: %i[new]
   def new; end
 
   def create
@@ -28,4 +29,10 @@ class TogoInuShitsukeHiroba::SessionsController < TogoInuShitsukeHiroba::DogrunP
       format.json { head :no_content }
     end
   end
+
+  private
+    def remember_checked
+      params[:rememer] = true
+    end
+
 end

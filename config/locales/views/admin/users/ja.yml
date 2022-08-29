@@ -9,6 +9,12 @@ ja:
         search_field: 飼い主さんの名前/メールアドレス
       new:
         title: 管理ユーザー作成
+      user_form:
+        name: 管理者ユーザー名
+      search:
+        title: 利用者検索結果
       user:
+        deactivation_confirmation: アカウントを凍結しますか？
+        activation_confirmation: アカウントを有効化しますか？
         
         

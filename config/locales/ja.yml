@@ -53,6 +53,8 @@ ja:
     search: 検索
     destroy_confirmation: 削除しますか？
     destroy_successfully: 削除しました
+    search_results_is: 検索結果
+    search_results_unit: 件
   simple_form:
     "yes": はい
     "no": いいえ

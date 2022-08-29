@@ -5,6 +5,8 @@ ja:
         account_frozen: アカウントを凍結しました
       activation:
         account_activated: アカウントを有効化しました
+      create:
+        admin_user_create: 管理者ユーザーを作成しました
     dogrun_places:
       create_success: ドッグランを新規登録しました
     base:

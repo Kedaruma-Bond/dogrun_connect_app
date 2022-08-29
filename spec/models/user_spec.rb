@@ -56,7 +56,7 @@ end
 #  id                                  :bigint           not null, primary key
 #  access_count_to_reset_password_page :integer          default(0)
 #  crypted_password                    :string
-#  deactivation                        :boolean          default(FALSE), not null
+#  deactivation                        :boolean          default("account_activated"), not null
 #  email                               :string           not null
 #  enable_notification                 :boolean          default(FALSE), not null
 #  failed_logins_count                 :integer          default(0)

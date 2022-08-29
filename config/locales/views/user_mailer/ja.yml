@@ -4,5 +4,5 @@ ja:
       subject: '[ようこそ DogrunConnectへ]'
     reset_password_email:
       subject: '[DogrunConnect パスワードリセット]'
-    send_unlock_token_email:
-      subject: '[DogrunConnect アカウントロック解除]'
+    admin_user_registration_success:
+      subject: '[DogrunConnect 管理者ユーザー登録完了]'

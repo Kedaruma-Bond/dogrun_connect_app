@@ -4,12 +4,21 @@ class UserMailer < ApplicationMailer
     @url = edit_password_reset_url(@user.reset_password_token)
     mail(
       from: Rails.application.credentials.users[:MAILER_USER_ID],
-      to: user.email,
+      to: @user.email,
       subject: t('.subject')
     )
   end
 
   def user_registration_success(user)
+    @user = user
+    mail(
+      from: Rails.application.credentials.users[:MAILER_USER_ID],
+      to: @user.email,
+      subject: t('.subject')
+    )
+  end
+
+  def admin_user_registration_success(user)
     @user = user
     mail(
       from: Rails.application.credentials.users[:MAILER_USER_ID],
