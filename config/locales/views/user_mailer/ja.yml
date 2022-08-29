@@ -6,3 +6,5 @@ ja:
       subject: '[DogrunConnect パスワードリセット]'
     admin_user_registration_success:
       subject: '[DogrunConnect 管理者ユーザー登録完了]'
+    force_exit_notification:
+      subject: '[DogrunConnect 入場記録の退場通知]'
