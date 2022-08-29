@@ -5,10 +5,8 @@ module EntriesHelper
   end
 
   def entry_to_dogrun(entries)
-    n = entries.size - 1
-    session[:entries] = []
-    entries[0..n].each do |e|
-      session[:entries] << e.id
+    session[:entries] = entries.map do |e|
+      e.id
     end
   end
 
@@ -18,7 +16,7 @@ module EntriesHelper
   end
 
   def not_entry?
-    during_entries.nil?
+    @during_entries.nil?
   end
 
   def exit_from_dogrun
@@ -29,7 +27,6 @@ module EntriesHelper
   def select_dogs_allocation(select_dogs)
     @select_dogs_values = []
     return unless select_dogs.present?
-
     # .valuesでハッシュの全値を配列にして返してくれる
     @select_dogs_values = select_dogs.values
   end

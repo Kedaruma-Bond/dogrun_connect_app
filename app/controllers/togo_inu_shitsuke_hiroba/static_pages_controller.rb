@@ -5,6 +5,7 @@ class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::Dogr
 
   def top
     @entry = Entry.new
+    @user_dog_entry = Entry.where(exit_at: nil).user_id(current_user.id)
   end
 
   def detail
@@ -21,7 +22,7 @@ class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::Dogr
   
   def get_dogrun_entry_data
     @dogrun_entry_data = []
-    @dogrun_entry_data = Entry.where.not(entry_at: nil).where(exit_at: nil).joins(:registration_number).where(registration_numbers: { dogrun_place: 2 })
+    @dogrun_entry_data = Entry.where.not(entry_at: nil).where(exit_at: nil).joins(:registration_number).where(registration_numbers: { dogrun_place_id: 2 })
     @num_of_playing_dogs = @dogrun_entry_data.size || 0
   end
 

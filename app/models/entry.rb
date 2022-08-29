@@ -5,6 +5,7 @@ class Entry < ApplicationRecord
   attr_accessor :select_dog
 
   scope :dogrun_place_id, -> (id) { joins(:registration_number).where(registration_numbers: { dogrun_place_id: id }).includes(:registration_number, dog: [:user]).order(entry_at: :desc) }
+  scope :user_id, -> (id) { joins(:dog).where(dogs: { user_id: id }).includes(dog: [:user]) }
 end
 
 # == Schema Information
