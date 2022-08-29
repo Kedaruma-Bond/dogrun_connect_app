@@ -11,12 +11,11 @@ class TogoInuShitsukeHiroba::DogsController < TogoInuShitsukeHiroba::DogrunPlace
 
   def edit; end
 
-  def update
-    if params[:back]
-      redirect_to togo_inu_shitsuke_hiroba_dog_path(@dog.id)
-      return
-    end
+  def back
 
+  end
+
+  def update
     if @dog.valid?
       @dog.update(dog_params)
       redirect_to togo_inu_shitsuke_hiroba_dog_path(@dog.id), success: t('.dog_profile_updated')
