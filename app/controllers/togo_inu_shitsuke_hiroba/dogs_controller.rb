@@ -11,10 +11,6 @@ class TogoInuShitsukeHiroba::DogsController < TogoInuShitsukeHiroba::DogrunPlace
 
   def edit; end
 
-  def back
-
-  end
-
   def update
     if @dog.valid?
       @dog.update(dog_params)
