@@ -5,6 +5,7 @@ class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::Dogr
 
   def top
     @entry = Entry.new
+    return if !logged_in?
     @user_dog_entry = Entry.where(exit_at: nil).user_id(current_user.id)
   end
 
