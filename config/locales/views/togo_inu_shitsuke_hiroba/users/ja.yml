@@ -6,12 +6,12 @@ ja:
         title: 犬のしつけ広場 | 新規登録
       signup_form:
         title: 新規登録
+        password_hint: パスワードは６文字以上としてください
       show:
         dogrun: 犬のしつけ広場
         title: プロフィール
         name: 飼い主さんの名前
         email: メールアドレス
-        registration_dogs_num: 登録頭数  
         of_dogs: 頭
         add: 追加
 

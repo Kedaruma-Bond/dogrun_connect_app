@@ -1,7 +1,7 @@
 class Dog < ApplicationRecord
   belongs_to :user
   has_many :registration_numbers, dependent: :destroy
-  has_many :entries, dependent: :nullify
+  has_many :entries, dependent: :destroy
   mount_uploader :thumbnail_photo, ThumbnailUploader
 
   # validates

@@ -8,11 +8,11 @@
       <div class="overflow-hidden">
         <%= render partial: 'admin/entries/search_form' %>
         <h2 class="text-gray-700 text-sm flex items-end justify-end mr-7 mt-3">
-          <%= t('.search_results_is')%>
+          <%= t('defaults.search_results_is')%>
           <span class="text-xl mr-2 ml-2">
             <%= @entries_results.nil? ? 0 : @entries_results.total_count %> 
           </span>
-          <%= t('.search_results_unit') %>
+          <%= t('defaults.search_results_unit') %>
         </h2>
         <table class="mt-3 w-full">
           <thead class="bg-white border-b">

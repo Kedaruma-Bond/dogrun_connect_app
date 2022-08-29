@@ -1,10 +1,9 @@
-<p class="text-3xl font-bold leading-7 text-center mb-5"><%= t'.title' %></p>
-<%= simple_form_for @user, url: togo_inu_shitsuke_hiroba_users_path, data: { trubo: false } do |f| %>
+<%= simple_form_for @user, url: admin_users_path, data: { trubo: false } do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="w-full flex flex-col mt-8">
     <div class="md:flex items-center">
       <div class="w-full md:w-1/2 flex flex-col"> 
-        <%= f.label :name, label_html: { class: "font-bold leading-none" } %>
+        <%= f.label t'.name', label_html: { class: "font-bold leading-none" } %>
         <%= f.input :name, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint: false, error: false %>
       </div>
       <div class="w-full md:w-1/2 flex flex-col mt-7 md:mt-0">
@@ -15,30 +14,22 @@
     <div class="md:flex items-center">
       <div class="w-full md:w-1/2 flex flex-col mt-7"> 
         <%= f.label :password, label_html: { class: "font-bold leading-none" } %>
-        <%= f.input :password, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint: false, required: true, error: false %>
+        <%= f.input :password, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint_html: { class: "text-sm block;"}, hint: 'パスワードは半角英数字6文字以上にしてください', required: true, error: false %>
       </div>
       <div class="w-full md:w-1/2 flex flex-col mt-7 md:mt-0"> 
         <%= f.label :password_confirmation, label_html: { class: "font-bold leading-none" } %>
-        <%= f.input :password_confirmation, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint_html: { class: "text-sm block" }, hint: t('.password_hint'), required: true, error: false %>
+        <%= f.input :password_confirmation, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint: false, required: true, error: false %>
       </div>
+    </div>
+    <div class="w-1/2 mt-7">
+      <%= f.label :dogrun_place_id, label_html: { class: "font-bold leading-none" } %>
+      <%= f.input :dogrun_place_id, as: :select, label: false, collection: @dogrun_places, input_html: { class: "block leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200"} %>
     </div>
     <%= f.hidden_field :deactivation, value: 'account_activated' %>
     <%= f.hidden_field :enable_notification, value: false %>
-    <%= f.hidden_field :role, value: 0 %>
-
-    <div class="flex mt-7 justify-center text-sm">
-      <%= f.input :agreement, as: :boolean, checked: false, label: false, error: false, input_html: {class: "bg-gray-100 rounded border-gary-300 focus:ring-blue-500 focus:ring-2"} %>
-      <%= f.label :agreement, label_html: { class: "font-bold text-gray-500" } do %>
-        <a href="/terms_of_service" target="_blank" rel="noopener noreferrer" class="ml-3 text-gray-600 hover:text-gray-400">
-          <%= t('defaults.terms_of_service') %>
-        </a>
-        と
-        <a href="/privacy_policy" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-400">
-          <%= t('defaults.privacy_policy') %>
-        </a>
-        <br>
-        &nbsp; に同意する 
-      <% end %>
+    <%= f.hidden_field :role, value: 'admin' %>
+    <div class="hidden">
+      <%= check_box_tag :agreement, true, params[:agreement] %>
     </div>
   </div>
   <div class="flex items-center justify-center mt-3">

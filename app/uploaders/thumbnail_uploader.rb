@@ -27,7 +27,7 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    'thumbnail_placeholder.png'
+    'https://res.cloudinary.com/hryerpkcw/image/upload/v1661501955/thumbnail_placeholder_ztqnju.png'
   end
 
   # Process files as they are uploaded:

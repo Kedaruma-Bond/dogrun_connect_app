@@ -3,10 +3,7 @@ ja:
     entries:
       search:
         title: 入場記録検索結果
-        search_results_is: 検索結果
-        search_results_unit: 件
       search_form:
-        search: 検索
         search_period: 検索期間
         registration_number: 登録番号検索
         search_field: 登録番号/飼い主さん/犬の名前検索
@@ -14,5 +11,4 @@ ja:
         title: 入場記録一覧
       entry:
         entering: 入場中
-        destroy_confirmation: 削除しますか？
 

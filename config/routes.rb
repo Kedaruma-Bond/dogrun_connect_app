@@ -33,11 +33,15 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'dashboards#index'
     resources :dogrun_places, only: %i[index create]
-    resources :users, only: %i[index edit update] do
+    resources :users, only: %i[index new create destroy] do
       collection do
         get 'page/:page', action: :index
-        get 'search', to: 'entries#search'
+        get 'search', to: 'users#search'
         post 'search', to: 'users#search'
+      end
+      member do
+        patch 'deactivation', to: 'users#deactivation'
+        patch 'activation', to: 'users#activation'
       end
     end
     resources :entries, only: %i[index destroy] do

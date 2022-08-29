@@ -17,7 +17,7 @@
             <% end %>
           </li>
           <li class="flex-1">
-              <%= link_to "#", class: "flex py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-800 hover:border-red-500" do %>
+              <%= link_to admin_users_path, class: "flex py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-800 hover:border-red-500" do %>
                   <svg class="mr-1 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
                   </svg>
@@ -41,16 +41,6 @@
                   <%= t('.entry_list') %>
                 </span>
             <% end %>
-          </li>
-          <li class="flex-1">
-              <%= link_to "#", class: "flex py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-800 hover:border-red-500" do %>
-                  <svg class="mr-1 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                  </svg>
-                  <span class="pt-1 text-sm text-gray-200">
-                    <%= t('.user_list') %>
-                  </span>
-              <% end %>
           </li>
           <li class="flex-1">
             <%= link_to "#", class: "flex py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-800 hover:border-blue-300" do %>

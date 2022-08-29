@@ -42,12 +42,19 @@ ja:
     exit: 退場
     detail: 詳細
     update: 更新
+    edit: 編集
     delete: 削除
     owner_comment: 飼い主さんから一言
     thumbnail: サムネイル
     not_authorized: 権限がありません
     date: 日付
     registration_number: 登録番号
+    registration_dogs_num: 登録頭数  
+    search: 検索
+    destroy_confirmation: 削除しますか？
+    destroy_successfully: 削除しました
+    search_results_is: 検索結果
+    search_results_unit: 件
   simple_form:
     "yes": はい
     "no": いいえ
