@@ -26,7 +26,6 @@
       <%= f.input :dogrun_place_id, as: :select, label: false, collection: @dogrun_places, input_html: { class: "block leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200"} %>
     </div>
     <%= f.hidden_field :deactivation, value: 'account_activated' %>
-    <%= f.hidden_field :enable_notification, value: false %>
     <%= f.hidden_field :role, value: 'admin' %>
     <div class="hidden">
       <%= check_box_tag :agreement, true, params[:agreement] %>

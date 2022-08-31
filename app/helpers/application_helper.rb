@@ -27,11 +27,11 @@ module ApplicationHelper
           title: page_title( "DogrunConnect" )
         },
         text: {
-          title: "DogrunConnect's tweet"
+          title: "Connect to Dogrun with fun"
         },
       },
       fb: {
-        # app_id: '¥facebookのID'
+        app_id: Rails.application.credentials.meta_tags[:facebook_id]
       }
     }
   end

@@ -70,6 +70,11 @@ ja:
         dog_profile_updated: |
           ワンちゃんのプロフィールを
           更新しました！
+    posts:
+      new:
+        success: ドッグランの連絡を投稿しました
+      confirm:
+        send: 投稿
   activerecord:
     models:
       contact: お問い合わせ
@@ -86,8 +91,6 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード 確認
-        deactivation: アカウント非有効化
-        enable_notification: 通知有効化
         agreement: 利用規約とプライバシーポリシー
       dog:
         name: 犬の名前
@@ -102,6 +105,9 @@ ja:
       registration_number:
         dogrun_place: 登録ドッグラン
         registration_number: 登録番号
+      post:
+        content: 内容
+        attach_image: 画像添付
   activemodel:
     attributes:
       # form objectを使用する場合はlocaleはここに書く

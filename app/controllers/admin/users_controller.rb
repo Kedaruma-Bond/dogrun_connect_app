@@ -70,7 +70,7 @@ class Admin::UsersController < Admin::BaseController
 
     def user_params
       params.require(:user).permit(
-        :name, :email, :deactivation, :enable_notification, :password, :password_confirmation, 
+        :name, :email, :deactivation, :password, :password_confirmation, 
         :role, :dogrun_place_id, :agreement, 
       )
     end

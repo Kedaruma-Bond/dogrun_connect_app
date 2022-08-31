@@ -14,14 +14,12 @@
     <%= display_meta_tags(default_meta_tags) %>
   </head>
 
-  <body class="bg-gray-800 font-sans leading-normal tracking-normal mt-12">
-    <main>
-      <div data-controller="service-worker">
-        <%= render partial: 'shared/flash' %>
-        <div class="w-full">
-          <%= yield %>
-          <%= render partial: 'admin/shared/footer' %>
-        </div>
+  <body class="break-words flex flex-col min-h-screen bg-gray-800 font-sans leading-normal tracking-normal mt-12">
+    <%= render partial: 'shared/flash' %>
+    <main class="flex-grow">
+      <div class="w-full" data-controller="service-worker">
+        <%= yield %>
+        <%= render partial: 'admin/shared/footer' %>
       </div>
     </main>
   </body>

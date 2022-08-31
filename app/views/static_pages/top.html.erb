@@ -71,11 +71,12 @@
       <%= image_tag 'https://res.cloudinary.com/hryerpkcw/image/upload/v1661503110/top_photo_dogs_j3idat.jpg', class: "object-cover w-full h-full max-w-2xl rounded-md", alt:"dog runs photo" %>
     </div>
   </div>
+
   <section>
-    <div class="h-[32rem]">
+    <div class="h-[32rem] mb-10">
       <div class="container px-6 py-10 mx-auto">
         <h1 class="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl">
-          <%= t'.adopted_app_dogrun' %>
+          <%= simple_format((t'.adopted_app_dogrun'), {}, wrapper_tag: "div") %>
         </h1>
           
         <div class="flex justify-center mx-auto mt-6">
@@ -101,11 +102,18 @@
               </h1>
             </div>
           <% end %>
-          <div class="flex mt-2 text-gray-500 capitalize items-center">
-            <%= link_to 'Learn More', 'https://www.town.aichi-togo.lg.jp/soshikikarasagasu/toshiseibika/gyomuannai/2/1/3279.html' %>
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
+          <div class="flex-col mt-2 text-gray-500 capitalize items-center">
+            <p class="text-sm">
+              犬のしつけ広場は愛知県愛知郡東郷町、<br>
+              境川の中州にある会員登録制ドッグランです。<br>
+              広場利用者の有志を中心とするボランティアにより<br>自主運営されています。
+            </p>
+            <%= link_to 'https://www.town.aichi-togo.lg.jp/soshikikarasagasu/toshiseibika/gyomuannai/2/1/3279.html', class: "flex mt-2 justify-center" do %>
+              <span>Learn more</span>
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2 my-auto" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            <% end %>
           </div>
                 
           <div class="flex mt-3 -mx-2">

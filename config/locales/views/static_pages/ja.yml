@@ -5,7 +5,9 @@ ja:
     privacy_policy:
       title: 'プライバシーポリシー'
     top:
-      adopted_app_dogrun: アプリ運用中のドッグラン
+      adopted_app_dogrun: |
+        アプリ運用中の
+        ドッグラン
       looking_for_dogrun: |
         「このアプリを試してみたい！」
         そんなドッグランを随時募集しております!!

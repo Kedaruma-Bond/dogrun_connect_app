@@ -1,13 +1,12 @@
-class ThumbnailUploader < CarrierWave::Uploader::Base
-  
+class AttachmentUploader < CarrierWave::Uploader::Base
   if Rails.env.production?
     include Cloudinary::CarrierWave
     CarrierWave.configure do |config|
       config.cache_storage = :file
     end
-    
+
     process convert: 'png'
-    process tags: ['dog_thumbnail']
+    process tags: ['attach_photo']
   else
     include CarrierWave::MiniMagick
     storage :file
@@ -20,9 +19,12 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  def default_url
-    'https://res.cloudinary.com/hryerpkcw/image/upload/v1661501955/thumbnail_placeholder_ztqnju.png'
-  end
+  # def default_url(*args)
+  #   # For Rails 3.1+ asset pipeline compatibility:
+  #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
+  #
+  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+  # end
 
   # Process files as they are uploaded:
   # process scale: [200, 300]
@@ -32,10 +34,10 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  version :std_thumb do
+  version :std_attach do
     if Rails.env.production?
       process eager: true
-      cloudinary_transformation aspect_ratio: 1.0, crop: :fill, gravity: :auto, radius: :max, quality_auto: :good  
+      cloudinary_transformation quality_auto: :good
     end
   end
 
@@ -55,9 +57,7 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
     1..10.megabytes
   end
 
-
   def public_id
     return model.name
   end
-
 end

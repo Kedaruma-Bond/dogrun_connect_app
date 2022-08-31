@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_15_062326) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_30_015307) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,6 +56,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_15_062326) do
     t.index ["registration_number_id"], name: "index_entries_on_registration_number_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "content", null: false
+    t.string "attach_image"
+    t.boolean "publish_status", default: false, null: false
+    t.bigint "dogrun_place_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dogrun_place_id"], name: "index_posts_on_dogrun_place_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "registration_numbers", force: :cascade do |t|
     t.string "registration_number", null: false
     t.bigint "dog_id", null: false
@@ -64,6 +76,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_15_062326) do
     t.bigint "dogrun_place_id"
     t.index ["dog_id"], name: "index_registration_numbers_on_dog_id"
     t.index ["dogrun_place_id"], name: "index_registration_numbers_on_dogrun_place_id"
+  end
+
+  create_table "staffs", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.boolean "enable_notification", default: false, null: false
+    t.bigint "dogrun_place_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dogrun_place_id"], name: "index_staffs_on_dogrun_place_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,7 +118,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_15_062326) do
   add_foreign_key "dogs", "users"
   add_foreign_key "entries", "dogs"
   add_foreign_key "entries", "registration_numbers"
+  add_foreign_key "posts", "dogrun_places"
+  add_foreign_key "posts", "users"
   add_foreign_key "registration_numbers", "dogrun_places"
   add_foreign_key "registration_numbers", "dogs"
+  add_foreign_key "staffs", "dogrun_places"
   add_foreign_key "users", "dogrun_places"
 end

@@ -14,16 +14,14 @@
     <%= display_meta_tags(default_meta_tags) %>
   </head>
 
-  <body class="pb-420 box-border break-words">
-    <main>
-      <div data-controller="service-worker">
-        <%= render 'shared/navbar' %>
-        <%= render 'shared/flash' %>
-        <div class="w-full">
-          <%= yield %>
-          <%= render 'shared/footer' %>
-        </div>
+  <body class="break-words flex flex-col min-h-screen">
+    <%= render 'shared/navbar' %>
+    <%= render 'shared/flash' %>
+    <main class="mb-auto">
+      <div class="w-full" data-controller="service-worker">
+        <%= yield %>
       </div>
     </main>
+    <%= render 'shared/footer' %>
   </body>
 </html>
