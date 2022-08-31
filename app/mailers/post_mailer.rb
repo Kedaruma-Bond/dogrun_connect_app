@@ -3,7 +3,7 @@ class PostMailer < ApplicationMailer
     @staffs = staffs
     mail(
       from: Rails.application.credentials[:MAILER_USER_ID],
-      to: @staffs.emal
+      to: @staffs.email,
       subject: t('.subject')
     )
 
