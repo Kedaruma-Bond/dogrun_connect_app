@@ -3,7 +3,7 @@ class Staff < ApplicationRecord
 
   # validates
   validates :name, presence: true
-  validates :email, presence: true, uniqunes: true, email_format: { message: I18n.t('defaults.email_message') }
+  validates :email, presence: true, email_format: { message: I18n.t('defaults.email_message') }
   validates :enable_notification, presence: true
 
 end
