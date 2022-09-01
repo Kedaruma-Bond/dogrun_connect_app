@@ -28,7 +28,9 @@
         </svg>
         <div class="mx-1">
             <h1 class="text-sm font-semibold text-gray-700"><%= current_user.name %></h1>
-            <p class="text-sm text-gray-500 dark:text-gray-400"><%= current_user.email %></p>
+            <% if current_user.role != 'guest' %>
+              <p class="text-sm text-gray-500 dark:text-gray-400"><%= current_user.email %></p>
+            <% end %>
         </div>
       <% end %>
 

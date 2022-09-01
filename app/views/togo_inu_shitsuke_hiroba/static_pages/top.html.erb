@@ -27,20 +27,34 @@
         <%= t'.detail' %>
       </button>
     <% end %>
+
   <% else %>
     <%= image_tag 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661503968/togo_inu_shitsuke_hiroba_logo_dmshl1.png', class: 'rounded-full w-3/12 h-3/12 mx-auto mt-3', alt: "togo_inu_shitsuke_hiroba" %>
-    <%= link_to togo_inu_shitsuke_hiroba_signup_path do %>
-      <button class="items-center text-center justify-center inline-flex px-4 py-2 text-2xl text-bold mt-10 btn text-white bg-blue-500 transform hover:scale-110 hover:bg-blue-400 duration-500 focus:outline-none focus:shadow-outline rounded-full focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path>
-        </svg>
-        &nbsp;
-        <%= t'.signup' %>
-      </button>
-    <% end %>
     <%= link_to togo_inu_shitsuke_hiroba_compliance_confirmations_path do %>
       <p class="mt-10 text-3xl text-center font-semibold text-blue-500 underline transform hover:scale-110 hover:text-blue-400 duration-500">
         <%= t'.before_using_dogrun' %>
     <% end %>
+    <div class="flex-col">
+      <%= link_to togo_inu_shitsuke_hiroba_signup_path do %>
+        <button class="mx-auto flex px-6 py-2 text-2xl mt-10 text-white bg-blue-500 transform hover:scale-110 hover:bg-blue-400 duration-500 focus:outline-none focus:shadow-outline rounded-full focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path>
+          </svg>
+          &nbsp;
+          <%= t'.signup' %>
+        </button>
+      <% end %>
+      <%= link_to togo_inu_shitsuke_hiroba_guest_login_path, data: { turbo_method: :post } do %>
+        <button class="mx-auto px-4 py-2 text-lg mt-10 text-indigo-500 capitalize transition-colors duration-300 transform bg-stone-300 rounded-full hover:bg-stone-100 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="text-indigo-500 w-6 h-6 mb-1 inline-block" viewBox="0 0 24 24">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"></path>
+          </svg>
+          <span class="mx-1"><%= t('.guest_login') %></span>
+        </button>
+      <% end %>
+      <p class="text-center"><%= simple_format(t('.check_app_by_trial_guest_login'), class: "text-indigo-500 text-sm") %></p>
+    </div>
   <% end %>
 </div>

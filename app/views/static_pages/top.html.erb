@@ -73,60 +73,6 @@
     </div>
   </div>
 
-  <section class="bg-white">
-    <div data-controller="lightbox" class="container px-6 py-10 mx-auto">
-      <h1 class="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl">
-        Sample View
-      </h1>
-      <p class="mt-4 text-center text-gray-500">
-        ユーザーはスマホで、管理者はPCでの利用を想定しています。<br>
-        ※画像は開発中のものです。
-      </p>
-      <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
-        <div>
-          <%= link_to 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940256/mobile_view.png.001_wiapsi.png' do %>
-            <img class="object-cover w-full rounded-lg h-96 " src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940256/mobile_view.png.001_wiapsi.png" alt="sample view of mobile screen">
-          <% end %>
-          <h2 class="mt-4 text-2xl font-semibold text-gray-800 capitalize">
-            ユーザースマホ画面
-          </h2>
-          <p class="mt-2 text-sm tracking-wider text-gray-500 uppercase">
-            ドッグラン利用記録機能<br>
-            ワンちゃんのプロフィール設定<br>
-            現在利用しているワンちゃん一覧
-          </p>
-        </div>
-
-        <div>
-          <%= link_to "https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940232/admin_view-1.png.002_vqto2j.png" do %>
-            <img class="object-cover w-full rounded-lg h-96" src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940232/admin_view-1.png.002_vqto2j.png" alt="sample view of admin screen-1">
-          <% end %>
-          <h2 class="mt-4 text-2xl font-semibold text-gray-800 capitalize">
-            管理者画面
-          </h2>
-          <p class="mt-2 text-sm tracking-wider text-gray-500 uppercase">
-            Dashboard<br>
-            ひと月の利用記録総計<br>
-            デイリー利用数のグラフ
-          </p>
-        </div>
-
-        <div>
-          <%= link_to 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940244/admin_image-2.png.001_crnzoz.png' do %>
-            <img class="object-cover w-full rounded-lg h-96" src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940244/admin_image-2.png.001_crnzoz.png" alt="sample view of admin screen-2">
-          <% end %>
-          <h2 class="mt-4 text-2xl font-semibold text-gray-800 capitalize">
-            管理者画面
-          </h2>
-          <p class="mt-2 text-sm tracking-wider text-gray-500 uppercase">
-            利用記録一覧<br>
-            期間での検索可能
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section>
     <div class="h-[32rem] mb-10">
       <div class="container px-6 py-10 mx-auto">
@@ -198,6 +144,60 @@
           </h1>
           <div class="flex mt-3 -mx-2">
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white">
+    <div data-controller="lightbox" class="container px-6 py-10 mx-auto">
+      <h1 class="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl">
+        Sample View
+      </h1>
+      <p class="mt-4 text-center text-gray-500">
+        ユーザーはスマホで、管理者はPCでの利用を想定しています。<br>
+        ※画像は開発中のものです。
+      </p>
+      <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
+        <div>
+          <%= link_to 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940256/mobile_view.png.001_wiapsi.png' do %>
+            <img class="object-cover w-full rounded-lg h-96 " src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940256/mobile_view.png.001_wiapsi.png" alt="sample view of mobile screen">
+          <% end %>
+          <h2 class="mt-4 text-2xl font-semibold text-gray-800 capitalize">
+            ユーザースマホ画面
+          </h2>
+          <p class="mt-2 text-sm tracking-wider text-gray-500 uppercase">
+            ドッグラン利用記録機能<br>
+            ワンちゃんのプロフィール設定<br>
+            現在利用しているワンちゃん一覧
+          </p>
+        </div>
+
+        <div>
+          <%= link_to "https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940232/admin_view-1.png.002_vqto2j.png" do %>
+            <img class="object-cover w-full rounded-lg h-96" src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940232/admin_view-1.png.002_vqto2j.png" alt="sample view of admin screen-1">
+          <% end %>
+          <h2 class="mt-4 text-2xl font-semibold text-gray-800 capitalize">
+            管理者画面
+          </h2>
+          <p class="mt-2 text-sm tracking-wider text-gray-500 uppercase">
+            Dashboard<br>
+            ひと月の利用記録総計<br>
+            デイリー利用数のグラフ
+          </p>
+        </div>
+
+        <div>
+          <%= link_to 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940244/admin_image-2.png.001_crnzoz.png' do %>
+            <img class="object-cover w-full rounded-lg h-96" src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940244/admin_image-2.png.001_crnzoz.png" alt="sample view of admin screen-2">
+          <% end %>
+          <h2 class="mt-4 text-2xl font-semibold text-gray-800 capitalize">
+            管理者画面
+          </h2>
+          <p class="mt-2 text-sm tracking-wider text-gray-500 uppercase">
+            利用記録一覧<br>
+            期間での検索可能
+          </p>
         </div>
       </div>
     </div>
