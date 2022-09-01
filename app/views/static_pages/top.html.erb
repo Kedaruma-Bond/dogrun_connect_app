@@ -6,9 +6,10 @@
       </h1>
       <div class="basis-2/3 flex-col lg:ml-7">
         <p class="mt-4 text-lg text-gray-500 text-left">
-          ドッグランの利用情報を管理するアプリです。<br>
+          ドッグランの利用記録を管理するアプリです。<br>
           運営側だけではなく、利用者にも様々なメリットがあり、ドッグランを利用することが<br>
           どんどん楽しくなるはずです。<br>
+          <br>
           ぜひ一度お問い合わせください !!
         </p>
       </div>
@@ -68,9 +69,63 @@
     </div>
 
     <div class="flex items-center justify-center w-full h-96 lg:w-1/2">
-      <%= image_tag 'https://res.cloudinary.com/hryerpkcw/image/upload/v1661503110/top_photo_dogs_j3idat.jpg', class: "object-cover w-full h-full max-w-2xl rounded-md", alt:"dog runs photo" %>
+      <%= image_tag 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661503110/top_photo_dogs_j3idat.jpg', class: "object-cover w-full h-full max-w-2xl rounded-md", alt:"dog runs photo" %>
     </div>
   </div>
+
+  <section class="bg-white">
+    <div data-controller="lightbox" class="container px-6 py-10 mx-auto">
+      <h1 class="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl">
+        Sample View
+      </h1>
+      <p class="mt-4 text-center text-gray-500">
+        ユーザーはスマホで、管理者はPCでの利用を想定しています。<br>
+        ※画像は開発中のものです。
+      </p>
+      <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
+        <div>
+          <%= link_to 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940256/mobile_view.png.001_wiapsi.png' do %>
+            <img class="object-cover w-full rounded-lg h-96 " src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940256/mobile_view.png.001_wiapsi.png" alt="sample view of mobile screen">
+          <% end %>
+          <h2 class="mt-4 text-2xl font-semibold text-gray-800 capitalize">
+            ユーザースマホ画面
+          </h2>
+          <p class="mt-2 text-sm tracking-wider text-gray-500 uppercase">
+            ドッグラン利用記録機能<br>
+            ワンちゃんのプロフィール設定<br>
+            現在利用しているワンちゃん一覧
+          </p>
+        </div>
+
+        <div>
+          <%= link_to "https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940232/admin_view-1.png.002_vqto2j.png" do %>
+            <img class="object-cover w-full rounded-lg h-96" src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940232/admin_view-1.png.002_vqto2j.png" alt="sample view of admin screen-1">
+          <% end %>
+          <h2 class="mt-4 text-2xl font-semibold text-gray-800 capitalize">
+            管理者画面
+          </h2>
+          <p class="mt-2 text-sm tracking-wider text-gray-500 uppercase">
+            Dashboard<br>
+            ひと月の利用記録総計<br>
+            デイリー利用数のグラフ
+          </p>
+        </div>
+
+        <div>
+          <%= link_to 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940244/admin_image-2.png.001_crnzoz.png' do %>
+            <img class="object-cover w-full rounded-lg h-96" src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940244/admin_image-2.png.001_crnzoz.png" alt="sample view of admin screen-2">
+          <% end %>
+          <h2 class="mt-4 text-2xl font-semibold text-gray-800 capitalize">
+            管理者画面
+          </h2>
+          <p class="mt-2 text-sm tracking-wider text-gray-500 uppercase">
+            利用記録一覧<br>
+            期間での検索可能
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section>
     <div class="h-[32rem] mb-10">
@@ -95,7 +150,7 @@
       <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-3">
         <div class="flex flex-col items-center p-4 border sm:p-6 rounded-xl">
           <%= link_to togo_inu_shitsuke_hiroba_top_path do %>
-            <%= image_tag "https://res.cloudinary.com/hryerpkcw/image/upload/v1661503968/togo_inu_shitsuke_hiroba_logo_dmshl1.png", class: "object-cover w-full rounded-xl aspect-square", alt: "togo_inu_shitsuke_hiriba" %>
+            <%= image_tag "https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661503968/togo_inu_shitsuke_hiroba_logo_dmshl1.png", class: "object-cover w-full rounded-xl aspect-square", alt: "togo_inu_shitsuke_hiriba" %>
             <div class ="text-center">
               <h1 class="mt-4 text-2xl font-semibold text-gray-700">
                 <%= DogrunPlace.find(2).name %>
@@ -104,9 +159,9 @@
           <% end %>
           <div class="flex-col mt-2 text-gray-500 capitalize items-center">
             <p class="text-sm">
-              犬のしつけ広場は愛知県愛知郡東郷町、<br>
-              境川の中州にある会員登録制ドッグランです。<br>
-              広場利用者の有志を中心とするボランティアにより<br>自主運営されています。
+              犬のしつけ広場は愛知県愛知郡東郷町、
+              境川の中州にある会員登録制ドッグランです。
+              広場利用者の有志を中心とするボランティアにより自主運営されています。
             </p>
             <%= link_to 'https://www.town.aichi-togo.lg.jp/soshikikarasagasu/toshiseibika/gyomuannai/2/1/3279.html', class: "flex mt-2 justify-center" do %>
               <span>Learn more</span>
@@ -127,7 +182,7 @@
         </div>
 
         <div class="flex flex-col items-center p-4 border sm:p-6 rounded-xl">
-          <%= image_tag "https://res.cloudinary.com/hryerpkcw/image/upload/v1661501917/nodata_image-1_gfhsoz.jpg", class: "object-cover w-full rounded-xl aspect-square", alt: "no_data_image_dog" %>
+          <%= image_tag "https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661501917/nodata_image-1_gfhsoz.jpg", class: "object-cover w-full rounded-xl aspect-square", alt: "no_data_image_dog" %>
           <h1 class="mt-4 text-2xl font-semibold text-gray-700 capitalize">
             <%= t'.under_recruitment' %>
           </h1>
@@ -137,7 +192,7 @@
         </div>
 
         <div class="flex flex-col items-center p-4 border sm:p-6 rounded-xl">
-          <%= image_tag "https://res.cloudinary.com/hryerpkcw/image/upload/v1661501927/nodata_image-2_pxtu52.jpg", class: "object-cover w-full rounded-xl aspect-square", alt: "no_data_image_dog" %>
+          <%= image_tag "https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661501927/nodata_image-2_pxtu52.jpg", class: "object-cover w-full rounded-xl aspect-square", alt: "no_data_image_dog" %>
           <h1 class="mt-4 text-2xl font-semibold text-gray-700 capitalize">
             <%= t'.under_recruitment' %>
           </h1>

@@ -6,8 +6,6 @@ class User < ApplicationRecord
 
   attr_accessor :agreement
 
-  self.ignored_columns = [:enable_notification]
-
   # validations
   validates :password, length: { minimum: 6 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }

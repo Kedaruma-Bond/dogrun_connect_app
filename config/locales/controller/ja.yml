@@ -87,13 +87,13 @@ ja:
         email: メールアドレス
         message: 内容
       user:
-        name: 氏名
+        name: 飼い主さんの名前
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード 確認
         agreement: 利用規約とプライバシーポリシー
       dog:
-        name: 犬の名前
+        name: ワンちゃんの名前
         castration: 避妊・去勢
         public: 利用状況公開
         breed: 犬種

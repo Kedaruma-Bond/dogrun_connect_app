@@ -5,7 +5,7 @@ ja:
     password: パスワード
     password_confirmation: パスワード 確認
     app_name: DogrunConnect
-    dog_name: 犬の名前
+    dog_name: ワンちゃんの名前
     breed: 犬種
     sex: 性別
     age: 年齢

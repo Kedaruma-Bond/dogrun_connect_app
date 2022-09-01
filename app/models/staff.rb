@@ -6,6 +6,7 @@ class Staff < ApplicationRecord
   validates :email, presence: true, email_format: { message: I18n.t('defaults.email_message') }
   validates :enable_notification, presence: true
 
+  # scope
 end
 
 # == Schema Information

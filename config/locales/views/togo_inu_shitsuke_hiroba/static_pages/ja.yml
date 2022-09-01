@@ -33,6 +33,4 @@ ja:
       detail_content:
         dog_name: ワンちゃんの名前
         non_public_dog: 利用状況が非公開のワンちゃんです
-        age_unit: 歳
-        weight_unit: kg
         nobody_playing: 誰も遊んでいません 今いけば貸切状態です！

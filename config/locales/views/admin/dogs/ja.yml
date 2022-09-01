@@ -1,0 +1,9 @@
+ja:
+  admin:
+    dogs:
+      index:
+        title: 登録犬一覧
+      search:
+        title: 登録犬検索結果
+      search_form:
+        search_field: 飼い主さんの名前/ワンちゃんの名前/犬種検索 

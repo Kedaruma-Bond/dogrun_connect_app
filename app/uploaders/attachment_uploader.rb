@@ -37,7 +37,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   version :std_attach do
     if Rails.env.production?
       process eager: true
-      cloudinary_transformation quality_auto: :good
+      cloudinary_transformation quality_auto: :good, fetch_format: :auto
     end
   end
 

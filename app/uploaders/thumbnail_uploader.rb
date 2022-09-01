@@ -35,7 +35,7 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
   version :std_thumb do
     if Rails.env.production?
       process eager: true
-      cloudinary_transformation aspect_ratio: 1.0, crop: :fill, gravity: :auto, radius: :max, quality_auto: :good  
+      cloudinary_transformation aspect_ratio: 1.0, crop: :fill, gravity: :auto, radius: :max, quality_auto: :good, fetch_format: :auto  
     end
   end
 
