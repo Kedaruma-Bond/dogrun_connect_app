@@ -15,33 +15,37 @@
       <div class="flex-grow text-left mt-6 sm:mt-0">
         <p class="text-gray-500 leading-relaxed text-base"><%= t'.name' %></p>
         <h2 class="text-2xl font-medium text-gray-700 title-font mb-2"><%= current_user.name %></h2>
-        <p class="text-gray-500 leading-relaxed text-base"><%= t'.email' %></p>
-        <h2 class="text-lg font-medium text-gray-700 title-font mb-2"><%= current_user.email %></h2>
+        <% if current_user.role != 'guest' %>
+          <p class="text-gray-500 leading-relaxed text-base"><%= t'.email' %></p>
+          <h2 class="text-lg font-medium text-gray-700 title-font mb-2"><%= current_user.email %></h2>
+        <% end %>
       </div>
     </div>
-    <div class="flex items-center mt-3 flex-row justify-center text-left">
-      <div class="mr-10 w-auto">
-        <p class="text-gray-600 font-light mb-2 pr-5">
-          <%= t'defaults.registration_dogs_num' %>
-        </p>
-        <div class="flex w-1/3">
-          <h1 class="mt-1 text-3xl text-gray-700">
-            <%= @dogs.size %>
-          </h1>
-          <p class="text-gray-600 font-light text-right mt-4 ml-5">
-            <%= t'.of_dogs' %>
+    <% if current_user.role != 'guest' %>
+      <div class="flex items-center mt-3 flex-row justify-center text-left">
+        <div class="mr-10 w-auto">
+          <p class="text-gray-600 font-light mb-2 pr-5">
+            <%= t'defaults.registration_dogs_num' %>
           </p>
+          <div class="flex w-1/3">
+            <h1 class="mt-1 text-3xl text-gray-700">
+              <%= @dogs.size %>
+            </h1>
+            <p class="text-gray-600 font-light text-right mt-4 ml-5">
+              <%= t'.of_dogs' %>
+            </p>
+          </div>
         </div>
+        <%= link_to togo_inu_shitsuke_hiroba_dog_registration_path do %>
+          <button class="flex items-center px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="mx-1"><%= t'.add' %></span>
+          </button>
+        <% end %>
       </div>
-      <%= link_to togo_inu_shitsuke_hiroba_dog_registration_path do %>
-        <button class="flex items-center px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
-          </svg>
-          <span class="mx-1"><%= t'.add' %></span>
-        </button>
-      <% end %>
-    </div>
+    <% end %>
     <%= render 'shared/dog_profile' %>
   </div>
 </div>

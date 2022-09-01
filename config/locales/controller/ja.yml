@@ -65,6 +65,11 @@ ja:
           時間をおいてからまたお試しください
       destroy:
         logout: ログアウトしました
+      guest_login:
+        guest_login_successfully: |
+          ゲストログインしました!
+          ワンちゃんの登録はゲストログインではできません。
+          新規登録が必要ですので、是非ご登録ください！！
     dogs:
       update:
         dog_profile_updated: |

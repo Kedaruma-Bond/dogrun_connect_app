@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get 'detail', to: 'static_pages#detail'
     get 'compliance_confirmations', to: 'static_pages#compliance_confirmations'
     resource :sessions, only: %i[new create destroy]
+    post '/guest_login', to: 'sessions#guest_login'
     get 'login', to: 'sessions#new'
     post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy', as: :logout

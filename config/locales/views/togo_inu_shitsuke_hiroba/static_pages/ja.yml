@@ -8,7 +8,11 @@ ja:
         site_in: 今、ドッグランには
         playing1: 頭の仔が
         playing2: 遊んでいます
-        detail: 広場にいる仔の詳細
+        detail: ドッグランにいる仔の詳細
+        check_app_by_trial_guest_login: |
+          ゲストログインでどんなアプリか
+          是非チェックしてみてください
+        guest_login: ゲストログイン
       login_top_content:
         select_entry_dog: 入場するワンちゃんを選択してください
         entry_confirm: 入場してよろしいですか？

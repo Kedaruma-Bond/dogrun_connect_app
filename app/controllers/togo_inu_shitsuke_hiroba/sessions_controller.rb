@@ -1,5 +1,5 @@
 class TogoInuShitsukeHiroba::SessionsController < TogoInuShitsukeHiroba::DogrunPlaceController
-  skip_before_action :require_login, only: %i[new create]
+  skip_before_action :require_login, only: %i[new create guest_login]
   before_action :remember_checked, only: %i[new]
   def new; end
 
@@ -28,6 +28,19 @@ class TogoInuShitsukeHiroba::SessionsController < TogoInuShitsukeHiroba::DogrunP
       format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, notice: t('.logout'), status: :see_other }
       format.json { head :no_content }
     end
+  end
+
+  def guest_login
+    @guest_user = User.create(
+      name: 'ゲスト',
+      email: SecureRandom.alphanumeric(10) + '@example.com',
+      password: 'password',
+      password_confirmation: 'password',
+      deactivation: 'account_activated',
+      role: 'guest'
+    )
+    auto_login(@guest_user)
+    redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.guest_login_successfully')
   end
 
   private
