@@ -53,11 +53,7 @@ class Admin::UsersController < Admin::BaseController
   private
 
     def set_users
-      if current_user.name == 'grand_admin'
-        @users = User.all.page(params[:page])
-      else
-        @users = User.where(dogrun_place_id: current_user.dogrun_place_id).page(params[:page])
-      end
+      @users = User.all.page(params[:page])
     end
 
     def set_q
@@ -70,7 +66,7 @@ class Admin::UsersController < Admin::BaseController
 
     def user_params
       params.require(:user).permit(
-        :name, :email, :deactivation, :enable_notification, :password, :password_confirmation, 
+        :name, :email, :deactivation, :password, :password_confirmation, 
         :role, :dogrun_place_id, :agreement, 
       )
     end

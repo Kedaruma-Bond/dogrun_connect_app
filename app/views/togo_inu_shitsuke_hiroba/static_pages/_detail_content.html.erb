@@ -37,7 +37,7 @@
               <% else %>
                 <div class="col-span-2 md:col-span-1 pl-2 text-sm whitespace-nowrap self-center font-semibold text-left bg-purple-200 text-gray-600">
                   <%= link_to togo_inu_shitsuke_hiroba_dog_path(@dogs[t].id) do %>
-                    <div class="w-15 h-15 flex-shrink-0 mx-auto mb-3 md:md-0 inline-flex items-center justify-center">
+                    <div class="w-15 h-15 flex-shrink-0 mx-auto mb-3 md:mb-0 inline-flex items-center justify-center">
                       <%= image_tag @dogs[t].thumbnail_photo.url(:std_thumb), alt: @dogs[t].name %>
                     </div>
                   <% end %>
@@ -60,7 +60,7 @@
                   <% else %>
                     <%= @dogs[t].age %>
                   <% end %>
-                    <p class="text-sm pt-4 font-light"><%= t'.age_unit' %></p>
+                  <p class="text-sm pt-4 font-light"><%= t'defaults.age_unit' %></p>
                 </div>
                 <div class="hidden md:block pl-2 text-base whitespace-nowrap self-center font-semibold text-left bg-purple-200 text-gray-600">
                   <% if @dogs[t].sex.blank? %>
@@ -80,7 +80,7 @@
                   <% else %>
                     <%= @dogs[t].weight %>
                   <% end %>
-                  <p class="text-sm pt-4 font-light"><%= t'.weight_unit' %></p>
+                  <p class="text-sm pt-4 font-light"><%= t'defaults.weight_unit' %></p>
                 </div>
                 <div class="pl-2 align-middle py-2 text-base whitespace-nowrap self-center font-semibold text-left bg-purple-200 text-gray-600">
                   <%= l @dogrun_entry_data[t].entry_at, format: :short2 %>

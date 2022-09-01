@@ -19,9 +19,9 @@ Rails.application.routes.draw do
     delete 'logout', to: 'sessions#destroy', as: :logout
     
     resource :entries, only: %i[create update]
-    
     resources :users, only: %i[new create show]
     resources :dogs, only: %i[show edit update]
+    resources :posts, only: %i[new create]
     
     get 'signup', to: 'users#new', as: :signup
     
@@ -33,6 +33,13 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'dashboards#index'
     resources :dogrun_places, only: %i[index create]
+    resources :dogs, only: %i[index] do
+      collection do
+        get 'page/:page', action: :index
+        get 'search', to: 'dogs#search'
+        post 'search', to: 'dogs#search'
+      end
+    end
     resources :users, only: %i[index new create destroy] do
       collection do
         get 'page/:page', action: :index

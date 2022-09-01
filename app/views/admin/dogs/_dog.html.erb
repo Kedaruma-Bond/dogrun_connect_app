@@ -1,0 +1,64 @@
+<tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+  <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
+    <div class="w-12 h-12 flex-shrink-0 mx-auto mb-3 inline-flex items-center justify-center">
+      <%= image_tag dog.thumbnail_photo.url(:std_thumb), alt: dog.name %>
+    </div>
+  </td>
+  <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
+    <% rn = RegistrationNumber.find_by(dog_id: dog.id) %>
+    <%= rn.registration_number %>
+  </td>
+  <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
+    <%= dog.user.name %>
+  </td>
+  <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
+    <%= dog.name %>
+  </td>
+  <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
+    <% if dog.breed == '' %>
+      -
+    <% else %>
+      <%= dog.breed %>
+    <% end %>
+  </td>
+  <td class="flex pl-2 pt-5 text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
+    <% if dog.birthday.nil? %>
+      -
+    <% else %>
+      <%= dog.age %>
+    <% end %>
+    <p class="text-sm pt-4 font-light"><%= t('defaults.age_unit') %></p>
+  </td>
+  <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
+    <% case dog.sex %>
+    <% when 'male' then %>
+      <%= t('enums.dog.sex.male') %>
+    <% when 'female' then %>
+      <%= t('enums.dog.sex.female') %>
+    <% else %>
+      -
+    <% end %>
+  </td>
+  <td class="flex pl-2 pt-5 text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
+    <% if dog.weight == nil %>
+      -
+    <% else %>
+      <%= dog.weight %>
+    <% end %>
+    <p class="text-sm pt-4 font-light"><%= t('defaults.weight_unit') %></p>
+  </td>
+  <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
+    <% if dog.castration == 'castrated' %>
+      <%= t('enums.dog.castration.castrated') %>
+    <% else %>
+      <%= t('enums.dog.castration.non_castrated') %>
+    <% end %>
+  </td>
+  <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
+    <% if dog.public == 'public_view' %>
+      <%= t('enums.dog.public.public_view') %>
+    <% else %>
+      <%= t('enums.dog.public.non_public') %>
+    <% end %>
+  </td>
+</tr>

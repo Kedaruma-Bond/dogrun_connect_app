@@ -16,7 +16,7 @@ module ApplicationHelper
         description: Rails.application.credentials.meta_tags[:description],
         type: 'website',
         url: request.original_url,
-        image: image_url('https://res.cloudinary.com/hryerpkcw/image/upload/v1661386829/ogp_ey7hpa.png'),
+        image: image_url('https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661386829/ogp_ey7hpa.png'),
         locale: 'ja_JP',
       },
       twitter: {
@@ -27,11 +27,11 @@ module ApplicationHelper
           title: page_title( "DogrunConnect" )
         },
         text: {
-          title: "DogrunConnect's tweet"
+          title: "Connect to Dogrun with fun"
         },
       },
       fb: {
-        # app_id: '¥facebookのID'
+        app_id: Rails.application.credentials.meta_tags[:facebook_id]
       }
     }
   end

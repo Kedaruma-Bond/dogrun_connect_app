@@ -6,6 +6,8 @@ class RegistrationNumber < ApplicationRecord
   # validates
   validates :registration_number, presence: true, numericality: true
 
+  # scope
+  
 end
 
 # == Schema Information

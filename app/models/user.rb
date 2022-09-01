@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
   has_many :dogs, dependent: :destroy
+  has_many :posts, dependent: :destroy
   belongs_to :dogrun_place, optional: true
 
   attr_accessor :agreement
@@ -33,7 +34,6 @@ end
 #  crypted_password                    :string
 #  deactivation                        :boolean          default("account_activated"), not null
 #  email                               :string           not null
-#  enable_notification                 :boolean          default(FALSE), not null
 #  failed_logins_count                 :integer          default(0)
 #  lock_expires_at                     :datetime
 #  name                                :string           not null

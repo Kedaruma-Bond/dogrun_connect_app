@@ -31,7 +31,7 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
 
   def user_params
     params.require(:user).permit(
-      :name, :email, :deactivation, :enable_notification, :password, :password_confirmation,
+      :name, :email, :deactivation, :password, :password_confirmation,
       :agreement
     )
   end

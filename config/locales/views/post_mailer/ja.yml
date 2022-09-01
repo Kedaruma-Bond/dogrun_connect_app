@@ -1,0 +1,4 @@
+ja:
+  post_mailer:
+    post_notification:
+      subject: '[ドッグランの連絡投稿通知]'
