@@ -1,0 +1,4 @@
+ja:
+  staff_mailer:
+    staff_registration_success:
+      subject: "[%{dogrun_name} スタッフ登録完了通知]"

@@ -1,0 +1,9 @@
+ja:
+  admin:
+    staffs:
+      index:
+        title: ドッグランスタッフ一覧
+        sign_up: 新規登録
+      staff:
+        enable_confirmation: 通知を有効にしますか？
+        disable_confirmation: 通知を無効にしますか？

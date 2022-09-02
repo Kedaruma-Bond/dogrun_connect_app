@@ -6,6 +6,9 @@ class Staff < ApplicationRecord
   validates :email, presence: true, email_format: { message: I18n.t('defaults.email_message') }
   validates :enable_notification, presence: true
 
+  # enum
+  enum enable_notification: { disable: false, enable: true }
+
   # scope
 end
 
@@ -15,7 +18,7 @@ end
 #
 #  id                  :bigint           not null, primary key
 #  email               :string           not null
-#  enable_notification :boolean          default(FALSE), not null
+#  enable_notification :boolean          default("disable"), not null
 #  name                :string           not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
