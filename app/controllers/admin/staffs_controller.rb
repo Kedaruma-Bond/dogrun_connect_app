@@ -3,21 +3,21 @@ class Admin::StaffsController < Admin::BaseController
   before_action :staff_params, only: %i[create]
   before_action :set_staff, only: %i[destroy enable_notification disable_notification]
 
-  def index;end
-
-  def new
+  def index
     @staff = Staff.new
   end
 
   def create
     @staff = Staff.new(staff_params)
     @dogrun_place = DogrunPlace.find(current_user.dogrun_place_id)
-    if @staff.save
+
+    if @staff.save!
       StaffMailer.staff_registration_success(@staff, @dogrun_place).deliver_now
-      redirect_to admin_staffs_path, success: t('.staff_create')
-      return
+      respond_to do |format|
+        format.html { redirect_to admin_staffs_path, success: t('.staff_create') }
+        format.json { head :no_content }
+      end
     end
-    render :new, status: :unprocessable_entity
   end
 
   def destroy

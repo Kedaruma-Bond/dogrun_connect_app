@@ -7,3 +7,5 @@ ja:
       staff:
         enable_confirmation: 通知を有効にしますか？
         disable_confirmation: 通知を無効にしますか？
+      form:
+        signup_staff: スタッフ新規登録

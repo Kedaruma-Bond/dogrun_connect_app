@@ -117,6 +117,9 @@ ja:
       registration_number:
         dogrun_place: 登録ドッグラン
         registration_number: 登録番号
+      entry:
+        entry_at: 入場時間
+        exit_at: 退場時間
       post:
         content: 内容
         attach_image: 画像添付
