@@ -22,7 +22,7 @@
 
 ## URL
 ---
-https://www.dogrunconnect.com/
+https://www.dogrunconnect.com
 
 ## 使用技術 
 --- 
@@ -38,7 +38,7 @@ https://www.dogrunconnect.com/
   - Papertrail
   - Heroku Scheduler
 - aws
-  - S3
+  - S3 (sitemapのアップロード)
 - RSpec
 
 ## 機能一覧

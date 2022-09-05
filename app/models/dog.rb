@@ -18,7 +18,7 @@ class Dog < ApplicationRecord
   enum sex: { male: 0, female: 1 }
 
   #   scope
-  scope :dogrun_place_id, -> (id) { joins(:registration_numbers).where(registration_numbers: { dogrun_place_id: id }).includes(:registration_numbers, :user).order(id: :asc)}
+  scope :dogrun_place_id, -> (id) { joins(:registration_numbers).where(registration_numbers: { dogrun_place_id: id }).includes(:registration_numbers, :user).order(id: :desc)}
 end
 
 # == Schema Information

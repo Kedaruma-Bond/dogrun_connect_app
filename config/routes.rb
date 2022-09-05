@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   namespace :togo_inu_shitsuke_hiroba do
     get 'top', to: 'static_pages#top'
     get 'detail', to: 'static_pages#detail'
-    get 'compliance_confirmations', to: 'static_pages#compliance_confirmations'
     resource :sessions, only: %i[new create destroy]
     post '/guest_login', to: 'sessions#guest_login'
     get 'login', to: 'sessions#new'
@@ -34,6 +33,13 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'dashboards#index'
     resources :dogrun_places, only: %i[index create]
+    
+    resources :staffs, only: %i[index create destroy] do
+      member do
+        patch 'enable_notification', to: 'staffs#enable_notification'
+        patch 'disable_notification', to: 'staffs#disable_notification'
+      end
+    end
     resources :dogs, only: %i[index] do
       collection do
         get 'page/:page', action: :index
@@ -63,6 +69,8 @@ Rails.application.routes.draw do
     get 'login', to: 'sessions#new'
     post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy'
+    resources :staffs, only: %i[new create destroy]
+
   end
 
   get 'privacy_policy', to: 'static_pages#privacy_policy'

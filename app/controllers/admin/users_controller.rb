@@ -53,7 +53,7 @@ class Admin::UsersController < Admin::BaseController
   private
 
     def set_users
-      @users = User.all.page(params[:page])
+      @users = User.all.order(id: :desc).page(params[:page])
     end
 
     def set_q

@@ -9,7 +9,7 @@
   </div>
   <!--Card Section-->
   <div class="flex flex-wrap">
-    <!--Total entries at this month Card-->
+    <!--Total entries over the past month Card-->
     <div class="w-full p-6">
       <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-5">
         <div class="flex flex-row items-center">
@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-    <!--/Total entries at this month Card-->
+    <!--/Total entries over the past month Card-->
 
     <% if current_user.name == 'grand_admin' %>
     <!--Total Users Card-->
@@ -122,7 +122,7 @@
               <%= t('.dogrun_information_over_the_past_month') %>
             </h2>
             <p class="font-bold text-3xl">
-              19
+              xx
             </p>
           </div>
         </div>
@@ -146,7 +146,7 @@
               <%= t('.total_staffs') %>
             </h2>
             <p class="font-bold text-3xl">
-              19
+              <%= Staff.where(dogrun_place_id: current_user.dogrun_place_id).count %>
             </p>
           </div>
         </div>

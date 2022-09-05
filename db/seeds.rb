@@ -60,7 +60,7 @@ users.each do |u|
     sex: Faker::Number.between(from: 0, to: 1),
     weight: Faker::Number.between(from: 1, to: 40),
     owner_comment: Faker::Lorem.paragraph(sentence_count: 5),
-    thumbnail_photo: nil
+    thumbnail_photo: nil 
   )
 end
 
@@ -75,7 +75,8 @@ users.each do |u|
     breed: Faker::Creature::Dog.breed,
     sex: Faker::Number.between(from: 0, to: 1),
     weight: Faker::Number.between(from: 1, to: 40),
-    owner_comment: Faker::Lorem.paragraph(sentence_count: 5)
+    owner_comment: Faker::Lorem.paragraph(sentence_count: 5),
+    thumbnail_photo: nil
   )
 end
 
@@ -101,4 +102,13 @@ registration_numbers.each do |registration_number|
   registration_number.entries.create!(entry_at: entry_at_1, exit_at: exit_at_1, dog_id: registration_number.dog_id)
   registration_number.entries.create!(entry_at: entry_at_2, exit_at: exit_at_2, dog_id: registration_number.dog_id)
   registration_number.entries.create!(entry_at: entry_at_3, exit_at: exit_at_3, dog_id: registration_number.dog_id)
+end
+
+10.times do |n|
+  name = Faker::Name.name
+  email = "test-#{n}@example.com"
+  dogrun_place = 2
+  Staff.create!(name: name,
+              email: email,
+              dogrun_place_id: dogrun_place)
 end

@@ -35,8 +35,17 @@
         <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3"><%= t'.dogrun' %></h2>
         <nav class="list-none mb-10">
           <li>
-            <%= link_to '/togo_inu_shitsuke_hiroba/compliance_confirmations', target: "_blank", rel: "noopener noreferrer" do %>
-              <%= t'.compliance_confirmations' %>
+            <%= link_to 'https://www.town.aichi-togo.lg.jp/soshikikarasagasu/toshiseibika/gyomuannai/2/1/3279.html', target: "_blank", rel: "noopener noreferrer" do %>
+              <svg class="w-6 h-6 mx-auto sm:mx-0 sm:ml-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z" clip-rule="evenodd"></path>
+              </svg>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to 'https://www.facebook.com/togo.inu.shitsuke.hiroba/', class: "text-gray-500" do %>
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5 mx-auto sm:mx-0 sm:ml-10 mt-5" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+              </svg>
             <% end %>
           </li>
         </nav>
@@ -44,15 +53,29 @@
     </div>
   </div>
   <div class="bg-gray-100">
-    <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+    <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row items-center justify-between">
       <p class="text-gray-500 text-sm text-center sm:text-left">© 2022 DogrunConnect</p>
-      <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
-        <%= link_to 'https://www.facebook.com/togo.inu.shitsuke.hiroba/', class: "text-gray-500" do %>
-          <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+
+      <div class="flex mt-3 -mx-2 sm:mt-0">
+        <%= link_to "https://twitter.com/DogrunConnect", target: "_blank", rel: "noopener noreferrer", class: "mx-2 text-gray-400 hover:text-gray-500" do %>
+          <svg class="w-5 h-5 fill-current" width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23 3.01006C23 3.01006 20.9821 4.20217 19.86 4.54006C19.2577 3.84757 18.4573 3.35675 17.567 3.13398C16.6767 2.91122 15.7395 2.96725 14.8821 3.29451C14.0247 3.62177 13.2884 4.20446 12.773 4.96377C12.2575 5.72309 11.9877 6.62239 12 7.54006V8.54006C10.2426 8.58562 8.50127 8.19587 6.93101 7.4055C5.36074 6.61513 4.01032 5.44869 3 4.01006C3 4.01006 -1 13.0101 8 17.0101C5.94053 18.408 3.48716 19.109 1 19.0101C10 24.0101 21 19.0101 21 7.51006C20.9991 7.23151 20.9723 6.95365 20.92 6.68006C21.9406 5.67355 23 3.01006 23 3.01006Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         <% end %>
-      </span>
+
+        <%= link_to "https://www.facebook.com/dogrunconnect/", target: "_blank", rel: "noopener noreferrer", class: "mx-2 text-gray-400 hover:text-gray-500" do %>
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.00195 12.002C2.00312 16.9214 5.58036 21.1101 10.439 21.881V14.892H7.90195V12.002H10.442V9.80204C10.3284 8.75958 10.6845 7.72064 11.4136 6.96698C12.1427 6.21332 13.1693 5.82306 14.215 5.90204C14.9655 5.91417 15.7141 5.98101 16.455 6.10205V8.56104H15.191C14.7558 8.50405 14.3183 8.64777 14.0017 8.95171C13.6851 9.25566 13.5237 9.68693 13.563 10.124V12.002H16.334L15.891 14.893H13.563V21.881C18.8174 21.0506 22.502 16.2518 21.9475 10.9611C21.3929 5.67041 16.7932 1.73997 11.4808 2.01722C6.16831 2.29447 2.0028 6.68235 2.00195 12.002Z"></path>
+          </svg>
+        <% end %>
+
+        <%= link_to "https://www.instagram.com/dogrun_connect/", target: "_blank", rel: "noopener noreferrer", class: "mx-2 text-gray-400 hover:text-gray-500" do %>
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+          </svg>
+        <% end %>
+      </div>
     </div>
   </div>
 </footer>
