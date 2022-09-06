@@ -83,7 +83,7 @@ ja:
           ワンちゃんのプロフィールを
           更新しました！
     posts:
-      new:
+      create:
         success: ドッグランの連絡を投稿しました
       confirm:
         send: 投稿
@@ -132,6 +132,9 @@ ja:
   activemodel:
     attributes:
       # form objectを使用する場合はlocaleはここに書く
+      dog_registration:
+        registration_number: 登録番号
+        name: ワンちゃんの名前
 
   attributes:
     created_at: 作成日

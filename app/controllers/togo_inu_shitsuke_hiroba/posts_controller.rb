@@ -3,16 +3,18 @@ class TogoInuShitsukeHiroba::PostsController < TogoInuShitsukeHiroba::DogrunPlac
 
   def new
     @post = Post.new
+    @staffs = Staff.enable
   end
 
   def create
     @post = Post.new(post_params)
     if @post.save
-      PostMailer.post_notification(@staffs).deliver_now
+      unless @staffs.blank? then
+        PostMailer.post_notification(@staffs).deliver_now
+      end
       session.delete(:post)
       redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.success')
     end
-    render :new, status: :unprocessable_entity
   end
 
   private

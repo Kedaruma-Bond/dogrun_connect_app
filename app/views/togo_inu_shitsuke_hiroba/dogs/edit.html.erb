@@ -2,11 +2,11 @@
 <div class="max-w-6xl mx-auto px-6 sm:px-6 lg:px-8 mt-5">
   <p class="text-3xl font-bold leading-7 text-center mb-10"><%= t'.dogrun' %></p>
   <div class="container bg-purple-200 w-full shadow rounded p-8 sm:p-10">
+    <div class="text-3xl font-bold text-center mb-3">
+      <p><%= simple_format(t'.title') %></p>
+    </div>
     <%= simple_form_for @dog, url:togo_inu_shitsuke_hiroba_dog_path, data: { controller: 'preview disable', "disable-with-value": t('defaults.updating'), turbo: false } do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-      <div class="text-3xl font-bold text-center mb-5">
-        <p><%= simple_format(t'.title') %></p>
-      </div>
       <section class="text-gray-600 body-font">
         <div class="container px-3 py-3 mx-auto flex flex-col">
           <div class="flex flex-col sm:flex-row mt-5">

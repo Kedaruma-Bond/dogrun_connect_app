@@ -99,7 +99,9 @@ ja:
         dog_with: Dog with
   activerecord:
     attributes:
-      signup_form:
+      dog_registration:
+        name: ワンちゃんの名前
+        registration_number: 登録番号
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -116,7 +118,6 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    -
     - 1月
     - 2月
     - 3月
