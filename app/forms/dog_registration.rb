@@ -6,10 +6,10 @@ class DogRegistration
   # validates
   with_options presence: true do
     validates :name, length: { maximum: 50 }
+    validates :registration_number
     validates :user_id
     validates :dogrun_place_id
   end
-  validates :registration_number, presence: true, numericality: true
   
   def save
     dog = Dog.create(name: name, castration: castration, public: public, user_id: user_id)

@@ -2,6 +2,8 @@ ja:
   togo_inu_shitsuke_hiroba:
     posts:
       new:
-        title: ドッグランの連絡作成
+        title: |
+          ドッグランの連絡
+          作成
       confirm:
         title: 入力内容確認

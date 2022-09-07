@@ -1,11 +1,11 @@
 class PostMailer < ApplicationMailer
-  def post_notification(staffs)
-    @staffs = staffs
-    mail(
-      from: Rails.application.credentials[:MAILER_USER_ID],
-      to: @staffs.email,
-      subject: t('.subject')
-    )
-
+  def post_notification(staff, dogrun_place)
+      @staff = staff
+      @dogrun_place = dogrun_place
+      mail(
+        from: Rails.application.credentials.users[:MAILER_USER_ID],
+        to: @staff.email,
+        subject: t('.subject')
+      )
   end
 end

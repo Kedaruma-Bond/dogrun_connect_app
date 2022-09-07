@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  root 'static_pages#top'
+  get 'privacy_policy', to: 'static_pages#privacy_policy'
+  get 'terms_of_service', to: 'static_pages#terms_of_service'
+
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
   get '/service-worker.js', to: 'service_worker#service_worker'
   get '/offline.html', to: 'service_worker#offline'
@@ -33,6 +37,18 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'dashboards#index'
     resources :dogrun_places, only: %i[index create]
+
+    resources :posts, only: %i[new create edit update destory] do
+      collection do
+        get 'page/:page', action: :index
+        get 'search', to: 'posts#search'
+        post 'search', to: 'posts#search'
+      end
+      member do
+        patch 'start_to_publish', to: 'posts#start_to_publish'
+        patch 'cancel_to_publish', to: 'posts#cancel_to_publish'
+      end
+    end
     
     resources :staffs, only: %i[index create destroy] do
       member do
@@ -40,6 +56,7 @@ Rails.application.routes.draw do
         patch 'disable_notification', to: 'staffs#disable_notification'
       end
     end
+
     resources :dogs, only: %i[index] do
       collection do
         get 'page/:page', action: :index
@@ -47,6 +64,7 @@ Rails.application.routes.draw do
         post 'search', to: 'dogs#search'
       end
     end
+
     resources :users, only: %i[index new create destroy] do
       collection do
         get 'page/:page', action: :index
@@ -58,6 +76,7 @@ Rails.application.routes.draw do
         patch 'activation', to: 'users#activation'
       end
     end
+
     resources :entries, only: %i[index destroy] do
       collection do
         get 'page/:page', action: :index
@@ -65,15 +84,10 @@ Rails.application.routes.draw do
         post 'search', to: 'entries#search'
       end
     end
+    
     resource :sessions, only: %i[new create destroy]
     get 'login', to: 'sessions#new'
     post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy'
-    resources :staffs, only: %i[new create destroy]
-
   end
-
-  get 'privacy_policy', to: 'static_pages#privacy_policy'
-  get 'terms_of_service', to: 'static_pages#terms_of_service'
-  root 'static_pages#top'
 end

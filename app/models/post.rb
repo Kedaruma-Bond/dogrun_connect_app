@@ -1,10 +1,15 @@
 class Post < ApplicationRecord
   belongs_to :user
   belongs_to :dogrun_place
+  belongs_to :postable, polymorphic: true, dependent: :destroy
   mount_uploader :attach_image, AttachmentUploader
 
+  self.ignored_columns = %i[attach_image content]
+
   #validates
-  validates :content, presence: true, length: { maximum: 400 }
+
+  # enum
+  enum publish_status: { non_publish: false, is_publishing: true }
 
 end
 
@@ -13,9 +18,7 @@ end
 # Table name: posts
 #
 #  id              :bigint           not null, primary key
-#  attach_image    :string
-#  content         :text             not null
-#  publish_status  :boolean          default(FALSE), not null
+#  publish_status  :boolean          default("non_publish"), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  dogrun_place_id :bigint           not null

@@ -4,7 +4,7 @@ class RegistrationNumber < ApplicationRecord
   has_many :entries, dependent: :destroy
 
   # validates
-  validates :registration_number, presence: true, numericality: true
+  validates :registration_number, presence: true
 
   # scope
   
