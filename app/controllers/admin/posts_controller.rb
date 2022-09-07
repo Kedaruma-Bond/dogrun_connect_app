@@ -1,4 +1,4 @@
-class Admin::StaffsController < Admin::BaseController
+class Admin::PostsController < Admin::BaseController
   before_action :set_posts, only: %i[index]
   before_action :post_params, only: %i[create]
   before_action :set_post, only: %i[edit update destroy start_to_publish cancel_to_be_publish]
