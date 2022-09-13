@@ -32,7 +32,7 @@ class TogoInuShitsukeHiroba::SessionsController < TogoInuShitsukeHiroba::DogrunP
 
   def guest_login
     @guest_user = User.create(
-      name: 'ゲスト',
+      name: 'GUEST',
       email: SecureRandom.alphanumeric(10) + '@example.com',
       password: 'password',
       password_confirmation: 'password',
