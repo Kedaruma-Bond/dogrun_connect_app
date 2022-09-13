@@ -2,7 +2,6 @@ ja:
   togo_inu_shitsuke_hiroba:
     sessions:
       new:
-        dogrun: 犬のしつけ広場
         title: ログイン | 犬のしつけ広場
       login_form:
         title: ログイン

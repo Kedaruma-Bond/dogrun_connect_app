@@ -85,13 +85,16 @@ ja:
     posts:
       create:
         success: ドッグランの連絡を投稿しました
-      confirm:
-        send: 投稿
+        make_article: |
+          投稿する文を入力してください。
+          必要あれば写真も添付してください。
+        choice_sns: |
+          埋め込むSNSを選択してください。
   activerecord:
     models:
       contact: お問い合わせ
-      dog: 犬
-      user: ユーザー
+      dog: ワンちゃん
+      user: 飼い主さん
       registration_number: 登録番号
     attributes:
       contact:
@@ -121,8 +124,11 @@ ja:
         entry_at: 入場時間
         exit_at: 退場時間
       post:
-        content: 内容
-        attach_image: 画像添付
+        embed: SNS埋め込み
+        article: 文+写真
+        create_postable:
+          post_type_error: "投稿タイプが不正です %{type}"
+
       staff:
         name: スタッフの名前
         email: メールアドレス

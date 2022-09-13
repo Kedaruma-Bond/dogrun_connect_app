@@ -1,4 +1,4 @@
-<header class="bg-white w-full flex relative justify-between items-center mx-auto px-4 lg:px-12 h-20 text-gray-600 body-font">
+<header data-controller="modal" class="bg-white w-full flex relative justify-between items-center mx-auto px-4 lg:px-12 h-20 text-gray-600 body-font">
   <!-- logo -->
   <div class="container mx-auto flex flex-wrap flex-col lg:flex-row lg:pl-10">
     <%= link_to '/togo_inu_shitsuke_hiroba/top', class: "flex order-first title-font font-medium items-center text-gray-900 mb-4 md:mb-0" do %>
@@ -46,7 +46,7 @@
         </span>
       <% end %>
           
-      <%= link_to "#", class: "flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100" do %>
+      <button data-action="click->modal#open" class="flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100">
         <svg class="w-6 h-6 mx-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
         </svg>
@@ -54,7 +54,7 @@
         <span class="mx-1">
           <%= t('defaults.site_information') %>
         </span>
-      <% end %>
+      </button>
 
       <%= link_to "#", class: "flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100" do %>
         <svg class="w-5 h-5 mx-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -80,6 +80,8 @@
     </div>
   </div>
 
+  <%= render partial: 'togo_inu_shitsuke_hiroba/shared/form', locals: { post: @post } %>
+
   <nav class="hidden lg:flex justify-end w-5/6 flex-wrap text-base">
     <%= link_to  togo_inu_shitsuke_hiroba_user_path(current_user), class: "flex mr-5 hover:text-gray-900" do %>
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -87,18 +89,21 @@
       </svg>
       <span><%= t('defaults.profile') %></span>
     <% end %>
-    <%= link_to "#", class: "flex mr-5 hover:text-gray-900" do %>
+
+    <button data-action="click->modal#open" class="flex mr-5 hover:text-gray-900" do %>
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
       </svg>
       <span><%= t('defaults.site_information') %></span>
-    <% end %>
+    </button>
+
     <%= link_to '#', class: "flex mr-5 hover:text-gray-900" do %>
       <svg class="w-5 h-5 mx-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
       </svg>
       <span><%= t('defaults.friend_list') %></span>
     <% end %>
+    
     <%= link_to togo_inu_shitsuke_hiroba_logout_path, data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation') }, class: "flex mr-5 hover:text-gray-900" do %>
       <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 12H19M19 12L16 15M19 12L16 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>

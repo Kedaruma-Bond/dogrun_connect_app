@@ -1,34 +1,38 @@
 class TogoInuShitsukeHiroba::PostsController < TogoInuShitsukeHiroba::DogrunPlaceController
-  before_action :set_staffs, :post_params, only: :create
-
-  def new
-    @post = Post.new
-  end
+  before_action :post_params, only: %i[create]
 
   def create
     @post = Post.new(post_params)
-    if @post.save
-      unless @staffs.blank? then
-        n = 0
-        @dogrun_place = DogrunPlace.find(@staffs[0].dogrun_place_id)
-        @staffs.size.times do
-          PostMailer.post_notification(@staffs[n], @dogrun_place).deliver_now
-          n += 1
-        end
-      end
-      session.delete(:post)
-      redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.success')
+
+    if @post.invalid?
+      return head :bad_request
+    end
+
+    postable_type = params.dig(:post, :postable_type)
+
+    if postable_type.blank? || !Post.valid_postable_type?(postable_type)
+      return head :bad_request
+    end
+
+    @post.create_postable!(postable_type)
+    @post.save!
+
+    case @post.postable_type
+    when Article
+      redirect_to new_togo_inu_shitsuke_hiroba_article_path, notice: t('.make_article')
+      return
+    when Embed
+      redirect_to new_togo_inu_shitsuke_hiroba_embed_path, notice: t('.choice_sns')
+      return
+    else
+      raise ActionController::ParameterMissing, :postable
     end
   end
 
   private
     def post_params
       params.require(:post).permit(
-        :publish_status
+        :publish_status, :postable_type
       ).merge(user_id: current_user.id, dogrun_place_id: 2 )
-    end
-
-    def set_staffs
-      @staffs = Staff.where(dogrun_place_id: 2).enable
     end
 end

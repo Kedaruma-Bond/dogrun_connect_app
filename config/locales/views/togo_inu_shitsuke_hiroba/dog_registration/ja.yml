@@ -3,7 +3,6 @@ ja:
     dog_registration:
       new:
         title: 犬の登録 | 犬のしつけ広場
-        dogrun: 犬のしつけ広場
       dog_registration_form:
         title: 犬の登録
         name: 犬の名前
@@ -11,7 +10,6 @@ ja:
         add: 追加
       confirm:
         title: 犬の情報の入力内容確認 | 犬のしつけ広場
-        dogrun: 犬のしつけ広場
         name: 犬の名前
       dog_registration_confirm:
         title: 犬の情報の入力内容確認

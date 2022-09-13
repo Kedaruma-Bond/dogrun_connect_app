@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_01_012837) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_07_053038) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: :cascade do |t|
+    t.text "content", null: false
+    t.string "image_attach"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "contacts", force: :cascade do |t|
     t.string "name", null: false
@@ -44,6 +51,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_012837) do
     t.index ["user_id"], name: "index_dogs_on_user_id"
   end
 
+  create_table "embeds", force: :cascade do |t|
+    t.string "identifier"
+    t.integer "embed_type", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "entries", force: :cascade do |t|
     t.bigint "dog_id", null: false
     t.bigint "registration_number_id", null: false
@@ -58,13 +72,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_012837) do
 
   create_table "posts", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.text "content", null: false
-    t.string "attach_image"
     t.boolean "publish_status", default: false, null: false
     t.bigint "dogrun_place_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "postable_type"
+    t.bigint "postable_id"
     t.index ["dogrun_place_id"], name: "index_posts_on_dogrun_place_id"
+    t.index ["postable_type", "postable_id"], name: "index_posts_on_postable"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

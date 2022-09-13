@@ -31,6 +31,20 @@ ja:
         playing1: 頭の仔が
         playing2: 遊んでいます
       detail_content:
-        dog_name: ワンちゃんの名前
-        non_public_dog: 利用状況が非公開のワンちゃんです
-        nobody_playing: 誰も遊んでいません 今いけば貸切状態です！
+        current_entry_dogs: 現在入場中のワンちゃん
+        thumbnail: |
+          ワンちゃんの
+          サムネイル
+        owner_comment: |
+          飼い主さん
+          からの一言
+        dog_name: |
+          ワンちゃんの
+          名前
+        non_public_dog: |
+          利用状況が
+          非公開の
+          ワンちゃんです
+        nobody_playing: |
+          誰も遊んでいません 
+          今いけば貸切状態です！
