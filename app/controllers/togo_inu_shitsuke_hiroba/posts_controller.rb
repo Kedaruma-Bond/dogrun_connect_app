@@ -1,28 +1,25 @@
 class TogoInuShitsukeHiroba::PostsController < TogoInuShitsukeHiroba::DogrunPlaceController
-  before_action :set_staffs, :post_params, only: :create
-
-  def new
-    @post = Post.new
-  end
+  before_action :post_params, only: :create
 
   def create
     @post = Post.new(post_params)
     if @post.save
-      PostMailer.post_notification(@staffs).deliver_now
-      session.delete(:post)
-      redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.success')
+      case @post.post_type
+      when 'article'
+        redirect_to new_togo_inu_shitsuke_hiroba_article_path(@post), notice: t('.create_article')
+      when 'embed'
+        redirect_to new_togo_inu_shitsuke_hiroba_embed_path(@post), notice: t('.choice_sns')
+      end
+      return
+    else
+      redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.post_save_error') and return
     end
-    render :new, status: :unprocessable_entity
   end
 
   private
     def post_params
-      params.require(:post).permit(
-        :content, :attach_image, :publish_status
-      ).merge(user_id: current_user.id, dogrun_place_id: 2 )
-    end
-
-    def set_staffs
-      @staffs = Staff.where(dogrun_place_id: 2).where(enable_notification: true)
+      params.permit(
+        :post_type, :dogrun_place_id, :publish_status
+      ).merge(user_id: current_user.id)
     end
 end

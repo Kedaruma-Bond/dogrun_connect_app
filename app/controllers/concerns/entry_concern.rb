@@ -1,4 +1,8 @@
-module EntriesHelper
+require 'active_support'
+
+module EntryConcern
+  extend ActiveSupport::Concern
+
   def set_entries_array
     @entries = []
     @active_entries = []
@@ -8,15 +12,6 @@ module EntriesHelper
     session[:entries] = entries.map do |e|
       e.id
     end
-  end
-
-  def during_entries
-    @during_entries = []
-    @during_entries = session[:entries]
-  end
-
-  def not_entry?
-    @during_entries.nil?
   end
 
   def exit_from_dogrun
@@ -35,4 +30,5 @@ module EntriesHelper
     @num = 0
     @zero_count = 0
   end
+
 end

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
-  include EntriesHelper
-  include SessionsHelper
+  include EntryHelper
+  include SessionHelper
+  include EntryConcern
   before_action :require_login
   add_flash_types :success, :notice, :error
   protect_from_forgery with: :exception

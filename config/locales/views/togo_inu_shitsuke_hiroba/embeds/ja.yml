@@ -1,0 +1,10 @@
+ja:
+  togo_inu_shitsuke_hiroba:
+    embeds:
+      new:
+        title: |
+          ドッグランへの投稿作成
+          SNS 埋め込み
+        fb_or_insta: Facebook/Instagram
+        twitter: Twitter
+        select_sns: SNSを選択してください

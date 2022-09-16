@@ -6,6 +6,15 @@ GIT
     faker (2.21.0)
       i18n (>= 1.8.11, < 2)
 
+GIT
+  remote: https://github.com/ruby/debug
+  revision: 2cb44483c681f6806bf6843a8f996d3a10d0e42c
+  branch: master
+  specs:
+    debug (1.6.2)
+      irb (>= 1.3.6)
+      reline (>= 0.3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -138,9 +147,6 @@ GEM
     coderay (1.1.3)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
-    debug (1.5.0)
-      irb (>= 1.3.6)
-      reline (>= 0.2.7)
     diff-lcs (1.5.0)
     digest (3.1.0)
     domain_name (0.5.20190701)
@@ -460,7 +466,7 @@ DEPENDENCIES
   carrierwave
   chartkick
   cloudinary
-  debug
+  debug!
   enum
   enum_help
   factory_bot_rails

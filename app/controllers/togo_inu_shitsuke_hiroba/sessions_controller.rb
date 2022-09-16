@@ -32,7 +32,7 @@ class TogoInuShitsukeHiroba::SessionsController < TogoInuShitsukeHiroba::DogrunP
 
   def guest_login
     @guest_user = User.create(
-      name: 'ゲスト',
+      name: 'GUEST',
       email: SecureRandom.alphanumeric(10) + '@example.com',
       password: 'password',
       password_confirmation: 'password',
@@ -41,6 +41,13 @@ class TogoInuShitsukeHiroba::SessionsController < TogoInuShitsukeHiroba::DogrunP
     )
     auto_login(@guest_user)
     redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.guest_login_successfully')
+  end
+
+  def jump_to_signup
+    return unless current_user.guest?
+
+    logout
+    redirect_to togo_inu_shitsuke_hiroba_signup_path, notice: t('.signup_please')
   end
 
   private

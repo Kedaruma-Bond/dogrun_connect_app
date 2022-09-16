@@ -18,7 +18,7 @@ ja:
     login: ログイン
     logout: ログアウト
     profile: プロフィール
-    site_information: ドッグランの連絡
+    dogrun_post: ドッグランへの投稿作成
     signup: 新規登録
     support: サポート
     terms_of_service: 利用規約
@@ -37,7 +37,9 @@ ja:
     friend_list: フレンドリスト
     email_message: の様式が正しくありません
     entry: 入場
-    entry_at: 入場時間
+    entry_at: |
+      入場
+      時間
     exit_at: 退場時間
     exit: 退場
     detail: 詳細
@@ -48,7 +50,9 @@ ja:
     posting: 投稿中...
     edit: 編集
     delete: 削除
-    owner_comment: 飼い主さんから一言
+    owner_comment: |
+      飼い主さん
+      から一言
     thumbnail: サムネイル
     not_authorized: 権限がありません
     date: 日付
@@ -59,6 +63,7 @@ ja:
     destroy_successfully: 削除しました
     search_results_is: 検索結果
     search_results_unit: 件
+    success_to_post: 投稿しました
   simple_form:
     "yes": はい
     "no": いいえ
@@ -99,7 +104,9 @@ ja:
         dog_with: Dog with
   activerecord:
     attributes:
-      signup_form:
+      dog_registration:
+        name: ワンちゃんの名前
+        registration_number: 登録番号
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -116,7 +123,6 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    -
     - 1月
     - 2月
     - 3月

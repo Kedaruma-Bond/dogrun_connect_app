@@ -1,10 +1,17 @@
 class Post < ApplicationRecord
   belongs_to :user
   belongs_to :dogrun_place
-  mount_uploader :attach_image, AttachmentUploader
+  has_one :artcle, dependent: :destroy
+  has_one :embed, dependent: :destroy
 
   #validates
-  validates :content, presence: true, length: { maximum: 400 }
+  with_options on: %i[create update] do
+    validates :post_type, presence: true
+  end
+
+  # enum
+  enum publish_status: { non_publish: false, is_publishing: true }
+  enum post_type: { article: 0, embed: 1 }
 
 end
 
@@ -13,9 +20,8 @@ end
 # Table name: posts
 #
 #  id              :bigint           not null, primary key
-#  attach_image    :string
-#  content         :text             not null
-#  publish_status  :boolean          default(FALSE), not null
+#  post_type       :integer          not null
+#  publish_status  :boolean          default("non_publish"), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  dogrun_place_id :bigint           not null

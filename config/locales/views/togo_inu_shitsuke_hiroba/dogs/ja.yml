@@ -4,17 +4,16 @@ ja:
       show:
         title: プロフィール
         registration_number: パスポート番号
-        dogrun: 犬のしつけ広場
         edit: 編集
       edit:
         title: |
           プロフィール
           編集
-        dogrun: 犬のしつけ広場
         age_unit: 歳
         change_image: サムネイル変更
         registration_number: パスポート番号
-        dog_name: 犬の名前
+        dog_name: ワンちゃんの名前
         clear: クリア
+        owner_comment_placeholder: ワンちゃんの性格等、周りに周知してもらいたいことなどを記載してください
         
 

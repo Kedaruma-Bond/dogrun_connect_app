@@ -9,7 +9,6 @@ class Staff < ApplicationRecord
   # enum
   enum enable_notification: { disable: false, enable: true }
 
-  # scope
 end
 
 # == Schema Information

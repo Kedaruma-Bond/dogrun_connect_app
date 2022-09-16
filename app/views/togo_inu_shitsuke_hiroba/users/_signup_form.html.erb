@@ -15,9 +15,9 @@
     <div class="md:flex items-center">
       <div class="w-full md:w-1/2 flex flex-col mt-7"> 
         <%= f.label :password, label_html: { class: "font-bold leading-none" } %>
-        <%= f.input :password, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint: false, required: true, error: false %>
+        <%= f.input :password, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint: '　', required: true, error: false %>
       </div>
-      <div class="w-full md:w-1/2 flex flex-col mt-7 md:mt-0"> 
+      <div class="w-full md:w-1/2 flex flex-col mt-7"> 
         <%= f.label :password_confirmation, label_html: { class: "font-bold leading-none" } %>
         <%= f.input :password_confirmation, input_html: { class: "block w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint_html: { class: "text-sm block" }, hint: t('.password_hint'), required: true, error: false %>
       </div>
