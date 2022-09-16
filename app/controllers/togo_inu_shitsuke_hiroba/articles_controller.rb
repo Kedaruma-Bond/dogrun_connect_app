@@ -1,5 +1,7 @@
 class TogoInuShitsukeHiroba::ArticlesController < TogoInuShitsukeHiroba::DogrunPlaceController
+  include PostConcern
   before_action :set_staffs, only: %i[create]
+  before_action :article_params, only: %i[create]
   
   def new
     @article = Article.new
@@ -9,7 +11,7 @@ class TogoInuShitsukeHiroba::ArticlesController < TogoInuShitsukeHiroba::DogrunP
     @article = Article.new(article_params)
     if @article.save
       send_notification_mail(@staffs)
-      redirect_to togo_inu_shitsuke_hiroba_top_, success: t('defaults.sccess_to_post')
+      redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('defaults.success_to_post')
       return  
     end
     render :new, status: :unprocessable_entity
@@ -19,6 +21,7 @@ class TogoInuShitsukeHiroba::ArticlesController < TogoInuShitsukeHiroba::DogrunP
     def article_params
       params.require(:article).permit(
         :content, :image_attach
-      ).merge(pastable)
+      ).merge(post_id: params[:id])
     end
+    
 end

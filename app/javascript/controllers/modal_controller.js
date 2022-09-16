@@ -20,6 +20,8 @@ export default class extends Controller {
 
     this.modalTarget.close();
 
-    this.formTarget.reset()
+    if (this.hasFormTarget) {
+      this.formTarget.reset();
+    }
   }
 }

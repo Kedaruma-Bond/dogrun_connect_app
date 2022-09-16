@@ -4,7 +4,9 @@ ja:
       login_navbar:
         logout_confirmation: ログアウトしてよろしいですか？
       form:
-        select_post_type: 投稿タイプを選択してください
+        select_post_type: |
+          作成する投稿タイプを
+          選択してください
         select_it: 選択してください
         sentence+photo: '文 + 写真'
         embed_sns: 'SNS埋め込み'

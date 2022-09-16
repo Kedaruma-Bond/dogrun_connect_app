@@ -4,7 +4,6 @@ class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::Dogr
   before_action :get_dogrun_entry_data, only: %i[top detail]
   around_action :skip_bullet, if: -> { defined?(Bullet) }
 
-
   def top
     @entry = Entry.new
     return if !logged_in?

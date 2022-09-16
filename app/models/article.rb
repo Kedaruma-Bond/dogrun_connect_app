@@ -1,5 +1,5 @@
 class Article < ApplicationRecord
-  has_one :post, as: :postable, dependent: :destroy
+  belongs_to :post
   mount_uploader :image_attach, AttachmentUploader
 
   # validates
@@ -16,4 +16,13 @@ end
 #  image_attach :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  post_id      :bigint           not null
+#
+# Indexes
+#
+#  index_articles_on_post_id  (post_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (post_id => posts.id)
 #

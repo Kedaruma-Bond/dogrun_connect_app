@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get 'detail', to: 'static_pages#detail'
     resource :sessions, only: %i[new create destroy]
     post '/guest_login', to: 'sessions#guest_login'
+    post '/jump_to_signup', to: 'sessions#jump_to_signup'
     get 'login', to: 'sessions#new'
     post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy', as: :logout
@@ -28,7 +29,7 @@ Rails.application.routes.draw do
     resources :posts, only: %i[new create index show] do
       member do
         resources :articles, only: %i[new create]
-        resources :embed, only: %i[new create]
+        resources :embeds, only: %i[new create]
       end
     end
     

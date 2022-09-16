@@ -10,15 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_07_053038) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_15_015054) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "articles", force: :cascade do |t|
+    t.bigint "post_id", null: false
     t.text "content", null: false
     t.string "image_attach"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_articles_on_post_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -52,10 +54,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_053038) do
   end
 
   create_table "embeds", force: :cascade do |t|
-    t.string "identifier"
-    t.integer "embed_type", default: 0, null: false
+    t.bigint "post_id", null: false
+    t.text "identifier", null: false
+    t.integer "embed_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_embeds_on_post_id"
   end
 
   create_table "entries", force: :cascade do |t|
@@ -76,10 +80,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_053038) do
     t.bigint "dogrun_place_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "postable_type"
-    t.bigint "postable_id"
+    t.integer "post_type", null: false
     t.index ["dogrun_place_id"], name: "index_posts_on_dogrun_place_id"
-    t.index ["postable_type", "postable_id"], name: "index_posts_on_postable"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -129,7 +131,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_053038) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token"
   end
 
+  add_foreign_key "articles", "posts"
   add_foreign_key "dogs", "users"
+  add_foreign_key "embeds", "posts"
   add_foreign_key "entries", "dogs"
   add_foreign_key "entries", "registration_numbers"
   add_foreign_key "posts", "dogrun_places"

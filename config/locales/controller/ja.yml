@@ -77,6 +77,10 @@ ja:
           ゲストログインしました!
           ワンちゃんの登録はゲストログインではできません。
           新規登録が必要ですので、是非ご登録ください！！
+      jump_to_signup:
+        signup_please: |
+          新規登録してアプリを
+          フルに活用しましょう♪ 
     dogs:
       update:
         dog_profile_updated: |
@@ -85,11 +89,11 @@ ja:
     posts:
       create:
         success: ドッグランの連絡を投稿しました
-        make_article: |
+        create_article: |
           投稿する文を入力してください。
           必要あれば写真も添付してください。
-        choice_sns: |
-          埋め込むSNSを選択してください。
+        choice_sns: 埋め込むSNSを選択してください。
+        post_save_error: 投稿時にエラーが起きました
   activerecord:
     models:
       contact: お問い合わせ
@@ -126,14 +130,17 @@ ja:
       post:
         embed: SNS埋め込み
         article: 文+写真
-        create_postable:
-          post_type_error: "投稿タイプが不正です %{type}"
-
+      article:
+        content: 内容
+        image_attach: 写真
+      embed:
+        embed_type: 埋め込むSNS
+        identifier: SNSのURL
       staff:
         name: スタッフの名前
         email: メールアドレス
         enable_notification: |
-          ドッグランの連絡通知
+          ドッグラへンの投稿通知
           受け取り
   activemodel:
     attributes:

@@ -43,6 +43,13 @@ class TogoInuShitsukeHiroba::SessionsController < TogoInuShitsukeHiroba::DogrunP
     redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.guest_login_successfully')
   end
 
+  def jump_to_signup
+    return unless current_user.guest?
+
+    logout
+    redirect_to togo_inu_shitsuke_hiroba_signup_path, notice: t('.signup_please')
+  end
+
   private
     def remember_checked
       params[:rememer] = true

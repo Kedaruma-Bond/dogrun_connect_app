@@ -1,5 +1,5 @@
 class Admin::StaffsController < Admin::BaseController
-  before_action :set_staffs, only: %i[index]
+  before_action :set_staffs_in_admin, only: %i[index]
   before_action :staff_params, only: %i[create]
   before_action :set_staff, only: %i[destroy enable_notification disable_notification]
 
@@ -46,7 +46,7 @@ class Admin::StaffsController < Admin::BaseController
 
   private
 
-    def set_staffs
+    def set_staffs_in_admin
       @staffs = Staff.where(dogrun_place_id: current_user.dogrun_place_id).order(id: :desc).page(params[:page])
     end
   
