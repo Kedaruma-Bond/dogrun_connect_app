@@ -60,10 +60,27 @@ ja:
     registration_dogs_num: 登録頭数  
     search: 検索
     destroy_confirmation: 削除しますか？
+    edit_confirmation: 編集しますか？
     destroy_successfully: 削除しました
     search_results_is: 検索結果
     search_results_unit: 件
-    success_to_post: 投稿しました
+    post_successfully: 投稿しました
+    create_article: |
+      投稿する文を入力してください。
+      必要あれば写真も添付してください。
+    choice_sns: 埋め込むSNSを選択してください。
+    post_save_error: 投稿時にエラーが起きました
+    update_successfully: 更新しました
+    search_period: 検索期間
+    nothing_on_board: 掲示中の記事はありません
+    on_board: 掲示板に表示している投稿
+    create_post: 新規作成
+    publishing_limit: 掲示期限
+    posted_time: 投稿日時
+    posted_by: 投稿者
+    post_type: 投稿タイプ
+    sns_type: SNSタイプ
+    preview_post: プレビュー
   simple_form:
     "yes": はい
     "no": いいえ
@@ -101,7 +118,18 @@ ja:
     registration_number:
       dogrun_place:
         togo_inu_shitsuke_hiroba: 犬のしつけ広場    
-        dog_with: Dog with
+    post:
+      publish_status:
+        non_publish: 非掲載
+        is_publishing: 掲載中
+      post_type:
+        article: 文 + 写真
+        embed:  SNS埋め込み
+    embed:
+      embed_type:
+        fb: Facebook
+        instagram: Instagram
+        twitter: Twitter
   activerecord:
     attributes:
       dog_registration:
@@ -309,7 +337,7 @@ ja:
     formats:
       default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       long2: "%Y年%-m月%-d日 (%a)"
-      long: "%Y/%m/%d %H:%M"
+      long: "%Y/%m/%d (%a) %H:%M"
       short: "%m/%d %H:%M"
       short2: "%-H:%M"
     pm: 午後

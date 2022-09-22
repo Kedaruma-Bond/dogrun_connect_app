@@ -1,0 +1,22 @@
+ja:
+  admin:
+    posts:
+      index:
+        title: ドッグランへの投稿一覧
+      form:
+        select_post_type: |
+          作成する投稿タイプを
+          選択してください
+        select_it: 選択してください
+      search_form:
+        search_field: 投稿者検索
+      search:
+        title: ドッグランへの投稿検索結果
+      post:
+        cancel_to_publish_confirmation: 投稿を取り止めますか？
+      publish_limit_form:
+        start_to_publish_confirmation: この投稿を掲示しますか？
+        please_set_publish_limit: 掲載期限を設定してください
+        until: 迄
+      set_publish_limit: 
+        title: 掲示期限設定

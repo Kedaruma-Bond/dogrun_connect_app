@@ -1,0 +1,7 @@
+<% content_for(:title, t('.title')) %>
+<div class="w-full mx-auto px-3 sm:px-6 mt-5 bg-gray-300">
+  <div class="w-full shadow rounded p-6">
+    <%= simple_format(t('.title'), { class: 'text-2xl font-bold leading-7 text-center mb-10' }, { wrapper_tag: "div" } ) %>
+    <%= render partial: 'admin/embeds/form', locals: { embed: @embed }%>
+  </div>
+</div>

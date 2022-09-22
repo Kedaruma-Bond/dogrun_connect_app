@@ -1,0 +1,14 @@
+ja:
+  admin:
+    embeds:
+      new:
+        title: |
+          ドッグランへの投稿作成
+          SNS埋め込み
+      edit:
+        title: |
+          ドッグランへの投稿編集
+          SNS埋め込み
+      form:
+        select_sns: SNSを選択してください
+        

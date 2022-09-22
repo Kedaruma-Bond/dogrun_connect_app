@@ -26,10 +26,10 @@ Rails.application.routes.draw do
     resource :entries, only: %i[create update]
     resources :users, only: %i[new create show]
     resources :dogs, only: %i[show edit update]
-    resources :posts, only: %i[new create index show] do
+    resources :posts, only: %i[create] do
       member do
-        resources :articles, only: %i[new create]
-        resources :embeds, only: %i[new create]
+        resource :article, only: %i[new create]
+        resource :embed, only: %i[new create]
       end
     end
     
@@ -44,15 +44,19 @@ Rails.application.routes.draw do
     root 'dashboards#index'
     resources :dogrun_places, only: %i[index create]
 
-    resources :posts, only: %i[new create edit update destory] do
+    resources :posts, only: %i[index create destroy] do
       collection do
         get 'page/:page', action: :index
         get 'search', to: 'posts#search'
         post 'search', to: 'posts#search'
       end
       member do
+        get 'set_publish_limit', to: 'posts#set_publish_limit'
         patch 'start_to_publish', to: 'posts#start_to_publish'
         patch 'cancel_to_publish', to: 'posts#cancel_to_publish'
+        post 'get_post', to: 'posts#get_post'
+        resource :article, only: %i[new create edit update]
+        resource :embed, only: %i[new create edit update]
       end
     end
     

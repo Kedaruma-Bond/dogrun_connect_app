@@ -6,9 +6,9 @@ class TogoInuShitsukeHiroba::PostsController < TogoInuShitsukeHiroba::DogrunPlac
     if @post.save
       case @post.post_type
       when 'article'
-        redirect_to new_togo_inu_shitsuke_hiroba_article_path(@post), notice: t('.create_article')
+        redirect_to new_togo_inu_shitsuke_hiroba_article_path(@post), notice: t('defaults.create_article')
       when 'embed'
-        redirect_to new_togo_inu_shitsuke_hiroba_embed_path(@post), notice: t('.choice_sns')
+        redirect_to new_togo_inu_shitsuke_hiroba_embed_path(@post), notice: t('defaults.choice_sns')
       end
       return
     else

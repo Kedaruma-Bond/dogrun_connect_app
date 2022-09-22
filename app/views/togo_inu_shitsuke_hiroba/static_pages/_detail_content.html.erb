@@ -77,12 +77,7 @@
                       <% if @dogs[t].sex.blank? %>
                         -
                       <% else %>
-                        <% case @dogs[t].sex %>
-                        <% when 'male' then %>
-                          <%= t'enums.dog.sex.male' %>
-                        <% when 'female' then %>
-                        <%= t'enums.dog.sex.female'%>
-                        <% end %>
+                        <%= @dogs[t].sex_i18n %>
                       <% end %>
                     </div>
                     <div class="hidden md:table-cell pl-2 text-base align-middle whitespace-nowrap font-semibold text-left bg-purple-200 text-gray-600">
