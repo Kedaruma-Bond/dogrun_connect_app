@@ -2,11 +2,11 @@ class Embed < ApplicationRecord
   belongs_to :post
   
   # validates
-  validates :identifier, length: { maximum: 1000 }, presence: true
+  validates :identifier, length: { maximum: 10000 }, presence: true
   validates :embed_type, presence: true
 
   # enum
-  enum embed_type: { fb_insta: 0, twitter: 1}
+  enum embed_type: { fb: 0, instagram: 1, twitter: 2}
 end
 
 # == Schema Information

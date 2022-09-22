@@ -1,5 +1,5 @@
 namespace :force_exit_task do
-  desc "毎日AM0:00にexit_atがnilのEntryをまとめて更新し退場させる"
+  desc "exit_atがnilのEntryをまとめて更新し退場させる"
   task force_exit: :environment do
     entries = Entry.where(exit_at: nil)
     entries.each do |entry|

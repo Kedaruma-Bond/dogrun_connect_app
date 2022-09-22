@@ -8,8 +8,6 @@ ja:
           作成する投稿タイプを
           選択してください
         select_it: 選択してください
-        sentence+photo: '文 + 写真'
-        embed_sns: 'SNS埋め込み'
 
 
 

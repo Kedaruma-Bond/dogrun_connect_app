@@ -100,8 +100,9 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
-  # debug用
+  # error詳細確認用
   gem 'better_errors'
+  gem 'binding_of_caller'
   # code補完
   gem 'solargraph'
   # 模擬メール機能

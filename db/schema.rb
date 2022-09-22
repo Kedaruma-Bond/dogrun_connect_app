@@ -81,6 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_15_015054) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "post_type", null: false
+    t.datetime "publish_limit"
     t.index ["dogrun_place_id"], name: "index_posts_on_dogrun_place_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end

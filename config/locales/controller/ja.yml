@@ -1,5 +1,10 @@
 ja:
   admin:
+    posts:
+      cancel_to_publish:
+        change_to_non_publish: 掲示を取り止めました
+      start_to_publish:
+        change_to_be_publishing: 掲示を開始しました
     staffs:
       create:
         staff_create: スタッフが新規登録されました
@@ -88,10 +93,6 @@ ja:
           更新しました！
     posts:
       create:
-        success: ドッグランの連絡を投稿しました
-        create_article: |
-          投稿する文を入力してください。
-          必要あれば写真も添付してください。
         choice_sns: 埋め込むSNSを選択してください。
         post_save_error: 投稿時にエラーが起きました
   activerecord:
@@ -100,6 +101,7 @@ ja:
       dog: ワンちゃん
       user: 飼い主さん
       registration_number: 登録番号
+      post: ドッグランへの投稿
     attributes:
       contact:
         name: 氏名
@@ -128,14 +130,17 @@ ja:
         entry_at: 入場時間
         exit_at: 退場時間
       post:
-        embed: SNS埋め込み
-        article: 文+写真
+        post_type: 投稿タイプ
+        publish_status: |
+          掲載
+          状態
+        publish_limit: 掲示期限
       article:
         content: 内容
         image_attach: 写真
       embed:
         embed_type: 埋め込むSNS
-        identifier: SNSのURL
+        identifier: SNSの埋め込みCode
       staff:
         name: スタッフの名前
         email: メールアドレス

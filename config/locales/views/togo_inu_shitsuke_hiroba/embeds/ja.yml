@@ -5,6 +5,7 @@ ja:
         title: |
           ドッグランへの投稿作成
           SNS 埋め込み
-        fb_or_insta: Facebook/Instagram
+        fb: Facebook
+        instagram: Instagram
         twitter: Twitter
         select_sns: SNSを選択してください

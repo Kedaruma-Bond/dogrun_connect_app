@@ -12,7 +12,7 @@
             <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8 items-center justify-center">
               <div class="mb-3">
                 <span class="text-sm font-medium"><%= t'.change_image' %></span>
-                <%= f.input :thumbnail_photo, as: :file, input_html: { data: { target: "preview.imageUploader", action: "preview#updatePreview" }, class: "block w-full px-3 py-1.5 text-sm text-white font-normal bg-gray-700 bg-clip-padding rounded border border-soild border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
+                <%= f.input :thumbnail_photo, as: :file, input_html: { data: { "preview-target": "imageUploader", action: "preview#updatePreview" }, class: "block w-full px-3 py-1.5 text-sm text-white font-normal bg-gray-700 bg-clip-padding rounded border border-soild border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
                 <%= f.hidden_field :thumbnail_photo_cache %>
               </div>
               <div class="flex-shrink-0 mx-auto mb-3 md:mb-0">
@@ -36,7 +36,7 @@
                 </div>
               </div>
               <div class="flex-raw flex-shrink-0 items-center md:items-start md:justify-center mb-6">
-                <%= f.input :birthday, as: :date, start_year: Date.today.year - 30, end_year: Date.today.year, html5: true, input_html: { class: "block w-full md:w-1/2 leding-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200"}, label: t('defaults.birthday'), hint: false, error: false %>
+                <%= f.input :birthday, start_year: Date.today.year - 30, end_year: Date.today.year, html5: true, input_html: { class: "block w-full md:w-1/2 leding-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200"}, label: t('defaults.birthday'), hint: false, error: false %>
               </div>
               <div class="flex-row flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
                 <%= f.input :breed, input_html: { class: "block w-full leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200"}, hint: false, error: false %>

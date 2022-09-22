@@ -1,0 +1,16 @@
+<dialog class="flex-wrap bg-white shadow-xl w-4/5 md:w-1/3 backdrop:bg-gray-700 backdrop:bg-opacity-50 open:animate-fade-in open:backdrop:animate-fade-in" data-modal2-target="modal2">
+  <button type="button" data-action="modal2#close" class="float-right">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+  <% if post.article? %>
+    <div class="p-2 text-gray-600 mt-2">
+      <h3 class=""><%= Article.human_attribute_name(:content) %></h3>
+      <%= simple_format(post.article.content, { class: 'text-base' }, { wrapper_tag: "div" } ) %>
+
+    </div>
+  <% else %>
+      いい感じに表示
+  <% end %>
+</dialog>

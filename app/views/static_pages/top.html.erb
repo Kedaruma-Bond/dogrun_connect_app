@@ -1,4 +1,17 @@
 <header class="bg-white">
+  <% if logged_in? && !@dogrun_place.blank? %>
+    <section>
+      <%= render 'logo_click' %>
+      <h2 class="text-center font-medium text-gray-900 text-lg"><%= t('.last_entry_dogrun_place') %></h2>
+
+      <%= link_to @link, class: "w-1/3 max-w-xs overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800" do %>
+        <%= image_tag @image_url, class: "object-cover h-56 mx-auto rounded-full", alt: "dogrun_logo" %>
+        <div class="py-5 text-center">
+          <h3 class="block text-2xl font-bold text-gray-800"><%= @name %></h3>
+        </div>
+      <% end %>
+    </section>
+  <% end %>
   <section>
     <div class="container lg:flex lg:flex-row w-full items-center px-4 mx-auto text-center">
       <h1 class="basis-1/3 text-3xl font-bold tracking-tight text-gray-600 lg:items-center">
@@ -108,18 +121,15 @@
         <span class="inline-block w-1 h-1 bg-blue-500 rounded-full"></span>
       </div>
 
-      <div class="max-w-2xl mx-auto mt-6 text-center text-gray-500">
-        <%= simple_format((t'.looking_for_dogrun'), {}, wrapper_tag: "div") %>
-        <p class="sm:hidden text-fuchsia-500 mt-5">各ドッグランのロゴ or 名前をクリックするとそのドッグラン用のTOP画面に移動します</p>
-        <p class="hidden sm:block text-fuchsia-500 mt-5">各ドッグランのロゴ or 名前をタップするとそのドッグラン用のTOP画面に移動します</p>
-      </div>
+        <%= simple_format((t'.looking_for_dogrun'), {class: "w-full mt-6 text-gray-500 text-center" }, wrapper_tag: "div") %>
+      <%= render 'logo_click' %>
     </div>
 
     <div class="container px-6 py-1 mx-auto">
       <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-3">
         <div class="flex flex-col items-center p-4 border sm:p-6 rounded-xl">
           <%= link_to togo_inu_shitsuke_hiroba_top_path do %>
-            <%= image_tag "https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661503968/togo_inu_shitsuke_hiroba_logo_dmshl1.png", class: "object-cover w-full rounded-xl aspect-square", alt: "togo_inu_shitsuke_hiriba" %>
+            <%= image_tag "https://res.cloudinary.com/hryerpkcw/image/upload/ar_1:1,c_fill,f_auto,q_auto,r_max/v1661503968/togo_inu_shitsuke_hiroba_logo_dmshl1.png", class: "object-cover w-full", alt: "togo_inu_shitsuke_hiriba" %>
             <div class ="text-center">
               <h1 class="mt-4 text-2xl font-semibold text-gray-700">
                 <%= DogrunPlace.find(2).name %>

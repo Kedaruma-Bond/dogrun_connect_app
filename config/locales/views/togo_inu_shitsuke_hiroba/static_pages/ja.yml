@@ -14,6 +14,7 @@ ja:
           是非チェックしてみてください
         guest_login: ゲストログイン
         jump_to_signup: 新規登録画面へ
+        dogrun_board: ドッグランの掲示板
       login_top_content:
         select_entry_dog: 入場するワンちゃんを選択してください
         entry_confirm: 入場してよろしいですか？

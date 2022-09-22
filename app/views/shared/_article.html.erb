@@ -1,0 +1,15 @@
+<div class="relative">
+  <div class="flex absolute right-0 pr-5">
+    <%= post.box_header_icon%>
+  </div>
+</div>
+<div class="p-2 md:px-20 text-gray-600" data-controller="lightbox">
+  <% if !post.article.image_attach.blank? %>
+    <%= link_to post.article.image_attach.url(:std_attach) do %>
+      <%= image_tag post.article.image_attach.url(:std_attach), alt: "preview of attachment photo", class: "object-cover mx-auto w-1/2 h-1/2" %>
+    <% end %>
+  <% else %>
+    no image
+  <% end %>
+  <%= simple_format(post.article.content, { class: 'text-base mt-2 px-3' }, { wrapper_tag: "div" } ) %>
+</div>

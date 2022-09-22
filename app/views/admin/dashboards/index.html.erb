@@ -106,7 +106,7 @@
       </div>
     </div>
     <!--/New Registration dogs at this month Card-->
-    <!--dogrun information at this month Card-->
+    <!--dogrun post at this month Card-->
     <div class="w-1/2 p-6">
       <div class="bg-gradient-to-b from-indigo-200 to-indigo-100 border-b-4 border-indigo-500 rounded-lg shadow-xl p-5">
         <div class="flex flex-row items-center">
@@ -119,10 +119,10 @@
           </div>
           <div class="flex-1 text-right md:text-center">
             <h2 class="font-bold uppercase text-gray-600">
-              <%= t('.dogrun_information_over_the_past_month') %>
+              <%= t('.dogrun_post_over_the_past_month') %>
             </h2>
             <p class="font-bold text-3xl">
-              xx
+              <%= @posts_over_the_past_month.size %>
             </p>
           </div>
         </div>

@@ -1,0 +1,13 @@
+ja:
+  admin:
+    articles:
+      new:
+        title: |
+          ドッグランへの投稿作成
+          文 + 写真
+      edit:
+        title: |
+          ドッグランへの投稿編集
+          文 + 写真
+      form:
+        clear_photo: 写真をクリア

@@ -8,6 +8,7 @@ class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::Dogr
     @entry = Entry.new
     return if !logged_in?
     @user_dog_entry = Entry.where(exit_at: nil).user_id(current_user.id)
+    @publishing_post = Post.where(publish_status: 'is_publishing').where(dogrun_place: 2)
   end
 
   def detail
