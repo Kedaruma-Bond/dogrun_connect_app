@@ -6,10 +6,10 @@
           <div class="table-header-group">
             <div class="table-row">
               <div class="table-cell pl-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
-                <%= simple_format(t'.thumbnail') %>
+                <%= simple_format(t'defaults.thumbnail') %>
               </div>
               <div class="table-cell pl-2 text-sm whitespace-nowrap font-semibold text-left bg-purple-200 text-gray-600 border-b border-gray-700">
-                <%= simple_format(t'.dog_name') %>
+                <%= simple_format(t'defaults.dog_name') %>
               </div>
               <div class="hidden md:table-cell pl-2 text-sm whitespace-nowrap font-semibold text-left bg-purple-200 text-gray-600 border-b border-gray-700">
                 <%= t'defaults.breed' %>
@@ -32,7 +32,7 @@
             </div>
           </div>
           <div class="table-row-group">
-            <% if @num_of_playing_dogs.zero? %>
+            <% if @num_of_playing_dogs.blank? %>
               <div class="table-row">
                 <div class="table-cell text-sm whitespace-nowrap py-8 font-bold bg-purple-200 mx-auto text-gray-600">
                   <%= simple_format(t'.nobody_playing') %>
@@ -43,10 +43,10 @@
                 <div class="table-row">
                   <% if @dogs[t].public == 'non_public' %>
                     <div class="table-cell text-sm pl-10 whitespace-nowrap py-8 font-bold bg-purple-200 mx-auto text-gray-600">
-                      <%= simple_format(t'.non_public_dog') %>
+                      <%= simple_format(t'defaults.non_public_dog') %>
                     </div> 
                   <% else %>
-                    <div class="table-cell text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600">
+                    <div class="table-cell whitespace-nowrap bg-purple-200">
                       <%= link_to togo_inu_shitsuke_hiroba_dog_path(@dogs[t].id) do %>
                         <div class="w-15 h-15 mb-3 md:mb-0">
                           <%= image_tag @dogs[t].thumbnail_photo.url(:std_thumb), alt: @dogs[t].name %>

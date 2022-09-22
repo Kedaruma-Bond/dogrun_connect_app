@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module DogDecorator
   def age
     today = Time.zone.today

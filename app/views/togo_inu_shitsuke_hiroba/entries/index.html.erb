@@ -1,0 +1,37 @@
+<% content_for(:title, I18n.t('togo_inu_shitsuke_hiroba.entries.index.title', dogrun: DogrunPlace.find(2).name)) %>
+<div class="max-w-6xl mx-auto px-1 sm:px-6 lg:px-8 mt-5">
+  <h1 class='text-3xl text-indigo-800 font-semibold text-center mb-3'>
+    <%= simple_format(I18n.t('togo_inu_shitsuke_hiroba.entries.index.title', dogrun: DogrunPlace.find(2).name)) %>
+  </h1>
+  <%= render 'search_form' %>
+  <div class="container bg-purple-200 w-full shadow rounded sm:p-10 pt-3">
+    <div class="block w-full overflow-x-auto">
+      <table class="table-auto items-center w-full bg-transparent border-collapse">
+        <thead>
+          <tr>
+            <th class="pl-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
+              <%= simple_format(t('defaults.thumbnail')) %>
+            </th>
+            <th class="pl-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
+              <%= simple_format(t('defaults.dog_name')) %>
+            </th>
+            <th class="pl-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
+              <%= t('defaults.date') %>
+            </th>
+            <th class="pl-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
+              <%= simple_format(t('defaults.entry_at')) %>
+            </th>
+            <th class="pl-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
+              <%= simple_format(t('defaults.exit_at')) %>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: 'shared/entry', collection: @entries %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <%= paginate @entries %>
+</div>
+

@@ -4,7 +4,6 @@ ja:
       navbar:
         logout_confirmation: 管理者ユーザーからログアウトしますか？
       sidebar:
-        entry_list: 利用記録一覧
         user_list: 利用者一覧
         dogrun_post_list: ドッグランへの投稿一覧
         staff_list: スタッフ一覧

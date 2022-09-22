@@ -24,6 +24,13 @@ Rails.application.routes.draw do
     delete 'logout', to: 'sessions#destroy', as: :logout
     
     resource :entries, only: %i[create update]
+    resources :entries, only: %i[index] do
+      collection do
+        get 'page/:page', action: :index
+        get 'search', to: 'entries#search'
+        post 'search', to: 'entries#search'
+      end
+    end
     resources :users, only: %i[new create show]
     resources :dogs, only: %i[show edit update]
     resources :posts, only: %i[create] do

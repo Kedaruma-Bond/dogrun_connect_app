@@ -55,6 +55,6 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   end
 
   def public_id
-    return model.name
+    return model.id
   end
 end

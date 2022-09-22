@@ -40,7 +40,9 @@ ja:
     entry_at: |
       入場
       時間
-    exit_at: 退場時間
+    exit_at: |
+      退場
+      時間
     exit: 退場
     detail: 詳細
     update: 更新
@@ -71,7 +73,9 @@ ja:
     choice_sns: 埋め込むSNSを選択してください。
     post_save_error: 投稿時にエラーが起きました
     update_successfully: 更新しました
-    search_period: 検索期間
+    search_period: |
+      検索
+      期間
     nothing_on_board: 掲示中の記事はありません
     on_board: 掲示板に表示している投稿
     create_post: 新規作成
@@ -81,6 +85,18 @@ ja:
     post_type: 投稿タイプ
     sns_type: SNSタイプ
     preview_post: プレビュー
+    entry_list: 利用記録一覧
+    dog_name: |
+      ワンちゃんの
+      名前
+    thumbnail: |
+      ワンちゃんの
+      サムネイル
+    non_public_dog: |
+      利用状況が
+      非公開の
+      ワンちゃんです
+    entering: 入場中
   simple_form:
     "yes": はい
     "no": いいえ

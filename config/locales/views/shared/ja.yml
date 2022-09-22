@@ -7,9 +7,7 @@ ja:
       age_unit: 歳
     entries_table:
       table_of_entries_latest_max_five: "過去%{times}回の利用状況"
-      date: 日付
       playing_together: 一緒に遊んだワンちゃん
-      entering: 入場中
     twitter:
       processing_embed_tweet: ツイート埋め込み処理中
       
