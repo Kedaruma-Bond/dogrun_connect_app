@@ -24,6 +24,13 @@ Rails.application.routes.draw do
     delete 'logout', to: 'sessions#destroy', as: :logout
     
     resource :entries, only: %i[create update]
+    resources :entries, only: %i[index] do
+      collection do
+        get 'page/:page', action: :index
+        get 'search', to: 'entries#search'
+        post 'search', to: 'entries#search'
+      end
+    end
     resources :users, only: %i[new create show]
     resources :dogs, only: %i[show edit update]
     resources :posts, only: %i[create] do
@@ -54,7 +61,6 @@ Rails.application.routes.draw do
         get 'set_publish_limit', to: 'posts#set_publish_limit'
         patch 'start_to_publish', to: 'posts#start_to_publish'
         patch 'cancel_to_publish', to: 'posts#cancel_to_publish'
-        post 'get_post', to: 'posts#get_post'
         resource :article, only: %i[new create edit update]
         resource :embed, only: %i[new create edit update]
       end

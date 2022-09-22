@@ -1,7 +1,7 @@
-<% content_for(:title, I18n.t('togo_inu_shitsuke_hiroba.static_pages.detail.title', dogrun: t('.dogrun')))%>
+<% content_for(:title, I18n.t('togo_inu_shitsuke_hiroba.static_pages.detail.title', dogrun: DogrunPlace.find(2).name))%>
 <div class="max-w-6xl mx-auto px-1 sm:px-6 lg:px-8 mt-5">
   <h1 class='text-3xl text-indigo-800 font-semibold text-center'>
-    <%= simple_format(I18n.t('togo_inu_shitsuke_hiroba.static_pages.detail.title', dogrun: t('.dogrun'))) %>
+    <%= simple_format(I18n.t('togo_inu_shitsuke_hiroba.static_pages.detail.title', dogrun: DogrunPlace.find(2).name)) %>
   </h1>
   <div class="container bg-purple-200 w-full shadow rounded sm:p-10 pt-3">
     <div class="md:flex justify-center text-2xl md:text-3xl font-bold mb-5">

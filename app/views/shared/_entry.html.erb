@@ -1,0 +1,25 @@
+<tr>
+  <td class="whitespace-nowrap bg-purple-200 text-gray-600">
+    <%= link_to togo_inu_shitsuke_hiroba_dog_path(entry.dog.id) do %>
+      <div class="w-15 h-15 mb-3 md:mb-0">
+        <%= image_tag entry.dog.thumbnail_photo.url(:std_thumb), alt: entry.dog.name %>
+      </div>
+    <% end %>
+  </td>
+    <td class="align-middle pl-2 text-sm whitespace-nowrap font-medium text-left bg-purple-200 text-gray-600">
+      <%= entry.dog.name %>
+    </td>
+    <td class="align-middle pl-2 text-sm whitespace-nowrap font-medium text-left bg-purple-200 text-gray-600">
+      <%= l entry.entry_at, format: :long2 %>
+    </td>
+    <td class="align-middle pl-2 text-sm whitespace-nowrap font-medium text-center bg-purple-200 text-gray-600">
+      <%= l entry.entry_at, format: :short2 %>
+    </td>
+    <td class="align-middle pl-2 text-sm whitespace-nowrap font-medium text-center bg-purple-200 text-gray-600">
+      <% if entry.exit_at.blank? %>
+        <%= t('defaults.entering') %>
+      <% else %>
+        <%= l entry.exit_at, format: :short2 %>
+      <% end %>
+    </td>
+</tr>

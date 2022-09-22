@@ -15,7 +15,7 @@
           <thead>
             <tr>
               <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-purple-200 text-gray-600">
-                <%= t'.date' %>
+                <%= t'defaults.date' %>
               </th>
               <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-purple-200 text-gray-600">
                 <%= t'defaults.entry_at' %>
@@ -47,7 +47,7 @@
                   </td>
                   <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
                     <% if @entries[t].exit_at.nil? %>
-                      <%= t('.entering') %>
+                      <%= t('defaults.entering') %>
                     <% else %>
                       <%= l @entries[t].exit_at, format: :short2 %>
                     <% end %>

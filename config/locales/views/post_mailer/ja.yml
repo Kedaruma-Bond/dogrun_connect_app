@@ -1,4 +1,6 @@
 ja:
   post_mailer:
     post_notification:
-      subject: '[ドッグランの連絡投稿通知]'
+      subject: '[ドッグランの投稿受領通知]'
+    publish_notification:
+      subject: '[ドッグランの投稿掲示通知]'

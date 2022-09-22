@@ -1,6 +1,10 @@
 class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPlaceController
   before_action :set_dogs, :set_registration_numbers_in_togo_inu_shitsuke_hiroba, only: %i[create]
   before_action :set_entries_array, only: %i[create update]
+  before_action :set_entries, only: %i[index search]
+  before_action :set_q, only: %i[index search]
+
+  def index; end
 
   def create
     exit_from_dogrun
@@ -39,16 +43,28 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
     redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.exit_success')
   end
 
+  def search
+    @entries_results = @q.result.page(params[:page])
+  end
+
   private
 
-  def entry_params
-    params.permit(
-      :dog_id, :registration_number_id,
-      :entry_at, :exit_at,
-      :select_dog
-    ).merge(
-      dog_id: @dog.id,
-      registration_number_id: @registration_number.id
-    )
-  end
+    def set_entries
+      @entries = Entry.dogrun_place_id(2).joins(:dog).where(dogs: {public: 'public_view'}).page(params[:page])
+    end
+
+    def set_q
+      @q = @entries.ransack(params[:q])
+    end
+
+    def entry_params
+      params.permit(
+        :dog_id, :registration_number_id,
+        :entry_at, :exit_at,
+        :select_dog
+      ).merge(
+        dog_id: @dog.id,
+        registration_number_id: @registration_number.id
+      )
+    end
 end
