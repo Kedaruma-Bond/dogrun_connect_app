@@ -61,7 +61,6 @@ Rails.application.routes.draw do
         get 'set_publish_limit', to: 'posts#set_publish_limit'
         patch 'start_to_publish', to: 'posts#start_to_publish'
         patch 'cancel_to_publish', to: 'posts#cancel_to_publish'
-        post 'get_post', to: 'posts#get_post'
         resource :article, only: %i[new create edit update]
         resource :embed, only: %i[new create edit update]
       end
