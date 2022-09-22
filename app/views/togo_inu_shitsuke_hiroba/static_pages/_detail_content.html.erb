@@ -32,7 +32,7 @@
             </div>
           </div>
           <div class="table-row-group">
-            <% if @num_of_playing_dogs.blank? %>
+            <% if @num_of_playing_dogs.zero? %>
               <div class="table-row">
                 <div class="table-cell text-sm whitespace-nowrap py-8 font-bold bg-purple-200 mx-auto text-gray-600">
                   <%= simple_format(t'.nobody_playing') %>

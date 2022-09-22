@@ -39,6 +39,7 @@ class Admin::PostsController < Admin::BaseController
     publishing_post = Post.where(publish_status: 'is_publishing')
     publishing_post.update!(publish_status: 'non_publish')
     @post.update!(post_params_for_publish)
+    PostMailer.publish_notification(@post.user, DogrunPlace.find(current_user.dogrun_place_id)).deliver_now
     respond_to do |format|
       format.html { redirect_back_or_to admin_posts_path, success: t('.change_to_be_publishing') }
       format.json { head :no_content }
