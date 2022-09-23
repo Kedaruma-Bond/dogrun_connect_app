@@ -12,10 +12,17 @@ class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::Dogr
   end
 
   def detail
-    @dogs = []
     return if @dogrun_entry_data.blank?
-    @dogrun_entry_data.each do |entry_data|
-      @dogs << Dog.find(entry_data.dog_id)
+    dogs = @dogrun_entry_data.map do |entry_data|
+      Dog.find(entry_data.dog_id)
+    end
+
+    @dogs_public_view = dogs.select do |dog|
+      dog.public == 'public_view'
+    end
+
+    @dogs_non_public = dogs.select do |dog|
+      dog.public == 'non_public'
     end
   end
 

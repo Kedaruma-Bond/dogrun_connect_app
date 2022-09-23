@@ -2,6 +2,8 @@ class Dog < ApplicationRecord
   belongs_to :user
   has_many :registration_numbers, dependent: :destroy
   has_many :entries, dependent: :destroy
+  has_many :subject, class_name: "FriendDog", foreign_key: "subject_dog_id", dependent: :destroy
+  has_many :subject, class_name: "FriendDog", foreign_key: "friend_dog_id", dependent: :destroy
   mount_uploader :thumbnail_photo, ThumbnailUploader
 
   # validates
