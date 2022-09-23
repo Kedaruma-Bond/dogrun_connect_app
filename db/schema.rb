@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_15_015054) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_23_044237) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,6 +72,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_15_015054) do
     t.index ["dog_id", "registration_number_id", "entry_at"], name: "registration_dog_entry_time_index", unique: true
     t.index ["dog_id"], name: "index_entries_on_dog_id"
     t.index ["registration_number_id"], name: "index_entries_on_registration_number_id"
+  end
+
+  create_table "friend_dogs", force: :cascade do |t|
+    t.bigint "subject_dog_id", null: false
+    t.bigint "friend_dog_id", null: false
+    t.integer "color_marker"
+    t.text "memo", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_dog_id"], name: "index_friend_dogs_on_friend_dog_id"
+    t.index ["subject_dog_id"], name: "index_friend_dogs_on_subject_dog_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -137,6 +148,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_15_015054) do
   add_foreign_key "embeds", "posts"
   add_foreign_key "entries", "dogs"
   add_foreign_key "entries", "registration_numbers"
+  add_foreign_key "friend_dogs", "dogs", column: "friend_dog_id"
+  add_foreign_key "friend_dogs", "dogs", column: "subject_dog_id"
   add_foreign_key "posts", "dogrun_places"
   add_foreign_key "posts", "users"
   add_foreign_key "registration_numbers", "dogrun_places"
