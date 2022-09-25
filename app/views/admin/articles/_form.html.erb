@@ -11,7 +11,7 @@
   </div>
   <div class="flex-shrink-0 mx-auto mb-3 flex">
     <%# 小さい画像ファイル(default)を表示させておき、添付画像と差し替える %>
-    <%= image_tag article.image_attach.url(:std_attach), "data-preview-target": "imagePreview", alt: "preview of attachment photo", class: "object-cover mx-auto w-1/2 h-1/2" %>
+    <%= image_tag article.image_attach.url(:std_attach), "data-preview-target": "imagePreview", alt: "preview of attachment photo", class: "object-cover mx-auto max-w-max-1/2 max-h-max-1/2" %>
   </div>
   <div class="sm:flex mt-9">
     <div class="flex sm:ml-0 sm:mx-3">
