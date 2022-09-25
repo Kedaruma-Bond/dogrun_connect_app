@@ -2,7 +2,6 @@ class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::Dogr
   skip_before_action :require_login, except: %i[detail]
   before_action :set_dogs, :set_registration_numbers_in_togo_inu_shitsuke_hiroba, :during_entries, :get_during_entry_user_dogs, only: %i[top]
   before_action :get_dogrun_entry_data, only: %i[top detail]
-  protect_from_forgery except: :reload_screen
   around_action :skip_bullet, if: -> { defined?(Bullet) }
 
   def top
