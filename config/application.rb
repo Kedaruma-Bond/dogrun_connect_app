@@ -54,5 +54,7 @@ module DogrunConnect
 
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join('config/locales/**/*.{rb,yml}').to_s]
+    # active_jobをdelayed_jobに設定
+    config.active_job.queue_adapter = :delayed_job
   end
 end

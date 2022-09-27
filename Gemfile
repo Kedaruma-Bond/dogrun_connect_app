@@ -31,8 +31,8 @@ gem 'tailwindcss-rails'
 gem 'jbuilder'
 
 # Use Redis adapter to run Action Cable in production
-gem 'redis'
-gem 'redis-actionpack'
+# gem 'redis'
+# gem 'redis-actionpack'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem 'kredis'
@@ -81,6 +81,9 @@ gem 'ransack'
 gem 'meta-tags'
 # aws接続用
 gem 'aws-sdk-s3'
+# 非同期処理用
+gem 'delayed_job_active_record'
+gem 'daemons'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

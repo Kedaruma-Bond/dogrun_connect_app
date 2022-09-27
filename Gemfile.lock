@@ -149,7 +149,13 @@ GEM
     coderay (1.1.3)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
+    daemons (1.4.1)
     debug_inspector (1.1.0)
+    delayed_job (4.1.10)
+      activesupport (>= 3.0, < 8.0)
+    delayed_job_active_record (4.1.7)
+      activerecord (>= 3.0, < 8.0)
+      delayed_job (>= 3.0, < 5)
     diff-lcs (1.5.0)
     digest (3.1.0)
     domain_name (0.5.20190701)
@@ -317,16 +323,6 @@ GEM
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
-    redis (4.7.1)
-    redis-actionpack (5.3.0)
-      actionpack (>= 5, < 8)
-      redis-rack (>= 2.1.0, < 3)
-      redis-store (>= 1.1.0, < 2)
-    redis-rack (2.1.4)
-      rack (>= 2.0.8, < 3)
-      redis-store (>= 1.2, < 2)
-    redis-store (1.9.1)
-      redis (>= 4, < 5)
     regexp_parser (2.5.0)
     reline (0.3.1)
       io-console (~> 0.5)
@@ -470,7 +466,9 @@ DEPENDENCIES
   carrierwave
   chartkick
   cloudinary
+  daemons
   debug!
+  delayed_job_active_record
   enum
   enum_help
   factory_bot_rails
@@ -487,8 +485,6 @@ DEPENDENCIES
   rails-i18n
   rails_real_favicon
   ransack
-  redis
-  redis-actionpack
   rspec-rails
   shoulda-matchers
   simple_form
