@@ -13,7 +13,7 @@ class TogoInuShitsukeHiroba::DogsController < TogoInuShitsukeHiroba::DogrunPlace
 
   def update
     if @dog.valid?
-      @dog.delay.update(dog_params)
+      @dog.update(dog_params)
       redirect_to togo_inu_shitsuke_hiroba_dog_path(@dog.id), success: t('.dog_profile_updated')
       return
     else
