@@ -105,5 +105,5 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  config.session_store :redis_store, expire_after: 1.week
+  config.session_store :cookie_store, expire_after: 4.week
 end

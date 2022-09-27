@@ -8,10 +8,6 @@ class TogoInuShitsukeHiroba::FriendDogsController < TogoInuShitsukeHiroba::Dogru
 
   end
 
-  def edit
-
-  end
-
   def update
 
   end

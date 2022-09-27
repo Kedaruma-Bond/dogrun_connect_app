@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_23_044237) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_26_022709) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,6 +81,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_23_044237) do
     t.text "memo", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "dogrun_place_id", null: false
+    t.index ["dogrun_place_id"], name: "index_friend_dogs_on_dogrun_place_id"
     t.index ["friend_dog_id"], name: "index_friend_dogs_on_friend_dog_id"
     t.index ["subject_dog_id"], name: "index_friend_dogs_on_subject_dog_id"
   end
@@ -148,6 +150,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_23_044237) do
   add_foreign_key "embeds", "posts"
   add_foreign_key "entries", "dogs"
   add_foreign_key "entries", "registration_numbers"
+  add_foreign_key "friend_dogs", "dogrun_places"
   add_foreign_key "friend_dogs", "dogs", column: "friend_dog_id"
   add_foreign_key "friend_dogs", "dogs", column: "subject_dog_id"
   add_foreign_key "posts", "dogrun_places"
