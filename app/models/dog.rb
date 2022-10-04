@@ -5,7 +5,6 @@ class Dog < ApplicationRecord
   has_many :subject, class_name: "FriendDog", foreign_key: "subject_dog_id", dependent: :destroy
   has_many :subject, class_name: "FriendDog", foreign_key: "friend_dog_id", dependent: :destroy
   mount_uploader :thumbnail_photo, ThumbnailUploader
-  store_in_background :thumbnail_photo
 
   # validates
   validates :name, presence: true, length: { maximum: 50 }
