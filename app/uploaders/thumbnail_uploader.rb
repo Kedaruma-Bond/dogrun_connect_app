@@ -2,6 +2,8 @@ class ThumbnailUploader < CarrierWave::Uploader::Base
   
   if Rails.env.production?
     include Cloudinary::CarrierWave
+    include ::CarrierWave::Backgrounder::Delay
+
     CarrierWave.configure do |config|
       config.cache_storage = :file
     end

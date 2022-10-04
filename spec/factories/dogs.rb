@@ -37,19 +37,20 @@ end
 #
 # Table name: dogs
 #
-#  id              :bigint           not null, primary key
-#  birthday        :date
-#  breed           :string           default("")
-#  castration      :boolean          not null
-#  name            :string           not null
-#  owner_comment   :text             default("")
-#  public          :boolean          not null
-#  sex             :integer
-#  thumbnail_photo :string
-#  weight          :integer
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  user_id         :bigint           not null
+#  id                  :bigint           not null, primary key
+#  birthday            :date
+#  breed               :string           default("")
+#  castration          :boolean          not null
+#  name                :string           not null
+#  owner_comment       :text             default("")
+#  public              :boolean          not null
+#  sex                 :integer
+#  thumbnail_photo     :string
+#  thumbnail_photo_tmp :string
+#  weight              :integer
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  user_id             :bigint           not null
 #
 # Indexes
 #

@@ -31,7 +31,7 @@ gem 'tailwindcss-rails'
 gem 'jbuilder'
 
 # Use Redis adapter to run Action Cable in production
-# gem 'redis'
+gem 'redis'
 # gem 'redis-actionpack'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
@@ -68,7 +68,8 @@ gem 'active_decorator'
 # sitemap generatorでSEO対策
 gem 'sitemap_generator'
 # 画像アップロードをサポート
-gem 'carrierwave'
+gem 'carrierwave', '>= 2.1', '< 2.2'
+gem 'carrierwave_backgrounder', :git => 'https://github.com/lardawge/carrierwave_backgrounder.git'
 # 画像ストレージ先
 gem 'cloudinary'
 # chart作図
@@ -81,6 +82,9 @@ gem 'ransack'
 gem 'meta-tags'
 # aws接続用
 gem 'aws-sdk-s3'
+# 非同期処理用
+gem 'sidekiq'
+gem 'sinatra', require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

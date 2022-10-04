@@ -8,11 +8,6 @@ class FriendDog < ApplicationRecord
   # enum
   enum color_marker: { transparent: 0, red: 1, green: 2, blue: 3, yellow: 4 }
 
-  def create_friend_dog(dogrun_place_id)
-    return if cookies.encrypted[:entries].blank?
-    entering_dogs = Dog.includes(:entries).where(entries: {exit_at: nil}).includes(:registration_numbers).where(registration_numbers: { dogrun_place_id: dogrun_place_id } )
-
-  end
 end
 
 # == Schema Information
