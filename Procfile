@@ -1,3 +1,3 @@
 web: bundle exec rails server -p $PORT -e $RAILS_ENV
-worker: bundle exec sidekiq -c 10
+worker: bundle exec sidekiq -q high,5 default
 
