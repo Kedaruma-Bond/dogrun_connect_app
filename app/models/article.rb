@@ -2,6 +2,7 @@ class Article < ApplicationRecord
   belongs_to :post
   mount_uploader :image_attach, AttachmentUploader
   process_in_background :image_attach
+  store_in_background :image_attach
 
   # validates
   validates :content, presence: true, length: { maximum: 400 }
