@@ -3,4 +3,5 @@
 :logfile: ./log/sidekiq.log
 :concurrency: 10
 :queues:
+  - carrierwave
   - default
