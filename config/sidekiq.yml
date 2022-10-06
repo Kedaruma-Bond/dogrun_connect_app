@@ -3,5 +3,8 @@
 :logfile: ./log/sidekiq.log
 :concurrency: 10
 :queues:
-  - carrierwave
   - default
+:schedule:
+  TogoInuShitsukeHiroba::FriendDogGenerator:
+    every: '20m'
+    class: TogoInuShitsukeHiroba::FriendDogGeneratorJob

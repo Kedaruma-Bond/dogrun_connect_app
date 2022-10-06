@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_04_025124) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_06_005631) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,7 +20,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_04_025124) do
     t.string "image_attach"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image_attach_tmp"
     t.index ["post_id"], name: "index_articles_on_post_id"
   end
 
@@ -51,7 +50,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_04_025124) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "thumbnail_photo"
-    t.string "thumbnail_photo_tmp"
     t.index ["user_id"], name: "index_dogs_on_user_id"
   end
 

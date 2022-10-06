@@ -21,26 +21,26 @@ class Dog < ApplicationRecord
 
   #   scope
   scope :dogrun_place_id, -> (id) { joins(:registration_numbers).where(registration_numbers: { dogrun_place_id: id }).includes(:registration_numbers, :user).order(id: :desc)}
+  scope :dogrun_place_id_for_friend_dog, -> (id) { joins(:entries, :registration_numbers).where(entries: { exit_at: nil }).where(registration_numbers: { dogrun_place_id: 2 }).includes(:entries, :registration_numbers, :user)}
 end
 
 # == Schema Information
 #
 # Table name: dogs
 #
-#  id                  :bigint           not null, primary key
-#  birthday            :date
-#  breed               :string           default("")
-#  castration          :boolean          not null
-#  name                :string           not null
-#  owner_comment       :text             default("")
-#  public              :boolean          not null
-#  sex                 :integer
-#  thumbnail_photo     :string
-#  thumbnail_photo_tmp :string
-#  weight              :integer
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  user_id             :bigint           not null
+#  id              :bigint           not null, primary key
+#  birthday        :date
+#  breed           :string           default("")
+#  castration      :boolean          not null
+#  name            :string           not null
+#  owner_comment   :text             default("")
+#  public          :boolean          not null
+#  sex             :integer
+#  thumbnail_photo :string
+#  weight          :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  user_id         :bigint           not null
 #
 # Indexes
 #
