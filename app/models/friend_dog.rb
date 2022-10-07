@@ -2,11 +2,17 @@ class FriendDog < ApplicationRecord
   belongs_to :subject_dog, class_name: "Dog"
   belongs_to :friend_dog, class_name: "Dog"
 
+  self.ignored_columns = [:subject_dog_id]
+  self.ignored_columns = [:friend_dog_id]
+  
   # validates
   validates :memo, length: { maximum: 1000 }
   
   # enum
   enum color_marker: { transparent: 0, red: 1, green: 2, blue: 3, yellow: 4 }
+
+  # scope
+
 
 end
 
@@ -20,7 +26,6 @@ end
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  dogrun_place_id :bigint           not null
-#  friend_dog_id   :bigint           not null
 #  subject_dog_id  :bigint           not null
 #
 # Indexes

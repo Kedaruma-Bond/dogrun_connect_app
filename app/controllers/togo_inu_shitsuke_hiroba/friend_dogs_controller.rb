@@ -1,6 +1,7 @@
 class TogoInuShitsukeHiroba::FriendDogsController < TogoInuShitsukeHiroba::DogrunPlaceController
   
   def index
+    
   end
 
   def update

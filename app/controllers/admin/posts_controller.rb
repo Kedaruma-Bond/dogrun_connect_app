@@ -38,7 +38,7 @@ class Admin::PostsController < Admin::BaseController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_back_or_to admin_posts_path, success: t('defaults.destroy_successfully'), status: :see_other }
+      format.html { redirect_to admin_posts_path, success: t('defaults.destroy_successfully'), status: :see_other }
       format.json { head :no_content }
     end
   end

@@ -6,5 +6,5 @@
   - default
 :schedule:
   TogoInuShitsukeHiroba::FriendDogGenerator:
-    every: '20m'
+    every: '10s'
     class: TogoInuShitsukeHiroba::FriendDogGeneratorJob

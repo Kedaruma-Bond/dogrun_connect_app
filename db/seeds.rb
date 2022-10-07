@@ -176,3 +176,21 @@ twitter_posts.each do |post|
     identifier: 'https://twitter.com/dogrunconnect/status/1565286395236691968?s=21&t=-SDeMw43gMOKXBWdKu8jLA'
   )
 end
+
+# friend_dog
+# dogs = Dog.all
+# dogs_id = dogs.map do |dog|
+#   dog.id
+# end
+
+# dogs_id.each do |id|
+#   t = 0
+#   subject_dog_id = id
+#   dogs_id.count.times do
+#     friend_dog_id = dogs_id[t]
+#     if subject_dog_id != friend_dog_id
+#       FriendDog.create!(dogrun_place_id: 2, subject_dog_id: subject_dog_id, friend_dog_id: friend_dog_id)
+#     end
+#     t += 1
+#   end
+# end
