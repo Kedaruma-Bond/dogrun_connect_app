@@ -1,10 +1,5 @@
 class FriendDog < ApplicationRecord
-  belongs_to :subject_dog, class_name: "Dog"
-  belongs_to :friend_dog, class_name: "Dog"
 
-  self.ignored_columns = [:subject_dog_id]
-  self.ignored_columns = [:friend_dog_id]
-  
   # validates
   validates :memo, length: { maximum: 1000 }
   
@@ -26,17 +21,12 @@ end
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  dogrun_place_id :bigint           not null
-#  subject_dog_id  :bigint           not null
 #
 # Indexes
 #
 #  index_friend_dogs_on_dogrun_place_id  (dogrun_place_id)
-#  index_friend_dogs_on_friend_dog_id    (friend_dog_id)
-#  index_friend_dogs_on_subject_dog_id   (subject_dog_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (dogrun_place_id => dogrun_places.id)
-#  fk_rails_...  (friend_dog_id => dogs.id)
-#  fk_rails_...  (subject_dog_id => dogs.id)
 #

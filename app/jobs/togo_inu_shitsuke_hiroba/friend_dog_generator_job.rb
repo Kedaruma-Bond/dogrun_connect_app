@@ -10,6 +10,7 @@ class TogoInuShitsukeHiroba::FriendDogGeneratorJob < ApplicationJob
       p "*" * 10
       Rails.cache.write('counter', counter)
       Rails.cache.delete('counter') if counter == 10
+      counter = 0
     else
       Rails.cache.write('counter', 0)
     end
