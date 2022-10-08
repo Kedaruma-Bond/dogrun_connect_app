@@ -1,8 +1,9 @@
 class DogrunPlace < ApplicationRecord
-  has_many :administrators
   has_many :registration_numbers
   has_many :posts, dependent: :destroy
   has_many :staffs, dependent: :destroy
+  has_many :users, dependent: :destroy
+  has_many :friend_dogs, dependent: :destroy
 
 end
 

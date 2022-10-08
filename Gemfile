@@ -81,10 +81,6 @@ gem 'ransack'
 gem 'meta-tags'
 # aws接続用
 gem 'aws-sdk-s3'
-# 非同期処理用
-gem 'sidekiq'
-gem 'sinatra', require: false
-gem 'sidekiq-scheduler'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

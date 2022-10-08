@@ -1,13 +1,9 @@
-require 'sidekiq/web'
-require 'sidekiq-scheduler/web'
-
 Rails.application.routes.draw do
   root 'static_pages#top'
   get 'privacy_policy', to: 'static_pages#privacy_policy'
   get 'terms_of_service', to: 'static_pages#terms_of_service'
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
-  mount Sidekiq::Web, at: '/sidekiq'
 
   get '/service-worker.js', to: 'service_worker#service_worker'
   get '/offline.html', to: 'service_worker#offline'

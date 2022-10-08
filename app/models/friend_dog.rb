@@ -1,4 +1,7 @@
 class FriendDog < ApplicationRecord
+  belongs_to :dogrun_place
+  belongs_to :user
+  belongs_to :dog
 
   # validates
   validates :memo, length: { maximum: 1000 }
@@ -20,13 +23,19 @@ end
 #  memo            :text             default("")
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  dog_id          :bigint           not null
 #  dogrun_place_id :bigint           not null
+#  user_id         :bigint           not null
 #
 # Indexes
 #
+#  index_friend_dogs_on_dog_id           (dog_id)
 #  index_friend_dogs_on_dogrun_place_id  (dogrun_place_id)
+#  index_friend_dogs_on_user_id          (user_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (dog_id => dogs.id)
 #  fk_rails_...  (dogrun_place_id => dogrun_places.id)
+#  fk_rails_...  (user_id => users.id)
 #
