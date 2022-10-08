@@ -32,13 +32,13 @@ gem 'jbuilder'
 
 # Use Redis adapter to run Action Cable in production
 gem 'redis'
-gem 'redis-actionpack'
+# gem 'redis-actionpack'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem 'kredis'
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[ mingw mswin x64_mingw jruby ]
@@ -86,7 +86,6 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'annotate'
   gem 'capybara'
-  gem "debug", git: 'https://github.com/ruby/debug', branch: 'master'
   gem 'factory_bot_rails'
   gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'rails-controller-testing'
@@ -100,6 +99,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
+  gem "debug", git: 'https://github.com/ruby/debug', branch: 'master'
   # error詳細確認用
   gem 'better_errors'
   gem 'binding_of_caller'

@@ -15,6 +15,7 @@ end
 #
 #  id                     :bigint           not null, primary key
 #  entry_at               :datetime         not null
+#  entry_digest           :string
 #  exit_at                :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null

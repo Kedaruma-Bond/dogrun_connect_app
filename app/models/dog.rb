@@ -2,8 +2,7 @@ class Dog < ApplicationRecord
   belongs_to :user
   has_many :registration_numbers, dependent: :destroy
   has_many :entries, dependent: :destroy
-  has_many :subject, class_name: "FriendDog", foreign_key: "subject_dog_id", dependent: :destroy
-  has_many :subject, class_name: "FriendDog", foreign_key: "friend_dog_id", dependent: :destroy
+  has_many :friend_dogs, dependent: :destroy
   mount_uploader :thumbnail_photo, ThumbnailUploader
 
   # validates
@@ -21,6 +20,7 @@ class Dog < ApplicationRecord
 
   #   scope
   scope :dogrun_place_id, -> (id) { joins(:registration_numbers).where(registration_numbers: { dogrun_place_id: id }).includes(:registration_numbers, :user).order(id: :desc)}
+  scope :dogrun_place_id_for_friend_dog, -> (id) { joins(:entries, :registration_numbers).where(entries: { exit_at: nil }).where(registration_numbers: { dogrun_place_id: 2 }).includes(:entries, :registration_numbers, :user)}
 end
 
 # == Schema Information

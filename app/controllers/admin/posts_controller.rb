@@ -8,6 +8,16 @@ class Admin::PostsController < Admin::BaseController
 
   def index
     @publishing_post = Post.is_publishing
+
+    no_article_posts = @posts.where(post_type: 'article').where.missing(:article)
+    no_article_posts.map do |post|
+      post.delete
+    end
+
+    no_embeds_posts = @posts.where(post_type: 'embed').where.missing(:embed)
+    no_embeds_posts.map do |post|
+      post.delete
+    end
   end
 
   def create
@@ -28,7 +38,7 @@ class Admin::PostsController < Admin::BaseController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_back_or_to admin_posts_path, success: t('defaults.destroy_successfully'), status: :see_other }
+      format.html { redirect_to admin_posts_path, success: t('defaults.destroy_successfully'), status: :see_other }
       format.json { head :no_content }
     end
   end

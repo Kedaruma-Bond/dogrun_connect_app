@@ -34,7 +34,6 @@ https://www.dogrunconnect.com
 - Heroku (Hobby dynos)
   - Heroku Postgres 14.4
   - Cloudinary (add-on)
-  - Heroku Data for Redis
   - Papertrail
   - Heroku Scheduler
 - aws

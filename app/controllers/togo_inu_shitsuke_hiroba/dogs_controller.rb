@@ -5,7 +5,7 @@ class TogoInuShitsukeHiroba::DogsController < TogoInuShitsukeHiroba::DogrunPlace
 
   def show
     @user = User.find(@dog.user_id)
-    @entries = Entry.where(dog_id: @dog.id).merge(Entry.where(registration_number_id: @registration_number.ids)).joins(:registration_number).where(registration_number: { dogrun_place_id: 2 } ).sort.reverse
+    @entries = Entry.where(dog: @dog).where(registration_number_id: @registration_number.id).joins(:registration_number).where(registration_number: { dogrun_place_id: 2 } ).sort.reverse
     @t = 5
   end
 
@@ -25,9 +25,9 @@ class TogoInuShitsukeHiroba::DogsController < TogoInuShitsukeHiroba::DogrunPlace
 
   def set_dog_and_registration_number
     @dog = Dog.find(params[:id])
-    @registration_number = RegistrationNumber.where(dog_id: @dog.id).merge(RegistrationNumber.where(dogrun_place_id: 2))
+    @registration_number = RegistrationNumber.where(dog_id: @dog.id).find_by(dogrun_place_id: 2)
   end
-
+  
   def dog_params
     params.require(:dog).permit(
       :name, :birthday, :breed, :castration, :public,

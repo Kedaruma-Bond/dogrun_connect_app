@@ -11,12 +11,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-  
-    def set_dogs
-      return unless logged_in?
-      
-      @dogs = Dog.where(user_id: current_user.id)
-    end
     
     def correct_dog_owner
       dog = Dog.find(params[:id])
@@ -33,6 +27,4 @@ class ApplicationController < ActionController::Base
       end
     end
 
-  helper_method :correct_dog_owner
-  helper_method :correct_user
 end

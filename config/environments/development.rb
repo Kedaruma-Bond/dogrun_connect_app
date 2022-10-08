@@ -83,4 +83,6 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.assets.prefix = '/dev-assets'
   config.session_store :cookie_store, expire_after: 1.week
+  
+  config.cache_store = :redis_cache_store, { url: "redis://localhost:6379/0" }
 end

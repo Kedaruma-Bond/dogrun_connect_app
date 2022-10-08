@@ -31,12 +31,12 @@ module DogrunConnect
       g.javascript false
       g.helper false
       g.test_framework :rpsec,
-          system_specs: false,
-          view_specs: false,
-          helper_specs: false,
-          routing_specs: false,
-          controller_specs: false,
-          request_specs: false
+                        system_specs: false,
+                        view_specs: false,
+                        helper_specs: false,
+                        routing_specs: false,
+                        controller_specs: true,
+                        request_specs: true
       g.fixture_replacement :factory_bot, dir: 'spec/factories'
     end
     # Configuration for the application, engines, and railties goes here.
@@ -54,5 +54,6 @@ module DogrunConnect
 
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join('config/locales/**/*.{rb,yml}').to_s]
+
   end
 end

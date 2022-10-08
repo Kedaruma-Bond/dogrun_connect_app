@@ -1,5 +1,5 @@
 class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPlaceController
-  before_action :set_dogs, :set_registration_numbers_in_togo_inu_shitsuke_hiroba, only: %i[create]
+  before_action :set_dogs_and_registration_numbers_at_local, only: %i[create]
   before_action :set_entries_array, only: %i[create update]
   before_action :set_entries, only: %i[index search]
   before_action :set_q, only: %i[index search]
@@ -7,38 +7,34 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
   def index; end
 
   def create
-    exit_from_dogrun
     clear_zero
     select_dogs_allocation(params[:select_dog])
-    while @num <= @dogs.count - 1
+    while @num <= @select_dogs_values.count - 1
       @dog = @dogs[@num]
       @registration_number = @registration_numbers[@num]
-      @entries[@num] = Entry.new(entry_params)
+      
       case @select_dogs_values[@num]
       when '1'
-        @entries[@num].entry_at = Time.zone.now
-        @active_entries << @entries[@num]
-        @entries[@num].save!
+        @entries_array[@num] = Entry.new(entry_params)
+        @entries_array[@num].entry_at = Time.zone.now
+        @entries_array[@num].save!
       else
         @zero_count += 1
+        @entries_array[@num] = nil
       end
       @num += 1
     end
+
     if @dogs.count == @zero_count
       redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.select_entry_dog')
       return
     end
-    entry_to_dogrun(@active_entries)
+    entry_to_dogrun(@entries_array)
+    remember(@entries_array)
     redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.entry_success')
   end
 
   def update
-    num = 0
-    during_entries[0..during_entries.size - 1].each do
-      @entries[num] = Entry.find(during_entries[num])
-      @entries[num].update!(exit_at: Time.zone.now)
-      num += 1
-    end
     exit_from_dogrun
     redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.exit_success')
   end

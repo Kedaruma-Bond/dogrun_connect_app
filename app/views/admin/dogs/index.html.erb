@@ -10,8 +10,8 @@
         <table class="mt-3 w-full">
           <thead class="bg-white border-b">
             <tr>
-              <th scope="col" class="text-sm font-medium text-gray-900 px-3 py-2 text-left">
-                <%= t('defaults.thumbnail') %>
+              <th scope="col">
+                <%= simple_format(t('defaults.thumbnail'), class:"font-medium text-sm px-3 py-2 text-left") %>
               </th>
               <th scope="col" class="text-sm font-medium text-gray-900 px-3 py-2 text-left">
                 <%= RegistrationNumber.human_attribute_name(:registration_number) %>
