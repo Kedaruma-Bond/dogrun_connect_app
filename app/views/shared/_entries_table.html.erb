@@ -33,14 +33,14 @@
               <% if @entries[t].nil? %>
                 <tr>
                   <% 4.times do %>
-                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-left flex items-center">
+                    <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
                     </td>
                   <% end %>
                 </tr>
               <% else %>
                 <tr>
-                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-left flex items-center">
-                    <span class="ml-3 font-bold text-white"><%= l @entries[t].entry_at, format: :long2 %></span>
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                    <%= l @entries[t].entry_at, format: :long2 %>
                   </td>
                   <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
                     <%= l @entries[t].entry_at, format: :short2 %>
@@ -53,7 +53,11 @@
                     <% end %>
                   </td>
                   <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                    will be applied later...
+                    <ul class="flex">
+                      <% playing_together_dogs(@entries[t], 2).each do |dog| %>
+                        <li class="w-12 h-12"><%= image_tag dog.thumbnail_photo.url(:std_thumb), alt: @dog.name %></li>
+                      <% end %>
+                    </ul>
                   </td>
                 </tr>
               <% end %>

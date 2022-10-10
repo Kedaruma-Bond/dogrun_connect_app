@@ -7,16 +7,31 @@ namespace :friend_dog_generator do
     end
 
     during_entry_dogs = Dog.dogrun_place_id_for_friend_dog(2)
-    return if during_entry_dogs.blank?
+    next if during_entry_dogs.blank?
+
+    p '*' * 10
+    p 'redis store data' 
+    p previous_dogs_id
+    p '*' * 10
     
     during_entry_dogs_id = during_entry_dogs.map do |dog|
       dog.id
     end
 
+    p '*' * 10
+    p 'present data' 
+    p during_entry_dogs_id
+    p '*' * 10
+
     Rails.cache.write('previous_dogs_id', during_entry_dogs_id)
-    return if previous_dogs_id.blank?
+    next if previous_dogs_id.blank?
 
     friend_dogs_id_ary = [previous_dogs_id, during_entry_dogs_id].inject(&:&)
+
+    p '*' * 10
+    p 'distinct data' 
+    p friend_dogs_id_ary
+    p '*' * 10
 
     friend_dogs_user_id_ary = friend_dogs_id_ary.map do |id|
       dog = Dog.find(id)

@@ -178,19 +178,24 @@ twitter_posts.each do |post|
 end
 
 # friend_dog
-# dogs = Dog.all
-# dogs_id = dogs.map do |dog|
-#   dog.id
-# end
+users = User.all
+dogs = Dog.all
+users_id = users.map do |user|
+  user.id
+end
+dogs_id = dogs.map do |dog|
+  dog.id
+end
 
-# dogs_id.each do |id|
-#   t = 0
-#   subject_dog_id = id
-#   dogs_id.count.times do
-#     friend_dog_id = dogs_id[t]
-#     if subject_dog_id != friend_dog_id
-#       FriendDog.create!(dogrun_place_id: 2, subject_dog_id: subject_dog_id, friend_dog_id: friend_dog_id)
-#     end
-#     t += 1
-#   end
-# end
+users_id.each do |id|
+  t = 0
+  user_id = id
+  dogs_id.count.times do
+    dog_id = dogs_id[t]
+    dog = Dog.find(dog_id)
+    if user_id != dog.user_id
+      FriendDog.create!(dogrun_place_id: 2, user_id: user_id, dog_id: dog_id)
+    end
+    t += 1
+  end
+end
