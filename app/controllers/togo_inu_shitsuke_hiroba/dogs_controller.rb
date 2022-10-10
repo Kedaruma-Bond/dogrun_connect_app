@@ -1,4 +1,5 @@
 class TogoInuShitsukeHiroba::DogsController < TogoInuShitsukeHiroba::DogrunPlaceController
+  include DogHelper
   before_action :set_dog_and_registration_number, only: %i[show edit update] 
   before_action :correct_dog_owner, only: %i[edit update]
   before_action :dog_params, only: %i[update]
