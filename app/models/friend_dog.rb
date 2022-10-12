@@ -3,6 +3,9 @@ class FriendDog < ApplicationRecord
   belongs_to :user
   belongs_to :dog
 
+  self.ignored_columns = [:memo]
+  self.ignored_columns = [:color_marker]
+
   # validates
   validates :memo, length: { maximum: 1000 }
   
