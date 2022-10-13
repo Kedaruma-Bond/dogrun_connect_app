@@ -1,0 +1,19 @@
+<%= search_form_for @q, url: search_togo_inu_shitsuke_hiroba_encount_dogs_path, html: { method: :POST, class: "flex-wrap md:flex w-full ml-1 items-center" }, data: { turbo: false } do |f| %>
+  <div class="flex mb-2 md:mb-0">
+    <h2 class="text-gray-700 text-sm items-center mr-1 ml-1"><%= simple_format(t('defaults.search_period')) %></h2>
+    <%= f.date_field :created_at_gteq, class: "flex-grow h-10 w-1/6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" %>
+    <span class="pt-2 mr-3 ml-3">~</span>  
+    <%= f.date_field :created_at_lteq, class: "flex-grow h-10 w-1/6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" %>
+  </div>
+  <div class="flex-grow relative ml-3">
+    <div class="flex">
+      <div class="absolute inset-y-0 left-0 items-center pt-3 pl-3 pointer-events-none">
+        <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+        </svg>
+      </div>
+      <%= f.search_field :dog_name_cont, include_blank: true, placeholder: t('.search_field'), class: "w-full h-10 mr-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5" %>
+      <%= f.submit t('defaults.search'), class: "mr-7 px-4 py-2 h-10 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" %>
+    </div>
+  </div>
+<% end %>

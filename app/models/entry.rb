@@ -1,6 +1,6 @@
 class Entry < ApplicationRecord
-  belongs_to :dog, optional: true
-  belongs_to :registration_number, optional: true
+  belongs_to :dog
+  belongs_to :registration_number
 
   attr_accessor :select_dog, :entry_token
 

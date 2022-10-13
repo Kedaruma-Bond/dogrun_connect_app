@@ -177,7 +177,7 @@ twitter_posts.each do |post|
   )
 end
 
-# friend_dog
+# preparation encount_dog
 users = User.all
 dogs = Dog.all
 users_id = users.map do |user|
@@ -187,6 +187,7 @@ dogs_id = dogs.map do |dog|
   dog.id
 end
 
+# encount_dog
 users_id.each do |id|
   t = 0
   user_id = id
@@ -194,7 +195,7 @@ users_id.each do |id|
     dog_id = dogs_id[t]
     dog = Dog.find(dog_id)
     if user_id != dog.user_id
-      FriendDog.create!(dogrun_place_id: 2, user_id: user_id, dog_id: dog_id)
+      EncountDog.create!(dogrun_place_id: 2, user_id: user_id, dog_id: dog_id)
     end
     t += 1
   end

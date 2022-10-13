@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_07_011456) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_12_060541) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,6 +62,32 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_07_011456) do
     t.index ["post_id"], name: "index_embeds_on_post_id"
   end
 
+  create_table "encount_dogs", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "dog_id", null: false
+    t.bigint "dogrun_place_id", null: false
+    t.integer "color_marker"
+    t.text "memo", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dog_id"], name: "index_encount_dogs_on_dog_id"
+    t.index ["dogrun_place_id"], name: "index_encount_dogs_on_dogrun_place_id"
+    t.index ["user_id"], name: "index_encount_dogs_on_user_id"
+  end
+
+  create_table "encounts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "dogrun_place_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "dog_id", null: false
+    t.bigint "entry_id"
+    t.index ["dog_id"], name: "index_encounts_on_dog_id"
+    t.index ["dogrun_place_id"], name: "index_encounts_on_dogrun_place_id"
+    t.index ["entry_id"], name: "index_encounts_on_entry_id"
+    t.index ["user_id"], name: "index_encounts_on_user_id"
+  end
+
   create_table "entries", force: :cascade do |t|
     t.bigint "dog_id", null: false
     t.bigint "registration_number_id", null: false
@@ -73,19 +99,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_07_011456) do
     t.index ["dog_id", "registration_number_id", "entry_at"], name: "registration_dog_entry_time_index", unique: true
     t.index ["dog_id"], name: "index_entries_on_dog_id"
     t.index ["registration_number_id"], name: "index_entries_on_registration_number_id"
-  end
-
-  create_table "friend_dogs", force: :cascade do |t|
-    t.integer "color_marker"
-    t.text "memo", default: ""
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "dogrun_place_id", null: false
-    t.bigint "user_id", null: false
-    t.bigint "dog_id", null: false
-    t.index ["dog_id"], name: "index_friend_dogs_on_dog_id"
-    t.index ["dogrun_place_id"], name: "index_friend_dogs_on_dogrun_place_id"
-    t.index ["user_id"], name: "index_friend_dogs_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -149,11 +162,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_07_011456) do
   add_foreign_key "articles", "posts"
   add_foreign_key "dogs", "users"
   add_foreign_key "embeds", "posts"
+  add_foreign_key "encount_dogs", "dogrun_places"
+  add_foreign_key "encount_dogs", "dogs"
+  add_foreign_key "encount_dogs", "users"
+  add_foreign_key "encounts", "dogrun_places"
+  add_foreign_key "encounts", "dogs"
+  add_foreign_key "encounts", "entries"
+  add_foreign_key "encounts", "users"
   add_foreign_key "entries", "dogs"
   add_foreign_key "entries", "registration_numbers"
-  add_foreign_key "friend_dogs", "dogrun_places"
-  add_foreign_key "friend_dogs", "dogs"
-  add_foreign_key "friend_dogs", "users"
   add_foreign_key "posts", "dogrun_places"
   add_foreign_key "posts", "users"
   add_foreign_key "registration_numbers", "dogrun_places"

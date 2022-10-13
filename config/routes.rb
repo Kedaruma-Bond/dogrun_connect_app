@@ -25,6 +25,14 @@ Rails.application.routes.draw do
     post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy', as: :logout
     
+    resources :encount_dogs, only: %i[index edit update] do
+      collection do
+        get 'page/:page', action: :index
+        get 'search', to: 'encount_dogs#search'
+        post 'search', to: 'encount_dogs#search'
+      end
+    end
+    
     resource :entries, only: %i[create update]
     resources :entries, only: %i[index] do
       collection do
