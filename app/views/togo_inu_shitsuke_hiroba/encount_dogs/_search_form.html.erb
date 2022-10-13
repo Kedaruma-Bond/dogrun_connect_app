@@ -1,4 +1,4 @@
-<%= search_form_for @q, url: search_togo_inu_shitsuke_hiroba_friend_dogs_path, html: { method: :POST, class: "flex-wrap md:flex w-full ml-1 items-center" }, data: { turbo: false } do |f| %>
+<%= search_form_for @q, url: search_togo_inu_shitsuke_hiroba_encount_dogs_path, html: { method: :POST, class: "flex-wrap md:flex w-full ml-1 items-center" }, data: { turbo: false } do |f| %>
   <div class="flex mb-2 md:mb-0">
     <h2 class="text-gray-700 text-sm items-center mr-1 ml-1"><%= simple_format(t('defaults.search_period')) %></h2>
     <%= f.date_field :created_at_gteq, class: "flex-grow h-10 w-1/6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" %>

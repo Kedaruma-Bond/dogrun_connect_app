@@ -65,13 +65,13 @@
         </span>
       </button>
 
-      <%= link_to "#", class: "flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100" do %>
+      <%= link_to togo_inu_shitsuke_hiroba_encount_dogs_path, class: "flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100" do %>
         <svg class="w-5 h-5 mx-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
         </svg>
 
         <span class="mx-1">
-          <%= t('defaults.friend_list') %>
+          <%= t('defaults.encount_list') %>
         </span>
       <% end %>
 
@@ -115,11 +115,11 @@
       <span><%= t('defaults.dogrun_post') %></span>
     </button>
 
-    <%= link_to '#', class: "flex mr-5 hover:text-gray-900" do %>
+    <%= link_to togo_inu_shitsuke_hiroba_encount_dogs_path, class: "flex mr-5 hover:text-gray-900" do %>
       <svg class="w-5 h-5 mx-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
       </svg>
-      <span><%= t('defaults.friend_list') %></span>
+      <span><%= t('defaults.encount_list') %></span>
     <% end %>
     
     <%= link_to togo_inu_shitsuke_hiroba_logout_path, data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation') }, class: "flex mr-5 hover:text-gray-900" do %>

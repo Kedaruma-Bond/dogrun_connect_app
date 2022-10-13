@@ -34,7 +34,7 @@ ja:
     send: 送信
     confirm: 入力内容確認
     back: 戻る
-    friend_list: フレンドリスト
+    encount_list: エンカウントリスト
     email_message: の様式が正しくありません
     entry: 入場
     entry_at: |
@@ -97,7 +97,7 @@ ja:
       非公開の
       ワンちゃんです
     entering: 入場中
-    friend_dog_memo: フレンドドッグメモ
+    encount_dog_memo: メモ
   simple_form:
     "yes": はい
     "no": いいえ
@@ -147,6 +147,13 @@ ja:
         fb: Facebook
         instagram: Instagram
         twitter: Twitter
+    encount_dog:
+      color_marker:
+        transparent: 色なし
+        red: レッド
+        green: グリーン
+        blue: ブルー
+        yellow: イエロー
   activerecord:
     attributes:
       dog_registration:

@@ -1,15 +1,18 @@
 module DogHelper
-  def playing_together_dogs(entry, dogrun_place_id)
-    friend_dogs_created_at_this_entry = FriendDog.where(created_at: entry.entry_at .. entry.exit_at)
+  def encount_dogs_at_this_entry(entry, dogrun_place_id)
+    encount_dogs_created_at_this_entry = Encount.where(created_at: entry.entry_at .. entry.exit_at)
                                                 .where(dogrun_place_id: dogrun_place_id)
                                                 .where(user_id: @dog.user_id)
-                                                .joins(:dog).where.not(dogs: { public: 'non_public' })
-    playing_together_dogs = friend_dogs_created_at_this_entry.map do |friend_dog|
-      Dog.find(friend_dog.dog_id)
+                                                .joins(:dog).where(dogs: { public: 'public_view' })
+    @encount_dogs_at_this_entry = encount_dogs_created_at_this_entry.map do |encount|
+      Dog.find(encount.dog_id)
     end
+    return @encount_dogs_at_this_entry
+  end
 
-    @playing_together_dogs = playing_together_dogs.uniq
-
-    return @playing_together_dogs
+  def color_marker(dog)
+    applied_dog = EncountDog.where(dog_id: dog.id)
+    color = applied_dog.color_marker
+    return @color
   end
 end

@@ -95,6 +95,9 @@ ja:
       create:
         choice_sns: 埋め込むSNSを選択してください。
         post_save_error: 投稿時にエラーが起きました
+    encount_dogs:
+      update:
+        encount_dog_updated: 情報を更新しました！
   activerecord:
     models:
       contact: お問い合わせ
@@ -147,7 +150,7 @@ ja:
         enable_notification: |
           ドッグラへンの投稿通知
           受け取り
-      friend_dog:
+      encount_dog:
         memo: メモ
         color_marker: カラーマーカー
   activemodel:

@@ -1,0 +1,18 @@
+ja:
+  togo_inu_shitsuke_hiroba:
+    encount_dogs:
+      index:
+        title: エンカウントリスト
+        encount_date: 出会った日
+        encount_dogrun: 出会ったドッグラン
+        until_now: 今までに
+        unit_of_encount_dogs: 頭の仔と出会いました
+      search:
+        title: エンカウントリストの検索結果
+      search_form:
+        search_field: ワンちゃんの名前検索
+      edit:
+        title: | 
+          出会ったワンちゃんの
+          情報を編集
+        select_color_marker: 色を選択してください

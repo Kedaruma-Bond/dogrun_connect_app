@@ -3,10 +3,10 @@
   <h1 class='text-3xl text-indigo-800 font-semibold text-center mb-3'>
     <%= t('.title') %>
   </h1>
-  <div class="flex">
-    <%= t('.until_now') %>
-    <%= @friend_dogs.count %>
-    <%= t('.unit_of_friend_dogs') %>
+  <div class="flex justify-center my-2 items-end">
+    <p class=""><%= t('.until_now') %></p>
+    <h3 class="px-2 text-xl"><%= @encount_dogs.count %></h3>
+    <p class=""><%= t('.unit_of_encount_dogs') %></p>
   </div>
   <%= render 'search_form' %>
   <div class="container bg-purple-200 w-full shadow rounded sm:p-10 pt-3 mt-3">
@@ -27,7 +27,7 @@
               <%= t('.encount_dogrun') %>
             </th>
             <th class="pl-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
-              <%= FriendDog.human_attribute_name(:memo) %>
+              <%= EncountDog.human_attribute_name(:memo) %>
             </th>
             <th class="pl-6 pr-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
               <%= t('defaults.edit') %>
@@ -35,11 +35,11 @@
           </tr>
         </thead>
         <tbody>
-          <%= render partial: 'shared/friend_dog', collection: @friend_dogs %>
+          <%= render partial: 'shared/encount_dog', collection: @encount_dogs %>
         </tbody>
       </table>
     </div>
   </div>
-  <%= paginate @friend_dogs %>
+  <%= paginate @encount_dogs %>
 </div>
 
