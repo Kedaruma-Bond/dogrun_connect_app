@@ -28,7 +28,7 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
     user_dogs = Dog.where(user_id: current_user.id)
     t = 0
     user_dogs.count.times do
-      encounts = Encount.where(dogrun_place_id: 2).where(dog_id: user_dog[t].id)
+      encounts = Encount.where(dogrun_place_id: 2).where(dog_id: user_dogs[t].id)
       encounts.first.destroy! if encounts.count > 5
     end
   end
