@@ -8,8 +8,8 @@
     <h3 class="text-lg leading-6 font-bold text-gray-900">
       <%= t'defaults.owner_comment' %>
     </h3>
-    <div class="w-full flex flex-col mt-8">
-      <%= dog.owner_comment %>
+    <div class="mt-4">
+      <%= simple_format(dog.owner_comment, class: "w-full") %>
     </div>
   </div>
 </dialog>
