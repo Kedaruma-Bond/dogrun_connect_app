@@ -5,7 +5,9 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
   
   def index; end
 
-  def edit; end
+  def edit
+    @encount_dog.update!(acknowledge: true)
+  end
 
   def update
     if @encount_dog.valid?

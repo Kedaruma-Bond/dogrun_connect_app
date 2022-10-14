@@ -8,7 +8,11 @@ ja:
         until_now: 今までに
         unit_of_encount_dogs: 頭のワンちゃんと出会いました
       search:
-        title: エンカウントリストの検索結果
+        title: |
+          エンカウントリスト
+          の検索結果
+        search_results_are: 検索結果は
+        unit_of_encount_dogs: 頭です
       search_form:
         search_field: ワンちゃんの名前検索
       edit:

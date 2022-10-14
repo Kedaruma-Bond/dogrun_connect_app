@@ -15,6 +15,11 @@ ja:
         guest_login: ゲストログイン
         jump_to_signup: 新規登録画面へ
         dogrun_board: ドッグランの掲示板
+        under_commissioning: |
+          本アプリはテスト運用中です
+          広場を利用する際は
+          お手数ですが入口に設置してある
+          ノートへの記帳も一緒にお願いします🙇
       login_top_content:
         select_entry_dog: 入場するワンちゃんを選択してください
         entry_confirm: 入場してよろしいですか？
