@@ -10,9 +10,36 @@ module DogHelper
     return @encount_dogs_at_this_entry
   end
 
-  def color_marker(dog)
-    applied_dog = EncountDog.where(dog_id: dog.id)
-    color = applied_dog.color_marker
-    return @color
+  def css_class_dog_color_marker(dog)
+    encount_dog = EncountDog.where(user_id: current_user.id).find_by(dog_id: dog.id)
+    return if encount_dog.blank?
+
+    case encount_dog.color_marker
+    when 'red'
+      'border-2 border-red-500'
+    when 'green'
+      'border-2 border-green-400'
+    when 'blue'
+      'border-2 border-blue-500'
+    when 'yellow'
+      'border-2 border-yellow-500'
+    else
+      ''
+    end
+  end
+
+  def css_class_encount_dog_color_marker(encount_dog)
+    case encount_dog.color_marker
+    when 'red'
+      'border-2 border-red-500'
+    when 'green'
+      'border-2 border-green-400'
+    when 'blue'
+      'border-2 border-blue-500'
+    when 'yellow'
+      'border-2 border-yellow-500'
+    else
+      ''
+    end
   end
 end

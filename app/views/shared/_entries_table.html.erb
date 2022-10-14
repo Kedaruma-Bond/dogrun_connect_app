@@ -55,7 +55,7 @@
                   <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
                     <ul class="flex">
                       <% encount_dogs_at_this_entry(@entries[t], 2).each do |dog| %>
-                        <li class="w-12 h-12"><%= image_tag dog.thumbnail_photo.url(:std_thumb), alt: @dog.name %></li>
+                        <li class="w-12 h-12 mx-1"><%= image_tag dog.thumbnail_photo.url(:std_thumb), class: css_class_dog_color_marker(dog), alt: @dog.name %></li>
                       <% end %>
                     </ul>
                   </td>
