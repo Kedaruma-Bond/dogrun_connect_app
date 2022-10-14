@@ -97,7 +97,7 @@ ja:
       非公開の
       ワンちゃんです
     entering: 入場中
-    encount_dog_memo: メモ
+    encount_dog_memo: このワンちゃんへのメモ
   simple_form:
     "yes": はい
     "no": いいえ
