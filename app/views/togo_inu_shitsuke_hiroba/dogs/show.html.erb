@@ -120,7 +120,7 @@
                 </h1>
               </div>
             </div>
-            <div class="justify-center md:justify-start">
+            <div class="justify-center md:justify-start mb-3">
               <p class="text-gray-600 text-xs font-light">
                 <%= t'defaults.owner_comment' %>
               </p>
@@ -128,6 +128,16 @@
                 <%= @dog.owner_comment %>
               </div>
             </div>
+            <% if not @encount_dog.blank? %>
+              <div class="justify-center md:justify-start">
+                <p class="text-gray-600 text-xs font-light">
+                  <%= t'defaults.encount_dog_memo' %>
+                </p>
+                <div class="mt-1 text-xl text-gray-700">
+                  <%= @encount_dog.memo %>
+                </div>
+              </div>
+            <% end %>
           </div>
         </div>
       </section>
