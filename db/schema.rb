@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_12_060541) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_14_060352) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,6 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_12_060541) do
     t.text "memo", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "acknowledge", default: false, null: false
     t.index ["dog_id"], name: "index_encount_dogs_on_dog_id"
     t.index ["dogrun_place_id"], name: "index_encount_dogs_on_dogrun_place_id"
     t.index ["user_id"], name: "index_encount_dogs_on_user_id"

@@ -8,7 +8,7 @@
           <div class="flex flex-col sm:flex-row mt-5">
             <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
               <div class="w-40 h-40 flex-shrink-0 mx-auto mb-3 md:md-0 inline-flex items-center justify-center">
-                <%= image_tag @dog.thumbnail_photo.url(:std_thumb), alt: @dog.name %>
+                <%= image_tag @dog.thumbnail_photo.url(:std_thumb), class: css_class_dog_color_marker(@dog), alt: @dog.name %>
               </div>
               <div class="text-gray-600 text-xs font-light">
                 <%= simple_format((t'.registration_number'), {}, wrapper_tag: "div") %>
@@ -124,8 +124,8 @@
               <p class="text-gray-600 text-xs font-light">
                 <%= t'defaults.owner_comment' %>
               </p>
-              <div class="mt-1 text-xl text-gray-700">
-                <%= @dog.owner_comment %>
+              <div class="mt-1">
+                <%= simple_format(@dog.owner_comment, class: "text-xl text-gray-700") %>
               </div>
             </div>
             <% if not @encount_dog.blank? %>
@@ -133,8 +133,8 @@
                 <p class="text-gray-600 text-xs font-light">
                   <%= t'defaults.encount_dog_memo' %>
                 </p>
-                <div class="mt-1 text-xl text-gray-700">
-                  <%= @encount_dog.memo %>
+                <div class="mt-1">
+                  <%= simple_format(@encount_dog.memo, class: "text-xl text-gray-700") %>
                 </div>
               </div>
             <% end %>

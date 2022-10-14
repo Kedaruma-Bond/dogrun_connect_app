@@ -43,7 +43,7 @@
                   <div class="table-cell whitespace-nowrap bg-purple-200">
                     <%= link_to togo_inu_shitsuke_hiroba_dog_path(@dogs_public_view[t].id) do %>
                       <div class="w-28 h-28 mb-3 md:mb-0 mx-auto">
-                        <%= image_tag @dogs_public_view[t].thumbnail_photo.url(:std_thumb), alt: @dogs_public_view[t].name %>
+                        <%= image_tag @dogs_public_view[t].thumbnail_photo.url(:std_thumb), class: css_class_dog_color_marker(@dogs_public_view[t]), alt: @dogs_public_view[t].name %>
                       </div>
                     <% end %>
                   </div>

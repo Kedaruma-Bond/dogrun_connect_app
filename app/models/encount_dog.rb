@@ -18,6 +18,7 @@ end
 # Table name: encount_dogs
 #
 #  id              :bigint           not null, primary key
+#  acknowledge     :boolean          default(FALSE), not null
 #  color_marker    :integer
 #  memo            :text             default("")
 #  created_at      :datetime         not null

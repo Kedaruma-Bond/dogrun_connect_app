@@ -8,8 +8,8 @@
     <h3 class="text-lg leading-6 font-bold text-gray-900">
       <%= t'defaults.encount_dog_memo' %>
     </h3>
-    <div class="w-full flex flex-col mt-8">
-      <%= encount_dog.memo %>
+    <div class="mt-4">
+      <%= simple_format(encount_dog.memo, class: "w-full") %>
     </div>
   </div>
 </dialog>
