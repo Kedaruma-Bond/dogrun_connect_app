@@ -16,30 +16,30 @@ module DogHelper
 
     case encount_dog.color_marker
     when 'red'
-      'border-2 border-red-500'
+      'border-2 border-red-500 rounded-full'
     when 'green'
-      'border-2 border-green-400'
+      'border-2 border-green-400 rounded-full'
     when 'blue'
-      'border-2 border-blue-500'
+      'border-2 border-blue-500 rounded-full'
     when 'yellow'
-      'border-2 border-yellow-500'
+      'border-2 border-yellow-500 rounded-full'
     else
-      ''
+      'rounded-full'
     end
   end
 
   def css_class_encount_dog_color_marker(encount_dog)
     case encount_dog.color_marker
     when 'red'
-      'border-2 border-red-500'
+      'border-2 border-red-500 rounded-full'
     when 'green'
-      'border-2 border-green-400'
+      'border-2 border-green-400 rounded-full'
     when 'blue'
-      'border-2 border-blue-500'
+      'border-2 border-blue-500 rounded-full'
     when 'yellow'
-      'border-2 border-yellow-500'
+      'border-2 border-yellow-500 rounded-full '
     else
-      ''
+      'rounded-full'
     end
   end
 end
