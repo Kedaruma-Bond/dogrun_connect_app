@@ -12,7 +12,7 @@ module DogHelper
 
   def css_class_dog_color_marker(dog)
     encount_dog = EncountDog.where(user_id: current_user.id).find_by(dog_id: dog.id)
-    return if encount_dog.blank?
+    return 'rounded-full' if encount_dog.blank?
 
     case encount_dog.color_marker
     when 'red'
@@ -37,7 +37,7 @@ module DogHelper
     when 'blue'
       'border-2 border-blue-500 rounded-full'
     when 'yellow'
-      'border-2 border-yellow-500 rounded-full '
+      'border-2 border-yellow-500 rounded-full'
     else
       'rounded-full'
     end
