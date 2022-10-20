@@ -125,7 +125,7 @@
                 <%= t'defaults.owner_comment' %>
               </p>
               <div class="mt-1">
-                <%= simple_format(@dog.owner_comment, class: "text-xl text-gray-700") %>
+                <%= simple_format(@dog.owner_comment, class: "text-lg text-gray-700 text-left") %>
               </div>
             </div>
             <% if not @encount_dog.blank? %>
@@ -134,7 +134,7 @@
                   <%= t'defaults.encount_dog_memo' %>
                 </p>
                 <div class="mt-1">
-                  <%= simple_format(@encount_dog.memo, class: "text-xl text-gray-700") %>
+                  <%= simple_format(@encount_dog.memo, class: "text-lg text-gray-700 text-left") %>
                 </div>
               </div>
             <% end %>
