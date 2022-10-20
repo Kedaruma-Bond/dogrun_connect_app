@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include EntryHelper
   include SessionHelper
   include DogHelper
+  include EncountDogHelper
   include EntryConcern
   before_action :require_login
   add_flash_types :success, :notice, :error

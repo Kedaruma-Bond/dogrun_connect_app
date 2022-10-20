@@ -1,7 +1,7 @@
 <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
   <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
     <div class="w-12 h-12 flex-shrink-0 mx-auto mb-3 inline-flex items-center justify-center">
-      <%= image_tag dog.thumbnail_photo.url(:std_thumb), alt: dog.name %>
+      <%= image_tag dog.thumbnail_photo.url(:std_thumb), class: "rounded-full", alt: dog.name %>
     </div>
   </td>
   <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
