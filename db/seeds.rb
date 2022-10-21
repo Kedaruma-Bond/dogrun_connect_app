@@ -121,7 +121,6 @@ article_posts = users.map do |u|
   )
 end
 
-# article_posts = Post.where(post_type: 'article')
 article_posts.each do |post|
   Article.create!(
     post: post,
@@ -136,12 +135,11 @@ fb_posts = users.map do |u|
   )
 end
 
-# fb_posts = Post.where(post_type: 'embed').limit(8)
 fb_posts.each do |post|
   Embed.create!(
     post: post,
     embed_type: 'fb',
-    identifier: '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Ftogo.inu.shitsuke.hiroba%2Fposts%2Fpfbid02Swbx5pmLnnV59JUAYJy8PF5BXinaRUooUnWP7qrFZ6S25reVNzjsNkmV3PMLXAYPl&show_text=true&width=500" width="500" height="523" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>'
+    identifier: '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Ftogo.inu.shitsuke.hiroba%2Fposts%2Fpfbid01SoqGbfWRn4fuSDEJdjWns9r7AtqfSNs513FEDGbgvcbeiKi48GLieWmZwKCMJuVl&width=350&show_text=true&appId=3337383116548951&height=396" width="350" height="396" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>'
   )
 end
 
@@ -152,7 +150,6 @@ instagram_posts = users.map do |u|
   )
 end
 
-# instagram_posts = Post.where(post_type: 'embed').offset(8).limit(16)
 instagram_posts.each do |post|
   Embed.create!(
     post: post,
@@ -168,7 +165,6 @@ twitter_posts = users.map do |u|
   )
 end
 
-# twitter_posts = Post.where(post_type: 'embed').offset(16).limit(24)
 twitter_posts.each do |post|
   Embed.create!(
     post: post,

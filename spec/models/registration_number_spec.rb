@@ -23,6 +23,14 @@ RSpec.describe RegistrationNumber, type: :model do
       expect(registration_number.errors[:registration_number]).to include('を入力してください')
     end
   end
+
+  context 'dogがnullの場合' do
+    it '無効であること' do
+      registration_number = build(:registration_number, dog: nil)
+      expect(registration_number).to be_invalid
+      expect(registration_number.errors[:dog]).to include('を入力してください')
+    end
+  end
 end
 
 # == Schema Information
