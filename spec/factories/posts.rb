@@ -1,19 +1,24 @@
-class Post < ApplicationRecord
-  belongs_to :user
-  belongs_to :dogrun_place
-  has_one :article, dependent: :destroy
-  has_one :embed, dependent: :destroy
+FactoryBot.define do
+  factory :post do
+    association :dogrun_place
+    association :user
 
-  #validates
-  with_options on: %i[create update] do
-    validates :post_type, presence: true
-    validates :publish_status, presence: true
+    trait :is_publishing do
+      publish_status { 'is_publishing' }
+    end
+
+    trait :non_publish do
+      publish_status { 'non_publish' }
+    end
+
+    trait :article do
+      post_type { 'article' }
+    end
+
+    trait :embed do
+      post_type { 'embed' }
+    end
   end
-
-  # enum
-  enum publish_status: { non_publish: false, is_publishing: true }
-  enum post_type: { article: 0, embed: 1 }
-
 end
 
 # == Schema Information

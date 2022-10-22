@@ -5,6 +5,9 @@ class DogrunPlace < ApplicationRecord
   has_many :users, dependent: :destroy
   has_many :friend_dogs, dependent: :destroy
 
+  # validation
+  validates :name, presence: true, length: { maximum: 50 }
+
 end
 
 # 1: grand_admin
