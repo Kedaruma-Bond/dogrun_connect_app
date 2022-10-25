@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+    def get_fb_appId
+      gon.fb_appId = Rails.application.credentials.meta_tags[:facebook_id]
+    end
     
     def correct_dog_owner
       dog = Dog.find(params[:id])

@@ -81,6 +81,8 @@ gem 'ransack'
 gem 'meta-tags'
 # aws接続用
 gem 'aws-sdk-s3'
+# rails to js
+gem 'gon'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
