@@ -3,6 +3,12 @@ ja:
     shared:
       navbar:
         logout_confirmation: 管理者ユーザーからログアウトしますか？
+        user_list: 利用者一覧
+        dogrun_post_list: ドッグランへの投稿一覧
+        staff_list: スタッフ一覧
+        dogrun_place_list: ドッグラン一覧
+        registered_dogs_list: 登録犬一覧
+        
       sidebar:
         user_list: 利用者一覧
         dogrun_post_list: ドッグランへの投稿一覧
