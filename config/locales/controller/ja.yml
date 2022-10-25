@@ -148,7 +148,8 @@ ja:
         name: スタッフの名前
         email: メールアドレス
         enable_notification: |
-          ドッグラへンの投稿通知
+          ドッグラン
+          投稿通知
           受け取り
       encount_dog:
         memo: メモ
