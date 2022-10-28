@@ -52,7 +52,7 @@ class TogoInuShitsukeHiroba::SessionsController < TogoInuShitsukeHiroba::DogrunP
 
   private
     def remember_checked
-      params[:rememer] = true
+      params[:remember] = true
     end
 
 end

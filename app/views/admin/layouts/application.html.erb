@@ -16,11 +16,11 @@
     <%= display_meta_tags(default_meta_tags) %>
   </head>
 
-  <body class="bg-gray-800 font-sans leading-normal tracking-normal">
+  <body class="bg-gray-800 font-sans min-h-screen">
     <%= render 'application/fb_sdk'%>
     <%= render partial: 'admin/shared/navbar' %>
     <%= render partial: 'shared/flash' %>
-    <main>
+    <main class="relative">
       <div class="flex flex-row" data-controller="service_worker">
         <%= render partial: 'admin/shared/sidebar' %>
         <%= yield %>
