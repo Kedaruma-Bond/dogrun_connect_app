@@ -13,7 +13,7 @@ class Admin::DashboardsController < Admin::BaseController
       @registration_dogs = Dog.all
       @new_registration_dogs_over_the_past_month = Dog.where(created_at: from..to)
       entries = Entry.all
-      @post_over_the_path_month = Post.where(created_at: from..to)
+      @posts_over_the_past_month = Post.where(created_at: from..to)
     else 
       @entries_over_the_past_month = Entry.where(entry_at: from..to).joins(:registration_number).where(registration_number: { dogrun_place_id: current_user.dogrun_place_id })
       @registration_dogs = RegistrationNumber.where(dogrun_place: current_user.dogrun_place)

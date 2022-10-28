@@ -7,6 +7,30 @@ RSpec.describe Entry, type: :model do
       expect(entry).to be_valid
     end
   end
+
+  context 'dogがnullの場合' do
+    it '無効であること' do
+      entry = build(:entry, dog: nil)
+      expect(entry).to be_invalid
+      expect(entry.errors[:dog]).to include('を入力してください')
+    end
+  end
+  
+  context 'registration_numberがnullの場合' do
+    it '無効であること' do
+      entry = build(:entry, registration_number: nil)
+      expect(entry).to be_invalid
+      expect(entry.errors[:registration_number]).to include('を入力してください')
+    end
+  end
+  
+  context 'entry_atがnullの場合' do
+    it '無効であること' do
+      entry = build(:entry, entry_at: nil)
+      expect(entry).to be_invalid
+      expect(entry.errors[:entry_at]).to include('を入力してください')
+    end
+  end
 end
 
 # == Schema Information

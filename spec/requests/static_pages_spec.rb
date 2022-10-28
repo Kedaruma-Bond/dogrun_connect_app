@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'StaticPages', type: :request do
   describe '共通画面' do
+    let!(:dogrun_place) { FactoryBot.create(:dogrun_place, :togo_inu_shitsuke_hiroba) }
     context 'root pathにget request' do
       before { get root_path }
 
@@ -11,7 +12,6 @@ RSpec.describe 'StaticPages', type: :request do
 
       it 'タイトルがアプリ名のみになること' do
         expect(response.body).to include 'DogrunConnect'
-        expect(response.body).not_to include '| DogrunConnect'
       end
     end
 
@@ -22,7 +22,7 @@ RSpec.describe 'StaticPages', type: :request do
         expect(response).to have_http_status(:success)
       end
 
-      it 'タイトルが正常に表示さえれること' do
+      it 'タイトルが正常に表示されること' do
         expect(response.body).to include(I18n.t('defaults.privacy_policy'))
         expect(response.body).to include '| DogrunConnect'
       end
@@ -42,28 +42,31 @@ RSpec.describe 'StaticPages', type: :request do
     end
   end
 
-  describe '名前空間「犬のしつけ広場」' do
-    context 'togo_inu_shitsuke_hiroba/static_pages#topにrequest' do
-      before { get togo_inu_shitsuke_hiroba_top_path }
+  describe '名前空間 togo_inu_shitsuke_hiroba' do
+    let!(:dogrun_place) { FactoryBot.create(:dogrun_place, :togo_inu_shitsuke_hiroba) }
+    let!(:user) { FactoryBot.create(:user, :general) }
 
-      it 'レスポンスが正常なこと' do
-        expect(response).to have_http_status(:success)
-      end
-
-      it 'タイトルが正常に表示されていること' do
-        expect(response.body).to include('犬のしつけ広場 | DogrunConnect')
+    describe 'ログイン前' do
+      context 'togo_inu_shitsuke_hiroba/static_pages#topにget request' do
+        before { get togo_inu_shitsuke_hiroba_top_path }
+  
+        it 'レスポンスが正常なこと' do
+          expect(response).to have_http_status(:success)
+        end
+  
+        it 'タイトルが正常に表示されていること' do
+          expect(response.body).to include('犬のしつけ広場 | DogrunConnect')
+        end
       end
     end
 
-    context 'togo_inu_shitsuke_hiroba/static_pages#compliance_confirmation request' do
-      before { get togo_inu_shitsuke_hiroba_compliance_confirmations_path }
-
-      it 'レスポンスが正常なこと' do
-        expect(response).to have_http_status(:success)
-      end
-
-      it 'タイトルが正常に表示されていること' do
-        expect(response.body).to include('利用上の遵守・確認事項 | 犬のしつけ広場 | DogrunConnect')
+    describe 'ログイン後' do
+      context 'togo_inu_shitsuke_hiroba/static_pages#detailにget request' do
+        it 'レスポンスが正常なこと' do
+          log_in_as(user)
+          get togo_inu_shitsuke_hiroba_detail_path
+          expect(response).to have_http_status(:success)
+        end
       end
     end
   end

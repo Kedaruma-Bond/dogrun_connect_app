@@ -4,6 +4,10 @@ class Entry < ApplicationRecord
 
   attr_accessor :select_dog, :entry_token
 
+  #validations
+  validates :entry_at, presence: true
+
+  # scope
   scope :dogrun_place_id, -> (id) { joins(:registration_number).where(registration_numbers: { dogrun_place_id: id }).includes(:registration_number, dog: [:user]).order(entry_at: :desc) }
   scope :user_id, -> (id) { joins(:dog).where(dogs: { user_id: id }).includes(dog: [:user]) }
   scope :user_id_at_local, -> (id) { joins(:dog, :registration_number).where(dogs: { user_id: id }) }

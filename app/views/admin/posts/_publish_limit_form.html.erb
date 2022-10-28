@@ -1,9 +1,8 @@
 <%= form_with url: start_to_publish_admin_post_path(post), method: :patch, data: { turbo_confirm: t('.start_to_publish_confirmation') } do |f| %>
-  <div class="flex px-4 py-5 flex-wrap justify-center">
-    <p class= "text-lg leading-6 font-base text-gray-800"><%= t('.please_set_publish_limit')%></p>
-    <div class="w-full"></div>
+  <p class= "text-lg text-center leading-6 font-base text-gray-800"><%= t('.please_set_publish_limit')%></p>
+  <div class="flex-col text-center px-6 md:px-4 py-2 items-center">
     <%= f.datetime_select :publish_limit, { min: Time.zone.now, minute_step: 30, discard_year: true, discard_second: true, start_minite: 30, start_second: 0 }, { class: "leading-none rounded mt-2" } %>
-    <span class="ml-2 text-lg leading-6 font-base text-gray-800 pt-3"><%= t('.until') %></span>
+    <span class="flex justify-center ml-52 md:ml-96 text-lg leading-6 font-base text-gray-800"><%= t('.until') %></span>
   </div>
   <%= f.hidden_field :publish_status, value: 'is_publishing' %>
   <div class="flex items-center justify-center mt-2">

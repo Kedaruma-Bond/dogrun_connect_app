@@ -4,6 +4,27 @@ FactoryBot.define do
     sequence(:email) { |n| "bond_#{n}@example.com" }
     password { 'password' }
     password_confirmation { 'password' }
+
+    trait :general_user do
+      role { 'general' }
+    end
+
+    trait :admin_user do
+      role { 'admin' }
+    end
+
+    trait :grand_admin do
+      role { 'admin' }
+      name { 'grand_admin' }
+    end
+
+    trait :guest_user do
+      role { 'guest' }
+    end
+
+    trait :account_BAN do
+      deactivation { 'account_frozen' }
+    end
   end
 end
 

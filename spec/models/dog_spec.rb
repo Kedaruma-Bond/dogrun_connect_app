@@ -31,6 +31,14 @@ RSpec.describe Dog, type: :model do
       expect(dog.errors[:public]).to include('を入力してください')
     end
   end
+
+  context 'userがnullの場合' do
+    it '無効であること' do
+      dog = build(:dog, user: nil)
+      expect(dog).to be_invalid
+      expect(dog.errors[:user]).to include('を入力してください')
+    end
+  end
 end
 
 # == Schema Information

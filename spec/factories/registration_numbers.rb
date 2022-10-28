@@ -1,13 +1,9 @@
-class RegistrationNumber < ApplicationRecord
-  belongs_to :dog
-  belongs_to :dogrun_place
-  has_many :entries, dependent: :destroy
-
-  # validates
-  validates :registration_number, presence: true
-
-  # scope
-  
+FactoryBot.define do
+  factory :registration_number do
+    registration_number { Faker::Number.between(from: 1, to: 2000) }
+    association :dog
+    association :dogrun_place
+  end
 end
 
 # == Schema Information

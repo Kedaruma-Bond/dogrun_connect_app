@@ -118,7 +118,10 @@ ja:
         agreement: 利用規約とプライバシーポリシー
       dog:
         name: ワンちゃんの名前
-        castration: 避妊・去勢
+        castration: |
+          避妊
+          ・
+          去勢
         public: 利用状況公開
         breed: 犬種
         birthday: 誕生日
@@ -148,7 +151,8 @@ ja:
         name: スタッフの名前
         email: メールアドレス
         enable_notification: |
-          ドッグラへンの投稿通知
+          ドッグラン
+          投稿通知
           受け取り
       encount_dog:
         memo: メモ
