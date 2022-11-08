@@ -36,15 +36,24 @@
           </div>
         </div>
         <%= link_to togo_inu_shitsuke_hiroba_dog_registration_path do %>
-          <button class="flex items-center px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+          <button class="hidden md:flex items-center px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-amber-600 rounded-md hover:bg-amber-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
             </svg>
-            <span class="mx-1"><%= t'.add' %></span>
+            <span class="mx-1"><%= t'.add_dog' %></span>
           </button>
         <% end %>
       </div>
     <% end %>
     <%= render 'shared/dog_profile' %>
+    <div class="md:hidden sm:w-2/3 sm:pl-8 sm:py-2 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
+    <%= link_to togo_inu_shitsuke_hiroba_dog_registration_path do %>
+      <button class="md:hidden mt-5 flex items-center mx-auto px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-amber-600 rounded-md hover:bg-amber-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
+        </svg>
+        <span class="mx-1"><%= t'.add_dog' %></span>
+      </button>
+    <% end %>
   </div>
 </div>

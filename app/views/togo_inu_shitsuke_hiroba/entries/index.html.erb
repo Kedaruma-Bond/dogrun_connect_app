@@ -4,7 +4,9 @@
     <%= simple_format(I18n.t('togo_inu_shitsuke_hiroba.entries.index.title', dogrun: DogrunPlace.find(2).name)) %>
   </h1>
   <%= render 'search_form' %>
-  <div class="container bg-purple-200 w-full shadow rounded sm:p-10 pt-3 mt-3">
+  <p class="text-center md:hidden text-xs text-gray-600 mt-3"><%= t('defaults.thumbnail_tap') %></p>
+  <p class="text-center md:hidden text-xs text-gray-600"><%= t('defaults.slide_available') %></p>
+  <div class="container bg-purple-200 w-full shadow rounded sm:p-10">
     <div class="block w-full overflow-x-auto">
       <table class="table-auto items-center w-full bg-transparent border-collapse">
         <thead>

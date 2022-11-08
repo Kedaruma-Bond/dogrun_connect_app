@@ -13,5 +13,5 @@ ja:
         name: 飼い主さんの名前
         email: メールアドレス
         of_dogs: 頭
-        add: 追加
+        add_dog: 新たにワンちゃんを登録する
 
