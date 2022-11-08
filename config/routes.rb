@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   
   namespace :togo_inu_shitsuke_hiroba do
     get 'top', to: 'static_pages#top'
-    get 'detail', to: 'static_pages#detail'
     resource :sessions, only: %i[new create destroy]
     post '/guest_login', to: 'sessions#guest_login'
     post '/jump_to_signup', to: 'sessions#jump_to_signup'
