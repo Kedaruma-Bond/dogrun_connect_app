@@ -5,6 +5,10 @@ ja:
         パスポート
         番号
       age_unit: 歳
+      destroy_confirm: |
+        このワンちゃんの登録を
+        本当に解除しますか？
+      delete: 登録削除
     entries_table:
       table_of_entries_latest_max_five: "過去%{times}回の利用状況"
       playing_together: 一緒に遊んだワンちゃん

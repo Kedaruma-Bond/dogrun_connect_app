@@ -9,7 +9,9 @@
     <p><%= t('.unit_of_encount_dogs') %></p>
   </div>
   <%= render 'search_form' %>
-  <div class="container bg-purple-200 w-full shadow rounded sm:p-10 pt-3 mt-3">
+  <p class="text-center md:hidden text-xs text-gray-600 mt-3"><%= t('defaults.thumbnail_tap') %></p>
+  <p class="text-center md:hidden text-xs text-gray-600"><%= t('defaults.slide_available') %></p>
+  <div class="container bg-purple-200 w-full shadow rounded sm:p-10">
     <div class="block w-full overflow-x-auto">
       <table class="table-auto items-center w-full bg-transparent border-collapse">
         <thead>
@@ -21,13 +23,13 @@
               <%= simple_format(t('defaults.dog_name')) %>
             </th>
             <th class="pl-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
+              <%= EncountDog.human_attribute_name(:memo) %>
+            </th>
+            <th class="pl-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
               <%= t('.encount_date') %>
             </th>
             <th class="pl-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
               <%= t('.encount_dogrun') %>
-            </th>
-            <th class="pl-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
-              <%= EncountDog.human_attribute_name(:memo) %>
             </th>
             <th class="pl-6 pr-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
               <%= t('defaults.edit') %>

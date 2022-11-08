@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     end
     resources :users, only: %i[new create show]
     resources :dogs, only: %i[show edit update]
+    resources :registration_numbers, only: %i[destroy]
     resources :posts, only: %i[create] do
       member do
         resource :article, only: %i[new create]

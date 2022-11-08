@@ -91,6 +91,12 @@ ja:
         dog_profile_updated: |
           ワンちゃんのプロフィールを
           更新しました！
+    registration_numbers:
+      destroy:
+        destroy_successfully: |
+          登録を削除しました
+          もし誤って削除してしまった場合は
+          お問い合わせフォームからお申し出ください
     posts:
       create:
         choice_sns: 埋め込むSNSを選択してください。

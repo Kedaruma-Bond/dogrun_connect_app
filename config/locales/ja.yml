@@ -98,6 +98,8 @@ ja:
       ワンちゃんです
     entering: 入場中
     encount_dog_memo: このワンちゃんへのメモ
+    slide_available: 👈 横スライドします 👉
+    thumbnail_tap: サムネイルをタップするとプロフィールを確認できます
   simple_form:
     "yes": はい
     "no": いいえ
