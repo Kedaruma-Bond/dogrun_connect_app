@@ -1,7 +1,7 @@
 class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::DogrunPlaceController
-  skip_before_action :require_login, except: %i[detail]
+  skip_before_action :require_login, only: %i[top]
   before_action :set_dogs_and_registration_numbers_at_local, only: %i[top]
-  before_action :get_dogrun_entry_data, only: %i[top detail]
+  before_action :get_dogrun_entry_data, only: %i[top]
   around_action :skip_bullet, if: -> { defined?(Bullet) }
 
   def top
@@ -11,9 +11,6 @@ class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::Dogr
     @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place_id: 2 }).find_by(exit_at: nil) unless not_entry?
     @publishing_post = Post.where(publish_status: 'is_publishing').where(dogrun_place: 2)
     
-  end
-
-  def detail
     return if @dogrun_entry_data.blank?
     dogs = @dogrun_entry_data.map do |entry_data|
       Dog.find(entry_data.dog_id)
