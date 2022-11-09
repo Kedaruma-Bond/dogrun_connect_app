@@ -13,8 +13,6 @@ class Article < ApplicationRecord
   def update_active_storage
     self.as_image_attach.purge if self.as_image_attach.attached?
     sync_image_attach if self.image_attach.present?
-  rescue StandardError -> error
-    Log.error(error)
   end
 
   def sync_image_attach

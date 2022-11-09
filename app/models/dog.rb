@@ -30,8 +30,6 @@ class Dog < ApplicationRecord
   def update_active_storage
     self.as_thumbnail_photo.purge if self.as_thumbnail_photo.attached?
     sync_thumbnail_photo if self.thumbnail_photo.present?
-  rescue StandardError -> error
-    Log.error(error)
   end
 
   def sync_thumbnail_photo
