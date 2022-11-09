@@ -1,6 +1,7 @@
 class Entry < ApplicationRecord
   belongs_to :dog
   belongs_to :registration_number
+  has_many :encounts, dependent: :destroy
 
   attr_accessor :select_dog, :entry_token
 

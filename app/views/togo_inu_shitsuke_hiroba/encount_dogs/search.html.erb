@@ -8,6 +8,7 @@
     <h3 class="px-2 text-xl"><%= @encount_dogs_results.count %></h3>
     <p class=""><%= t('.unit_of_encount_dogs') %></p>
   </div>
+  <%= simple_format(t('.lets_encount_many_dogs'), class: "text-center mb-2 text-base text-sky-800") %>
   <%= render 'search_form' %>
   <p class="text-center md:hidden text-xs text-gray-600 mt-3"><%= t('defaults.thumbnail_tap') %></p>
   <p class="text-center md:hidden text-xs text-gray-600"><%= t('defaults.slide_available') %></p>
