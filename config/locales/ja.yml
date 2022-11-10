@@ -46,10 +46,16 @@ ja:
     exit: 退場
     detail: 詳細
     update: 更新
-    updating: 更新中…
-    processing: 処理中…
+    updating: |
+      更新中...
+      そのままお待ちください
+    processing: |
+      処理中...
+      そのままお待ちください
     post: 投稿
-    posting: 投稿中...
+    posting: |
+      投稿中...
+      そのままお待ちください
     edit: 編集
     delete: 削除
     owner_comment: |
