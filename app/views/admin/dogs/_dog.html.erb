@@ -6,15 +6,7 @@
   </td>
   <% if current_user.name == "grand_admin" %>
     <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
-      <%if dog.thumbnail.attached? %>
-        <div class="w-12 h-12 flex-shrink-0 mx-auto mb-3 inline-flex items-center justify-center">
-          <%= cl_image_tag(dog.thumbnail) %>
-        </div>
-      <% else %>
-        <div class="w-12 h-12 flex-shrink-0 mx-auto mb-3 inline-flex items-center justify-center">
-          <%= image_tag 'https://res.cloudinary.com/hryerpkcw/image/upload/v1661501955/thumbnail_placeholder_ztqnju.png', class: "rounded-full", alt: dog.name %>
-        </div>
-      <% end %>
+      <%= thumb(dog) %>
     </td>
   <% else %>
     <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">

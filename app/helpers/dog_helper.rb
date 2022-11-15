@@ -53,4 +53,16 @@ module DogHelper
       return
     end
   end
+
+  def thumb(dog)
+    if dog.thumbnail.attached?
+      tag.div class: "w-12 h-12 flex-shrink-0 mx-auto mb-3 inline-flex items-center justify-center" do
+        image_tag dog.thumbnail, class: css_class_dog_color_marker(dog), style: "aspect-ratio: 1 / 1", alt: dog.name
+      end
+    else
+      tag.div class: "w-12 h-12 flex-shrink-0 mx-auto mb-3 inline-flex items-center justify-center" do
+        image_tag 'https://res.cloudinary.com/hryerpkcw/image/upload/v1661501955/thumbnail_placeholder_ztqnju.png', class: "rounded-full", alt: dog.name
+      end
+    end
+  end
 end
