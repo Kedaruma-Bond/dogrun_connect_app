@@ -6,4 +6,5 @@ module DogDecorator
     age -= 1 if today < this_years_birthday
     age
   end
+
 end

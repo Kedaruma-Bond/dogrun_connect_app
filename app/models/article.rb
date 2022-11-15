@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
   belongs_to :post
   mount_uploader :image_attach, AttachmentUploader
-  has_one_attached :image_attach_new
+  has_one_attached :photo
 
   # validates
   validates :content, presence: true, length: { maximum: 400 }

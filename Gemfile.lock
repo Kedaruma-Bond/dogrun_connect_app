@@ -65,6 +65,11 @@ GEM
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
     active_decorator (1.4.0)
       activesupport
+    active_storage_validations (1.0.3)
+      activejob (>= 5.2.0)
+      activemodel (>= 5.2.0)
+      activestorage (>= 5.2.0)
+      activesupport (>= 5.2.0)
     activejob (7.0.3)
       activesupport (= 7.0.3)
       globalid (>= 0.3.6)
@@ -195,6 +200,7 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jmespath (1.6.1)
+    jp_prefecture (1.1.1)
     json (2.6.2)
     jwt (2.4.1)
     kaminari (1.2.2)
@@ -461,6 +467,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_decorator
+  active_storage_validations
   annotate
   aws-sdk-s3
   bcrypt (~> 3.1.7)
@@ -478,8 +485,10 @@ DEPENDENCIES
   factory_bot_rails
   faker!
   gon
+  image_processing (~> 1.2)
   importmap-rails
   jbuilder
+  jp_prefecture
   kaminari
   letter_opener_web
   meta-tags
