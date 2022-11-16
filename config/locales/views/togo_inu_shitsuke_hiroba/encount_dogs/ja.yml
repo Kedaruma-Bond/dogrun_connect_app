@@ -7,11 +7,9 @@ ja:
         encount_dogrun: 出会ったドッグラン
         until_now: 今までに
         unit_of_encount_dogs: 頭のワンちゃんと出会いました
-        lets_encount_many_dogs: |
+        explain_encount_dogs: |
           同じドッグランで20〜30分以上一緒に過ごすと
           リストにそのワンちゃんが追加されます🐕
-          いっぱいドッグランに行って
-          たくさんのワンちゃんに出会いましょう♪
       search:
         title: |
           エンカウントリスト

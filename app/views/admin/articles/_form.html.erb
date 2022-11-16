@@ -9,7 +9,7 @@
       <%= f.input :photo, as: :file, direct_upload: true, input_html: { data: { "preview-target": "imageUploader", action: "preview#updatePreview"}, class: "block w-full px-3 py-1.5 mt-2 text-white font-normal bg-gray-700 bg-clip-padding rounded border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
   </div>
   <div class="flex-shrink-0 mx-auto mb-3 flex">
-    <%= photo_for_preview(article) %>
+    <%= article_photo_for_preview(article) %>
   </div>
   <div class="sm:flex mt-9">
     <div class="flex justify-center sm:ml-0 sm:mx-3">

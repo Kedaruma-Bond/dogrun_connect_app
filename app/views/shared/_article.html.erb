@@ -4,9 +4,9 @@
   </div>
 </div>
 <div class="p-2 md:px-20 text-gray-600" data-controller="lightbox">
-  <% if !post.article.image_attach.blank? %>
-    <%= link_to post.article.image_attach.url(:std_attach) do %>
-      <%= image_tag post.article.image_attach.url(:std_attach), alt: "preview of attachment photo", class: "object-cover mx-auto max-w-max-1/2 max-h-max-1/2" %>
+  <% if !post.article.photo.blank? %>
+    <%= link_to post.article.photo.url do %>
+      <%= article_photo(post.article) %>
     <% end %>
   <% else %>
     no image
