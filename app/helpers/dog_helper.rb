@@ -12,19 +12,19 @@ module DogHelper
 
   def css_class_dog_color_marker(dog)
     encount_dog = EncountDog.where(user_id: current_user.id).find_by(dog_id: dog.id)
-    return 'rounded-full' if encount_dog.blank?
+    return 'rounded-full aspect-square object-cover' if encount_dog.blank?
 
     case encount_dog.color_marker
     when 'red'
-      'border-2 border-red-500 rounded-full'
+      'border-2 border-red-500 rounded-full aspect-square object-cover'
     when 'green'
-      'border-2 border-green-400 rounded-full'
+      'border-2 border-green-400 rounded-full aspect-square object-cover'
     when 'blue'
-      'border-2 border-blue-500 rounded-full'
+      'border-2 border-blue-500 rounded-full aspect-square object-cover'
     when 'yellow'
-      'border-2 border-yellow-500 rounded-full'
+      'border-2 border-yellow-500 rounded-full aspect-square object-cover'
     else
-      'rounded-full'
+      'rounded-full aspect-square object-cover'
     end
   end
 
@@ -54,33 +54,33 @@ module DogHelper
     end
   end
 
-  def thumb_for_admin_view(dog)
+  def dog_thumb(dog)
     if dog.thumbnail.attached?
-      image_tag dog.thumbnail, class: "rounded-full aspect-square object-cover", alt: dog.name
+      image_tag dog.thumbnail, class: css_class_dog_color_marker(dog), alt: dog.name
     else
       image_tag 'https://res.cloudinary.com/hryerpkcw/image/upload/v1661501955/thumbnail_placeholder_ztqnju.png', class: "rounded-full", alt: dog.name
     end 
   end
 
-  def thumb_for_admin_preview(dog)
+  def dog_thumb_for_preview(dog)
     if dog.thumbnail.attached?
-      image_tag dog.thumbnail, "data-preview-target": "imagePreview", class: "rounded-full aspect-square object-cover", alt: dog.name
+      image_tag dog.thumbnail, "data-preview-target": "imagePreview", class: css_class_dog_color_marker(dog), alt: dog.name
     else
       image_tag 'https://res.cloudinary.com/hryerpkcw/image/upload/v1661501955/thumbnail_placeholder_ztqnju.png', "data-preview-target": "imagePreview", class: "rounded-full", alt: dog.name
     end 
   end
 
-  def thumb(encount_dog)
-    if encount_dog.thumbnail.attached?
-      image_tag encount_dog.thumbnail, class: css_class_dog_color_marker(encount_dog), alt: encount_dog.name
+  def encount_dog_thumb(dog, encount_dog)
+    if dog.thumbnail.attached?
+      image_tag dog.thumbnail, class: css_class_encount_dog_color_marker(encount_dog), alt: dog.name
     else
-      image_tag 'https://res.cloudinary.com/hryerpkcw/image/upload/v1661501955/thumbnail_placeholder_ztqnju.png', class: "rounded-full", alt: encount_dog.name
+      image_tag 'https://res.cloudinary.com/hryerpkcw/image/upload/v1661501955/thumbnail_placeholder_ztqnju.png', class: "rounded-full", alt: dog.name
     end
   end
 
-  def thumb_for_preview(encount_dog)
-    if encpunt_dog.thumbnail.attached?
-      image_tag encount_dog.thumbnail, "data-preview-target": "imagePreview", class: css_class_dog_color_marker(encount_dog), alt: encount_dog.name
+  def encount_dog_thumb_for_preview(dog, encount_dog)
+    if dog.thumbnail.attached?
+      image_tag dog.thumbnail, "data-preview-target": "imagePreview", class: css_class_dog_color_marker(encount_dog), alt: dog.name
     else
       image_tag 'https://res.cloudinary.com/hryerpkcw/image/upload/v1661501955/thumbnail_placeholder_ztqnju.png', "data-preview-target": "imagePreview", class: "rounded-full", style: "aspect-ratio: 1 / 1; object-fit: cover;", alt: dog.name
     end
