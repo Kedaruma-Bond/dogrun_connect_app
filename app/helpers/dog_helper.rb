@@ -54,7 +54,7 @@ module DogHelper
     end
   end
 
-  def dog_thumb(dog)
+  def dog_thumbnail(dog)
     if dog.thumbnail.attached?
       image_tag dog.thumbnail, class: css_class_dog_color_marker(dog), alt: dog.name
     else
@@ -62,7 +62,7 @@ module DogHelper
     end 
   end
 
-  def dog_thumb_for_preview(dog)
+  def dog_thumbnail_for_preview(dog)
     if dog.thumbnail.attached?
       image_tag dog.thumbnail, "data-preview-target": "imagePreview", class: css_class_dog_color_marker(dog), alt: dog.name
     else
@@ -70,7 +70,7 @@ module DogHelper
     end 
   end
 
-  def encount_dog_thumb(dog, encount_dog)
+  def encount_dog_thumbnail(dog, encount_dog)
     if dog.thumbnail.attached?
       image_tag dog.thumbnail, class: css_class_encount_dog_color_marker(encount_dog), alt: dog.name
     else
@@ -78,7 +78,7 @@ module DogHelper
     end
   end
 
-  def encount_dog_thumb_for_preview(dog, encount_dog)
+  def encount_dog_thumbnail_for_preview(dog, encount_dog)
     if dog.thumbnail.attached?
       image_tag dog.thumbnail, "data-preview-target": "imagePreview", class: css_class_encount_dog_color_marker(encount_dog), alt: dog.name
     else

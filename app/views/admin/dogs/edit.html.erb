@@ -21,7 +21,7 @@
                 <%= f.input :thumbnail, as: :file, direct_upload: true, input_html: { data: { "preview-target": "imageUploader", action: "preview#updatePreview" }, class: "block w-full px-3 py-1.5 text-sm text-white font-normal bg-gray-700 bg-clip-padding rounded border border-soild border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
               </div>
               <div class="w-52 h-52 mx-auto my-auto">
-                <%= dog_thumb_for_preview(@dog) %>
+                <%= dog_thumbnail_for_preview(@dog) %>
               </div>
             </div>
             <div class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
@@ -61,13 +61,13 @@
             </div>
           </div>
         </div>
-        <div class="sm:flex items-center mt-6 mx-auto">
-          <div class="mt-4 ml-3 pt-3 sm:ml-0 sm:mx-3 sm:mt-0">
+        <div class="sm:flex mt-9">
+          <div class="flex justify-center sm:ml-0 sm:mx-3">
             <%= link_to  admin_dogs_path, class: "mt-3 font-bold leading-normal text-white py-4 px-10 bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
               <span><%= t('defaults.back') %></span>
             <% end %>
           </div>
-          <div class="mt-4 sm:mx-3 sm:mt-0">
+          <div class="flex justify-center mt-3 sm:mt-0 sm:mx-3">
             <%= f.button :submit, class: "mt-3 font-bold leading-normal text-white py-4 px-10 bg-green-700 rounded hover:bg-green-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none diabled:cursor-not-allowed disabled:bg-green-500" do %>
               <span><%= t'defaults.update' %></span>
             <% end %>
