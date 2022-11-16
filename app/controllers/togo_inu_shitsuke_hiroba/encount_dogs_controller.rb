@@ -26,7 +26,7 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
   private
 
     def set_encount_dogs
-      @encount_dogs = EncountDog.joins(:dogrun_place, :dog).includes([:dog]).where(user_id: current_user.id).where(dogs: { public: 'public_view' }).order(created_at: :desc).page(params[:page])
+      @encount_dogs = EncountDog.joins(:dogrun_place, :dog).includes(dog: { thumbnail_attachment: :blob }).where(user_id: current_user.id).where(dogs: { public: 'public_view' }).order(created_at: :desc).page(params[:page])
     end
 
     def set_q

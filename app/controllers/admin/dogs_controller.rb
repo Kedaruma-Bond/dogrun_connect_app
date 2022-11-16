@@ -3,8 +3,6 @@ class Admin::DogsController < Admin::BaseController
   before_action :set_dog, only: %i[edit update]
   before_action :dog_params, only: %i[update]
   before_action :set_q, only: %i[index search]
-  around_action :skip_bullet, if: -> { defined?(Bullet) } 
-
 
   def index; end
 
@@ -35,9 +33,9 @@ class Admin::DogsController < Admin::BaseController
     def set_dogs
       case current_user.name
       when "grand_admin"
-        @dogs = Dog.includes([:user], [:thumbnail_attachment]).with_attached_thumbnail.page(params[:page])
+        @dogs = Dog.with_attached_thumbnail.includes([:user]).order(updated_at: :desc).page(params[:page])
       else
-        @dogs = Dog.dogrun_place_id(current_user.dogrun_place_id).page(params[:page])
+        @dogs = Dog.dogrun_place_id(current_user.dogrun_place_id).with_attached_thumbnail.order(updated_at: :desc).page(params[:page])
       end
     end
 

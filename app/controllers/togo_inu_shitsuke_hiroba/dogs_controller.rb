@@ -33,7 +33,7 @@ class TogoInuShitsukeHiroba::DogsController < TogoInuShitsukeHiroba::DogrunPlace
     params.require(:dog).permit(
       :name, :birthday, :breed, :castration, :public,
       :owner_comment, :sex, :weight,
-      :thumbnail_photo, :thumbnail_photo_cache
+      :thumbnail
     ).merge(user_id: current_user.id)
   end
 end

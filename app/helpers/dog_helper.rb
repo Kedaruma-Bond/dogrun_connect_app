@@ -56,13 +56,17 @@ module DogHelper
 
   def thumb(dog)
     if dog.thumbnail.attached?
-      tag.div class: "w-12 h-12 flex-shrink-0 mx-auto mb-3 inline-flex items-center justify-center" do
-        image_tag dog.thumbnail, class: css_class_dog_color_marker(dog), style: "aspect-ratio: 1 / 1", alt: dog.name
-      end
+      image_tag dog.thumbnail, class: css_class_dog_color_marker(dog), style: "aspect-ratio: 1 / 1; object-fit: cover;", alt: dog.name
     else
-      tag.div class: "w-12 h-12 flex-shrink-0 mx-auto mb-3 inline-flex items-center justify-center" do
-        image_tag 'https://res.cloudinary.com/hryerpkcw/image/upload/v1661501955/thumbnail_placeholder_ztqnju.png', class: "rounded-full", alt: dog.name
-      end
+      image_tag 'https://res.cloudinary.com/hryerpkcw/image/upload/v1661501955/thumbnail_placeholder_ztqnju.png', class: "rounded-full", alt: dog.name
+    end
+  end
+
+  def thumb_for_preview(dog)
+    if dog.thumbnail.attached?
+      image_tag dog.thumbnail, "data-preview-target": "imagePreview", class: css_class_dog_color_marker(dog), style: "aspect-ratio: 1 / 1; object-fit: cover;", alt: dog.name
+    else
+      image_tag 'https://res.cloudinary.com/hryerpkcw/image/upload/v1661501955/thumbnail_placeholder_ztqnju.png', "data-preview-target": "imagePreview", class: "rounded-full", style: "aspect-ratio: 1 / 1; object-fit: cover;", alt: dog.name
     end
   end
 end
