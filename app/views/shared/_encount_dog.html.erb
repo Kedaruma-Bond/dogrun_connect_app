@@ -3,7 +3,7 @@
     <%= new_encount_dog_badge(encount_dog) %>
     <%= link_to togo_inu_shitsuke_hiroba_dog_path(encount_dog.dog_id) do %>
       <div class="w-28 h-28 mb-3 my-auto mx-auto">
-        <%= encount_dog_thumb(encount_dog.dog, encount_dog) %>
+        <%= image_tag encount_dog.dog.thumbnail_photo.url(:std_thumb), class: css_class_encount_dog_color_marker(encount_dog), alt: encount_dog.dog.name  %>
       </div>
     <% end %>
   </td>
