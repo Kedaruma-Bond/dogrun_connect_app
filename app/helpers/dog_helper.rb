@@ -12,34 +12,34 @@ module DogHelper
 
   def css_class_dog_color_marker(dog)
     encount_dog = EncountDog.where(user_id: current_user.id).find_by(dog_id: dog.id)
-    return 'rounded-full w-auto h-auto aspect-square object-cover' if encount_dog.blank?
+    return 'rounded-full w-72 h-72 aspect-square object-cover' if encount_dog.blank?
 
     case encount_dog.color_marker
     when 'red'
-      'border-2 border-red-500 rounded-full w-auto h-auto aspect-square object-cover'
+      'border-2 border-red-500 rounded-full w-72 h-72 aspect-square object-cover'
     when 'green'
-      'border-2 border-green-400 rounded-full w-auto h-auto aspect-square object-cover'
+      'border-2 border-green-400 rounded-full w-72 h-72 aspect-square object-cover'
     when 'blue'
-      'border-2 border-blue-500 rounded-full w-auto h-auto aspect-square object-cover'
+      'border-2 border-blue-500 rounded-full w-72 h-72 aspect-square object-cover'
     when 'yellow'
-      'border-2 border-yellow-500 rounded-full w-auto h-auto aspect-square object-cover'
+      'border-2 border-yellow-500 rounded-full w-72 h-72 aspect-square object-cover'
     else
-      'rounded-full w-auto h-auto spect-square object-cover'
+      'rounded-full w-72 h-72 spect-square object-cover'
     end
   end
 
   def css_class_encount_dog_color_marker(encount_dog)
     case encount_dog.color_marker
     when 'red'
-      'border-2 border-red-500 rounded-full w-auto h-auto aspect-square object-cover'
+      'border-2 border-red-500 rounded-full w-72 h-72 aspect-square object-cover'
     when 'green'
-      'border-2 border-green-400 rounded-full w-auto h-auto aspect-square object-cover'
+      'border-2 border-green-400 rounded-full w-72 h-72 aspect-square object-cover'
     when 'blue'
-      'border-2 border-blue-500 rounded-full w-auto h-auto aspect-square object-cover'
+      'border-2 border-blue-500 rounded-full w-72 h-72 aspect-square object-cover'
     when 'yellow'
-      'border-2 border-yellow-500 rounded-full w-auto h-auto aspect-square object-cover1'
+      'border-2 border-yellow-500 rounded-full w-72 h-72 aspect-square object-cover1'
     else
-      'rounded-full w-auto h-auto aspect-square object-cover'
+      'rounded-full w-72 h-72 aspect-square object-cover'
     end
   end
 
