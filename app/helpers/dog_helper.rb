@@ -56,7 +56,7 @@ module DogHelper
 
   def dog_thumbnail(dog)
     if dog.thumbnail.attached?
-      cl_image_tag(dog.thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, crop: :fill, class: css_class_dog_color_marker(dog), alt: dog.name)
+      cl_image_tag(dog.thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: css_class_dog_color_marker(dog), alt: dog.name)
     else
       cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1661501955/thumbnail_placeholder_ztqnju.png', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full", alt: dog.name)
     end 
@@ -64,7 +64,7 @@ module DogHelper
 
   def dog_thumbnail_for_preview(dog)
     if dog.thumbnail.attached?
-      cl_image_tag(dog.thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, crop: :fill, aspect_ratio: 1.0, class: css_class_dog_color_marker(dog), alt: dog.name, "data-preview-target": "imagePreview")
+      cl_image_tag(dog.thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: css_class_dog_color_marker(dog), alt: dog.name, "data-preview-target": "imagePreview")
     else
       cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1661501955/thumbnail_placeholder_ztqnju.png', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full", alt: dog.name, "data-preview-target": "imagePreview")
     end 
@@ -72,7 +72,7 @@ module DogHelper
 
   def encount_dog_thumbnail(dog, encount_dog)
     if dog.thumbnail.attached?
-      cl_image_tag(dog.thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, crop: :fill, aspect_ratio: 1.0, class: css_class_encount_dog_color_marker(encount_dog), alt: dog.name)
+      cl_image_tag(dog.thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: css_class_encount_dog_color_marker(encount_dog), alt: dog.name)
     else
       cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1661501955/thumbnail_placeholder_ztqnju.png', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full", alt: dog.name)
     end
