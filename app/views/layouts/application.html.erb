@@ -14,9 +14,10 @@
     <%= render 'application/favicon' %>
     <%= display_meta_tags(default_meta_tags) %>
   </head>
+  <%= render 'application/google_tag' %>
+  <%= render 'application/fb_sdk' %>
 
   <body class="break-words flex flex-col min-h-screen">
-    <%= render 'application/fb_sdk' %>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flash' %>
     <main class="mb-autoi relative">
