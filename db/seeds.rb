@@ -1,9 +1,9 @@
 # dogrun_place id: 1 for grand admin
 grand_admin = DogrunPlace.create!(name: 'grand_admin')
 # dogrun_place id: 2 犬のしつけ広場
-dogrun_place_2 = DogrunPlace.create!(name: '犬のしつけ広場')
+dogrun_place_2 = DogrunPlace.create!(name: 'Dog Play Park')
 # dogrun_place id: 3 Dog with
-dogrun_place_3 = DogrunPlace.create!(name: '大高緑地公園ドッグラン')
+dogrun_place_3 = DogrunPlace.create!(name: 'ABC公園ドッグラン')
 
 # grand admin create
 User.create!(name: 'grand_admin',
@@ -15,7 +15,7 @@ User.create!(name: 'grand_admin',
             )
 
 # inu_shitsuke_hiroba admin create
-User.create!(name: '犬のしつけ広場_admin',
+User.create!(name: 'Dog Play Park_admin',
             email: 'admin2@erai.com',
             password: 'foobuz',
             password_confirmation: 'foobuz',
@@ -24,7 +24,7 @@ User.create!(name: '犬のしつけ広場_admin',
             )
 
 # 大高緑地 admin create
-User.create!(name: '大高緑地公園ドッグラン_admin',
+User.create!(name: 'ABC公園ドッグラン_admin',
             email: 'admin3@erai.com',
             password: 'foobuz',
             password_confirmation: 'foobuz',

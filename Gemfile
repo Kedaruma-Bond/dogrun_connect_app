@@ -67,8 +67,6 @@ gem 'validates_email_format_of'
 gem 'active_decorator'
 # sitemap generatorでSEO対策
 gem 'sitemap_generator'
-# 画像アップロードをサポート
-gem 'carrierwave'
 # 画像ストレージ先
 gem 'cloudinary'
 # chart作図

@@ -3,8 +3,9 @@ class Dog < ApplicationRecord
   has_many :registration_numbers, dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :friend_dogs, dependent: :destroy
-  mount_uploader :thumbnail_photo, ThumbnailUploader
   has_one_attached :thumbnail
+
+  self.ignored_columns = [:thumbnail_photo]
 
   # validates
   validates :name, presence: true, length: { maximum: 50 }
@@ -13,8 +14,7 @@ class Dog < ApplicationRecord
   validates :breed, allow_nil: true, length: { maximum: 50 }
   validates :weight, allow_nil: true, numericality: { greater_than: 0 }
   validates :owner_comment, allow_nil: true, length: { maximum: 400 }
-  validates :thumbnail, content_type: ['image/png', 'image/jpeg', 'image/jpg', 'image/heic', 'image/gif'],
-                        size: { less_than: 10.megabytes }
+  validates :thumbnail, size: { less_than: 10.megabytes }
 
   # enum
   enum castration: { castrated: true, non_castrated: false }
