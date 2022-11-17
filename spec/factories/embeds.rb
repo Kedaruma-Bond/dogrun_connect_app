@@ -18,3 +18,23 @@ FactoryBot.define do
     end
   end
 end
+
+# == Schema Information
+#
+# Table name: embeds
+#
+#  id         :bigint           not null, primary key
+#  embed_type :integer          not null
+#  identifier :text             not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  post_id    :bigint           not null
+#
+# Indexes
+#
+#  index_embeds_on_post_id  (post_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (post_id => posts.id)
+#

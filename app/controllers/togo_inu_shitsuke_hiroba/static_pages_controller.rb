@@ -32,12 +32,4 @@ class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::Dogr
       @dogrun_entry_data = Entry.where.not(entry_at: nil).where(exit_at: nil).joins(:registration_number).where(registration_numbers: { dogrun_place_id: 2 })
       @num_of_playing_dogs = @dogrun_entry_data.size || 0
     end
-
-    def skip_bullet
-      previous_value = Bullet.enable?
-      Bullet.enable = false
-      yield
-    ensure
-      Bullet.enable = previous_value
-    end
 end

@@ -2,6 +2,7 @@ class Encount < ApplicationRecord
   belongs_to :dogrun_place
   belongs_to :user
   belongs_to :dog
+  belongs_to :entry
 
   # validates
   

@@ -1,9 +1,9 @@
 # dogrun_place id: 1 for grand admin
 grand_admin = DogrunPlace.create!(name: 'grand_admin')
 # dogrun_place id: 2 犬のしつけ広場
-dogrun_place_2 = DogrunPlace.create!(name: '犬のしつけ広場')
+dogrun_place_2 = DogrunPlace.create!(name: 'Dog Play Park')
 # dogrun_place id: 3 Dog with
-dogrun_place_3 = DogrunPlace.create!(name: '大高緑地公園ドッグラン')
+dogrun_place_3 = DogrunPlace.create!(name: 'ABC公園ドッグラン')
 
 # grand admin create
 User.create!(name: 'grand_admin',
@@ -15,7 +15,7 @@ User.create!(name: 'grand_admin',
             )
 
 # inu_shitsuke_hiroba admin create
-User.create!(name: '犬のしつけ広場_admin',
+User.create!(name: 'Dog Play Park_admin',
             email: 'admin2@erai.com',
             password: 'foobuz',
             password_confirmation: 'foobuz',
@@ -23,8 +23,8 @@ User.create!(name: '犬のしつけ広場_admin',
             dogrun_place: dogrun_place_2
             )
 
-# Dor_with admin create
-User.create!(name: '大高緑地公園ドッグラン_admin',
+# 大高緑地 admin create
+User.create!(name: 'ABC公園ドッグラン_admin',
             email: 'admin3@erai.com',
             password: 'foobuz',
             password_confirmation: 'foobuz',
@@ -51,8 +51,21 @@ end
 users = User.order(:created_at).limit(13).offset(3)
 castration = 'castrated'
 public = 'public_view'
+dog_photo = []
+dog_photo << 'public/uploads/dog-sample-1.png'
+dog_photo << 'public/uploads/dog-sample-2.png'
+dog_photo << 'public/uploads/dog-sample-3.png'
+dog_photo << 'public/uploads/dog-sample-4.png'
+dog_photo << 'public/uploads/dog-sample-5.png'
+dog_photo << 'public/uploads/dog-sample-6.png'
+dog_photo << 'public/uploads/dog-sample-7.png'
+dog_photo << 'public/uploads/dog-sample-8.png'
+dog_photo << 'public/uploads/dog-sample-9.png'
+dog_photo << 'public/uploads/dog-sample-10.png'
+dog_photo << 'public/uploads/dog-sample-11.png'
+num = 0
 users.each do |u|
-  u.dogs.create!(
+  d = u.dogs.create!(
     name: Faker::Creature::Dog.name,
     castration: castration,
     public: public,
@@ -60,15 +73,33 @@ users.each do |u|
     sex: Faker::Number.between(from: 0, to: 1),
     weight: Faker::Number.between(from: 1, to: 40),
     owner_comment: Faker::Lorem.paragraph(sentence_count: 5),
-    thumbnail_photo: nil 
   )
+  d.thumbnail.attach(io: File.open(Rails.root.join(dog_photo[num])), filename: d.name)
+  if num == 10
+    num = 0
+  else
+    num += 1
+  end
 end
 
 users = User.order(:created_at).last(11)
 castration = 'non_castrated'
 public = 'non_public'
+dog_photo = []
+dog_photo << 'public/uploads/dog-sample-1.png'
+dog_photo << 'public/uploads/dog-sample-2.png'
+dog_photo << 'public/uploads/dog-sample-3.png'
+dog_photo << 'public/uploads/dog-sample-4.png'
+dog_photo << 'public/uploads/dog-sample-5.png'
+dog_photo << 'public/uploads/dog-sample-6.png'
+dog_photo << 'public/uploads/dog-sample-7.png'
+dog_photo << 'public/uploads/dog-sample-8.png'
+dog_photo << 'public/uploads/dog-sample-9.png'
+dog_photo << 'public/uploads/dog-sample-10.png'
+dog_photo << 'public/uploads/dog-sample-11.png'
+num = 0
 users.each do |u|
-  u.dogs.create!(
+  d = u.dogs.create!(
     name: Faker::Creature::Dog.name,
     castration: castration,
     public: public,
@@ -76,8 +107,13 @@ users.each do |u|
     sex: Faker::Number.between(from: 0, to: 1),
     weight: Faker::Number.between(from: 1, to: 40),
     owner_comment: Faker::Lorem.paragraph(sentence_count: 5),
-    thumbnail_photo: nil
   )
+  d.thumbnail.attach(io: File.open(Rails.root.join(dog_photo[num])), filename: d.name)
+  if num == 10
+    num = 0
+  else
+    num += 1
+  end
 end
 
 dogs = Dog.all

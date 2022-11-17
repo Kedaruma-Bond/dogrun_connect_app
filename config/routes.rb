@@ -83,7 +83,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :dogs, only: %i[index] do
+    resources :dogs, only: %i[index edit update] do
       collection do
         get 'page/:page', action: :index
         get 'search', to: 'dogs#search'

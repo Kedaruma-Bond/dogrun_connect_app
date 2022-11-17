@@ -1,6 +1,7 @@
 class Entry < ApplicationRecord
   belongs_to :dog
   belongs_to :registration_number
+  has_many :encounts, dependent: :destroy
 
   attr_accessor :select_dog, :entry_token
 
@@ -8,9 +9,10 @@ class Entry < ApplicationRecord
   validates :entry_at, presence: true
 
   # scope
-  scope :dogrun_place_id, -> (id) { joins(:registration_number).where(registration_numbers: { dogrun_place_id: id }).includes(:registration_number, dog: [:user]).order(entry_at: :desc) }
-  scope :user_id, -> (id) { joins(:dog).where(dogs: { user_id: id }).includes(dog: [:user]) }
-  scope :user_id_at_local, -> (id) { joins(:dog, :registration_number).where(dogs: { user_id: id }) }
+  scope :dogrun_place_id, -> (dogrun_place_id) { includes(:registration_number, :dog, dog: [:user], dog: { thumbnail_attachment: :blob }).eager_load(dog: [:user]).where(registration_numbers: { dogrun_place_id: dogrun_place_id }).order(entry_at: :desc).where(dogs: { public: 'public_view'} ) }
+  scope :user_id, -> (user_id) { includes(dog: [:user]).where(dogs: { user_id: user_id }) }
+  scope :user_id_at_local, -> (user_id) { includes(:dog, :registration_number).where(dogs: { user_id: user_id }) }
+
 
   class << self
     def digest(string)

@@ -46,7 +46,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
   private
 
     def set_entries
-      @entries = Entry.dogrun_place_id(2).joins(:dog).where(dogs: {public: 'public_view'}).page(params[:page])
+      @entries = Entry.dogrun_place_id(2).page(params[:page])
     end
 
     def set_q

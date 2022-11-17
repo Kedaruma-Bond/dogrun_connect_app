@@ -13,6 +13,7 @@ require 'action_text/engine'
 require 'action_view/railtie'
 require 'action_cable/engine'
 # require 'rails/test_unit/railtie'
+require 'active_storage/engine'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -22,6 +23,7 @@ module DogrunConnect
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0 
+    config.active_storage.variant_processor = :mini_magick
     
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local

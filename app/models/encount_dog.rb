@@ -10,7 +10,7 @@ class EncountDog < ApplicationRecord
   enum color_marker: { transparent: 0, red: 1, green: 2, blue: 3, yellow: 4 }
 
   # scope
-  
+  scope :encount_dog_of_user, -> (user_id) { joins(:dogrun_place, :dog).includes(dog: { thumbnail_attachment: :blob }).where(user_id: user_id).where(dogs: { public: 'public_view' }).order(created_at: :desc)} 
 end
 
 # == Schema Information

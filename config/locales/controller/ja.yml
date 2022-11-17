@@ -134,7 +134,7 @@ ja:
         weight: 体重
         sex: 性別
         owner_comment: 飼い主さんから一言
-        thumbnail_photo: サムネイル
+        thumbnail: サムネイル
       registration_number:
         dogrun_place: 登録ドッグラン
         registration_number: 登録番号
@@ -149,7 +149,7 @@ ja:
         publish_limit: 掲示期限
       article:
         content: 内容
-        image_attach: 写真
+        photo: 写真
       embed:
         embed_type: 埋め込むSNS
         identifier: SNSの埋め込みCode

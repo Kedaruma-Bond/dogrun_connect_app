@@ -1,22 +1,23 @@
 class Article < ApplicationRecord
   belongs_to :post
-  mount_uploader :image_attach, AttachmentUploader
+  has_one_attached :photo
+
+  self.ignored_columns = [:image_attach]
 
   # validates
   validates :content, presence: true, length: { maximum: 400 }
-
+  validates :photo, size: { less_than: 10.megabytes }
 end
 
 # == Schema Information
 #
 # Table name: articles
 #
-#  id           :bigint           not null, primary key
-#  content      :text             not null
-#  image_attach :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  post_id      :bigint           not null
+#  id         :bigint           not null, primary key
+#  content    :text             not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  post_id    :bigint           not null
 #
 # Indexes
 #

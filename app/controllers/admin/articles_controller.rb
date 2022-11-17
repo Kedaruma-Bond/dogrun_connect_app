@@ -31,7 +31,7 @@ class Admin::ArticlesController < Admin::BaseController
 
     def article_params
       params.require(:article).permit(
-        :content, :image_attach
+        :content, :photo
       ).merge(post_id: params[:id])
     end
 
