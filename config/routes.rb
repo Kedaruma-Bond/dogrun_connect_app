@@ -59,7 +59,7 @@ Rails.application.routes.draw do
   
   namespace :admin do
     root 'dashboards#index'
-    resources :dogrun_places, only: %i[index create]
+    resources :dogrun_places, only: %i[index new create edit update show]
 
     resources :posts, only: %i[index create destroy] do
       collection do

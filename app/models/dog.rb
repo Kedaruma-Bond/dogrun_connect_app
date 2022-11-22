@@ -2,10 +2,9 @@ class Dog < ApplicationRecord
   belongs_to :user
   has_many :registration_numbers, dependent: :destroy
   has_many :entries, dependent: :destroy
-  has_many :friend_dogs, dependent: :destroy
+  has_many :encount_dogs, dependent: :destroy
+  has_many :encounts, dependent: :destroy
   has_one_attached :thumbnail
-
-  self.ignored_columns = [:thumbnail_photo]
 
   # validates
   validates :name, presence: true, length: { maximum: 50 }
@@ -23,7 +22,7 @@ class Dog < ApplicationRecord
 
   #   scope
   scope :dogrun_place_id, -> (id) { joins(:registration_numbers).where(registration_numbers: { dogrun_place_id: id }).includes(:registration_numbers, :user).order(id: :desc)}
-  scope :dogrun_place_id_for_friend_dog, -> (id) { joins(:entries, :registration_numbers).where(entries: { exit_at: nil }).where(registration_numbers: { dogrun_place_id: 2 }).includes(:entries, :registration_numbers, :user)}
+  scope :dogrun_place_id_for_encount_dog, -> (id) { joins(:entries, :registration_numbers).where(entries: { exit_at: nil }).where(registration_numbers: { dogrun_place_id: 2 }).includes(:entries, :registration_numbers, :user)}
 
 end
 

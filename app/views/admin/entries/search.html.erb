@@ -25,6 +25,9 @@
             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left underline">
               <%= sort_link(@q, :dog_user_name, t('defaults.name')) %>
             </th>
+            <th scope="col">
+              <%= simple_format(t('defaults.thumbnail'), class:"font-medium text-sm px-3 py-2 text-left") %>
+            </th>
             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left underline">
               <%= sort_link(@q, :dog_name, t('defaults.dog_name')) %>
             </th>

@@ -1,5 +1,6 @@
 ja:
   defaults:
+    business_time: 営業時間
     name: 飼い主さんの名前
     email: メールアドレス
     password: パスワード
@@ -20,7 +21,7 @@ ja:
     profile: プロフィール
     dogrun_post: ドッグランへの投稿作成
     signup: 新規登録
-    support: サポート
+    app_support: アプリサポート
     terms_of_service: 利用規約
     privacy_policy: プライバシーポリシー
     contact: お問い合わせ
@@ -162,6 +163,15 @@ ja:
         green: グリーン
         blue: ブルー
         yellow: イエロー
+    facility:
+      code:
+        drinking_fountains: 水飲み場
+        shower: シャワー
+        waste_bin: 排泄物用ゴミ箱
+        poop_bag: うんち袋
+        deodorant_spray: 消臭スプレー
+        store: 売店
+        registration_not_required: 登録不要
   activerecord:
     attributes:
       dog_registration:

@@ -1,171 +1,171 @@
 <% content_for(:title, t('.title')) %>
 <div class="max-w-6xl mx-auto px-6 sm:px-6 lg:px-8 mt-5">
   <div class="container bg-purple-200 w-full shadow rounded p-8 sm:p-10">
-    <div class="text-2xl md:text-3xl font-bold text-center mb-5">
-      <p><%= t'.title' %></p>
-      <section class="text-gray-600 body-font">
-        <div class="container px-3 py-3 mx-auto flex flex-col">
-          <div class="flex flex-col sm:flex-row mt-5">
-            <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
-              <div class="w-40 h-40 flex-shrink-0 mx-auto mb-3 md:md-0 inline-flex items-center justify-center">
-                <%= dog_thumbnail(@dog) %>
-              </div>
-              <div class="text-gray-600 text-xs font-light">
-                <%= simple_format((t'.registration_number'), {}, wrapper_tag: "div") %>
-                <p class="text-xl font-bold"><%= @registration_number.registration_number %>
-              </div>
-              <div class="flex flex-col items-center text-center justify-center mt-3">
-                <h2 class="font-bold text-gray-600 text-2xl">
-                  <%= @dog.name %>
-                </h2>
-                <div class="w-32 h-1 bg-gray-200 rounded mt-2 mb-4"></div>
-                <% if correct_user?(@user) %>
-                  <div class="flex md:hidden items-center mt-2 flex-row justify-center text-left">
-                    <%= link_to edit_togo_inu_shitsuke_hiroba_dog_path(@dog.id) do %>
-                      <button class="flex items-center px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-                        </svg>
-                        <span class="mx-1 text-lg"><%= t'.edit' %></span>
-                      </button>
-                    <% end %>
-                  </div>
-                <% end %>
-              </div>
+    <p class="text-2xl md:text-3xl font-bold text-center mb-5">
+      <%= t'.title' %>
+    </p>
+    <section class="text-gray-600 body-font">
+      <div class="container px-3 py-3 mx-auto flex flex-col">
+        <div class="flex flex-col sm:flex-row mt-5">
+          <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
+            <div class="w-40 h-40 flex-shrink-0 mx-auto mb-3 md:md-0 inline-flex items-center justify-center">
+              <%= dog_thumbnail(@dog) %>
             </div>
-            <div class="sm:w-2/3 sm:pl-8 sm:py-2 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
-              <div class="md:flex justify-center md:justify-start mb-6 md:mb-3 md:space-x-32">
-                <div class="flex-raw flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
-                  <p class="text-gray-600 text-xs font-light">
-                    <%= t'defaults.birthday' %>
-                  </p>
-                  <h1 class="mt-1 text-2xl text-gray-700 px-2">
-                    <% if @dog.birthday == nil %>
-                      -
-                    <% else %>
-                      <%= l @dog.birthday, format: :long2 %>
-                    <% end %>
-                  </h1>
-                </div>
-                <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
-                  <p class="text-gray-600 text-xs font-light">
-                    <%= t'defaults.age' %>
-                  </p>
-                  <div class="flex">
-                    <h1 class="mt-1 text-2xl text-gray-700 px-2">
-                      <% if @dog.birthday.blank? %>
-                        -
-                      <% else %>
-                        <%= @dog.age %>
-                      <% end %>
-                    </h1>
-                    <p class="text-xs pt-4 font-light"><%= t'defaults.age_unit' %></p>
-                  </div>
-                </div>
-              </div>
-              <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
-                <p class="text-gray-600 text-xs font-light">
-                  <%= t'defaults.breed' %>
-                </p>
-                <h1 class="mt-1 text-base md:text-2xl text-gray-700">
-                  <% if @dog.breed == '' %>
-                    -
-                  <% else %>
-                    <%= @dog.breed %>
+            <div class="text-gray-600 text-xs font-light">
+              <%= simple_format((t'.registration_number'), {}, wrapper_tag: "div") %>
+              <p class="text-xl font-bold"><%= @registration_number.registration_number %>
+            </div>
+            <div class="flex flex-col items-center text-center justify-center mt-3">
+              <h2 class="font-bold text-gray-600 text-2xl">
+                <%= @dog.name %>
+              </h2>
+              <div class="w-32 h-1 bg-gray-200 rounded mt-2 mb-4"></div>
+              <% if correct_user?(@user) %>
+                <div class="flex md:hidden items-center mt-2 flex-row justify-center text-left">
+                  <%= link_to edit_togo_inu_shitsuke_hiroba_dog_path(@dog.id) do %>
+                    <button class="flex items-center px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                      </svg>
+                      <span class="mx-1 text-lg"><%= t'.edit' %></span>
+                    </button>
                   <% end %>
-                </h1>
-              </div>
-              <div class="md:flex justify-center md:justify-start mb-6 md:mb-3 md:space-x-32">
-                <div class="flex-raw flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
-                  <p class="text-gray-600 text-xs font-light">
-                    <%= t'defaults.sex' %>
-                  </p>
-                  <h1 class="mt-1 text-xl text-gray-700">
-                    <% if @dog.sex == 'male' %>
-                      <%= t'enums.dog.sex.male' %>
-                    <% elsif @dog.sex == 'female' %>
-                      <%= t'enums.dog.sex.female' %>
-                    <% else %>
-                      -
-                    <% end %>
-                  </h1>
                 </div>
-                <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
-                  <p class="text-gray-600 text-xs font-light">
-                    <%= t'defaults.weight' %>
-                  </p>
-                <div class="flex">
-                  <h1 class="mt-1 text-xl text-gray-700 px-2">
-                    <% if @dog.weight == nil %>
-                      -
-                    <% else %>
-                      <%= @dog.weight %>
-                    <% end %>
-                  </h1>
-                  <p class="text-xs pt-4"><%= t'defaults.weight_unit' %></p>
-                </div>
-              </div>
+              <% end %>
             </div>
-            <div class="md:flex justify-center md:justify-start mb-6 md:mb-3 md:space-x-28">
+          </div>
+          <div class="sm:w-2/3 sm:pl-8 sm:py-2 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
+            <div class="md:flex justify-center md:justify-start mb-6 md:mb-3 md:space-x-32">
               <div class="flex-raw flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
                 <p class="text-gray-600 text-xs font-light">
-                  <%= t'defaults.castration' %>
+                  <%= t'defaults.birthday' %>
                 </p>
-                <h1 class="mt-1 text-xl text-gray-700 mx-auto">
-                  <% if @dog.castration == 'castrated' %>
-                    <%= t'enums.dog.castration.castrated' %>
+                <h1 class="mt-1 text-2xl text-gray-700 px-2">
+                  <% if @dog.birthday == nil %>
+                    -
                   <% else %>
-                    <%= t'enums.dog.castration.non_castrated' %>
+                    <%= l @dog.birthday, format: :long2 %>
                   <% end %>
                 </h1>
               </div>
-              <div class="flex-row flex-shrink-0 items-center md:items-start md:justify-center md:mr-2 mb-3 md:mb-0">
+              <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
                 <p class="text-gray-600 text-xs font-light">
-                  <%= t'defaults.public' %>
+                  <%= t'defaults.age' %>
                 </p>
-                <h1 class="mt-1 text-xl text-gray-700">
-                  <% if @dog.public == 'public_view' %>
-                    <%= t'enums.dog.public.public_view' %>
-                  <% else %>
-                    <%= t'enums.dog.public.non_public' %>
-                  <% end %>
-                </h1>
-              </div>
-            </div>
-            <div class="justify-center md:justify-start mb-3">
-              <p class="text-gray-600 text-xs font-light">
-                <%= t'defaults.owner_comment' %>
-              </p>
-              <div class="mt-1">
-                <%= simple_format(@dog.owner_comment, class: "text-lg text-gray-700 text-left") %>
-              </div>
-            </div>
-            <% if not @encount_dog.blank? %>
-              <div class="justify-center md:justify-start">
-                <p class="text-gray-600 text-xs font-light">
-                  <%= t'defaults.encount_dog_memo' %>
-                </p>
-                <div class="mt-1">
-                  <%= simple_format(@encount_dog.memo, class: "text-lg text-gray-700 text-left") %>
+                <div class="flex">
+                  <h1 class="mt-1 text-2xl text-gray-700 px-2">
+                    <% if @dog.birthday.blank? %>
+                      -
+                    <% else %>
+                      <%= @dog.age %>
+                    <% end %>
+                  </h1>
+                  <p class="text-xs pt-4 font-light"><%= t'defaults.age_unit' %></p>
                 </div>
               </div>
-            <% end %>
+            </div>
+            <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
+              <p class="text-gray-600 text-xs font-light">
+                <%= t'defaults.breed' %>
+              </p>
+              <h1 class="mt-1 text-base md:text-2xl text-gray-700">
+                <% if @dog.breed == '' %>
+                  -
+                <% else %>
+                  <%= @dog.breed %>
+                <% end %>
+              </h1>
+            </div>
+            <div class="md:flex justify-center md:justify-start mb-6 md:mb-3 md:space-x-32">
+              <div class="flex-raw flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
+                <p class="text-gray-600 text-xs font-light">
+                  <%= t'defaults.sex' %>
+                </p>
+                <h1 class="mt-1 text-xl text-gray-700">
+                  <% if @dog.sex == 'male' %>
+                    <%= t'enums.dog.sex.male' %>
+                  <% elsif @dog.sex == 'female' %>
+                    <%= t'enums.dog.sex.female' %>
+                  <% else %>
+                    -
+                  <% end %>
+                </h1>
+              </div>
+              <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
+                <p class="text-gray-600 text-xs font-light">
+                  <%= t'defaults.weight' %>
+                </p>
+              <div class="flex">
+                <h1 class="mt-1 text-xl text-gray-700 px-2">
+                  <% if @dog.weight == nil %>
+                    -
+                  <% else %>
+                    <%= @dog.weight %>
+                  <% end %>
+                </h1>
+                <p class="text-xs pt-4"><%= t'defaults.weight_unit' %></p>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-      <% if correct_user?(@user) %>
-        <div class="hidden md:flex items-center mt-1 flex-row justify-center text-left">
-          <%= link_to edit_togo_inu_shitsuke_hiroba_dog_path(@dog.id) do %>
-            <button class="flex items-center px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-              </svg>
-              <span class="mx-1 text-lg"><%= t'.edit' %></span>
-            </button>
+          <div class="md:flex justify-center md:justify-start mb-6 md:mb-3 md:space-x-28">
+            <div class="flex-raw flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
+              <p class="text-gray-600 text-xs font-light">
+                <%= t'defaults.castration' %>
+              </p>
+              <h1 class="mt-1 text-xl text-gray-700 mx-auto">
+                <% if @dog.castration == 'castrated' %>
+                  <%= t'enums.dog.castration.castrated' %>
+                <% else %>
+                  <%= t'enums.dog.castration.non_castrated' %>
+                <% end %>
+              </h1>
+            </div>
+            <div class="flex-row flex-shrink-0 items-center md:items-start md:justify-center md:mr-2 mb-3 md:mb-0">
+              <p class="text-gray-600 text-xs font-light">
+                <%= t'defaults.public' %>
+              </p>
+              <h1 class="mt-1 text-xl text-gray-700">
+                <% if @dog.public == 'public_view' %>
+                  <%= t'enums.dog.public.public_view' %>
+                <% else %>
+                  <%= t'enums.dog.public.non_public' %>
+                <% end %>
+              </h1>
+            </div>
+          </div>
+          <div class="justify-center md:justify-start mb-3">
+            <p class="text-gray-600 text-xs font-light">
+              <%= t'defaults.owner_comment' %>
+            </p>
+            <div class="mt-1">
+              <%= simple_format(@dog.owner_comment, class: "text-lg text-gray-700 text-left") %>
+            </div>
+          </div>
+          <% if not @encount_dog.blank? %>
+            <div class="justify-center md:justify-start">
+              <p class="text-gray-600 text-xs font-light">
+                <%= t'defaults.encount_dog_memo' %>
+              </p>
+              <div class="mt-1">
+                <%= simple_format(@encount_dog.memo, class: "text-lg text-gray-700 text-left") %>
+              </div>
+            </div>
           <% end %>
         </div>
-      <% end %>
-      <%= render 'shared/entries_table' %>
-    </div>
+      </div>
+    </section>
+    <% if correct_user?(@user) %>
+      <div class="hidden md:flex items-center mt-1 flex-row justify-center text-left">
+        <%= link_to edit_togo_inu_shitsuke_hiroba_dog_path(@dog.id) do %>
+          <button class="flex items-center px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+            </svg>
+            <span class="mx-1 text-lg"><%= t'.edit' %></span>
+          </button>
+        <% end %>
+      </div>
+    <% end %>
+    <%= render 'shared/entries_table' %>
   </div>
 </div>

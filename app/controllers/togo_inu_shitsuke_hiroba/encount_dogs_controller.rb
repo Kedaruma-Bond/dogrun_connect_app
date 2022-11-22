@@ -10,10 +10,8 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
   end
 
   def update
-    if @encount_dog.valid?
-      @encount_dog.update(encount_dog_params)
+    if @encount_dog.update(encount_dog_params)
       redirect_to togo_inu_shitsuke_hiroba_encount_dogs_path, success: t('.encount_dog_updated')
-      return
     else
       render :edit, status: :unprocessable_entity
     end

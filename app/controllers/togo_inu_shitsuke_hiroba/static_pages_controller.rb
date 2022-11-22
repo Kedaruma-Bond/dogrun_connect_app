@@ -5,11 +5,11 @@ class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::Dogr
   around_action :skip_bullet, if: -> { defined?(Bullet) }
 
   def top
+    @dogrun_place = DogrunPlace.find(2)
     return unless logged_in?
-
     @entry = Entry.new
-    @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place_id: 2 }).find_by(exit_at: nil) unless not_entry?
-    @publishing_post = Post.where(publish_status: 'is_publishing').where(dogrun_place: 2)
+    @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place: @dogrun_place }).find_by(exit_at: nil) unless not_entry?
+    @publishing_post = Post.where(publish_status: 'is_publishing').where(dogrun_place: @dogrun_place)
     
     return if @dogrun_entry_data.blank?
     dogs = @dogrun_entry_data.map do |entry_data|
