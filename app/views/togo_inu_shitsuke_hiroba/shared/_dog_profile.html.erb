@@ -27,7 +27,7 @@
         <%= t'defaults.age' %>
       </p>
       <div class="flex">
-        <h1 class="mt-1 text-xl text-gray-700 px-2">
+        <h1 class="mt-1 text-xl text-gray-700 font-bold px-2">
           <% if @dogs[@times].birthday == nil %>
             -
           <% else %>
@@ -41,7 +41,7 @@
       <p class="text-gray-600 text-xs font-light">
         <%= t'defaults.breed' %>
       </p>
-      <h1 class="mt-1 text-base text-gray-700">
+      <h1 class="mt-1 text-base font-bold text-gray-700">
         <% if @dogs[@times].breed == '' %>
           -
         <% else %>
@@ -53,7 +53,7 @@
       <p class="text-gray-600 text-xs font-light">
         <%= t'defaults.sex' %>
       </p>
-      <h1 class="mt-1 text-xl text-gray-700">
+      <h1 class="mt-1 text-xl font-bold text-gray-700">
         <% if @dogs[@times].sex == 'male' %>
           <%= t'enums.dog.sex.male' %>
         <% elsif @dogs[@times].sex == 'female' %>
@@ -68,7 +68,7 @@
         <%= t'defaults.weight' %>
       </p>
       <div class="flex">
-        <h1 class="mt-1 text-xl text-gray-700 px-2">
+        <h1 class="mt-1 text-xl text-gray-700 font-bold px-2">
           <% if @dogs[@times].weight == nil %>
             -
           <% else %>
@@ -82,7 +82,7 @@
       <p class="text-gray-600 text-xs font-light">
         <%= t'defaults.castration' %>
       </p>
-      <h1 class="mt-1 text-xl text-gray-700 mx-auto">
+      <h1 class="mt-1 text-xl text-gray-700 font-bold mx-auto">
         <% if @dogs[@times].castration == 'castrated' %>
           <%= t'enums.dog.castration.castrated' %>
         <% else %>
@@ -94,7 +94,7 @@
       <p class="text-gray-600 text-xs font-light">
         <%= t'defaults.public' %>
       </p>
-      <h1 class="mt-1 text-xl text-gray-700">
+      <h1 class="mt-1 text-xl text-gray-700 font-bold">
         <% if @dogs[@times].public == 'public_view' %>
           <%= t'enums.dog.public.public_view' %>
         <% else %>
@@ -105,7 +105,7 @@
     <div class="flex col-span-2 md:col-span-1 justify-center items-center">
       <%= link_to togo_inu_shitsuke_hiroba_dog_path(@dogs[@times].id) do %>
         <button class="w-56 md:w-24 px-2 py-2 font-medium text-lg md:text-base tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-          <span class="mx-auto"><%= t'defaults.detail' %></span>
+          <span class="mx-auto font-medium"><%= t'defaults.detail' %></span>
         </button>
       <% end %>
     </div>

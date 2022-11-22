@@ -13,10 +13,10 @@
       </div>
       <div class="flex-grow text-left mt-6 sm:mt-0">
         <p class="text-gray-500 leading-relaxed text-base"><%= t'.name' %></p>
-        <h2 class="text-2xl font-medium text-gray-700 title-font mb-2"><%= current_user.name %></h2>
+        <h2 class="text-2xl font-semibold text-gray-700 title-font mb-2"><%= current_user.name %></h2>
         <% if current_user.role != 'guest' %>
           <p class="text-gray-500 leading-relaxed text-base"><%= t'.email' %></p>
-          <h2 class="text-lg font-medium text-gray-700 title-font mb-2"><%= current_user.email %></h2>
+          <h2 class="text-lg font-semibold text-gray-700 title-font mb-2"><%= current_user.email %></h2>
         <% end %>
       </div>
     </div>
