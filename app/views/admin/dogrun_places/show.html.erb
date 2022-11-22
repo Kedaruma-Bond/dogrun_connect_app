@@ -27,7 +27,11 @@
                 <% end %>
               </div>
               <h2 class="text-gray-600 text-base mt-3 sm:mt-0">
-                <%= @dogrun_place.pref.name %>
+                <% if @dogrun_place.pref.blank? %>
+                  -
+                <% else %>
+                  <%= @dogrun_place.pref.name %>
+                <% end %>
               </h2>
               <p class="text-sm mt-3"><%= t('defaults.business_time') %></p>
               <h2 class="flex text-gray-600 text-base mt-3">

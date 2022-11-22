@@ -18,7 +18,11 @@
     <%= dogrun_place.name %>
   </td>
   <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-    <%= dogrun_place.pref.name %>
+    <% if @dogrun_place.pref.blank? %>
+      -
+    <% else %>
+      <%= @dogrun_place.pref.name %>
+    <% end %>
   </td>
   <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
     <%= dogrun_place.address %>
