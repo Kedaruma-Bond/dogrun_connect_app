@@ -4,7 +4,6 @@ ja:
       show:
         title: プロフィール
         registration_number: パスポート番号
-        edit: 編集
       edit:
         title: |
           プロフィール

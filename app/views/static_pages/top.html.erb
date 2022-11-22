@@ -123,7 +123,7 @@
         <span class="inline-block w-1 h-1 bg-blue-500 rounded-full"></span>
       </div>
 
-        <%= simple_format((t'.looking_for_dogrun'), {class: "w-full mt-6 text-gray-500 text-center" }, wrapper_tag: "div") %>
+      <%= simple_format((t'.looking_for_dogrun'), {class: "w-full mt-6 text-gray-500 text-center" }, wrapper_tag: "div") %>
       <%= render 'logo_click' %>
     </div>
 
@@ -139,17 +139,22 @@
             </div>
           <% end %>
           <div class="flex-col mt-2 text-gray-500 capitalize items-center">
-            <p class="text-sm">
-              犬のしつけ広場は愛知県愛知郡東郷町、
-              境川の中州にある会員登録制ドッグランです。
-              広場利用者の有志を中心とするボランティアにより自主運営されています。
-            </p>
-            <%= link_to 'https://www.town.aichi-togo.lg.jp/soshikikarasagasu/toshiseibika/gyomuannai/2/1/3279.html', class: "flex mt-2 justify-center" do %>
-              <span>Learn more</span>
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2 my-auto" viewBox="0 0 24 24">
-                <path d="M5 12h14M12 5l7 7-7 7"></path>
-              </svg>
-            <% end %>
+            <%= simple_format(DogrunPlace.find(2).description, { class: "text-sm" }) %>
+            <details data-controller="accordion" class="text-center">
+              <summary data-accordion-target="summary" data-action="click->accordion#toggle" class="mt-3 flex justify-center hover:cursor-pointer">
+                <h1 class="flex font-bold text-lg">
+                  <%= t('defaults.detail')%>
+                  <svg class="w-6 h-6 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </h1>
+              </summary>
+              <div data-accordion-target="content">
+                <p class="text-sm mt-2"><%= DogrunPlace.human_attribute_name(:address) %></p>
+                <h2 class="mt-1"><%= simple_format(DogrunPlace.find(2).address, class: "text-base") %></h2>
+
+              </div>
+            </details>
           </div>
                 
           <div class="flex mt-3">
