@@ -2,12 +2,14 @@
   <% if logged_in? && !@dogrun_place.blank? %>
     <section>
       <%= render 'logo_click' %>
-      <h2 class="text-center font-medium text-gray-600 text-lg mb-2"><%= t('.last_entry_dogrun_place') %></h2>
+      <h2 class="text-center font-semibold text-gray-600 text-lg mb-2">
+        <%= t('.last_entry_dogrun_place') %>
+      </h2>
 
       <%= link_to @link, class: "w-1/3 max-w-xs overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800" do %>
         <%= image_tag @image_url, class: "object-cover h-56 mx-auto rounded-full", alt: "dogrun_logo" %>
         <div class="py-5 text-center">
-          <h3 class="block text-2xl font-bold text-gray-800"><%= @name %></h3>
+          <h3 class="block text-2xl font-semibold text-gray-700"><%= @name %></h3>
         </div>
       <% end %>
     </section>
@@ -124,43 +126,57 @@
     </div>
   </div>
 
+  <section class="container flex flex-col px-6 py-5 mx-auto space-y-6 lg:h-[32rem] lg:py-8 lg:flex-row lg:items-center">
+    <div class="w-full lg:w-1/2">
+      <h1 class="mt-3">
+        <%= simple_format(t('.dogrun_recruitment'), class: "text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl") %>
+      </h1>
+      <div class="container py-1 mx-auto">
+        <%= simple_format((t'.looking_for_dogrun'), {class: "w-full mt-6 text-gray-700 text-lg text-center" }, wrapper_tag: "div") %>
+        <div class="text-base text-center mt-3">
+          <p class="text-gray-700">必要なものは以下の2つです</p>
+
+          <div class="flex items-center justify-center text-gray-700 mt-1">
+            <svg width="19px" height="19px" stroke-width="1.92" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#5416e3">
+              <path d="M21 3.6v16.8a.6.6 0 01-.6.6H3.6a.6.6 0 01-.6-.6V3.6a.6.6 0 01.6-.6h16.8a.6.6 0 01.6.6z" stroke="#5416e3" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M3 16l7-3 11 5M16 10a2 2 0 110-4 2 2 0 010 4z" stroke="#5416e3" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+            <span class="ml-2 text-sm md:text-base">
+              ドッグランのアイコンの画像ファイル
+            </span>
+          </div>
+
+          <div class="flex items-center justify-center text-gray-700 mt-1">
+            <svg width="19px" height="19px" stroke-width="1.92" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#5416e3">
+              <path d="M7 12l5 3.5 5-3.5" stroke="#5416e3" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M2 20V9.132a2 2 0 01.971-1.715l8-4.8a2 2 0 012.058 0l8 4.8A2 2 0 0122 9.132V20a2 2 0 01-2 2H4a2 2 0 01-2-2z" stroke="#5416e3" stroke-width="1.92"></path>
+            </svg>
+            <span class="ml-2 text-sm md:text-base">
+              管理者ユーザー登録用のEメールアドレス
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-col items-center justify-center w-full h-auto lg:w-1/2">
+      <p class="text-gray-700 text-base mb-3 font-medium">
+        適用いただいたドッグランにはアプリにアクセスするQRコードを印字したプレートを差し上げます
+      </p>
+      <%= image_tag "https://res.cloudinary.com/hryerpkcw/image/upload/v1669185632/dgpofo4tnybaeys3l8rv.png",
+      class: "object-cover w-full h-full max-w-2xl rounded-md", alt: "QR code stand" %>
+    </div>
+  </section>
+
   <section>
-    <div class="container px-6 py-1 mx-auto">
-      <h1 class="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl">
+      <h1 class="mt-3 text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl">
         <%= simple_format((t'.adopted_app_dogrun'), {}, wrapper_tag: "div") %>
       </h1>
         
-      <div class="flex justify-center mx-auto mt-6">
+      <div class="flex justify-center mx-auto mt-2">
         <span class="inline-block w-40 h-1 bg-blue-500 rounded-full"></span>
         <span class="inline-block w-3 h-1 mx-1 bg-blue-500 rounded-full"></span>
         <span class="inline-block w-1 h-1 bg-blue-500 rounded-full"></span>
       </div>
-
-      <%= simple_format((t'.looking_for_dogrun'), {class: "w-full mt-6 text-gray-700 text-lg text-center" }, wrapper_tag: "div") %>
-      <div class="text-base text-center mt-3">
-        <p class="text-gray-700">必要なものは以下の2つです</p>
-
-        <div class="flex items-center justify-center text-gray-700 mt-1">
-          <svg width="19px" height="19px" stroke-width="1.92" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#5416e3">
-            <path d="M21 3.6v16.8a.6.6 0 01-.6.6H3.6a.6.6 0 01-.6-.6V3.6a.6.6 0 01.6-.6h16.8a.6.6 0 01.6.6z" stroke="#5416e3" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M3 16l7-3 11 5M16 10a2 2 0 110-4 2 2 0 010 4z" stroke="#5416e3" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-          <span class="ml-2">
-            ドッグランのアイコンの画像ファイル
-          </span>
-        </div>
-
-        <div class="flex items-center justify-center text-gray-700 mt-1">
-          <svg width="19px" height="19px" stroke-width="1.92" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#5416e3">
-            <path d="M7 12l5 3.5 5-3.5" stroke="#5416e3" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M2 20V9.132a2 2 0 01.971-1.715l8-4.8a2 2 0 012.058 0l8 4.8A2 2 0 0122 9.132V20a2 2 0 01-2 2H4a2 2 0 01-2-2z" stroke="#5416e3" stroke-width="1.92"></path>
-          </svg>
-          <span class="ml-2">
-            管理者ユーザー登録用のEメールアドレス
-          </span>
-        </div>
-      </div>
-    </div>
 
     <%= render 'logo_click' %>
     <div class="container px-6 py-1 mx-auto">
@@ -175,9 +191,9 @@
             </div>
           <% end %>
           <div class="flex-col mt-2 text-gray-500 capitalize items-center">
-            <%= simple_format(DogrunPlace.find(2).description, { class: "text-sm text-gray-700 " }) %>
+            <%= simple_format(DogrunPlace.find(2).description, { class: "text-sm text-gray-700" }) %>
             <details data-controller="accordion" class="text-center">
-              <summary data-accordion-target="summary" data-action="click->accordion#toggle" class="mt-3 flex justify-center hover:cursor-pointer">
+              <summary data-accordion-target="summary" data-action="click->accordion#toggle" class="mt-3 flex justify-center hover:cursor-pointer list-none">
                 <h1 class="flex font-bold text-lg">
                   <%= t('defaults.detail')%>
                   <svg class="w-6 h-6 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -196,7 +212,7 @@
                   <%= DogrunPlace.human_attribute_name(:usage_fee) %>
                 </p>
                 <h2 class="mt-1">
-                  <%= simple_format(DogrunPlace.find(2).usage_fee, class: "text-gray-700 text-base") %>
+                  <%= simple_format(DogrunPlace.find(2).usage_fee, class: "text-gray-700 text-base text-left") %>
                 </h2>
                 <p class="text-sm mt-2">
                   <%= DogrunPlace.human_attribute_name(:site_area) %>

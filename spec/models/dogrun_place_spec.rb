@@ -31,11 +31,11 @@ end
 #  opening_time    :time
 #  prefecture_code :integer
 #  site_area       :string           default("")
-#  twitter         :string           default("")
 #  usage_fee       :string           default("")
 #  web_site        :string           default("")
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  facebook_id     :string           default("")
 #  instagram_id    :string           default("")
+#  twitter_id      :string           default("")
 #

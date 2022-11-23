@@ -26,6 +26,9 @@ ja:
           非公開なワンちゃんは
         unit_of_dogs: 頭です
       login_top_content:
+        please_signup: |
+          ワンちゃんを登録するには
+          新規登録が必要です
         select_entry_dog: 入場するワンちゃんを選択してください
         entry_confirm: 入場してよろしいですか？
         exit_confirm: 退場前の見回りは実施しましたか？

@@ -48,7 +48,8 @@ class Admin::DogrunPlacesController < Admin::BaseController
   def dogrun_place_params
     params.require(:dogrun_place).permit(
       :name, :description, :usage_fee, :prefecture_code, :logo,
-      :address, :opening_time, :closing_time, :web_site, :site_area, facility_ids: []
+      :address, :opening_time, :closing_time, :web_site, :site_area,
+      :facebook_id, :instagram_id, :twitter_id, facility_ids: []
     )
   end
 

@@ -32,6 +32,9 @@ ja:
     remember: ログインを保持する
     require_login: ログインしてください
     require_correct_account: 正しいアカウントでアクセスしてください
+    require_signup: |
+      ワンちゃんの登録には
+      新規登録が必要です
     send: 送信
     confirm: 入力内容確認
     back: 戻る
