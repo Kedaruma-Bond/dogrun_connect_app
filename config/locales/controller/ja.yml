@@ -131,6 +131,9 @@ ja:
         opening_time: オープン時間
         closing_time: クローズ時間
         force_closed: 本日休業
+        facebook_id: Facebookアカウント
+        instagram_id: Instagramアカウント
+        twitter_id: Twitterアカウント
       contact:
         name: 氏名
         email: メールアドレス

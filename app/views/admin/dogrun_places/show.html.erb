@@ -26,13 +26,6 @@
                   </button>
                 <% end %>
               </div>
-              <h2 class="text-gray-600 text-base mt-3 sm:mt-0">
-                <% if @dogrun_place.pref.blank? %>
-                  -
-                <% else %>
-                  <%= @dogrun_place.pref.name %>
-                <% end %>
-              </h2>
               <p class="text-sm mt-3"><%= t('defaults.business_time') %></p>
               <h2 class="flex text-gray-600 text-base mt-3">
                 <% if @dogrun_place.opening_time.blank? || @dogrun_place.closing_time.blank? %>
@@ -55,9 +48,25 @@
                   <% end %>
                 <% end %>
               </h2>
+              <% if !@dogrun_place.facebook_id.blank? || !@dogrun_place.instagram_id.blank? || !@dogrun_place.twitter_id %>
+                <p class="text-sm mt-3"><%= t('defaults.sns') %></p>
+                <%= render partial: "shared/sns_icons", locals: { dogrun_place: @dogrun_place } %>
+              <% end %>
             </div>
           </div>
           <div class="sm:w-2/3 sm:pl-8 sm:py-2 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
+            <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
+              <p class="text-gray-600 text-xs font-light">
+                <%= DogrunPlace.human_attribute_name(:prefecture_code) %>
+              </p>
+              <h2 class="mt-1 text-gray-600 text-base md:text-lg mt-3 sm:mt-0">
+                <% if @dogrun_place.pref.blank? %>
+                  -
+                <% else %>
+                  <%= @dogrun_place.pref.name %>
+                <% end %>
+              </h2>
+            </div>
             <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
               <p class="text-gray-600 text-xs font-light">
                 <%= DogrunPlace.human_attribute_name(:address) %>
@@ -100,7 +109,6 @@
                 <% end %>
               </div>
             </div>
-
           </div>
         </div>
       </div>

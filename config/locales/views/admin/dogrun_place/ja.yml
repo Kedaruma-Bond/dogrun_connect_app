@@ -14,3 +14,6 @@ ja:
       form:
         change_logo: ロゴを変更
         choose_a_prefecture: 都道府県を選択してください
+        facebook_id_hint: https://www.facebook.com/以降を入力してください
+        instagram_id_hint: https://www.instagram.com/以降を入力してください
+        twitter_id_hint: https://twitter.com/以降を入力してください
