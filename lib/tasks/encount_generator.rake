@@ -6,7 +6,7 @@ namespace :encount_generator do
       Rails.cache.delete('previous_dogs_id')
     end
 
-    during_entry_dogs = Dog.dogrun_place_id_for_friend_dog(2)
+    during_entry_dogs = Dog.dogrun_place_id_for_encount_dog(2)
     next if during_entry_dogs.blank?
 
     # p '*' * 10

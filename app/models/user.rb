@@ -2,7 +2,8 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
   has_many :dogs, dependent: :destroy
   has_many :posts, dependent: :destroy
-  has_many :friend_dogs, dependent: :destroy
+  has_many :encount_dogs, dependent: :destroy
+  has_many :encounts, dependent: :destroy
   belongs_to :dogrun_place, optional: true
 
   attr_accessor :agreement

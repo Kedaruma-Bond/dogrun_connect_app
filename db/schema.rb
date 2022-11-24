@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_17_014040) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_22_090326) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,10 +58,32 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_014040) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "dogrun_place_facility_relations", force: :cascade do |t|
+    t.bigint "dogrun_place_id", null: false
+    t.bigint "facility_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dogrun_place_id"], name: "index_dogrun_place_facility_relations_on_dogrun_place_id"
+    t.index ["facility_id"], name: "index_dogrun_place_facility_relations_on_facility_id"
+  end
+
   create_table "dogrun_places", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description", default: ""
+    t.string "usage_fee", default: ""
+    t.integer "prefecture_code"
+    t.string "address", default: ""
+    t.string "site_area", default: ""
+    t.string "web_site", default: ""
+    t.time "opening_time"
+    t.time "closing_time"
+    t.boolean "closed_flag", default: false
+    t.boolean "force_closed", default: false
+    t.string "facebook_id", default: ""
+    t.string "instagram_id", default: ""
+    t.string "twitter_id", default: ""
   end
 
   create_table "dogs", force: :cascade do |t|
@@ -128,6 +150,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_014040) do
     t.index ["registration_number_id"], name: "index_entries_on_registration_number_id"
   end
 
+  create_table "facilities", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.boolean "publish_status", default: false, null: false
@@ -189,6 +217,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_17_014040) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "articles", "posts"
+  add_foreign_key "dogrun_place_facility_relations", "dogrun_places"
+  add_foreign_key "dogrun_place_facility_relations", "facilities"
   add_foreign_key "dogs", "users"
   add_foreign_key "embeds", "posts"
   add_foreign_key "encount_dogs", "dogrun_places"

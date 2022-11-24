@@ -8,6 +8,15 @@ ja:
           作成する投稿タイプを
           選択してください
         select_it: 選択してください
+      dog_profile:
+        age_unit: 歳
+        destroy_confirm: |
+          このワンちゃんの登録を
+          本当に解除しますか？
+        delete: 登録削除
+        registration_number: |
+          パスポート
+          番号
 
 
 

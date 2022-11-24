@@ -1,12 +1,6 @@
 
 ja:
   admin:
-    dogrun_places:
-      index:
-        title: ドッグラン一覧
-        registered_dogrun: 登録ドッグラン
-      form:
-        dogrun_name: 登録するドッグランの名前
     dashboards:
       index:
         title: ダッシュボード

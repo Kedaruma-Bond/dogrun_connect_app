@@ -2,8 +2,10 @@
   <!-- logo -->
   <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
     <%= link_to togo_inu_shitsuke_hiroba_top_path, class: "flex order-first title-font font-medium items-center text-gray-900 mb-4 md:mb-0" do %>
-      <%= image_tag 'dogrun_logo.png', class: "rounded-full w-10 h-10 bg-indigo-200", alt: "dogrunconnect_logo" %>
-      <span class="ml-3 text-xl font-bold text-indigo-800"><%= DogrunPlace.find(2).name %></span>
+      <div class="w-10 h-auto">
+        <%= dogrun_logo(@dogrun_place) %>
+      </div>
+      <span class="ml-3 text-xl font-bold text-indigo-800"><%= @dogrun_place.name %></span>
     <% end %>
 
     <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">

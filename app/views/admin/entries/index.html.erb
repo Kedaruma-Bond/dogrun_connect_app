@@ -18,6 +18,9 @@
             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
               <%= User.human_attribute_name(:name) %>
             </th>
+            <th scope="col">
+              <%= simple_format(t('defaults.thumbnail'), class:"font-medium text-sm px-3 py-2 text-left") %>
+            </th>
             <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
               <%= t('defaults.dog_name') %>
             </th>

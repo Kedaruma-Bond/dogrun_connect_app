@@ -4,7 +4,7 @@
       <div class="rounded-t mb-0 px-4 py-3 border-0">
         <div class="flex flex-wrap items-center">
           <div class="relative w-full px-4 max-w-full flex-grow flex-1 ">
-            <h3 class="font-semibold text-lg text-white">
+            <h3 class="font-semibold text-lg text-white text-center">
               <%= I18n.t("shared.entries_table.table_of_entries_latest_max_five", times: @t) %>
             </h3>
           </div>
@@ -39,13 +39,13 @@
                 </tr>
               <% else %>
                 <tr>
-                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm font-semibold whitespace-nowrap p-4">
                     <%= l @entries[t].entry_at, format: :long2 %>
                   </td>
-                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm font-semibold whitespace-nowrap p-4">
                     <%= l @entries[t].entry_at, format: :short2 %>
                   </td>
-                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm font-semibold whitespace-nowrap p-4">
                     <% if @entries[t].exit_at.nil? %>
                       <%= t('defaults.entering') %>
                     <% else %>

@@ -111,7 +111,29 @@ ja:
       user: 飼い主さん
       registration_number: 登録番号
       post: ドッグランへの投稿
+      dogrun_place: ドッグラン
+      facility: ドッグランの設備
+      encount: 出会い
+      encount_dog: 出会ったワンちゃん
     attributes:
+      facility:
+        name: ドッグランの設備
+      dogrun_place:
+        name: ドッグランの名称
+        description: ドッグランの説明
+        prefecture_code: 都道府県
+        usage_fee: 利用料
+        address: 住所
+        web_site: |
+          web
+          site
+        site_area: 敷地面積
+        opening_time: オープン時間
+        closing_time: クローズ時間
+        force_closed: 本日休業
+        facebook_id: Facebookアカウント
+        instagram_id: Instagramアカウント
+        twitter_id: Twitterアカウント
       contact:
         name: 氏名
         email: メールアドレス

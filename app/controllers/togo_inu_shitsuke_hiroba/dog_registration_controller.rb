@@ -1,5 +1,6 @@
 class TogoInuShitsukeHiroba::DogRegistrationController < TogoInuShitsukeHiroba::DogrunPlaceController
   before_action :dog_registration_params, only: :confirm
+  before_action :check_not_guest
 
   def new
     session.delete(:dog_registration_form)

@@ -1,0 +1,19 @@
+ja:
+  admin:
+    dogrun_places:
+      index:
+        title: ドッグラン一覧
+        dogrun_place_create: 新しいドッグラン登録
+        facilities: 設備
+      new:
+        title: 新規ドッグラン登録
+      show:
+        title: ドッグラン詳細情報
+      edit:
+        title: ドッグラン情報編集
+      form:
+        change_logo: ロゴを変更
+        choose_a_prefecture: 都道府県を選択してください
+        facebook_id_hint: https://www.facebook.com/以降を入力してください
+        instagram_id_hint: https://www.instagram.com/以降を入力してください
+        twitter_id_hint: https://twitter.com/以降を入力してください

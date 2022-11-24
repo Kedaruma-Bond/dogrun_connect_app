@@ -8,6 +8,11 @@
   <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
     <%= entry.dog.user.name %>
   </td>
+  <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
+    <div class="w-12 h-12 mx-auto my-auto">
+      <%= dog_thumbnail(entry.dog) %>
+    </div>
+  </td>
   <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
     <%= entry.dog.name %>
   </td>
