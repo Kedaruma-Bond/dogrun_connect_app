@@ -170,7 +170,9 @@
                       <% if @dog.rabies_vaccination_certificate.blank? %>
                         <p>no_image</p>
                       <% else %>
-                        <%= cl_image_tag(@dog.rabies_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded-lg mx-auto h-auto w-10", alt: "rabies vaccination certificate") %>
+                        <%= link_to @dog.rabies_vaccination_certificate.url do %>
+                          <%= cl_image_tag(@dog.rabies_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded-lg mx-auto h-auto w-10", alt: "rabies vaccination certificate") %>
+                        <% end %>
                       <% end %>
                     </div>
                     <div class="w-full mb-3 md:mb-0">
@@ -190,7 +192,7 @@
                       <% if @dog.mixed_vaccination_certificate.blank? %>
                         <p>no_image</p>
                       <% else %>
-                        <%= link_to @dog.rabies_vaccination_certificate.url do %>
+                        <%= link_to @dog.mixed_vaccination_certificate.url do %>
                           <%= cl_image_tag(@dog.mixed_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded-lg mx-auto h-auto w-10", alt: "mixed vaccination certificate") %>
                         <% end %>
                       <% end %>
