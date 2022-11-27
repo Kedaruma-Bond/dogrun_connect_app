@@ -157,7 +157,6 @@
             <% end %>
             <% if correct_user?(@user) %>
               <details data-controller="accordion" class="text-center">
-                <%= render 'shared/image_modal' %>
                 <summary data-accordion-target="summary" data-action="click->accordion#toggle" class="mt-3 flex justify-center hover:cursor-pointer">
                   <h1 class="flex font-bold text-base mb-3 text-gray-600">
                     <%= t('.show_more_detail_data')%>
@@ -208,7 +207,7 @@
                       </p>
                     </div>
                   </div>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
+                  <div class="grid grid-cols-2 gap-2 w-full mb-3">
                     <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
                       <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:registration_prefecture_code) %></span>
                       <p class="text-base font-bold">
@@ -230,7 +229,7 @@
                       </p>
                     </div>
                   </div>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
+                  <div class="grid grid-cols-2 gap-2 w-full mb-3">
                     <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
                       <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:municipal_registration_number) %></span>
                       <p class="text-base font-bold">
