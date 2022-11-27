@@ -66,7 +66,7 @@ module DogHelper
     if dog.thumbnail.attached?
       cl_image_tag(dog.thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: css_class_dog_color_marker(dog), alt: dog.name, "data-preview-target": "imagePreview")
     else
-      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.pngg', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full", alt: dog.name, "data-preview-target": "imagePreview")
+      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.png', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full", alt: dog.name, "data-preview-target": "imagePreview")
     end 
   end
 
@@ -74,7 +74,27 @@ module DogHelper
     if dog.thumbnail.attached?
       cl_image_tag(dog.thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: css_class_encount_dog_color_marker(encount_dog), alt: dog.name)
     else
-      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.pngg', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full", alt: dog.name)
+      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.png', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full", alt: dog.name)
     end
+  end
+
+  def notice_badge
+    user_dogs = Dog.where(user: current_user)
+    today = Date.current
+    notification = false
+    user_dogs.each do |dog|
+      return 
+      rabies_one_year_later = dog.date_of_rabies_vaccination + 365
+      mixed_one_year_later = dog.date_of_mixed_vaccination + 365
+      if day - today < 30 || notification == false
+        notification = true
+        return tag.svg(class: "w-6 h-6", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg") { |tag| tag.path "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "2", d: "M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" }
+      else
+        return
+      end
+    end
+  end
+
+  def alarm_budge
   end
 end

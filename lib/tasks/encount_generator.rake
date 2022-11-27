@@ -46,7 +46,8 @@ namespace :encount_generator do
       # p '*' * 10
       
       present_entry = Entry.joins(:dog).where(dogs: { user_id: user_id }).where(created_at: Time.zone.now.all_day).last
-
+      return if present_entry.nil? 
+      
       # p 'present_entry' 
       # p present_entry
       # p '*' * 10
