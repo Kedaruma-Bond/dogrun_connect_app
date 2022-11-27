@@ -90,7 +90,7 @@
     </div>
   </div>
 
-  <%= render partial: 'togo_inu_shitsuke_hiroba/shared/form', locals: { post: @post } %>
+  <%= render partial: 'shared/post_form', locals: { post: @post } %>
 
   <nav class="hidden lg:flex justify-end w-full flex-wrap text-base mt-3">
     <%= link_to  togo_inu_shitsuke_hiroba_user_path(current_user), class: "flex mr-5 hover:text-gray-900" do %>

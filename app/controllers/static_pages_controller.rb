@@ -11,12 +11,8 @@ class StaticPagesController < ApplicationController
     case @dogrun_place.id
     when 2
       @link = togo_inu_shitsuke_hiroba_top_path
-      @name = @dogrun_place.name
-      @image_url = "https://res.cloudinary.com/hryerpkcw/image/upload/ar_1:1,c_fill,f_auto,q_auto,r_max/v1661503968/togo_inu_shitsuke_hiroba_logo_dmshl1.png"
     when 3
       @link = "#"
-      @name = @dogrun_place.name
-      @image_url = "https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1663754184/odaka_ryokuchi_dogrun_logo_rdre9u.png"
     end
 
   end

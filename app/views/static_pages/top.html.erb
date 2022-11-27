@@ -6,10 +6,10 @@
         <%= t('.last_entry_dogrun_place') %>
       </h2>
 
-      <%= link_to @link, class: "w-1/3 max-w-xs overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800" do %>
-        <%= image_tag @image_url, class: "object-cover h-56 mx-auto rounded-full", alt: "dogrun_logo" %>
+      <%= link_to @link, class: "w-1/3 max-w-xs overflow-hidden bg-white rounded-lg shadow-lg" do %>
+        <%= cl_image_tag(@dogrun_place.logo.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover mx-auto h-56 w-auto", alt: @dogrun_place.name) %>
         <div class="py-5 text-center">
-          <h3 class="block text-2xl font-semibold text-gray-700"><%= @name %></h3>
+          <h3 class="block text-2xl font-semibold text-gray-600"><%= @name %></h3>
         </div>
       <% end %>
     </section>
@@ -21,9 +21,8 @@
       </h1>
       <div class="basis-2/3 flex-col lg:ml-7">
         <p class="my-4 text-lg text-gray-500 text-left">
-          ドッグランの利用記録管理アプリです。<br>
-          ドッグランを利用することをもっと楽しくすることを<br>
-          目的にしています。
+          ドッグランの利用記録アプリです。<br>
+          ユーザーがドッグランを利用したことを記録することでドッグランに行くことをもっと便利に楽しくすることを目的にしています。
         </p>
       </div>
     </div>  
@@ -72,12 +71,12 @@
           ドッグランに導入することで利用状況をDX化
         </h1>
         <p class="mt-2 text-gray-600 text-lg">
-          様々な付加価値があります
+          DX化に伴う様々な付加機能があります
         </p>
         <div class="flex items-center text-gray-700 mt-6">
-          <svg class="w-5 h-5" stroke-width="1.92" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#16e31a">
-            <path d="M7 12.5l3 3 7-7" stroke="#16e31a" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="#16e31a" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
+          <svg class="w-5 h-5" stroke-width="1.92" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#5416e3">
+            <path d="M7 12.5l3 3 7-7" stroke="#5416e3" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="#5416e3" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
           <span class="ml-2">
             ドッグラン利用中のワンコを遠隔確認
@@ -85,29 +84,29 @@
         </div>
 
         <div class="flex items-center text-gray-700 mt-3">
-          <svg class="w-5 h-5" stroke-width="1.92" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#16e31a">
-            <path d="M7 12.5l3 3 7-7" stroke="#16e31a" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="#16e31a" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
+          <svg class="w-5 h-5" stroke-width="1.92" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#5416e3">
+            <path d="M7 12.5l3 3 7-7" stroke="#5416e3" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="#5416e3" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
           <span class="ml-2">
-            ユーザーの利用状況をアプリで確認
+            ワンコの詳細情報を登録・参照
           </span>
         </div>
 
         <div class="flex items-center text-gray-700 mt-3">
-          <svg class="w-5 h-5" stroke-width="1.92" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#16e31a">
-            <path d="M7 12.5l3 3 7-7" stroke="#16e31a" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="#16e31a" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
+          <svg class="w-5 h-5" stroke-width="1.92" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#5416e3">
+            <path d="M7 12.5l3 3 7-7" stroke="#5416e3" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="#5416e3" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
           <span class="ml-2">
-            一緒に遊んだワンコの情報を記録
+            一緒に遊んだワンコの情報を記録・参照
           </span>
         </div>
 
         <div class="flex items-center text-gray-700 mt-3">
-          <svg class="w-5 h-5" stroke-width="1.92" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#16e31a">
-            <path d="M7 12.5l3 3 7-7" stroke="#16e31a" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="#16e31a" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
+          <svg class="w-5 h-5" stroke-width="1.92" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#5416e3">
+            <path d="M7 12.5l3 3 7-7" stroke="#5416e3" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="#5416e3" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
           <span class="ml-2">
             SNSの投稿を表示して情報を周知
@@ -128,6 +127,13 @@
       <h1 class="mt-3">
         <%= simple_format(t('.dogrun_recruitment'), class: "text-3xl font-semibold text-center text-gray-700 capitalize lg:text-4xl") %>
       </h1>
+      
+      <div class="flex justify-center mx-auto mt-1">
+        <span class="inline-block w-64 h-1 bg-yellow-500 rounded-full"></span>
+        <span class="inline-block w-3 h-1 mx-1 bg-yellow-500 rounded-full"></span>
+        <span class="inline-block w-1 h-1 bg-yellow-500 rounded-full"></span>
+      </div>
+
       <div class="container py-1 mx-auto">
         <%= simple_format((t'.looking_for_dogrun'), {class: "w-full mt-6 text-gray-700 text-lg text-center" }, wrapper_tag: "div") %>
         <div class="text-base text-center mt-3">
@@ -149,7 +155,7 @@
               <path d="M2 20V9.132a2 2 0 01.971-1.715l8-4.8a2 2 0 012.058 0l8 4.8A2 2 0 0122 9.132V20a2 2 0 01-2 2H4a2 2 0 01-2-2z" stroke="#5416e3" stroke-width="1.92"></path>
             </svg>
             <span class="ml-2 text-sm md:text-base">
-              管理者ユーザー登録用のEメールアドレス
+              管理ユーザー登録用のeメールアドレス
             </span>
           </div>
         </div>
@@ -169,7 +175,7 @@
       <%= simple_format((t'.adopted_app_dogrun'), {}, wrapper_tag: "div") %>
     </h1>
       
-    <div class="flex justify-center mx-auto mt-2">
+    <div class="flex justify-center mx-auto mt-1">
       <span class="inline-block w-40 h-1 bg-blue-500 rounded-full"></span>
       <span class="inline-block w-3 h-1 mx-1 bg-blue-500 rounded-full"></span>
       <span class="inline-block w-1 h-1 bg-blue-500 rounded-full"></span>
@@ -274,26 +280,32 @@
       <h1 class="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl">
         Sample View
       </h1>
+      
+      <div class="flex justify-center mx-auto mt-1">
+        <span class="inline-block w-52 h-1 bg-green-500 rounded-full"></span>
+        <span class="inline-block w-3 h-1 mx-1 bg-green-500 rounded-full"></span>
+        <span class="inline-block w-1 h-1 bg-green-500 rounded-full"></span>
+      </div>
+
       <p class="mt-4 text-center text-gray-500">
-        ユーザーはスマホで、管理者はPCでの利用を想定しています。<br>
         ※画像は開発中のものです。
       </p>
       <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
-        <div>
+        <div class="text-center">
           <%= link_to 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940256/mobile_view.png.001_wiapsi.png' do %>
             <img class="object-cover w-full rounded-lg h-96 " src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940256/mobile_view.png.001_wiapsi.png" alt="sample view of mobile screen">
           <% end %>
-          <h2 class="mt-4 text-2xl font-semibold text-gray-800 capitalize">
+          <h2 class="mt-4 text-2xl font-semibold text-gray-800">
             ユーザースマホ画面
           </h2>
-          <p class="mt-2 text-sm tracking-wider text-gray-500 uppercase">
+          <p class="mt-2 text-sm tracking-wider text-gray-500">
             ドッグラン利用記録機能<br>
             ワンちゃんのプロフィール設定<br>
             現在利用しているワンちゃん一覧
           </p>
         </div>
 
-        <div>
+        <div class="text-center">
           <%= link_to "https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940232/admin_view-1.png.002_vqto2j.png" do %>
             <img class="object-cover w-full rounded-lg h-96" src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940232/admin_view-1.png.002_vqto2j.png" alt="sample view of admin screen-1">
           <% end %>
@@ -307,7 +319,7 @@
           </p>
         </div>
 
-        <div>
+        <div class="text-center">
           <%= link_to 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940244/admin_image-2.png.001_crnzoz.png' do %>
             <img class="object-cover w-full rounded-lg h-96" src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940244/admin_image-2.png.001_crnzoz.png" alt="sample view of admin screen-2">
           <% end %>

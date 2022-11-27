@@ -20,7 +20,7 @@ class Admin::EntriesController < Admin::BaseController
   private
 
     def set_entries
-      @entries = Entry.dogrun_place_id(current_user.dogrun_place_id).page(params[:page])
+      @entries = Entry.admin_dogrun_place_id(current_user.dogrun_place_id).page(params[:page])
     end
 
     def set_q

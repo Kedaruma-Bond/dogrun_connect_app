@@ -157,6 +157,14 @@ ja:
         sex: 性別
         owner_comment: 飼い主さんから一言
         thumbnail: サムネイル
+        rabies_vaccination_certificate: 狂犬病予防接種証明の写真
+        date_of_rabies_vaccination: 狂犬病予防接種日
+        mixed_vaccination_certificate: 混合ワクチン接種証明の写真
+        date_of_mixed_vaccination: 混合ワクチン接種日
+        registration_prefecture_code: 畜犬登録都道府県
+        registration_municipality: 畜犬登録市町村名
+        municipal_registration_number: 畜犬登録番号
+        license_plate: 鑑札写真
       registration_number:
         dogrun_place: 登録ドッグラン
         registration_number: 登録番号
