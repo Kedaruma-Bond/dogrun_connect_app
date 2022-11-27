@@ -156,31 +156,25 @@
               </div>
             <% end %>
             <% if correct_user?(@user) %>
-              <details data-controller="accordion lightbox" class="text-center">
+              <details data-controller="accordion" class="text-center">
                 <%= render 'shared/image_modal' %>
                 <summary data-accordion-target="summary" data-action="click->accordion#toggle" class="mt-3 flex justify-center hover:cursor-pointer">
-                  <h1 class="flex font-bold text-base mb-3">
+                  <h1 class="flex font-bold text-base mb-3 text-gray-600">
                     <%= t('.show_more_detail_data')%>
                   </h1>
                 </summary>
                 <div data-accordion-target="content">
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
                     <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
-                      <span class="text-sm font-medium"><%= Dog.human_attribute_name(:rabies_vaccination_certificate) %></span>
+                      <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:rabies_vaccination_certificate) %></span>
                       <% if @dog.rabies_vaccination_certificate.blank? %>
-                        no_image
+                        <p>no_image</p>
                       <% else %>
-                        <%= cl_image_tag(@dog.rabies_vaccination_certificate.key, 
-                        gravity: :auto, quality_auto: :good, fetch_format: :auto, 
-                        class: "mx-auto object-cover h-auto w-10 group-hover:opacity-75", 
-                        data: {
-                        action: "click->lightbox#handleOpen",
-                        lightbox_url_param: @dog.rabies_vaccination_certificate.url
-                        }) %>
+                        <%= cl_image_tag(@dog.rabies_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded-lg mx-auto h-auto w-10", alt: "rabies vaccination certificate") %>
                       <% end %>
                     </div>
                     <div class="w-full mb-3 md:mb-0">
-                      <span class="text-sm font-medium"><%= Dog.human_attribute_name(:date_of_rabies_vaccination) %></span>
+                      <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:date_of_rabies_vaccination) %></span>
                       <p class="text-base font-bold">
                         <% if @dog.date_of_rabies_vaccination.blank? %>
                           -
@@ -192,17 +186,17 @@
                   </div>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
                     <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
-                      <span class="text-sm font-medium"><%= Dog.human_attribute_name(:mixed_vaccination_certificate) %></span>
+                      <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:mixed_vaccination_certificate) %></span>
                       <% if @dog.mixed_vaccination_certificate.blank? %>
-                        no_image
+                        <p>no_image</p>
                       <% else %>
                         <%= link_to @dog.rabies_vaccination_certificate.url do %>
-                          <%= cl_image_tag(@dog.mixed_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded-lg mx-auto h-auto w-10", alt: "rabies vaccination certificate") %>
+                          <%= cl_image_tag(@dog.mixed_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded-lg mx-auto h-auto w-10", alt: "mixed vaccination certificate") %>
                         <% end %>
                       <% end %>
                     </div>
                     <div class="w-full mb-3 md:mb-0">
-                      <span class="text-sm font-medium"><%= Dog.human_attribute_name(:date_of_mixed_vaccination) %></span>
+                      <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:date_of_mixed_vaccination) %></span>
                       <p class="text-base font-bold">
                         <% if @dog.date_of_mixed_vaccination.blank? %>
                           -
@@ -214,7 +208,7 @@
                   </div>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
                     <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
-                      <span class="text-sm font-medium"><%= Dog.human_attribute_name(:registration_prefecture_code) %></span>
+                      <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:registration_prefecture_code) %></span>
                       <p class="text-base font-bold">
                         <% if @dog.pref.blank? %>
                           -
@@ -224,7 +218,7 @@
                       </p>
                     </div>
                     <div class="w-full mb-3 md:mb-0">
-                      <span class="text-sm font-medium"><%= Dog.human_attribute_name(:registration_municipality) %></span>
+                      <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:registration_municipality) %></span>
                       <p class="text-base font-bold">
                         <% if @dog.registration_municipality.blank? %>
                           -
@@ -236,7 +230,7 @@
                   </div>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
                     <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
-                      <span class="text-sm font-medium"><%= Dog.human_attribute_name(:municipal_registration_number) %></span>
+                      <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:municipal_registration_number) %></span>
                       <p class="text-base font-bold">
                         <% if @dog.municipal_registration_number.blank? %>
                           -
@@ -246,7 +240,14 @@
                       </p>
                     </div>
                     <div class="w-full mb-3 md:mb-0">
-                      <span class="text-sm font-medium"><%= Dog.human_attribute_name(:license_plate) %></span>
+                      <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:license_plate) %></span>
+                      <% if @dog.license_plate.blank? %>
+                        <p>no_image</p>
+                      <% else %>
+                        <%= link_to @dog.license_plate.url do %>
+                          <%= cl_image_tag(@dog.license_plate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded-lg mx-auto h-auto w-10", alt: "license plate") %>
+                        <% end %>
+                      <% end %>
                     </div>
                   </div>
                 </div>

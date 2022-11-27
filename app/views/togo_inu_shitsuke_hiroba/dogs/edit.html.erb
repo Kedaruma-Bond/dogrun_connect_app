@@ -65,14 +65,14 @@
               </div>
               <details data-controller="accordion" class="text-center">
                 <summary data-accordion-target="summary" data-action="click->accordion#toggle" class="mt-3 flex justify-center hover:cursor-pointer">
-                  <h1 class="flex font-bold text-base mb-3">
+                  <h1 class="flex font-bold text-base mb-3 text-gray-600">
                     <%= t('.register_more_detail_data')%>
                   </h1>
                 </summary>
                 <div data-accordion-target="content">
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
                     <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
-                      <span class="text-sm font-medium"><%= t('.regiter_rabies_vaccination_certificate') %></span>
+                      <span class="text-sm font-medium"><%= t('.register_rabies_vaccination_certificate') %></span>
                       <%= f.input :rabies_vaccination_certificate, as: :file, direct_upload: true, input_html: { class: "block w-full px-3 py-1.5 text-sm text-white font-normal bg-gray-700 bg-clip-padding rounded border border-soild border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
                     </div>
                     <div class="w-full mb-3 md:mb-0">
