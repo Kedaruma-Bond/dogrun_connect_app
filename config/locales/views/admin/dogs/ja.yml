@@ -3,6 +3,10 @@ ja:
     dogs:
       index:
         title: 登録犬一覧
+        notice: 通知
+        photo_of_certificate: |
+          接種証明書
+          写真
       search:
         title: 登録犬検索結果
       search_form:

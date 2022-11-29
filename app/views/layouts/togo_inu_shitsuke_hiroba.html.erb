@@ -15,7 +15,7 @@
     <%= display_meta_tags(default_meta_tags) %>
   </head>
 
-  <body class="break-words flex flex-col min-h-screen">
+  <body class="dark:bg-gray-800 break-words flex flex-col min-h-screen">
     <%= render 'application/fb_sdk' %>
     <% if logged_in? %>
       <%= render 'togo_inu_shitsuke_hiroba/shared/login_navbar' %>

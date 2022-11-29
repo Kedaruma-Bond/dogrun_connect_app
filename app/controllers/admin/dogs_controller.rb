@@ -42,9 +42,9 @@ class Admin::DogsController < Admin::BaseController
     def set_dogs
       case current_user.name
       when "grand_admin"
-        @dogs = Dog.with_attached_thumbnail.includes([:user]).order(updated_at: :desc).page(params[:page])
+        @dogs = Dog.with_attached_thumbnail.with_attached_rabies_vaccination_certificate.with_attached_mixed_vaccination_certificate.includes([:user]).order(updated_at: :desc).page(params[:page])
       else
-        @dogs = Dog.dogrun_place_id(current_user.dogrun_place_id).with_attached_thumbnail.order(updated_at: :desc).page(params[:page])
+        @dogs = Dog.dogrun_place_id(current_user.dogrun_place_id).with_attached_thumbnail.with_attached_rabies_vaccination_certificate.with_attached_mixed_vaccination_certificate.order(updated_at: :desc).page(params[:page])
       end
     end
 
