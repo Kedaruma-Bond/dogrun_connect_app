@@ -1,8 +1,32 @@
 <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
   <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
     <div class="w-12 h-12 mx-auto my-auto">
-      <%= dog_thumbnail(dog) %>
+      <% if current_user.name != 'grand_admin' %>
+        <%= link_to admin_dog_path(dog) do %>
+          <%= dog_thumbnail(dog) %>
+        <% end %>
+      <% else %>
+        <%= dog_thumbnail(dog) %>
+      <% end %>
     </div>
+  </td>
+  <td class="px-3 py-2 whitespace-nowrap">
+    <% if dog.rabies_vaccination_certificate.present? && dog.mixed_vaccination_certificate.present? %>
+      <svg width="27px" height="27px" stroke-width="2.11" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#2bff00">
+        <path d="M7 12.5l3 3 7-7" stroke="#2bff00" stroke-width="2.11" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="#2bff00" stroke-width="2.11" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    <% else %>
+      -
+    <% end %>
+  </td>
+  <td class="flex px-3 py-2 whitespace-nowrap">
+    <% if dog.date_of_rabies_vaccination.blank? && dog.date_of_mixed_vaccination.blank? %>
+      -
+    <% else %>
+      <%= dog.notice_badge %>
+      <%= dog.alart_badge %>
+    <% end %>
   </td>
   <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
     <% rn = RegistrationNumber.find_by(dog_id: dog.id) %>

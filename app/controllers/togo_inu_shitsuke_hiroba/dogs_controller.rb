@@ -5,7 +5,7 @@ class TogoInuShitsukeHiroba::DogsController < TogoInuShitsukeHiroba::DogrunPlace
 
   def show
     @user = User.find(@dog.user_id)
-    @entries = Entry.where(dog: @dog).where(registration_number_id: @registration_number.id).joins(:registration_number).where(registration_number: { dogrun_place_id: 2 } ).sort.reverse
+    @entries = Entry.where(dog: @dog).where(registration_number_id: @registration_number.id).joins(:registration_number).where(registration_number: { dogrun_place: @dogrun_place } ).sort.reverse
     @t = 5
     @encount_dog = EncountDog.where(user_id: current_user.id).find_by(dog_id: @dog)
   end
@@ -24,14 +24,16 @@ class TogoInuShitsukeHiroba::DogsController < TogoInuShitsukeHiroba::DogrunPlace
 
   def set_dog_and_registration_number
     @dog = Dog.find(params[:id])
-    @registration_number = RegistrationNumber.where(dog_id: @dog.id).find_by(dogrun_place_id: 2)
+    @registration_number = RegistrationNumber.where(dog_id: @dog.id).find_by(dogrun_place: @dogrun_place)
   end
   
   def dog_params
     params.require(:dog).permit(
       :name, :birthday, :breed, :castration, :public,
       :owner_comment, :sex, :weight,
-      :thumbnail
+      :thumbnail, :mixed_vaccination_certificate, :rabies_vaccination_certificate, :license_plate,
+      :date_of_mixed_vaccination, :date_of_rabies_vaccination, :registration_prefecture_code,
+      :registration_municipality, :municipal_registration_number
     ).merge(user_id: current_user.id)
   end
 end

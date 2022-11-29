@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root 'static_pages#top'
   get 'privacy_policy', to: 'static_pages#privacy_policy'
   get 'terms_of_service', to: 'static_pages#terms_of_service'
+  
+  resources :attachments, only: :index
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
@@ -83,7 +85,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :dogs, only: %i[index edit update] do
+    resources :dogs, only: %i[index show edit update] do
       collection do
         get 'page/:page', action: :index
         get 'search', to: 'dogs#search'

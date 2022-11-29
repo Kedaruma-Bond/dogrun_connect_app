@@ -58,7 +58,7 @@ module DogHelper
     if dog.thumbnail.attached?
       cl_image_tag(dog.thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: css_class_dog_color_marker(dog), alt: dog.name)
     else
-      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.png', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full", alt: dog.name)
+      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.png', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full mx-auto", alt: dog.name)
     end 
   end
 
@@ -66,7 +66,7 @@ module DogHelper
     if dog.thumbnail.attached?
       cl_image_tag(dog.thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: css_class_dog_color_marker(dog), alt: dog.name, "data-preview-target": "imagePreview")
     else
-      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.pngg', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full", alt: dog.name, "data-preview-target": "imagePreview")
+      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.png', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full mx-auto w-full h-full aspect-square object-cover", alt: dog.name, "data-preview-target": "imagePreview")
     end 
   end
 
@@ -74,7 +74,71 @@ module DogHelper
     if dog.thumbnail.attached?
       cl_image_tag(dog.thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: css_class_encount_dog_color_marker(encount_dog), alt: dog.name)
     else
-      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.pngg', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full", alt: dog.name)
+      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.png', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full mx-auto", alt: dog.name)
     end
   end
+
+  def notice_inform_badge
+    user_dogs = Dog.where(user: current_user)
+    today = Date.current
+    notice_period = 15
+    notification = false
+
+    user_dogs.each do |dog|
+      if dog.date_of_rabies_vaccination.present?
+        rabies_one_year_later = dog.date_of_rabies_vaccination + 365
+        notice_start_date = rabies_one_year_later - notice_period
+        if (today.after? notice_start_date) && (today.before? rabies_one_year_later)
+          notification = true
+          break
+        end 
+      end
+
+      if dog.date_of_mixed_vaccination.present?
+        mixed_one_year_later = dog.date_of_mixed_vaccination + 365
+        notice_start_date = mixed_one_year_later - notice_period
+        if (today.after? notice_start_date) && (today.before? mixed_one_year_later)
+          notification = true
+          break
+        end
+      end
+    end
+
+    if notification == true
+      return tag.svg(class: "w-4 h-4 ml-2", "stroke-width": "2.11", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg", color: "#0062ff") { |tag| tag.path d: "M18 8.4c0-1.697-.632-3.325-1.757-4.525C15.117 2.675 13.59 2 12 2c-1.591 0-3.117.674-4.243 1.875C6.632 5.075 6 6.703 6 8.4 6 15.867 3 18 3 18h18s-3-2.133-3-9.6zM13.73 21a1.999 1.999 0 01-3.46 0", stroke: "#0062ff", "stroke-width": "3", "stroke-linecap": "round", "stroke-linejoin": "round" }
+    else
+      return
+    end
+  end
+
+  def alart_inform_badge
+    user_dogs = Dog.where(user: current_user)
+    today = Date.current
+    notification = false
+
+    user_dogs.each do |dog|
+      if dog.date_of_rabies_vaccination.present?
+        rabies_one_year_later = dog.date_of_rabies_vaccination + 365
+        if today.after? rabies_one_year_later
+          notification = true
+          break
+        end
+      end
+
+      if dog.date_of_mixed_vaccination.present?
+        mixed_one_year_later = dog.date_of_mixed_vaccination + 365
+        if today.after? mixed_one_year_later
+          notification = true
+          break
+        end
+      end
+    end
+
+    if notification == true
+      return tag.svg(class: "w-5 h-5 ml-2 text-red-500", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg") { |tag| tag.path "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "3", d: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" }
+    else
+      return
+    end
+  end
+  
 end

@@ -56,18 +56,17 @@ ja:
     dog_registration:
       create:
         dog_registration: |
-          ワンちゃんを登録できました！
-          DogrunConnectを是非ドッグランで活用してください!
+          ワンちゃんを登録できました
+          DogrunConnectを是非ドッグランで活用してください
     users:
       create:
         user_create: |
-          ユーザーを登録しました!
+          ユーザーを登録しました
           引き続きワンちゃんの登録をお願いします
-          ２頭目以降のワンちゃんはプロフィール画面から
-          登録できます
+          ２頭目以降のワンちゃんはプロフィール画面から登録できます
     sessions:
       create:
-        login_successfully: ログインしました！
+        login_successfully: ログインしました
         login_failed: |
           ログインできませんでした
           入力内容を見直してください
@@ -79,9 +78,9 @@ ja:
         logout: ログアウトしました
       guest_login:
         guest_login_successfully: |
-          ゲストログインしました!
-          ワンちゃんの登録はゲストログインではできません。
-          新規登録が必要ですので、是非ご登録ください！！
+          ゲストログインしました
+          ワンちゃんの登録はゲストログインではできません
+          新規登録が必要です
       jump_to_signup:
         signup_please: |
           新規登録してアプリを
@@ -90,7 +89,7 @@ ja:
       update:
         dog_profile_updated: |
           ワンちゃんのプロフィールを
-          更新しました！
+          更新しました
     registration_numbers:
       destroy:
         destroy_successfully: |
@@ -103,7 +102,7 @@ ja:
         post_save_error: 投稿時にエラーが起きました
     encount_dogs:
       update:
-        encount_dog_updated: 情報を更新しました！
+        encount_dog_updated: 情報を更新しました
   activerecord:
     models:
       contact: お問い合わせ
@@ -157,6 +156,14 @@ ja:
         sex: 性別
         owner_comment: 飼い主さんから一言
         thumbnail: サムネイル
+        rabies_vaccination_certificate: 狂犬病予防接種証明の写真
+        date_of_rabies_vaccination: 狂犬病予防接種日
+        mixed_vaccination_certificate: 混合ワクチン接種証明の写真
+        date_of_mixed_vaccination: 混合ワクチン接種日
+        registration_prefecture_code: 畜犬登録都道府県
+        registration_municipality: 畜犬登録市町村名
+        municipal_registration_number: 畜犬登録番号
+        license_plate: 鑑札写真
       registration_number:
         dogrun_place: 登録ドッグラン
         registration_number: 登録番号
@@ -195,4 +202,31 @@ ja:
   attributes:
     created_at: 作成日
     updated_at: 更新日
+# decoratorで書いてるもの
+  dogs:
+    messages:
+      notice_to_get_rabies_vaccination: |
+        そろそろ狂犬病予防接種を
+        受ける時期です
+      notice_to_get_mixed_vaccination: |
+        そろそろ混合ワクチンを
+        受ける時期です
+      notice_to_get_both_vaccinations: |
+        そろそろ
+        狂犬病予防接種と混合ワクチンを
+        受ける時期です
+      alart_to_get_rabies_vaccination: |
+        狂犬病予防接種の
+        有効免疫期間が失効してます
+        早急に接種してください
+      alart_to_get_mixed_vaccination: |
+        混合ワクチンの
+        有効免疫期間が失効してます
+        早急に接種してください
+      alart_to_get_both_vaccinations: |
+        狂犬病予防接種と混合ワクチンの
+        有効免疫期間が失効しています
+        早急に接種してください
+
+
 

@@ -3,7 +3,7 @@ ja:
     shared:
       login_navbar:
         logout_confirmation: ログアウトしてよろしいですか？
-      form:
+      post_form:
         select_post_type: |
           作成する投稿タイプを
           選択してください

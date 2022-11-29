@@ -1,5 +1,15 @@
 ja:
   shared:
+    refer_to_app_sns:
+      refer_to_sns: |
+        投稿の仕方については
+        アプリのSNSに詳しい動画が
+        ありますのでご参照ください
+    post_form:
+      select_post_type: |
+        作成する投稿タイプを
+        選択してください
+      select_it: 選択してください
     entries_table:
       table_of_entries_latest_max_five: "過去%{times}回の利用状況"
       playing_together: 一緒に遊んだワンちゃん
