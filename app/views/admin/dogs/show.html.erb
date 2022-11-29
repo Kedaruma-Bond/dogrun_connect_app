@@ -1,0 +1,252 @@
+<% content_for(:title, t('.title')) %>
+<div class="w-full mx-auto mx-4">
+  <div class="container bg-purple-200 w-full shadow rounded p-5 sm:p-10">
+    <p class="text-2xl md:text-3xl font-bold text-gray-700 text-center my-2">
+      <%= t'.title' %>
+    </p>
+    <section class="text-gray-600 body-font">
+      <div class="container px-3 py-3 mx-auto flex flex-col">
+        <div class="flex flex-col sm:flex-row mt-3">
+          <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
+            <div class="w-40 h-40 flex-shrink-0 mx-auto mb-3 md:md-0 inline-flex items-center justify-center">
+              <%= dog_thumbnail(@dog) %>
+            </div>
+            <div class="text-gray-700 text-xs font-light">
+              <%= RegistrationNumber.human_attribute_name(:registration_number) %>
+              <p class="text-xl font-bold">
+                <%= @registration_number.registration_number %>
+              </p>
+            </div>
+            <div class="flex flex-col items-center text-center justify-center mt-3">
+              <h2 class="font-bold text-gray-700 text-2xl">
+                <%= @dog.name %>
+              </h2>
+              <div class="w-32 h-1 bg-gray-200 rounded mt-2 mb-4"></div>
+              <% if correct_user?(@user) %>
+                <%= render partial: "shared/notice_message", locals: { dog: @dog }  %>
+                <div class="flex md:hidden items-center mt-2 flex-row justify-center text-left">
+                  <%= link_to edit_togo_inu_shitsuke_hiroba_dog_path(@dog.id) do %>
+                    <button class="flex items-center px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                      </svg>
+                      <span class="mx-2 text-lg"><%= t'defaults.edit' %></span>
+                    </button>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="sm:w-2/3 sm:pl-8 sm:py-2 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
+            <div class="grid grid-cols-3 gap-2 mb-3">
+              <div class="col-span-2 flex-raw flex-shrink-0 items-start justify-center mb-0">
+                <p class="text-gray-600 text-xs font-light">
+                  <%= t'defaults.birthday' %>
+                </p>
+                <h1 class="mt-1 text-lg font-bold text-gray-700 px-2">
+                  <% if @dog.birthday.blank? %>
+                    -
+                  <% else %>
+                    <%= l @dog.birthday, format: :long2 %>
+                  <% end %>
+                </h1>
+              </div>
+              <div class="flex flex-col flex-shrink-0 items-start md:justify-center mb-0">
+                <p class="text-gray-600 text-xs font-light">
+                  <%= t'defaults.age' %>
+                </p>
+                <div class="flex">
+                  <h1 class="mt-1 text-lg font-bold text-gray-700 px-2">
+                    <% if @dog.birthday.blank? %>
+                      -
+                    <% else %>
+                      <%= @dog.age %>
+                    <% end %>
+                  </h1>
+                  <p class="text-xs pt-4 font-light"><%= t'defaults.age_unit' %></p>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
+              <p class="text-gray-600 text-xs font-light">
+                <%= t'defaults.breed' %>
+              </p>
+              <h1 class="mt-1 text-lg font-bold md:text-2xl text-gray-700">
+                <% if @dog.breed == '' %>
+                  -
+                <% else %>
+                  <%= @dog.breed %>
+                <% end %>
+              </h1>
+            </div>
+            <div class="grid grid-cols-2 gap-2 mb-3">
+              <div class="flex-raw flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
+                <p class="text-gray-600 text-xs font-light">
+                  <%= t'defaults.sex' %>
+                </p>
+                <h1 class="mt-1 text-xl font-bold text-gray-700">
+                  <% if @dog.sex == 'male' %>
+                    <%= t'enums.dog.sex.male' %>
+                  <% elsif @dog.sex == 'female' %>
+                    <%= t'enums.dog.sex.female' %>
+                  <% else %>
+                    -
+                  <% end %>
+                </h1>
+              </div>
+              <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
+                <p class="text-gray-600 text-xs font-light">
+                  <%= t'defaults.weight' %>
+                </p>
+                <div class="flex">
+                  <h1 class="mt-1 text-xl font-bold text-gray-700 px-2">
+                    <% if @dog.weight == nil %>
+                      -
+                    <% else %>
+                      <%= @dog.weight %>
+                    <% end %>
+                  </h1>
+                  <p class="text-xs pt-4"><%= t'defaults.weight_unit' %></p>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2 mb-3">
+              <div class="flex-raw flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
+                <p class="text-gray-600 text-xs font-light">
+                  <%= t'defaults.castration' %>
+                </p>
+                <h1 class="mt-1 text-xl font-bold text-gray-700 mx-auto">
+                  <% if @dog.castration == 'castrated' %>
+                    <%= t'enums.dog.castration.castrated' %>
+                  <% else %>
+                    <%= t'enums.dog.castration.non_castrated' %>
+                  <% end %>
+                </h1>
+              </div>
+              <div class="flex-row flex-shrink-0 items-center md:items-start md:justify-center md:mr-2 mb-3 md:mb-0">
+                <p class="text-gray-600 text-xs font-light">
+                  <%= t'defaults.public' %>
+                </p>
+                <h1 class="mt-1 text-xl font-bold text-gray-700">
+                  <% if @dog.public == 'public_view' %>
+                    <%= t'enums.dog.public.public_view' %>
+                  <% else %>
+                    <%= t'enums.dog.public.non_public' %>
+                  <% end %>
+                </h1>
+              </div>
+            </div>
+            <div class="grid grid-cols-1">
+              <div class="justify-center md:justify-start mb-3">
+                <p class="text-gray-600 text-xs font-light">
+                  <%= t'defaults.owner_comment' %>
+                </p>
+                <div class="mt-1">
+                  <%= simple_format(@dog.owner_comment, class: "text-lg text-gray-700 font-bold text-left") %>
+                </div>
+              </div>
+            </div>
+            <% if not @encount_dog.blank? %>
+              <div class="justify-center md:justify-start">
+                <p class="text-gray-600 text-xs font-light">
+                  <%= t'defaults.encount_dog_memo' %>
+                </p>
+                <div class="mt-1">
+                  <%= simple_format(@encount_dog.memo, class: "text-lg text-gray-700 font-bold text-left") %>
+                </div>
+              </div>
+            <% end %>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
+              <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
+                <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:rabies_vaccination_certificate) %></span>
+                <% if @dog.rabies_vaccination_certificate.blank? %>
+                  <p>no_image</p>
+                <% else %>
+                  <%= link_to @dog.rabies_vaccination_certificate.url  do %>
+                    <%= cl_image_tag(@dog.rabies_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded-lg mx-auto h-auto w-10", alt: "rabies vaccination certificate") %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="w-full mb-3 md:mb-0">
+                <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:date_of_rabies_vaccination) %></span>
+                <p class="text-base font-bold">
+                  <% if @dog.date_of_rabies_vaccination.blank? %>
+                    -
+                  <% else %>
+                    <%= l @dog.date_of_rabies_vaccination, format: :long2 %>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
+              <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
+                <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:mixed_vaccination_certificate) %></span>
+                <% if @dog.mixed_vaccination_certificate.blank? %>
+                  <p>no_image</p>
+                <% else %>
+                  <%= link_to @dog.mixed_vaccination_certificate.url do %>
+                    <%= cl_image_tag(@dog.mixed_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded-lg mx-auto h-auto w-10", alt: "mixed vaccination certificate") %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="w-full mb-3 md:mb-0">
+                <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:date_of_mixed_vaccination) %></span>
+                <p class="text-base font-bold">
+                  <% if @dog.date_of_mixed_vaccination.blank? %>
+                    -
+                  <% else %>
+                    <%= l @dog.date_of_mixed_vaccination, format: :long2 %>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2 w-full mb-3">
+              <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
+                <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:registration_prefecture_code) %></span>
+                <p class="text-base font-bold">
+                  <% if @dog.pref.blank? %>
+                    -
+                  <% else %>
+                    <%= @dog.pref.name %> 
+                  <% end %>
+                </p>
+              </div>
+              <div class="w-full mb-3 md:mb-0">
+                <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:registration_municipality) %></span>
+                <p class="text-base font-bold">
+                  <% if @dog.registration_municipality.blank? %>
+                    -
+                  <% else %>
+                    <%= @dog.registration_municipality %> 
+                  <% end %>
+                </p>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2 w-full mb-3">
+              <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
+                <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:municipal_registration_number) %></span>
+                <p class="text-base font-bold">
+                  <% if @dog.municipal_registration_number.blank? %>
+                    -
+                  <% else %>
+                    <%= @dog.municipal_registration_number %> 
+                  <% end %>
+                </p>
+              </div>
+              <div class="w-full mb-3 md:mb-0">
+                <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:license_plate) %></span>
+                <% if @dog.license_plate.blank? %>
+                  <p>no_image</p>
+                <% else %>
+                  <%= link_to @dog.license_plate.url do %>
+                    <%= cl_image_tag(@dog.license_plate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded-lg mx-auto h-auto w-10", alt: "license plate") %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

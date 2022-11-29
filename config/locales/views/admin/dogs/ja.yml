@@ -7,9 +7,17 @@ ja:
         title: 登録犬検索結果
       search_form:
         search_field: 飼い主さんの名前/ワンちゃんの名前/犬種検索 
+      show:
+        title: ワンコのプロフィール
       edit:
         title: ワンコの情報編集
         dog_name: ワンコの名前
         change_image: サムネイル変更
         owner_comment_placeholder: ワンちゃんの性格等、ドッグランで過ごす際に周りの方に知っておいてもらいたいことなどを記載してください
+        register_more_detail_data: 更なる詳細情報の登録
+        register_rabies_vaccination_certificate: 狂犬病予防接種証明の写真登録
+        register_mixed_vaccination_certificate: 混合ワクチン接種証明の写真登録
+        choose_a_prefecture: 都道府県を選択してください
+        register_license_plate: 鑑札写真登録
+
 

@@ -1,7 +1,13 @@
 <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
   <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
     <div class="w-12 h-12 mx-auto my-auto">
-      <%= dog_thumbnail(dog) %>
+      <% if current_user.name != 'grand_admin' %>
+        <%= link_to admin_dog_path(dog) do %>
+          <%= dog_thumbnail(dog) %>
+        <% end %>
+      <% else %>
+        <%= dog_thumbnail(dog) %>
+      <% end %>
     </div>
   </td>
   <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">

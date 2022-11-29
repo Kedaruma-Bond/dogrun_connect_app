@@ -1,10 +1,16 @@
 class Admin::DogsController < Admin::BaseController
   before_action :set_dogs, only: %i[index search]
-  before_action :set_dog, only: %i[edit update]
+  before_action :set_dog, only: %i[show edit update]
   before_action :dog_params, only: %i[update]
   before_action :set_q, only: %i[index search]
 
   def index; end
+
+  def show
+    if current_user.name != "grand_admin"
+      @registration_number = RegistrationNumber.where(dog: @dog).find_by(dogrun_place: current_user.dogrun_place)
+    end
+  end
 
   def edit; end
 
@@ -26,7 +32,10 @@ class Admin::DogsController < Admin::BaseController
     def dog_params
       params.require(:dog).permit(
         :thumbnail, :name, :breed, :castration,
-        :public, :owner_comment, :sex, :weight, :birthday
+        :public, :owner_comment, :sex, :weight, :birthday,
+        :mixed_vaccination_certificate, :rabies_vaccination_certificate,
+        :license_plate, :date_of_mixed_vaccination, :date_of_rabies_vaccination,
+        :registration_prefecture_code, :registration_municipality, :municipal_registration_number
       )
     end
 
