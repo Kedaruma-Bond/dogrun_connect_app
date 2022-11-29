@@ -10,14 +10,14 @@ d = dogrun_place_2 = DogrunPlace.create!(
                   name: 'Dog Play Park',
                   prefecture_code: 23
                 )
-d.logo.attach(io: File.open(Rails.root.join('public/uploads/dog_play_park_logo.png')), filename: d.name)
+d.logo.attach(io: File.open(Rails.root.join('public/uploads/dog_play_park_logo.jpg')), filename: d.name)
 # dogrun_place id: 3 ABC公演ドッグラン
 d = dogrun_place_3 = DogrunPlace.create!(
                   id: 3,
                   name: 'ABC公園ドッグラン',
                   prefecture_code: 47
                 )
-d.logo.attach(io: File.open(Rails.root.join('public/uploads/ABC公園ドッグラン_logo.png')), filename: d.name)
+d.logo.attach(io: File.open(Rails.root.join('public/uploads/ABC公園ドッグラン_logo.jpg')), filename: d.name)
 
 
 # grand admin create
@@ -67,18 +67,18 @@ users = User.order(:created_at).limit(12).offset(3)
 castration = 'castrated'
 public = 'public_view'
 dog_photo = []
-dog_photo << 'public/uploads/dog-sample-1.png'
-dog_photo << 'public/uploads/dog-sample-2.png'
-dog_photo << 'public/uploads/dog-sample-3.png'
-dog_photo << 'public/uploads/dog-sample-4.png'
-dog_photo << 'public/uploads/dog-sample-5.png'
-dog_photo << 'public/uploads/dog-sample-6.png'
-dog_photo << 'public/uploads/dog-sample-7.png'
-dog_photo << 'public/uploads/dog-sample-8.png'
-dog_photo << 'public/uploads/dog-sample-9.png'
-dog_photo << 'public/uploads/dog-sample-10.png'
-dog_photo << 'public/uploads/dog-sample-11.png'
-dog_photo << 'public/uploads/dog-sample-12.png'
+dog_photo << 'public/uploads/dog-sample-1.jpg'
+dog_photo << 'public/uploads/dog-sample-2.jpg'
+dog_photo << 'public/uploads/dog-sample-3.jpg'
+dog_photo << 'public/uploads/dog-sample-4.jpg'
+dog_photo << 'public/uploads/dog-sample-5.jpg'
+dog_photo << 'public/uploads/dog-sample-6.jpg'
+dog_photo << 'public/uploads/dog-sample-7.jpg'
+dog_photo << 'public/uploads/dog-sample-8.jpg'
+dog_photo << 'public/uploads/dog-sample-9.jpg'
+dog_photo << 'public/uploads/dog-sample-10.jpg'
+dog_photo << 'public/uploads/dog-sample-11.jpg'
+dog_photo << 'public/uploads/dog-sample-12.jpg'
 num = 0
 users.each do |u|
   d = u.dogs.create!(
@@ -98,19 +98,19 @@ users = User.order(:created_at).last(12)
 castration = 'non_castrated'
 public = 'non_public'
 dog_photo = []
-dog_photo << 'public/uploads/dog-sample-13.png'
-dog_photo << 'public/uploads/dog-sample-14.png'
-dog_photo << 'public/uploads/dog-sample-15.png'
-dog_photo << 'public/uploads/dog-sample-16.png'
-dog_photo << 'public/uploads/dog-sample-17.png'
-dog_photo << 'public/uploads/dog-sample-18.png'
-dog_photo << 'public/uploads/dog-sample-19.png'
-dog_photo << 'public/uploads/dog-sample-20.png'
-dog_photo << 'public/uploads/dog-sample-21.png'
-dog_photo << 'public/uploads/dog-sample-22.png'
-dog_photo << 'public/uploads/dog-sample-23.png'
-dog_photo << 'public/uploads/dog-sample-24.png'
-dog_photo << 'public/uploads/dog-sample-25.png'
+dog_photo << 'public/uploads/dog-sample-13.jpg'
+dog_photo << 'public/uploads/dog-sample-14.jpg'
+dog_photo << 'public/uploads/dog-sample-15.jpg'
+dog_photo << 'public/uploads/dog-sample-16.jpg'
+dog_photo << 'public/uploads/dog-sample-17.jpg'
+dog_photo << 'public/uploads/dog-sample-18.jpg'
+dog_photo << 'public/uploads/dog-sample-19.jpg'
+dog_photo << 'public/uploads/dog-sample-20.jpg'
+dog_photo << 'public/uploads/dog-sample-21.jpg'
+dog_photo << 'public/uploads/dog-sample-22.jpg'
+dog_photo << 'public/uploads/dog-sample-23.jpg'
+dog_photo << 'public/uploads/dog-sample-24.jpg'
+dog_photo << 'public/uploads/dog-sample-25.jpg'
 num = 0
 users.each do |u|
   d = u.dogs.create!(

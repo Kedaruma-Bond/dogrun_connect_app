@@ -203,4 +203,31 @@ ja:
   attributes:
     created_at: 作成日
     updated_at: 更新日
+# decoratorで書いてるもの
+  dogs:
+    messages:
+      notice_to_get_rabies_vaccination: |
+        そろそろ狂犬病予防接種を
+        受ける時期です
+      notice_to_get_mixed_vaccination: |
+        そろそろ混合ワクチンを
+        受ける時期です
+      notice_to_get_both_vaccinations: |
+        そろそろ
+        狂犬病予防接種と混合ワクチンを
+        受ける時期です
+      alart_to_get_rabies_vaccination: |
+        狂犬病予防接種の
+        有効免疫期間が失効してます
+        早急に接種してください
+      alart_to_get_mixed_vaccination: |
+        混合ワクチンの
+        有効免疫期間が失効してます
+        早急に接種してください
+      alart_to_get_both_vaccinations: |
+        狂犬病予防接種と混合ワクチンの
+        有効免疫期間が失効しています
+        早急に接種してください
+
+
 
