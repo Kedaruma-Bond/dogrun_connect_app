@@ -14,4 +14,10 @@ ja:
         email: メールアドレス
         of_dogs: 頭
         add_dog: 新たにワンちゃんを登録する
+        register_sns_id: SNSアカウントを登録
+      edit:
+        title: SNSアカウント登録
+        facebook_id_hint: https://www.facebook.com/以降を入力してください
+        instagram_id_hint: https://www.instagram.com/以降を入力してください
+        twitter_id_hint: https://twitter.com/以降を入力してください
 

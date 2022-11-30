@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_24_074626) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_29_162859) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -212,6 +212,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_074626) do
     t.string "unlock_token"
     t.integer "role", default: 0, null: false
     t.bigint "dogrun_place_id"
+    t.string "facebook_id", default: ""
+    t.string "instagram_id", default: ""
+    t.string "twitter_id", default: ""
     t.index ["dogrun_place_id"], name: "index_users_on_dogrun_place_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"

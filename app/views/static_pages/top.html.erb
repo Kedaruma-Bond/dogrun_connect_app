@@ -207,7 +207,7 @@
                   <%= DogrunPlace.human_attribute_name(:address) %>
                 </p>
                 <h2 class="mt-1">
-                  <%= simple_format(DogrunPlace.find(2).address, class: "text-gray-700 text-base") %>
+                  <%= simple_format(DogrunPlace.find(2).address, class: "text-gray-700 dark:text-gray-300 text-base") %>
                 </h2>
                 <% if !DogrunPlace.find(2).opening_time.blank? || !DogrunPlace.find(2).closing_time.blank? %>
                   <p class="text-sm mt-2">
@@ -223,13 +223,13 @@
                   <%= DogrunPlace.human_attribute_name(:usage_fee) %>
                 </p>
                 <h2 class="mt-1">
-                  <%= simple_format(DogrunPlace.find(2).usage_fee, class: "text-gray-700 text-base text-left") %>
+                  <%= simple_format(DogrunPlace.find(2).usage_fee, class: "text-gray-700 dark:text-gray-300 text-base text-left") %>
                 </h2>
                 <p class="text-sm mt-2">
                   <%= DogrunPlace.human_attribute_name(:site_area) %>
                 </p>
                 <h2 class="mt-1">
-                  <%= simple_format(DogrunPlace.find(2).site_area, class: "text-gray-700 text-base") %>
+                  <%= simple_format(DogrunPlace.find(2).site_area, class: "text-gray-700 dark:text-gray-300 text-base") %>
                 </h2>
                 <div class="mx-auto">
                   <% if !DogrunPlace.find(2).web_site.blank? %>
@@ -256,7 +256,7 @@
 
         <div class="flex flex-col items-center p-4 border sm:p-6 rounded-xl">
           <%= image_tag "https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661501917/nodata_image-1_gfhsoz.jpg", class: "object-cover w-full rounded-xl aspect-square", alt: "no_data_image_dog" %>
-          <h1 class="mt-4 text-2xl font-semibold text-gray-600 capitalize">
+          <h1 class="mt-4 text-2xl font-semibold text-gray-600 dark:text-gray-300 capitalize">
             <%= t'.under_recruitment' %>
           </h1>
           
@@ -266,7 +266,7 @@
 
         <div class="flex flex-col items-center p-4 border sm:p-6 rounded-xl">
           <%= image_tag "https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661501927/nodata_image-2_pxtu52.jpg", class: "object-cover w-full rounded-xl aspect-square", alt: "no_data_image_dog" %>
-          <h1 class="mt-4 text-2xl font-semibold text-gray-600 capitalize">
+          <h1 class="mt-4 text-2xl font-semibold text-gray-600 dark:text-gray-300 capitalize">
             <%= t'.under_recruitment' %>
           </h1>
           <div class="flex mt-3 -mx-2">

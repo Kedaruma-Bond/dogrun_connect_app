@@ -2,6 +2,7 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
   skip_before_action :require_login, only: %i[new create]
   before_action :user_params, only: %i[create]
   before_action :correct_user, :set_dogs_and_registration_numbers_at_local, only: %i[show]
+  before_action :sns_id_params, only: %i[edit update]
 
   def new
     @user = User.new
@@ -16,6 +17,21 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
       return
     end
     render :new, status: :unprocessable_entity
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update!(sns_id_params)
+      redirect_to togo_inu_shitsuke_hiroba_user_path(@user), success: t('defaults.update_successfully')
+      return
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -40,6 +56,13 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
     params.require(:user).permit(
       :name, :email, :deactivation, :password, :password_confirmation,
       :agreement
+    )
+  end
+
+  def sns_id_params
+    params.require(:user).permit(
+      :name, :email, :agreement,
+      :facebook_id, :instagram_id, :twitter_id
     )
   end
 end

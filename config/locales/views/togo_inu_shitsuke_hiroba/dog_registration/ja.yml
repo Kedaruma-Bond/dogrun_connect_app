@@ -2,9 +2,9 @@ ja:
   togo_inu_shitsuke_hiroba:
     dog_registration:
       new:
-        title: 犬の登録 | 犬のしつけ広場
+        title: ワンちゃんの登録 | 犬のしつけ広場
       dog_registration_form:
-        title: 犬の登録
+        title: ワンちゃんの登録
         name: 犬の名前
         registration_number: パスポート番号
         add: 追加
