@@ -46,6 +46,7 @@ end
 #  castration                    :boolean          not null
 #  date_of_mixed_vaccination     :date
 #  date_of_rabies_vaccination    :date
+#  filming_approval              :boolean
 #  municipal_registration_number :integer
 #  name                          :string           not null
 #  owner_comment                 :text             default("")
@@ -53,6 +54,7 @@ end
 #  registration_municipality     :string           default("")
 #  registration_prefecture_code  :integer
 #  sex                           :integer
+#  sns_post_approval             :boolean
 #  weight                        :integer
 #  created_at                    :datetime         not null
 #  updated_at                    :datetime         not null
