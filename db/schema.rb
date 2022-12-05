@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_01_003949) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_05_120055) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,9 +81,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_003949) do
     t.time "closing_time"
     t.boolean "closed_flag", default: false
     t.boolean "force_closed", default: false
-    t.string "facebook_id", default: ""
-    t.string "instagram_id", default: ""
-    t.string "twitter_id", default: ""
   end
 
   create_table "dogs", force: :cascade do |t|

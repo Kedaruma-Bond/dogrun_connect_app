@@ -12,8 +12,6 @@ class DogrunPlace < ApplicationRecord
   include JpPrefecture
   jp_prefecture :prefecture_code, method_name: :pref
 
-  self.ignored_columns = [:facebook_id, :instagram_id, :twitter_id]
-
   # validation
   validates :name, presence: true, length: { maximum: 50 }
   validates :description, length: { maximum: 1000 }
