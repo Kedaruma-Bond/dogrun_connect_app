@@ -26,8 +26,8 @@
             </li>
           <% end %>
           <li>
-            <% if !@dogrun_place.facebook_id.blank? || !@dogrun_place.instagram_id.blank? || !@dogrun_place.twitter_id.blank? %>
-              <%= render partial: "shared/sns_icons", locals: { dogrun_place: @dogrun_place} %>
+            <% if !@dogrun_place.sns_account.nil?  %>
+              <%= render partial: "shared/sns_account_icons", locals: { sns_account: @dogrun_place.sns_account } %>
             <% end %>
           </li>
         </nav>

@@ -5,17 +5,21 @@ class User < ApplicationRecord
   has_many :encount_dogs, dependent: :destroy
   has_many :encounts, dependent: :destroy
   belongs_to :dogrun_place, optional: true
+  has_one :sns_account, dependent: :destroy
 
   attr_accessor :agreement
+
+  self.ignored_columns = [:facebook_id, :instagram_id, :twitter_id]
 
   # validations
   validates :password, length: { minimum: 6 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
-  validates :name, presence: true, length: { maximum: 50 }
-  validates :email, presence: true, uniqueness: true, email_format: { message: I18n.t('defaults.email_message') }
-  validates :agreement, acceptance: true
+  validates :name, presence: true, length: { maximum: 50 }, if: -> { new_record? || changes[:crypted_password] }
+  validates :email, presence: true, uniqueness: true, email_format: { message: I18n.t('defaults.email_message') }, if: -> { new_record? || changes[:crypted_password] }
+  validates :agreement, acceptance: true, on: :create
+  validates :agreement, acceptance: true, on: :update, allow_blank: true
 
   #enum
   enum role: { general: 0, admin: 1, guest: 2 }

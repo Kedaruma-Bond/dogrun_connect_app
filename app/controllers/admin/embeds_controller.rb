@@ -18,8 +18,8 @@ class Admin::EmbedsController < Admin::BaseController
   def edit; end
 
   def update
-    if @embed.valid?
-      @embed.update(embed_params)
+    if @embed.update(embed_params)
+      
       redirect_to admin_posts_path, success: t('defaults.update_successfully')
       return
     else

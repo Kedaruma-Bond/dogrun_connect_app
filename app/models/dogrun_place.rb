@@ -7,6 +7,7 @@ class DogrunPlace < ApplicationRecord
   has_many :encounts, dependent: :destroy
   has_many :dogrun_place_facility_relations, dependent: :destroy
   has_many :facilities, through: :dogrun_place_facility_relations, dependent: :destroy
+  has_one :sns_account, dependent: :destroy
   has_one_attached :logo
   include JpPrefecture
   jp_prefecture :prefecture_code, method_name: :pref
@@ -38,7 +39,4 @@ end
 #  web_site        :string           default("")
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  facebook_id     :string           default("")
-#  instagram_id    :string           default("")
-#  twitter_id      :string           default("")
 #

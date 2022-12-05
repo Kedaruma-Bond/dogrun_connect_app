@@ -2,6 +2,7 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
   skip_before_action :require_login, only: %i[new create]
   before_action :user_params, only: %i[create]
   before_action :correct_user, :set_dogs_and_registration_numbers_at_local, only: %i[show]
+  before_action :sns_id_params, only: %i[edit update]
 
   def new
     @user = User.new

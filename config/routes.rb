@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
-  get '/service-worker.js', to: 'service_worker#service_worker'
-  get '/offline.html', to: 'service_worker#offline'
+  get './service-worker.js', to: 'service_worker#service_worker'
+  get './offline.html', to: 'service_worker#offline'
 
   get 'sitemap', to: redirect("https://s3-ap-northeast-1.amazonaws.com/#{Rails.application.credentials.aws[:s3_bucket_name]}/sitemaps/sitemap.xml.gz")
   
@@ -25,7 +25,8 @@ Rails.application.routes.draw do
     get 'login', to: 'sessions#new'
     post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy', as: :logout
-    
+
+    resources :sns_accounts, only: %i[new create edit update destroy]
     resources :encount_dogs, only: %i[index edit update] do
       collection do
         get 'page/:page', action: :index
@@ -42,7 +43,7 @@ Rails.application.routes.draw do
         post 'search', to: 'entries#search'
       end
     end
-    resources :users, only: %i[new create show]
+    resources :users, only: %i[new create show edit update]
     resources :dogs, only: %i[show edit update]
     resources :registration_numbers, only: %i[destroy]
     resources :posts, only: %i[create] do
@@ -92,6 +93,8 @@ Rails.application.routes.draw do
         post 'search', to: 'dogs#search'
       end
     end
+
+    resources :sns_accounts, only: %i[new create edit update destroy]
 
     resources :users, only: %i[index new create destroy] do
       collection do

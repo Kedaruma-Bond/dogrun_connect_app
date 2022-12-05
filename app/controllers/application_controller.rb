@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   include DogHelper
   include ArticleHelper
   include EncountDogHelper
+  include DogrunPlaceHelper
   include EntryConcern
   before_action :require_login
   add_flash_types :success, :notice, :error
@@ -38,11 +39,4 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def skip_bullet
-      previous_value = Bullet.enable?
-      Bullet.enable = false
-      yield
-    ensure
-      Bullet.enable = previous_value
-    end
 end

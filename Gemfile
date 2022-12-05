@@ -85,6 +85,8 @@ gem 'gon'
 gem 'active_storage_validations'
 # 都道府県データ
 gem 'jp_prefecture'
+# view componentのカプセル化
+gem 'view_component'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -96,8 +98,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'webdrivers'
-  # n+1 を検知
-  gem 'bullet'
 end
 
 group :development do

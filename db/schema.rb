@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_24_074626) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_05_120055) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,9 +81,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_074626) do
     t.time "closing_time"
     t.boolean "closed_flag", default: false
     t.boolean "force_closed", default: false
-    t.string "facebook_id", default: ""
-    t.string "instagram_id", default: ""
-    t.string "twitter_id", default: ""
   end
 
   create_table "dogs", force: :cascade do |t|
@@ -183,6 +180,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_074626) do
     t.index ["dogrun_place_id"], name: "index_registration_numbers_on_dogrun_place_id"
   end
 
+  create_table "sns_accounts", force: :cascade do |t|
+    t.string "facebook_id"
+    t.string "instagram_id"
+    t.string "twitter_id"
+    t.bigint "user_id"
+    t.bigint "dogrun_place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dogrun_place_id"], name: "index_sns_accounts_on_dogrun_place_id"
+    t.index ["user_id"], name: "index_sns_accounts_on_user_id"
+  end
+
   create_table "staffs", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -212,6 +221,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_074626) do
     t.string "unlock_token"
     t.integer "role", default: 0, null: false
     t.bigint "dogrun_place_id"
+    t.string "facebook_id", default: ""
+    t.string "instagram_id", default: ""
+    t.string "twitter_id", default: ""
     t.index ["dogrun_place_id"], name: "index_users_on_dogrun_place_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
@@ -239,6 +251,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_24_074626) do
   add_foreign_key "posts", "users"
   add_foreign_key "registration_numbers", "dogrun_places"
   add_foreign_key "registration_numbers", "dogs"
+  add_foreign_key "sns_accounts", "dogrun_places"
+  add_foreign_key "sns_accounts", "users"
   add_foreign_key "staffs", "dogrun_places"
   add_foreign_key "users", "dogrun_places"
 end

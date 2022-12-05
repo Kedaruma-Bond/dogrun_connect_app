@@ -126,9 +126,6 @@ GEM
     bootsnap (1.12.0)
       msgpack (~> 1.2)
     builder (3.2.4)
-    bullet (7.0.3)
-      activesupport (>= 3.0.0)
-      uniform_notifier (~> 1.11)
     capybara (3.37.1)
       addressable
       matrix
@@ -426,9 +423,12 @@ GEM
       unf_ext
     unf_ext (0.0.8.2)
     unicode-display_width (2.2.0)
-    uniform_notifier (1.16.0)
     validates_email_format_of (1.6.3)
       i18n
+    view_component (2.78.0)
+      activesupport (>= 5.0.0, < 8.0)
+      concurrent-ruby (~> 1.0)
+      method_source (~> 1.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -462,7 +462,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootsnap
-  bullet
   capybara
   chartkick
   cloudinary
@@ -499,6 +498,7 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   validates_email_format_of
+  view_component
   web-console
   webdrivers
 
