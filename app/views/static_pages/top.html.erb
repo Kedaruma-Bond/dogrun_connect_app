@@ -242,11 +242,11 @@
                       </svg>
                     <% end %>
                   <% end %>
-                  <% if !DogrunPlace.find(2).facebook_id.blank? || !DogrunPlace.find(2).instagram_id.blank? || !DogrunPlace.find(2).twitter_id %>
+                  <% if !DogrunPlace.find(2).sns_account.nil? %>
                     <p class="text-sm mt-2">
                       <%= t('defaults.sns') %>
                     </p>
-                    <%= render partial: "shared/sns_icons", locals: { dogrun_place: DogrunPlace.find(2) } %>
+                    <%= render partial: "shared/sns_account_icons", locals: { sns_account: DogrunPlace.find(2).sns_account } %>
                   <% end %>
                 </div>
               </div>

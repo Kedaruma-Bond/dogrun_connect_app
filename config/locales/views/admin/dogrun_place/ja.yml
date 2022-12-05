@@ -9,6 +9,9 @@ ja:
         title: 新規ドッグラン登録
       show:
         title: ドッグラン詳細情報
+        register_sns_id: SNS登録
+        update_sns_id: SNS編集
+        delete_sns_id: SNS削除
       edit:
         title: ドッグラン情報編集
       form:

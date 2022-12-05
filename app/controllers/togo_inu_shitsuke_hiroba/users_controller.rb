@@ -19,21 +19,6 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
     render :new, status: :unprocessable_entity
   end
 
-  def edit
-    @user = User.find(params[:id])
-  end
-
-  def update
-    @user = User.find(params[:id])
-
-    if @user.update!(sns_id_params)
-      redirect_to togo_inu_shitsuke_hiroba_user_path(@user), success: t('defaults.update_successfully')
-      return
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
   def show
     @registration_numbers_for_profile = @registration_numbers.map do |registration_number|
       registration_number.registration_number
@@ -56,13 +41,6 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
     params.require(:user).permit(
       :name, :email, :deactivation, :password, :password_confirmation,
       :agreement
-    )
-  end
-
-  def sns_id_params
-    params.require(:user).permit(
-      :name, :email, :agreement,
-      :facebook_id, :instagram_id, :twitter_id
     )
   end
 end

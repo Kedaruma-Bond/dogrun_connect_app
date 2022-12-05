@@ -18,8 +18,7 @@ class Admin::ArticlesController < Admin::BaseController
   def edit; end
 
   def update
-    if @article.valid?
-      @article.update(article_params)
+    if @article.update(article_params)
       redirect_to admin_posts_path, success: t('defaults.update_successfully')
       return
     else

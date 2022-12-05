@@ -4,7 +4,6 @@ class Admin::PostsController < Admin::BaseController
   before_action :post_params, only: %i[create]
   before_action :post_params_for_publish, only: %i[start_to_publish]
   before_action :set_post, only: %i[destroy set_publish_limit start_to_publish cancel_to_publish]
-  around_action :skip_bullet, if: -> { defined?(Bullet) } 
 
   def index
     @publishing_post = Post.is_publishing
@@ -49,7 +48,9 @@ class Admin::PostsController < Admin::BaseController
     publishing_post = Post.where(publish_status: 'is_publishing')
     publishing_post.update!(publish_status: 'non_publish')
     @post.update!(post_params_for_publish)
-    PostMailer.publish_notification(@post.user, DogrunPlace.find(current_user.dogrun_place_id)).deliver_now
+    if !@post.user.admin?
+      PostMailer.publish_notification(@post.user, DogrunPlace.find(current_user.dogrun_place_id)).deliver_now
+    end
     respond_to do |format|
       format.html { redirect_back_or_to admin_posts_path, success: t('.change_to_be_publishing') }
       format.json { head :no_content }

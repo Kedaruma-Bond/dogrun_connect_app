@@ -72,9 +72,6 @@ end
 #  created_at                          :datetime         not null
 #  updated_at                          :datetime         not null
 #  dogrun_place_id                     :bigint
-#  facebook_id                         :string           default("")
-#  instagram_id                        :string           default("")
-#  twitter_id                          :string           default("")
 #
 # Indexes
 #

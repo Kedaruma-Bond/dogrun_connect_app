@@ -15,8 +15,7 @@ class Admin::DogsController < Admin::BaseController
   def edit; end
 
   def update
-    if @dog.valid?
-      @dog.update(dog_params)
+    if @dog.update(dog_params)
       redirect_to admin_dogs_path, success: t('defaults.update_successfully')
     else
       render :edit, status: :unprocessable_entity

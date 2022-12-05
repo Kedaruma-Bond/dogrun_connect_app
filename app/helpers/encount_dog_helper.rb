@@ -5,13 +5,16 @@ module EncountDogHelper
     if current_user_new_encount_dogs_count == 0
       return
     else
-      return tag.div current_user_new_encount_dogs_count, class: "w-4 h-4 rounded-full text-center bg-indigo-500 text-white text-xs ml-3"
+      tag.span class: "flex w-5 h-5 ml-3" do
+        concat tag.span(class: "animate-ping inline-flex h-full w-full rounded-full aspect-square bg-indigo-400 opacity-75")
+        concat tag.span(current_user_new_encount_dogs_count, class: "text-sm relative inline-flex w-5 h-5 rounded-full bg-indigo-500 text-gray-200 justify-center aspect-square right-5")
+      end
     end
   end
 
   def new_encount_dog_badge(encount_dog)
     if encount_dog.acknowledge == false
-      return tag.div class: "w-2 h-2 rounded-full text-center bg-indigo-500 text-xs mx-2"
+      return tag.div class: "w-2 h-2 rounded-full bg-indigo-500 text-xs mx-1"
     else
       return
     end

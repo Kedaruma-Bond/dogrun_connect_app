@@ -72,8 +72,9 @@ ja:
     registration_number: 登録番号
     registration_dogs_num: 登録頭数  
     search: 検索
-    destroy_confirmation: 削除しますか？
     edit_confirmation: 編集しますか？
+    update_successfully: 更新しました
+    destroy_confirmation: 削除しますか？
     destroy_successfully: 削除しました
     search_results_is: 検索結果
     search_results_unit: 件
@@ -83,7 +84,6 @@ ja:
       必要あれば写真も添付してください。
     choice_sns: 埋め込むSNSを選択してください。
     post_save_error: 投稿時にエラーが起きました
-    update_successfully: 更新しました
     search_period: |
       検索
       期間

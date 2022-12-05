@@ -1,5 +1,11 @@
 ja:
   admin:
+    sns_accounts:
+      create:
+        cancel_to_registration: 登録をキャンセルしました
+        registration_successful: 登録しました
+      update:
+        cancel_to_update: 編集をキャンセルしました
     posts:
       cancel_to_publish:
         change_to_non_publish: 掲示を取り止めました
@@ -45,6 +51,12 @@ ja:
       login_unlock: |
         アカウントロックを解除しました
   togo_inu_shitsuke_hiroba:
+    sns_accounts:
+      create:
+        registration_successful: 登録しました
+        cancel_to_registration: 登録はキャンセルされました
+      update:
+        cancel_to_registration: 編集はキャンセルされました
     entries:
       create:
         entry_success: 入場しました
