@@ -22,6 +22,7 @@
     <%= render 'shared/flash' %>
     <main class="mb-auto relative">
       <div class="w-full" data-controller="service-worker">
+        <%= turbo_frame_tag "notice_modal" %>
         <%= yield %>
       </div>
     </main>
