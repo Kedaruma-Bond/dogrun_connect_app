@@ -35,7 +35,7 @@
                   <% end %>
                 </div>
               <% end %>
-              <% if !@user.sns_account.nil? %>
+              <% if !@user.sns_account.nil? && !correct_user?(@user) %>
                 <p class="text-gray-600 text-xs text-center md:text-left"><%= t('.dog_owner_sns')%></p>
                 <%= render partial: "shared/sns_account_icons", locals: { sns_account: @user.sns_account } %>
               <% end %>

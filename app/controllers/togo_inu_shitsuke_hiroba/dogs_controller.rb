@@ -30,7 +30,7 @@ class TogoInuShitsukeHiroba::DogsController < TogoInuShitsukeHiroba::DogrunPlace
   def dog_params
     params.require(:dog).permit(
       :name, :birthday, :breed, :castration, :public,
-      :owner_comment, :sex, :weight,
+      :owner_comment, :sex, :weight, :filming_approval, :sns_post_approval,
       :thumbnail, :mixed_vaccination_certificate, :rabies_vaccination_certificate, :license_plate,
       :date_of_mixed_vaccination, :date_of_rabies_vaccination, :registration_prefecture_code,
       :registration_municipality, :municipal_registration_number
