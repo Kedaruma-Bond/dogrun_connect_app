@@ -28,7 +28,7 @@ class Dog < ApplicationRecord
   # enum
   enum castration: { castrated: true, non_castrated: false }
   enum public: { public_view: true, non_public: false }
-  enum filming_approval: { filming_approval: true, fimling_not_approval: false }
+  enum filming_approval: { filming_approval: true, filming_not_approval: false }
   enum sns_post_approval: { sns_post_approval: true, sns_post_not_approval: false }
   enum sex: { male: 0, female: 1 }
 
