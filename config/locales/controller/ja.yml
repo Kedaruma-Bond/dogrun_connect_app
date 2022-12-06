@@ -176,6 +176,8 @@ ja:
         registration_municipality: 畜犬登録市町村名
         municipal_registration_number: 畜犬登録番号
         license_plate: 鑑札写真
+        filming_approval: 撮影OK
+        sns_post_approval: SNS投稿OK
       registration_number:
         dogrun_place: 登録ドッグラン
         registration_number: 登録番号

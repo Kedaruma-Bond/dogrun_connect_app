@@ -46,6 +46,7 @@
                   <%= link_to togo_inu_shitsuke_hiroba_dog_path(@dogs_public_view[t].id) do %>
                     <%= @dogs_public_view[t].name %>
                   <% end %>
+                  <%= @dogs_public_view[t].filming_and_sns_posting_approval %>
                 </div>
                 <div class="hidden md:table-cell align-middle pl-2 text-base whitespace-nowrap font-semibold text-left bg-purple-200 text-gray-600">
                   <% if @dogs_public_view[t].breed == '' %>

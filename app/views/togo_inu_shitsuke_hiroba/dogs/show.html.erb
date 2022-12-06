@@ -22,6 +22,9 @@
                 <%= @dog.name %>
               </h2>
               <div class="w-32 h-1 bg-gray-200 rounded mt-2 mb-4"></div>
+              <div class="mb-3">
+                <%= @dog.filming_and_sns_posting_approval %>
+              </div>
               <% if correct_user?(@user) %>
                 <%= render partial: "shared/notice_message", locals: { dog: @dog }  %>
                 <div class="flex md:hidden items-center mt-2 flex-row justify-center text-left">
