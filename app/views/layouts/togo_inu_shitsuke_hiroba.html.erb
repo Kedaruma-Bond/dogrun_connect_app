@@ -24,7 +24,7 @@
     <% end %>
     <%= render partial: 'shared/flash' %>
     <main class="mb-auto relative">
-      <div class="w-full" data-controller="service-worker">
+      <div class="w-full" data-controller="service-worker turbo-modal" data-action="turbo:frame-load->modal#open ">
         <%= turbo_frame_tag "notice_modal" %>
         <%= yield %>
       </div>

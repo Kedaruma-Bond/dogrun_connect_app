@@ -8,6 +8,16 @@ export default class extends Controller {
     this.element.remove()
   }
 
+  // esc でmodal close 
+  // action: "keyup@window->turbo-modal#closeWithKeyboard"
+  closeWithKeyboard(e) {
+    if (e.code == "Escape") {
+      this.hideModal()
+    }
+  }
+
+  // modal外をタップで close
+  // action: "click@window->turbo-modal#closeBackground"
   closeBackground(e) {
     if (e && this.modalTarget.contains(e.target)) {
       return
