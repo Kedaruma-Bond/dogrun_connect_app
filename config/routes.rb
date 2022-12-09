@@ -9,8 +9,8 @@ Rails.application.routes.draw do
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
-  get './service-worker.js', to: 'service_worker#service_worker'
-  get './offline.html', to: 'service_worker#offline'
+  get '/service-worker.js', to: 'service_worker#service_worker'
+  get '/offline.html', to: 'service_worker#offline'
 
   get 'sitemap', to: redirect("https://s3-ap-northeast-1.amazonaws.com/#{Rails.application.credentials.aws[:s3_bucket_name]}/sitemaps/sitemap.xml.gz")
   
@@ -48,7 +48,7 @@ Rails.application.routes.draw do
     resources :users, only: %i[new create show edit update]
     resources :dogs, only: %i[show edit update]
     resources :registration_numbers, only: %i[destroy]
-    resources :posts, only: %i[create] do
+    resources :posts, only: %i[new create] do
       member do
         resource :article, only: %i[new create]
         resource :embed, only: %i[new create]
@@ -66,7 +66,7 @@ Rails.application.routes.draw do
     root 'dashboards#index'
     resources :dogrun_places, only: %i[index new create edit update show]
 
-    resources :posts, only: %i[index create destroy] do
+    resources :posts, only: %i[index new create destroy] do
       collection do
         get 'page/:page', action: :index
         get 'search', to: 'posts#search'

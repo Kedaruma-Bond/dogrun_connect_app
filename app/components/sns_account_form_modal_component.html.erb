@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "sns_account_form_modal" do %>
-  <%= tag.div data: { controller: "turbo-modal", "turbo-modal_target": "modal", action: "keyup@window->turbo-modal#closeWithKeyboard click@window->turbo-modal#closeBackground" }, class: "mx-4 p-5 absolute z-10 rounded-md w-80 break-words shadow", style: "background-color: #cbd5e1; left: 0.75rem;" do %>
-    <button type="button" data-action="turbo-modal#hideModal" class="float-right">
+  <%= tag.div data: { controller: "sns-form-modal", "sns-form-modal_target": "container", action: "click@window->sns-form-modal#closeBackground" }, id: "sns_form_modal", class: "mx-2 p-5 absolute z-10 shadow rounded-lg w-80", style: "background-color: #cbd5e1; left: 1.25rem;" do %>
+    <button type="button" data-action="sns-form-modal#hideModal" class="float-right">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
       </svg>
@@ -12,4 +12,4 @@
       <%= content %>
     </div>
   <% end %>
-<% end %>
+<% end%>

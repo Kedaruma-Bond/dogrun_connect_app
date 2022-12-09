@@ -21,7 +21,4 @@ class StaticPagesController < ApplicationController
 
   def terms_of_service; end
   
-  def notice_for_filming_approval; end
-
-  def notice_for_sns_post_approval; end
 end

@@ -19,4 +19,13 @@ ja:
       facebook_id_hint: https://www.facebook.com/以降を入力してください
       instagram_id_hint: https://www.instagram.com/以降を入力してください
       twitter_id_hint: https://twitter.com/以降を入力してください
-      
+    filming_message_modal:
+      title: 撮影OKについて
+      body: |
+        このワンコが他の飼い主さんのカメラに映りこんでも気にしないという意志表示のマークです。
+        あくまで意図せず巻き添えで映ってしまった場合のことであり、このワンコに主眼を置いて撮影する際は、伺いが必要になることを忘れないようにしてください。
+    sns_post_message_modal:
+      title: SNS投稿OKについて
+      body: |
+        このワンコが映っている写真や動画をSNSに投稿しても気にしないという意図表示のマークです。
+        あくまで意図せず巻き添えで映ってしまった場合のことであり、このワンコに主眼を置いて撮影した写真や動画をUPする場合は、伺いが必要になることを忘れないようにしてください。

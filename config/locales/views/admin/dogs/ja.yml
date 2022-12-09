@@ -13,6 +13,7 @@ ja:
         search_field: 飼い主さんの名前/ワンちゃんの名前/犬種検索 
       show:
         title: ワンコのプロフィール
+        dog_owner_sns: 飼い主さんのSNS
       edit:
         title: ワンコの情報編集
         dog_name: ワンコの名前
