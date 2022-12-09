@@ -122,6 +122,5 @@ module DogDecorator
     else
       return
     end
-
   end
 end

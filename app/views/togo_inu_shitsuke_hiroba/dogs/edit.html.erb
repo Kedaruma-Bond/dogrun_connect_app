@@ -29,6 +29,16 @@
                 </h2>
                 <div class="w-32 h-1 bg-gray-200 rounded mt-2 mb-4"></div>
               </div>
+              <div class="flex justify-items-center md:justify-start mb-2">
+                <div class="w-1/2 items-center md:items-start mb-1 md:mb-0">
+                  <%= f.label :filming_approval %>
+                  <%= f.input :filming_approval, as: :boolean, checked_value: 'filming_approval', unchecked_value: 'filming_not_approval', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-10" }, label: false,  hint: false, error: false %>
+                </div>
+                <div class="w-1/2 items-center md:items-start md:justify-center md:mr-2 mb-1 md:mb-0">
+                  <%= f.label :sns_post_approval %>
+                  <%= f.input :sns_post_approval, as: :boolean, checked_value: 'sns_post_approval', unchecked_value: 'sns_post_not_approval', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-9" }, label: false, hint: false, error: false %>
+                </div>
+              </div>
             </div>
             <div class="sm:w-2/3 sm:pl-8 sm:py-4 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
               <div class="justify-start w-full md:w-1/2 mb-6">
@@ -54,11 +64,11 @@
               <div class="flex justify-items-center md:justify-start mb-6">
                 <div class="w-1/2 items-center md:items-start mb-3 md:mb-0">
                   <%= f.label :castration %>
-                  <%= f.input :castration, as: :boolean, checked_value: 'castrated', unchecked_value: 'non_castrated', input_html: { class: "block leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-10" }, label: false,  hint: false, error: false %>
+                  <%= f.input :castration, as: :boolean, checked_value: 'castrated', unchecked_value: 'non_castrated', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-10" }, label: false,  hint: false, error: false %>
                 </div>
                 <div class="w-1/2 items-center md:items-start md:justify-center md:mr-2 mb-3 md:mb-0">
                   <%= f.label :public %>
-                  <%= f.input :public, as: :boolean, checked_value: 'public_view', unchecked_value: 'non_public', input_html: { class: "block leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-9" }, label: false, hint: false, error: false %>
+                  <%= f.input :public, as: :boolean, checked_value: 'public_view', unchecked_value: 'non_public', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-9" }, label: false, hint: false, error: false %>
                 </div>
               </div>
               <div class="justify-center md:justify-start">

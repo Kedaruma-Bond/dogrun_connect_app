@@ -15,20 +15,16 @@ module ApplicationHelper
         site_name: Rails.application.credentials.meta_tags[:app],
         description: Rails.application.credentials.meta_tags[:description],
         type: 'website',
+        title: Rails.application.credentials.meta_tags[:app],
         url: request.original_url,
-        image: image_url('https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661386829/ogp_ey7hpa.png'),
+        image: image_url('https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1670480868/anubascj2g0mokzeya6s.png'),
         locale: 'ja_JP',
       },
       twitter: {
         card: 'summary_large_image',
         site: Rails.application.credentials.meta_tags[:twitter_account],
-        title: page_title( "DogrunConnect" ),
-        og: {
-          title: page_title( "DogrunConnect" )
-        },
-        text: {
-          title: "Connect to Dogrun with fun"
-        },
+        title: Rails.application.credentials.meta_tags[:app], 
+        descreption: Rails.application.credentials.meta_tags[:description],
       },
       fb: {
         app_id: Rails.application.credentials.meta_tags[:facebook_id]

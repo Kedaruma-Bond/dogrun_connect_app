@@ -28,6 +28,8 @@ class Dog < ApplicationRecord
   # enum
   enum castration: { castrated: true, non_castrated: false }
   enum public: { public_view: true, non_public: false }
+  enum filming_approval: { filming_approval: true, filming_not_approval: false }
+  enum sns_post_approval: { sns_post_approval: true, sns_post_not_approval: false }
   enum sex: { male: 0, female: 1 }
 
   #   scope
@@ -46,6 +48,7 @@ end
 #  castration                    :boolean          not null
 #  date_of_mixed_vaccination     :date
 #  date_of_rabies_vaccination    :date
+#  filming_approval              :boolean
 #  municipal_registration_number :integer
 #  name                          :string           not null
 #  owner_comment                 :text             default("")
@@ -53,6 +56,7 @@ end
 #  registration_municipality     :string           default("")
 #  registration_prefecture_code  :integer
 #  sex                           :integer
+#  sns_post_approval             :boolean
 #  weight                        :integer
 #  created_at                    :datetime         not null
 #  updated_at                    :datetime         not null

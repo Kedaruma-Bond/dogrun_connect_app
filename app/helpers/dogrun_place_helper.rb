@@ -3,7 +3,7 @@ module DogrunPlaceHelper
     if dogrun_place.logo.attached?
       cl_image_tag(dogrun_place.logo.key, quality_auto: :good, fetch_format: :auto, class: "w-full h-auto", alt: dogrun_place.name)
     else
-      image_tag 'dogrun_logo.png', class: "w-full h-auto", alt: "dogrunconnect_logo"
+      image_tag 'app_icon.png', class: "w-full h-auto", alt: "dogrunconnect_logo"
     end
   end
 
@@ -11,7 +11,7 @@ module DogrunPlaceHelper
     if dogrun_place.logo.attached?
       cl_image_tag(dogrun_place.logo.key, quality_auto: :good, fetch_format: :auto, class: "w-full h-auto", alt: dogrun_place.name, "data-preview-target": "imagePreview")
     else
-      image_tag 'dogrun_logo.png', class: "w-full h-auto", alt: "dogrunconnect_logo", "data-preview-target": "imagePreview"
+      image_tag 'app_icon.png', class: "w-full h-auto", alt: "dogrunconnect_logo", "data-preview-target": "imagePreview"
     end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_05_120055) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_05_122959) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -100,6 +100,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_120055) do
     t.string "registration_municipality", default: ""
     t.integer "municipal_registration_number"
     t.integer "registration_prefecture_code"
+    t.boolean "filming_approval"
+    t.boolean "sns_post_approval"
     t.index ["user_id"], name: "index_dogs_on_user_id"
   end
 

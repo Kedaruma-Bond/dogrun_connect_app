@@ -32,10 +32,36 @@ module.exports = {
         "fade-in": {
           '0%': { opacity: '0%' },
           '100%': { opacity: '100%' },
+        },
+        "scale-in-ver-top": {
+          "0%": {
+              transform: "scaleY(0)",
+              "transform-origin": "100% 0%",
+              opacity: "1"
+          },
+          to: {
+              transform: "scaleY(1)",
+              "transform-origin": "100% 0%",
+              opacity: "1"
+          }
+        },
+        "scale-out-ver-top": {
+          "0%": {
+              transform: "scaleY(1)",
+              "transform-origin": "100% 0%",
+              opacity: "1"
+          },
+          to: {
+              transform: "scaleY(0)",
+              "transform-origin": "100% 0%",
+              opacity: "1"
+          }
         }
       },
       animation: {
         "fade-in": 'fade-in 0.5s ease-in-out',
+        "scale-in-ver-top": "scale-in-ver-top 0.1s cubic-bezier(0.250, 0.460, 0.450, 0.940)   both",
+        "scale-out-ver-top": "scale-out-ver-top 0.1s cubic-bezier(0.550, 0.085, 0.680, 0.530)   both"
       }
     },
   },
