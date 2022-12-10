@@ -23,16 +23,16 @@
     <% end %>
     <div class="w-full sm:px-10 pt-3 sm:pb-0">
       <div class="flex flex-col mt-4 font-bold">
-        <p class='text-center text-2xl mt-2 relative right-10'>
+        <p class='text-center text-gray-700 text-2xl mt-2 relative right-10'>
           <%= t'.site_in' %>
         </p>
         <div class="text-2xl flex text-center mt-4 mx-auto relative left-12">
-          <h1 class="flex text-6xl pb-2">
+          <h1 class="flex text-6xl pb-2 text-gray-700">
             <%= @num_of_playing_dogs %>
           </h1>
           <span class="ml-10 text-left">
-            <%= simple_format(t'.playing1') %>
-            <%= simple_format(t'.playing2') %>
+            <%= simple_format(t('.playing1'), class:"text-gray-700") %>
+            <%= simple_format(t('.playing2'), class:"text-gray-700") %>
           </span>
         </div>
         <% if @num_of_playing_dogs.zero? %>
