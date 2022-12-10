@@ -1,10 +1,19 @@
 <% flash.each do |flash_key, flash_value| %>
-  <div data-controller="flash" class="z-50 flex items-center fixed top-5 right-5 <%= css_class_for_flash(flash_key) %> py-3 px-5 rounded-lg">
-    <div class="mr-4"><%= simple_format(flash_value) %></div>
-    <button type="button" data-action="flash#dismiss">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <div data-controller="flash" data-action="flash#dismiss" class="flex z-50 w-72 h-auto overflow-hidden fixed top-5 right-1 whitespace-normal bg-gray-200 rounded-lg shadow-md dark:bg-gray-700">
+    <button type="button" data-action="flash#dismiss" class="absolute right-0 p-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700 dark:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
-  </div>
+    <div class="flex items-center justify-center w-12 <%= css_class_for_flash(flash_key) %>">
+      <%= icon_for_flash(flash_key) %>
+    </div>
+
+    <div class="px-4 py-2 -mx-3 flex w-full">
+      <div class="mx-3">
+          <span class="font-semibold <%= text_css_class_for_flash(flash_key) %>"><%= main_message_for_flash(flash_key) %></span>
+          <%= simple_format(flash_value, class: "text-sm text-gray-600 dark:text-gray-200") %>
+      </div>
+    </div>
+</div>
 <% end %>
