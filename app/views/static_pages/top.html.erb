@@ -121,7 +121,7 @@
     </div>
 
     <div class="flex items-center justify-center w-full h-96 lg:w-1/2">
-      <%= image_tag 'https://res.cloudinary.com/hryerpkcw/image/upload/v1669259168/kzeeh5kr5joukioederg.png', 
+      <%= image_tag 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1670845173/v88occm0wewtiryktale.png', 
         class: "object-cover w-full h-full max-w-2xl rounded-md", alt:"smartphone with dog" %>
     </div>
   </div>
@@ -170,7 +170,7 @@
       <p class="text-gray-700 dark:text-gray-200 text-base mb-3 font-medium">
         適用いただいたドッグランにはアプリにアクセスするQRコードを印字したプレートを差し上げます
       </p>
-      <%= image_tag "https://res.cloudinary.com/hryerpkcw/image/upload/v1669185632/dgpofo4tnybaeys3l8rv.png",
+      <%= image_tag "https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1670844913/xnrxbxvew7hel8e8jed2.jpg",
       class: "object-cover w-full h-full max-w-2xl rounded-md", alt: "QR code stand" %>
     </div>
   </section>
@@ -297,7 +297,7 @@
       </p>
       <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
         <div class="text-center">
-          <%= link_to 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940256/mobile_view.png.001_wiapsi.png' do %>
+          <%= link_to '#', data: { "lightbox-source-param": 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940256/mobile_view.png.001_wiapsi.png', action: "lightbox#handleOpen" } do %>
             <img class="object-cover w-full rounded-lg h-96 " src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940256/mobile_view.png.001_wiapsi.png" alt="sample view of mobile screen">
           <% end %>
           <h2 class="mt-4 text-2xl font-semibold text-gray-800 dark:text-gray-200">
@@ -311,7 +311,7 @@
         </div>
 
         <div class="text-center">
-          <%= link_to "https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940232/admin_view-1.png.002_vqto2j.png" do %>
+          <%= link_to "#", data: { "lightbox-source-param": 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940232/admin_view-1.png.002_vqto2j.png', action: "lightbox#handleOpen" } do %>
             <img class="object-cover w-full rounded-lg h-96" src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940232/admin_view-1.png.002_vqto2j.png" alt="sample view of admin screen-1">
           <% end %>
           <h2 class="mt-4 text-2xl font-semibold text-gray-800 dark:text-gray-200">
@@ -325,7 +325,7 @@
         </div>
 
         <div class="text-center">
-          <%= link_to 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940244/admin_image-2.png.001_crnzoz.png' do %>
+          <%= link_to "#", data: { "lightbox-source-param": 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940244/admin_image-2.png.001_crnzoz.png', action: "lightbox#handleOpen" } do %>
             <img class="object-cover w-full rounded-lg h-96" src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940244/admin_image-2.png.001_crnzoz.png" alt="sample view of admin screen-2">
           <% end %>
           <h2 class="mt-4 text-2xl font-semibold text-gray-800 dark:text-gray-200">
@@ -337,6 +337,7 @@
           </p>
         </div>
       </div>
+      <%= render partial: "shared/photo_modal" %>
     </div>
   </section>
 </header>

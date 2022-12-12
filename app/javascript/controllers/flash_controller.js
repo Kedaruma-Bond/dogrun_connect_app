@@ -1,10 +1,15 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
+
   connect() {
     setTimeout(() => {
       this.dismiss();
-    },10000);
+    }, 10000);
+  }
+
+  disconnect() {
+    this.dismiss()
   }
 
   dismiss() {
@@ -13,6 +18,6 @@ export default class extends Controller {
 
   close(event) {
     event.preventDefault()
-    this.element.remove()
+    this.dismiss()
   }
 }

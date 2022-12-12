@@ -5,9 +5,7 @@
 </div>
 <div class="p-2 md:px-20 text-gray-600 mt-5" data-controller="lightbox">
   <% if !post.article.photo.blank? %>
-    <%= link_to post.article.photo.url do %>
-      <%= article_photo(post.article) %>
-    <% end %>
+    <%= article_photo(post.article) %>
   <% else %>
     no image
   <% end %>

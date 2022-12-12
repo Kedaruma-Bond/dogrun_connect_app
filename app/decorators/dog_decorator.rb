@@ -123,4 +123,16 @@ module DogDecorator
       return
     end
   end
+
+  def rabies_vaccination_certificate_preview
+    cl_image_path rabies_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto
+  end
+
+  def mixed_vaccination_certificate_preview
+    cl_image_path mixed_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto
+  end
+
+  def license_plate_preview
+    cl_image_path license_plate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto
+  end
 end
