@@ -25,6 +25,7 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
 
     def set_encount_dogs
       @encount_dogs = EncountDog.encount_dog_of_user(current_user.id).page(params[:page])
+      @encount_dogs_for_count = EncountDog.where(user: current_user)
     end
 
     def set_q
