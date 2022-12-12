@@ -1,5 +1,5 @@
 <% content_for(:title, t('.title')) %>
-<div class="mx-auto mx-4 sm:px-6 lg:px-8 bg-purple-200 rounded-lg" data-controller="filming-message-modal sns-post-message-modal">
+<div class="mx-auto mx-4 sm:px-6 lg:px-8 bg-purple-200 rounded-lg" data-controller="filming-message-modal sns-post-message-modal lightbox">
   <div class="w-full p-5 sm:p-10">
     <p class="text-2xl md:text-3xl font-bold text-gray-700 text-center my-2">
       <%= t'.title' %>
@@ -23,7 +23,7 @@
               </h2>
               <div class="w-32 h-1 bg-gray-200 rounded mt-2 mb-2"></div>
               <% if @dog.filming_approval? %>
-                <div class="flex">
+                <div class="flex mb-4">
                   <%= render partial: "shared/filming_approval" %>
                   <% if @dog.sns_post_approval? %>
                     <%= render partial: "shared/sns_post_approval" %>
@@ -176,96 +176,10 @@
                   </h1>
                 </summary>
                 <div data-accordion-target="content">
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
-                    <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
-                      <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:rabies_vaccination_certificate) %></span>
-                      <% if @dog.rabies_vaccination_certificate.blank? %>
-                        <p>no_image</p>
-                      <% else %>
-                        <%= link_to @dog.rabies_vaccination_certificate.url  do %>
-                          <%= cl_image_tag(@dog.rabies_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded-lg mx-auto h-auto w-10", alt: "rabies vaccination certificate") %>
-                        <% end %>
-                      <% end %>
-                    </div>
-                    <div class="w-full mb-3 md:mb-0">
-                      <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:date_of_rabies_vaccination) %></span>
-                      <p class="text-base font-bold">
-                        <% if @dog.date_of_rabies_vaccination.blank? %>
-                          -
-                        <% else %>
-                          <%= l @dog.date_of_rabies_vaccination, format: :long2 %>
-                        <% end %>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
-                    <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
-                      <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:mixed_vaccination_certificate) %></span>
-                      <% if @dog.mixed_vaccination_certificate.blank? %>
-                        <p>no_image</p>
-                      <% else %>
-                        <%= link_to @dog.mixed_vaccination_certificate.url do %>
-                          <%= cl_image_tag(@dog.mixed_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded-lg mx-auto h-auto w-10", alt: "mixed vaccination certificate") %>
-                        <% end %>
-                      <% end %>
-                    </div>
-                    <div class="w-full mb-3 md:mb-0">
-                      <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:date_of_mixed_vaccination) %></span>
-                      <p class="text-base font-bold">
-                        <% if @dog.date_of_mixed_vaccination.blank? %>
-                          -
-                        <% else %>
-                          <%= l @dog.date_of_mixed_vaccination, format: :long2 %>
-                        <% end %>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="grid grid-cols-2 gap-2 w-full mb-3">
-                    <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
-                      <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:registration_prefecture_code) %></span>
-                      <p class="text-base font-bold">
-                        <% if @dog.pref.blank? %>
-                          -
-                        <% else %>
-                          <%= @dog.pref.name %> 
-                        <% end %>
-                      </p>
-                    </div>
-                    <div class="w-full mb-3 md:mb-0">
-                      <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:registration_municipality) %></span>
-                      <p class="text-base font-bold">
-                        <% if @dog.registration_municipality.blank? %>
-                          -
-                        <% else %>
-                          <%= @dog.registration_municipality %> 
-                        <% end %>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="grid grid-cols-2 gap-2 w-full mb-3">
-                    <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
-                      <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:municipal_registration_number) %></span>
-                      <p class="text-base font-bold">
-                        <% if @dog.municipal_registration_number.blank? %>
-                          -
-                        <% else %>
-                          <%= @dog.municipal_registration_number %> 
-                        <% end %>
-                      </p>
-                    </div>
-                    <div class="w-full mb-3 md:mb-0">
-                      <span class="text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:license_plate) %></span>
-                      <% if @dog.license_plate.blank? %>
-                        <p>no_image</p>
-                      <% else %>
-                        <%= link_to @dog.license_plate.url do %>
-                          <%= cl_image_tag(@dog.license_plate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded-lg mx-auto h-auto w-10", alt: "license plate") %>
-                        <% end %>
-                      <% end %>
-                    </div>
-                  </div>
+                  <%= render partial: "shared/dog_more_detail_data", locals: { dog: @dog }%>
                 </div>
               </details>
+              <%= render partial: "shared/photo_modal" %>
             <% end %>
           </div>
         </div>

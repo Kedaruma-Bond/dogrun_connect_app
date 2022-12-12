@@ -25,7 +25,6 @@ export default class extends Controller {
     this.containerTarget.classList.remove(this.enterClass)
     this.open_buttonTarget.classList.remove(this.toggleClass)
     this.close_buttonTarget.classList.add(this.toggleClass)
-    // this.containerTarget.classList.add(this.toggleClass)
   }
 
   closeBackground(e) {

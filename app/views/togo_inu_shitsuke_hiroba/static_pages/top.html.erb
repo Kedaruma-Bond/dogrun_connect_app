@@ -23,16 +23,16 @@
     <% end %>
     <div class="w-full sm:px-10 pt-3 sm:pb-0">
       <div class="flex flex-col mt-4 font-bold">
-        <p class='text-center text-2xl mt-2 relative right-10'>
+        <p class='text-center text-gray-700 text-2xl mt-2 relative right-10'>
           <%= t'.site_in' %>
         </p>
         <div class="text-2xl flex text-center mt-4 mx-auto relative left-12">
-          <h1 class="flex text-6xl pb-2">
+          <h1 class="flex text-6xl pb-2 text-gray-700">
             <%= @num_of_playing_dogs %>
           </h1>
           <span class="ml-10 text-left">
-            <%= simple_format(t'.playing1') %>
-            <%= simple_format(t'.playing2') %>
+            <%= simple_format(t('.playing1'), class:"text-gray-700") %>
+            <%= simple_format(t('.playing2'), class:"text-gray-700") %>
           </span>
         </div>
         <% if @num_of_playing_dogs.zero? %>
@@ -57,7 +57,7 @@
     </div>
 
     <% if current_user.guest? %>
-      <div class="inline-flex overflow-hidden rounded-lg shadow mt-10 sm:w-auto sm:mx-3">
+      <div class="inline-flex overflow-hidden rounded-lg shadow mt-10 sm:w-auto sm:mx-3 animate-vibrate-1">
         <%= link_to togo_inu_shitsuke_hiroba_jump_to_signup_path, data: { turbo_method: :post }, class: "inline-flex items-center justify-center w-full px-5 py-3 text-base font-medium text-gray-200 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-600 hover:to-blue-600 sm:w-auto" do %>
           <svg class="w-7 h-7 inline-block" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path>

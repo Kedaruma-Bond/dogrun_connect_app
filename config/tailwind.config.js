@@ -56,12 +56,41 @@ module.exports = {
               "transform-origin": "100% 0%",
               opacity: "1"
           }
-        }
+        },
+        "tilt-in-right-2": {
+          "0%": {
+              transform: "rotateX(30deg) translateX(300px) skewX(-30deg)",
+              opacity: "0"
+          },
+          "100%": {
+              transform: "rotateX(0deg) translateX(0) skewX(0deg)",
+              opacity: "1"
+          }
+        },
+        "vibrate-1": {
+          "0%,to": {
+              transform: "translate(0)"
+          },
+          "20%": {
+              transform: "translate(-2px, 2px)"
+          },
+          "40%": {
+              transform: "translate(-2px, -2px)"
+          },
+          "60%": {
+              transform: "translate(2px, 2px)"
+          },
+          "80%": {
+              transform: "translate(2px, -2px)"
+          }
+        },
       },
       animation: {
-        "fade-in": 'fade-in 0.5s ease-in-out',
+        "fade-in": 'fade-in 0.3s ease-in-out',
         "scale-in-ver-top": "scale-in-ver-top 0.1s cubic-bezier(0.250, 0.460, 0.450, 0.940)   both",
-        "scale-out-ver-top": "scale-out-ver-top 0.1s cubic-bezier(0.550, 0.085, 0.680, 0.530)   both"
+        "scale-out-ver-top": "scale-out-ver-top 0.1s cubic-bezier(0.550, 0.085, 0.680, 0.530)   both",
+        "tilt-in-right-2": "tilt-in-right-2 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940)   both",
+        "vibrate-1": "vibrate-1 0.3s linear  infinite both",
       }
     },
   },

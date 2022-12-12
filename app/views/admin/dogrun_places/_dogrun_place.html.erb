@@ -41,15 +41,15 @@
     -
     <% else %>
       <%= link_to dogrun_place.web_site, target: :_blank, rel: "noopener noreferrer" do %>
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
         </svg>
       <% end %>
     <% end %>
   </td>
   <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-    <% if !dogrun_place.facebook_id.blank? || !dogrun_place.instagram_id.blank? || !dogrun_place.twitter_id %>
-      <%= render partial: "shared/sns_icons", locals: { dogrun_place: dogrun_place } %>
+    <% if !dogrun_place.sns_account.blank? %>
+      <%= render partial: "shared/sns_account_icons", locals: { sns_account: dogrun_place.sns_account } %>
     <% end %>
   </td>
   <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
