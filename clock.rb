@@ -14,6 +14,6 @@ module Clockwork
 
   every(5.minutes, TogoInuShitsukeHirobaEncountGeneratorJob.new, :thread => true)
   every(1.day, ForceExitJob.new, :at => '00:00')
-  every(1.day, GuestUserDeleteJobnew.new, :at => '01:00')
+  every(1.day, GuestUserDeleteJob.new, :at => '01:00')
 
 end
