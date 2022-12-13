@@ -8,7 +8,7 @@ ja:
         until_now: 今までに
         unit_of_encount_dogs: 頭のワンちゃんと出会いました
         explain_encount_dogs: |
-          同じドッグランで20〜30分以上一緒に過ごすと
+          同じドッグランで10〜15分以上一緒に過ごすと
           リストにそのワンちゃんが追加されます🐕
       search:
         title: |
@@ -18,11 +18,6 @@ ja:
         unit_of_encount_dogs: 頭です
         encount_date: 出会った日
         encount_dogrun: 出会ったドッグラン
-        lets_encount_many_dogs: |
-          同じドッグランで20〜30分以上一緒に過ごすと
-          リストにそのワンちゃんが追加されます🐕
-          いっぱいドッグランに行って
-          たくさんのワンちゃんに出会いましょう♪
       search_form:
         search_field: ワンちゃんの名前検索
       edit:
