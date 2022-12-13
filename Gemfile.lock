@@ -137,6 +137,9 @@ GEM
       xpath (~> 3.2)
     chartkick (4.2.1)
     childprocess (4.1.0)
+    clockwork (3.0.1)
+      activesupport
+      tzinfo
     cloudinary (1.23.0)
       aws_cf_signer
       rest-client (>= 2.0.0)
@@ -464,6 +467,7 @@ DEPENDENCIES
   bootsnap
   capybara
   chartkick
+  clockwork (~> 3.0.1)
   cloudinary
   debug!
   enum
