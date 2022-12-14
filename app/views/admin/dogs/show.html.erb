@@ -9,7 +9,9 @@
         <div class="flex flex-col sm:flex-row mt-3">
           <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
             <div class="w-40 h-40 flex-shrink-0 mx-auto mb-3 md:md-0 inline-flex items-center justify-center">
-              <%= dog_thumbnail(@dog) %>
+              <%= link_to "#", data: { "lightbox-source-param": @dog.thumbnail_preview, action: "lightbox#handleOpen" } do %>
+                <%= dog_thumbnail(@dog) %>
+              <% end %>
             </div>
             <div class="text-gray-700 text-xs font-light">
               <%= RegistrationNumber.human_attribute_name(:registration_number) %>
@@ -149,10 +151,10 @@
               </div>
             </div>
             <%= render partial: "shared/dog_more_detail_data", locals: { dog: @dog }%>
-            <%= render partial: "shared/photo_modal" %>
           </div>
         </div>
       </div>
     </section>
   </div>
+  <%= render partial: "shared/photo_modal" %>
 </div>

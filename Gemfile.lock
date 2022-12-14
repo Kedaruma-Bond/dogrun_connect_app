@@ -137,6 +137,9 @@ GEM
       xpath (~> 3.2)
     chartkick (4.2.1)
     childprocess (4.1.0)
+    clockwork (3.0.1)
+      activesupport
+      tzinfo
     cloudinary (1.23.0)
       aws_cf_signer
       rest-client (>= 2.0.0)
@@ -365,6 +368,8 @@ GEM
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
+    scout_apm (5.3.3)
+      parser
     selenium-webdriver (4.3.0)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -464,6 +469,7 @@ DEPENDENCIES
   bootsnap
   capybara
   chartkick
+  clockwork (~> 3.0.1)
   cloudinary
   debug!
   enum
@@ -487,6 +493,7 @@ DEPENDENCIES
   ransack
   redis
   rspec-rails
+  scout_apm
   shoulda-matchers
   simple_form
   sitemap_generator

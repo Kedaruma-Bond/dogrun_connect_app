@@ -87,6 +87,11 @@ gem 'active_storage_validations'
 gem 'jp_prefecture'
 # view componentのカプセル化
 gem 'view_component'
+# 定期実行プロセス用
+gem 'clockwork', '~> 3.0.1'
+# heroku addon
+# app performance monitoring
+gem 'scout_apm'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

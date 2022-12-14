@@ -124,6 +124,10 @@ module DogDecorator
     end
   end
 
+  def thumbnail_preview
+    cl_image_path thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto 
+  end
+
   def rabies_vaccination_certificate_preview
     cl_image_path rabies_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto
   end
