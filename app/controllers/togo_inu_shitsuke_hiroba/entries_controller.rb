@@ -1,10 +1,12 @@
 class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPlaceController
+  include Pagy::Backend
   before_action :set_dogs_and_registration_numbers_at_local, only: %i[create]
   before_action :set_entries_array, only: %i[create update]
-  before_action :set_entries, only: %i[index search]
   before_action :set_q, only: %i[index search]
 
-  def index; end
+  def index
+    @pagy, @entries = pagy(Entry.dogrun_place_id(2))
+  end
 
   def create
     clear_zero
@@ -40,16 +42,13 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
   end
 
   def search
-    @entries_results = @q.result.page(params[:page])
+    @pagy, @entries_results = pagy(@q.result)
   end
 
   private
 
-    def set_entries
-      @entries = Entry.dogrun_place_id(2).page(params[:page])
-    end
-
     def set_q
+      @entries = Entry.dogrun_place_id(2)
       @q = @entries.ransack(params[:q])
     end
 

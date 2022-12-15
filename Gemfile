@@ -19,7 +19,7 @@ gem 'puma'
 gem 'importmap-rails'
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem 'turbo-rails', '~>1.3.2'
+gem "turbo-rails", github: "hotwired/turbo-rails", branch: "main"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem 'stimulus-rails', '~>1.2.1'
@@ -73,6 +73,7 @@ gem 'cloudinary'
 gem 'chartkick'
 # pagination
 gem 'kaminari'
+gem 'pagy'
 # 検索機能
 gem 'ransack'
 # meta tag管理

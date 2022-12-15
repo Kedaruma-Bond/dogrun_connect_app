@@ -32,8 +32,8 @@
           <%= render partial: 'shared/entry', collection: @entries_results %>
         </tbody>
       </table>
+      <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>
     </div>
   </div>
-  <%= paginate @entries_results %>
 </div>
 
