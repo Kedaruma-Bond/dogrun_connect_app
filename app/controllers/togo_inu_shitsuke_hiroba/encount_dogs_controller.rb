@@ -1,9 +1,13 @@
 class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::DogrunPlaceController
+  include Pagy::Backend
   before_action :set_encount_dogs, only: %i[index search]
   before_action :set_q, only: %i[index search]
   before_action :set_encount_dog, only: %i[edit update]
   
-  def index; end
+  def index
+    @pagy, @encount_dogs = pagy(EncountDog.encount_dog_of_user(current_user.id))
+    @encount_dogs_for_count = EncountDog.includes(:dog).where(user: current_user).where(dogs: { public: "public_view" })
+  end
 
   def edit
     @encount_dog.update!(acknowledge: true)
@@ -18,7 +22,7 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
   end
 
   def search
-    @encount_dogs_results = @q.result.page(params[:page])
+    @pagy, @encount_dogs_results = pagy(@q.result)
   end
 
   private
@@ -29,6 +33,7 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
     end
 
     def set_q
+      @encount_dogs = EncountDog.encount_dog_of_user(current_user.id) 
       @q = @encount_dogs.ransack(params[:q])
     end
 

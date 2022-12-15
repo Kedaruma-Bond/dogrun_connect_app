@@ -42,8 +42,8 @@
             <%= render partial: 'shared/encount_dog', collection: @encount_dogs %>
           </tbody>
         </table>
+        <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>
       </div>
     </div>
-    <%= paginate @encount_dogs %>
   <% end %>
 </div>
