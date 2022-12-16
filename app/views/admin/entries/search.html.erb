@@ -9,7 +9,7 @@
       <h2 class="text-gray-700 text-sm flex items-end justify-end mr-7 mt-3">
         <%= t('defaults.search_results_is')%>
         <span class="text-xl mr-2 ml-2">
-          <%= @entries_results.nil? ? 0 : @entries_results.total_count %> 
+          <%= @pagy.vars[:count].blank? ? 0 : @pagy.vars[:count] %> 
         </span>
         <%= t('defaults.search_results_unit') %>
       </h2>
@@ -46,7 +46,7 @@
           <%= render @entries_results %>
         </tbody>
       </table>
-      <%= paginate @entries_results %>
+      <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>
     </div>
   </div>
 </div>

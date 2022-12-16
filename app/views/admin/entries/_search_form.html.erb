@@ -1,4 +1,4 @@
-<%= search_form_for @q, url: search_admin_entries_path, html: { method: :POST, class: "block md:flex w-full ml-3 items-center" }, data: { turbo: false } do |f| %>
+<%= search_form_for @q, url: search_admin_entries_path, html: { method: :GET, class: "block md:flex w-full ml-3 items-center" }, data: { turbo: false } do |f| %>
   <h2 class="text-gray-700 text-sm items-center mr-1 ml-1"><%= t('defaults.search_period')%></h2>
   <div class="flex mr-3 md:mr-0">
     <%= f.date_field :entry_at_gteq, class: "flex-grow h-10 w-4 md:w-1/6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" %>

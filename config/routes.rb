@@ -40,7 +40,6 @@ Rails.application.routes.draw do
     resource :entries, only: %i[create update]
     resources :entries, only: %i[index] do
       collection do
-        get 'page/:page', action: :index
         get 'search', to: 'entries#search'
         post 'search', to: 'entries#search'
       end
@@ -112,7 +111,6 @@ Rails.application.routes.draw do
 
     resources :entries, only: %i[index destroy] do
       collection do
-        get 'page/:page', action: :index
         get 'search', to: 'entries#search'
         post 'search', to: 'entries#search'
       end

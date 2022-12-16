@@ -5,7 +5,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
   before_action :set_q, only: %i[index search]
 
   def index
-    @pagy, @entries = pagy(Entry.dogrun_place_id(2))
+    @pagy, @entries = pagy(@entries)
   end
 
   def create

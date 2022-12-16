@@ -1,9 +1,11 @@
 class Admin::EntriesController < Admin::BaseController
-  before_action :set_entries, only: %i[index search]
+  include Pagy::Backend
   before_action :set_q, only: %i[index search]
   before_action :set_entry, only: %i[destroy]
 
-  def index; end
+  def index
+    @pagy, @entries = pagy(@entries)
+  end
 
   def destroy
     @entry.destroy
@@ -14,16 +16,13 @@ class Admin::EntriesController < Admin::BaseController
   end
 
   def search
-    @entries_results = @q.result.page(params[:page])
+    @pagy, @entries_results = pagy(@q.result)
   end
 
   private
 
-    def set_entries
-      @entries = Entry.admin_dogrun_place_id(current_user.dogrun_place_id).page(params[:page])
-    end
-
     def set_q
+      @entries = Entry.admin_dogrun_place_id(current_user.dogrun_place_id)
       @q = @entries.ransack(params[:q])
     end
 
