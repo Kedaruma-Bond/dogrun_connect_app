@@ -1,0 +1,57 @@
+<% content_for(:title, @title) %>
+<div class="mx-auto px-1 sm:px-6 lg:px-8 py-5 mx-4 bg-purple-200 rounded-lg" data-controller="filming-message-modal sns-post-message-modal">
+  <h1 class='mb-3'>
+    <%= simple_format(@title, class: "text-3xl text-gray-700 font-semibold text-center") %>
+  </h1>
+  <% if current_page?(action: "index") %>
+    <div class="flex justify-center my-2 items-end">
+      <p><%= t('.until_now') %></p>
+      <h3 class="px-2 text-xl"><%= @pagy.vars[:count] %></h3>
+      <p><%= t('.unit_of_encount_dogs') %></p>
+    </div>
+  <% else %>
+    <div class="flex justify-center my-2 items-end">
+      <p class=""><%= t('.search_results_are') %></p>
+      <h3 class="px-2 text-xl"><%= @pagy.vars[:count] %></h3>
+      <p class=""><%= t('.unit_of_search_encount_dogs') %></p>
+    </div>
+  <% end %>
+  <%= simple_format(t('.explain_encount_dogs'), class: "text-center mb-2 text-sm text-gray-700") %>
+  <% if @pagy.vars[:count] != 0 %>
+    <%= render 'search_form' %>
+    <p class="text-center md:hidden text-xs text-gray-600 mt-3"><%= t('defaults.thumbnail_tap') %></p>
+    <p class="text-center md:hidden text-xs text-gray-600"><%= t('defaults.slide_available') %></p>
+    <div class="container w-full sm:p-10">
+      <div class="block w-full overflow-x-auto">
+        <table class="table-auto items-center w-full bg-transparent border-collapse">
+          <thead>
+            <tr>
+              <th class="pl-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
+                <%= simple_format(t('defaults.thumbnail')) %>
+              </th>
+              <th class="pl-6 pr-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
+                <%= t('defaults.edit') %>
+              </th>
+              <th class="pl-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
+                <%= simple_format(t('defaults.dog_name')) %>
+              </th>
+              <th class="pl-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
+                <%= EncountDog.human_attribute_name(:memo) %>
+              </th>
+              <th class="pl-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
+                <%= t('.encount_date') %>
+              </th>
+              <th class="pl-6 md:pl-12 text-sm whitespace-nowrap font-semibold bg-purple-200 text-gray-600 border-b border-gray-700">
+                <%= t('.encount_dogrun') %>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= content %>
+          </tbody>
+        </table>
+        <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -31,9 +31,7 @@ Rails.application.routes.draw do
     resources :sns_accounts, only: %i[new create edit update destroy]
     resources :encount_dogs, only: %i[index edit update] do
       collection do
-        get 'page/:page', action: :index
         get 'search', to: 'encount_dogs#search'
-        post 'search', to: 'encount_dogs#search'
       end
     end
     

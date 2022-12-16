@@ -28,12 +28,10 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
   private
 
     def set_encount_dogs
-      @encount_dogs = EncountDog.encount_dog_of_user(current_user.id).page(params[:page])
-      @encount_dogs_for_count = EncountDog.includes(:dog).where(user: current_user).where(dogs: { public: "public_view" })
+      @encount_dogs = EncountDog.encount_dog_of_user(current_user.id)
     end
 
     def set_q
-      @encount_dogs = EncountDog.encount_dog_of_user(current_user.id) 
       @q = @encount_dogs.ransack(params[:q])
     end
 

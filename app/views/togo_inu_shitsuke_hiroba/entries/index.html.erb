@@ -1,4 +1,4 @@
-<%= render EntriesViewComponent.new(
+<%= render Entries::ViewComponent.new(
   title: I18n.t('togo_inu_shitsuke_hiroba.entries.index.title', dogrun: DogrunPlace.find(2).name),
   pagy: @pagy
   ) do %>
