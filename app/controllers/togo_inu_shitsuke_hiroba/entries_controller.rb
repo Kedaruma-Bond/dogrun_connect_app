@@ -1,7 +1,6 @@
 class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPlaceController
   include Pagy::Backend
   before_action :set_dogs_and_registration_numbers_at_local, only: %i[create]
-  before_action :set_entries_array, only: %i[create update]
   before_action :set_q, only: %i[index search]
 
   def index
@@ -9,10 +8,18 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
   end
 
   def create
+    @entries_array = []
     clear_zero
     select_dogs_allocation(params[:select_dog])
+    
     while @num <= @select_dogs_values.count - 1
       @dog = @dogs[@num]
+
+      if Entry.where(dog: @dog).where(exit_at: nil).present?
+        redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.select_dog_has_already_entered')
+        return
+      end
+
       @registration_number = @registration_numbers[@num]
       
       case @select_dogs_values[@num]
@@ -31,12 +38,14 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
       redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.select_entry_dog')
       return
     end
+
     entry_to_dogrun(@entries_array)
     remember(@entries_array)
     redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.entry_success')
   end
 
   def update
+    @entries_array = []
     exit_from_dogrun
     redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.exit_success')
   end

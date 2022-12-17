@@ -63,6 +63,9 @@ ja:
         select_entry_dog: |
           入場するワンちゃんを
           選択してください
+        select_dog_has_already_entered: |
+          すでに入場中のワンちゃんが
+          選択されています
       update:
         exit_success: またのご来場をお待ちしています
     dog_registration:
