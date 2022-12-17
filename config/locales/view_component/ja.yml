@@ -10,3 +10,8 @@ ja:
         リストにそのワンちゃんが追加されます🐕
       search_results_are: 検索結果は
       unit_of_search_encount_dogs: 頭です
+  users:
+    admin_view_component:
+      admin_user_create: 管理者ユーザー作成
+      account_frozen: 凍結
+      

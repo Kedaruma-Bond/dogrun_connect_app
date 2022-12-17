@@ -72,7 +72,6 @@ gem 'cloudinary'
 # chart作図
 gem 'chartkick'
 # pagination
-gem 'kaminari'
 gem 'pagy'
 # 検索機能
 gem 'ransack'

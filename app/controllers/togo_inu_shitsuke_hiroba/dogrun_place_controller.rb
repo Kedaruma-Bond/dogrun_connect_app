@@ -1,7 +1,6 @@
 class TogoInuShitsukeHiroba::DogrunPlaceController < ApplicationController
   layout 'togo_inu_shitsuke_hiroba'
   before_action :set_dogrun_place
-
   
   private
   

@@ -1,10 +1,11 @@
 class Admin::DogrunPlacesController < Admin::BaseController
+  include Pagy::Backend
   before_action :check_grand_admin, except: %i[show edit update]
   before_action :correct_admin_user, only: %i[show edit update]
   before_action :dogrun_place_params, only: %i[create update]
   
   def index
-    @dogrun_places = DogrunPlace.with_attached_logo.includes([:dogrun_place_facility_relations], [:facilities]).order(created_at: :desc)
+    @pagy, @dogrun_places = pagy(DogrunPlace.with_attached_logo.includes([:dogrun_place_facility_relations], [:facilities]).order(created_at: :desc))
     @facilities = Facility.all
   end
 

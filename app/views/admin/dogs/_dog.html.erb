@@ -32,11 +32,15 @@
     <% end %>
   </td>
   <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
-    <% rn = RegistrationNumber.find_by(dog_id: dog.id) %>
-    <% if rn.nil? %>
-      -
+    <% if current_user.name != "grand_admin" %>
+      <% rn = RegistrationNumber.where(dogrun_place: current_user.dogrun_place).find_by(dog: dog) %>
+      <% if rn.nil? %>
+        -
+      <% else %>
+        <%= rn.registration_number %>
+      <% end %>
     <% else %>
-      <%= rn.registration_number %>
+      -
     <% end %>
   </td>
   <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">

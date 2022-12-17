@@ -1,5 +1,5 @@
 class Admin::PostsController < Admin::BaseController
-  before_action :set_posts, only: %i[index search]
+  include Pagy::Backend
   before_action :set_q, only: %i[index search]
   before_action :post_params, only: %i[create]
   before_action :post_params_for_publish, only: %i[start_to_publish]
@@ -17,6 +17,8 @@ class Admin::PostsController < Admin::BaseController
     no_embeds_posts.map do |post|
       post.delete
     end
+
+    @pagy, @posts = pagy(@posts)
   end
 
   def create
@@ -66,16 +68,14 @@ class Admin::PostsController < Admin::BaseController
   end
 
   def search 
-    @posts_results = @q.result.page(params[:page])
+    @publishing_post = Post.is_publishing
+    @pagy, @posts_results = pagy(@q.result)
   end
 
   private
 
-    def set_posts
-      @posts = Post.where(dogrun_place_id: current_user.dogrun_place_id).includes([:user, :article, :embed]).order(created_at: :desc).page(params[:page])
-    end
-
     def set_q
+      @posts = Post.where(dogrun_place_id: current_user.dogrun_place_id).includes([:user, :article, :embed]).order(created_at: :desc)
       @q = @posts.ransack(params[:q])
     end
 

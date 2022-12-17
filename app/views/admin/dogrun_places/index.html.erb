@@ -56,6 +56,7 @@
           <%= render @dogrun_places %>
         </tbody>
       </table>
+      <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>
     </div>
   </div>
 </div>
