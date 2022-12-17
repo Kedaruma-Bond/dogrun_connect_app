@@ -3,10 +3,6 @@ require 'active_support'
 module EntryConcern
   extend ActiveSupport::Concern
 
-  def set_entries_array
-    @entries_array = []
-  end
-
   def remember(entries_array)
     entries_id = []
     entries_token = []

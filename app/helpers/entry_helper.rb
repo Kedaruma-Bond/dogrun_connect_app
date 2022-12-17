@@ -1,5 +1,6 @@
 module EntryHelper
   include Pagy::Frontend
+  
   def entry_to_dogrun(entries_array)
     session[:entries_id] = entries_array.map do |e|
       return if e.nil?
