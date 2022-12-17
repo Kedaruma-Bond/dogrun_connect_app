@@ -1,10 +1,12 @@
 class Admin::DogsController < Admin::BaseController
-  before_action :set_dogs, only: %i[index search]
+  include Pagy::Backend
   before_action :set_dog, only: %i[show edit update]
   before_action :dog_params, only: %i[update]
   before_action :set_q, only: %i[index search]
 
-  def index; end
+  def index
+    @pagy, @dogs = pagy(@dogs)
+  end
 
   def show
     if current_user.name != "grand_admin"
@@ -23,7 +25,7 @@ class Admin::DogsController < Admin::BaseController
   end
 
   def search
-    @dogs_results = @q.result.page(params[:page])
+    @pagy, @dogs_results = pagy(@q.result)
   end
 
   private
@@ -38,21 +40,20 @@ class Admin::DogsController < Admin::BaseController
       )
     end
 
-    def set_dogs
+    def set_q
+
       case current_user.name
       when "grand_admin"
-        @dogs = Dog.with_attached_thumbnail.with_attached_rabies_vaccination_certificate.with_attached_mixed_vaccination_certificate.includes([:user]).order(updated_at: :desc).page(params[:page])
+        @dogs = Dog.with_attached_thumbnail.with_attached_rabies_vaccination_certificate.with_attached_mixed_vaccination_certificate.includes([:user]).order(updated_at: :desc)
       else
-        @dogs = Dog.dogrun_place_id(current_user.dogrun_place_id).with_attached_thumbnail.with_attached_rabies_vaccination_certificate.with_attached_mixed_vaccination_certificate.order(updated_at: :desc).page(params[:page])
+        @dogs = Dog.dogrun_place_id(current_user.dogrun_place_id).with_attached_thumbnail.with_attached_rabies_vaccination_certificate.with_attached_mixed_vaccination_certificate.order(updated_at: :desc)
       end
-    end
 
+      @q = @dogs.ransack(params[:q])
+    end
+    
     def set_dog
       @dog = Dog.find(params[:id])
-    end
-
-    def set_q
-      @q = @dogs.ransack(params[:q])
     end
 
 end

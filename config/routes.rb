@@ -31,16 +31,13 @@ Rails.application.routes.draw do
     resources :sns_accounts, only: %i[new create edit update destroy]
     resources :encount_dogs, only: %i[index edit update] do
       collection do
-        get 'page/:page', action: :index
         get 'search', to: 'encount_dogs#search'
-        post 'search', to: 'encount_dogs#search'
       end
     end
     
     resource :entries, only: %i[create update]
     resources :entries, only: %i[index] do
       collection do
-        get 'page/:page', action: :index
         get 'search', to: 'entries#search'
         post 'search', to: 'entries#search'
       end
@@ -68,9 +65,7 @@ Rails.application.routes.draw do
 
     resources :posts, only: %i[index new create destroy] do
       collection do
-        get 'page/:page', action: :index
         get 'search', to: 'posts#search'
-        post 'search', to: 'posts#search'
       end
       member do
         get 'set_publish_limit', to: 'posts#set_publish_limit'
@@ -90,9 +85,7 @@ Rails.application.routes.draw do
 
     resources :dogs, only: %i[index show edit update] do
       collection do
-        get 'page/:page', action: :index
         get 'search', to: 'dogs#search'
-        post 'search', to: 'dogs#search'
       end
     end
 
@@ -100,9 +93,7 @@ Rails.application.routes.draw do
 
     resources :users, only: %i[index new create destroy] do
       collection do
-        get 'page/:page', action: :index
         get 'search', to: 'users#search'
-        post 'search', to: 'users#search'
       end
       member do
         patch 'deactivation', to: 'users#deactivation'
@@ -112,9 +103,7 @@ Rails.application.routes.draw do
 
     resources :entries, only: %i[index destroy] do
       collection do
-        get 'page/:page', action: :index
         get 'search', to: 'entries#search'
-        post 'search', to: 'entries#search'
       end
     end
     

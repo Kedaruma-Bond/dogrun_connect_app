@@ -1,11 +1,14 @@
 class Admin::UsersController < Admin::BaseController
+  include Pagy::Backend
   before_action :check_grand_admin
   before_action :agreement_set, only: %i[new]
   before_action :user_params, only: %i[create]
-  before_action :set_users, :set_q, only: %i[index search]
+  before_action :set_q, only: %i[index search]
   before_action :set_user, only: %i[edit update destroy deactivation activation]
 
-  def index; end
+  def index
+    @pagy, @users = pagy(@users)
+  end
 
   def new
     @user = User.new
@@ -31,7 +34,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def search
-    @users_results = @q.result.page(params[:page])
+    @pagy, @users_results = pagy(@q.result)
   end
 
   def deactivation
@@ -53,10 +56,10 @@ class Admin::UsersController < Admin::BaseController
   private
 
     def set_users
-      @users = User.all.eager_load(:dogs).order(id: :desc).page(params[:page])
     end
-
+    
     def set_q
+      @users = User.all.eager_load(:dogs).order(id: :desc)
       @q = @users.ransack(params[:q])
     end
 

@@ -7,6 +7,16 @@ GIT
       i18n (>= 1.8.11, < 2)
 
 GIT
+  remote: https://github.com/hotwired/turbo-rails.git
+  revision: cf69d2a1f4ff96d9f7734e7f40618d56d52751be
+  branch: main
+  specs:
+    turbo-rails (1.3.2)
+      actionpack (>= 6.0.0)
+      activejob (>= 6.0.0)
+      railties (>= 6.0.0)
+
+GIT
   remote: https://github.com/ruby/debug
   revision: 2cb44483c681f6806bf6843a8f996d3a10d0e42c
   branch: master
@@ -195,18 +205,6 @@ GEM
     jp_prefecture (1.1.1)
     json (2.6.2)
     jwt (2.4.1)
-    kaminari (1.2.2)
-      activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.2.2)
-      kaminari-activerecord (= 1.2.2)
-      kaminari-core (= 1.2.2)
-    kaminari-actionview (1.2.2)
-      actionview
-      kaminari-core (= 1.2.2)
-    kaminari-activerecord (1.2.2)
-      activerecord
-      kaminari-core (= 1.2.2)
-    kaminari-core (1.2.2)
     kramdown (2.4.0)
       rexml
     kramdown-parser-gfm (1.1.0)
@@ -266,6 +264,8 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
+    pagy (5.10.1)
+      activesupport
     parallel (1.22.1)
     parser (3.1.2.0)
       ast (~> 2.4.1)
@@ -418,10 +418,6 @@ GEM
     thor (1.2.1)
     tilt (2.0.10)
     timeout (0.3.0)
-    turbo-rails (1.3.2)
-      actionpack (>= 6.0.0)
-      activejob (>= 6.0.0)
-      railties (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unf (0.1.4)
@@ -481,9 +477,9 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   jp_prefecture
-  kaminari
   letter_opener_web
   meta-tags
+  pagy
   pg
   puma
   rails (~> 7.0.3)
@@ -502,7 +498,7 @@ DEPENDENCIES
   sprockets-rails
   stimulus-rails (~> 1.2.1)
   tailwindcss-rails
-  turbo-rails (~> 1.3.2)
+  turbo-rails!
   tzinfo-data
   validates_email_format_of
   view_component

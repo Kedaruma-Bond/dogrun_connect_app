@@ -1,4 +1,6 @@
 module DogrunPlaceHelper
+  include Pagy::Frontend
+  
   def dogrun_logo(dogrun_place)
     if dogrun_place.logo.attached?
       cl_image_tag(dogrun_place.logo.key, quality_auto: :good, fetch_format: :auto, class: "w-full h-auto", alt: dogrun_place.name)

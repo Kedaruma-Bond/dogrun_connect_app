@@ -20,7 +20,7 @@
           <p class="text-black"><%= t('defaults.publishing_limit') %></p>
           <h3>
             <% if !@publishing_post.blank? %>
-              <%= l @publishing_post.limit, format: :long2 %>
+              <%= l @publishing_post[0].publish_limit, format: :long %>
             <% else %>
               -
             <% end %>
@@ -39,7 +39,7 @@
       <h2 class="text-gray-700 text-sm flex items-end justify-end mr-7 mt-3">
         <%= t('defaults.search_results_is')%>
           <span class="text-xl mr-2 ml-2">
-            <%= @posts_results.nil? ? 0 : @posts_results.total_count %> 
+            <%= @pagy.vars[:count].nil? ? 0 : @pagy.vars[:count] %> 
           </span>
         <%= t('defaults.search_results_unit') %>
       </h2>
@@ -78,7 +78,7 @@
           <%= render @posts_results %>
         </tbody>
       </table>
+      <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>
     </div>
-    <%= paginate @posts_results %>
   </div>
 </div>

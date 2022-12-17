@@ -1,10 +1,11 @@
 class Admin::StaffsController < Admin::BaseController
-  before_action :set_staffs_in_admin, only: %i[index]
+  include Pagy::Backend
   before_action :staff_params, only: %i[create]
   before_action :set_staff, only: %i[destroy enable_notification disable_notification]
 
   def index
     @staff = Staff.new
+    @pagy, @staffs = pagy(Staff.where(dogrun_place_id: current_user.dogrun_place_id).order(id: :desc))
   end
 
   def create
@@ -46,10 +47,6 @@ class Admin::StaffsController < Admin::BaseController
 
   private
 
-    def set_staffs_in_admin
-      @staffs = Staff.where(dogrun_place_id: current_user.dogrun_place_id).order(id: :desc).page(params[:page])
-    end
-  
     def set_staff
       @staff = Staff.find(params[:id])
     end

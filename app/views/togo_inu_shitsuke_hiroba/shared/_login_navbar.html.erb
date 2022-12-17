@@ -30,11 +30,8 @@
       </button>
     </div>
     <!-- Dropdown menu -->
-    <div data-menu-target="container" id="dropdown_menu" class="hidden absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden bg-white dark:bg-gray-800 rounded-lg shadow-xl">
+    <div data-menu-target="container" id="dropdown_menu" class="hidden absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden bg-stone-200 dark:bg-gray-700 rounded-lg shadow-xl">
       <%= link_to togo_inu_shitsuke_hiroba_user_path(current_user), class: "flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-200 transform hover:bg-gray-100" do %>
-        <svg class="w-9 h-9 dark:text-gray-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path>
-        </svg>
         <div class="mx-1">
           <h1 class="text-sm font-semibold text-gray-700 dark:text-gray-200 "><%= current_user.name %></h1>
           <% if current_user.role != 'guest' %>

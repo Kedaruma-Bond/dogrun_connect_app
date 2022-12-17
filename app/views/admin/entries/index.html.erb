@@ -39,7 +39,7 @@
           <%= render @entries %>
         </tbody>
       </table>
-      <%= paginate @entries %>
+      <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>
     </div>
   </div>
 </div>

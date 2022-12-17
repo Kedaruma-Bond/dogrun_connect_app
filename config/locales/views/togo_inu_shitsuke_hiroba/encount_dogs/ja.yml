@@ -3,21 +3,10 @@ ja:
     encount_dogs:
       index:
         title: エンカウントリスト
-        encount_date: 出会った日
-        encount_dogrun: 出会ったドッグラン
-        until_now: 今までに
-        unit_of_encount_dogs: 頭のワンちゃんと出会いました
-        explain_encount_dogs: |
-          同じドッグランで10〜15分以上一緒に過ごすと
-          リストにそのワンちゃんが追加されます🐕
       search:
         title: |
           エンカウントリスト
           の検索結果
-        search_results_are: 検索結果は
-        unit_of_encount_dogs: 頭です
-        encount_date: 出会った日
-        encount_dogrun: 出会ったドッグラン
       search_form:
         search_field: ワンちゃんの名前検索
       edit:
