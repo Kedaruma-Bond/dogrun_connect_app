@@ -151,7 +151,7 @@ module DogHelper
     if dog.rabies_vaccination_certificate.attached?
       cl_image_tag(dog.rabies_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded mx-auto md:mx-0 h-auto w-full", alt: "rabies vaccination certificate", "data-preview-target": "imagePreview")
     else
-      image_tag('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full", "data-preview-target": "imagePreview")
+      image_tag('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded", "data-preview-target": "imagePreview")
     end 
   end
   
@@ -159,7 +159,7 @@ module DogHelper
     if dog.mixed_vaccination_certificate.attached?
       cl_image_tag(dog.mixed_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded mx-auto md:mx-0 h-auto w-full", alt: "rabies vaccination certificate", "data-preview-target": "imagePreview")
     else
-      image_tag('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full", "data-preview-target": "imagePreview")
+      image_tag('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded", "data-preview-target": "imagePreview")
     end 
   end
   
@@ -167,7 +167,7 @@ module DogHelper
     if dog.license_plate.attached?
       cl_image_tag(dog.license_plate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded mx-auto md:mx-0 h-auto w-full", alt: "rabies vaccination certificate", "data-preview-target": "imagePreview")
     else
-      image_tag('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full", "data-preview-target": "imagePreview")
+      image_tag('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded", "data-preview-target": "imagePreview")
     end 
   end
 end
