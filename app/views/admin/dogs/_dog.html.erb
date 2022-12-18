@@ -23,7 +23,7 @@
       -
     <% end %>
   </td>
-  <td class="flex px-3 py-2 whitespace-nowrap">
+  <td class="flex justify-center align-center mt-7 whitespace-nowrap">
     <% if dog.date_of_rabies_vaccination.blank? && dog.date_of_mixed_vaccination.blank? %>
       -
     <% else %>
@@ -73,14 +73,6 @@
     <% else %>
       -
     <% end %>
-  </td>
-  <td class="flex pl-2 pt-5 text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
-    <% if dog.weight == nil %>
-      -
-    <% else %>
-      <%= dog.weight %>
-    <% end %>
-    <p class="text-sm pt-4 font-light"><%= t('defaults.weight_unit') %></p>
   </td>
   <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
     <% if dog.castration == 'castrated' %>
