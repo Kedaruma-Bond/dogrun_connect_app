@@ -42,7 +42,7 @@
     </div>
   </div>
   <!-- sidebar toggle menu -->
-  <div data-menu-target="container" class="hidden absolute shadow-xl fixed bottom-0 mt-12 md:relative z-10 w-48 content-center">
+  <div data-menu-target="container" class="hidden absolute shadow-xl fixed bottom-0 mt-12 md:relative z-10 w-60 content-center">
     <div class="rounded bg-gray-600 w-48 fixed left-0 top-0 content-center md:content-start text-left justify-between">
       <ul class="flex flex-col pt-3 py-3 px-2 text-left">
         <li class="w-10 h-auto">
@@ -52,7 +52,7 @@
         </li>
         <% if current_user.dogrun_place.name == 'grand_admin' %>
           <li class="flex-1">
-            <%= link_to  admin_dogrun_places_path, class: "flex py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500" do %>
+            <%= link_to  admin_dogrun_places_path, class: "flex pb-1 pt-2 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500" do %>
               <svg class="pr-2 pb-1 w-7 h-7" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22 14V8.5M6 13V6C6 4.34315 7.34315 3 9 3H14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M16.9922 4H19.9922M22.9922 4L19.9922 4M19.9922 4V1M19.9922 4V7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
