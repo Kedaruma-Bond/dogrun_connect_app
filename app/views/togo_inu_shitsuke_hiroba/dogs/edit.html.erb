@@ -6,12 +6,12 @@
     </p>
     <div class="text-3xl font-bold text-center mb-3">
     </div>
-    <%= simple_form_for @dog, url:togo_inu_shitsuke_hiroba_dog_path, data: { controller: 'preview disable', "disable-with-value": t('defaults.updating'), turbo: false } do |f| %>
+    <%= simple_form_for @dog, url:togo_inu_shitsuke_hiroba_dog_path, data: { controller: 'disable', "disable-with-value": t('defaults.updating'), turbo: false } do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <section class="text-gray-600 body-font">
         <div class="container px-3 py-3 mx-auto flex flex-col">
           <div class="flex flex-col sm:flex-row mt-5">
-            <div class="sm:w-1/3 text-center sm:pr-4 sm:py-4 items-center justify-center">
+            <div class="sm:w-1/3 text-center sm:pr-4 sm:py-4 items-center justify-center" data-controller="preview">
               <div class="mb-3">
                 <span class="text-sm font-medium"><%= t'.change_thumbnail' %></span>
                 <%= f.input :thumbnail, as: :file, direct_upload: true, input_html: { data: { "preview-target": "imageUploader", action: "preview#updatePreview" }, class: "block w-full px-3 py-1.5 text-sm text-white font-normal bg-gray-700 bg-clip-padding rounded border border-soild border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
@@ -84,9 +84,12 @@
                 <div data-accordion-target="content">
                   <%= simple_format(t('.these_information_is_not_viewable'), class: "mb-3 text-red-500 text-sm text-center" )%>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
-                    <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
+                    <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0" data-controller="preview">
                       <span class="text-sm font-medium"><%= t('.register_rabies_vaccination_certificate') %></span>
-                      <%= f.input :rabies_vaccination_certificate, as: :file, direct_upload: true, input_html: { class: "block w-full px-3 py-1.5 text-sm text-white font-normal bg-gray-700 bg-clip-padding rounded border border-soild border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
+                      <%= f.input :rabies_vaccination_certificate, as: :file, direct_upload: true, input_html: { data: { "preview-target": "imageUploader", action: "preview#updatePreview" }, class: "block w-full px-3 py-1.5 text-sm text-white font-normal bg-gray-700 bg-clip-padding rounded border border-soild border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
+                      <div class="mx-auto mt-1">
+                        <%= rabies_vaccination_certificate_form_preview(@dog) %>
+                      </div>
                     </div>
                     <div class="w-full mb-3 md:mb-0">
                       <span class="text-sm font-medium"><%= Dog.human_attribute_name(:date_of_rabies_vaccination) %></span>
@@ -94,9 +97,12 @@
                     </div>
                   </div>
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
-                    <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
+                    <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0" data-controller="preview">
                       <span class="text-sm font-medium"><%= t('.register_mixed_vaccination_certificate') %></span>
-                      <%= f.input :mixed_vaccination_certificate, as: :file, direct_upload: true, input_html: { class: "block w-full px-3 py-1.5 text-sm text-white font-normal bg-gray-700 bg-clip-padding rounded border border-soild border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
+                      <%= f.input :mixed_vaccination_certificate, as: :file, direct_upload: true, input_html: { data: { "preview-target": "imageUploader", action: "preview#updatePreview" }, class: "block w-full px-3 py-1.5 text-sm text-white font-normal bg-gray-700 bg-clip-padding rounded border border-soild border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
+                      <div class="mx-auto mt-1">
+                        <%= mixed_vaccination_certificate_form_preview(@dog) %>
+                      </div>
                     </div>
                     <div class="w-full mb-3 md:mb-0">
                       <span class="text-sm font-medium"><%= Dog.human_attribute_name(:date_of_mixed_vaccination) %></span>
@@ -115,14 +121,17 @@
                       <%= f.input :registration_municipality, input_html: { class: "block w-full px-3 py-1.5 leding-none text-gray-900 focus:outline-none focus:border-blue-700 m-0 bg-gray-100 border rounded border-gray-200"}, label: false, hint: false, error: false %>
                     </div>
                   </div>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3" data-controller="preview">
                     <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
                       <span class="text-sm font-medium"><%= Dog.human_attribute_name(:municipal_registration_number) %></span>
                       <%= f.input :municipal_registration_number, input_html: { class: "block w-full px-3 py-1.5 leding-none text-gray-900 focus:outline-none focus:border-blue-700 m-0 bg-gray-100 border rounded border-gray-200"}, label: false, hint: false, error: false %>
                     </div>
                     <div class="w-full mb-3 md:mb-0">
                       <span class="text-sm font-medium"><%= t('.register_license_plate') %></span>
-                      <%= f.input :license_plate, as: :file, direct_upload: true, input_html: { class: "block w-full px-3 py-1.5 text-sm text-white font-normal bg-gray-700 bg-clip-padding rounded border border-soild border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
+                      <%= f.input :license_plate, as: :file, direct_upload: true, input_html: { data: { "preview-target": "imageUploader", action: "preview#updatePreview" }, class: "block w-full px-3 py-1.5 text-sm text-white font-normal bg-gray-700 bg-clip-padding rounded border border-soild border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
+                      <div class="mx-auto mt-1">
+                        <%= license_plate_form_preview(@dog) %>
+                      </div>
                     </div>
                   </div>
                 </div>

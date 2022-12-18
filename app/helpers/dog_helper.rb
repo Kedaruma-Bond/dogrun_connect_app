@@ -1,5 +1,6 @@
 module DogHelper
   include Pagy::Frontend
+
   def encount_dogs_at_this_entry(entry, dogrun_place_id)
     encount_dogs_created_at_this_entry = Encount.where(created_at: entry.entry_at .. entry.exit_at)
                                                 .where(dogrun_place_id: dogrun_place_id)
@@ -146,4 +147,27 @@ module DogHelper
     end
   end
   
+  def rabies_vaccination_certificate_form_preview(dog)
+    if dog.rabies_vaccination_certificate.attached?
+      cl_image_tag(dog.rabies_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded mx-auto md:mx-0 h-auto w-full", alt: "rabies vaccination certificate", "data-preview-target": "imagePreview")
+    else
+      image_tag('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded", "data-preview-target": "imagePreview")
+    end 
+  end
+  
+  def mixed_vaccination_certificate_form_preview(dog)
+    if dog.mixed_vaccination_certificate.attached?
+      cl_image_tag(dog.mixed_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded mx-auto md:mx-0 h-auto w-full", alt: "rabies vaccination certificate", "data-preview-target": "imagePreview")
+    else
+      image_tag('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded", "data-preview-target": "imagePreview")
+    end 
+  end
+  
+  def license_plate_form_preview(dog)
+    if dog.license_plate.attached?
+      cl_image_tag(dog.license_plate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded mx-auto md:mx-0 h-auto w-full", alt: "rabies vaccination certificate", "data-preview-target": "imagePreview")
+    else
+      image_tag('data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded", "data-preview-target": "imagePreview")
+    end 
+  end
 end

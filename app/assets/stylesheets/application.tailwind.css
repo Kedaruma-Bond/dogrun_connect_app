@@ -13,7 +13,7 @@
 
 .pagy-nav .page {
    --tw-text-opacity: 1;
-    color: rgba(136, 158, 137, var(--tw-text-opacity));
+    color: rgba(55, 65, 81, var(--tw-text-opacity));
     font-size: 16px;
     font-weight: 500;
     align-items: center;
@@ -45,7 +45,7 @@
 }
 
 .pagy-nav .prev {
-  color: gray;
+  color: rgba(55, 65, 81, var(--tw-text-opacity));
   border-top-left-radius: 0.375rem;
   border-bottom-left-radius: 0.375rem;
 }
