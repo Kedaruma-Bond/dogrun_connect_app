@@ -40,7 +40,7 @@
         </div>
       <% end %>
 
-      <hr class="border-gray-200">
+      <hr class="border-gray-700 dark:border-gray-200 ">
           
       <%= link_to togo_inu_shitsuke_hiroba_user_path(current_user), class: "flex items-center p-3 text-base text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100" do %>
         <svg class="w-5 h-5 mx-1 dark:text-gray-200" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -83,7 +83,7 @@
         </span>
       <% end %>
 
-      <hr class="border-gray-200">
+      <hr class="border-gray-700 dark:border-gray-200 ">
           
       <%= link_to togo_inu_shitsuke_hiroba_logout_path, data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation') }, class: "flex items-center p-3 text-base text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100" do %>
         <svg class="dark:text-gray-200" width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
