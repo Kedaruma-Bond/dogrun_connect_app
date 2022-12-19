@@ -33,7 +33,7 @@
     <div data-menu-target="container" id="dropdown_menu" class="hidden absolute right-0 z-20 w-64 py-2 mt-2 overflow-hidden bg-stone-200 dark:bg-gray-700 rounded-lg shadow-xl">
       <%= link_to togo_inu_shitsuke_hiroba_user_path(current_user), class: "flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-200 transform hover:bg-gray-100" do %>
         <div class="mx-1">
-          <h1 class="text-sm font-semibold text-gray-700 dark:text-gray-200 "><%= current_user.name %></h1>
+          <h1 class="text-base font-semibold text-gray-700 dark:text-gray-200 "><%= current_user.name %></h1>
           <% if current_user.role != 'guest' %>
             <p class="text-sm text-gray-500 dark:text-gray-400"><%= current_user.email %></p>
           <% end %>
@@ -42,7 +42,7 @@
 
       <hr class="border-gray-200">
           
-      <%= link_to togo_inu_shitsuke_hiroba_user_path(current_user), class: "flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100" do %>
+      <%= link_to togo_inu_shitsuke_hiroba_user_path(current_user), class: "flex items-center p-3 text-base text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100" do %>
         <svg class="w-5 h-5 mx-1 dark:text-gray-200" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7 8C7 5.23858 9.23858 3 12 3C14.7614 3 17 5.23858 17 8C17 10.7614 14.7614 13 12 13C9.23858 13 7 10.7614 7 8ZM12 11C13.6569 11 15 9.65685 15 8C15 6.34315 13.6569 5 12 5C10.3431 5 9 6.34315 9 8C9 9.65685 10.3431 11 12 11Z" fill="currentColor"></path>
           <path d="M6.34315 16.3431C4.84285 17.8434 4 19.8783 4 22H6C6 20.4087 6.63214 18.8826 7.75736 17.7574C8.88258 16.6321 10.4087 16 12 16C13.5913 16 15.1174 16.6321 16.2426 17.7574C17.3679 18.8826 18 20.4087 18 22H20C20 19.8783 19.1571 17.8434 17.6569 16.3431C16.1566 14.8429 14.1217 14 12 14C9.87827 14 7.84344 14.8429 6.34315 16.3431Z" fill="currentColor"></path>
@@ -54,7 +54,7 @@
         </span>
       <% end %>
           
-      <%= link_to togo_inu_shitsuke_hiroba_entries_path, class: "flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100" do %>
+      <%= link_to togo_inu_shitsuke_hiroba_entries_path, class: "flex items-center p-3 text-base text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100" do %>
         <svg class="w-6 h-6 mx-1 dark:text-gray-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
           <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"></path>
         </svg>
@@ -63,7 +63,7 @@
         </span>
       <% end %>
       
-      <button data-action="click->form-modal#open" class="flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100">
+      <button data-action="click->form-modal#open" class="flex items-center p-3 text-base text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100">
         <svg class="w-6 h-6 mx-1 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
         </svg>
@@ -72,7 +72,7 @@
         </span>
       </button>
 
-      <%= link_to togo_inu_shitsuke_hiroba_encount_dogs_path, class: "flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100" do %>
+      <%= link_to togo_inu_shitsuke_hiroba_encount_dogs_path, class: "flex items-center p-3 text-base text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100" do %>
         <svg class="w-5 h-5 mx-1 dark:text-gray-200" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
           <path d="M104,140a12,12,0,1,1-12-12A12,12,0,0,1,104,140Zm60-12a12,12,0,1,0,12,12A12,12,0,0,0,164,128Zm68.7,16a16.1,16.1,0,0,1-6.7,1.4,15.6,15.6,0,0,1-10-3.6V184a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V141.8a15.6,15.6,0,0,1-10,3.6,16.1,16.1,0,0,1-6.7-1.4,15.8,15.8,0,0,1-9.1-17.6L30.6,38.9A16.1,16.1,0,0,1,50.2,26.3L105,40h46l54.8-13.7a16.1,16.1,0,0,1,19.6,12.6l16.4,87.5A15.8,15.8,0,0,1,232.7,144ZM200,184V122L148.1,56H107.9L56,122v62a24.1,24.1,0,0,0,24,24h40V195.3l-13.7-13.6a8.1,8.1,0,0,1,11.4-11.4L128,180.7l10.3-10.4a8.1,8.1,0,0,1,11.4,11.4L136,195.3V208h40A24.1,24.1,0,0,0,200,184Z" fill="currentColor"></path>
         </svg>
@@ -85,7 +85,7 @@
 
       <hr class="border-gray-200">
           
-      <%= link_to togo_inu_shitsuke_hiroba_logout_path, data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation') }, class: "flex items-center p-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100" do %>
+      <%= link_to togo_inu_shitsuke_hiroba_logout_path, data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation') }, class: "flex items-center p-3 text-base text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100" do %>
         <svg class="dark:text-gray-200" width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 12H19M19 12L16 15M19 12L16 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M19 6V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
