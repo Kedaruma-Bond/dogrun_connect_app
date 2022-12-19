@@ -15,11 +15,14 @@
               <%= t('.please_register_dog') %>
             </p>
           <% else %>
-            <ul list-style="none" class="mt-5 flex flex-col text-center mx-auto">
+            <ul list-style="none" class="mt-5 flex flex-col text-center mx-auto my-2">
               <% @dogs.each do |dog| %>
                 <li class="mb-5 text-left">
                   <label for=<%= dog.id %> class="flex mb-2">
-                    <%= check_box "select_dog", dog.name, id: dog.id, checked_value: 'true', unchecked_value: 'false', class: "scale-125 rounded" %>
+                    <%= check_box "select_dog", dog.name, id: dog.id, checked_value: 'true', unchecked_value: 'false', class: "scale-125 rounded mt-4" %>
+                    <div class="w-12 h-12 ml-3">
+                      <%= dog_thumbnail(dog) %>
+                    </div>
                     <div class="text-left leading-3 text-gray-700 text-xl font-bold ml-3 my-auto">
                       <%= dog.name %>
                     </div>
