@@ -52,8 +52,13 @@
       </p>
       <ul list-sytle=none class="mt-3 flex flex-col text-center mx-auto">
         <% current_entries.each do |entry| %>
-          <li class="mb-5 text-left text-xl text-gray-700 font-bold">
-            <%= entry.dog.name %>
+          <li class="flex mb-5 text-left text-xl text-gray-700 font-bold">
+            <div class="h-10 w-10 mr-3">
+              <%= dog_thumbnail(entry.dog) %>
+            </div>
+            <div class="my-auto">
+              <%= entry.dog.name %>
+            </div>
           </li>
         <% end %>
       </ul>
