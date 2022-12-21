@@ -60,7 +60,7 @@ module.exports = {
         "tilt-in-right-2": {
           "0%": {
               transform: "rotateX(30deg) translateX(300px) skewX(-30deg)",
-              opacity: "0"
+              opacity: "1"
           },
           "100%": {
               transform: "rotateX(0deg) translateX(0) skewX(0deg)",
