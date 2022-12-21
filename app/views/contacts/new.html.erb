@@ -3,7 +3,7 @@
   <div class="bg-purple-200 w-full shadow rounded p-8 sm:p-12">
     <p class="text-3xl font-bold leading-7 text-center mb-10"><%= t'.title' %></p>
     <p class="text-left"><%= simple_format(t'.caution') %></p>
-    <%= simple_form_for @contact, url: confirm_path, data: { turbo: false } do |f| %>
+    <%= simple_form_for @contact, url: confirm_path do |f| %>
       <%= render 'shared/error_messages', object: f.object %> 
       <div class="md:flex items-center mt-12">
         <div class="w-full md:w-1/2 flex flex-col"> 

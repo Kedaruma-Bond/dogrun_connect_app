@@ -12,15 +12,14 @@ class ContactsController < ApplicationController
     if @contact.valid?
       session[:contact] = contact_params
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   def create
     @contact = Contact.new(session[:contact].to_hash)
     if params[:back]
-      render :new,  :unprocessable_entity
-      return
+      render :new
     end
 
     return unless @contact.save!
