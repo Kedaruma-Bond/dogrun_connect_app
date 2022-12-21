@@ -20,7 +20,7 @@
   <body class="dark:bg-gray-800 break-words flex flex-col min-h-screen">
     <%= render 'static_pages/navbar' %>
     <%= render 'shared/flash' %>
-    <%= tag.main class: "mb-auto relative", data: { turbo_frame: "_content" } %>
+    <%= tag.main class: "mb-auto relative", data: { turbo_frame: "_content" } do %>
       <div class="w-full" data-controller="service-worker">
         <%= yield %>
       </div>
