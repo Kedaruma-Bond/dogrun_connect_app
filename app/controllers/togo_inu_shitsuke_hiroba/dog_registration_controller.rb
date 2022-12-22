@@ -34,7 +34,7 @@ class TogoInuShitsukeHiroba::DogRegistrationController < TogoInuShitsukeHiroba::
   private
 
   def dog_registration_params
-    dogrun_place_id = 2
+    dogrun_place_id = @dogrun_place.id
     params.require(:dog_registration).permit(
       :name, :castration, :public,
       :registration_number

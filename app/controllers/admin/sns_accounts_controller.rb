@@ -10,8 +10,12 @@ class Admin::SnsAccountsController < Admin::BaseController
     if @sns_account.facebook_id.blank? && @sns_account.instagram_id.blank? && @sns_account.twitter_id.blank?
       redirect_to  admin_dogrun_place_path(current_user.dogrun_place), notice: t(".cancel_to_registration")
     else
-      @sns_account.save
-      redirect_to admin_dogrun_place_path(current_user.dogrun_place), success: t(".registration_successful")
+      if SnsAccount.where(dogrun_place: current_user.dogrun_place).present?
+        redirect_to admin_dogrun_place_path(current_user.dogrun_place), error: t(".registration_duplicated")
+      else
+        @sns_account.save!
+        redirect_to admin_dogrun_place_path(current_user.dogrun_place), success: t(".registration_successful")
+      end
     end
   end
 

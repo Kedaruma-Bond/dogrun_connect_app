@@ -116,7 +116,7 @@
       <% end %>
     </div>
     <div class="flex flex-shrink-0 col-start-12 align-top col-span-3 justify-end items-center mt-5 md:mt-0">
-      <%= link_to togo_inu_shitsuke_hiroba_registration_number_path(@registration_numbers[@times].id), data: { turbo_method: :delete, turbo_confirm: t('.destroy_confirm') } do %>
+      <%= link_to togo_inu_shitsuke_hiroba_registration_number_path(@registration_numbers[@times].id), data: { turbo_method: :delete, turbo_confirm: t('.destroy_confirm'), turbo_frame: "_content" } do %>
         <button class="px-2 py-2 text-base font-normal md:w-24 mr-5 md:mr-1 tracking-wide text-gray-200 capitalize transition-colors duration-200 transform bg-rose-700 rounded-md hover:bg-rose-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
           <span class="mx-auto"><%= t'.delete' %></span>
         </button>

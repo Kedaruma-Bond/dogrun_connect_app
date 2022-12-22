@@ -3,6 +3,7 @@ ja:
     sns_accounts:
       create:
         cancel_to_registration: 登録をキャンセルしました
+        registration_duplicated: 登録が重複しています
         registration_successful: 登録しました
       update:
         cancel_to_update: 編集をキャンセルしました
@@ -14,6 +15,7 @@ ja:
     staffs:
       create:
         staff_create: スタッフが新規登録されました
+        fail_to_register: 入力内容を確認してください
       enable_notification:
         change_to_enable: 通知にしました
       disable_notification:
@@ -110,8 +112,9 @@ ja:
       destroy:
         destroy_successfully: |
           登録を削除しました
-          もし誤って削除してしまった場合は
-          お問い合わせフォームからお申し出ください
+          もし誤って削除してしまった場合
+          お問い合わせフォームから
+          お申し出ください
     posts:
       create:
         choice_sns: 埋め込むSNSを選択してください。

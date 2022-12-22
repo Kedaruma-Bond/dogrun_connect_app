@@ -1,4 +1,4 @@
-<%= simple_form_for article, url: admin_article_path, data: { controller: 'preview disable', "disable-with-value": t('defaults.posting'), turbo: false } do |f| %>
+<%= simple_form_for article, url: admin_article_path, data: { controller: 'preview disable', "disable-with-value": t('defaults.posting'), turbo_frame: "_content" } do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="text-gray-600 w-full flex flex-col mt-4">
     <%= f.label :content, label_html: { class: "font-bold leading-none" } %>
@@ -13,7 +13,9 @@
   </div>
   <div class="sm:flex mt-9">
     <div class="flex justify-center sm:ml-0 sm:mx-3">
-      <%= link_to admin_posts_path, class: "h-11 font-bold leading-none text-white py-4 px-12 bg-rose-700 rounded hover:bg-rose-600 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
+      <%= link_to admin_posts_path, 
+          class: "h-11 font-bold leading-none text-white py-4 px-12 bg-rose-700 rounded hover:bg-rose-600 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none",
+          data: { turbo_frame: "_content" } do %>
         <%= t('defaults.back') %>
       <% end %>
     </div>
