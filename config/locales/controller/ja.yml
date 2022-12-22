@@ -55,6 +55,7 @@ ja:
       create:
         registration_successful: 登録しました
         cancel_to_registration: 登録はキャンセルされました
+        registration_duplicated: 登録が重複しています
       update:
         cancel_to_registration: 編集はキャンセルされました
     entries:

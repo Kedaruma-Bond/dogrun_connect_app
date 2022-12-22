@@ -37,12 +37,12 @@
                 </button>
               <% end %>
             </div>
-            <% if !current_user.sns_account.nil? %>
-              <p class="text-gray-600 text-xs text-center md:text-left"><%= t('.sns_account')%></p>
-              <div class="flex justify-center md:justify-start">
-                <%= render partial: "shared/sns_account_icons", locals: { sns_account: current_user.sns_account } %>
-              </div>
-            <% end %>
+          <% end %>
+          <% if !current_user.sns_account.nil? %>
+            <p class="text-gray-600 text-xs text-center md:text-left"><%= t('.sns_account')%></p>
+            <div class="flex justify-center md:justify-start">
+              <%= render partial: "shared/sns_account_icons", locals: { sns_account: current_user.sns_account } %>
+            </div>
           <% end %>
         <% end %>
       </div>
