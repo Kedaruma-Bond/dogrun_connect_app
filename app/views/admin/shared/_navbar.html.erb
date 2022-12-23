@@ -28,7 +28,9 @@
           </span>
         </li>
         <li class="flex-none mr-0 md:mr-3">
-          <%= link_to admin_logout_path, data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation') }, class: "flex text-white hover:text-gray-200 py-2 px-4" do %>
+          <%= link_to admin_logout_path, 
+              data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation'), turbo_frame: "_top" }, 
+              class: "flex text-white hover:text-gray-200 py-2 px-4" do %>
             <svg class="w-7 h-7" stroke-width="2.0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 12H19M19 12L16 15M19 12L16 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M19 6V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
@@ -52,7 +54,7 @@
         </li>
         <% if current_user.dogrun_place.name == 'grand_admin' %>
           <li class="flex-1">
-            <%= link_to  admin_dogrun_places_path, 
+            <%= link_to admin_dogrun_places_path, 
                 class: "flex pb-1 pt-2 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500",
                 data: { turbo_frame: "_content" } do %>
               <svg class="pr-2 pb-1 w-7 h-7" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

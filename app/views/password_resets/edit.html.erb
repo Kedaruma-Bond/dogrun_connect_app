@@ -2,7 +2,7 @@
 <div class="max-w-5xl mx-auto px-6 sm:px-6 lg:px-8 mt-5">
   <div class="bg-purple-200 w-full shadow rounded p-8 sm:p-12">
     <p class="text-3xl font-bold leading-7 text-center mb-10"><%= t'.title' %></p>
-    <%= simple_form_for @user, url: password_reset_path(@token), data: { turbo: false }, html: {method: :put} do |f| %>
+    <%= simple_form_for @user, url: password_reset_path(@token), data: { turbo_frame: "_top" } do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <div class="mt-12 md:ml-5">
           <%= f.label :email, label_html: { class: "font-bold leading-none"} %>

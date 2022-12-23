@@ -20,10 +20,12 @@
   <body class="dark:bg-gray-800 break-words flex flex-col min-h-screen">
     <%= render 'static_pages/navbar' %>
     <%= render 'shared/flash' %>
-    <%= tag.main class: "mb-auto relative", data: { turbo_frame: "_content" } do %>
-      <div class="w-full" data-controller="service-worker">
-        <%= yield %>
-      </div>
+    <%= tag.main class: "mb-auto relative" do %>
+      <%= turbo_frame_tag "_content" do %>
+        <div class="w-full" data-controller="service-worker">
+          <%= yield %>
+        </div>
+      <% end %>
     <% end %>
     <%= render 'static_pages/footer' %>
   </body>

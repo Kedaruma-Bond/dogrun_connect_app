@@ -5,7 +5,7 @@
   <div class="container mx-auto flex flex-wrap flex-col lg:flex-row lg:pl-10">
     <%= link_to '/togo_inu_shitsuke_hiroba/top', 
         class: "flex order-first title-font font-medium items-center text-gray-900 mb-0",
-        data: { turbo_frame: "_content" } do %>
+        data: { turbo: false } do %>
       <div class="w-10 h-auto">
         <%= dogrun_logo(@dogrun_place) %>
       </div>
@@ -82,7 +82,7 @@
 
       <%= link_to togo_inu_shitsuke_hiroba_encount_dogs_path, 
           class: "flex items-center p-3 text-base text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100",
-          data: { turbo_frame: "_content"} do %>
+          data: { turbo: false } do %>
         <svg class="w-5 h-5 mx-1 dark:text-gray-200" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
           <path d="M104,140a12,12,0,1,1-12-12A12,12,0,0,1,104,140Zm60-12a12,12,0,1,0,12,12A12,12,0,0,0,164,128Zm68.7,16a16.1,16.1,0,0,1-6.7,1.4,15.6,15.6,0,0,1-10-3.6V184a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V141.8a15.6,15.6,0,0,1-10,3.6,16.1,16.1,0,0,1-6.7-1.4,15.8,15.8,0,0,1-9.1-17.6L30.6,38.9A16.1,16.1,0,0,1,50.2,26.3L105,40h46l54.8-13.7a16.1,16.1,0,0,1,19.6,12.6l16.4,87.5A15.8,15.8,0,0,1,232.7,144ZM200,184V122L148.1,56H107.9L56,122v62a24.1,24.1,0,0,0,24,24h40V195.3l-13.7-13.6a8.1,8.1,0,0,1,11.4-11.4L128,180.7l10.3-10.4a8.1,8.1,0,0,1,11.4,11.4L136,195.3V208h40A24.1,24.1,0,0,0,200,184Z" fill="currentColor"></path>
         </svg>
@@ -95,7 +95,7 @@
 
       <hr class="border-gray-700 dark:border-gray-200 ">
           
-      <%= link_to togo_inu_shitsuke_hiroba_logout_path, data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation'), turbo_frame: "_content" }, class: "flex items-center p-3 text-base text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100" do %>
+      <%= link_to togo_inu_shitsuke_hiroba_logout_path, data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation') }, class: "flex items-center p-3 text-base text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100" do %>
         <svg class="dark:text-gray-200" width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 12H19M19 12L16 15M19 12L16 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M19 6V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
@@ -154,7 +154,7 @@
       </span>
     <% end %>
     
-    <%= link_to togo_inu_shitsuke_hiroba_logout_path, data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation'), turbo_frame: "_content" }, class: "flex mr-5 hover:text-gray-900 dark:text-gray-200" do %>
+    <%= link_to togo_inu_shitsuke_hiroba_logout_path, data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation') }, class: "flex mr-5 hover:text-gray-900 dark:text-gray-200" do %>
       <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 12H19M19 12L16 15M19 12L16 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M19 6V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>

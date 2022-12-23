@@ -21,12 +21,14 @@
     <%= render 'application/fb_sdk'%>
     <%= render partial: 'admin/shared/navbar' %>
     <%= render partial: 'shared/flash' %>
-    <%= tag.main class: "relative", data: { turbo_frame: "_content" } do %>
-      <div class="flex flex-row" data-controller="service_worker">
-        <%= render partial: 'admin/shared/sidebar' %>
-        <%= turbo_frame_tag "notice_modal" %>
-        <%= yield %>
-      </div>
+    <%= tag.main class: "relative" do %>
+      <%= turbo_frame_tag "_content" do %>
+        <div class="flex flex-row" data-controller="service_worker">
+          <%= render partial: 'admin/shared/sidebar' %>
+          <%= turbo_frame_tag "notice_modal" %>
+          <%= yield %>
+        </div>
+      <% end %>
     <% end %>
     <%= render partial: 'admin/shared/footer' %>
   </body>

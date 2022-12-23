@@ -40,7 +40,9 @@ ja:
         logout: ログアウトしました
   contacts:
     create:
-      success: お問い合わせメールを送信しました
+      success: |
+        お問い合わせメールを
+        送信しました
   password_resets:
     create:
       instruction: |
@@ -118,7 +120,9 @@ ja:
     posts:
       create:
         choice_sns: 埋め込むSNSを選択してください。
-        post_save_error: 投稿時にエラーが起きました
+        post_save_error: |
+          投稿タイプを
+          選択してください
     encount_dogs:
       update:
         encount_dog_updated: 情報を更新しました

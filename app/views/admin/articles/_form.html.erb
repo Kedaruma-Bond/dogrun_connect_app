@@ -1,4 +1,4 @@
-<%= simple_form_for article, url: admin_article_path, data: { controller: 'preview disable', "disable-with-value": t('defaults.posting'), turbo_frame: "_content" } do |f| %>
+<%= simple_form_for article, url: admin_article_path, data: { controller: 'preview disable', "disable-with-value": t('defaults.posting'), turbo_frame: "_top" } do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="text-gray-600 w-full flex flex-col mt-4">
     <%= f.label :content, label_html: { class: "font-bold leading-none" } %>

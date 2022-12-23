@@ -6,7 +6,7 @@
     </p>
     <div class="text-3xl font-bold text-center mb-3">
     </div>
-    <%= simple_form_for @dog, url:togo_inu_shitsuke_hiroba_dog_path, data: { controller: 'disable', "disable-with-value": t('defaults.updating'), turbo_frame: "_content" } do |f| %>
+    <%= simple_form_for @dog, url:togo_inu_shitsuke_hiroba_dog_path, data: { controller: 'disable', "disable-with-value": t('defaults.updating'), turbo_frame: "_top" } do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <section class="text-gray-600 body-font">
         <div class="container px-3 py-3 mx-auto flex flex-col">

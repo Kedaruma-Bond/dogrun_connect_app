@@ -23,10 +23,12 @@
       <%= render 'togo_inu_shitsuke_hiroba/shared/navbar' %>
     <% end %>
     <%= render partial: 'shared/flash' %>
-    <%= tag.main class: "mb-auto relative", data: { turbo_frame: "_content" } do %>
-      <div class="w-full" data-controller="service-worker">
-        <%= yield %>
-      </div>
+    <%= tag.main class: "mb-auto relative" do %>
+      <%= turbo_frame_tag "_content" do %>
+        <div class="w-full" data-controller="service-worker">
+          <%= yield %>
+        </div>
+      <% end %>
     <% end %>
     <%= render 'togo_inu_shitsuke_hiroba/shared/footer' %>
   </body>

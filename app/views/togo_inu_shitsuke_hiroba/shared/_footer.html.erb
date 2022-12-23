@@ -1,7 +1,9 @@
 <footer class="text-gray-600 w-full mt-10">
   <div class="container px-5 pb-10 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
     <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-      <%= link_to '/togo_inu_shitsuke_hiroba/top', class: "flex title-font font-medium items-center md:justify-start justify-center text-gray-900" do %>
+      <%= link_to '/togo_inu_shitsuke_hiroba/top', 
+          class: "flex title-font font-medium items-center md:justify-start justify-center text-gray-900",
+          data: { turbo: false } do %>
         <div class="w-10 h-auto">
           <%= dogrun_logo(@dogrun_place) %>
         </div>
@@ -38,17 +40,20 @@
         </h2>
         <nav class="list-none mb-5">
           <li>
-            <%= link_to '/terms_of_service', target: "_blank", rel: "noopener noreferrer", class: "text-gray-600 font-medium hover:text-gray-800 dark:text-gray-200" do %>
+            <%= link_to '/terms_of_service', target: "_blank", rel: "noopener noreferrer", 
+                class: "text-gray-600 font-medium hover:text-gray-800 dark:text-gray-200" do %>
               <%= t'defaults.terms_of_service' %>
             <% end %>
           </li>
           <li>
-            <%= link_to '/privacy_policy', target: "_blank", rel: "noopener noreferrer", class: "my-2 text-gray-600 font-medium hover:text-gray-800 dark:text-gray-200" do %>
+            <%= link_to '/privacy_policy', target: "_blank", rel: "noopener noreferrer", 
+                class: "my-2 text-gray-600 font-medium hover:text-gray-800 dark:text-gray-200" do %>
               <%= t'defaults.privacy_policy' %>
             <% end %>
           </li>
           <li>
-            <%= link_to '/contacts/new', target: "_blank", rel: "noopener noreferrer", class: "text-gray-600 font-medium hover:text-gray-800 dark:text-gray-200" do %>
+            <%= link_to '/contacts/new', target: "_blank", rel: "noopener noreferrer", 
+                class: "text-gray-600 font-medium hover:text-gray-800 dark:text-gray-200" do %>
               <%= t'defaults.contact' %>
             <% end %>
           </li>

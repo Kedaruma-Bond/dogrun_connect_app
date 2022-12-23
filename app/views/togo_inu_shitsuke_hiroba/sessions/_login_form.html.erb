@@ -1,5 +1,5 @@
 <p class="text-3xl font-bold leading-7 text-center text-gray-700 mb-6"><%= t'.title' %></p>
-<%= form_with(url: togo_inu_shitsuke_hiroba_login_path, scope: :session) do |f| %>
+<%= form_with(url: togo_inu_shitsuke_hiroba_login_path, scope: :session, data: { turbo: false }) do |f| %>
   <div class="w-full flex flex-col mt-2">
     <div class="md:flex items-center">
       <div class="w-full md:w-1/2 flex flex-col">

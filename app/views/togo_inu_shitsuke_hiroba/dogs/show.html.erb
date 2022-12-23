@@ -50,7 +50,7 @@
                 </div>
               <% end %>
               <% if !@user.sns_account.nil? && !correct_user?(@user) %>
-                <p class="text-gray-600 text-xs text-center md:text-left"><%= t('.dog_owner_sns')%></p>
+                <p class="text-gray-600 text-sm text-center md:text-left"><%= t('.dog_owner_sns')%></p>
                 <%= render partial: "shared/sns_account_icons", locals: { sns_account: @user.sns_account } %>
               <% end %>
             </div>
@@ -58,7 +58,7 @@
           <div class="sm:w-2/3 sm:pl-8 sm:py-2 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
             <div class="grid grid-cols-3 gap-2 mb-3">
               <div class="col-span-2 flex-raw flex-shrink-0 items-start justify-center mb-0">
-                <p class="text-gray-600 text-xs font-light">
+                <p class="text-gray-600 text-sm font-light">
                   <%= t'defaults.birthday' %>
                 </p>
                 <h1 class="mt-1 text-lg font-bold text-gray-700 px-2">
@@ -70,7 +70,7 @@
                 </h1>
               </div>
               <div class="flex flex-col flex-shrink-0 items-start md:justify-center mb-0">
-                <p class="text-gray-600 text-xs font-light">
+                <p class="text-gray-600 text-sm font-light">
                   <%= t'defaults.age' %>
                 </p>
                 <div class="flex">
@@ -86,7 +86,7 @@
               </div>
             </div>
             <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
-              <p class="text-gray-600 text-xs font-light">
+              <p class="text-gray-600 text-sm font-light">
                 <%= t'defaults.breed' %>
               </p>
               <h1 class="mt-1 text-lg font-bold md:text-2xl text-gray-700">
@@ -99,7 +99,7 @@
             </div>
             <div class="grid grid-cols-2 gap-2 mb-3">
               <div class="flex-raw flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
-                <p class="text-gray-600 text-xs font-light">
+                <p class="text-gray-600 text-sm font-light">
                   <%= t'defaults.sex' %>
                 </p>
                 <h1 class="mt-1 text-xl font-bold text-gray-700">
@@ -113,7 +113,7 @@
                 </h1>
               </div>
               <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
-                <p class="text-gray-600 text-xs font-light">
+                <p class="text-gray-600 text-sm font-light">
                   <%= t'defaults.weight' %>
                 </p>
                 <div class="flex">
@@ -130,7 +130,7 @@
             </div>
             <div class="grid grid-cols-2 gap-2 mb-3">
               <div class="flex-raw flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
-                <p class="text-gray-600 text-xs font-light">
+                <p class="text-gray-600 text-sm font-light">
                   <%= t'defaults.castration' %>
                 </p>
                 <h1 class="mt-1 text-xl font-bold text-gray-700 mx-auto">
@@ -142,7 +142,7 @@
                 </h1>
               </div>
               <div class="flex-row flex-shrink-0 items-center md:items-start md:justify-center md:mr-2 mb-3 md:mb-0">
-                <p class="text-gray-600 text-xs font-light">
+                <p class="text-gray-600 text-sm font-light">
                   <%= t'defaults.public' %>
                 </p>
                 <h1 class="mt-1 text-xl font-bold text-gray-700">
@@ -156,7 +156,7 @@
             </div>
             <div class="grid grid-cols-1">
               <div class="justify-center md:justify-start mb-3">
-                <p class="text-gray-600 text-xs font-light">
+                <p class="text-gray-600 text-sm font-light">
                   <%= t'defaults.owner_comment' %>
                 </p>
                 <div class="mt-1">
@@ -166,7 +166,7 @@
             </div>
             <% if not @encount_dog.blank? %>
               <div class="justify-center md:justify-start">
-                <p class="text-gray-600 text-xs font-light">
+                <p class="text-gray-600 text-sm font-light">
                   <%= t'defaults.encount_dog_memo' %>
                 </p>
                 <div class="mt-1">

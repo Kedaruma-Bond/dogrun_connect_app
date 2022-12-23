@@ -1,7 +1,8 @@
 <footer class="text-gray-600 w-full mt-8 dark:text-gray-200">
   <div class="container px-5 pb-10 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
     <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-      <%= link_to '/', class: "flex title-font font-medium items-center justify-center text-gray-900" do %>
+      <%= link_to '/', class: "flex title-font font-medium items-center justify-center text-gray-900",
+          data: { turbo_frame: "_content" } do %>
         <%= image_tag 'app_logo.png', class: "w-auto h-auto dark:hidden", alt: "dogrunconnect_icon"%>
         <%= image_tag 'app_logo_for_dark_mode.png', class: "w-0 h-0 dark:w-auto dark:h-auto", alt: "dogrunconnect_icon"%>
       <% end %>
@@ -15,17 +16,20 @@
         <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3 dark:text-gray-300"><%= t'defaults.app_support' %></h2>
         <nav class="list-none mb-10">
           <li>
-            <%= link_to '/terms_of_service', target: "_blank", rel: "noopener noreferrer", class: "text-gray-600 font-medium hover:text-gray-800 dark:text-gray-200" do %>
+            <%= link_to '/terms_of_service', target: "_blank", rel: "noopener noreferrer", 
+                class: "text-gray-600 font-medium hover:text-gray-800 dark:text-gray-200" do %>
               <%= t'defaults.terms_of_service' %>
             <% end %>
           </li>
           <li>
-            <%= link_to '/privacy_policy', target: "_blank", rel: "noopener noreferrer", class: "my-2 text-gray-600 font-medium hover:text-gray-800 dark:text-gray-200" do %>
+            <%= link_to '/privacy_policy', target: "_blank", rel: "noopener noreferrer", 
+                class: "my-2 text-gray-600 font-medium hover:text-gray-800 dark:text-gray-200" do %>
               <%= t'defaults.privacy_policy' %>
             <% end %>
           </li>
           <li>
-            <%= link_to '/contacts/new', target: "_blank", rel: "noopener noreferrer", class: "text-gray-600 font-medium hover:text-gray-800 dark:text-gray-200" do %>
+            <%= link_to '/contacts/new', target: "_blank", rel: "noopener noreferrer", 
+                class: "text-gray-600 font-medium hover:text-gray-800 dark:text-gray-200" do %>
               <%= t'defaults.contact' %>
             <% end %>
           </li>
