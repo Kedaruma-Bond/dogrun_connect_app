@@ -12,7 +12,7 @@ class TogoInuShitsukeHiroba::PostsController < TogoInuShitsukeHiroba::DogrunPlac
       end
       return
     else
-      redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.post_save_error') and return
+      redirect_to request.referer, error: t('.post_save_error') and return
     end
   end
 
