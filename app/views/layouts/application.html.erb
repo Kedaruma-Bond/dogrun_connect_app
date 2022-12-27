@@ -21,11 +21,9 @@
     <%= render 'static_pages/navbar' %>
     <%= render 'shared/flash' %>
     <%= tag.main class: "mb-auto relative" do %>
-      <%= turbo_frame_tag "_content" do %>
-        <div class="w-full" data-controller="service-worker">
-          <%= yield %>
-        </div>
-      <% end %>
+      <div class="w-full" data-controller="service-worker">
+        <%= yield %>
+      </div>
     <% end %>
     <%= render 'static_pages/footer' %>
   </body>

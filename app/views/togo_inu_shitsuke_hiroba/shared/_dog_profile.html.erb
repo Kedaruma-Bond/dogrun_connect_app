@@ -1,7 +1,7 @@
 <%= while @times <= @end do %>
   <div class="grid-inline md:grid gap-2 grid-rows-1 grid-cols-12 mt-5">
     <div class="w-40 h-40 sm:w-16 sm:h-16 flex-shrink-0 mx-auto mb-3 md:mb-0">
-      <%= link_to togo_inu_shitsuke_hiroba_dog_path(@dogs[@times].id), data: { turbo_frame: "_content" } do %>
+      <%= link_to togo_inu_shitsuke_hiroba_dog_path(@dogs[@times].id) do %>
         <%= dog_thumbnail(@dogs[@times]) %>
       <% end %>
     </div>
@@ -109,14 +109,14 @@
       </h1>
     </div>
     <div class="flex col-span-2 md:col-span-1 justify-center items-center">
-      <%= link_to togo_inu_shitsuke_hiroba_dog_path(@dogs[@times].id), data: { turob_frame: "_content" } do %>
+      <%= link_to togo_inu_shitsuke_hiroba_dog_path(@dogs[@times].id) do %>
         <button class="w-56 md:w-24 px-2 py-2 font-medium text-lg md:text-base tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
           <span class="mx-auto font-medium"><%= t'defaults.detail' %></span>
         </button>
       <% end %>
     </div>
     <div class="flex flex-shrink-0 col-start-12 align-top col-span-3 justify-end items-center mt-5 md:mt-0">
-      <%= link_to togo_inu_shitsuke_hiroba_registration_number_path(@registration_numbers[@times].id), data: { turbo_method: :delete, turbo_confirm: t('.destroy_confirm'), turbo_frame: "_content" } do %>
+      <%= link_to togo_inu_shitsuke_hiroba_registration_number_path(@registration_numbers[@times].id), data: { turbo_method: :delete, turbo_confirm: t('.destroy_confirm') } do %>
         <button class="px-2 py-2 text-base font-normal md:w-24 mr-5 md:mr-1 tracking-wide text-gray-200 capitalize transition-colors duration-200 transform bg-rose-700 rounded-md hover:bg-rose-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
           <span class="mx-auto"><%= t'.delete' %></span>
         </button>

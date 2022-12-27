@@ -6,7 +6,7 @@
         <%= t('.last_entry_dogrun_place') %>
       </h2>
 
-      <%= link_to @link, class: "w-1/3 max-w-xs overflow-hidden bg-white rounded-lg shadow-lg", data: { turbo_frame: "_top" } do %>
+      <%= link_to @link, class: "w-1/3 max-w-xs overflow-hidden bg-white rounded-lg shadow-lg" do %>
         <%= cl_image_tag(@dogrun_place.logo.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover mx-auto h-56 w-auto", alt: @dogrun_place.name) %>
         <div class="py-5 text-center">
           <h3 class="block text-2xl font-semibold text-gray-600 dark:text-gray-300 "><%= @dogrun_place.name %></h3>
@@ -33,8 +33,7 @@
     <div class="mt-6 text-center">
       <div class="inline-flex overflow-hidden rounded-lg shadow sm:w-auto sm:mx-3">
         <%= link_to new_contacts_path, 
-            class: "inline-flex items-center justify-center w-full px-5 py-3 text-base font-medium text-white bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-600 hover:to-gray-600 sm:w-auto",
-            data: { turbo_frame: "_content" } do %>
+            class: "inline-flex items-center justify-center w-full px-5 py-3 text-base font-medium text-white bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-600 hover:to-gray-600 sm:w-auto" do %>
           <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
@@ -192,7 +191,7 @@
     <div class="container px-6 py-1 mx-auto">
       <div class="grid grid-cols-1 gap-8 mt-4 xl:mt-8 md:grid-cols-2 xl:grid-cols-3">
         <div class="flex flex-col items-center p-4 border sm:p-6 rounded-xl">
-          <%= link_to togo_inu_shitsuke_hiroba_top_path, data: { turbo_frame: "_top" } do %>
+          <%= link_to togo_inu_shitsuke_hiroba_top_path do %>
             <%= cl_image_tag(DogrunPlace.find(2).logo.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover h-auto w-auto", alt: DogrunPlace.find(2).name) %>
             <div class ="text-center">
               <h1 class="mt-4 text-2xl font-semibold text-gray-600 dark:text-gray-200">
@@ -313,8 +312,8 @@
         </div>
 
         <div class="text-center">
-          <%= link_to "#", data: { "lightbox-source-param": 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940232/admin_view-1.png.002_vqto2j.png', action: "lightbox#handleOpen" } do %>
-            <img class="object-cover w-full rounded-lg h-96" src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940232/admin_view-1.png.002_vqto2j.png" alt="sample view of admin screen-1">
+          <%= link_to "#", data: { "lightbox-source-param": cl_image_path("p5c28bn9fqf829pvxl8s.jpg", :quality=>"auto", :fetch_format=>:auto), action: "lightbox#handleOpen" } do %>
+            <%= cl_image_tag("p5c28bn9fqf829pvxl8s.jpg", :quality=>"auto", :fetch_format=>:auto, class: "object-cover w-full rounded-lg h-96") %>
           <% end %>
           <h2 class="mt-4 text-2xl font-semibold text-gray-800 dark:text-gray-200">
             管理者画面
@@ -327,8 +326,8 @@
         </div>
 
         <div class="text-center">
-          <%= link_to "#", data: { "lightbox-source-param": 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940244/admin_image-2.png.001_crnzoz.png', action: "lightbox#handleOpen" } do %>
-            <img class="object-cover w-full rounded-lg h-96" src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940244/admin_image-2.png.001_crnzoz.png" alt="sample view of admin screen-2">
+          <%= link_to "#", data: { "lightbox-source-param": cl_image_path("wxr0ztply7rv9450idlu.jpg", :quality=>"auto", :fetch_format=>:auto), action: "lightbox#handleOpen" } do %>
+            <%= cl_image_tag("wxr0ztply7rv9450idlu.jpg", :quality=>"auto", :fetch_format=>:auto, class: "object-cover w-full rounded-lg h-96") %>
           <% end %>
           <h2 class="mt-4 text-2xl font-semibold text-gray-800 dark:text-gray-200">
             管理者画面

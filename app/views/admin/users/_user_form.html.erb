@@ -1,4 +1,4 @@
-<%= simple_form_for @user, url: admin_users_path, data: { turbo_frame: "_top" } do |f| %>
+<%= simple_form_for @user, url: admin_users_path do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="w-full flex flex-col mt-8">
     <div class="md:flex items-center">

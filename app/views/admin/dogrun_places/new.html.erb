@@ -2,7 +2,7 @@
 <div class="bg-gray-300 w-full mx-auto px-6 lg:px-8">
   <p class="text-3xl font-bold leading-7 text-center mb-10 mt-3"><%= t'.title' %></p>
   <div class="container bg-purple-200 w-full shadow rounded p-8 sm:p-10">
-    <%= simple_form_for @dogrun_place, url: admin_dogrun_places_path, data: { controller: 'preview disable', "disable-with-value": t('defaults.updating'), turbo_frame: "_top" } do |f| %>
+    <%= simple_form_for @dogrun_place, url: admin_dogrun_places_path, data: { controller: 'preview disable', "disable-with-value": t('defaults.updating') } do |f| %>
       <%= render partial: 'admin/dogrun_places/form', locals: { f: f } %>
     <% end %>
   </div>

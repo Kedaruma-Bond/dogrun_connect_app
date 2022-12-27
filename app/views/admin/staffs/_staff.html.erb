@@ -2,7 +2,7 @@
   <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
     <% if staff.enable? %>
       <%= link_to disable_notification_admin_staff_path(staff),
-          data: { turbo_method: :patch, turbo_confirm: t('.disable_confirmation'), turbo_frame: "_top" }, 
+          data: { turbo_method: :patch, turbo_confirm: t('.disable_confirmation') }, 
           class: "flex justify-left ml-2 text-sm text-gray-900 hover:text-gray-500 py-2 px-4" do %>
         <svg class="w-6 h-6" stroke-width="1.5" viewBox="0 0 24 24" fill="#4ade80" xmlns="http://www.w3.org/2000/svg">
           <path d="M18 8.4c0-1.697-.632-3.325-1.757-4.525C15.117 2.675 13.59 2 12 2c-1.591 0-3.117.674-4.243 1.875C6.632 5.075 6 6.703 6 8.4 6 15.867 3 18 3 18h18s-3-2.133-3-9.6zM13.73 21a1.999 1.999 0 01-3.46 0" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -10,7 +10,7 @@
       <% end %>
     <% else %>
       <%= link_to enable_notification_admin_staff_path(staff), 
-          data: { turbo_method: :patch, turbo_confirm: t('.enable_confirmation'), turbo_frame: "_top" }, 
+          data: { turbo_method: :patch, turbo_confirm: t('.enable_confirmation') }, 
           class: "flex justify-left ml-2 text-sm text-gray-900 hover:text-gray-500 py-2 px-4" do %>
         <svg class="w-6 h-6" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M6.27 6.5C6.093 7.11 6 7.75 6 8.4 6 15.867 3 18 3 18h15M7.757 3.875C8.883 2.675 10.41 2 12 2c1.591 0 3.117.674 4.243 1.875C17.368 5.075 18 6.703 18 8.4c0 7.467 3 9.6 3 9.6M13.73 21a1.999 1.999 0 01-3.46 0M3 3l18 18" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -25,7 +25,7 @@
     <%= staff.email %>
   </td>
   <td>
-    <%= link_to admin_staff_path(staff), data: { turbo_method: :delete, turbo_confirm: t('defaults.destroy_confirmation'), turbo_frame: "_top" }, class: "flex justify-left ml-2 text-sm text-gray-900 hover:text-gray-500 py-2 px-4" do %>
+    <%= link_to admin_staff_path(staff), data: { turbo_method: :delete, turbo_confirm: t('defaults.destroy_confirmation') }, class: "flex justify-left ml-2 text-sm text-gray-900 hover:text-gray-500 py-2 px-4" do %>
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
       </svg>

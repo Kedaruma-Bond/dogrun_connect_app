@@ -2,7 +2,7 @@
   <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
     <% if post.is_publishing? %>
       <%= link_to cancel_to_publish_admin_post_path(post), 
-          data: { turbo_method: :patch, turbo_confirm: t('.cancel_to_publish_confirmation'), turbo_frame: "_top" }, 
+          data: { turbo_method: :patch, turbo_confirm: t('.cancel_to_publish_confirmation') }, 
           class: "flex justify-center ml-1 py-2 px-4" do %>
         <svg class="w-6 h-6" viewBox="0 0 24 24" stroke-width="1.92" fill="none" xmlns="http://www.w3.org/2000/svg" color="#16df77">
           <path d="M9.5 14.5L3 21M5 9.485l9.193 9.193 1.697-1.697-.393-3.787 5.51-4.673-5.85-5.85-4.674 5.51-3.786-.393L5 9.485z" stroke="#16df77" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -10,8 +10,7 @@
       <% end %>
     <% else %>
       <%= link_to set_publish_limit_admin_post_path(post), 
-          class: "flex justify-center ml-1 py-2 px-4",
-          data: { turbo_frame: "_content" } do %>
+          class: "flex justify-center ml-1 py-2 px-4" do %>
           <svg class="w-5 h-5" viewBox="0 0 24 24" stroke-width="1.92" fill="none" xmlns="http://www.w3.org/2000/svg" color="#df1616">
             <path d="M9.5 14.5L3 21M7.676 7.89l-.979-.102L5 9.485l9.193 9.193 1.697-1.697-.102-.981m-4.303-9l3.672-4.329 5.85 5.85-4.308 3.654M3 3l18 18" stroke="#df1616" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
@@ -36,14 +35,14 @@
   </td>
   <td>
     <% if post.article? %>
-      <%= link_to edit_admin_article_path(post), data: { turbo_confirm: t('defaults.edit_confirmation'), turbo_frame: "_content" }, 
+      <%= link_to edit_admin_article_path(post), data: { turbo_method: :get, turbo_confirm: t('defaults.edit_confirmation') }, 
           class: "flex justify-left ml-2 text-sm text-gray-900 hover:text-gray-500 py-2 px-4" do %>
         <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
           <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
         </svg>
       <% end %>
     <% else %>
-      <%= link_to edit_admin_embed_path(post), data: { turbo_confirm: t('defaults.edit_confirmation'), turbo_frame: "_content" }, 
+      <%= link_to edit_admin_embed_path(post), data: { turbo_method: :get, turbo_confirm: t('defaults.edit_confirmation') }, 
           class: "flex justify-left ml-2 text-sm text-gray-900 hover:text-gray-500 py-2 px-4" do %>
         <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
           <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
@@ -53,7 +52,7 @@
   </td>
   <td>
     <%= link_to admin_post_path(post), 
-        data: { turbo_method: :delete, turbo_frame: "_top", turbo_confirm: t('defaults.destroy_confirmation') }, 
+        data: { turbo_method: :delete, turbo_confirm: t('defaults.destroy_confirmation') }, 
         class: "flex justify-left ml-2 text-sm text-gray-900 hover:text-gray-500 py-2 px-4" do %>
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
