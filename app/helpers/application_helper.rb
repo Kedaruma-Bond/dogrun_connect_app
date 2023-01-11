@@ -5,6 +5,10 @@ module ApplicationHelper
     page_title.empty? ? base_title : "#{page_title} | #{base_title}"
   end
 
+  def nested_dom_id(*args)
+    args.map { |arg| arg.respond_to?(:to_key) ? dom_id(arg) : arg }.join("_")
+  end
+
   def default_meta_tags
     {
       site: Rails.application.credentials.meta_tags[:app],

@@ -1,9 +1,9 @@
 <% content_for(:title, t('.title')) %>
-<div class="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 mt-5">
+<div class="max-w-5xl mx-3 md:mx-auto sm:px-6 lg:px-8">
   <div class="bg-purple-200 w-full shadow rounded p-8 sm:p-12">
     <%= simple_format(t('.title'), { class: 'text-2xl font-bold leading-7 text-center mb-5' }, { wrapper_tag: "div" } ) %>
     <%= render "shared/refer_to_app_sns" %>
-    <%= form_with model: @embed, url: {controller: "embeds", action: "create" },  data: { controller: 'disable', 'disable-with-value': t('defaults.posting'), turbo: false } do |f| %>
+    <%= form_with model: @embed, url: {controller: "embeds", action: "create" },  data: { controller: 'disable', 'disable-with-value': t('defaults.posting') } do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <div class="text-gray-600 w-full flex flex-col mt-4">
         <%= f.label :embed_type, class: "font-bold leading-none" %>

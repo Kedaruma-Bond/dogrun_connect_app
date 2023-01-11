@@ -1,4 +1,4 @@
-<%= form_with model: embed, url: admin_embed_path, data: { turbo: false } do |f| %>
+<%= form_with model: embed, url: admin_embed_path do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="text-gray-600 w-full flex flex-col mt-4">
     <%= f.label :embed_type, class: "font-bold leading-none" %>

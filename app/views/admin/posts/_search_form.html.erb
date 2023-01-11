@@ -1,9 +1,11 @@
-<%= search_form_for @q, url: search_admin_posts_path, html: { method: :GET, class: "flex w-full ml-3 items-center flex-wrap" }, data: { turbo: false } do |f| %>
+<%= search_form_for @q, url: search_admin_posts_path, 
+    html: { method: :get, class: "flex w-full ml-3 items-center flex-wrap" } do |f| %>
   <h2 class="text-gray-700 text-sm items-center mr-1 ml-1"><%= t('defaults.search_period')%></h2>
-  <div class="w-full"></div>
-  <%= f.date_field :created_at_gteq, class: "flex-grow h-10 w-1/12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" %>
-  <span class="pt-2 mr-3 ml-3">~</span>
-  <%= f.date_field :created_at_lteq_end_of_day, class: "flex-grow h-10 w-1/12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" %>
+  <div class="flex mr-3 md:mr-0">
+    <%= f.date_field :created_at_gteq, class: "flex-grow h-10 w-1/12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" %>
+    <span class="pt-2 mr-3 ml-3">~</span>
+    <%= f.date_field :created_at_lteq_end_of_day, class: "flex-grow h-10 w-1/12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5" %>
+  </div>
   <div class="flex-grow relative mt-2 md:mt-0 ml-0 md:ml-3">
     <div class="flex">
       <div class="absolute inset-y-0 left-0 items-center pt-3 pl-3 pointer-events-none">

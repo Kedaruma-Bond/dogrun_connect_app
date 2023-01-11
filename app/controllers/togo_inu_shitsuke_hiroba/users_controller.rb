@@ -25,12 +25,14 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
     end
     @end = @dogs.size - 1
     @times = 0
+
+    @Num_of_encount_dogs = EncountDog.encount_dog_of_user(current_user).size
     
     # 5個以上重複したencount recordを削除
     user_dogs = Dog.where(user_id: current_user.id)
     t = 0
-    user_dogs.count.times do
-      encounts = Encount.where(dogrun_place_id: 2).where(dog_id: user_dogs[t].id)
+    user_dogs.count.times do |t|
+      encounts = Encount.where(dogrun_place_id: @dogrun_place.id).where(dog_id: user_dogs[t].id)
       encounts.first.destroy! if encounts.count > 5
     end
   end

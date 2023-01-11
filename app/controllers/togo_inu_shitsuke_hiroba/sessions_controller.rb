@@ -15,7 +15,7 @@ class TogoInuShitsukeHiroba::SessionsController < TogoInuShitsukeHiroba::DogrunP
         else
           flash.now[:error] = t('.login_failed')
         end
-        render :new
+        render :new, status: :unprocessable_entity
       else
         redirect_back_or_to(togo_inu_shitsuke_hiroba_top_path, success: t('.login_successfully'))
       end

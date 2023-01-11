@@ -13,6 +13,6 @@ class DogRegistration
   
   def save
     dog = Dog.create(name: name, castration: castration, public: public, user_id: user_id)
-    RegistrationNumber.create!(registration_number: registration_number, dog_id: dog.id, dogrun_place_id: 2)
+    RegistrationNumber.create!(registration_number: registration_number, dog_id: dog.id, dogrun_place_id: dogrun_place_id)
   end
 end

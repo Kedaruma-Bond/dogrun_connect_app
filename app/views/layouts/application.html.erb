@@ -20,11 +20,11 @@
   <body class="dark:bg-gray-800 break-words flex flex-col min-h-screen">
     <%= render 'static_pages/navbar' %>
     <%= render 'shared/flash' %>
-    <main class="mb-auto relative">
+    <%= tag.main class: "mb-auto relative" do %>
       <div class="w-full" data-controller="service-worker">
         <%= yield %>
       </div>
-    </main>
+    <% end %>
     <%= render 'static_pages/footer' %>
   </body>
 </html>

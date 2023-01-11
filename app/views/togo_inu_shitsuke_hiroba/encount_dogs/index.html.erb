@@ -1,6 +1,8 @@
-<%= render EncountDogs::ViewComponent.new(
-  title: t('.title'),
-  pagy: @pagy
-  ) do %>
-  <%= render partial: 'shared/encount_dog', collection: @encount_dogs %>
+<%= turbo_frame_tag "togo_inu_shitsuke_hiroba_encount_dogs", autoscroll: true, data: { autoscroll_block: "start" } do %>
+  <%= render EncountDogs::ViewComponent.new(
+    title: t('.title'),
+    pagy: @pagy
+    ) do %>
+    <%= render partial: 'shared/encount_dog', collection: @encount_dogs %>
+  <% end %>
 <% end %>

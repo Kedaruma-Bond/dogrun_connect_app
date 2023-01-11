@@ -5,3 +5,7 @@ ja:
         title: SNSアカウント登録
       edit:
         title: SNSアカウント編集
+      sns_account_form:
+        facebook_id_hint: https://www.facebook.com/以降を入力してください
+        instagram_id_hint: https://www.instagram.com/以降を入力してください
+        twitter_id_hint: https://twitter.com/以降を入力してください

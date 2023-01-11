@@ -1,6 +1,6 @@
 <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
   <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
-    <span class="flex justify-center md:justify-start text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:rabies_vaccination_certificate) %></span>
+    <span class="flex justify-center md:justify-start text-sm font-light text-gray-600"><%= Dog.human_attribute_name(:rabies_vaccination_certificate) %></span>
     <% if dog.rabies_vaccination_certificate.blank? %>
       <p class="flex justify-center md:justify-start">no_image</p>
     <% else %>
@@ -10,7 +10,7 @@
     <% end %>
   </div>
   <div class="w-full mb-3 md:mb-0">
-    <span class="flex justify-center md:justify-start text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:date_of_rabies_vaccination) %></span>
+    <span class="flex justify-center md:justify-start text-sm font-light text-gray-600"><%= Dog.human_attribute_name(:date_of_rabies_vaccination) %></span>
     <p class="flex justify-center md:justify-start text-base font-bold">
       <% if dog.date_of_rabies_vaccination.blank? %>
         -
@@ -22,7 +22,7 @@
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
   <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
-    <span class="flex justify-center md:justify-start text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:mixed_vaccination_certificate) %></span>
+    <span class="flex justify-center md:justify-start text-sm font-light text-gray-600"><%= Dog.human_attribute_name(:mixed_vaccination_certificate) %></span>
     <% if dog.mixed_vaccination_certificate.blank? %>
       <p class="flex justify-center md:justify-start">no_image</p>
     <% else %>
@@ -32,7 +32,7 @@
     <% end %>
   </div>
   <div class="w-full mb-3 md:mb-0">
-    <span class="flex justify-center md:justify-start text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:date_of_mixed_vaccination) %></span>
+    <span class="flex justify-center md:justify-start text-sm font-light text-gray-600"><%= Dog.human_attribute_name(:date_of_mixed_vaccination) %></span>
     <p class="flex justify-center md:justify-start text-base font-bold">
       <% if dog.date_of_mixed_vaccination.blank? %>
         -
@@ -44,7 +44,7 @@
 </div>
 <div class="grid grid-cols-2 gap-2 w-full mb-3">
   <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
-    <span class="flex justify-center md:justify-start text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:registration_prefecture_code) %></span>
+    <span class="flex justify-center md:justify-start text-sm font-light text-gray-600"><%= Dog.human_attribute_name(:registration_prefecture_code) %></span>
     <p class="flex justify-center md:justify-start text-base font-bold">
       <% if dog.pref.blank? %>
         -
@@ -54,7 +54,7 @@
     </p>
   </div>
   <div class="w-full mb-3 md:mb-0">
-    <span class="flex justify-center md:justify-start text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:registration_municipality) %></span>
+    <span class="flex justify-center md:justify-start text-sm font-light text-gray-600"><%= Dog.human_attribute_name(:registration_municipality) %></span>
     <p class="flex justify-center md:justify-start text-base font-bold">
       <% if dog.registration_municipality.blank? %>
         -
@@ -66,7 +66,7 @@
 </div>
 <div class="grid grid-cols-2 gap-2 w-full mb-3">
   <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
-    <span class="flex justify-center md:justify-start text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:municipal_registration_number) %></span>
+    <span class="flex justify-center md:justify-start text-sm font-light text-gray-600"><%= Dog.human_attribute_name(:municipal_registration_number) %></span>
     <p class="flex justify-center md:justify-start text-base font-bold">
       <% if dog.municipal_registration_number.blank? %>
         -
@@ -76,7 +76,7 @@
     </p>
   </div>
   <div class="w-full mb-3 md:mb-0">
-    <span class="flex justify-center md:justify-start text-xs font-light text-gray-600"><%= Dog.human_attribute_name(:license_plate) %></span>
+    <span class="flex justify-center md:justify-start text-sm font-light text-gray-600"><%= Dog.human_attribute_name(:license_plate) %></span>
     <% if dog.license_plate.blank? %>
       <p class="flex justify-center md:justify-start">no_image</p>
     <% else %>

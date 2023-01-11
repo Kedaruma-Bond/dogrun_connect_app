@@ -12,12 +12,14 @@ class Admin::StaffsController < Admin::BaseController
     @staff = Staff.new(staff_params)
     @dogrun_place = DogrunPlace.find(current_user.dogrun_place_id)
 
-    if @staff.save!
+    if @staff.save
       StaffMailer.staff_registration_success(@staff, @dogrun_place).deliver_now
       respond_to do |format|
         format.html { redirect_to admin_staffs_path, success: t('.staff_create') }
         format.json { head :no_content }
       end
+    else
+      redirect_to  admin_staffs_path, error: t(".fail_to_register")
     end
   end
 

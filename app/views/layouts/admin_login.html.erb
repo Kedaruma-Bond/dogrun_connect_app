@@ -16,12 +16,14 @@
   <%= render 'application/google_tag' %>
 
   <body class="break-words flex flex-col min-h-screen bg-gray-800 font-sans leading-normal tracking-normal">
-    <%= render partial: 'shared/flash' %>
+    <div id="flash">
+      <%= render partial: 'shared/flash' %>
+    </div>
     <main class="flex-grow">
       <div class="w-full" data-controller="service-worker">
         <%= yield %>
-        <%= render partial: 'admin/shared/footer' %>
       </div>
     </main>
+    <%= render partial: 'admin/shared/footer' %>
   </body>
 </html>

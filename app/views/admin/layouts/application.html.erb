@@ -20,15 +20,16 @@
   <body class="bg-gray-800 font-sans min-h-screen">
     <%= render 'application/fb_sdk'%>
     <%= render partial: 'admin/shared/navbar' %>
-    <%= render partial: 'shared/flash' %>
-    <main class="relative">
+    <div id="flash">
+      <%= render partial: 'shared/flash' %>
+    </div>
+    <%= tag.main class: "relative" do %>
       <div class="flex flex-row" data-controller="service_worker">
         <%= render partial: 'admin/shared/sidebar' %>
         <%= turbo_frame_tag "notice_modal" %>
         <%= yield %>
       </div>
-      <%= render partial: 'admin/shared/footer' %>
-      </div>
-    </main>
+    <% end %>
+    <%= render partial: 'admin/shared/footer' %>
   </body>
 </html>

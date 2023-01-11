@@ -10,8 +10,12 @@ class TogoInuShitsukeHiroba::SnsAccountsController < TogoInuShitsukeHiroba::Dogr
     if @sns_account.facebook_id.blank? && @sns_account.instagram_id.blank? && @sns_account.twitter_id.blank?
       redirect_to togo_inu_shitsuke_hiroba_user_path(current_user), notice: t(".cancel_to_registration")
     else
-      @sns_account.save
-      redirect_to togo_inu_shitsuke_hiroba_user_path(current_user), success: t(".registration_successful")
+      if SnsAccount.where(user: current_user).present?
+        redirect_to togo_inu_shitsuke_hiroba_user_path(current_user), error: t(".registration_duplicated")
+      else
+        @sns_account.save!
+        redirect_to togo_inu_shitsuke_hiroba_user_path(current_user), success: t(".registration_successful")
+      end
     end
   end
 
@@ -33,7 +37,7 @@ class TogoInuShitsukeHiroba::SnsAccountsController < TogoInuShitsukeHiroba::Dogr
   def destroy
     @sns_account = SnsAccount.find(params[:id])
     @sns_account.destroy
-    redirect_to togo_inu_shitsuke_hiroba_user_path(current_user), notice: t("defaults.destroy_successfully")
+    redirect_to togo_inu_shitsuke_hiroba_user_path(current_user), success: t("defaults.destroy_successfully")
   end
 
   private

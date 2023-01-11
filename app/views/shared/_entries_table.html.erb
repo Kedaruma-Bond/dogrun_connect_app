@@ -5,7 +5,7 @@
         <div class="flex flex-wrap items-center">
           <div class="relative w-full px-4 max-w-full flex-grow flex-1 ">
             <h3 class="font-semibold text-lg text-white text-center">
-              <%= I18n.t("shared.entries_table.table_of_entries_latest_max_five", times: @t) %>
+              <%= I18n.t("shared.entries_table.table_of_entries_latest_max_five", times: @Num_of_entry_records_to_display) %>
             </h3>
           </div>
         </div>
@@ -29,7 +29,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @t.times do |t| %>
+            <% @Num_of_entry_records_to_display.times do |t| %>
               <% if @entries[t].nil? %>
                 <tr>
                   <% 4.times do %>

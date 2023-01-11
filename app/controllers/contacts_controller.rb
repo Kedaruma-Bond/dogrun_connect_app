@@ -12,22 +12,25 @@ class ContactsController < ApplicationController
     if @contact.valid?
       session[:contact] = contact_params
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   def create
     @contact = Contact.new(session[:contact].to_hash)
     if params[:back]
-      render :new,  :unprocessable_entity
+      render :new, status: :unprocessable_entity
       return
     end
 
-    return unless @contact.save!
+    if @contact.save
+      ContactMailer.send_mail(@contact).deliver_now
+      session.delete(:contact)
+      redirect_to '/', success: t('.success')
+      return
+    end
+    render :new, status: :unprocessable_entity
 
-    ContactMailer.send_mail(@contact).deliver_now
-    session.delete(:contact)
-    redirect_to '/', success: t('.success')
   end
 
   private
