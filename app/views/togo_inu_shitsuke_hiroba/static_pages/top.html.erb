@@ -54,8 +54,11 @@
         <% end %>
       </div>
       <%= render 'togo_inu_shitsuke_hiroba/static_pages/login_top_content' %>
+      <% if !@pre_entry_dogs_public_view.blank? %>
+        <%= render 'during_pre_entry_dogs_content' %>
+      <% end %>
       <% if !@dogs_public_view.blank? %>
-        <%= render 'togo_inu_shitsuke_hiroba/static_pages/detail_content' %>
+        <%= render 'during_entry_dogs_content' %>
       <% end %>
     </div>
 

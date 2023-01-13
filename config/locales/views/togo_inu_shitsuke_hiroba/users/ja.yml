@@ -13,7 +13,7 @@ ja:
         name: 飼い主さんの名前
         email: メールアドレス
         of_dogs: 頭
-        add_dog: 新たにワンちゃんを登録する
+        add_dog: 新たにワンコを登録する
         sns_account: 登録済SNS
         register_sns_id: SNS登録
         update_sns_id: SNS編集

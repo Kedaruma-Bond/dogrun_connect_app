@@ -12,7 +12,7 @@ ja:
       select_it: 選択してください
     entries_table:
       table_of_entries_latest_max_five: "過去%{times}回の利用状況"
-      playing_together: 一緒に遊んだワンちゃん
+      playing_together: 一緒に遊んだワンコ
     twitter:
       processing_embed_tweet: ツイート埋め込み処理中
     sns_account_form:

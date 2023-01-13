@@ -3,28 +3,6 @@ require 'active_support'
 module EntryConcern
   extend ActiveSupport::Concern
 
-  def remember(entries_array)
-    entries_id = []
-    entries_token = []
-    entries_array.each do |entry|
-      return if entry.nil?
-      
-      entry.remember
-      entries_id << entry.id
-      entries_token << entry.entry_token
-    end
-    cookies.permanent.encrypted[:entries_id] = JSON.generate(entries_id)
-    cookies.permanent[:entries_token] = JSON.generate(entries_token)
-  end
-  
-  def forget(entries)
-    entries.each do |entry|
-      entry.forget
-    end
-    cookies.delete(:entries_id)
-    cookies.delete(:entries_token)
-  end
-
   def exit_from_dogrun
     num = 0
     
@@ -32,8 +10,6 @@ module EntryConcern
       Entry.find(entry.id).update!(exit_at: Time.zone.now)
     end
     
-    forget(current_entries)
-    session.delete(:entries_id)
     @current_entries = nil
   end
 

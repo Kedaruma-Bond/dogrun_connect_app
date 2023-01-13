@@ -8,14 +8,14 @@ ja:
           エンカウントリスト
           の検索結果
       search_form:
-        search_field: ワンちゃんの名前検索
+        search_field: ワンコの名前検索
       edit:
         title: | 
-          出会ったワンちゃんの
+          出会ったワンコの
           情報を編集
         select_color_marker: 色を選択してください
         memo_placeholder: |
-          このワンちゃんへの印象や相性等々、自由に書いてください。
+          このワンコへの印象や相性等々、自由に書いてください。
           ※他人にこのメモは見られません。
-        encount_dog_name: 出会ったワンちゃんの名前
+        encount_dog_name: 出会ったワンコの名前
         

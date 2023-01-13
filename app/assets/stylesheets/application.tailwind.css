@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 .pagy-nav.pagination {
-   display: inline-flex;
-   border-radius: 0.375rem;
-   z-index: 0;
-   --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-   box-shadow: 0 0 #0000, 0 0 #0000, var(--tw-shadow);
-   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  display: inline-flex;
+  border-radius: 0.375rem;
+  z-index: 0;
+  --tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 #0000, 0 0 #0000, var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .pagy-nav .page {
-   --tw-text-opacity: 1;
+  --tw-text-opacity: 1;
     color: rgba(55, 65, 81, var(--tw-text-opacity));
     font-size: 16px;
     font-weight: 500;
@@ -28,13 +28,13 @@
 }
 
 .pagy-nav .page:hover {
-   background: #6d28d9;
-   color: white;
-   cursor: pointer;
+  background: #6d28d9;
+  color: white;
+  cursor: pointer;
 }
 
 .pagy-nav .disabled {
-   color: gray;
+  color: gray;
 }
 
 .pagy-nav .active {
@@ -56,4 +56,9 @@ font-weight: bolder !important;
 .pagy-nav .next {
   border-top-right-radius: 0.375rem;
   border-bottom-right-radius: 0.375rem;
+}
+
+.scroller {
+  scroll-snap-type: y;
+  scroll-padding-block-start: 64px;
 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_05_122959) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_11_054101) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -172,6 +172,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_122959) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "pre_entries", force: :cascade do |t|
+    t.bigint "dog_id", null: false
+    t.bigint "registration_number_id", null: false
+    t.integer "minutes_passed_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dog_id"], name: "index_pre_entries_on_dog_id"
+    t.index ["registration_number_id"], name: "index_pre_entries_on_registration_number_id"
+  end
+
   create_table "registration_numbers", force: :cascade do |t|
     t.string "registration_number", null: false
     t.bigint "dog_id", null: false
@@ -251,6 +261,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_122959) do
   add_foreign_key "entries", "registration_numbers"
   add_foreign_key "posts", "dogrun_places"
   add_foreign_key "posts", "users"
+  add_foreign_key "pre_entries", "dogs"
+  add_foreign_key "pre_entries", "registration_numbers"
   add_foreign_key "registration_numbers", "dogrun_places"
   add_foreign_key "registration_numbers", "dogs"
   add_foreign_key "sns_accounts", "dogrun_places"

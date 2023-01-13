@@ -1,5 +1,5 @@
 namespace :encount_generator do
-  desc "ドッグランに入場中のワンちゃんたちからencountレコードを作成する"
+  desc "ドッグランに入場中のワンコたちからencountレコードを作成する"
   task togo_inu_shitsuke_hiroba: :environment do
     if Rails.cache.exist?('previous_dogs_id')
       previous_dogs_id = Rails.cache.read('previous_dogs_id')

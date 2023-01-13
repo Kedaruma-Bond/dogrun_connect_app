@@ -12,9 +12,9 @@ ja:
           編集
         change_thumbnail: サムネイル変更
         registration_number: パスポート番号
-        dog_name: ワンちゃんの名前
+        dog_name: ワンコの名前
         clear: クリア
-        owner_comment_placeholder: ワンちゃんの性格等、ドッグランで過ごす際に周りの方に知っておいてもらいたいことなどを記載してください
+        owner_comment_placeholder: ワンコの性格等、ドッグランで過ごす際に周りの方に知っておいてもらいたいことなどを記載してください
         register_more_detail_data: 接種証明・鑑札情報の登録
         these_information_is_not_viewable: |
           これらの情報は管理者を除く
