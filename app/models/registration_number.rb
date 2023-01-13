@@ -2,6 +2,7 @@ class RegistrationNumber < ApplicationRecord
   belongs_to :dog
   belongs_to :dogrun_place
   has_many :entries, dependent: :destroy
+  has_one :pre_entry, dependent: :destroy
 
   # validates
   validates :registration_number, presence: true

@@ -62,28 +62,39 @@ ja:
         registration_duplicated: 登録が重複しています
       update:
         cancel_to_registration: 編集はキャンセルされました
+    pre_entries:
+      destroy:
+        pre_entries_canceled_successfully: 入場予定をキャンセルしました
     entries:
       create:
         entry_success: 入場しました
+        pre_entry_success: お待ちしてます
         select_entry_dog: |
-          入場するワンちゃんを
+          入場するワンコを
+          選択してください
+        select_pre_entry_dog: |
+          利用予定のワンコを
           選択してください
         select_dog_has_already_entered: |
-          すでに入場中のワンちゃんが
+          すでに入場中のワンコが
           選択されています
+        select_dog_has_already_pre_entered: |
+          すでに利用予定となっている
+          ワンコが選択されています
       update:
         exit_success: またのご来場をお待ちしています
     dog_registration:
       create:
         dog_registration: |
-          ワンちゃんを登録できました
+          ワンコを登録できました
           DogrunConnectを是非ドッグランで活用してください
     users:
       create:
         user_create: |
-          ユーザーを登録しました
-          引き続きワンちゃんの登録をお願いします
-          ２頭目以降のワンちゃんはプロフィール画面から登録できます
+          ユーザー登録完了です
+          引き続きワンコの登録をお願いします
+          ２頭目以降のワンコの登録は
+          プロフィール画面から実施できます
     sessions:
       create:
         login_successfully: ログインしました
@@ -99,7 +110,8 @@ ja:
       guest_login:
         guest_login_successfully: |
           ゲストログインしました
-          ワンちゃんの登録はゲストログインではできません
+          ゲストログイン状態では
+          ワンコの登録はできません
           新規登録が必要です
       jump_to_signup:
         signup_please: |
@@ -108,7 +120,7 @@ ja:
     dogs:
       update:
         dog_profile_updated: |
-          ワンちゃんのプロフィールを
+          ワンコのプロフィールを
           更新しました
     registration_numbers:
       destroy:
@@ -129,14 +141,14 @@ ja:
   activerecord:
     models:
       contact: お問い合わせ
-      dog: ワンちゃん
+      dog: ワンコ
       user: 飼い主さん
       registration_number: 登録番号
       post: ドッグランへの投稿
       dogrun_place: ドッグラン
       facility: ドッグランの設備
       encount: 出会い
-      encount_dog: 出会ったワンちゃん
+      encount_dog: 出会ったワンコ
     attributes:
       facility:
         name: ドッグランの設備
@@ -167,7 +179,7 @@ ja:
         password_confirmation: パスワード 確認
         agreement: 利用規約とプライバシーポリシー
       dog:
-        name: ワンちゃんの名前
+        name: ワンコの名前
         castration: |
           避妊
           ・
@@ -222,7 +234,7 @@ ja:
       # form objectを使用する場合はlocaleはここに書く
       dog_registration:
         registration_number: 登録番号
-        name: ワンちゃんの名前
+        name: ワンコの名前
 
   attributes:
     created_at: 作成日

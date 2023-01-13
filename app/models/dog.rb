@@ -2,6 +2,7 @@ class Dog < ApplicationRecord
   belongs_to :user
   has_many :registration_numbers, dependent: :destroy
   has_many :entries, dependent: :destroy
+  has_one :pre_entry, dependent: :destroy
   has_many :encount_dogs, dependent: :destroy
   has_many :encounts, dependent: :destroy
   has_one_attached :thumbnail

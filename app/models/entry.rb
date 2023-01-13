@@ -3,7 +3,7 @@ class Entry < ApplicationRecord
   belongs_to :registration_number
   has_many :encounts, dependent: :destroy
 
-  attr_accessor :select_dog, :entry_token
+  attr_accessor :select_dog, :pre_flg
 
   #validations
   validates :entry_at, presence: true
@@ -14,30 +14,6 @@ class Entry < ApplicationRecord
   scope :user_id, -> (user_id) { includes(dog: [:user]).where(dogs: { user_id: user_id }) }
   scope :user_id_at_local, -> (user_id) { includes(:dog, :registration_number).where(dogs: { user_id: user_id }) }
 
-
-  class << self
-    def digest(string)
-      cost = BCrypt::Engine::MIN_COST
-      BCrypt::Password.create(string, cost: cost)
-    end
-  
-    def new_token
-      SecureRandom.urlsafe_base64
-    end
-  end
-
-  def remember
-    self.entry_token = Entry.new_token
-    update_attribute(:entry_digest, Entry.digest(entry_token))
-  end
-
-  def authenticated?(entry_token)
-    BCrypt::Password.new(entry_digest).is_password?(entry_token)
-  end
-
-  def forget
-    update_attribute(:entry_digest, nil)
-  end
 end
 
 # == Schema Information

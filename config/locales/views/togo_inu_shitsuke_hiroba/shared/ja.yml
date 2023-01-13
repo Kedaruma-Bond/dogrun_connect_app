@@ -11,7 +11,7 @@ ja:
       dog_profile:
         age_unit: 歳
         destroy_confirm: |
-          このワンちゃんの登録を
+          このワンコの登録を
           本当に解除しますか？
         delete: 登録削除
         registration_number: |

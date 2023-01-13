@@ -10,7 +10,7 @@ ja:
       search:
         title: 登録犬検索結果
       search_form:
-        search_field: 飼い主さんの名前/ワンちゃんの名前/犬種検索 
+        search_field: 飼い主さんの名前/ワンコの名前/犬種検索 
       show:
         title: ワンコのプロフィール
         dog_owner_sns: 飼い主さんのSNS
@@ -18,7 +18,7 @@ ja:
         title: ワンコの情報編集
         dog_name: ワンコの名前
         change_image: サムネイル変更
-        owner_comment_placeholder: ワンちゃんの性格等、ドッグランで過ごす際に周りの方に知っておいてもらいたいことなどを記載してください
+        owner_comment_placeholder: ワンコの性格等、ドッグランで過ごす際に周りの方に知っておいてもらいたいことなどを記載してください
         register_more_detail_data: 接種証明書・鑑札の登録
         register_rabies_vaccination_certificate: 狂犬病予防接種証明の写真登録
         register_mixed_vaccination_certificate: 混合ワクチン接種証明の写真登録

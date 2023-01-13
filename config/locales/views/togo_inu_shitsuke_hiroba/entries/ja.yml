@@ -6,7 +6,7 @@ ja:
           %{dogrun} の
           利用記録一覧
       search_form:
-        search_field: ワンちゃんの名前検索
+        search_field: ワンコの名前検索
       search:
         title: |
           %{dogrun} の

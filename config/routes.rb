@@ -34,7 +34,8 @@ Rails.application.routes.draw do
         get 'search', to: 'encount_dogs#search'
       end
     end
-    
+
+    resource :pre_entries, only: %i[destroy]
     resource :entries, only: %i[create update]
     resources :entries, only: %i[index] do
       collection do
