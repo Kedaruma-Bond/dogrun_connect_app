@@ -67,21 +67,27 @@ module.exports = {
               opacity: "1"
           }
         },
-        "vibrate-1": {
-          "0%,to": {
-              transform: "translate(0)"
+        "heartbeat": {
+          "0%": {
+            transform: "scale(1)",
+            "transform-origin": "center center",
+            "animation-timing-function": "ease-out"
+            },
+          "10%": {
+            transform: "scale(.91)",
+            "animation-timing-function": "ease-in"
           },
-          "20%": {
-              transform: "translate(-2px, 2px)"
+          "17%": {
+            transform: "scale(.98)",
+            "animation-timing-function": "ease-out"
           },
-          "40%": {
-              transform: "translate(-2px, -2px)"
+          "33%": {
+            transform: "scale(.87)",
+            "animation-timing-function": "ease-in"
           },
-          "60%": {
-              transform: "translate(2px, 2px)"
-          },
-          "80%": {
-              transform: "translate(2px, -2px)"
+          "45%": {
+            transform: "scale(1)",
+            "animation-timing-function": "ease-out"
           }
         },
       },
@@ -90,7 +96,7 @@ module.exports = {
         "scale-in-ver-top": "scale-in-ver-top 0.1s cubic-bezier(0.250, 0.460, 0.450, 0.940)   both",
         "scale-out-ver-top": "scale-out-ver-top 0.1s cubic-bezier(0.550, 0.085, 0.680, 0.530)   both",
         "tilt-in-right-2": "tilt-in-right-2 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940)   both",
-        "vibrate-1": "vibrate-1 0.3s linear  infinite both",
+        "heartbeat": "heartbeat 1.5s ease  infinite both",
       }
     },
   },
