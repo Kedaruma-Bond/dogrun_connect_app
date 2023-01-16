@@ -13,8 +13,6 @@ ja:
     entries_table:
       table_of_entries_latest_max_five: "過去%{times}回の利用状況"
       playing_together: 一緒に遊んだワンコ
-    twitter:
-      processing_embed_tweet: ツイート埋め込み処理中
     sns_account_form:
       facebook_id_hint: https://www.facebook.com/以降を入力してください
       instagram_id_hint: https://www.instagram.com/以降を入力してください
