@@ -19,14 +19,14 @@
           <p class="text-gray-500 leading-relaxed text-base"><%= t'.email' %></p>
           <h2 class="text-lg font-semibold text-gray-700 title-font mb-2"><%= current_user.email %></h2>
           <% if current_user.sns_account.nil? %>
-              <%= link_to new_togo_inu_shitsuke_hiroba_sns_account_path, data: { controller: 'sns-form-modal', action: 'sns-form-modal#open', turbo_frame: 'sns_account_form_modal' } do %>
+              <%= link_to new_togo_inu_shitsuke_hiroba_sns_account_path, data: { turbo_frame: 'sns_account_form_modal' } do %>
                 <button class="px-2 py-2 text-sm font-normal mr-5 md:mr-1 tracking-wide text-gray-200 capitalize transition-colors duration-200 transform bg-sky-700 rounded-md hover:bg-sky-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
                   <span class="mx-auto"><%= t'.register_sns_id' %></span>
                 </button>
               <% end %>
           <% else %>
             <div class="flex mb-2">
-              <%= link_to edit_togo_inu_shitsuke_hiroba_sns_account_path(current_user.sns_account), data: { controller: 'sns-form-modal', action: 'sns-form-modal#open', turbo_frame: 'sns_account_form_modal' } do %>
+              <%= link_to edit_togo_inu_shitsuke_hiroba_sns_account_path(current_user.sns_account), data: { turbo_frame: 'sns_account_form_modal' } do %>
                 <button class="px-2 py-2 text-sm font-normal mr-5 md:mr-1 tracking-wide text-gray-200 capitalize transition-colors duration-200 transform bg-sky-700 rounded-md hover:bg-sky-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
                   <span class="mx-auto"><%= t'.update_sns_id' %></span>
                 </button>

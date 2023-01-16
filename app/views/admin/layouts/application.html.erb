@@ -26,7 +26,6 @@
     <%= tag.main class: "relative" do %>
       <div class="flex flex-row" data-controller="service_worker">
         <%= render partial: 'admin/shared/sidebar' %>
-        <%= turbo_frame_tag "notice_modal" %>
         <%= yield %>
       </div>
     <% end %>

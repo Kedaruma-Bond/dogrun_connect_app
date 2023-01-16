@@ -1,8 +1,6 @@
-<%= turbo_frame_tag "togo_inu_shitsuke_hiroba_entries", autoscroll: true, data: { autoscroll_block: "start" } do %>
-  <%= render Entries::ViewComponent.new(
-    title: I18n.t('togo_inu_shitsuke_hiroba.entries.index.title', dogrun: DogrunPlace.find(2).name),
-    pagy: @pagy
-    ) do %>
+<%= render Entries::ViewComponent.new(
+  title: I18n.t('togo_inu_shitsuke_hiroba.entries.index.title', dogrun: DogrunPlace.find(2).name),
+  pagy: @pagy
+  ) do %>
     <%= render partial: 'shared/entry', collection: @entries %>
-  <% end %>
 <% end %>
