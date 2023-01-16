@@ -13,12 +13,12 @@
     <title><%= page_title(yield(:title)) %></title>
     <%= Gon::Base.render_data %>
     <%= render 'application/favicon' %>
+    <%= render 'application/google_tag' %>
+    <%= render 'application/fb_sdk'%>
     <%= display_meta_tags(default_meta_tags) %>
   </head>
-  <%= render 'application/google_tag' %>
 
   <body class="bg-gray-800 font-sans min-h-screen">
-    <%= render 'application/fb_sdk'%>
     <%= render partial: 'admin/shared/navbar' %>
     <div id="flash">
       <%= render partial: 'shared/flash' %>

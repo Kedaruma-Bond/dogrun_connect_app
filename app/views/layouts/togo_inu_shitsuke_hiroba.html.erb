@@ -12,11 +12,12 @@
     <title><%= page_title(yield(:title)) %></title>
     <%= Gon::Base.render_data %>
     <%= render 'application/favicon' %>
+    <%= render 'application/google_tag' %>
+    <%= render 'application/fb_sdk' %>
     <%= display_meta_tags(default_meta_tags) %>
   </head>
 
   <body class="dark:bg-gray-800 break-words flex flex-col min-h-screen">
-    <%= render 'application/fb_sdk' %>
     <% if logged_in? %>
       <%= render 'togo_inu_shitsuke_hiroba/shared/login_navbar' %>
     <% else %>
