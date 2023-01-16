@@ -19,7 +19,9 @@
 
   <body class="dark:bg-gray-800 break-words flex flex-col min-h-screen">
     <%= render 'static_pages/navbar' %>
-    <%= render 'shared/flash' %>
+    <div id="flash" class="z-50 flex-col fixed top-16 right-1 ">
+      <%= render 'shared/flash' %>
+    </div>
     <%= tag.main class: "mb-auto relative" do %>
       <div class="w-full" data-controller="service-worker">
         <%= yield %>
