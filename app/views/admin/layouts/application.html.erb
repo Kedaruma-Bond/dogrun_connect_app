@@ -21,7 +21,7 @@
   <body class="bg-gray-800 font-sans min-h-screen">
     <%= render partial: 'admin/shared/navbar' %>
     <div id="flash">
-      <%= render partial: 'shared/flash' %>
+      <%= render 'shared/flash' %>
     </div>
     <%= tag.main class: "relative" do %>
       <div class="flex flex-row" data-controller="service_worker">

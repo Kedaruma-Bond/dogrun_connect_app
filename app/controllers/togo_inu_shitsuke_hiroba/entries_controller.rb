@@ -38,7 +38,10 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
         end
 
         if @dogs.count == @zero_count
-          redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.select_entry_dog')
+          respond_to do |format|
+            format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.select_entry_dog') }
+            format.turbo_stream { flash.now[:error] = t('.select_entry_dog') }
+          end
           return
         else
           redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.entry_success')
@@ -49,7 +52,10 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
           @dog = @dogs[@num]
 
           if PreEntry.where(dog: @dog).present?
-            redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.select_dog_has_already_pre_entered')
+            respond_to do |format|
+              format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.select_dog_has_already_pre_entered') }
+              format.turbo_stream { flash.now[:error] = t('.select_dog_has_already_pre_entered') }
+            end
             return
           end
 
@@ -66,7 +72,10 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
           @num += 1
         end
         if @dogs.count == @zero_count
-          redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.select_pre_entry_dog')
+          respond_to do |format|
+            format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.select_pre_entry_dog') }
+            format.turbo_stream { flash.now[:error] = t('.select_pre_entry_dog') }
+          end
           return
         else
           redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.pre_entry_success')
