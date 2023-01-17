@@ -17,6 +17,9 @@
                 <%= @dogrun_place.name %>
               </h2>
               <div class="w-32 h-1 bg-gray-200 rounded mt-2 mb-4"></div>
+              <%= turbo_frame_tag dom_id(@dogrun_place, :force_closed_switch) do %>
+                <%= render partial: "force_closed_switch", locals: { dogrun_place: @dogrun_place } %>
+              <% end %>
               <div class="flex md:hidden items-center mt-2 flex-row justify-center text-left">
                 <%= link_to edit_admin_dogrun_place_path(@dogrun_place) do %>
                   <button class="flex items-center px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">

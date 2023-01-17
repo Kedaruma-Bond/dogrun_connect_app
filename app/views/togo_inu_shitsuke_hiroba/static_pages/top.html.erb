@@ -25,40 +25,61 @@
       </h1>
     <% end %>
     <div class="w-full sm:px-10 pt-1 sm:pb-0">
-      <div class="flex flex-col mt-1 font-bold">
-        <p class='text-center text-gray-700 text-2xl relative right-10'>
-          <%= t'.site_in' %>
-        </p>
-        <div class="text-2xl flex text-center mt-4 mx-auto relative left-12">
-          <h1 class="flex text-6xl pb-2 text-gray-700">
-            <%= @num_of_playing_dogs %>
-          </h1>
-          <span class="ml-10 text-left">
-            <%= simple_format(t('.playing1'), class:"text-gray-700") %>
-            <%= simple_format(t('.playing2'), class:"text-gray-700") %>
-          </span>
+      <% if @dogrun_place.closed_flag == true %>
+        <div class="my-10">
+          <%= simple_format(I18n.t("togo_inu_shitsuke_hiroba.static_pages.top.dogrun_is_closing_now", dogrun_name: @dogrun_place.name), class: "text-gray-700 font-bold text-2xl") %>
+          <% if !@dogrun_place.force_closing? %>
+            <div class="mt-3 text-gray-700 font-medium">
+                <% if !@dogrun_place.opening_time.blank? || !@dogrun_place.closing_time.blank? %>
+                  <p class="text-sm mt-2">
+                    <%= t('defaults.business_time') %>
+                  </p>
+                  <h2 class="mt-1">
+                    <%= l @dogrun_place.opening_time, format: :short2 %>
+                    〜
+                    <%= l @dogrun_place.closing_time, format: :short2 %>
+                  </h2>
+                <% end %>
+            </div>
+          <% end %>
         </div>
-        <% if @num_of_playing_dogs.zero? %>
-          <p class="text-center text-base font-medium text-orange-500 mt-2 sm:mb-6">
-            <%= t'.nobody_playing' %>
+      <% else %>
+        <div class="flex flex-col mt-1 font-bold">
+          <p class='text-center text-gray-700 text-2xl relative right-10'>
+            <%= t'.site_in' %>
           </p>
-        <% end %>
-        <% if !@dogs_non_public.blank? %>
-          <div class="flex justify-center">
-              <%= simple_format(t('.among_them_non_public_dogs'), class: "text-left text-base font-medium text-stone-500 mt-2") %>
-            <p class="ml-3 text-base font-medium text-stone-500 mt-2 self-end">
-              <%= @dogs_non_public.size %>
-              <%= t('.unit_of_dogs') %>
+          <% if @num_of_playing_dogs.zero? %>
+            <p class="text-right mr-8 text-2xl font-bold text-gray-700 mt-2 sm:mb-6">
+              <%= t'.nobody_playing' %>
             </p>
-          </div>
+          <% else %>
+            <div class="text-2xl flex text-center mt-4 mx-auto relative left-12">
+              <h1 class="flex text-6xl pb-2 text-gray-700">
+                <%= @num_of_playing_dogs %>
+              </h1>
+              <span class="ml-10 text-left">
+                <%= simple_format(t('.playing1'), class:"text-gray-700") %>
+                <%= simple_format(t('.playing2'), class:"text-gray-700") %>
+              </span>
+            </div>
+          <% end %>
+          <% if !@dogs_non_public.blank? %>
+            <div class="flex justify-center">
+                <%= simple_format(t('.among_them_non_public_dogs'), class: "text-left text-base font-medium text-stone-500 mt-2") %>
+              <p class="ml-3 text-base font-medium text-stone-500 mt-2 self-end">
+                <%= @dogs_non_public.size %>
+                <%= t('.unit_of_dogs') %>
+              </p>
+            </div>
+          <% end %>
+        </div>
+        <%= render 'togo_inu_shitsuke_hiroba/static_pages/login_top_content' %>
+        <% if !@pre_entry_dogs_public_view.blank? %>
+          <%= render 'during_pre_entry_dogs_content' %>
         <% end %>
-      </div>
-      <%= render 'togo_inu_shitsuke_hiroba/static_pages/login_top_content' %>
-      <% if !@pre_entry_dogs_public_view.blank? %>
-        <%= render 'during_pre_entry_dogs_content' %>
-      <% end %>
-      <% if !@dogs_public_view.blank? %>
-        <%= render 'during_entry_dogs_content' %>
+        <% if !@dogs_public_view.blank? %>
+          <%= render 'during_entry_dogs_content' %>
+        <% end %>
       <% end %>
     </div>
 

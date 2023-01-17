@@ -1,5 +1,5 @@
 <%= render Entries::ViewComponent.new(
-  title: I18n.t('togo_inu_shitsuke_hiroba.entries.search.title', dogrun: DogrunPlace.find(2).name),
+  title: I18n.t('togo_inu_shitsuke_hiroba.entries.search.title', dogrun: @dogrun_place.name),
   pagy: @pagy
   ) do %>
     <%= render partial: 'shared/entry', collection: @entries_results %>

@@ -8,6 +8,13 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
   end
 
   def create
+    if @dogrun_place.closed_flag == true
+      respond_to do |format|
+        format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.dogrun_is_closing_now') }
+        format.turbo_stream { flash.now[:error] = t('.dogrun_is_closing_now') }
+      end
+      return
+    end
     if not_pre_entry?
       @entries_array = []
       clear_zero

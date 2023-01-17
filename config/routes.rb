@@ -62,7 +62,12 @@ Rails.application.routes.draw do
   
   namespace :admin do
     root 'dashboards#index'
-    resources :dogrun_places, only: %i[index new create edit update show]
+    resources :dogrun_places, only: %i[index new create edit update show] do
+      member do
+        patch 'force_closed', to: 'dogrun_places#force_closed'
+        patch 'release', to: 'dogrun_places#release'
+      end
+    end
 
     resources :posts, only: %i[index new create destroy] do
       collection do

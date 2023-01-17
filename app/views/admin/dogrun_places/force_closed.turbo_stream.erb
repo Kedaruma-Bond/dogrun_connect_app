@@ -1,0 +1,5 @@
+<%= render_turbo_stream_flash_messages %>
+
+<%= turbo_stream.update dom_id(@dogrun_place, :force_closed_switch) do %>
+  <%= render partial: "force_closed_switch", locals: { dogrun_place: @dogrun_place } %>
+<% end %>

@@ -2,10 +2,9 @@ ja:
   togo_inu_shitsuke_hiroba:
     static_pages:
       top:
-        dogrun: '犬のしつけ広場'
         signup: '新規登録'
         before_using_dogrun: ドッグランの利用規約
-        site_in: 今、ドッグランには
+        site_in: 今、ドッグランでは
         playing1: 頭の仔が
         playing2: 遊んでいます
         detail: ドッグランにいる仔の詳細
@@ -20,22 +19,23 @@ ja:
           広場を利用する際は
           お手数ですが入口に設置してある
           ノートへの記帳も一緒にお願いします🙇
-        nobody_playing: 誰も遊んでいません 今いけば貸切状態です
+        nobody_playing: 誰も遊んでいません
         among_them_non_public_dogs: |
           そのうち利用状況が
           非公開なワンコは
         unit_of_dogs: 頭です
+        dogrun_is_closing_now: |
+          %{dogrun_name}は
+          現在休業中です
       login_top_content:
         please_signup: |
           ワンコを登録するには
           飼い主さんの新規登録が必要です
         please_select_dog: ワンコを選択してください
         pre_entry_or_entry_confirm: ワンコを選択されていますか？
-        pre_entry_confirm: 30分以内に来れそうですか？
         entry_confirm: 入場してよろしいですか？
         cancel_confirm: 入場予定をキャンセルしますか？
         exit_confirm: 退場前の見回りは実施しましたか？
-        check_before_exit: 退場前の見回り
         during_entry_your_dogs: 入場中のあなたのワンコ
         during_pre_entry_your_dogs: もうすぐ行く予定となっているワンコ
         pre_entry: もうすぐ行きます

@@ -1,7 +1,7 @@
 class Admin::DogrunPlacesController < Admin::BaseController
   include Pagy::Backend
-  before_action :check_grand_admin, except: %i[show edit update]
-  before_action :correct_admin_user, only: %i[show edit update]
+  before_action :check_grand_admin, except: %i[show edit update force_closed release]
+  before_action :correct_admin_user, only: %i[show edit update force_closed release]
   before_action :dogrun_place_params, only: %i[create update]
   
   def index
@@ -41,6 +41,24 @@ class Admin::DogrunPlacesController < Admin::BaseController
       end
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def force_closed
+    @dogrun_place = DogrunPlace.find(params[:id]) 
+    @dogrun_place.update(force_closed: true, closed_flag: true)
+    respond_to do |format|
+      format.html { redirect_to  admin_dogrun_place_path(@dogrun_place), success: t('.forced_dogrun_to_close') }
+      format.turbo_stream { flash.now[:success] = t('.forced_dogrun_to_close') }
+    end
+  end
+
+  def release
+    @dogrun_place = DogrunPlace.find(params[:id]) 
+    @dogrun_place.update(force_closed: false, closed_flag: false)
+    respond_to do |format|
+      format.html { redirect_to  admin_dogrun_place_path(@dogrun_place), success: t('.released_dogrun_to_open') }
+      format.turbo_stream { flash.now[:success] = t('.released_dogrun_to_open') }
     end
   end
 

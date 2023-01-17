@@ -178,6 +178,10 @@ ja:
         deodorant_spray: 消臭スプレー
         store: 売店
         registration_not_required: 登録不要
+    dogrun_place:
+      force_closed:
+        force_closing: 強制休業
+        releasing: 営業時間依存
   activerecord:
     attributes:
       dog_registration:

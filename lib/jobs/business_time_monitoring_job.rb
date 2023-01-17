@@ -1,0 +1,24 @@
+class BusinessTimeMonitoringJob
+  def call
+    dogrun_places = DogrunPlace.where.not(opening_time: nil).where.not(closing_time: nil)
+    dogrun_places.each do |dogrun_place|
+      present_time_num = Time.zone.now.strftime('%H%M').to_i
+      case dogrun_place.closed_flag
+      when true
+        return if dogrun_place.force_closing?
+        opening_time_num = dogrun_place.opening_time.strftime('%H%M').to_i
+        if opening_time_num < present_time_num
+          dogrun_place.update(closed_flag: false)
+        else
+          return
+        end
+      when false
+        closing_time_num = dogrun_place.closing_time.strftime('%H%M').to_i
+        if dogrun_place.force_closing? || closing_time_num < present_time_num
+          dogrun_place.update(closed_flag: true) 
+        end
+        return
+      end
+    end
+  end
+end
