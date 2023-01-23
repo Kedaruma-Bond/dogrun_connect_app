@@ -57,11 +57,7 @@
           <% end %>
         </div>
         <%= render 'shared/during_pre_entry_dogs_content' %>
-        <% if current_user.guest? %>
-          <div class="mt-3">
-            <%= simple_format(t('.please_signup'), class: "text-purple-500 text-xl font-bold") %>
-          </div>
-        <% else %>
+        <% if !current_user.guest? %>
           <%= turbo_frame_tag dom_id(@dogrun_place, :login_top_content) do %>
             <%= render 'shared/login_top_content' %>
           <% end %>
