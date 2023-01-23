@@ -5,8 +5,6 @@ ja:
         signup: '新規登録'
         before_using_dogrun: ドッグランの利用規約
         site_in: 今、ドッグランでは
-        playing1: 頭の仔が
-        playing2: 遊んでいます
         detail: ドッグランにいる仔の詳細
         check_app_by_trial_guest_login: |
           ゲストログインでどんなアプリか
@@ -19,14 +17,18 @@ ja:
           広場を利用する際は
           お手数ですが入口に設置してある
           ノートへの記帳も一緒にお願いします🙇
+        dogrun_is_closing_now: |
+          %{dogrun_name}は
+          現在休業中です
+      num_of_playing_dogs:
+        playing1: 頭の仔が
+        playing2: 遊んでいます
         nobody_playing: 誰も遊んでいません
+      among_them_non_public_dogs:
         among_them_non_public_dogs: |
           そのうち利用状況が
           非公開なワンコは
         unit_of_dogs: 頭です
-        dogrun_is_closing_now: |
-          %{dogrun_name}は
-          現在休業中です
       login_top_content:
         please_signup: |
           ワンコを登録するには
@@ -45,3 +47,4 @@ ja:
         please_register_dog: ワンコを登録してください
       during_pre_entry_dogs_content:
         coming_soon?: もうすぐ来るかも？
+        no_one_will_come_for_a_while: しばらくは誰も来ないみたい

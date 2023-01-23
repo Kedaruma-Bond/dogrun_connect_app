@@ -31,12 +31,17 @@
               </div>
             </div>
           </div>
-          <div class="table-row-group">
-            <% @dogs_public_view.size.times do |t| %>
-              <%= render partial: "entry_dog", locals: { dog: @dogs_public_view[t] } %>
+          <%= turbo_frame_tag dom_id(@dogrun_place, "entries_list"), class: "table-row-group" do %>
+            <% if !@dogs_public_view.nil? %>
+              <% @dogs_public_view.size.times do |t| %>
+                <%= render partial: "shared/entry_dog", locals: { dog: @dogs_public_view[t] } %>
+              <% end %>
             <% end %>
-          </div>
+          <% end %>
         </div>
+        <%= turbo_frame_tag dom_id(@dogrun_place, :no_entry) do %>
+          <%= render partial: "shared/no_entry", locals: { dogs_public_view: @dogs_public_view } %>
+        <% end %>
       </div>
     </div>
   </div>

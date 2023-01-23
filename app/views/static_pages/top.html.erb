@@ -253,6 +253,16 @@
                     </p>
                     <%= render partial: "shared/sns_account_icons", locals: { sns_account: DogrunPlace.find(2).sns_account } %>
                   <% end %>
+                  <% if !DogrunPlace.find(2).facilities.blank? %>
+                    <p class="text-sm mt-2">
+                    <%= Facility.human_attribute_name(:name) %>
+                    </p>
+                    <div class="flex flex-wrap">
+                      <% DogrunPlace.find(2).facilities.each do |facility| %>
+                        <span class="whitespace-nowrap leading-none text-white py-2 px-2 bg-blue-700 rounded ml-2 mt-2"><%= dogrun_facility_view(facility.name) %></span>
+                      <% end %>
+                    </div>
+                  <% end %>
                 </div>
               </div>
             </details>

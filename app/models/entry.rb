@@ -14,6 +14,11 @@ class Entry < ApplicationRecord
   scope :user_id, -> (user_id) { includes(dog: [:user]).where(dogs: { user_id: user_id }) }
   scope :user_id_at_local, -> (user_id) { includes(:dog, :registration_number).where(dogs: { user_id: user_id }) }
 
+  # broadcast
+  # after_create_commit do
+
+  # end
+
 end
 
 # == Schema Information

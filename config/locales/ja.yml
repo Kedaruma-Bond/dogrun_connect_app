@@ -113,6 +113,9 @@ ja:
     encount_dog_memo: このワンコへのメモ
     slide_available: 👈 横スライドします 👉
     thumbnail_tap: サムネイルをタップするとプロフィールを確認できます
+    post_save_error: |
+      投稿タイプを
+      選択してください
   simple_form:
     "yes": はい
     "no": いいえ

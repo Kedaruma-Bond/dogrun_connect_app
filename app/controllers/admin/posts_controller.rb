@@ -32,7 +32,7 @@ class Admin::PostsController < Admin::BaseController
       end
       return
     else
-      redirect_to admin_posts_path, error: t('defautls.post_save_error') and return
+      redirect_to admin_posts_path, error: t('defautls.post_save_error')
     end
   end
 

@@ -1,0 +1,15 @@
+<% if num_of_playing_dogs.zero? %>
+  <p class="text-right md:text-center mr-12  md:mr-0 md:ml-10 text-2xl font-bold text-gray-700 mt-2 sm:mb-3">
+    <%= t'.nobody_playing' %>
+  </p>
+<% else %>
+  <div class="text-2xl flex mt-4 justify-center pl-20">
+    <h1 class="text-right text-6xl pb-2 text-gray-700">
+      <%= num_of_playing_dogs %>
+    </h1>
+    <span class="ml-10 text-left">
+      <%= simple_format(t('.playing1'), class:"text-gray-700") %>
+      <%= simple_format(t('.playing2'), class:"text-gray-700") %>
+    </span>
+  </div>
+<% end %>

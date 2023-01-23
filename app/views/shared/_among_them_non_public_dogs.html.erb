@@ -1,0 +1,11 @@
+<% if !dogs_non_public.blank? %>
+  <div class="flex justify-center">
+      <%= simple_format(t('.among_them_non_public_dogs'), class: "text-left text-base font-medium text-stone-500 mt-2") %>
+    <p class="ml-3 text-xl font-medium text-stone-500 mt-2 self-end">
+      <%= dogs_non_public.size %>
+    </p>
+    <p class="ml-3 text-base font-medium text-stone-500 mt-2 self-end">
+      <%= t('.unit_of_dogs') %>
+    </p>
+  </div>
+<% end %>

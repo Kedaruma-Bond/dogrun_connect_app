@@ -90,6 +90,36 @@ module.exports = {
             "animation-timing-function": "ease-out"
           }
         },
+        "roll-in-right": {
+          "0%": {
+              transform: "translateX(800px) rotate(540deg)",
+              opacity: "0"
+          },
+          to: {
+              transform: "translateX(0) rotate(0deg)",
+              opacity: "1"
+          }
+        },
+        "slide-in-bottom": {
+          "0%": {
+              transform: "translateY(1000px)",
+              opacity: "0"
+          },
+          to: {
+              transform: "translateY(0)",
+              opacity: "1"
+          }
+        },
+        "roll-in-left": {
+          "0%": {
+              transform: "translateX(-800px) rotate(-540deg)",
+              opacity: "0"
+          },
+          to: {
+              transform: "translateX(0) rotate(0deg)",
+              opacity: "1"
+          }
+        },
       },
       animation: {
         "fade-in": 'fade-in 0.3s ease-in-out',
@@ -97,6 +127,9 @@ module.exports = {
         "scale-out-ver-top": "scale-out-ver-top 0.1s cubic-bezier(0.550, 0.085, 0.680, 0.530)   both",
         "tilt-in-right-2": "tilt-in-right-2 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940)   both",
         "heartbeat": "heartbeat 1.5s ease  infinite both",
+        "roll-in-right": "roll-in-right 1.5s ease   both",
+        "slide-in-bottom": "slide-in-bottom 1.2s cubic-bezier(0.250, 0.460, 0.450, 0.940)   both",
+        "roll-in-left": "roll-in-left 1.5s ease    both",
       }
     },
   },

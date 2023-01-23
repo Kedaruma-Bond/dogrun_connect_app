@@ -1,0 +1,9 @@
+<% @current_pre_entries.each do |pre_entry| %>
+  <%= turbo_stream.remove dom_id(@dogrun_place,  "pre_entry_dog_#{pre_entry.dog.id}") %>
+<% end %>
+
+<%= turbo_stream.update dom_id(@dogrun_place, :login_top_content) do %>
+  <%= render "shared/login_top_content" %>
+<% end %>
+
+<%= render_turbo_stream_flash_messages %>

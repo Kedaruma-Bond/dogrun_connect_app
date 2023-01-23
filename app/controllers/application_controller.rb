@@ -18,10 +18,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def check_not_guest
-      redirect_to togo_inu_shitsuke_hiroba_signup_path, error: t('defaults.require_signup') unless !current_user.guest?
-    end
-
     def get_fb_appId
       gon.fb_appId = Rails.application.credentials.meta_tags[:facebook_id]
     end

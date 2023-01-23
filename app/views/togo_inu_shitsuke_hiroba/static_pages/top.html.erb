@@ -1,4 +1,5 @@
-<% content_for(:title, t('.dogrun')) %>
+<%= turbo_stream_from @dogrun_place.name, "top" %>
+<% content_for(:title, @dogrun_place.name) %>
 <div class='max-w-5xl mx-3 md:mx-auto pt-2 pb-2 sm:mx-32 text-center bg-purple-200 rounded-lg'
   data-controller="filming-message-modal sns-post-message-modal"
   >
@@ -24,7 +25,7 @@
         <%= simple_format(t('.under_commissioning'), class: "font-bold text-lg text-red-600") %>
       </h1>
     <% end %>
-    <div class="w-full sm:px-10 pt-1 sm:pb-0">
+    <%= turbo_frame_tag dom_id(@dogrun_place, "top_view_changeover_closing"), class: "w-full sm:px-10 pt-1 sm:pb-0" do %>
       <% if @dogrun_place.closed_flag == true %>
         <div class="my-10">
           <%= simple_format(I18n.t("togo_inu_shitsuke_hiroba.static_pages.top.dogrun_is_closing_now", dogrun_name: @dogrun_place.name), class: "text-gray-700 font-bold text-2xl") %>
@@ -45,43 +46,29 @@
         </div>
       <% else %>
         <div class="flex flex-col mt-1 font-bold">
-          <p class='text-center text-gray-700 text-2xl relative right-10'>
+          <p class='text-center text-gray-700 text-2xl relative right-7'>
             <%= t'.site_in' %>
           </p>
-          <% if @num_of_playing_dogs.zero? %>
-            <p class="text-right mr-8 text-2xl font-bold text-gray-700 mt-2 sm:mb-6">
-              <%= t'.nobody_playing' %>
-            </p>
-          <% else %>
-            <div class="text-2xl flex text-center mt-4 mx-auto relative left-12">
-              <h1 class="flex text-6xl pb-2 text-gray-700">
-                <%= @num_of_playing_dogs %>
-              </h1>
-              <span class="ml-10 text-left">
-                <%= simple_format(t('.playing1'), class:"text-gray-700") %>
-                <%= simple_format(t('.playing2'), class:"text-gray-700") %>
-              </span>
-            </div>
+          <%= turbo_frame_tag dom_id(@dogrun_place, :num_of_playing_dogs) do %>
+            <%= render partial: "shared/num_of_playing_dogs", locals: { num_of_playing_dogs: @num_of_playing_dogs } %>
           <% end %>
-          <% if !@dogs_non_public.blank? %>
-            <div class="flex justify-center">
-                <%= simple_format(t('.among_them_non_public_dogs'), class: "text-left text-base font-medium text-stone-500 mt-2") %>
-              <p class="ml-3 text-base font-medium text-stone-500 mt-2 self-end">
-                <%= @dogs_non_public.size %>
-                <%= t('.unit_of_dogs') %>
-              </p>
-            </div>
+          <%= turbo_frame_tag dom_id(@dogrun_place, :among_them_non_public_dogs) do %>
+            <%= render partial: "shared/among_them_non_public_dogs", locals: { dogs_non_public: @dogs_non_public }  %>
           <% end %>
         </div>
-        <%= render 'togo_inu_shitsuke_hiroba/static_pages/login_top_content' %>
-        <% if !@pre_entry_dogs_public_view.blank? %>
-          <%= render 'during_pre_entry_dogs_content' %>
+        <%= render 'shared/during_pre_entry_dogs_content' %>
+        <% if current_user.guest? %>
+          <div class="mt-3">
+            <%= simple_format(t('.please_signup'), class: "text-purple-500 text-xl font-bold") %>
+          </div>
+        <% else %>
+          <%= turbo_frame_tag dom_id(@dogrun_place, :login_top_content) do %>
+            <%= render 'shared/login_top_content' %>
+          <% end %>
         <% end %>
-        <% if !@dogs_public_view.blank? %>
-          <%= render 'during_entry_dogs_content' %>
-        <% end %>
+        <%= render 'shared/during_entry_dogs_content' %>
       <% end %>
-    </div>
+    <% end %>
 
     <% if current_user.guest? %>
       <div class="inline-flex overflow-hidden rounded-lg shadow mt-2 sm:w-auto sm:mx-3 animate-heartbeat">

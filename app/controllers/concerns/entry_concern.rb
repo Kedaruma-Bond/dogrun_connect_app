@@ -10,7 +10,6 @@ module EntryConcern
       Entry.find(entry.id).update!(exit_at: Time.zone.now)
     end
     
-    @current_entries = nil
   end
 
   def select_dogs_allocation(select_dogs)

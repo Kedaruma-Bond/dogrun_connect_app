@@ -141,9 +141,6 @@ ja:
     posts:
       create:
         choice_sns: 埋め込むSNSを選択してください。
-        post_save_error: |
-          投稿タイプを
-          選択してください
     encount_dogs:
       update:
         encount_dog_updated: 情報を更新しました

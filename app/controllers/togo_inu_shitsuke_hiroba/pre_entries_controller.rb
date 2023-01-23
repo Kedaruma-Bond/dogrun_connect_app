@@ -6,7 +6,10 @@ class TogoInuShitsukeHiroba::PreEntriesController < TogoInuShitsukeHiroba::Dogru
     @current_pre_entries.each do |pre_entry|
       pre_entry.destroy
     end
-    redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.pre_entries_canceled_successfully')
+    respond_to do |format|
+      format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.pre_entries_canceled_successfully') }
+      format.turbo_stream { flash.now[:success] = t('.pre_entries_canceled_successfully') }
+    end
   end
 
 end
