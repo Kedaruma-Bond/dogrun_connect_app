@@ -49,6 +49,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
         end
 
         if @dogs.count == @zero_count
+          set_num_of_playing_dogs
           respond_to do |format|
             format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.select_entry_dog') }
             format.turbo_stream { flash.now[:error] = t('.select_entry_dog') }
@@ -86,6 +87,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
         end
 
         if @dogs.count == @zero_count
+          set_num_of_playing_dogs
           respond_to do |format|
             format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.select_pre_entry_dog') }
             format.turbo_stream { flash.now[:error] = t('.select_pre_entry_dog') }
