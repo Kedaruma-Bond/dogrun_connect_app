@@ -15,9 +15,9 @@ module EncountDogHelper
 
   def new_encount_dog_badge(encount_dog)
     if encount_dog.acknowledge == false
-      tag.span class: "flex w-3 h-3 absolute mt-2" do
-        concat tag.span(class: "animate-ping h-full w-full rounded-full aspect-square bg-indigo-400 opacity-75")
-        concat tag.span(class: "rounded-full aspect-square h-3 w-3 relative bg-indigo-500 right-3")
+      tag.span class: "flex relative w-3 h-3 mt-2" do
+        concat tag.span(class: "absolute top-5 left-1 animate-ping h-full w-full rounded-full aspect-square bg-indigo-400 opacity-75")
+        concat tag.span(class: "rounded-full aspect-square h-3 w-3 top-5 left-1 relative bg-indigo-500")
       end
     else
       return

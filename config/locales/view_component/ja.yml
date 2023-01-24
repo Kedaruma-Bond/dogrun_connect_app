@@ -1,6 +1,7 @@
 ja:
   encount_dogs:
     view_component:
+      dog_name: ワンコの名前
       encount_date: 出会った日
       encount_dogrun: 出会ったドッグラン
       until_now: 今までに
