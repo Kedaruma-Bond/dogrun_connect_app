@@ -8,6 +8,8 @@ class Entry < ApplicationRecord
   #validations
   validates :entry_at, presence: true
 
+  # delegate
+  delegate :dogrun_place, to: :registration_number
   # scope
   scope :admin_dogrun_place_id, -> (dogrun_place_id) { includes(:registration_number, dog: { thumbnail_attachment: :blob }).eager_load(dog: [:user]).where(registration_numbers: { dogrun_place_id: dogrun_place_id }).order(entry_at: :desc) }
   scope :dogrun_place_id, -> (dogrun_place_id) { includes(:registration_number, dog: { thumbnail_attachment: :blob }).eager_load(dog: [:user]).where(registration_numbers: { dogrun_place_id: dogrun_place_id }).order(entry_at: :desc).where(dogs: { public: 'public_view'} ) }
@@ -15,9 +17,23 @@ class Entry < ApplicationRecord
   scope :user_id_at_local, -> (user_id) { includes(:dog, :registration_number).where(dogs: { user_id: user_id }) }
 
   # broadcast
-  # after_create_commit do
+  after_update_commit do
+    broadcast_remove_to [dogrun_place, "top"], target: "entry_dog_#{self.dog.id}_dogrun_place_#{self.dogrun_place.id}"
+  end
 
-  # end
+  def entry_broadcast(dog, current_user, dogrun_place)
+    broadcast_append_to [dogrun_place, "top"], target: "entries_list_dogrun_place_#{dogrun_place.id}", partial: "shared/entry_dog", locals: { dog: dog, current_user: current_user, dogrun_place: dogrun_place }
+  end
+
+  def after_entry_broadcast(num_of_playing_dogs, dogs_non_public)
+    broadcast_update_to [dogrun_place, "top"], target: "num_of_playing_dogs_dogrun_place_#{dogrun_place.id}", partial: "shared/num_of_playing_dogs", locals: { num_of_playing_dogs: num_of_playing_dogs }
+    broadcast_update_to [dogrun_place, "top"], target: "among_them_non_public_dogs_dogrun_place_#{dogrun_place.id}", partial: "shared/among_them_non_public_dogs", locals: { dogs_non_public: dogs_non_public }
+  end
+
+  def exit_broadcast(num_of_playing_dogs, dogs_non_public)
+    broadcast_update_to [dogrun_place, "top"], target: "num_of_playing_dogs_dogrun_place_#{dogrun_place.id}", partial: "shared/num_of_playing_dogs", locals: { num_of_playing_dogs: num_of_playing_dogs }
+    broadcast_update_to [dogrun_place, "top"], target: "among_them_non_public_dogs_dogrun_place_#{dogrun_place.id}", partial: "shared/among_them_non_public_dogs", locals: { dogs_non_public: dogs_non_public }
+  end
 
 end
 

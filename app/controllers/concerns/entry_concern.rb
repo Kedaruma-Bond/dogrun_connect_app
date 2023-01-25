@@ -4,7 +4,6 @@ module EntryConcern
   extend ActiveSupport::Concern
 
   def exit_from_dogrun
-    num = 0
     
     current_entries.each do |entry|
       Entry.find(entry.id).update!(exit_at: Time.zone.now)

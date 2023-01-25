@@ -41,6 +41,11 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
             @entries_array[@num] = Entry.new(entry_params)
             @entries_array[@num].entry_at = Time.zone.now
             @entries_array[@num].save!
+
+            @entry = @entries_array[@num]
+            if @entry.dog.public_view?
+              @entry.entry_broadcast(@entry.dog, current_user, @dogrun_place)
+            end
           else
             @zero_count += 1
             @entries_array[@num] = nil
@@ -57,6 +62,8 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
         else
           @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place: @dogrun_place }).find_by(exit_at: nil) unless not_entry?
           set_num_of_playing_dogs
+
+          @entry.after_entry_broadcast(@num_of_playing_dogs, @dogs_non_public)
           respond_to do |format|
             format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.entry_success') }
             format.turbo_stream { flash.now[:success] = t('.entry_success') }
@@ -79,6 +86,9 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
           when '1'
             @entries_array[@num] = PreEntry.new(pre_entry_params)
             @entries_array[@num].save!
+            if @entries_array[@num].dog.public_view?
+              @entries_array[@num].pre_entry_broadcast(@entries_array[@num].dog, current_user, @dogrun_place)
+            end
           else
             @zero_count += 1
             @entries_array[@num] = nil
@@ -102,25 +112,35 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
     else
       current_pre_entries
       @current_pre_entries.each do |pre_entry|
-        Entry.create(dog: pre_entry.dog, 
+        @entry = Entry.create(dog: pre_entry.dog, 
           registration_number: pre_entry.registration_number,
           entry_at: Time.zone.now)
+        if @entry.dog.public_view?
+          @entry.entry_broadcast(@entry.dog, current_user, @dogrun_place)
+        end
         pre_entry.destroy
       end
       @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place: @dogrun_place }).find_by(exit_at: nil) unless not_entry?
       set_num_of_playing_dogs
+
+      @entry.after_entry_broadcast(@num_of_playing_dogs, @dogs_non_public)
       respond_to do |format|
         format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.entry_success') }
         format.turbo_stream { flash.now[:success] = t('.entry_success') }
       end
     end
-
   end
 
   def update
-    @entries_array = []
-    exit_from_dogrun
+    i = current_entries.size - 1
+    @entry = current_entries[i]
+    current_entries.each do |entry|
+      Entry.find(entry.id).update!(exit_at: Time.zone.now)
+    end
     set_num_of_playing_dogs
+
+    @entry.exit_broadcast(@num_of_playing_dogs, @dogs_non_public)
+
     respond_to do |format|
       format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.exit_success') }
       format.turbo_stream { flash.now[:success] = t('.exit_success') }

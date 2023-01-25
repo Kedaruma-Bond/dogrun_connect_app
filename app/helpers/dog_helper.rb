@@ -23,6 +23,24 @@ module DogHelper
     end
   end
 
+  def css_class_dog_color_marker_for_top(dog, current_user)
+    encount_dog = EncountDog.where(user_id: current_user.id).find_by(dog_id: dog.id)
+    return 'rounded-full w-full h-full aspect-square object-cover' if encount_dog.blank?
+
+    case encount_dog.color_marker
+    when 'red'
+      'border-2 border-red-500 rounded-full w-full h-full aspect-square object-cover'
+    when 'green'
+      'border-2 border-green-400 rounded-full w-full h-full aspect-square object-cover'
+    when 'blue'
+      'border-2 border-blue-500 rounded-full w-full h-full aspect-square object-cover'
+    when 'yellow'
+      'border-2 border-yellow-500 rounded-full w-full h-full aspect-square object-cover'
+    else
+      'rounded-full w-full h-full aspect-square object-cover'
+    end
+  end
+
   def css_class_dog_color_marker(dog)
     encount_dog = EncountDog.where(user_id: current_user.id).find_by(dog_id: dog.id)
     return 'rounded-full w-full h-full aspect-square object-cover' if encount_dog.blank?
@@ -54,6 +72,14 @@ module DogHelper
     else
       'rounded-full w-full h-full aspect-square object-cover'
     end
+  end
+
+  def dog_thumbnail_for_top(dog, current_user)
+    if dog.thumbnail.attached?
+      cl_image_tag(dog.thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: css_class_dog_color_marker_for_top(dog, current_user), alt: dog.name)
+    else
+      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.png', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full mx-auto", alt: dog.name)
+    end 
   end
 
   def dog_thumbnail(dog)

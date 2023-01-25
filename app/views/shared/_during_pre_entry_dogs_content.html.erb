@@ -4,13 +4,13 @@
       <div class="rounded-t mb-0 px-4 py-2 border-0">
         <div class="flex flex-wrap items-center">
           <div class="relative w-full px-4 max-w-full flex-grow flex-1 ">
-            <h3 class="text-base text-white text-center">
+            <h3 class="text-base text-gray-200 text-center font-medium">
               <%= t(".coming_soon?") %>
             </h3>
           </div>
         </div>
       </div>
-      <div class="w-full h-px bg-gray-200 rounded mb-2"></div>
+      <div class="w-full h-px bg-gray-700 rounded mb-2"></div>
       <div class="block w-full overflow-x-auto">
         <div class="border-t-0 px-3 align-middle border-l-0 border-r-0 whitespace-nowrap p-2">
           <%= turbo_frame_tag dom_id(@dogrun_place, "pre_entries_list"), class: "flex" do %>
@@ -18,7 +18,7 @@
               <%= t('.no_one_will_come_for_a_while') %>
             </div>
             <% @pre_entry_dogs_public_view.each do |pre_entry_dog| %>
-              <%= render partial: "shared/pre_entry_dog", locals: { pre_entry_dog: pre_entry_dog } %>
+              <%= render partial: "shared/pre_entry_dog", locals: { pre_entry_dog: pre_entry_dog, dogrun_place: @dogrun_place } %>
             <% end %>
           <% end %>
         </div>

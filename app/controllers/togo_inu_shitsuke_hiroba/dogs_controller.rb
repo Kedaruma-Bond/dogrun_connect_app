@@ -7,6 +7,7 @@ class TogoInuShitsukeHiroba::DogsController < TogoInuShitsukeHiroba::DogrunPlace
     @user = User.find(@dog.user_id)
     @entries = Entry.where(dog: @dog).where(registration_number_id: @registration_number.id).joins(:registration_number).where(registration_number: { dogrun_place: @dogrun_place } ).sort.reverse
     @Num_of_entry_records_to_display = 5
+    @Num_of_entry_records_to_display.freeze
     @encount_dog = EncountDog.where(user_id: current_user.id).find_by(dog_id: @dog)
   end
 
