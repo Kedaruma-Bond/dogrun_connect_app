@@ -11,13 +11,13 @@
 
     <title><%= page_title(yield(:title)) %></title>
     <%= render 'application/favicon' %>
+    <%= render 'application/google_tag' %>
     <%= display_meta_tags(default_meta_tags) %>
   </head>
-  <%= render 'application/google_tag' %>
 
   <body class="break-words flex flex-col min-h-screen bg-gray-800 font-sans leading-normal tracking-normal">
-    <div id="flash">
-      <%= render partial: 'shared/flash' %>
+    <div id="flash" class="z-50 flex-col fixed top-16 right-1 ">
+      <%= render 'shared/flash' %>
     </div>
     <main class="flex-grow">
       <div class="w-full" data-controller="service-worker">

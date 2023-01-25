@@ -4,8 +4,20 @@ class PreEntry < ApplicationRecord
 
   attr_accessor :select_dog
 
+  # delegate
+  delegate :dogrun_place, to: :registration_number
+
   # scope
   scope :user_id_at_local, -> (user_id) { includes(:dog, :registration_number).where(dogs: { user_id: user_id }) }
+
+  # broadcast
+  after_destroy_commit do
+    broadcast_remove_to [dogrun_place, "top"], target: "pre_entry_dog_#{self.dog.id}_dogrun_place_#{self.dogrun_place.id}"
+  end
+
+  def pre_entry_broadcast(dog, current_user, dogrun_place)
+    broadcast_append_to [dogrun_place, "top"], target: "pre_entries_list_dogrun_place_#{dogrun_place.id}", partial: "shared/pre_entry_dog", locals: { pre_entry_dog: dog, current_user: current_user, dogrun_place: dogrun_place }
+  end
 end
 
 # == Schema Information

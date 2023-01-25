@@ -1,5 +1,33 @@
 ja:
   shared:
+    num_of_playing_dogs:
+      playing1: 頭の仔が
+      playing2: 遊んでいます
+      nobody_playing: 誰も遊んでいません
+    among_them_non_public_dogs:
+      among_them_non_public_dogs: |
+        そのうち利用状況が
+        非公開なワンコは
+      unit_of_dogs: 頭です
+    login_top_content:
+      please_signup: |
+        ワンコを登録するには
+        飼い主さんの新規登録が必要です
+      please_select_dog: ワンコを選択してください
+      pre_entry_or_entry_confirm: ワンコを選択されていますか？
+      entry_confirm: 入場してよろしいですか？
+      cancel_confirm: 入場予定をキャンセルしますか？
+      exit_confirm: 退場前の見回りは実施しましたか？
+      during_entry_your_dogs: 入場中のあなたのワンコ
+      during_pre_entry_your_dogs: もうすぐ行く予定となっているワンコ
+      pre_entry: もうすぐ行きます
+      cancel_to_pre_entry: キャンセル
+      entry: 入場します
+      exit: 退場します
+      please_register_dog: ワンコを登録してください
+    during_pre_entry_dogs_content:
+      coming_soon?: もうすぐ来るかも？
+      no_one_will_come_for_a_while: しばらくは誰も来ないみたい
     refer_to_app_sns:
       refer_to_sns: |
         投稿の仕方については
@@ -13,8 +41,6 @@ ja:
     entries_table:
       table_of_entries_latest_max_five: "過去%{times}回の利用状況"
       playing_together: 一緒に遊んだワンコ
-    twitter:
-      processing_embed_tweet: ツイート埋め込み処理中
     sns_account_form:
       facebook_id_hint: https://www.facebook.com/以降を入力してください
       instagram_id_hint: https://www.instagram.com/以降を入力してください
@@ -29,3 +55,6 @@ ja:
       body: |
         このワンコが映っている写真や動画をSNSに投稿しても気にしないという意図表示のマークです。
         あくまで意図せず巻き添えで映ってしまった場合のことであり、このワンコに主眼を置いて撮影した写真や動画をUPする場合は、伺いが必要になることを忘れないようにしてください。
+    during_entry_dogs_content:
+      waiting_your_coming: 🐶 ご来場お待ちしてます 🐶
+      during_entry_dogs: 遊んでいるワンコ

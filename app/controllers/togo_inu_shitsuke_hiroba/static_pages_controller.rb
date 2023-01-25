@@ -4,9 +4,7 @@ class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::Dogr
   before_action :get_dogrun_entry_data, only: %i[top]
 
   def top
-    @dogrun_place = DogrunPlace.find(2)
     return unless logged_in?
-    @entry = Entry.new
     @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place: @dogrun_place }).find_by(exit_at: nil) unless not_entry?
     @publishing_post = Post.where(publish_status: 'is_publishing').where(dogrun_place: @dogrun_place)
     
@@ -22,6 +20,9 @@ class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::Dogr
       @dogs_non_public = dogs.select do |dog|
         dog.public == 'non_public'
       end
+    else
+      @dogs_public_view = []
+      @dogs_non_public = [] 
     end
 
     if !@dogrun_pre_entry_data.blank?
@@ -32,6 +33,8 @@ class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::Dogr
       @pre_entry_dogs_public_view = pre_entry_dogs.select do |dog|
         dog.public == 'public_view'
       end
+    else
+      @pre_entry_dogs_public_view  = []
     end
 
   end
@@ -42,7 +45,7 @@ class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::Dogr
       @dogrun_entry_data = []
       @dogrun_entry_data = Entry.where.not(entry_at: nil).where(exit_at: nil).joins(:registration_number).where(registration_numbers: { dogrun_place: @dogrun_place })
       @dogrun_pre_entry_data = []
-      @dogrun_pre_entry_data = PreEntry.joins(:registration_number).where(registration_numbers: { dogrun_place: @dogrun_place })
+      @dogrun_pre_entry_data = PreEntry.joins(:registration_number).where(registration_numbers: { dogrun_place: @dogrun_place }).order(created_at: :asc)
       @num_of_playing_dogs = @dogrun_entry_data.size || 0
     end
 end

@@ -20,17 +20,12 @@ module EntryHelper
   end
 
   def not_entry?
-    if logged_in?
-      Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place_id: @dogrun_place.id }).where(exit_at: nil).blank?
-    else
-      return true
-    end
+    Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place_id: @dogrun_place.id }).where(exit_at: nil).blank?
   end
 
   def current_pre_entries
     return unless logged_in?
 
-    @current_pre_entries = nil
     pre_entries = []
 
     pre_entries = PreEntry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place_id: @dogrun_place.id })

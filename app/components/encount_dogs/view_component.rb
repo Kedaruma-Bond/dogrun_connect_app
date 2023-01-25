@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class EncountDogs::ViewComponent < ViewComponent::Base
+  include Turbo::FramesHelper
+
   def initialize(title:, pagy:)
     @title = title
     @pagy = pagy

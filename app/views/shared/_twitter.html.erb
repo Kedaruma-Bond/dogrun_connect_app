@@ -1,7 +1,7 @@
-<div class="p-2">
+<div class="px-2 py-1">
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <blockquote class="twitter-tweet">
-    <p class="text-center text-gray-200 font-medium"><%= t('.processing_embed_tweet') %></p>
+    <div class="animate-spin h-8 w-8 bg-purple-300 rounded-xl mx-auto"></div>
     <a href="#{<%= post.embed.identifier %>}"></a>
   </blockquote>
 </div>

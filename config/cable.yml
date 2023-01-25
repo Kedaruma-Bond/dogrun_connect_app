@@ -1,0 +1,14 @@
+development:
+  adaptor: redis
+  url: redis://localhost:6379/cable
+
+test:
+  adaptor: test
+
+production:
+  adaptor: redis  
+  # url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
+  #  ↓ herokuのアドオンでradisを作成するとREDIS_URLという環境変数に自動的にURLを設定してくれる。
+  url: <%= ENV['REDIS_URL'] %>
+  channel_prefix: dogrun_connect_production
+

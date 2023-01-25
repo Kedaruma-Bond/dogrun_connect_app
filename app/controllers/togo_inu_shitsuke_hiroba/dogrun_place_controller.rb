@@ -21,4 +21,8 @@ class TogoInuShitsukeHiroba::DogrunPlaceController < ApplicationController
       @staffs = Staff.where(dogrun_place: @dogrun_place).enable
     end
 
+    def check_not_guest
+      redirect_to togo_inu_shitsuke_hiroba_signup_path, error: t('defaults.require_signup') unless !current_user.guest?
+    end
+
 end

@@ -16,6 +16,9 @@ class DogrunPlace < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :description, length: { maximum: 1000 }
 
+  # enum
+  enum force_closed: { force_closing: true, releasing: false }   
+
 end
 
 # 1: grand_admin

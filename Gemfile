@@ -117,8 +117,6 @@ group :development do
   gem 'solargraph'
   # 模擬メール機能
   gem 'letter_opener_web'
-  # favicon生成
-  gem 'rails_real_favicon'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem 'rack-mini-profiler'

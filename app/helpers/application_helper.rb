@@ -5,6 +5,10 @@ module ApplicationHelper
     page_title.empty? ? base_title : "#{page_title} | #{base_title}"
   end
 
+  def render_turbo_stream_flash_messages
+    turbo_stream.append "flash", partial: "shared/flash"
+  end
+
   def nested_dom_id(*args)
     args.map { |arg| arg.respond_to?(:to_key) ? dom_id(arg) : arg }.join("_")
   end

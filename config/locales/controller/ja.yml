@@ -28,7 +28,15 @@ ja:
       create:
         admin_user_create: 管理者ユーザーを作成しました
     dogrun_places:
-      create_success: ドッグランを新規登録しました
+      create:
+        create_success: ドッグランを新規登録しました
+      force_closed:
+        forced_dogrun_to_close: ドッグランを休業にしました
+      release:
+        released_dogrun_to_open: |
+          強制休業を解除しました
+          営業時間が設定されていると
+          営業時間外は休業となります
     base:
       not_authenticated:
         require_login: ログインしてください
@@ -67,6 +75,7 @@ ja:
         pre_entries_canceled_successfully: 入場予定をキャンセルしました
     entries:
       create:
+        dogrun_is_closing_now: 現在このドッグランは休業中です
         entry_success: 入場しました
         pre_entry_success: お待ちしてます
         select_entry_dog: |
@@ -115,8 +124,8 @@ ja:
           新規登録が必要です
       jump_to_signup:
         signup_please: |
-          新規登録してアプリを
-          フルに活用しましょう♪ 
+          新規登録してアプリの機能を
+          フル活用しましょう ♪ 
     dogs:
       update:
         dog_profile_updated: |
@@ -132,9 +141,6 @@ ja:
     posts:
       create:
         choice_sns: 埋め込むSNSを選択してください。
-        post_save_error: |
-          投稿タイプを
-          選択してください
     encount_dogs:
       update:
         encount_dog_updated: 情報を更新しました

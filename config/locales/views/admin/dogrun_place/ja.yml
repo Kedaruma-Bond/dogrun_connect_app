@@ -12,6 +12,10 @@ ja:
         register_sns_id: SNS登録
         update_sns_id: SNS編集
         delete_sns_id: SNS削除
+      force_closed_switch:
+        force_dogrun_to_close_confirmation: 強制休業としますか？
+        release_dogrun_to_open_confirmation: 休業を解除しますか？
+        manual_closing: 強制休業操作
       edit:
         title: ドッグラン情報編集
       form:
