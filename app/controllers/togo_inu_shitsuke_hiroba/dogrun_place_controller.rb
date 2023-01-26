@@ -6,8 +6,9 @@ class TogoInuShitsukeHiroba::DogrunPlaceController < ApplicationController
   
     def set_dogrun_place
       @dogrun_place = DogrunPlace.find(2)
+      @dog_profile_path = :togo_inu_shitsuke_hiroba_dog_path
     end
-  
+
     def set_dogs_and_registration_numbers_at_local
       return unless logged_in?
       

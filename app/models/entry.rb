@@ -21,8 +21,8 @@ class Entry < ApplicationRecord
     broadcast_remove_to [dogrun_place, "top"], target: "entry_dog_#{self.dog.id}_dogrun_place_#{self.dogrun_place.id}"
   end
 
-  def entry_broadcast(dog, current_user, dogrun_place)
-    broadcast_append_to [dogrun_place, "top"], target: "entries_list_dogrun_place_#{dogrun_place.id}", partial: "shared/entry_dog", locals: { dog: dog, current_user: current_user, dogrun_place: dogrun_place }
+  def entry_broadcast(dog, current_user, dogrun_place, dog_profile_path)
+    broadcast_append_to [dogrun_place, "top"], target: "entries_list_dogrun_place_#{dogrun_place.id}", partial: "shared/entry_dog", locals: { dog: dog, current_user: current_user, dogrun_place: dogrun_place, dog_profile_path: dog_profile_path }
   end
 
   def after_entry_broadcast(num_of_playing_dogs, dogs_non_public)

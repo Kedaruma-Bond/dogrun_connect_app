@@ -44,7 +44,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
 
             @entry = @entries_array[@num]
             if @entry.dog.public_view?
-              @entry.entry_broadcast(@entry.dog, current_user, @dogrun_place)
+              @entry.entry_broadcast(@entry.dog, current_user, @dogrun_place, @dog_profile_path)
             end
           else
             @zero_count += 1
@@ -87,7 +87,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
             @entries_array[@num] = PreEntry.new(pre_entry_params)
             @entries_array[@num].save!
             if @entries_array[@num].dog.public_view?
-              @entries_array[@num].pre_entry_broadcast(@entries_array[@num].dog, current_user, @dogrun_place)
+              @entries_array[@num].pre_entry_broadcast(@entries_array[@num].dog, current_user, @dogrun_place, @dog_profile_path)
             end
           else
             @zero_count += 1
@@ -116,7 +116,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
           registration_number: pre_entry.registration_number,
           entry_at: Time.zone.now)
         if @entry.dog.public_view?
-          @entry.entry_broadcast(@entry.dog, current_user, @dogrun_place)
+          @entry.entry_broadcast(@entry.dog, current_user, @dogrun_place, @dog_profile_path)
         end
         pre_entry.destroy
       end

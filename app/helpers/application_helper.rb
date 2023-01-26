@@ -9,10 +9,6 @@ module ApplicationHelper
     turbo_stream.append "flash", partial: "shared/flash"
   end
 
-  def nested_dom_id(*args)
-    args.map { |arg| arg.respond_to?(:to_key) ? dom_id(arg) : arg }.join("_")
-  end
-
   def default_meta_tags
     {
       site: Rails.application.credentials.meta_tags[:app],

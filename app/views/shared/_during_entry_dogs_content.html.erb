@@ -36,7 +36,7 @@
           <%= turbo_frame_tag dom_id(@dogrun_place, "entries_list"), class: "table-row-group", data: { "display-empty-target": "list" } do %>
             <% if !@dogs_public_view.nil? %>
               <% @dogs_public_view.size.times do |t| %>
-                <%= render partial: "shared/entry_dog", locals: { dog: @dogs_public_view[t], dogrun_place: @dogrun_place } %>
+                <%= render partial: "shared/entry_dog", locals: { dog: @dogs_public_view[t], dogrun_place: @dogrun_place, dog_profile_path: dog_profile_path } %>
               <% end %>
             <% end %>
           <% end %>

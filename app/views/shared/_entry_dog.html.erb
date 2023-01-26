@@ -1,6 +1,6 @@
 <%= turbo_frame_tag dom_id(dogrun_place, "entry_dog_#{dog.id}"), class: "table-row" do %>
   <div class="table-cell whitespace-nowrap">
-    <%= link_to togo_inu_shitsuke_hiroba_dog_path(dog.id) do %>
+    <%= link_to send(dog_profile_path, dog) do %>
       <div class="w-28 h-28 flex animate-roll-in-left">
         <%= dog_thumbnail_for_top(dog, current_user) %>
         <%= birthday_marker(dog) %>
