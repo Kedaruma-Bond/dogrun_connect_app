@@ -19,9 +19,9 @@
 
   <body class="dark:bg-gray-800 break-words flex flex-col min-h-screen">
     <% if logged_in? %>
-      <%= render 'togo_inu_shitsuke_hiroba/shared/login_navbar' %>
+      <%= render 'shared/login_navbar' %>
     <% else %>
-      <%= render 'togo_inu_shitsuke_hiroba/shared/navbar' %>
+      <%= render 'shared/navbar' %>
     <% end %>
     <div id="flash" class="z-50 flex-col fixed top-16 right-1">
       <%= render 'shared/flash' %>
@@ -31,6 +31,6 @@
         <%= yield %>
       </div>
     <% end %>
-    <%= render 'togo_inu_shitsuke_hiroba/shared/footer' %>
+    <%= render 'shared/footer' %>
   </body>
 </html>

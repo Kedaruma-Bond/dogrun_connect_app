@@ -54,9 +54,9 @@
                   </td>
                   <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
                     <ul class="flex">
-                      <% encount_dogs_at_this_entry(@entries[t], 2).each do |dog| %>
+                      <% encount_dogs_at_this_entry(@entries[t], @dogrun_place).each do |dog| %>
                         <li class="w-12 h-12 mx-1">
-                          <%= link_to togo_inu_shitsuke_hiroba_dog_path(dog) do %>
+                          <%= link_to send(dog_profile_path, dog) do %>
                             <%= dog_thumbnail(dog) %>
                           <% end %>
                         </li>

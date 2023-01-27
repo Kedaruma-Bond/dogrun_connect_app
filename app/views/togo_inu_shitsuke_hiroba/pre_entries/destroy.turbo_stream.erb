@@ -1,5 +1,5 @@
 <%= turbo_stream.update dom_id(@dogrun_place, :login_top_content) do %>
-  <%= render "shared/login_top_content" %>
+  <%= render partial: "shared/login_top_content", locals: { entries_path: @entries_path, pre_entries_path: @pre_entries_path } %>
 <% end %>
 
 <%= render_turbo_stream_flash_messages %>

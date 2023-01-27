@@ -5,16 +5,16 @@ ja:
         title: ワンコの登録 | 犬のしつけ広場
       dog_registration_form:
         title: ワンコの登録
-        name: 犬の名前
+        name: ワンコの名前
         registration_number: パスポート番号
         add: 追加
       confirm:
-        title: 犬の情報の入力内容確認 | 犬のしつけ広場
+        title: ワンコの入力情報確認 | 犬のしつけ広場
         name: 犬の名前
       dog_registration_confirm:
-        title: 犬の情報の入力内容確認
+        title: ワンコの入力情報確認
         registration_number: パスポート番号
-        name: 犬の名前
+        name: ワンコの名前
         castration: 去勢・避妊
         castrated: 済
         non_castrated: 未

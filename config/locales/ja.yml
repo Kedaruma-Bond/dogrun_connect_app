@@ -99,12 +99,7 @@ ja:
     sns_type: SNSタイプ
     preview_post: プレビュー
     entry_list: 利用記録一覧
-    dog_name: |
-      ワンコの
-      名前
-    thumbnail: |
-      ワンコの
-      サムネイル
+    thumbnail: サムネ
     non_public_dog: |
       利用状況が
       非公開の
@@ -123,15 +118,15 @@ ja:
       html: '<abbr title="required" class="text-xs" style="text-decoration: none; color: purple;">[必須]</abbr>'
     labels:
       defaults:
-        name: '飼い主さんの名前'
-        email: 'メールアドレス'
-        password: 'パスワード'
+        name: 飼い主さんの名前
+        email: メールアドレス
+        password: パスワード
         password_confirmation: 'パスワード 確認'
-        castration: '避妊・去勢済'
-        public: '利用状況公開'
-        dogrun_place: 'ドッグラン名'
+        castration: 避妊・去勢済
+        public: 利用状況公開
+        dogrun_place: ドッグラン名
       contacts:
-        message: '内容'
+        message: 内容
   enums:
     dog_registration:
       castration:

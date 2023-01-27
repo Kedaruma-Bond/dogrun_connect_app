@@ -1,14 +1,14 @@
 <%= turbo_frame_tag dom_id(dogrun_place, "entry_dog_#{dog.id}"), class: "table-row" do %>
   <div class="table-cell whitespace-nowrap">
     <%= link_to send(dog_profile_path, dog) do %>
-      <div class="w-28 h-28 flex animate-roll-in-left">
+      <div class="w-28 h-28 flex animate-slide-in-fwd-top">
         <%= dog_thumbnail_for_top(dog, current_user) %>
         <%= birthday_marker(dog) %>
       </div>
     <% end %>
   </div>
-  <div class="table-cell align-middle text-base whitespace-normal font-semibold text-left animate-slide-in-bottom">
-    <%= link_to togo_inu_shitsuke_hiroba_dog_path(dog.id) do %>
+  <div class="table-cell align-middle text-base whitespace-normal font-semibold text-left animate-slide-in-fwd-top">
+    <%= link_to send(dog_profile_path, dog) do %>
       <%= dog.name %>
     <% end %>
     <% if dog.filming_approval? %>
@@ -20,14 +20,14 @@
       </div>
     <% end %>
   </div>
-  <div class="hidden md:table-cell align-middle pl-2 text-base whitespace-nowrap font-semibold text-left animate-slide-in-bottom">
+  <div class="hidden md:table-cell align-middle pl-2 text-base whitespace-nowrap font-semibold text-left animate-slide-in-fwd-top">
     <% if dog.breed == '' %>
       -
     <% else %>
       <%= dog.breed %>
     <% end %>
   </div>
-  <div class="hidden md:table-cell pl-2 text-base align-middle whitespace-nowrap font-semibold text-left animate-slide-in-bottom">
+  <div class="hidden md:table-cell pl-2 text-base align-middle whitespace-nowrap font-semibold text-left animate-slide-in-fwd-top">
     <% if dog.birthday.blank? %>
       -
     <% else %>
@@ -35,14 +35,14 @@
     <% end %>
     <p class="text-sm pt-4 font-light"><%= t'defaults.age_unit' %></p>
   </div>
-  <div class="hidden md:table-cell pl-2 text-base align-middle whitespace-nowrap font-semibold text-left animate-slide-in-bottom">
+  <div class="hidden md:table-cell pl-2 text-base align-middle whitespace-nowrap font-semibold text-left animate-slide-in-fwd-top">
     <% if dog.sex.blank? %>
       -
     <% else %>
       <%= dog.sex_i18n %>
     <% end %>
   </div>
-  <div class="hidden md:table-cell pl-2 text-base align-middle whitespace-nowrap font-semibold text-left animate-slide-in-bottom">
+  <div class="hidden md:table-cell pl-2 text-base align-middle whitespace-nowrap font-semibold text-left animate-slide-in-fwd-top">
     <% if dog.weight.blank? %>
       -
     <% else %>
@@ -50,10 +50,10 @@
     <% end %>
     <p class="text-sm pt-4 font-light"><%= t'defaults.weight_unit' %></p>
   </div>
-  <div class="table-cell pl-2 align-middle py-2 text-base whitespace-nowrap font-semibold text-left animate-slide-in-bottom">
+  <div class="table-cell pl-2 align-middle py-2 text-base whitespace-nowrap font-semibold text-left animate-slide-in-fwd-top">
     <%= l Entry.where(dog: dog).last.entry_at, format: :short2 %>
   </div>
-  <div data-controller="form-modal" class="table-cell align-middle animate-slide-in-bottom">
+  <div data-controller="form-modal" class="table-cell align-middle animate-slide-in-fwd-top">
     <% if !dog.owner_comment.blank? %>
       <div data-action="click->form-modal#open">
         <svg class="w-7 h-7 mx-auto text-gray-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

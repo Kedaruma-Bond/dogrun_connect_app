@@ -1,9 +1,9 @@
 module DogHelper
   include Pagy::Frontend
 
-  def encount_dogs_at_this_entry(entry, dogrun_place_id)
+  def encount_dogs_at_this_entry(entry, dogrun_place)
     encount_dogs_created_at_this_entry = Encount.where(created_at: entry.entry_at .. entry.exit_at)
-                                                .where(dogrun_place_id: dogrun_place_id)
+                                                .where(dogrun_place_id: dogrun_place)
                                                 .where(user_id: @dog.user_id)
                                                 .joins(:dog).where(dogs: { public: 'public_view' })
     @encount_dogs_at_this_entry = encount_dogs_created_at_this_entry.map do |encount|
