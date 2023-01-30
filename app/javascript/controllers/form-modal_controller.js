@@ -15,6 +15,12 @@ export default class extends Controller {
     event.target === this.modalTarget && this.close(event)
   }
 
+  submitEnd(event) {
+    if (event.detail.success) {
+      this.modalTarget.close()
+    }
+  }
+
   close(event) {
     event.preventDefault();
 
@@ -24,4 +30,5 @@ export default class extends Controller {
       this.formTarget.reset();
     }
   }
+
 }

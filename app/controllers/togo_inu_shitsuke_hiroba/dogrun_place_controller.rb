@@ -24,6 +24,7 @@ class TogoInuShitsukeHiroba::DogrunPlaceController < ApplicationController
       @sns_account_path = :togo_inu_shitsuke_hiroba_sns_account_path
       @edit_sns_account_path = :edit_togo_inu_shitsuke_hiroba_sns_account_path
       @dog_registration_path = :togo_inu_shitsuke_hiroba_dog_registration_path
+      @dog_registration_confirm_path = :togo_inu_shitsuke_hiroba_dog_registration_confirm_path
     end
 
     def set_dogs_and_registration_numbers_at_local

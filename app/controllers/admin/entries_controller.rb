@@ -8,9 +8,10 @@ class Admin::EntriesController < Admin::BaseController
   end
 
   def destroy
+    session[:previous_url] = request.referer
     @entry.destroy
     respond_to do |format|
-      format.html { redirect_to admin_entries_path, success: t('defaults.destroy_successfully'), status: :see_other }
+      format.html { redirect_to session[:previous_url], success: t('defaults.destroy_successfully'), status: :see_other }
       format.json { head :no_content }
     end
   end

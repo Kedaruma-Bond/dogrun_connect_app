@@ -15,11 +15,13 @@ class Admin::ArticlesController < Admin::BaseController
     render :new, status: :unprocessable_entity
   end
 
-  def edit; end
+  def edit
+    session[:previous_url] = request.referer
+  end
 
   def update
     if @article.update(article_params)
-      redirect_to admin_posts_path, success: t('defaults.update_successfully')
+      redirect_to session[:previous_url], success: t('defaults.update_successfully')
       return
     else
       render :edit, status: :unprocessable_entity

@@ -33,7 +33,7 @@ end
 #  closed_flag     :boolean          default(FALSE)
 #  closing_time    :time
 #  description     :text             default("")
-#  force_closed    :boolean          default(FALSE)
+#  force_closed    :boolean          default("releasing")
 #  name            :string           not null
 #  opening_time    :time
 #  prefecture_code :integer

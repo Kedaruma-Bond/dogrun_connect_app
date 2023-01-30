@@ -10,14 +10,14 @@ d = dogrun_place_2 = DogrunPlace.create!(
                   name: 'Dog Play Park',
                   prefecture_code: 23
                 )
-d.logo.attach(io: File.open(Rails.root.join('public/uploads/dog_play_park_logo.jpg')), filename: d.name)
+d.logo.attach(io: File.open(Rails.root.join('public/uploads/dog_play_park_logo.png')), filename: d.name)
 # dogrun_place id: 3 ABC公演ドッグラン
 d = dogrun_place_3 = DogrunPlace.create!(
                   id: 3,
                   name: 'ABC公園ドッグラン',
                   prefecture_code: 47
                 )
-d.logo.attach(io: File.open(Rails.root.join('public/uploads/ABC公園ドッグラン_logo.jpg')), filename: d.name)
+d.logo.attach(io: File.open(Rails.root.join('public/uploads/ABC公園ドッグラン_logo.png')), filename: d.name)
 
 
 # grand admin create

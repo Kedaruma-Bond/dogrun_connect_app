@@ -1,5 +1,9 @@
 ja:
   admin:
+    registration_numbers:
+      update:
+        registration_number_updated_successfully: 登録番号を更新しました
+        registration_number_updated_error: 登録番号は空欄では保存できません
     sns_accounts:
       create:
         cancel_to_registration: 登録をキャンセルしました
@@ -101,9 +105,11 @@ ja:
       create:
         user_create: |
           ユーザー登録完了です
-          引き続きワンコの登録をお願いします
+          引き続きワンコの登録を
+          お願いします
           ２頭目以降のワンコの登録は
-          プロフィール画面から実施できます
+          プロフィール画面から
+          実施できます
     sessions:
       create:
         login_successfully: ログインしました

@@ -95,6 +95,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :registration_numbers, only: %i[update]
+
     resources :sns_accounts, only: %i[new create edit update destroy]
 
     resources :users, only: %i[index new create destroy] do

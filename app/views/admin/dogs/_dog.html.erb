@@ -1,8 +1,10 @@
 <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+  <% rn = RegistrationNumber.where(dogrun_place: current_user.dogrun_place).find_by(dog: dog) %>
   <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
     <div class="w-12 h-12 mx-auto my-auto">
       <% if current_user.name != 'grand_admin' %>
         <%= link_to admin_dog_path(dog) do %>
+          <%= new_registration_number_badge(rn) %>
           <%= dog_thumbnail(dog) %>
         <% end %>
       <% else %>
@@ -10,38 +12,41 @@
       <% end %>
     </div>
   </td>
-  <td class="px-3 py-2 whitespace-nowrap">
+  <td class="text-center">
     <% if dog.rabies_vaccination_certificate.present? && dog.mixed_vaccination_certificate.present? && dog.license_plate.present? %>
-      <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <svg class="mx-auto w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
       </svg>
     <% elsif dog.rabies_vaccination_certificate.present? || dog.mixed_vaccination_certificate.present? || dog.license_plate.present? %>
-      <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <svg class="mx-auto w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
       </svg>
     <% else %>
-      -
+      <div class="text-gray-900 text-sm font-light">-</div>
     <% end %>
   </td>
-  <td class="flex justify-center mt-7 whitespace-nowrap">
+  <td class="flex justify-center content-center whitespace-nowrap">
     <% if dog.date_of_rabies_vaccination.blank? && dog.date_of_mixed_vaccination.blank? %>
-      -
+      <div class="text-gray-900 text-sm font-light">-</div>
     <% else %>
       <%= dog.notice_badge %>
       <%= dog.alart_badge %>
     <% end %>
   </td>
-  <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
-    <% if current_user.name != "grand_admin" %>
-      <% rn = RegistrationNumber.where(dogrun_place: current_user.dogrun_place).find_by(dog: dog) %>
-      <% if rn.nil? %>
-        -
-      <% else %>
-        <%= rn.registration_number %>
+  <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap" data-controller="form-modal">
+    <div class="flex">
+      <%= turbo_frame_tag dom_id(rn, :update), class: "w-3/4 text-gray-900 text-sm font-light" do %>
+        <%= render partial: "registration_number_part", locals: { rn: rn } %>
       <% end %>
-    <% else %>
-      -
-    <% end %>
+      <div class="w-1/4">
+        <button data-action="click->form-modal#open">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <%= render partial: 'registration_number_form', locals: { registration_number: rn } %>
   </td>
   <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
     <%= dog.user.name %>
@@ -98,5 +103,4 @@
       <% end %>
     </td>
   <% end %>
-
 </tr>

@@ -32,19 +32,21 @@ class Admin::PostsController < Admin::BaseController
       end
       return
     else
-      redirect_to admin_posts_path, error: t('defautls.post_save_error')
+      redirect_to request.referer, error: t('defaults.post_save_error')
     end
   end
 
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to admin_posts_path, success: t('defaults.destroy_successfully'), status: :see_other }
+      format.html { redirect_to request.referer, success: t('defaults.destroy_successfully'), status: :see_other }
       format.json { head :no_content }
     end
   end
 
-  def set_publish_limit; end
+  def set_publish_limit
+    session[:previous_url] = request.referer
+  end
 
   def start_to_publish
     publishing_post = Post.where(publish_status: 'is_publishing')
@@ -54,7 +56,7 @@ class Admin::PostsController < Admin::BaseController
       PostMailer.publish_notification(@post.user, DogrunPlace.find(current_user.dogrun_place_id)).deliver_now
     end
     respond_to do |format|
-      format.html { redirect_back_or_to admin_posts_path, success: t('.change_to_be_publishing') }
+      format.html { redirect_to session[:previous_url], success: t('.change_to_be_publishing') }
       format.json { head :no_content }
     end
   end
@@ -62,7 +64,7 @@ class Admin::PostsController < Admin::BaseController
   def cancel_to_publish
     @post.update!(publish_status: 'non_publish')
     respond_to do |format|
-      format.html { redirect_back_or_to admin_posts_path, success: t('.change_to_non_publish')}
+      format.html { redirect_to request.referer, success: t('.change_to_non_publish')}
       format.json { head :no_content }
     end
   end
