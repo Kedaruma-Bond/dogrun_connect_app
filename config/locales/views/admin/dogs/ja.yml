@@ -2,7 +2,9 @@ ja:
   admin:
     dogs:
       registration_number_form:
-        input_registration_number: 更新する登録番号を入力してください
+        input_registration_number: |
+          更新する登録番号を
+          入力してください
       index:
         title: 登録犬一覧
         notice: 通知

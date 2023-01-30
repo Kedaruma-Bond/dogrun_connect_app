@@ -1,9 +1,1 @@
-<% if current_user.name != "grand_admin" %>
-  <% if rn.nil? %>
-    -
-  <% else %>
-    <%= rn.registration_number %>
-  <% end %>
-<% else %>
-  -
-<% end %>
+<%= rn.registration_number %>

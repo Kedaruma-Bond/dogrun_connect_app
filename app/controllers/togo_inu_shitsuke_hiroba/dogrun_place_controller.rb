@@ -32,7 +32,7 @@ class TogoInuShitsukeHiroba::DogrunPlaceController < ApplicationController
       
       @dogs = Dog.with_attached_thumbnail.joins(:registration_numbers).where(registration_numbers: { dogrun_place: @dogrun_place }).where(user_id: current_user.id).order(:id)
       @registration_numbers = @dogs.map do |dog|
-        RegistrationNumber.find_by(dog_id: dog.id)
+        RegistrationNumber.where(dogrun_place: @dogrun_place).find_by(dog_id: dog.id)
       end
     end
     
