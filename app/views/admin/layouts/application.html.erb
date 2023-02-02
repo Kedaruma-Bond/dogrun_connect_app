@@ -19,6 +19,7 @@
   </head>
 
   <body class="bg-gray-800 font-sans min-h-screen">
+    <%= turbo_frame_tag "modal" %>
     <%= render partial: 'admin/shared/navbar' %>
     <div id="flash" class="z-50 flex-col fixed top-16 right-1">
       <%= render 'shared/flash' %>

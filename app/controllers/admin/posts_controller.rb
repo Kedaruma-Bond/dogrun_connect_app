@@ -4,6 +4,7 @@ class Admin::PostsController < Admin::BaseController
   before_action :post_params, only: %i[create]
   before_action :post_params_for_publish, only: %i[start_to_publish]
   before_action :set_post, only: %i[destroy set_publish_limit start_to_publish cancel_to_publish]
+  before_action :set_dogrun_place, only: %i[index search cancel_to_publish]
 
   def index
     @publishing_post = Post.is_publishing
@@ -46,25 +47,31 @@ class Admin::PostsController < Admin::BaseController
 
   def set_publish_limit
     session[:previous_url] = request.referer
+    @post.update!(acknowledge: true)
   end
 
   def start_to_publish
     publishing_post = Post.where(publish_status: 'is_publishing')
     publishing_post.update!(publish_status: 'non_publish')
-    @post.update!(post_params_for_publish)
-    if !@post.user.admin?
-      PostMailer.publish_notification(@post.user, DogrunPlace.find(current_user.dogrun_place_id)).deliver_now
-    end
-    respond_to do |format|
-      format.html { redirect_to session[:previous_url], success: t('.change_to_be_publishing') }
-      format.json { head :no_content }
+    if @post.update!(post_params_for_publish)
+      if !@post.user.admin?
+        PostMailer.publish_notification(@post.user, DogrunPlace.find(current_user.dogrun_place_id)).deliver_now
+      end
+      respond_to do |format|
+        format.html { redirect_to session[:previous_url], success: t('.change_to_be_publishing') }
+        format.json { head :no_content }
+      end
+    else
+      render :set_publish_limit, status: :unprocessable_entity
     end
   end
 
   def cancel_to_publish
     @post.update!(publish_status: 'non_publish')
+    @publishing_post = Post.is_publishing
     respond_to do |format|
       format.html { redirect_to request.referer, success: t('.change_to_non_publish')}
+      format.turbo_stream { flash.now[:success] = t('.change_to_non_publish') }
       format.json { head :no_content }
     end
   end
@@ -75,6 +82,10 @@ class Admin::PostsController < Admin::BaseController
   end
 
   private
+
+    def set_dogrun_place
+      @dogrun_place = current_user.dogrun_place
+    end
 
     def set_q
       @posts = Post.where(dogrun_place_id: current_user.dogrun_place_id).includes([:user, :article, :embed]).order(created_at: :desc)

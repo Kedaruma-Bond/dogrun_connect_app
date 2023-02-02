@@ -46,6 +46,7 @@ end
 # Table name: posts
 #
 #  id              :bigint           not null, primary key
+#  acknowledge     :boolean          default(FALSE)
 #  post_type       :integer          not null
 #  publish_limit   :datetime
 #  publish_status  :boolean          default("non_publish"), not null

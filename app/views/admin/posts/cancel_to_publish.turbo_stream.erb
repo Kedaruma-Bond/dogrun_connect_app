@@ -1,0 +1,9 @@
+<%= render_turbo_stream_flash_messages %>
+
+<%= turbo_stream.update dom_id(@post, :post_icon) do %>
+  <%= render partial: "post_icon", locals: { post: @post } %>
+<% end %>
+
+<%= turbo_stream.update dom_id(@dogrun_place, :dogrun_board) do %>
+  <%= render partial: "dogrun_board", locals: { publishing_post: @publishing_post } %>
+<% end %>

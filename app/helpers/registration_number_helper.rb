@@ -18,5 +18,4 @@ module RegistrationNumberHelper
       end
     end
   end
-
 end
