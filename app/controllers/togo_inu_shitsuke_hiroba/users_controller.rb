@@ -1,8 +1,6 @@
 class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlaceController
   skip_before_action :require_login, only: %i[new create]
-  before_action :user_params, only: %i[create]
   before_action :correct_user, :set_dogs_and_registration_numbers_at_local, only: %i[show]
-  before_action :sns_id_params, only: %i[edit update]
 
   def new
     @user = User.new
@@ -13,10 +11,23 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
     if @user.save
       UserMailer.user_registration_success(@user).deliver_now
       login(params[:user][:email], params[:user][:password])
-      redirect_to togo_inu_shitsuke_hiroba_dog_registration_path, success: t('.user_create')
+      redirect_to send(@dog_registration_path), success: t('.user_create')
       return
     end
     render :new, status: :unprocessable_entity
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_update_params)
+      redirect_to send(@user_path, current_user), success: t('defaults.update_successfully')
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -45,4 +56,5 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
       :agreement
     )
   end
+
 end

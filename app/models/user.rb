@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :encounts, dependent: :destroy
   belongs_to :dogrun_place, optional: true
   has_one :sns_account, dependent: :destroy
+  has_one :user_detail, dependent: :destroy
 
   attr_accessor :agreement
 

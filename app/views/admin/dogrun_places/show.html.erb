@@ -52,27 +52,8 @@
                   <% end %>
                 <% end %>
               </h2>
-              <% if @dogrun_place.sns_account.nil? %>
-                <%= link_to new_admin_sns_account_path, data: { turbo_frame: 'sns_account_form_modal' } do %>
-                  <button class="px-2 py-2 text-sm font-normal mr-5 md:mr-1 tracking-wide text-gray-200 capitalize transition-colors duration-200 transform bg-sky-700 rounded-md hover:bg-sky-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-                    <span class="mx-auto"><%= t'.register_sns_id' %></span>
-                  </button>
-                <% end %>
-              <% else %>
-                <div class="flex mb-2">
-                  <%= link_to edit_admin_sns_account_path(@dogrun_place.sns_account), data: { turbo_frame: 'sns_account_form_modal' } do %>
-                    <button class="px-2 py-2 text-sm font-normal mr-5 ml-5 md:mr-1 md:ml-1 tracking-wide text-gray-200 capitalize transition-colors duration-200 transform bg-sky-700 rounded-md hover:bg-sky-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-                      <span class="mx-auto"><%= t'.update_sns_id' %></span>
-                    </button>
-                  <% end %>
-                  <%= link_to admin_sns_account_path(@dogrun_place.sns_account), data: { turbo_method: :delete, turbo_confirm: t('defaults.destroy_confirmation') } do %>
-                    <button class="px-2 py-2 text-sm font-normal mr-5 md:mr-1 tracking-wide text-gray-200 capitalize transition-colors duration-200 transform bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-                      <span class="mx-auto"><%= t'.delete_sns_id' %></span>
-                    </button>
-                  <% end %>
-                </div>
-                <p class="text-sm mt-3"><%= t('defaults.sns') %></p>
-                <%= render partial: "shared/sns_account_icons", locals: { sns_account: @dogrun_place.sns_account } %>
+              <%= turbo_frame_tag dom_id(@dogrun_place, :sns_icons) do %>
+                <%= render partial: "sns_icon_part", locals: { dogrun_place: @dogrun_place } %>
               <% end %>
             </div>
           </div>

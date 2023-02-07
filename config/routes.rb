@@ -43,7 +43,8 @@ Rails.application.routes.draw do
         post 'search', to: 'entries#search'
       end
     end
-    resources :users, only: %i[new create show edit update]
+    resources :users, only: %i[new create show]
+    resources :user_details, only: %i[new create edit update destroy]
     resources :dogs, only: %i[show edit update]
     resources :registration_numbers, only: %i[destroy]
     resources :posts, only: %i[new create] do

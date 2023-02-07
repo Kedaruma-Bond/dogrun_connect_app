@@ -1,5 +1,6 @@
 <% content_for(:title, t('.title')) %>
 <%= turbo_frame_tag "sns_account_form_modal" %>
+<%= turbo_frame_tag "user_detail_form_modal" %>
 <div class="max-w-5xl mx-3 md:mx-auto sm:px-6 lg:px-8 bg-purple-200 rounded-lg">
   <div class="w-full p-5">
     <p class="text-2xl md:text-3xl font-bold text-gray-700 text-center my-2">
@@ -12,37 +13,19 @@
           <circle cx="12" cy="7" r="4"></circle>
         </svg>
       </div>
-      <div class="flex-grow text-left mt-6 sm:mt-0">
+      <div class="flex flex-col justify-start mt-6 sm:mt-2 min-w-[245px]">
         <p class="text-gray-500 leading-relaxed text-base"><%= t'.name' %></p>
         <h2 class="text-2xl font-semibold text-gray-700 title-font mb-2"><%= current_user.name %></h2>
         <% if current_user.role != 'guest' %>
           <p class="text-gray-500 leading-relaxed text-base"><%= t'.email' %></p>
           <h2 class="text-lg font-semibold text-gray-700 title-font mb-2"><%= current_user.email %></h2>
-          <% if current_user.sns_account.nil? %>
-              <%= link_to send(@new_sns_account_path), data: { turbo_frame: 'sns_account_form_modal' } do %>
-                <button class="px-2 py-2 text-sm font-normal mr-5 md:mr-1 tracking-wide text-gray-200 capitalize transition-colors duration-200 transform bg-sky-700 rounded-md hover:bg-sky-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-                  <span class="mx-auto"><%= t'.register_sns_id' %></span>
-                </button>
-              <% end %>
-          <% else %>
-            <div class="flex mb-2">
-              <%= link_to send(@edit_sns_account_path, current_user.sns_account), data: { turbo_frame: 'sns_account_form_modal' } do %>
-                <button class="px-2 py-2 text-sm font-normal mr-5 ml-5 md:mr-1 md:ml-0 tracking-wide text-gray-200 capitalize transition-colors duration-200 transform bg-sky-700 rounded-md hover:bg-sky-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-                  <span class="mx-auto"><%= t'.update_sns_id' %></span>
-                </button>
-              <% end %>
-              <%= link_to send(@sns_account_path, current_user.sns_account), data: { turbo_method: :delete, turbo_confirm: t('defaults.destroy_confirmation') } do %>
-                <button class="px-2 py-2 text-sm font-normal mr-5 md:mr-1 tracking-wide text-gray-200 capitalize transition-colors duration-200 transform bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-                  <span class="mx-auto"><%= t'.delete_sns_id' %></span>
-                </button>
-              <% end %>
-            </div>
+        <% end %>
+        <% if current_user.role != 'guest' %>
+          <%= turbo_frame_tag dom_id(current_user, :user_detail) do %>
+            <%= render partial: "shared/user_detail_part" %>
           <% end %>
-          <% if !current_user.sns_account.nil? %>
-            <p class="text-gray-600 text-sm text-center md:text-left"><%= t('.sns_account')%></p>
-            <div class="flex justify-center md:justify-start">
-              <%= render partial: "shared/sns_account_icons", locals: { sns_account: current_user.sns_account } %>
-            </div>
+          <%= turbo_frame_tag dom_id(current_user, :sns_icons) do %>
+            <%= render partial: "shared/sns_icon_part" %>
           <% end %>
         <% end %>
       </div>

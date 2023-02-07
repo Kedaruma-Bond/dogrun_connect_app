@@ -15,6 +15,9 @@
           <nav class="list-disc list-outside mb-3">
             <li class="mb-1">氏名(ニックネームやペンネームを含む)</li>
             <li class="mb-1">メールアドレス</li>
+            <li class="mb-1">電話番号</li>
+            <li class="mb-1">住所</li>
+            <li class="mb-1">写真や動画</li>
             <li class="mb-1">クレジットカード、銀行口座、電子マネー等のお客様の決済手段に関する情報</li>
             <li class="mb-1">外部サービスでお客様が利用するID、その他外部サービスのプライバシー設定によりお客様が連携先に開示を認めた情報</li>
             <li class="mb-1">Cookie(クッキー)を用いて生成された認識情報</li>
@@ -32,6 +35,8 @@
             <li class="mb-1">お客様の当社サービスの利用履歴を管理するため</li>
             <li class="mb-1">利用料金の決済のため</li>
             <li class="mb-1">当社サービスにおけるお客様の行動履歴を分析し、当社サービスの維持改善に役立てるため</li>
+            <li class="mb-1">広告の配信、表示及び効果測定のため</li>
+            <li class="mb-1">お客様の趣味趣向に合わせてターゲッティング広告を表示するため</li>
             <li class="mb-1">当社サービスに関するご案内をするため</li>
             <li class="mb-1">お客様からのお問い合わせに対応するため</li>
             <li class="mb-1">当社の規約や法令に違反する行為に対応するため</li>
@@ -66,9 +71,9 @@
             Cookieを無効にすれば、これらの情報の収集を拒否することができます。詳しくはお使いのブラウザの設定をご確認ください。<br>
             Googleアナリティクスについて、詳しくは以下からご確認ください。<br>
           </h5>  
-          <a href="https://marketingplatform.google.com/about/analytics/terms/jp/" class="pl-2 underline mb-2">
+          <%= link_to "https://marketingplatform.google.com/about/analytics/terms/jp/", target: "_blank", rel: "noopener noreferrer", class:"pl-2 underline mb-2" do %>
             Google アナリティクス利用規約
-          </a>
+          <% end %>
           <h3 class="text-lg mt-2 font-bold">
             プライバシーポリシーの変更
           </h3>
@@ -94,7 +99,8 @@
             大野 保臣
           </h5> 
           <p>
-            2022年05月19日制定
+            2022年05月19日制定<br>
+            2023年02月07日改定
           </p>
         </div>
       </div>

@@ -66,6 +66,9 @@ ja:
     show:
       login_unlock: |
         アカウントロックを解除しました
+  local:
+    user_details:
+      user_details_created_successfully: 住所と電話番号を登録しました
   togo_inu_shitsuke_hiroba:
     sns_accounts:
       create:
@@ -190,6 +193,11 @@ ja:
         password: パスワード
         password_confirmation: パスワード 確認
         agreement: 利用規約とプライバシーポリシー
+      user_detail:
+        zip_code: 郵便番号
+        address_1: 都道府県・市町村・番地
+        address_2: 建物名・号室
+        phone_number: 電話番号
       dog:
         name: ワンコの名前
         castration: |

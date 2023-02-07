@@ -14,13 +14,3 @@ ja:
         email: メールアドレス
         of_dogs: 頭
         add_dog: 新たにワンコを登録する
-        sns_account: 登録済SNS
-        register_sns_id: SNS登録
-        update_sns_id: SNS編集
-        delete_sns_id: SNS削除
-      edit:
-        title: SNSアカウント登録
-        facebook_id_hint: https://www.facebook.com/以降を入力してください
-        instagram_id_hint: https://www.instagram.com/以降を入力してください
-        twitter_id_hint: https://twitter.com/以降を入力してください
-

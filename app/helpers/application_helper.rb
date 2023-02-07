@@ -4,11 +4,11 @@ module ApplicationHelper
     base_title = 'DogrunConnect'
     page_title.empty? ? base_title : "#{page_title} | #{base_title}"
   end
-
+  
   def render_turbo_stream_flash_messages
     turbo_stream.append "flash", partial: "shared/flash"
   end
-
+  
   def default_meta_tags
     {
       site: Rails.application.credentials.meta_tags[:app],

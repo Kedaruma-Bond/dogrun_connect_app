@@ -8,13 +8,23 @@ class TogoInuShitsukeHiroba::SnsAccountsController < TogoInuShitsukeHiroba::Dogr
   def create
     @sns_account = SnsAccount.new(sns_account_params)
     if @sns_account.facebook_id.blank? && @sns_account.instagram_id.blank? && @sns_account.twitter_id.blank?
-      redirect_to togo_inu_shitsuke_hiroba_user_path(current_user), notice: t(".cancel_to_registration")
+      @create_cancel_flag = true
+      respond_to do |format|
+        format.html { redirect_to send(@user_path, current_user), notice: t(".cancel_to_registration") }
+        format.turbo_stream { flash.now[:notice] = t(".cancel_to_registration") }
+      end
     else
       if SnsAccount.where(user: current_user).present?
-        redirect_to togo_inu_shitsuke_hiroba_user_path(current_user), error: t(".registration_duplicated")
+        respond_to do |format|
+          format.html { redirect_to togo_inu_shitsuke_hiroba_user_path(current_user), error: t(".registration_duplicated") }
+          format.turbo_stream { flash.now[:error] = t(".registration_duplicated") }
+        end
       else
         @sns_account.save!
-        redirect_to togo_inu_shitsuke_hiroba_user_path(current_user), success: t(".registration_successful")
+        respond_to do |format|
+          format.html { redirect_to send(@user_path, current_user), success: t(".registration_successful") }
+          format.turbo_stream { flash.now[:success] = t(".registration_successful") }
+        end
       end
     end
   end
@@ -24,20 +34,30 @@ class TogoInuShitsukeHiroba::SnsAccountsController < TogoInuShitsukeHiroba::Dogr
   end
 
   def update
-    @sns_account = SnsAccount.new(sns_account_params)
-    if @sns_account.facebook_id.blank? && @sns_account.instagram_id.blank? && @sns_account.twitter_id.blank?
-      redirect_to togo_inu_shitsuke_hiroba_user_path(current_user), notice: t(".cancel_to_registration")
+    @sns_account = SnsAccount.find(params[:id])
+    sns_account = SnsAccount.new(sns_account_params)
+    if sns_account.facebook_id.blank? && sns_account.instagram_id.blank? && sns_account.twitter_id.blank?
+      respond_to do |format|
+        format.html { redirect_to send(@user_path, current_user), notice: t(".cancel_to_registration") }
+        format.turbo_stream { flash.now[:notice] = t(".cancel_to_registration") }
+      end
     else
-      @sns_account = SnsAccount.find(params[:id])
+      @correct_update_flag = true
       @sns_account.update(sns_account_params)
-      redirect_to togo_inu_shitsuke_hiroba_user_path(current_user), success: t("defaults.update_successfully")
+      respond_to do |format|
+        format.html { redirect_to send(@user_path, current_user), success: t("defaults.update_successfully") }
+        format.turbo_stream { flash.now[:success] = t("defaults.update_successfully") }
+      end
     end
   end
 
   def destroy
     @sns_account = SnsAccount.find(params[:id])
     @sns_account.destroy
-    redirect_to togo_inu_shitsuke_hiroba_user_path(current_user), success: t("defaults.destroy_successfully")
+    respond_to do |format|
+      format.html { redirect_to send(@user_path, current_user), success: t("defaults.destroy_successfully"), status: :see_other }
+      format.turbo_stream { flash.now[:success] = t("defaults.destroy_successfully") }
+    end
   end
 
   private

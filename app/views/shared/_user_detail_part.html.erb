@@ -1,0 +1,56 @@
+<% if current_user.user_detail.nil? %>
+  <div class="mt-1 mb-3 flex">
+    <%= link_to send(@new_user_detail_path), data: { turbo_frame: "user_detail_form_modal" } do %>
+      <button class="px-2 py-2 text-sm font-normal mr-5 md:mr-1 tracking-wide text-gray-200 capitalize transition-colors duration-200 transform bg-blue-700 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+        <span class="mx-auto"><%= t'.register_address_and_telephone_number' %></span>
+      </button>
+    <% end %>
+  </div>
+<% else %>
+  <details data-controller="accordion" class="mb-5">
+    <summary data-accordion-target="summary" data-action="click->accordion#toggle" class="mt-3 hover:cursor-pointer flex justify-center">
+      <h1 class="flex font-bold text-sm text-gray-500">
+        <%= t('defaults.show_address_and_phone_number')%>
+      </h1>
+    </summary>
+    <div data-accordion-target="content" class="bg-gray-700 px-4 py-2 rounded-lg max-w-[245px]">
+      <div class="text-left text-xs">
+        <p class="text-gray-400">
+          <%= UserDetail.human_attribute_name(:zip_code) %>
+        </p>
+        <h2 class="mt-1 text-gray-300 text-base font-normal">
+          <%= current_user.user_detail.zip_code %>
+        </h2>
+        <p class="text-gray-400 mt-2">
+          <%= t('defaults.address') %>
+        </p>
+        <h2 class="mt-1">
+          <%= simple_format(current_user.user_detail.address_1, class:"text-gray-300 text-sm font-normal") %>
+        </h2>
+        <% if !current_user.user_detail.address_2.nil? %>
+          <h2 class="mt-1">
+            <%= simple_format(current_user.user_detail.address_2, class: "text-gray-300 text-sm font-normal") %>
+          </h2>
+        <% end %>
+        <p class="text-gray-400 mt-2">
+          <%= UserDetail.human_attribute_name(:phone_number) %>
+        </p>
+        <h2 class="mt-1 text-gray-300 text-base font-normal">
+          <%= current_user.user_detail.phone_number %>
+        </h2>
+        <div class="flex mt-4 mb-2 justify-center">
+          <%= link_to send(@edit_user_detail_path, current_user.user_detail), data: { turbo_frame: 'user_detail_form_modal' } do %>
+            <button class="px-4 py-2 text-sm font-normal mr-3 md:mr-1 md:ml-0 tracking-wide text-gray-200 capitalize transition-colors duration-200 transform bg-sky-700 rounded-md hover:bg-sky-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+              <span class="mx-auto"><%= t'.update_user_detail' %></span>
+            </button>
+          <% end %>
+          <%= link_to send(@user_detail_path, current_user.user_detail), data: { turbo_method: :delete, turbo_confirm: t('defaults.destroy_confirmation') } do %>
+            <button class="px-4 py-2 text-sm font-normal md:mr-1 tracking-wide text-gray-200 capitalize transition-colors duration-200 transform bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+              <span class="mx-auto"><%= t'.delete_user_detail' %></span>
+            </button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </details>
+<% end %>

@@ -13,7 +13,11 @@ class TogoInuShitsukeHiroba::DogrunPlaceController < ApplicationController
       @guest_login_path = :togo_inu_shitsuke_hiroba_guest_login_path
       @jump_to_signup_path = :togo_inu_shitsuke_hiroba_jump_to_signup_path
       @user_path = :togo_inu_shitsuke_hiroba_user_path
+      @edit_user_path = :edit_togo_inu_shitsuke_hiroba_user_path
       @users_path = :togo_inu_shitsuke_hiroba_users_path
+      @new_user_detail_path = :new_togo_inu_shitsuke_hiroba_user_detail_path
+      @edit_user_detail_path = :edit_togo_inu_shitsuke_hiroba_user_detail_path
+      @user_detail_path = :togo_inu_shitsuke_hiroba_user_detail_path
       @dog_profile_path = :togo_inu_shitsuke_hiroba_dog_path
       @registration_number_path = :togo_inu_shitsuke_hiroba_registration_number_path 
       @encount_dogs_path = :togo_inu_shitsuke_hiroba_encount_dogs_path

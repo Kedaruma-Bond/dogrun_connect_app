@@ -1,5 +1,7 @@
-<%= simple_form_for [:togo_inu_shitsuke_hiroba, sns_account], data: { controller: 'disable', "disable-with-value": t('defaults.processing'), turbo_frame: "_top" } do |f|  %>
-  <%= render 'shared/error_messages', object: f.object %>
+<%= simple_form_for [:togo_inu_shitsuke_hiroba, sns_account], data: { controller: 'disable', "disable-with-value": t('defaults.processing') } do |f|  %>
+  <%= turbo_frame_tag dom_id(current_user, :user_detail_error) do %>
+    <%= render 'shared/error_messages', object: f.object %>
+  <% end %>
   <div class="mt-1">
     <%= f.input :facebook_id, input_html: { class: "block w-full leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200"}, label: DogrunPlace.human_attribute_name(:facebook_id), hint_html: { class: "text-gray-500 text-xs" }, hint: t('.facebook_id_hint'), error: false %>
   </div>

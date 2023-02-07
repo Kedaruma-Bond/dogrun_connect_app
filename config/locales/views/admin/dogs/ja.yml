@@ -18,6 +18,9 @@ ja:
       show:
         title: ワンコのプロフィール
         dog_owner_sns: 飼い主さんのSNS
+      owner_information_part:
+        show_owner_information: 飼い主さん情報を表示する
+        not_registered_user_detail: 住所・電話番号未登録
       edit:
         title: ワンコの情報編集
         dog_name: ワンコの名前
