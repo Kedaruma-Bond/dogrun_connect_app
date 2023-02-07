@@ -1,0 +1,44 @@
+<%= while @times <= @end do %>
+  <div class="mx-auto w-full max-w-md px-8 py-4 mt-16 bg-gray-200 text-gray-600 dark:bg-gray-500 dark:text-gray-200 bg-opacity-50 rounded-lg shadow-lg">
+    <div class="w-28 h-28 sm:w-16 sm:h-16 flex -mt-16">
+      <%= link_to send(@dog_profile_path, @dogs[@times]) do %>
+        <%= dog_thumbnail(@dogs[@times]) %>
+      <% end %>
+    </div>
+
+    <div class="flex mt-2 md:mt-3">
+      <div class="my-auto text-sm sm:text-xs font-light whitespace-nowrap">
+        <%= t('.registration_number') %> &nbsp;
+      </div>
+      <div class="my-auto text-lg font-bold">
+        <%= @registration_numbers_for_profile[@times] %>
+      </div>
+    </div>
+
+    <div class="flex mt-2 text-2xl font-semibold text-gray-800 dark:text-white md:mt-0 md:text-3xl">
+      <%= @dogs[@times].name %>
+      <div class="flex ml-2 mt-0 md:mt-4">
+        <%= @dogs[@times].notice_badge %>
+        <%= @dogs[@times].alart_badge %>
+      </div>
+    </div>
+
+    <div class="mt-2 text-gray-700 dark:text-gray-200 grid grid-cols-2">
+      
+    </div>
+
+    <div class="flex justify-between md:justify-end mt-4">
+      <%= link_to send(@dog_profile_path, @dogs[@times]) do %>
+        <button class="w-24 px-2 py-2 font-medium text-lg text-gray-200 tracking-wide transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+          <span class="mx-auto font-medium"><%= t'defaults.detail' %></span>
+        </button>
+      <% end %>
+      <%= link_to send(@registration_number_path, @registration_numbers[@times]), data: { turbo_method: :delete, turbo_confirm: t('.destroy_confirm') } do %>
+        <button class="w-20 px-1 py-1 mt-4 md:ml-3 font-normal text-sm text-gray-200 tracking-wide transition-colors duration-200 transform bg-rose-700 rounded-md hover:bg-rose-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+          <span class="mx-auto"><%= t'.delete' %></span>
+        </button>
+      <% end %>
+    </div>
+  </div>
+  <% @times += 1 %>
+<% end %>

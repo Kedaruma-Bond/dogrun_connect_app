@@ -1,0 +1,3 @@
+<%= render UserDetails::FormModalComponent.new(title: t('.title')) do %>
+  <%= render partial: "address_and_phone_number_form", locals: { user_detail: @user_detail } %>
+<% end %>

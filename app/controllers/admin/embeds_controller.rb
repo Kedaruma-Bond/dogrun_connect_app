@@ -15,13 +15,13 @@ class Admin::EmbedsController < Admin::BaseController
     render :new, status: :unprocessable_entity
   end
 
-  def edit; end
+  def edit
+    session[:previous_url] = request.referer
+  end
 
   def update
     if @embed.update(embed_params)
-      
-      redirect_to admin_posts_path, success: t('defaults.update_successfully')
-      return
+      redirect_to session[:previous_url], success: t('defaults.update_successfully')
     else
       render :edit, status: :unprocessable_entity
     end

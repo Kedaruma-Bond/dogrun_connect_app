@@ -1,10 +1,10 @@
-<section class="relative py-2 mt-2 bg-blueGray-50 rounded-xl">
-  <div class="w-full px-4">
-    <div class="relative flex flex-col min-w-0 break-words w-full mb-2 shadow-lg rounded bg-gray-600 text-white">
-      <div class="rounded-t mb-0 px-4 py-2 border-0">
+<section class="py-2 mt-2 rounded-xl">
+  <div class="w-full px-1">
+    <div class="mx-auto max-w-md flex flex-col min-w-0 break-words w-full mb-2 shadow-lg rounded-xl bg-gray-600 text-white">
+      <div class="mb-0 px-4 py-2 border-0">
         <div class="flex flex-wrap items-center">
           <div class="relative w-full px-4 max-w-full flex-grow flex-1 ">
-            <h3 class="text-base text-gray-200 text-center font-medium">
+            <h3 class="text-base text-gray-200 text-center font-semibold">
               <%= t(".coming_soon?") %>
             </h3>
           </div>
@@ -14,11 +14,11 @@
       <div class="block w-full overflow-x-auto">
         <div class="border-t-0 px-3 align-middle border-l-0 border-r-0 whitespace-nowrap p-2">
           <%= turbo_frame_tag dom_id(@dogrun_place, "pre_entries_list"), class: "flex" do %>
-            <div class="mx-auto text-gray-400 text-sm pb-2 hidden only:block">
+            <div class="mx-auto pt-2 text-gray-400 text-sm hidden only:block h-[48px]">
               <%= t('.no_one_will_come_for_a_while') %>
             </div>
             <% @pre_entry_dogs_public_view.each do |pre_entry_dog| %>
-              <%= render partial: "shared/pre_entry_dog", locals: { pre_entry_dog: pre_entry_dog, dogrun_place: @dogrun_place } %>
+              <%= render partial: "shared/pre_entry_dog", locals: { pre_entry_dog: pre_entry_dog, dogrun_place: @dogrun_place, dog_profile_path: dog_profile_path } %>
             <% end %>
           <% end %>
         </div>

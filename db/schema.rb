@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_11_054101) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_04_052042) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -168,6 +168,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_054101) do
     t.datetime "updated_at", null: false
     t.integer "post_type", null: false
     t.datetime "publish_limit"
+    t.boolean "acknowledge", default: false
     t.index ["dogrun_place_id"], name: "index_posts_on_dogrun_place_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -188,6 +189,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_054101) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "dogrun_place_id"
+    t.boolean "acknowledge", default: false
     t.index ["dog_id"], name: "index_registration_numbers_on_dog_id"
     t.index ["dogrun_place_id"], name: "index_registration_numbers_on_dogrun_place_id"
   end
@@ -212,6 +214,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_054101) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dogrun_place_id"], name: "index_staffs_on_dogrun_place_id"
+  end
+
+  create_table "user_details", force: :cascade do |t|
+    t.string "zip_code", limit: 8, null: false
+    t.string "address_1", limit: 50, null: false
+    t.string "address_2", limit: 50
+    t.string "phone_number", limit: 13, null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_details_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -268,5 +281,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_054101) do
   add_foreign_key "sns_accounts", "dogrun_places"
   add_foreign_key "sns_accounts", "users"
   add_foreign_key "staffs", "dogrun_places"
+  add_foreign_key "user_details", "users"
   add_foreign_key "users", "dogrun_places"
 end

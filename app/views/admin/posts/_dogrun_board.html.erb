@@ -1,0 +1,7 @@
+<% if !publishing_post.blank? %>
+  <%= publishing_post[0].post_viewing %>
+<% else %>
+  <div class="text-gray-300 text-center">
+    <%= t('defaults.nothing_on_board') %>
+  </div>
+<% end %>

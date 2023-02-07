@@ -38,6 +38,7 @@ end
 # Table name: registration_numbers
 #
 #  id                  :bigint           not null, primary key
+#  acknowledge         :boolean          default(FALSE)
 #  registration_number :string           not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null

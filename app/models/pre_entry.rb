@@ -15,8 +15,8 @@ class PreEntry < ApplicationRecord
     broadcast_remove_to [dogrun_place, "top"], target: "pre_entry_dog_#{self.dog.id}_dogrun_place_#{self.dogrun_place.id}"
   end
 
-  def pre_entry_broadcast(dog, current_user, dogrun_place)
-    broadcast_append_to [dogrun_place, "top"], target: "pre_entries_list_dogrun_place_#{dogrun_place.id}", partial: "shared/pre_entry_dog", locals: { pre_entry_dog: dog, current_user: current_user, dogrun_place: dogrun_place }
+  def pre_entry_broadcast(dog, current_user, dogrun_place, dog_profile_path)
+    broadcast_append_to [dogrun_place, "top"], target: "pre_entries_list_dogrun_place_#{dogrun_place.id}", partial: "shared/pre_entry_dog", locals: { pre_entry_dog: dog, current_user: current_user, dogrun_place: dogrun_place, dog_profile_path: dog_profile_path }
   end
 end
 

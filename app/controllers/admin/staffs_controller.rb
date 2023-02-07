@@ -26,7 +26,7 @@ class Admin::StaffsController < Admin::BaseController
   def destroy
     @staff.destroy
     respond_to do |format|
-      format.html { redirect_to admin_staffs_path, success: t('defaults.destroy_successfully'), status: :see_other }
+      format.html { redirect_to request.referer, success: t('defaults.destroy_successfully'), status: :see_other }
       format.json { head :no_content }
     end
   end
@@ -34,7 +34,7 @@ class Admin::StaffsController < Admin::BaseController
   def enable_notification
     @staff.update!(enable_notification: true)
     respond_to do |format|
-      format.html { redirect_to admin_staffs_path, success: t('.change_to_enable')}
+      format.html { redirect_to request.referer, success: t('.change_to_enable')}
       format.json { head :no_content }
     end
   end
@@ -42,7 +42,7 @@ class Admin::StaffsController < Admin::BaseController
   def disable_notification
     @staff.update!(enable_notification: false)
     respond_to do |format|
-      format.html { redirect_to admin_staffs_path, success: t('.change_to_disable')}
+      format.html { redirect_to request.referer, success: t('.change_to_disable')}
       format.html { head :no_content }
     end
   end

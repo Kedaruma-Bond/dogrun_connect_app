@@ -26,9 +26,10 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def destroy
+    session[:previous_url] = request.referer
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to admin_users_path, success: t('defaults.destroy_successfully'), status: :see_other }
+      format.html { redirect_to session[:previous_url], success: t('defaults.destroy_successfully'), status: :see_other }
       format.json { head :no_content }
     end
   end
@@ -38,26 +39,25 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def deactivation
+    session[:previous_url] = request.referer
     @user.update!(deactivation: true)
     respond_to do |format|
-      format.html { redirect_to admin_users_path, success: t('.account_frozen') }
+      format.html { redirect_to session[:previous_url], success: t('.account_frozen') }
       format.json { head :no_content }
     end
   end
 
   def activation
+    session[:previous_url] = request.referer
     @user.update!(deactivation: false)
     respond_to do |format|
-      format.html { redirect_to admin_users_path, success: t('.account_activated') }
+      format.html { redirect_to session[:previous_url], success: t('.account_activated') }
       format.json { head :no_content }
     end
   end
 
   private
 
-    def set_users
-    end
-    
     def set_q
       @users = User.all.eager_load(:dogs).order(id: :desc)
       @q = @users.ransack(params[:q])

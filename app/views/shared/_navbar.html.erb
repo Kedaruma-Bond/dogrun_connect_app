@@ -1,22 +1,21 @@
 <header class="dark:bg-gray-800 text-gray-600 w-full body-font">
   <!-- logo -->
-  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-    <%= link_to togo_inu_shitsuke_hiroba_top_path, 
-        class: "flex order-first title-font font-medium items-center text-gray-900 mb-4 md:mb-0",
-        data: { turbo: false } do %>
+  <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center">
+    <%= link_to send(@top_path), 
+        class: "flex font-medium items-center my-auto p-3 md:mb-0" do %>
       <div class="w-10 h-auto">
         <%= dogrun_logo(@dogrun_place) %>
       </div>
       <span class="ml-3 text-xl font-bold text-indigo-800 dark:text-gray-200"><%= @dogrun_place.name %></span>
     <% end %>
 
-    <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-      <%= link_to togo_inu_shitsuke_hiroba_login_path, 
+    <nav class="hidden sm:flex md:ml-auto flex-wrap items-center text-base justify-center">
+      <%= link_to send(@login_path), 
           class: "flex mr-5 hover:text-gray-900 dark:text-gray-200" do %>
         <svg class="w-6 h-6 dark:text-gray-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
         <span><%= t('defaults.login') %></span>
       <% end %>
-      <%= link_to togo_inu_shitsuke_hiroba_signup_path, 
+      <%= link_to send(@signup_path), 
           class: "flex mr-3 hover:text-gray-900 dark:text-gray-200" do %>
         <svg class="w-6 h-6 dark:text-gray-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path></svg>
         <span><%= t('defaults.signup') %></span>

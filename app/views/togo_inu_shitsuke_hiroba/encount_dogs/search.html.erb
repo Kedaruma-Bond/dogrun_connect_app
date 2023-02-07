@@ -2,5 +2,5 @@
   title: t('.title'),
   pagy: @pagy
   ) do %>
-    <%= render partial: 'shared/encount_dog', collection: @encount_dogs_results %>
+    <%= render partial: 'shared/encount_dog', collection: @encount_dogs_results, locals: { dog_profile_path: @dog_profile_path, edit_encount_dog_path: @edit_encount_dog_path } %>
 <% end %>

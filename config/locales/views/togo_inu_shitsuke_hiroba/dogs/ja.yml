@@ -16,9 +16,6 @@ ja:
         clear: クリア
         owner_comment_placeholder: ワンコの性格等、ドッグランで過ごす際に周りの方に知っておいてもらいたいことなどを記載してください
         register_more_detail_data: 接種証明・鑑札情報の登録
-        these_information_is_not_viewable: |
-          これらの情報は管理者を除く
-          他のユーザーは閲覧できません
         register_rabies_vaccination_certificate: 狂犬病予防接種証明の写真登録
         register_mixed_vaccination_certificate: 混合ワクチン接種証明の写真登録
         choose_a_prefecture: 都道府県を選択してください

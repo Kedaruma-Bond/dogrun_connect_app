@@ -7,7 +7,7 @@ class TogoInuShitsukeHiroba::PreEntriesController < TogoInuShitsukeHiroba::Dogru
       pre_entry.destroy
     end
     respond_to do |format|
-      format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.pre_entries_canceled_successfully') }
+      format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.pre_entries_canceled_successfully'), status: :see_other }
       format.turbo_stream { flash.now[:success] = t('.pre_entries_canceled_successfully') }
     end
   end

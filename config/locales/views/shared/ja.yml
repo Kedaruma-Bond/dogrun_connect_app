@@ -1,5 +1,22 @@
 ja:
   shared:
+    user_detail_part:        
+      register_address_and_telephone_number: 住所・電話番号登録
+      update_user_detail: 編集
+      delete_user_detail: 削除
+    sns_icon_part: 
+      sns_account: 登録済SNS
+      register_sns_id: SNS登録
+      update_sns_id: SNS編集
+      delete_sns_id: SNS削除
+    registered_dog:
+      destroy_confirm: |
+        このワンコの登録を
+        本当に解除しますか？
+      delete: 登録削除
+      registration_number: No.
+    login_navbar:
+      logout_confirmation: ログアウトしてよろしいですか？
     num_of_playing_dogs:
       playing1: 頭の仔が
       playing2: 遊んでいます
@@ -35,7 +52,7 @@ ja:
         ありますのでご参照ください
     post_form:
       select_post_type: |
-        作成する投稿タイプを
+        作成する投稿のタイプを
         選択してください
       select_it: 選択してください
     entries_table:

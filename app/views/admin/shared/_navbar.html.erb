@@ -124,6 +124,7 @@
               </svg>
               <span class="pt-1 text-sm text-gray-200">
                 <%= t('.registered_dogs_list') %>
+                <%= new_registration_number_count_badge %>
               </span>
             <% end %>
           </li>
@@ -133,8 +134,11 @@
               <svg class="pt-1 mr-1 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
               </svg>
-              <span class="pt-1 text-xs text-gray-200">
-                <%= t('.dogrun_post_list') %>
+              <span class="flex">
+                <%= simple_format(t('.dogrun_post_list'), class: "text-xs text-gray-200") %>
+                <div class="pt-2">
+                  <%= new_post_count_badge %>
+                </div>
               </span>
             <% end %>
           </li>

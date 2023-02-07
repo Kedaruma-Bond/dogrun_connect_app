@@ -2,5 +2,5 @@
   title: I18n.t('togo_inu_shitsuke_hiroba.entries.index.title', dogrun: @dogrun_place.name),
   pagy: @pagy
   ) do %>
-    <%= render partial: 'shared/entry', collection: @entries %>
+    <%= render partial: 'shared/entry', collection: @entries, locals: { dog_profile_path: @dog_profile_path } %>
 <% end %>

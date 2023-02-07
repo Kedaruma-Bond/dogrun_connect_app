@@ -7,7 +7,7 @@ module EntryHelper
     @current_entries = nil
     entries = []
 
-    entries = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place_id: @dogrun_place.id }).where(exit_at: nil)
+    entries = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place_id: @dogrun_place.id }).where(exit_at: nil).order(dog_id: :asc)
   
     return if entries.blank?
 
@@ -28,7 +28,7 @@ module EntryHelper
 
     pre_entries = []
 
-    pre_entries = PreEntry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place_id: @dogrun_place.id })
+    pre_entries = PreEntry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place_id: @dogrun_place.id }).order(dog_id: :asc)
   
     return if pre_entries.blank?
 

@@ -1,48 +1,55 @@
-<tr>
-  <td class="flex items-center whitespace-nowrap bg-purple-200 text-gray-600">
-    <%= link_to togo_inu_shitsuke_hiroba_dog_path(encount_dog.dog_id) do %>
-      <div class="w-28 h-28 mb-3 my-auto mx-auto">
+<div class="flex mx-auto max-w-md bg-gray-200 text-gray-600 dark:bg-gray-500 dark:text-gray-200 bg-opacity-50 rounded-lg shadow-lg mb-2">
+  <div class="w-1/3 mx-auto my-auto ml-1">
+    <%= link_to send(dog_profile_path, encount_dog.dog) do %>
+      <div class="w-28 h-28">
         <%= new_encount_dog_badge(encount_dog) %>
         <%= encount_dog_thumbnail(encount_dog.dog, encount_dog) %>
       </div>
     <% end %>
-  </td>
-  <td class="align-middle pl-2 pr-2 text-sm whitespace-nowrap font-medium text-center bg-purple-200">
-    <%= link_to edit_togo_inu_shitsuke_hiroba_encount_dog_path(encount_dog), class: "flex justify-center ml-2 text-sm text-gray-500 py-2 px-4" do %>
-      <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+  </div>
+
+  <div class="w-3/6 py-2 pl-4">
+    <div class="text-2xl font-semibold">
+      <%= encount_dog.dog.name %>
+    </div>
+    <% if encount_dog.dog.filming_approval? %>
+      <div class="flex">
+        <%= render partial: "shared/filming_approval" %>
+        <% if encount_dog.dog.sns_post_approval? %>
+          <%= render partial: "shared/sns_post_approval" %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="h-[24px]"></div>
+    <% end %>
+
+    <div class="flex mt-2">
+      <div data-controller="form-modal" class="my-auto">
+        <% if !encount_dog.memo.blank? %>
+          <div data-action="click->form-modal#open">
+            <svg class="w-7 h-7" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+              <path d="M200,32H184V24a8,8,0,0,0-16,0v8H136V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H56A16,16,0,0,0,40,48V200a32,32,0,0,0,32,32H184a32,32,0,0,0,32-32V48A16,16,0,0,0,200,32ZM160,168H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Zm0-32H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Z"/>
+            </svg>
+          </div>
+          <%= render partial: 'shared/encount_dog_memo_modal', locals: { encount_dog: encount_dog } %>
+        <% else %>
+          <div class="text-center w-[28px]">-</div>
+        <% end %>
+      </div>
+
+      <div class="text-xs ml-1">
+        <%= l encount_dog.created_at, format: :long2 %>
+        <div class="text-sm">
+          <%= DogrunPlace.find(encount_dog.dogrun_place_id).name %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-1/6 my-auto">
+    <%= link_to send(edit_encount_dog_path, encount_dog) do %>
+      <svg class="w-7 h-7 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
       </svg>
-    <% end %>
-  </td>
-  <td class="align-middle pl-2 text-sm whitespace-normal font-medium text-left md:text-center bg-purple-200 text-gray-600">
-    <%= encount_dog.dog.name %>
-    <div class="flex md:justify-center">
-      <% if encount_dog.dog.filming_approval? %>
-        <div class="flex">
-          <%= render partial: "shared/filming_approval" %>
-          <% if encount_dog.dog.sns_post_approval? %>
-            <%= render partial: "shared/sns_post_approval" %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  </td>
-  <td data-controller="form-modal" class="table-cell align-middle pl-2 text-sm font-medium bg-purple-200">
-    <% if !encount_dog.memo.blank? %>
-      <div data-action="click->form-modal#open">
-        <svg class="w-7 h-7 text-gray-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-          <path d="M200,32H184V24a8,8,0,0,0-16,0v8H136V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H56A16,16,0,0,0,40,48V200a32,32,0,0,0,32,32H184a32,32,0,0,0,32-32V48A16,16,0,0,0,200,32ZM160,168H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Zm0-32H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Z"/>
-        </svg>
-      </div>
-      <%= render partial: 'shared/encount_dog_memo_modal', locals: { encount_dog: encount_dog } %>
-    <% else %>
-      <div class="ml-2">-</div>
-    <% end %>
-  </td>
-  <td class="align-middle pl-2 text-sm whitespace-nowrap font-medium text-left md:text-center bg-purple-200 text-gray-600">
-    <%= l encount_dog.created_at, format: :long2 %>
-  </td>
-  <td class="align-middle pl-2 text-sm whitespace-nowrap font-medium text-center bg-purple-200 text-gray-600">
-    <%= DogrunPlace.find(encount_dog.dogrun_place_id).name %>
-  </td>
-</tr>
+    <% end %> 
+  </div>
+</div>

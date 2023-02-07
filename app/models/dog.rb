@@ -33,6 +33,9 @@ class Dog < ApplicationRecord
   enum sns_post_approval: { sns_post_approval: true, sns_post_not_approval: false }
   enum sex: { male: 0, female: 1 }
 
+  # delegate
+  delegate :user_detail, to: :user
+
   #   scope
   scope :dogrun_place_id, -> (id) { joins(:registration_numbers).where(registration_numbers: { dogrun_place_id: id }).includes(:registration_numbers, :user).order(id: :desc)}
   scope :dogrun_place_id_for_encount_dog, -> (id) { joins(:entries, :registration_numbers).where(entries: { exit_at: nil }).where(registration_numbers: { dogrun_place_id: 2 }).includes(:entries, :registration_numbers, :user)}

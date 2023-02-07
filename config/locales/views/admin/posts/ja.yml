@@ -12,7 +12,7 @@ ja:
         search_field: 投稿者検索
       search:
         title: ドッグランへの投稿検索結果
-      post:
+      post_icon:
         cancel_to_publish_confirmation: 投稿を取り止めますか？
       publish_limit_form:
         start_to_publish_confirmation: この投稿を掲示しますか？

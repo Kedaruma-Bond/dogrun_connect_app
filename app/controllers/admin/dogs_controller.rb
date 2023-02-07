@@ -11,14 +11,17 @@ class Admin::DogsController < Admin::BaseController
   def show
     if current_user.name != "grand_admin"
       @registration_number = RegistrationNumber.where(dog: @dog).find_by(dogrun_place: current_user.dogrun_place)
+      @registration_number.update!(acknowledge: true)
     end
   end
 
-  def edit; end
+  def edit
+    session[:previous_url] = request.referer 
+  end
 
   def update
     if @dog.update(dog_params)
-      redirect_to admin_dogs_path, success: t('defaults.update_successfully')
+      redirect_to session[:previous_url], success: t('defaults.update_successfully')
     else
       render :edit, status: :unprocessable_entity
     end

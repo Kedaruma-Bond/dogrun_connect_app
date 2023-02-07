@@ -1,13 +1,12 @@
 <footer class="text-gray-600 w-full mt-5">
   <div class="container px-5 pb-10 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
     <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-      <%= link_to '/togo_inu_shitsuke_hiroba/top', 
-          class: "flex title-font font-medium items-center md:justify-start justify-center text-gray-900",
-          data: { turbo: false } do %>
+      <%= link_to send(@top_path), 
+          class: "flex title-font font-medium items-center md:justify-start justify-center text-gray-900" do %>
         <div class="w-10 h-auto">
           <%= dogrun_logo(@dogrun_place) %>
         </div>
-        <span class="ml-3 text-xl font-bold text-indigo-800 dark:text-gray-200"><%= DogrunPlace.find(2).name %></span>
+        <span class="ml-3 text-xl font-bold text-indigo-800 dark:text-gray-200"><%= @dogrun_place.name %></span>
       <% end %>
     </div>
     <div class="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-5 md:text-left text-center">
@@ -16,7 +15,7 @@
       <div class="lg:w-1/4 md:w-1/2 w-full px-4">
       </div>
       <div class="lg:w-1/4 md:w-1/2 w-full px-4 text-center">
-        <h2 class="title-font font-medium text-gray-700 tracking-widest text-sm mb-3 dark:text-gray-200"><%= DogrunPlace.find(2).name %></h2>
+        <h2 class="hidden sm:block title-font font-medium text-gray-700 tracking-widest text-sm mb-3 dark:text-gray-200"><%= @dogrun_place.name %></h2>
         <ul class="list-none mb-5">
           <% if !@dogrun_place.web_site.blank? %>
             <li class="flex justify-center">
@@ -63,7 +62,7 @@
   </div>
   <div class="bg-gray-100">
     <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row items-center justify-between">
-      <p class="text-gray-500 text-sm text-center sm:text-left">© 2022-2023 DogrunConnect</p>
+      <p class="text-gray-500 text-sm text-center sm:text-left">© 2022-<%= Time.zone.now.year %> DogrunConnect</p>
 
       <div class="flex mt-3 -mx-2 sm:mt-0">
         <%= link_to "https://www.facebook.com/dogrunconnect/", target: "_blank", rel: "noopener noreferrer", class: "mx-2 text-gray-400 hover:text-gray-500" do %>

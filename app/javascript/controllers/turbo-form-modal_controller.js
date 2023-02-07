@@ -1,17 +1,24 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ "container" ]
+  static targets = [ "modal" ]
 
   hideModal() {
     this.element.parentElement.removeAttribute("src")
     this.element.remove()
   }
 
+  submitEnd(event) {
+    console.log("correct_working")
+    if (event.detail.success) {
+      this.hideModal()
+    }
+  }
+
   // modal外をタップで close
   // action: "click@window->turbo-modal#closeBackground"
   closeBackground(e) {
-    if (e && this.containerTarget.contains(e.target)) {
+    if (e && this.modalTarget.contains(e.target)) {
       return
     }
     this.hideModal()

@@ -1,0 +1,7 @@
+<%= render_turbo_stream_flash_messages %>
+
+<% if @update_success_flg == true %>
+  <%= turbo_stream.update dom_id(@registration_number, :update) do %>
+    <%= render partial: "admin/dogs/registration_number_part", locals: { rn: @registration_number } %>
+  <% end %>
+<% end %>

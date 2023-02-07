@@ -27,7 +27,7 @@
         </ul>
       <% end %>
 
-      <%= form_with(url: togo_inu_shitsuke_hiroba_entries_path, id: "entry_form", method: :post,
+      <%= form_with(url: send(entries_path), id: "entry_form", method: :post,
           data: { turbo_confirm: t(".pre_entry_or_entry_confirm") } ) do |f| %>
         <div class="flex-col mb-5">
           <%= button_tag type: 'submit', name: "pre_flg", value: "1", 
@@ -72,7 +72,7 @@
           </li>
         <% end %>
       </ul>
-      <%= form_with(url: togo_inu_shitsuke_hiroba_pre_entries_path, method: :delete, data: { turbo_confirm: t('.cancel_confirm') }) do |f| %>
+      <%= form_with(url: send(pre_entries_path), method: :delete, data: { turbo_confirm: t('.cancel_confirm') }) do |f| %>
         <div class="flex-col mb-5">
           <%= button_tag type: 'submit', class: "flex mx-auto items-center justify-center font-bold h-14 text-white py-4 px-10 bg-red-700 rounded hover:bg-red  -600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -85,7 +85,7 @@
         </div>
       <% end %>
 
-      <%= form_with(url: togo_inu_shitsuke_hiroba_entries_path, method: :post, data: { turbo_confirm: t('.entry_confirm') }) do |f| %>
+      <%= form_with(url: send(entries_path), method: :post, data: { turbo_confirm: t('.entry_confirm') }) do |f| %>
         <div class="flex-col">
           <%= button_tag type: 'submit', name: "pre_flg", value: "0", class: "flex mx-auto items-center justify-center font-bold h-14 text-white py-4 px-10 bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
             <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -125,7 +125,7 @@
           <%= l @entry_for_time.entry_at, format: :short2 %>
         </p>
       </div>
-      <%= form_with(url: togo_inu_shitsuke_hiroba_entries_path, method: :patch, data: { turbo_confirm: t('.exit_confirm') }) do |f| %>
+      <%= form_with(url: send(entries_path), method: :patch, data: { turbo_confirm: t('.exit_confirm') }) do |f| %>
         <div class="flex-col">
           <%= button_tag type: 'submit', class: "flex mx-auto items-center justify-center font-bold h-14 text-white py-4 px-10 bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
             <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include EntryHelper
   include SessionHelper
   include DogHelper
+  include RegistrationNumberHelper
   include UserHelper
   include ArticleHelper
   include EncountDogHelper
