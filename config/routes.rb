@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   root 'static_pages#top'
   get 'privacy_policy', to: 'static_pages#privacy_policy'
   get 'terms_of_service', to: 'static_pages#terms_of_service'
-  get 'notice_for_filming_approval', to: 'static_pages#notice_for_filming_approval'
-  get 'notice_for_sns_post_apprival', to: 'static_pages#notice_for_sns_post_approval'
   
   resources :attachments, only: :index
 
