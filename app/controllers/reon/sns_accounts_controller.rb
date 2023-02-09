@@ -1,4 +1,4 @@
-class TogoInuShitsukeHiroba::SnsAccountsController < TogoInuShitsukeHiroba::DogrunPlaceController
+class Reon::SnsAccountsController < Reon::DogrunPlaceController
   before_action :check_not_guest
 
   def new

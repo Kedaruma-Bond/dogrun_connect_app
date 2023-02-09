@@ -1,4 +1,4 @@
-class TogoInuShitsukeHiroba::PreEntriesController < TogoInuShitsukeHiroba::DogrunPlaceController
+class Reon::PreEntriesController < Reon::DogrunPlaceController
   before_action :set_dogs_and_registration_numbers_at_local, only: %i[destroy]
 
   def destroy

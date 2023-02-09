@@ -1,4 +1,4 @@
-class TogoInuShitsukeHiroba::SessionsController < TogoInuShitsukeHiroba::DogrunPlaceController
+class Reon::SessionsController < Reon::DogrunPlaceController
   skip_before_action :require_login, only: %i[new create guest_login]
   before_action :remember_checked, only: %i[new]
   def new; end

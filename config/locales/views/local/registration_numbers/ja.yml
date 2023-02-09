@@ -1,0 +1,9 @@
+ja:
+  local:
+    registration_numbers:
+      new:
+        title: |
+          他のドッグランで
+          登録済のワンコの登録
+      no_dogs_to_register: |
+        登録できるワンコがいません

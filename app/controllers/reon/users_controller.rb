@@ -1,4 +1,4 @@
-class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlaceController
+class Reon::UsersController < Reon::DogrunPlaceController
   skip_before_action :require_login, only: %i[new create]
   before_action :correct_user, :set_dogs_and_registration_numbers_at_local, only: %i[show]
 

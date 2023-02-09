@@ -1,4 +1,4 @@
-class TogoInuShitsukeHiroba::RegistrationNumbersController < TogoInuShitsukeHiroba::DogrunPlaceController
+class Reon::RegistrationNumbersController < Reon::DogrunPlaceController
   before_action :set_registration_number, only: %i[destroy]
   before_action :correct_registration_number_of_dog_owner, only: %i[destroy]
 
@@ -47,19 +47,14 @@ class TogoInuShitsukeHiroba::RegistrationNumbersController < TogoInuShitsukeHiro
     @registration_number.destroy
     respond_to do |format|
       format.html { redirect_to send(@user_path, current_user), success: t('local.registration_numbers.destroy_successfully'), status: :see_other }
-      format.json { header :no_content }
+      format.json { header :no_content}
     end
   end
 
   private
 
     def registration_number_params
-      params.require(:registration_number).permit(
-        :dog_id, :registration_number, :dogrun_place_id,
-      ).merge(
-        dog_id: @dog.id,
-        dogrun_place_id: @dogrun_place.id
-      )
+      
     end
 
     def set_registration_number

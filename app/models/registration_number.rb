@@ -4,11 +4,12 @@ class RegistrationNumber < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_one :pre_entry, dependent: :destroy
 
+  attr_accessor :select_dog
+
   # validates
   validates :registration_number, presence: true
-
-  # scope
   
+  # scope
 end
 
 # == Schema Information

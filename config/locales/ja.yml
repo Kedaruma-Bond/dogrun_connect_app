@@ -86,11 +86,6 @@ ja:
     search_results_is: 検索結果
     search_results_unit: 件
     post_successfully: 投稿しました
-    create_article: |
-      投稿する文を入力してください。
-      必要あれば写真も添付してください。
-    choice_sns: 埋め込むSNSを選択してください。
-    post_save_error: 投稿時にエラーが起きました
     search_period: |
       検索
       期間

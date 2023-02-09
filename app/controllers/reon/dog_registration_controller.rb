@@ -1,4 +1,4 @@
-class TogoInuShitsukeHiroba::DogRegistrationController < TogoInuShitsukeHiroba::DogrunPlaceController
+class Reon::DogRegistrationController < Reon::DogrunPlaceController
   before_action :dog_registration_params, only: :confirm
   before_action :check_not_guest
 
@@ -26,9 +26,9 @@ class TogoInuShitsukeHiroba::DogRegistrationController < TogoInuShitsukeHiroba::
     if @dog_registration.save
       session.delete(:dog_registration_form)
       redirect_to send(@top_path), success: t('local.dog_registrations.dog_registration')
-    else
-      render :new, status: :unprocessable_entity
+      return
     end
+    render :new, status: :unprocessable_entity
   end
 
   private

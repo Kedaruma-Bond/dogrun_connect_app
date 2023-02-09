@@ -19,6 +19,7 @@ class TogoInuShitsukeHiroba::DogrunPlaceController < ApplicationController
       @edit_user_detail_path = :edit_togo_inu_shitsuke_hiroba_user_detail_path
       @user_detail_path = :togo_inu_shitsuke_hiroba_user_detail_path
       @dog_profile_path = :togo_inu_shitsuke_hiroba_dog_path
+      @new_registration_number_path = :new_togo_inu_shitsuke_hiroba_registration_number_path
       @registration_number_path = :togo_inu_shitsuke_hiroba_registration_number_path 
       @encount_dogs_path = :togo_inu_shitsuke_hiroba_encount_dogs_path
       @edit_encount_dog_path = :edit_togo_inu_shitsuke_hiroba_encount_dog_path
@@ -29,6 +30,9 @@ class TogoInuShitsukeHiroba::DogrunPlaceController < ApplicationController
       @edit_sns_account_path = :edit_togo_inu_shitsuke_hiroba_sns_account_path
       @dog_registration_path = :togo_inu_shitsuke_hiroba_dog_registration_path
       @dog_registration_confirm_path = :togo_inu_shitsuke_hiroba_dog_registration_confirm_path
+      @new_article_path = :new_togo_inu_shitsuke_hiroba_article_path
+      @article_path = :togo_inu_shitsuke_hiroba_article_path
+      @new_embed_path = :new_togo_inu_shitsuke_hiroba_embed_path
     end
 
     def set_dogs_and_registration_numbers_at_local

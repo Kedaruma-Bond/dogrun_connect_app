@@ -1,15 +1,15 @@
-class TogoInuShitsukeHiroba::EmbedsController < TogoInuShitsukeHiroba::DogrunPlaceController
+class Reon::ArticlesController < Reon::DogrunPlaceController
   include PostConcern
   before_action :set_staffs, only: %i[create]
-  before_action :embed_params, only: %i[create]
-
+  before_action :article_params, only: %i[create]
+  
   def new
-    @embed = Embed.new
+    @article = Article.new
   end
 
   def create
-    @embed = Embed.new(embed_params)
-    if @embed.save
+    @article = Article.new(article_params)
+    if @article.save
       send_notification_mail(@staffs)
       redirect_to send(@top_path), success: t('defaults.post_successfully')
       return
@@ -18,10 +18,10 @@ class TogoInuShitsukeHiroba::EmbedsController < TogoInuShitsukeHiroba::DogrunPla
   end
 
   private
-    def embed_params
-      params.require(:embed).permit(
-        :embed_type, :identifier
+    def article_params
+      params.require(:article).permit(
+        :content, :photo
       ).merge(post_id: params[:id])
     end
-  
+    
 end

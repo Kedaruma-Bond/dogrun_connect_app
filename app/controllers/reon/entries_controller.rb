@@ -1,4 +1,4 @@
-class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPlaceController
+class Reon::EntriesController < Reon::DogrunPlaceController
   include Pagy::Backend
   before_action :set_dogs_and_registration_numbers_at_local, only: %i[create update]
   before_action :set_q, only: %i[index search]
@@ -162,6 +162,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
       params.permit(
         :dog_id, :registration_number_id,
         :entry_at, :exit_at,
+        :select_dog
       ).merge(
         dog_id: @dog.id,
         registration_number_id: @registration_number.id

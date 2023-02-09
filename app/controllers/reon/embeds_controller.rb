@@ -1,4 +1,4 @@
-class TogoInuShitsukeHiroba::EmbedsController < TogoInuShitsukeHiroba::DogrunPlaceController
+class Reon::EmbedsController < Reon::DogrunPlaceController
   include PostConcern
   before_action :set_staffs, only: %i[create]
   before_action :embed_params, only: %i[create]

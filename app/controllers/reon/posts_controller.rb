@@ -1,4 +1,4 @@
-class TogoInuShitsukeHiroba::PostsController < TogoInuShitsukeHiroba::DogrunPlaceController
+class Reon::PostsController < Reon::DogrunPlaceController
   before_action :post_params, only: :create
 
   def create
@@ -8,8 +8,9 @@ class TogoInuShitsukeHiroba::PostsController < TogoInuShitsukeHiroba::DogrunPlac
       when 'article'
         redirect_to send(@new_article_path, @post), notice: t('local.posts.create_article')
       when 'embed'
-        redirect_to send(@new_embed_path,@post), notice: t('local.posts.choice_sns')
+        redirect_to send(@new_embed_path, @post), notice: t('local.posts.choice_sns')
       end
+      return
     else
       redirect_to request.referer, error: t('local.posts.post_save_error') 
     end
