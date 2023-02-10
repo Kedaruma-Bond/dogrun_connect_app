@@ -1,6 +1,6 @@
 <% if current_user.user_detail.nil? %>
   <div class="mt-1 mb-3 flex">
-    <%= link_to send(@new_user_detail_path), data: { turbo_frame: "user_detail_form_modal" } do %>
+    <%= link_to send(@new_user_detail_path), data: { turbo_frame: "user_detail_form_modal", loading: :lazy } do %>
       <button class="px-2 py-2 text-sm font-normal mr-5 md:mr-1 tracking-wide text-gray-200 capitalize transition-colors duration-200 transform bg-blue-700 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
         <span class="mx-auto"><%= t'.register_address_and_telephone_number' %></span>
       </button>
@@ -39,7 +39,7 @@
           <%= current_user.user_detail.phone_number %>
         </h2>
         <div class="flex mt-4 mb-2 justify-center">
-          <%= link_to send(@edit_user_detail_path, current_user.user_detail), data: { turbo_frame: 'user_detail_form_modal' } do %>
+          <%= link_to send(@edit_user_detail_path, current_user.user_detail), data: { turbo_frame: 'user_detail_form_modal', loading: :lazy } do %>
             <button class="px-4 py-2 text-sm font-normal mr-3 md:mr-1 md:ml-0 tracking-wide text-gray-200 capitalize transition-colors duration-200 transform bg-sky-700 rounded-md hover:bg-sky-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
               <span class="mx-auto"><%= t'.update_user_detail' %></span>
             </button>

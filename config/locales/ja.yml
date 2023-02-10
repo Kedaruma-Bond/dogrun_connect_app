@@ -1,5 +1,6 @@
 ja:
   defaults:
+    register: 登録
     these_information_is_not_viewable: |
       これらの情報は管理者を除く
       他のユーザーは閲覧できません

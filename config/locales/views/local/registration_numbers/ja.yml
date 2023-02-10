@@ -5,5 +5,7 @@ ja:
         title: |
           他のドッグランで
           登録済のワンコの登録
-      no_dogs_to_register: |
-        登録できるワンコがいません
+        no_dogs_to_register: | 
+          登録できるワンコがいません
+      form:
+        registration_is_done_one_by_one: 登録は一頭ずつ実施します

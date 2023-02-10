@@ -20,6 +20,7 @@ class Reon::DogrunPlaceController < ApplicationController
       @user_detail_path = :reon_user_detail_path
       @dog_profile_path = :reon_dog_path
       @new_registration_number_path = :new_reon_registration_number_path
+      @registration_numbers_path = :reon_registration_numbers_path
       @registration_number_path = :reon_registration_number_path 
       @encount_dogs_path = :reon_encount_dogs_path
       @edit_encount_dog_path = :edit_reon_encount_dog_path

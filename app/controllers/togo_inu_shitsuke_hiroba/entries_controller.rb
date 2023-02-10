@@ -160,7 +160,6 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
 
     def entry_params
       params.permit(
-        :dog_id, :registration_number_id,
         :entry_at, :exit_at,
       ).merge(
         dog_id: @dog.id,
@@ -170,7 +169,6 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
 
     def pre_entry_params
       params.permit(
-        :dog_id, :registration_number_id,
         :minutes_passed_count
       ).merge(
         dog_id: @dog.id,

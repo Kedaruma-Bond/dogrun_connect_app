@@ -1,41 +1,36 @@
 class TogoInuShitsukeHiroba::RegistrationNumbersController < TogoInuShitsukeHiroba::DogrunPlaceController
+  before_action :set_dogs, only: %i[new create]
   before_action :set_registration_number, only: %i[destroy]
   before_action :correct_registration_number_of_dog_owner, only: %i[destroy]
 
   def new
     @registration_number = RegistrationNumber.new
-    @dogs = []
-    dogs = Dog.includes(:user).where(user: current_user)
-    dogs.each do |dog|
-      unless dog.registration_numbers.where(dogrun_place: @dogrun_place).present?
-        @dogs << dog
-      end
-    end
   end
 
   def create
     select_dogs_allocation(params[:select_dog])
     num = 0
     while num <= @select_dogs_values.count - 1
-      
       case @select_dogs_values[num]
       when '1'
         @dog = @dogs[num]
-        return
+        num += 1
       when '0'
         num += 1
       end
     end
+    
     if @dog.blank?
-      respond_to do |format|
-        format.html { render :new, flash.now[:error] = t('local.registration_numbers.select_dog') }
-      end
+      flash.now[:error] = t('local.registration_numbers.select_dog')
+      render :new
       return
     end
+    
     @registration_number = RegistrationNumber.new(registration_number_params)
+
     if @registration_number.save
       respond_to do |format|
-        format.html { redirect_to send(user_path, current_user), success: t('local.registration_numbers.registered_successfully') }
+        format.html { redirect_to send(@user_path, current_user), success: t('local.registration_numbers.registered_successfully') }
         format.json { header :no_content }
       end
     else
@@ -53,9 +48,19 @@ class TogoInuShitsukeHiroba::RegistrationNumbersController < TogoInuShitsukeHiro
 
   private
 
+    def set_dogs
+      @dogs = []
+      dogs = Dog.includes(:user).where(user: current_user)
+      dogs.each do |dog|
+        unless dog.registration_numbers.where(dogrun_place: @dogrun_place).present?
+          @dogs << dog
+        end
+      end
+    end
+
     def registration_number_params
       params.require(:registration_number).permit(
-        :dog_id, :registration_number, :dogrun_place_id,
+        :registration_number
       ).merge(
         dog_id: @dog.id,
         dogrun_place_id: @dogrun_place.id
