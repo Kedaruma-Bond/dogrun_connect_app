@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class UserDetails::FormModalComponent < ApplicationViewComponent
-  
+class Embeds::NewComponent < ApplicationViewComponent
+
   def initialize(title:)
     @title = title
   end
-  
+
 end

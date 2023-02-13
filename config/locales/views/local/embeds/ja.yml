@@ -1,7 +1,7 @@
 ja:
-  togo_inu_shitsuke_hiroba:
-    articles:
+  local:
+    embeds:
       new:
         title: |
           ドッグランへの投稿作成
-          文 + 写真
+          SNS埋め込み

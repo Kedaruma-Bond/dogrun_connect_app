@@ -1,5 +1,11 @@
 ja:
   shared:
+    embed_form:
+      fb: Facebook
+      instagram: Instagram
+      twitter: Twitter
+      select_sns: SNSを選択してください
+      facebook_only_pc: FacebookはPCからしかcodeを取得できません
     user_detail_part:        
       register_address_and_telephone_number: 住所・電話番号登録
       update_user_detail: 編集

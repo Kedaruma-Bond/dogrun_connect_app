@@ -12,12 +12,18 @@ class ApplicationController < ActionController::Base
   before_action :require_login
   add_flash_types :success, :notice, :error
   protect_from_forgery with: :exception
+  include Dry::Effects::Handler.Reader(:current_user)
+
+  around_action :set_current_user
 
   def not_authenticated
     redirect_to '/', error: t('defaults.require_login')
   end
 
   private
+    def set_current_user
+      with_current_user(current_user) { yield }
+    end
 
     def get_fb_appId
       gon.fb_appId = Rails.application.credentials.meta_tags[:facebook_id]

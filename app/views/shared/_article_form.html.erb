@@ -1,4 +1,4 @@
-<%= simple_form_for @article, url: send(@article_path), data: { controller: 'preview disable', "disable-with-value": t('defaults.posting') } do |f| %>
+<%= simple_form_for article, url: send(article_path), data: { controller: 'preview disable', "disable-with-value": t('defaults.posting') } do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="text-gray-600 w-full flex flex-col mt-4">
     <%= f.label :content, label_html: { class: "font-bold leading-none" } %>
@@ -9,11 +9,11 @@
       <%= f.input :photo, as: :file, direct_upload: true, input_html: { data: { "preview-target": "imageUploader", action: "preview#updatePreview"}, class: "block w-full px-3 py-1.5 mt-2 text-white font-normal bg-gray-700 bg-clip-padding rounded border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
   </div>
   <div class=" flex-shrink-0 mx-auto mb-3">
-    <%= article_photo_for_preview(@article) %>
+    <%= article_photo_for_preview(article) %>
   </div>
   <div class="sm:flex mt-9">
     <div class="flex justify-center sm:ml-0 sm:mx-3">
-      <%= link_to send(@top_path), class: "font-bold leading-none text-white py-4 px-2 bg-rose-700 rounded hover:bg-rose-600 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
+      <%= link_to send(top_path), class: "font-bold leading-none text-white py-4 px-2 bg-rose-700 rounded hover:bg-rose-600 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
         <span class="py-4 px-10"><%= t('defaults.back') %></span>
       <% end %>
     </div>

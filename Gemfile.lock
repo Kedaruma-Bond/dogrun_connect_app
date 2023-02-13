@@ -161,6 +161,17 @@ GEM
     digest (3.1.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    dry-core (1.0.0)
+      concurrent-ruby (~> 1.0)
+      zeitwerk (~> 2.6)
+    dry-effects (0.4.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0)
+      dry-inflector (~> 1.0)
+      dry-initializer (~> 3.0)
+      zeitwerk (~> 2.6)
+    dry-inflector (1.0.0)
+    dry-initializer (3.1.1)
     e2mmap (0.1.0)
     enum (1.0.0)
     enum_help (0.0.19)
@@ -422,8 +433,8 @@ GEM
     unicode-display_width (2.2.0)
     validates_email_format_of (1.6.3)
       i18n
-    view_component (2.78.0)
-      activesupport (>= 5.0.0, < 8.0)
+    view_component (2.82.0)
+      activesupport (>= 5.2.0, < 8.0)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
     web-console (4.2.0)
@@ -464,6 +475,7 @@ DEPENDENCIES
   clockwork (~> 3.0.1)
   cloudinary
   debug!
+  dry-effects
   enum
   enum_help
   factory_bot_rails
@@ -496,7 +508,7 @@ DEPENDENCIES
   turbo-rails!
   tzinfo-data
   validates_email_format_of
-  view_component
+  view_component (~> 2.82)
   web-console
   webdrivers
 

@@ -19,6 +19,7 @@ class Reon::DogrunPlaceController < ApplicationController
       @edit_user_detail_path = :edit_reon_user_detail_path
       @user_detail_path = :reon_user_detail_path
       @dog_profile_path = :reon_dog_path
+      @edit_dog_path = :edit_reon_dog_path
       @new_registration_number_path = :new_reon_registration_number_path
       @registration_numbers_path = :reon_registration_numbers_path
       @registration_number_path = :reon_registration_number_path 
@@ -34,6 +35,7 @@ class Reon::DogrunPlaceController < ApplicationController
       @new_article_path = :new_reon_article_path
       @article_path = :reon_article_path
       @new_embed_path = :new_reon_embed_path
+      @embed_path = :reon_hiroba_embed_path
     end
 
     def set_dogs_and_registration_numbers_at_local

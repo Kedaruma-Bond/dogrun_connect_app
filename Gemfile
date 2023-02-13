@@ -86,12 +86,14 @@ gem 'active_storage_validations'
 # 都道府県データ
 gem 'jp_prefecture'
 # view componentのカプセル化
-gem 'view_component'
+gem 'view_component', '~> 2.82'
 # 定期実行プロセス用
 gem 'clockwork', '~> 3.0.1'
 # heroku addon
 # app performance monitoring
 gem 'scout_apm'
+# current_userをいろんなところで使用したい
+gem 'dry-effects'
 
 
 group :development, :test do
