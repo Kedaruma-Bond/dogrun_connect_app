@@ -30,6 +30,7 @@ class Reon::DogrunPlaceController < ApplicationController
       @search_entries_path = :search_reon_entries_path
       @pre_entries_path = :reon_pre_entries_path
       @new_sns_account_path = :new_reon_sns_account_path
+      @sns_accounts_path = :reon_sns_accounts_path
       @sns_account_path = :reon_sns_account_path
       @edit_sns_account_path = :edit_reon_sns_account_path
       @dog_registration_path = :reon_dog_registration_path

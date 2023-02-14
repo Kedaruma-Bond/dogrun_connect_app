@@ -30,6 +30,7 @@ class TogoInuShitsukeHiroba::DogrunPlaceController < ApplicationController
       @search_entries_path = :search_togo_inu_shitsuke_hiroba_entries_path
       @pre_entries_path = :togo_inu_shitsuke_hiroba_pre_entries_path
       @new_sns_account_path = :new_togo_inu_shitsuke_hiroba_sns_account_path
+      @dogrun_name = :togo_inu_shitsuke_hiroba
       @sns_account_path = :togo_inu_shitsuke_hiroba_sns_account_path
       @edit_sns_account_path = :edit_togo_inu_shitsuke_hiroba_sns_account_path
       @dog_registration_path = :togo_inu_shitsuke_hiroba_dog_registration_path

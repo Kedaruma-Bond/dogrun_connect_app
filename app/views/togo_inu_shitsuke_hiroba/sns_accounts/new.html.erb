@@ -1,3 +1,3 @@
 <%= render SnsAccounts::FormModalComponent.new(title: t('.title')) do %>
-  <%= render partial: "sns_account_form", locals: { sns_account: @sns_account } %>
+  <%= render partial: "shared/sns_account_form", locals: { sns_account: @sns_account, dogrun_name: @dogrun_name } %>
 <% end %>
