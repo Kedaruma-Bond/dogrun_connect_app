@@ -38,7 +38,7 @@ class TogoInuShitsukeHiroba::DogrunPlaceController < ApplicationController
       @article_path = :togo_inu_shitsuke_hiroba_article_path
       @new_embed_path = :new_togo_inu_shitsuke_hiroba_embed_path
       @embed_path = :togo_inu_shitsuke_hiroba_embed_path
-      
+      @dogrun_terms_of_service_page = "https://www.town.aichi-togo.lg.jp/soshikikarasagasu/toshiseibika/gyomuannai/2/1/3279.html"
     end
 
     def set_dogs_and_registration_numbers_at_local

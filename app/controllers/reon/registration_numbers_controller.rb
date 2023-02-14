@@ -52,9 +52,24 @@ class Reon::RegistrationNumbersController < Reon::DogrunPlaceController
   end
 
   private
+  
+    def set_dogs
+      @dogs = []
+      dogs = Dog.includes(:user).where(user: current_user)
+      dogs.each do |dog|
+        unless dog.registration_numbers.where(dogrun_place: @dogrun_place).present?
+          @dogs << dog
+        end
+      end
+    end
 
     def registration_number_params
-      
+      params.require(:registration_number).permit(
+        :registration_number, :agreement
+      ).merge(
+        dog_id: @dog.id,
+        dogrun_place_id: @dogrun_place.id
+      )
     end
 
     def set_registration_number

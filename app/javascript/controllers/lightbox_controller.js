@@ -20,6 +20,5 @@ export default class extends Controller {
 
   showPreview(params) {
     this.imagePreviewTarget.src = params.source
-    console.log(params)
   }
 }

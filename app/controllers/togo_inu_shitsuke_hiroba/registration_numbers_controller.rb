@@ -8,18 +8,7 @@ class TogoInuShitsukeHiroba::RegistrationNumbersController < TogoInuShitsukeHiro
   end
 
   def create
-    select_dogs_allocation(params[:select_dog])
-    num = 0
-    while num <= @select_dogs_values.count - 1
-      case @select_dogs_values[num]
-      when '1'
-        @dog = @dogs[num]
-        num += 1
-      when '0'
-        num += 1
-      end
-    end
-    
+    @dog = Dog.find(params[:select_dog])
     if @dog.blank?
       flash.now[:error] = t('local.registration_numbers.select_dog')
       render :new
@@ -60,7 +49,7 @@ class TogoInuShitsukeHiroba::RegistrationNumbersController < TogoInuShitsukeHiro
 
     def registration_number_params
       params.require(:registration_number).permit(
-        :registration_number
+        :registration_number, :agreement
       ).merge(
         dog_id: @dog.id,
         dogrun_place_id: @dogrun_place.id

@@ -28,7 +28,8 @@
     <div class="flex mt-7 justify-center text-sm">
       <%= f.input :agreement, as: :boolean, checked: false, label: false, error: false, input_html: {class: "bg-gray-100 rounded border-gary-300 focus:ring-blue-500 focus:ring-2"} %>
       <%= f.label :agreement, label_html: { class: "font-bold text-gray-500" } do %>
-        <a href="/terms_of_service" target="_blank" rel="noopener noreferrer" class="ml-3 text-gray-600 hover:text-gray-400">
+        &nbsp;
+        <a href="/terms_of_service" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-400">
           <%= t('defaults.terms_of_service') %>
         </a>
         と

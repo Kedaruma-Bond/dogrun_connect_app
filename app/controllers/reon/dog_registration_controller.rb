@@ -36,7 +36,7 @@ class Reon::DogRegistrationController < Reon::DogrunPlaceController
   def dog_registration_params
     params.require(:dog_registration).permit(
       :name, :castration, :public,
-      :registration_number
+      :registration_number, :agreement
     ).merge(
       user_id: current_user.id,
       dogrun_place_id: @dogrun_place.id
