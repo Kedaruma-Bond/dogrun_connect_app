@@ -5,4 +5,9 @@ ja:
         title: 新規登録
       show:
         title: プロフィール
+        of_dogs: 頭
+        add_dog: 新たにワンコを登録する
+        add_registered_dog: |
+          他のドッグランで登録済
+          のワンコを登録する
 
