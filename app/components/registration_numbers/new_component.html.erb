@@ -3,7 +3,9 @@
   <div class="w-full shadow rounded p-8 sm:p-10">
     <%= simple_format(@title, class: "text-center text-2xl font-bold leading-7 text-center text-gray-700" ) %>
     <% if @dogs.blank? %>
-      <%= simple_format(t('local.registration_numbers.new.no_dogs_to_register'), class: "text-sky-700 text-center font-semibold mt-5") %>
+      <p class="text-blue-500 text-center font-semibold mt-5">
+        <%= t('local.registration_numbers.new.no_dogs_to_register') %>
+      </p>
     <% else %>
       <%= content %> 
     <% end %>

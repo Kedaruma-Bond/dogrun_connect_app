@@ -2,14 +2,11 @@
   <div class="text-amber-700 font-medium text-center">
     <%= t("local.registration_numbers.form.registration_is_done_one_by_one") %>
   </div>
-  <ul list-style="none" class="mx-auto mt-5 flex flex-col" data-controller="exclusive-checkbox">
+  <ul list-style="none" class="mx-auto mt-5 flex flex-col">
     <% dogs.each do |dog| %>
       <li class="mb-5 w-[215px] mx-auto">
         <label for=<%= dog.id %> class="flex mb-2">
-          <%= tag.input id: dog.id, class: "scale-125 rounded-full mt-4", type: "radio", value: dog.id, name: "select_dog", form: "registration_number_form", 
-              data: { 
-                "exclusive-checkbox_target": "checkboxes", 
-                action: "change->exclusive-checkbox#exclusiveAction" } %>
+          <%= tag.input id: dog.id, class: "scale-125 rounded-full mt-4", type: "radio", value: dog.id, name: "select_dog", form: "registration_number_form" %>
           <div class="w-12 h-12 ml-3">
             <%= dog_thumbnail(dog) %>
           </div>
