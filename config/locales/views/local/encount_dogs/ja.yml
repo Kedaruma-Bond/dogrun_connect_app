@@ -1,0 +1,7 @@
+ja:
+  local:
+    encount_dogs:
+      index:
+        title: エンカウントリスト
+      search_form:
+        search_field_placeholder: ワンコの名前検索
