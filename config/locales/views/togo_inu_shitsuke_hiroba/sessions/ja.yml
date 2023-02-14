@@ -1,9 +1,5 @@
 ja:
   togo_inu_shitsuke_hiroba:
     sessions:
-      new:
-        title: ログイン | 犬のしつけ広場
-      login_form:
-        title: ログイン
         password_reset: パスワードを忘れた方は
 
