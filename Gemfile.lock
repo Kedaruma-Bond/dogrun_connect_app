@@ -161,17 +161,6 @@ GEM
     digest (3.1.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
-    dry-core (1.0.0)
-      concurrent-ruby (~> 1.0)
-      zeitwerk (~> 2.6)
-    dry-effects (0.4.0)
-      concurrent-ruby (~> 1.0)
-      dry-core (~> 1.0)
-      dry-inflector (~> 1.0)
-      dry-initializer (~> 3.0)
-      zeitwerk (~> 2.6)
-    dry-inflector (1.0.0)
-    dry-initializer (3.1.1)
     e2mmap (0.1.0)
     enum (1.0.0)
     enum_help (0.0.19)
@@ -475,7 +464,6 @@ DEPENDENCIES
   clockwork (~> 3.0.1)
   cloudinary
   debug!
-  dry-effects
   enum
   enum_help
   factory_bot_rails

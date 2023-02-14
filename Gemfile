@@ -92,8 +92,6 @@ gem 'clockwork', '~> 3.0.1'
 # heroku addon
 # app performance monitoring
 gem 'scout_apm'
-# current_userをいろんなところで使用したい
-gem 'dry-effects'
 
 
 group :development, :test do

@@ -74,7 +74,7 @@ class TogoInuShitsukeHiroba::RegistrationNumbersController < TogoInuShitsukeHiro
     def correct_registration_number_of_dog_owner
       dog = Dog.find(@registration_number.dog_id)
       user = User.find(dog.user_id)
-      unless correct_user?(user)
+      unless correct_user?(user, current_user)
         redirect_to '/', error: t('defaults.require_correct_account')
       end
     end
