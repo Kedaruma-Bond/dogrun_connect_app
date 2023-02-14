@@ -1,4 +1,4 @@
-<%= simple_form_for [:togo_inu_shitsuke_hiroba, user_detail], data: { controller: 'disable', "disable-with-value": t('defaults.processing') } do |f|  %>
+<%= simple_form_for [dogrun_name, user_detail], data: { controller: 'disable', "disable-with-value": t('defaults.processing') } do |f|  %>
   <%= render 'shared/error_messages', object: f.object %>
   <%= simple_format(t('defaults.these_information_is_not_viewable'), class: "text-red-500 text-sm text-center" )%>
   <div class="mt-1">
