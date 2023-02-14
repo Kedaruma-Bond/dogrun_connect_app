@@ -149,7 +149,7 @@ ja:
         DogrunConnectを是非
         ドッグランで活用してください
     user_details:
-      user_details_created_successfully: 住所と電話番号を登録しました
+      created_successfully: 住所と電話番号を登録しました
   togo_inu_shitsuke_hiroba:
     users:
       create:

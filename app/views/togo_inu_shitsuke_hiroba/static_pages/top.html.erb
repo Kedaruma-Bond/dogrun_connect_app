@@ -9,7 +9,7 @@
         bg-[url('https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,g_center,q_auto/v1671380081/w4ygbtfdkxu3gzrixk6u.jpg')]
       ">
         <div class="flex justify-center">
-          <h3 class="text-white font-bold text-lg self-center"><%= t('.dogrun_board') %></h3>
+          <h3 class="text-white font-bold text-lg self-center"><%= t('local.static_pages.top.dogrun_board') %></h3>
           <button class="rounded-md bg-amber-500 w-7 h-7 relative ml-2 flex">
             <%= link_to('javascript:void(0);', onclick: "window.location.reload();", 
                 class: "absolute top-1 left-1 font-medium tracking-wide text-slate-500 capitalize transition-colors duration-300 transform rounded-md hover:text-slate-700 focus:outline-none") do %>
@@ -24,13 +24,13 @@
     <% end %>
     <% if @dogrun_place.name == "犬のしつけ広場" %> 
       <h1 class="my-1">
-        <%= simple_format(t('.under_commissioning'), class: "font-bold text-lg text-red-600") %>
+        <%= simple_format(t('togo_inu_shitsuke_hiroba.staticpages.top.under_commissioning'), class: "font-bold text-lg text-red-600") %>
       </h1>
     <% end %>
     <%= turbo_frame_tag dom_id(@dogrun_place, "top_view_changeover_closing"), class: "w-full sm:px-10 pt-1 sm:pb-0" do %>
       <% if @dogrun_place.closed_flag == true %>
         <div class="my-10">
-          <%= simple_format(I18n.t("togo_inu_shitsuke_hiroba.static_pages.top.dogrun_is_closing_now", dogrun_name: @dogrun_place.name), class: "text-gray-700 font-bold text-2xl") %>
+          <%= simple_format(I18n.t("local.static_pages.top.dogrun_is_closing_now", dogrun_name: @dogrun_place.name), class: "text-gray-700 font-bold text-2xl") %>
           <% if !@dogrun_place.force_closing? %>
             <div class="mt-3 text-gray-700 font-medium">
                 <% if !@dogrun_place.opening_time.blank? || !@dogrun_place.closing_time.blank? %>
@@ -49,7 +49,7 @@
       <% else %>
         <div class="flex flex-col mt-1 font-bold">
           <p class='text-center text-gray-700 text-2xl relative right-7'>
-            <%= t'.site_in' %>
+            <%= t('local.static_pages.top.site_in') %>
           </p>
           <%= turbo_frame_tag dom_id(@dogrun_place, :num_of_playing_dogs) do %>
             <%= render partial: "shared/num_of_playing_dogs", locals: { num_of_playing_dogs: @num_of_playing_dogs } %>
@@ -76,7 +76,7 @@
             <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path>
           </svg>
           <span class="mx-2">
-            <%= t'.jump_to_signup' %>
+            <%= t('local.static_pages.top.jump_to_signup') %>
           </span>
         <% end %>
       </div>
@@ -87,7 +87,7 @@
     </div>
     <%= link_to @dogrun_terms_of_service_page, target: "_blank", rel: "noopener noreferrer" do %>
       <p class="mt-10 text-2xl text-center font-semibold text-blue-500 underline transform hover:scale-110 hover:text-blue-400 duration-500">
-        <%= t'.before_using_dogrun' %>
+        <%= t('local.static_pages.top.before_using_dogrun') %>
       </p>
     <% end %>
     <div class="flex-col">
@@ -97,7 +97,7 @@
             <path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clip-rule="evenodd"></path>
           </svg>
           &nbsp;
-          <%= t'defaults.login' %>
+          <%= t('defaults.login') %>
         </button>
       <% end %>
       <%= link_to send(@signup_path) do %>
@@ -106,7 +106,7 @@
             <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path>
           </svg>
           &nbsp;
-          <%= t'.signup' %>
+          <%= t('defaults.signup') %>
         </button>
       <% end %>
       <%= button_to send(@guest_login_path), method: :post,
@@ -116,10 +116,10 @@
             <circle cx="9" cy="7" r="4"></circle>
             <path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"></path>
           </svg>
-          <span class="mx-1"><%= t('.guest_login') %></span>
+          <span class="mx-1"><%= t('local.static_pages.top.guest_login') %></span>
         </class:>
       <% end %>
-      <p class="text-center"><%= simple_format(t('.check_app_by_trial_guest_login'), class: "text-indigo-500 text-sm") %></p>
+      <p class="text-center"><%= simple_format(t('local.static_pages.top.check_app_by_trial_guest_login'), class: "text-indigo-500 text-sm") %></p>
     </div>
   <% end %>
 </div>

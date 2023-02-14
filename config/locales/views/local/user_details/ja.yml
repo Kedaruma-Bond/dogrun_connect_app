@@ -1,4 +1,7 @@
 ja:
   local:
     user_details:
-      created_successfully: 住所と電話番号を登録しました
+      new:
+        title: 住所・電話番号登録
+      edit:
+        title: 住所・電話番号編集

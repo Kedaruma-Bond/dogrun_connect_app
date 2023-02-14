@@ -1,0 +1,8 @@
+ja:
+  local:
+    sns_accounts:
+      new:
+        title: SNSアカウント登録
+      edit:
+        title: SNSアカウント編集
+      

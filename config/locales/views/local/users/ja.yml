@@ -1,0 +1,8 @@
+ja:
+  local:
+    users:
+      new:
+        title: 新規登録
+      show:
+        title: プロフィール
+

@@ -1,5 +1,11 @@
 ja:
   shared:
+    signup_form:
+      password_hint: パスワードは６文字以上としてください
+    sns_account_form:
+      facebook_id_hint: https://www.facebook.com/以降を入力してください
+      instagram_id_hint: https://www.instagram.com/以降を入力してください
+      twitter_id_hint: https://twitter.com/以降を入力してください
     encount_dog_edit_form:
       select_color_marker: 色を選択してください
       memo_placeholder: |
