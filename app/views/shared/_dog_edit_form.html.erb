@@ -1,0 +1,149 @@
+
+<%= simple_form_for dog, url:send(dog_profile_path), data: { controller: 'disable', "disable-with-value": t('defaults.updating') } do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <section class="text-gray-600 body-font">
+    <div class="container px-3 py-3 mx-auto flex flex-col">
+      <div class="flex flex-col sm:flex-row mt-5">
+        <div class="sm:w-1/3 text-center sm:pr-4 sm:py-4 items-center justify-center" data-controller="preview">
+          <div class="mb-3">
+            <span class="text-sm font-medium"><%= t'.change_thumbnail' %></span>
+            <%= f.input :thumbnail, as: :file, direct_upload: true, input_html: { data: { "preview-target": "imageUploader", action: "preview#updatePreview" }, class: "block w-full px-3 py-1.5 text-sm text-white font-normal bg-gray-700 bg-clip-padding rounded border border-soild border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
+          </div>
+          <div class="flex-shrink-0 w-40 h-40 mx-auto mb-3 md:mb-0">
+            <%= dog_thumbnail_for_preview(dog) %>
+          </div>
+          <div class="text-gray-600 text-xs font-light mt-5">
+            <%= simple_format((t'togo_inu_shitsuke_hiroba.registration_number'), {}, wrapper_tag: "div") %>
+            <p class="text-xl font-bold"><%= registration_number.registration_number %>
+          </div>
+          <div class="flex flex-col items-center text-center justify-center mt-3">
+            <h2 class="font-bold text-gray-600 text-2xl">
+              <%= dog.name %>
+            </h2>
+            <div class="w-32 h-1 bg-gray-200 rounded mt-2 mb-4"></div>
+          </div>
+          <div class="flex justify-items-center md:justify-start mb-2">
+            <div class="w-1/2 items-center md:items-start mb-1 md:mb-0">
+              <%= f.label :filming_approval %>
+              <%= f.input :filming_approval, as: :boolean, checked_value: 'filming_approval', unchecked_value: 'filming_not_approval', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-10" }, label: false,  hint: false, error: false %>
+            </div>
+            <div class="w-1/2 items-center md:items-start md:justify-center md:mr-2 mb-1 md:mb-0">
+              <%= f.label :sns_post_approval %>
+              <%= f.input :sns_post_approval, as: :boolean, checked_value: 'sns_post_approval', unchecked_value: 'sns_post_not_approval', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-9" }, label: false, hint: false, error: false %>
+            </div>
+          </div>
+        </div>
+        <div class="sm:w-2/3 sm:pl-8 sm:py-4 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
+          <div class="justify-start w-full md:w-1/2 mb-6">
+            <div class="flex-raw flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
+              <%= f.input :name, input_html: { class: "block w-full leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200"}, label: t('.dog_name'), hint: false, error: false %>
+            </div>
+          </div>
+          <div class="flex-row flex-shrink-0 items-center md:items-start md:justify-center mb-6">
+            <%= f.input :birthday, start_year: Date.today.year - 30, end_year: Date.today.year, html5: true, input_html: { class: "block w-full md:w-1/2 leding-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200"}, label: t('defaults.birthday'), hint: false, error: false %>
+          </div>
+          <div class="flex-row flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
+            <%= f.input :breed, input_html: { class: "block w-full leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200"}, hint: false, error: false %>
+          </div>
+          <div class="flex jutify-center md:justify-start mb-6">
+            <div class="w-1/2 items-center mb-3 md:mb-0 mr-3 md:mr-0">
+              <%= f.input :sex, input_html: { class: "block w-full md:w-1/3 leading-none text-gray-900 p-4 focus:outline-none focus:boader-blue-700 mt-2 bg-gray-100 border rounded border-gray-200" }, label: t('defaults.sex'), hint: false, error: false %>
+            </div>
+            <div class="flex w-1/2 md:w-1/5 items-center mb-3 md:mb-0 ">
+              <%= f.input :weight, as: :integer, input_html: { min: 1, class: "block text-right w-full leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200" }, hint: false, error: false %>
+              <p class="text-xs self-end"><%= t'defaults.weight_unit' %></p>
+            </div>
+          </div>
+          <div class="flex justify-items-center md:justify-start mb-6">
+            <div class="w-1/2 items-center md:items-start mb-3 md:mb-0">
+              <%= f.label :castration %>
+              <%= f.input :castration, as: :boolean, checked_value: 'castrated', unchecked_value: 'non_castrated', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-10" }, label: false,  hint: false, error: false %>
+            </div>
+            <div class="w-1/2 items-center md:items-start md:justify-center md:mr-2 mb-3 md:mb-0">
+              <%= f.label :public %>
+              <%= f.input :public, as: :boolean, checked_value: 'public_view', unchecked_value: 'non_public', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-9" }, label: false, hint: false, error: false %>
+            </div>
+          </div>
+          <div class="justify-center md:justify-start">
+            <%= f.label :owner_comment %>
+            <%= f.input :owner_comment, as: :text, input_html: { rows: 5, class: "block p-3 w-full text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200" }, placeholder: t('.owner_comment_placeholder'), label: false, hint: false, error: false %>
+          </div>
+          <details data-controller="accordion" class="text-center">
+            <summary data-accordion-target="summary" data-action="click->accordion#toggle" class="mt-3 flex justify-center hover:cursor-pointer">
+              <h1 class="flex font-bold text-base mb-1 text-gray-600">
+                <%= t('.register_more_detail_data')%>
+              </h1>
+            </summary>
+            <div data-accordion-target="content">
+              <%= simple_format(t('defaults.these_information_is_not_viewable'), class: "mb-3 text-red-500 text-sm text-center" )%>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
+                <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0" data-controller="preview">
+                  <span class="text-sm font-medium"><%= t('.register_rabies_vaccination_certificate') %></span>
+                  <%= f.input :rabies_vaccination_certificate, as: :file, direct_upload: true, input_html: { data: { "preview-target": "imageUploader", action: "preview#updatePreview" }, class: "block w-full px-3 py-1.5 text-sm text-white font-normal bg-gray-700 bg-clip-padding rounded border border-soild border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
+                  <div class="mx-auto mt-1">
+                    <%= rabies_vaccination_certificate_form_preview(dog) %>
+                  </div>
+                </div>
+                <div class="w-full mb-3 md:mb-0">
+                  <span class="text-sm font-medium"><%= Dog.human_attribute_name(:date_of_rabies_vaccination) %></span>
+                  <%= f.input :date_of_rabies_vaccination, start_year: Date.today.year - 30, end_year: Date.today.year, html5: true, input_html: { class: "block w-full px-3 py-1.5 leding-none text-gray-900 focus:outline-none focus:border-blue-700 m-0 bg-gray-100 border rounded border-gray-200"}, label: false, hint: false, error: false %>
+                </div>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
+                <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0" data-controller="preview">
+                  <span class="text-sm font-medium"><%= t('.register_mixed_vaccination_certificate') %></span>
+                  <%= f.input :mixed_vaccination_certificate, as: :file, direct_upload: true, input_html: { data: { "preview-target": "imageUploader", action: "preview#updatePreview" }, class: "block w-full px-3 py-1.5 text-sm text-white font-normal bg-gray-700 bg-clip-padding rounded border border-soild border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
+                  <div class="mx-auto mt-1">
+                    <%= mixed_vaccination_certificate_form_preview(dog) %>
+                  </div>
+                </div>
+                <div class="w-full mb-3 md:mb-0">
+                  <span class="text-sm font-medium"><%= Dog.human_attribute_name(:date_of_mixed_vaccination) %></span>
+                  <%= f.input :date_of_mixed_vaccination, start_year: Date.today.year - 30, end_year: Date.today.year, html5: true, input_html: { class: "block w-full px-3 py-1.5 leding-none text-gray-900 focus:outline-none focus:border-blue-700 m-0 bg-gray-100 border rounded border-gray-200"}, label: false, hint: false, error: false %>
+                </div>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
+                <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
+                  <span class="text-sm font-medium"><%= Dog.human_attribute_name(:registration_prefecture_code) %></span>
+                  <%= f.collection_select :registration_prefecture_code, JpPrefecture::Prefecture.all, :code, :name,
+                  { prompt: t('.choose_a_prefecture') },
+                  { class: "block w-full leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 m-0 bg-gray-100 border rounded border-gray-200"} %>
+                </div>
+                <div class="w-full mb-3 md:mb-0">
+                  <span class="text-sm font-medium"><%= Dog.human_attribute_name(:registration_municipality) %></span>
+                  <%= f.input :registration_municipality, input_html: { class: "block w-full px-3 py-1.5 leding-none text-gray-900 focus:outline-none focus:border-blue-700 m-0 bg-gray-100 border rounded border-gray-200"}, label: false, hint: false, error: false %>
+                </div>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3" data-controller="preview">
+                <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
+                  <span class="text-sm font-medium"><%= Dog.human_attribute_name(:municipal_registration_number) %></span>
+                  <%= f.input :municipal_registration_number, input_html: { class: "block w-full px-3 py-1.5 leding-none text-gray-900 focus:outline-none focus:border-blue-700 m-0 bg-gray-100 border rounded border-gray-200"}, label: false, hint: false, error: false %>
+                </div>
+                <div class="w-full mb-3 md:mb-0">
+                  <span class="text-sm font-medium"><%= t('.register_license_plate') %></span>
+                  <%= f.input :license_plate, as: :file, direct_upload: true, input_html: { data: { "preview-target": "imageUploader", action: "preview#updatePreview" }, class: "block w-full px-3 py-1.5 text-sm text-white font-normal bg-gray-700 bg-clip-padding rounded border border-soild border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
+                  <div class="mx-auto mt-1">
+                    <%= license_plate_form_preview(dog) %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+    <div class="sm:flex mt-3">
+      <div class="flex justify-center sm:ml-0 sm:mx-3">
+        <%= link_to send(dog_profile_path, dog), 
+          class: "mt-3 font-bold leading-normal text-white py-4 px-10 bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
+          <span><%= t('defaults.back') %></span>
+        <% end %>
+      </div>
+      <div class="flex justify-center mt-3 sm:mt-0 sm:mx-3">
+        <%= f.button :submit, class: "mt-3 font-bold leading-normal text-white py-4 px-10 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none diabled:cursor-not-allowed disabled:bg-emerald-300" do %>
+          <span><%= t'defaults.update' %></span>
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% end %>

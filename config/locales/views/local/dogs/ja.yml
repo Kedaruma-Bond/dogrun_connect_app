@@ -3,6 +3,9 @@ ja:
     dogs:
       show:
         title: ワンコのプロフィール
-        registration_number: 登録番号
         show_more_detail_data: 接種証明・鑑札情報表示
         dog_owner_sns: 飼い主さんのSNS
+      edit:
+        title: |
+          ワンコのプロフィール
+          編集
