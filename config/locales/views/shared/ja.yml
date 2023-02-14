@@ -1,7 +1,10 @@
 ja:
   shared:
-    dog_registration_form:
-      
+    encount_dog_edit_form:
+      select_color_marker: 色を選択してください
+      memo_placeholder: |
+        このワンコへの印象や相性等々、自由に書いてください。
+        ※他人にこのメモは見られません。
     dog_edit_form:
       change_thumbnail: サムネイル変更
       dog_name: ワンコの名前
