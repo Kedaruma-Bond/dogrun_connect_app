@@ -1,5 +1,7 @@
 ja:
   shared:
+    dog_registration_form:
+      
     dog_edit_form:
       change_thumbnail: サムネイル変更
       dog_name: ワンコの名前
