@@ -2,8 +2,6 @@ Rails.application.routes.draw do
   root 'static_pages#top'
   get 'privacy_policy', to: 'static_pages#privacy_policy'
   get 'terms_of_service', to: 'static_pages#terms_of_service'
-  get 'notice_for_filming_approval', to: 'static_pages#notice_for_filming_approval'
-  get 'notice_for_sns_post_apprival', to: 'static_pages#notice_for_sns_post_approval'
   
   resources :attachments, only: :index
 
@@ -46,7 +44,7 @@ Rails.application.routes.draw do
     resources :users, only: %i[new create show]
     resources :user_details, only: %i[new create edit update destroy]
     resources :dogs, only: %i[show edit update]
-    resources :registration_numbers, only: %i[destroy]
+    resources :registration_numbers, only: %i[new create destroy]
     resources :posts, only: %i[new create] do
       member do
         resource :article, only: %i[new create]
@@ -61,6 +59,48 @@ Rails.application.routes.draw do
     post 'dog_registration/confirm', to: 'dog_registration#confirm'
   end
   
+  namespace :reon do
+    get 'top', to: 'static_pages#top'
+    resource :sessions, only: %i[new create destroy]
+    post '/guest_login', to: 'sessions#guest_login'
+    post '/jump_to_signup', to: 'sessions#jump_to_signup'
+    get 'login', to: 'sessions#new'
+    post 'login', to: 'sessions#create'
+    delete 'logout', to: 'sessions#destroy', as: :logout
+
+    resources :sns_accounts, only: %i[new create edit update destroy]
+    resources :encount_dogs, only: %i[index edit update] do
+      collection do
+        get 'search', to: 'encount_dogs#search'
+      end
+    end
+
+    resource :pre_entries, only: %i[destroy]
+    resource :entries, only: %i[create update]
+    resources :entries, only: %i[index] do
+      collection do
+        get 'search', to: 'entries#search'
+        post 'search', to: 'entries#search'
+      end
+    end
+    resources :users, only: %i[new create show]
+    resources :user_details, only: %i[new create edit update destroy]
+    resources :dogs, only: %i[show edit update]
+    resources :registration_numbers, only: %i[new create destroy]
+    resources :posts, only: %i[new create] do
+      member do
+        resource :article, only: %i[new create]
+        resource :embed, only: %i[new create]
+      end
+    end
+    
+    get 'signup', to: 'users#new', as: :signup
+    
+    get 'dog_registration', to: 'dog_registration#new'
+    post 'dog_registration', to: 'dog_registration#create'
+    post 'dog_registration/confirm', to: 'dog_registration#confirm'
+  end
+
   namespace :admin do
     root 'dashboards#index'
     resources :dogrun_places, only: %i[index new create edit update show] do

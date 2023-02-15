@@ -1,0 +1,7 @@
+ja:
+  local:
+    user_details:
+      new:
+        title: 住所・電話番号登録
+      edit:
+        title: 住所・電話番号編集

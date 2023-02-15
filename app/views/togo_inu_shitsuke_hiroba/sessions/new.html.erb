@@ -1,7 +1,5 @@
-<% content_for(:title, t('defaults.login')) %>
-<div class="max-w-5xl mx-3 md:mx-auto pt-2 pb-2 sm:mx-32 bg-purple-200 rounded-lg">
-  <div class="w-full shadow rounded p-8 sm:p-12">
-    <%= render 'togo_inu_shitsuke_hiroba/sessions/login_form' %>
-  </div>
-</div>
+<%= render Sessions::NewComponent.new(
+    title: I18n.t('defaults.login')) do %>
+    <%= render partial: 'shared/login_form', locals: { login_path: @login_path } %>
+<% end %>
 

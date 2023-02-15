@@ -9,7 +9,6 @@ export default class extends Controller {
   }
 
   submitEnd(event) {
-    console.log("correct_working")
     if (event.detail.success) {
       this.hideModal()
     }

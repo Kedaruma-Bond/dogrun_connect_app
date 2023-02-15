@@ -1,6 +1,11 @@
-<% content_for(:title, t('.title')) %>
-<div class="max-w-5xl mx-3 md:mx-auto pt-2 pb-2 sm:mx-32 bg-purple-200 rounded-lg">
-  <div class="w-full shadow rounded p-8 sm:p-10">
-    <%= render 'togo_inu_shitsuke_hiroba/dog_registration/dog_registration_form' %>
-  </div>
-</div>
+<%= render DogRegistrations::NewComponent.new(
+    title: I18n.t('local.dog_registrations.new.title')) do %>
+    <%= render partial: 'shared/dog_registration_form', 
+      locals: { 
+        dog_registration: @dog_registration, 
+        dog_registration_confirm_path: @dog_registration_confirm_path,
+        registration_number_notation: I18n.t('togo_inu_shitsuke_hiroba.registration_number'),
+        dogrun_place: @dogrun_place,
+        dogrun_terms_of_service_page: @dogrun_terms_of_service_page
+        } %>
+<% end %>

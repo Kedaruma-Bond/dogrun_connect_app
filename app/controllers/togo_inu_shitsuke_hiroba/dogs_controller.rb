@@ -14,7 +14,7 @@ class TogoInuShitsukeHiroba::DogsController < TogoInuShitsukeHiroba::DogrunPlace
 
   def update
     if @dog.update(dog_params)
-      redirect_to togo_inu_shitsuke_hiroba_dog_path(@dog.id), success: t('.dog_profile_updated')
+      redirect_to send(@dog_profile_path, @dog.id), success: t('local.dogs.dog_profile_updated')
     else
       render :edit, status: :unprocessable_entity
     end

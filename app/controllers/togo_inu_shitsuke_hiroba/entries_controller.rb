@@ -10,8 +10,8 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
   def create
     if @dogrun_place.closed_flag == true
       respond_to do |format|
-        format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.dogrun_is_closing_now') }
-        format.turbo_stream { flash.now[:error] = t('.dogrun_is_closing_now') }
+        format.html { redirect_to send(@top_path), error: t('local.entries.dogrun_is_closing_now') }
+        format.turbo_stream { flash.now[:error] = t('local.entries.dogrun_is_closing_now') }
       end
       return
     end
@@ -28,8 +28,8 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
           
           if Entry.where(dog: @dog).where(exit_at: nil).present?
             respond_to do |format|
-              format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.select_dog_has_already_entered') }
-              format.turbo_stream { flash.now[:error] = t('.select_dog_has_already_entered') }
+              format.html { redirect_to send(@top_path), error: t('local.entries.select_dog_has_already_entered') }
+              format.turbo_stream { flash.now[:error] = t('local.entries.select_dog_has_already_entered') }
             end
             return
           end
@@ -56,8 +56,8 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
         if @dogs.count == @zero_count
           set_num_of_playing_dogs
           respond_to do |format|
-            format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.select_entry_dog') }
-            format.turbo_stream { flash.now[:error] = t('.select_entry_dog') }
+            format.html { redirect_to send(@top_path), error: t('local.entries.select_entry_dog') }
+            format.turbo_stream { flash.now[:error] = t('local.entries.select_entry_dog') }
           end
         else
           @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place: @dogrun_place }).find_by(exit_at: nil) unless not_entry?
@@ -65,8 +65,8 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
 
           @entry.after_entry_broadcast(@num_of_playing_dogs, @dogs_non_public)
           respond_to do |format|
-            format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.entry_success') }
-            format.turbo_stream { flash.now[:success] = t('.entry_success') }
+            format.html { redirect_to send(@top_path), success: t('local.entries.entry_success') }
+            format.turbo_stream { flash.now[:success] = t('local.entries.entry_success') }
           end
         end
       when "1"
@@ -75,8 +75,8 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
 
           if PreEntry.where(dog: @dog).present?
             respond_to do |format|
-              format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.select_dog_has_already_pre_entered') }
-              format.turbo_stream { flash.now[:error] = t('.select_dog_has_already_pre_entered') }
+              format.html { redirect_to send(@top_path), error: t('local.entries.select_dog_has_already_pre_entered') }
+              format.turbo_stream { flash.now[:error] = t('local.entries.select_dog_has_already_pre_entered') }
             end
             return
           end
@@ -99,13 +99,13 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
         if @dogs.count == @zero_count
           set_num_of_playing_dogs
           respond_to do |format|
-            format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, error: t('.select_pre_entry_dog') }
-            format.turbo_stream { flash.now[:error] = t('.select_pre_entry_dog') }
+            format.html { redirect_to send(@top_path), error: t('local.entries.select_pre_entry_dog') }
+            format.turbo_stream { flash.now[:error] = t('local.entries.select_pre_entry_dog') }
           end
         else
           respond_to do |format|
-            format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.pre_entry_success') }
-            format.turbo_stream { flash.now[:success] = t('.pre_entry_success') }
+            format.html { redirect_to send(@top_path), success: t('local.entries.pre_entry_success') }
+            format.turbo_stream { flash.now[:success] = t('local.entries.pre_entry_success') }
           end
         end
       end
@@ -125,8 +125,8 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
 
       @entry.after_entry_broadcast(@num_of_playing_dogs, @dogs_non_public)
       respond_to do |format|
-        format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.entry_success') }
-        format.turbo_stream { flash.now[:success] = t('.entry_success') }
+        format.html { redirect_to send(@top_path), success: t('local.entries.entry_success') }
+        format.turbo_stream { flash.now[:success] = t('local.entries.entry_success') }
       end
     end
   end
@@ -142,8 +142,8 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
     @entry.exit_broadcast(@num_of_playing_dogs, @dogs_non_public)
 
     respond_to do |format|
-      format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.exit_success') }
-      format.turbo_stream { flash.now[:success] = t('.exit_success') }
+      format.html { redirect_to send(@top_path), success: t('local.entries.exit_success') }
+      format.turbo_stream { flash.now[:success] = t('local.entries.exit_success') }
     end
   end
 
@@ -160,9 +160,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
 
     def entry_params
       params.permit(
-        :dog_id, :registration_number_id,
         :entry_at, :exit_at,
-        :select_dog
       ).merge(
         dog_id: @dog.id,
         registration_number_id: @registration_number.id
@@ -171,7 +169,6 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
 
     def pre_entry_params
       params.permit(
-        :dog_id, :registration_number_id,
         :minutes_passed_count
       ).merge(
         dog_id: @dog.id,

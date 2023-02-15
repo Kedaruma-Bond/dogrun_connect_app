@@ -129,18 +129,18 @@ module DogDecorator
   end
 
   def thumbnail_preview
-    cl_image_path thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto 
+    Cloudinary::Utils.cloudinary_url(thumbnail.key, gravity: :auto, quarity_auto: :good, fetch_format: :auto)
   end
 
   def rabies_vaccination_certificate_preview
-    cl_image_path rabies_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto
+    Cloudinary::Utils.cloudinary_url(rabies_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto)
   end
 
   def mixed_vaccination_certificate_preview
-    cl_image_path mixed_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto
+    Cloudinary::Utils.cloudinary_url(mixed_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto)
   end
 
   def license_plate_preview
-    cl_image_path license_plate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto
+    Cloudinary::Utils.cloudinary_url(license_plate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto)
   end
 end

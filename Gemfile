@@ -25,7 +25,7 @@ gem "turbo-rails", github: "hotwired/turbo-rails", branch: "main"
 gem 'stimulus-rails', '~>1.2.1'
 
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
-gem 'tailwindcss-rails'
+gem 'tailwindcss-rails', '~>2.0.21'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
@@ -86,7 +86,7 @@ gem 'active_storage_validations'
 # 都道府県データ
 gem 'jp_prefecture'
 # view componentのカプセル化
-gem 'view_component'
+gem 'view_component', '~> 2.82'
 # 定期実行プロセス用
 gem 'clockwork', '~> 3.0.1'
 # heroku addon

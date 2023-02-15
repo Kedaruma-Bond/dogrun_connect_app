@@ -10,20 +10,20 @@ class TogoInuShitsukeHiroba::SnsAccountsController < TogoInuShitsukeHiroba::Dogr
     if @sns_account.facebook_id.blank? && @sns_account.instagram_id.blank? && @sns_account.twitter_id.blank?
       @create_cancel_flag = true
       respond_to do |format|
-        format.html { redirect_to send(@user_path, current_user), notice: t(".cancel_to_registration") }
-        format.turbo_stream { flash.now[:notice] = t(".cancel_to_registration") }
+        format.html { redirect_to send(@user_path, current_user), notice: t("local.sns_accounts.cancel_to_registration") }
+        format.turbo_stream { flash.now[:notice] = t("local.sns_accounts.cancel_to_registration") }
       end
     else
       if SnsAccount.where(user: current_user).present?
         respond_to do |format|
-          format.html { redirect_to togo_inu_shitsuke_hiroba_user_path(current_user), error: t(".registration_duplicated") }
-          format.turbo_stream { flash.now[:error] = t(".registration_duplicated") }
+          format.html { redirect_to send(@user_path, current_user), error: t("local.sns_accounts.registration_duplicated") }
+          format.turbo_stream { flash.now[:error] = t("local.sns_accounts.registration_duplicated") }
         end
       else
         @sns_account.save!
         respond_to do |format|
-          format.html { redirect_to send(@user_path, current_user), success: t(".registration_successful") }
-          format.turbo_stream { flash.now[:success] = t(".registration_successful") }
+          format.html { redirect_to send(@user_path, current_user), success: t("local.sns_accounts.registration_successful") }
+          format.turbo_stream { flash.now[:success] = t("local.sns_accounts.registration_successful") }
         end
       end
     end
@@ -38,8 +38,8 @@ class TogoInuShitsukeHiroba::SnsAccountsController < TogoInuShitsukeHiroba::Dogr
     sns_account = SnsAccount.new(sns_account_params)
     if sns_account.facebook_id.blank? && sns_account.instagram_id.blank? && sns_account.twitter_id.blank?
       respond_to do |format|
-        format.html { redirect_to send(@user_path, current_user), notice: t(".cancel_to_registration") }
-        format.turbo_stream { flash.now[:notice] = t(".cancel_to_registration") }
+        format.html { redirect_to send(@user_path, current_user), notice: t("local.sns_accounts.cancel_to_edit") }
+        format.turbo_stream { flash.now[:notice] = t("local.sns_accounts.cancel_to_edit") }
       end
     else
       @correct_update_flag = true

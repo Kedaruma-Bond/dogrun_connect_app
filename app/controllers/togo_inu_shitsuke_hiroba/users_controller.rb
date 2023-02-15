@@ -11,7 +11,7 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
     if @user.save
       UserMailer.user_registration_success(@user).deliver_now
       login(params[:user][:email], params[:user][:password])
-      redirect_to send(@dog_registration_path), success: t('.user_create')
+      redirect_to send(@dog_registration_path), success: t('local.users.user_create')
       return
     end
     render :new, status: :unprocessable_entity
@@ -21,15 +21,6 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
     @user = User.find(params[:id])
   end
 
-  def update
-    @user = User.find(params[:id])
-    if @user.update(user_update_params)
-      redirect_to send(@user_path, current_user), success: t('defaults.update_successfully')
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
   def show
     @registration_numbers_for_profile = @registration_numbers.map do |registration_number|
       registration_number.registration_number
@@ -37,7 +28,7 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
     @end = @dogs.size - 1
     @times = 0
 
-    @Num_of_encount_dogs = EncountDog.encount_dog_of_user(current_user).size
+    @num_of_encount_dogs = EncountDog.encount_dog_of_user(current_user).size
     
     # 5個以上重複したencount recordを削除
     user_dogs = Dog.where(user_id: current_user.id)

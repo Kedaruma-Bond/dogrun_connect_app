@@ -3,9 +3,8 @@
   <h1 class='text-3xl text-gray-700 font-semibold text-center mb-3'>
     <%= simple_format(@title) %>
   </h1>
-  <%= render 'search_form' %>
+  <%= render partial: 'shared/search_form', locals: { q: @q, applicable_path: @applicable_path, search_field_placeholder: @search_field_placeholder } %>
   <p class="text-center md:hidden text-xs text-gray-600 mt-3"><%= t('defaults.thumbnail_tap') %></p>
-  <!-- <p class="text-center md:hidden text-xs text-gray-600"><%= t('defaults.slide_available') %></p> -->
   <div class="container w-full mx-auto sm:p-10">
     <div class="block w-full overflow-x-auto">
       <%= content %>

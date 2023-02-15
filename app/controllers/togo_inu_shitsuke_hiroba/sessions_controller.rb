@@ -9,15 +9,15 @@ class TogoInuShitsukeHiroba::SessionsController < TogoInuShitsukeHiroba::DogrunP
         case failure
         when :invalid_password
           user.register_failed_login!
-          flash.now[:error] = t('.login_failed')
+          flash.now[:error] = t('local.sessions.login_failed')
         when :locked
-          flash.now[:error] = t('.account_locked')
+          flash.now[:error] = t('local.sessions.account_locked')
         else
-          flash.now[:error] = t('.login_failed')
+          flash.now[:error] = t('local.sessions.login_failed')
         end
         render :new, status: :unprocessable_entity
       else
-        redirect_back_or_to(togo_inu_shitsuke_hiroba_top_path, success: t('.login_successfully'))
+        redirect_back_or_to(send(@top_path), success: t('local.sessions.login_successfully'))
       end
     end
   end
@@ -25,7 +25,7 @@ class TogoInuShitsukeHiroba::SessionsController < TogoInuShitsukeHiroba::DogrunP
   def destroy
     logout
     respond_to do |format|
-      format.html { redirect_to togo_inu_shitsuke_hiroba_top_path, notice: t('.logout'), status: :see_other }
+      format.html { redirect_to send(@top_path), notice: t('local.sessions.logout'), status: :see_other }
       format.json { head :no_content }
     end
   end
@@ -40,14 +40,14 @@ class TogoInuShitsukeHiroba::SessionsController < TogoInuShitsukeHiroba::DogrunP
       role: 'guest'
     )
     auto_login(@guest_user)
-    redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.guest_login_successfully')
+    redirect_to send(@top_path), success: t('local.sessions.guest_login_successfully')
   end
 
   def jump_to_signup
     return unless current_user.guest?
 
     logout
-    redirect_to togo_inu_shitsuke_hiroba_signup_path, notice: t('.signup_please')
+    redirect_to send(@signup_path), notice: t('local.sessions.signup_please')
   end
 
   private

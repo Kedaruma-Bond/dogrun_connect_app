@@ -25,22 +25,21 @@ class TogoInuShitsukeHiroba::DogRegistrationController < TogoInuShitsukeHiroba::
 
     if @dog_registration.save
       session.delete(:dog_registration_form)
-      redirect_to togo_inu_shitsuke_hiroba_top_path, success: t('.dog_registration')
-      return
+      redirect_to send(@top_path), success: t('local.dog_registrations.dog_registration')
+    else
+      render :new, status: :unprocessable_entity
     end
-    render :new, status: :unprocessable_entity
   end
 
   private
 
   def dog_registration_params
-    dogrun_place_id = @dogrun_place.id
     params.require(:dog_registration).permit(
       :name, :castration, :public,
-      :registration_number
+      :registration_number, :agreement
     ).merge(
       user_id: current_user.id,
-      dogrun_place_id: dogrun_place_id
+      dogrun_place_id: @dogrun_place.id
     )
   end
 end

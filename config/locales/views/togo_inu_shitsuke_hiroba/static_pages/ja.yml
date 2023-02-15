@@ -2,21 +2,8 @@ ja:
   togo_inu_shitsuke_hiroba:
     static_pages:
       top:
-        signup: '新規登録'
-        before_using_dogrun: ドッグランの利用規約
-        site_in: 今、ドッグランでは
-        detail: ドッグランにいる仔の詳細
-        check_app_by_trial_guest_login: |
-          ゲストログインでどんなアプリか
-          是非チェックしてみてください
-        guest_login: ゲストログイン
-        jump_to_signup: 新規登録画面へ
-        dogrun_board: ドッグランの掲示板
         under_commissioning: |
           本アプリはテスト運用中です
           広場を利用する際は
           お手数ですが入口に設置してある
           ノートへの記帳も一緒にお願いします🙇
-        dogrun_is_closing_now: |
-          %{dogrun_name}は
-          現在休業中です

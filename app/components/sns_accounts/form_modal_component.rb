@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class SnsAccounts::FormModalComponent < ViewComponent::Base
-  include Turbo::FramesHelper
+class SnsAccounts::FormModalComponent < ApplicationViewComponent
   
   def initialize(title:)
     @title = title

@@ -1,0 +1,16 @@
+ja:
+  local:
+    encount_dogs:
+      index:
+        title: エンカウントリスト
+      edit:
+        title: | 
+          出会ったワンコの
+          情報を編集
+        encount_dog_name: 出会ったワンコの名前
+      search:
+        title: |
+          エンカウントリスト
+          の検索結果
+      search_form:
+        search_field_placeholder: ワンコの名前検索

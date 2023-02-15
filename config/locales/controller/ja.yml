@@ -67,92 +67,92 @@ ja:
       login_unlock: |
         アカウントロックを解除しました
   local:
-    user_details:
-      user_details_created_successfully: 住所と電話番号を登録しました
-  togo_inu_shitsuke_hiroba:
+    users:
+      user_create: |
+        ユーザー登録完了です
+        引き続きワンコの登録を
+        お願いします
+        ２頭目以降のワンコの登録は
+        プロフィール画面から
+        実施できます
     sns_accounts:
-      create:
-        registration_successful: 登録しました
-        cancel_to_registration: 登録はキャンセルされました
-        registration_duplicated: 登録が重複しています
-      update:
-        cancel_to_registration: 編集はキャンセルされました
+      registration_successful: 登録しました
+      cancel_to_registration: 登録はキャンセルされました
+      registration_duplicated: 登録が重複しています
+      cancel_to_edit: 編集はキャンセルされました
+    sessions:
+      login_successfully: ログインしました
+      login_failed: |
+        ログインできませんでした
+        入力内容を見直してください
+      account_locked: |
+        短時間に複数回のログイン試行に失敗したので
+        一時的にアカウントをロックしました
+        時間をおいてからまたお試しください
+      logout: ログアウトしました
+      guest_login_successfully: |
+        ゲストログインしました
+        ゲストログイン状態では
+        ワンコの登録はできません
+        新規登録が必要です
+      signup_please: |
+        新規登録してアプリの機能を
+        フル活用しましょう ♪ 
     pre_entries:
-      destroy:
-        pre_entries_canceled_successfully: 入場予定をキャンセルしました
+      pre_entries_canceled_successfully: 入場予定をキャンセルしました
+    posts:
+      create_article: |
+        投稿する文を入力してください
+        写真があれば添付してください
+      choice_sns: 埋め込むSNSを選択してください
+      post_save_error: |
+        投稿タイプが未選択です
+        選択してからOKボタンを押してください
     entries:
-      create:
-        dogrun_is_closing_now: 現在このドッグランは休業中です
-        entry_success: 入場しました
-        pre_entry_success: お待ちしてます
-        select_entry_dog: |
-          入場するワンコを
-          選択してください
-        select_pre_entry_dog: |
-          利用予定のワンコを
-          選択してください
-        select_dog_has_already_entered: |
-          すでに入場中のワンコが
-          選択されています
-        select_dog_has_already_pre_entered: |
-          すでに利用予定となっている
-          ワンコが選択されています
-      update:
-        exit_success: またのご来場をお待ちしています
-    dog_registration:
-      create:
-        dog_registration: |
-          ワンコを登録できました
-          DogrunConnectを是非ドッグランで活用してください
+      dogrun_is_closing_now: 現在このドッグランは休業中です
+      entry_success: 入場しました
+      pre_entry_success: お待ちしてます
+      select_entry_dog: |
+        入場するワンコを
+        選択してください
+      select_pre_entry_dog: |
+        利用予定のワンコを
+        選択してください
+      select_dog_has_already_entered: |
+        すでに入場中のワンコが
+        選択されています
+      select_dog_has_already_pre_entered: |
+        すでに利用予定となっている
+        ワンコが選択されています
+      exit_success: またのご来場をお待ちしています
+    encount_dogs:
+      encount_dog_updated: 情報を更新しました
+    dogs:
+      dog_profile_updated: |
+        ワンコのプロフィールを
+        更新しました
+    registration_numbers:
+      select_dog: |
+        登録するワンコを
+        選択してください
+      registered_successfully: 登録しました
+      destroy_successfully: |
+        登録を削除しました
+        もし誤って削除してしまった場合
+        画面下の緑のボタンを押して
+        他のドッグランで登録済の
+        ワンコを登録する画面にて
+        再登録してください
+    dog_registrations:
+      dog_registration: |
+        ワンコを登録できました
+        DogrunConnectを是非
+        ドッグランで活用してください
+    user_details:
+      created_successfully: 住所と電話番号を登録しました
+  togo_inu_shitsuke_hiroba:
     users:
       create:
-        user_create: |
-          ユーザー登録完了です
-          引き続きワンコの登録を
-          お願いします
-          ２頭目以降のワンコの登録は
-          プロフィール画面から
-          実施できます
-    sessions:
-      create:
-        login_successfully: ログインしました
-        login_failed: |
-          ログインできませんでした
-          入力内容を見直してください
-        account_locked: |
-          短時間に複数回のログイン試行に失敗したので
-          一時的にアカウントをロックしました
-          時間をおいてからまたお試しください
-      destroy:
-        logout: ログアウトしました
-      guest_login:
-        guest_login_successfully: |
-          ゲストログインしました
-          ゲストログイン状態では
-          ワンコの登録はできません
-          新規登録が必要です
-      jump_to_signup:
-        signup_please: |
-          新規登録してアプリの機能を
-          フル活用しましょう ♪ 
-    dogs:
-      update:
-        dog_profile_updated: |
-          ワンコのプロフィールを
-          更新しました
-    registration_numbers:
-      destroy:
-        destroy_successfully: |
-          登録を削除しました
-          もし誤って削除してしまった場合
-          お問い合わせフォームから
-          お申し出ください
-    posts:
-      create:
-        choice_sns: 埋め込むSNSを選択してください。
-    encount_dogs:
-      update:
-        encount_dog_updated: 情報を更新しました
   activerecord:
     models:
       contact: お問い合わせ
@@ -193,6 +193,7 @@ ja:
         password: パスワード
         password_confirmation: パスワード 確認
         agreement: 利用規約とプライバシーポリシー
+        dogrun_place_id: 管轄ドッグラン
       user_detail:
         zip_code: 郵便番号
         address_1: 都道府県・市町村・番地
@@ -253,8 +254,9 @@ ja:
     attributes:
       # form objectを使用する場合はlocaleはここに書く
       dog_registration:
-        registration_number: 登録番号
+        registration_number: 番号
         name: ワンコの名前
+        agreement: 利用規約
 
   attributes:
     created_at: 作成日

@@ -1,5 +1,6 @@
 ja:
   defaults:
+    register: 登録
     these_information_is_not_viewable: |
       これらの情報は管理者を除く
       他のユーザーは閲覧できません
@@ -34,6 +35,7 @@ ja:
     agree: 利用規約とプライバシーポリシー
     registration: 登録
     signup_is: 新規登録は
+    password_reset: パスワードを忘れた方は
     here: こちら
     remember: ログインを保持する
     require_login: ログインしてください
@@ -86,11 +88,6 @@ ja:
     search_results_is: 検索結果
     search_results_unit: 件
     post_successfully: 投稿しました
-    create_article: |
-      投稿する文を入力してください。
-      必要あれば写真も添付してください。
-    choice_sns: 埋め込むSNSを選択してください。
-    post_save_error: 投稿時にエラーが起きました
     search_period: |
       検索
       期間

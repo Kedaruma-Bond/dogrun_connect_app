@@ -1,0 +1,7 @@
+ja:
+  local:
+    dog_registrations:
+      new:
+        title: ワンコの登録
+      confirm:
+        title: ワンコの入力情報確認
