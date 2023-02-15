@@ -24,7 +24,7 @@
     <% end %>
     <% if @dogrun_place.name == "犬のしつけ広場" %> 
       <h1 class="my-1">
-        <%= simple_format(t('togo_inu_shitsuke_hiroba.staticpages.top.under_commissioning'), class: "font-bold text-lg text-red-600") %>
+        <%= simple_format(t('togo_inu_shitsuke_hiroba.static_pages.top.under_commissioning'), class: "font-bold text-lg text-red-600") %>
       </h1>
     <% end %>
     <%= turbo_frame_tag dom_id(@dogrun_place, "top_view_changeover_closing"), class: "w-full sm:px-10 pt-1 sm:pb-0" do %>
