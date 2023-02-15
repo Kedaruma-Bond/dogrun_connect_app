@@ -12,7 +12,7 @@ class Users::ShowComponent < ApplicationViewComponent
     @title = title
     @current_user = current_user
     @dogs = dogs
-    @Num_of_encount_dogs = num_of_encount_dogs
+    @num_of_encount_dogs = num_of_encount_dogs
     @dog_registration_path = dog_registration_path
     @new_registration_number_path = new_registration_number_path
   end
