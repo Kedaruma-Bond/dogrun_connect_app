@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   
   namespace :reon do
     get 'top', to: 'static_pages#top'
+    get 'terms_of_service', to: 'static_pages#terms_of_service'
     resource :sessions, only: %i[new create destroy]
     post '/guest_login', to: 'sessions#guest_login'
     post '/jump_to_signup', to: 'sessions#jump_to_signup'

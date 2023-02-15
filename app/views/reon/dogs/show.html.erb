@@ -1,0 +1,11 @@
+<%= render Dogs::ShowComponent.new(
+    title: I18n.t('local.dogs.show.title'),
+    registration_number_notation: I18n.t('togo_inu_shitsuke_hiroba.registration_number'),
+    dog: @dog,
+    current_user: current_user,
+    registration_number: @registration_number,
+    user: @user,
+    encount_dog: @encount_dog,
+    dog_profile_path: @dog_profile_path,
+    edit_dog_path: @edit_dog_path
+    ) %>

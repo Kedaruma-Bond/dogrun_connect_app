@@ -1,0 +1,3 @@
+<%= render Users::NewComponent.new(title: t('local.users.new.title')) do %>
+  <%= render partial: 'shared/signup_form', locals: { user: @user, users_path: @users_path } %>
+<% end %>

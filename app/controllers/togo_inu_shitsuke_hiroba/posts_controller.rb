@@ -18,7 +18,7 @@ class TogoInuShitsukeHiroba::PostsController < TogoInuShitsukeHiroba::DogrunPlac
   private
     def post_params
       params.permit(
-        :post_type, :dogrun_place_id, :publish_status
-      ).merge(user_id: current_user.id)
+        :post_type, :publish_status
+      ).merge(user_id: current_user.id, dogrun_place_id: @dogrun_place.id)
     end
 end

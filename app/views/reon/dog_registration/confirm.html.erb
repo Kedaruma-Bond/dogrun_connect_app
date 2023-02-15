@@ -1,0 +1,9 @@
+<%= render DogRegistrations::ConfirmComponent.new(
+    title: I18n.t('local.dog_registrations.confirm.title')) do %>
+    <%= render partial: 'shared/dog_registration_hidden_confirm', 
+      locals: { 
+        dog_registration: @dog_registration, 
+        dog_registration_path: @dog_registration_path,
+        registration_number_notation: I18n.t('togo_inu_shitsuke_hiroba.registration_number')
+      } %>
+<% end %>
