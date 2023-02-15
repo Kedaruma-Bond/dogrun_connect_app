@@ -1,6 +1,15 @@
 module DogrunPlaceHelper
   include Pagy::Frontend
   
+  def dogrun_top_path(id)
+    case id
+    when 2
+      togo_inu_shitsuke_hiroba_top_path
+    when 3
+      reon_top_path
+    end
+  end
+
   def dogrun_logo(dogrun_place)
     if dogrun_place.logo.attached?
       cl_image_tag(dogrun_place.logo.key, quality_auto: :good, fetch_format: :auto, class: "w-full h-auto", alt: dogrun_place.name)

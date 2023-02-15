@@ -12,7 +12,7 @@ class StaticPagesController < ApplicationController
     when 2
       @link = togo_inu_shitsuke_hiroba_top_path
     when 3
-      @link = "#"
+      @link = reon_top_path
     end
 
   end

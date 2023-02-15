@@ -190,94 +190,10 @@
     <%= render 'logo_click' %>
     <div class="container px-6 py-1 mx-auto">
       <div class="grid grid-cols-1 gap-8 mt-4 xl:mt-8 md:grid-cols-2 xl:grid-cols-3">
-        <div class="flex flex-col items-center p-4 border sm:p-6 rounded-xl">
-          <%= link_to togo_inu_shitsuke_hiroba_top_path do %>
-            <%= cl_image_tag(DogrunPlace.find(2).logo.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover h-auto w-auto", alt: DogrunPlace.find(2).name) %>
-            <div class ="text-center">
-              <h1 class="mt-4 text-2xl font-semibold text-gray-600 dark:text-gray-200">
-                <%= DogrunPlace.find(2).name %>
-              </h1>
-            </div>
-          <% end %>
-          <div class="flex-col mt-2 text-gray-500 dark:text-gray-200 capitalize items-center">
-            <%= simple_format(DogrunPlace.find(2).description, { class: "text-sm text-gray-500 dark:text-gray-400" }) %>
-            <details data-controller="accordion" class="text-center">
-              <summary data-accordion-target="summary" data-action="click->accordion#toggle" class="mt-3 flex justify-center hover:cursor-pointer">
-                <h1 class="flex font-bold text-lg dark:text-gray-200">
-                  <%= t('defaults.detail')%>
-                </h1>
-              </summary>
-              <div data-accordion-target="content">
-                <p class="text-sm mt-2">
-                  <%= DogrunPlace.human_attribute_name(:address) %>
-                </p>
-                <h2 class="mt-1">
-                  <%= simple_format(DogrunPlace.find(2).address, class: "text-gray-700 dark:text-gray-300 text-base") %>
-                </h2>
-                <% if !DogrunPlace.find(2).opening_time.blank? || !DogrunPlace.find(2).closing_time.blank? %>
-                  <p class="text-sm mt-2">
-                    <%= t('defaults.business_time') %>
-                  </p>
-                  <h2 class="mt-1">
-                    <%= l DogrunPlace.find(2).opening_time, format: :short2 %>
-                    〜
-                    <%= l DogrunPlace.find(2).closing_time, format: :short2 %>
-                  </h2>
-                <% end %>
-                <p class="text-sm mt-2">
-                  <%= DogrunPlace.human_attribute_name(:usage_fee) %>
-                </p>
-                <h2 class="mt-1">
-                  <%= simple_format(DogrunPlace.find(2).usage_fee, class: "text-gray-700 dark:text-gray-300 text-base text-left") %>
-                </h2>
-                <p class="text-sm mt-2">
-                  <%= DogrunPlace.human_attribute_name(:site_area) %>
-                </p>
-                <h2 class="mt-1">
-                  <%= simple_format(DogrunPlace.find(2).site_area, class: "text-gray-700 dark:text-gray-300 text-base") %>
-                </h2>
-                <div class="mx-auto">
-                  <% if !DogrunPlace.find(2).web_site.blank? %>
-                    <p class="text-sm mt-2">
-                      <%= DogrunPlace.human_attribute_name(:web_site) %>
-                    </p>
-                    <%= link_to DogrunPlace.find(2).web_site, target: "_blank", rel: "noopener noreferrer" do %>
-                      <svg class="w-6 h-6 fill-current mx-auto mt-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z" clip-rule="evenodd"></path>
-                      </svg>
-                    <% end %>
-                  <% end %>
-                  <% if !DogrunPlace.find(2).sns_account.nil? %>
-                    <p class="text-sm mt-2">
-                      <%= t('defaults.sns') %>
-                    </p>
-                    <%= render partial: "shared/sns_account_icons", locals: { sns_account: DogrunPlace.find(2).sns_account } %>
-                  <% end %>
-                  <% if !DogrunPlace.find(2).facilities.blank? %>
-                    <p class="text-sm mt-2">
-                    <%= Facility.human_attribute_name(:name) %>
-                    </p>
-                    <div class="flex flex-wrap">
-                      <% DogrunPlace.find(2).facilities.each do |facility| %>
-                        <span class="whitespace-nowrap leading-none text-white py-2 px-2 bg-blue-700 rounded ml-2 mt-2"><%= dogrun_facility_view(facility.name) %></span>
-                      <% end %>
-                    </div>
-                  <% end %>
-                </div>
-              </div>
-            </details>
-          </div>
-        </div>
 
-        <div class="flex flex-col items-center p-4 border sm:p-6 rounded-xl">
-          <%= image_tag "https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661501917/nodata_image-1_gfhsoz.jpg", class: "object-cover w-full rounded-xl aspect-square", alt: "no_data_image_dog" %>
-          <h1 class="mt-4 text-2xl font-semibold text-gray-600 dark:text-gray-300 capitalize">
-            <%= t'.under_recruitment' %>
-          </h1>
-          
-          <div class="flex mt-3 -mx-2">
-          </div>
-        </div>
+        <%= render partial: "dogrun_place_card", locals: { dogrun_place: DogrunPlace.find(2) } %>
+
+        <%= render partial: "dogrun_place_card", locals: { dogrun_place: DogrunPlace.find(3) } %>
 
         <div class="flex flex-col items-center p-4 border sm:p-6 rounded-xl">
           <%= image_tag "https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661501927/nodata_image-2_pxtu52.jpg", class: "object-cover w-full rounded-xl aspect-square", alt: "no_data_image_dog" %>
