@@ -154,7 +154,7 @@ class Reon::EntriesController < Reon::DogrunPlaceController
   private
 
     def set_q
-      @entries = Entry.dogrun_place_id(2)
+      @entries = Entry.includes(:registration_number).where(registration_number: { dogrun_place: @dogrun_place }).order(entry_at: :desc)
       @q = @entries.ransack(params[:q])
     end
 

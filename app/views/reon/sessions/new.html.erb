@@ -1,0 +1,5 @@
+<%= render Sessions::NewComponent.new(
+    title: I18n.t('defaults.login')) do %>
+    <%= render partial: 'shared/login_form', locals: { login_path: @login_path } %>
+<% end %>
+

@@ -1,0 +1,15 @@
+<%= render RegistrationNumbers::NewComponent.new(
+    title: I18n.t('local.registration_numbers.new.title'),
+    dogs: @dogs,
+    user_path: @user_path,
+    current_user: current_user) do %>
+    <%= render partial: 'shared/registration_number_hidden_form', 
+        locals: { 
+          dogs: @dogs, 
+          dogrun_place: @dogrun_place,
+          dogrun_terms_of_service_page: @dogrun_terms_of_service_page,
+          registration_number: @registration_number, 
+          registration_numbers_path: @registration_numbers_path, 
+          registration_number_notation: I18n.t('togo_inu_shitsuke_hiroba.registration_number') 
+        } %>
+<% end %>

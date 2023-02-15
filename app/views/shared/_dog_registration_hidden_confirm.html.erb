@@ -1,30 +1,30 @@
 <div class="w-full flex flex-col mt-8">
   <div class="md:flex items-center text-gray-700">
     <div class="w-full md:w-1/4 flex flex-col md:mt-0 mt-7 items-center justify-center">
-      <p class="font-light text-sm leading-none"><%= t('.name') %></p>
+      <p class="font-light text-sm leading-none"><%= t('defaults.dog_name') %></p>
       <p class="block leading-none text-xl p-3 font-bold mt-2"><%= dog_registration.name %></p>
     </div>
     <div class="w-full md:w-1/4 flex flex-col md:mt-0 mt-7 items-center justify-center"> 
-      <p class="font-light text-sm leading-none"><%= t('.castration') %></p>
+      <p class="font-light text-sm leading-none"><%= Dog.human_attribute_name(:castration) %></p>
       <% if dog_registration.castration == 'castrated' %>
         <p class="block leading-none text-xl font-bold p-3 mt-2">
-          <%= t('.castrated') %>
+          <%= t('enums.dog_registration.castration.castrated') %>
         </p>
       <% else %>
         <p class="block leading-none text-xl font-bold p-3 mt-2">
-          <%= t('.non_castrated') %>
+          <%= t('enum.dog_registration_castration.non_castrated') %>
         </p>
       <% end %>
     </div>
     <div class="w-full md:w-1/4 flex flex-col md:mt-0 mt-7 items-center justify-center"> 
-      <p class="font-light text-sm leading-none"><%= t('.public') %></p>
+      <p class="font-light text-sm leading-none"><%= Dog.human_attribute_name(:public) %></p>
       <% if dog_registration.public == 'public_view' %>
         <p class="block leading-none text-xl font-bold p-3 mt-2">
-          <%= t('.public_view') %>
+          <%= t('enums.dog_registration.public.public_view') %>
         </p>
       <% else %>
         <p class="block leading-none text-xl font-bold p-3 mt-2">
-          <%= t('.non_public') %>
+          <%= t('enums.dog_registration.public.non_public') %>
         </p>
       <% end %>
     </div>

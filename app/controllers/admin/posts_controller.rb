@@ -7,7 +7,7 @@ class Admin::PostsController < Admin::BaseController
   before_action :set_dogrun_place, only: %i[index search cancel_to_publish]
 
   def index
-    @publishing_post = Post.is_publishing
+    @publishing_post = Post.is_publishing.where(dogrun_place: @dogrun_place)
 
     no_article_posts = @posts.where(post_type: 'article').where.missing(:article)
     no_article_posts.map do |post|

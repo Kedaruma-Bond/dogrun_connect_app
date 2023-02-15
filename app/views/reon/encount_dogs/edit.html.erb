@@ -1,0 +1,6 @@
+<%= render EncountDogs::EditComponent.new(
+    title: I18n.t('local.encount_dogs.edit.title'),
+    encount_dog: @encount_dog
+    ) do %>
+    <%= render partial: "shared/encount_dog_edit_form", locals: { encount_dog: @encount_dog, encount_dogs_path: @encount_dogs_path } %>
+<% end %>

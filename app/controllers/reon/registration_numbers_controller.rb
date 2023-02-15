@@ -14,28 +14,18 @@ class Reon::RegistrationNumbersController < Reon::DogrunPlaceController
   end
 
   def create
-    select_dogs_allocation(params[:select_dog])
-    num = 0
-    while num <= @select_dogs_values.count - 1
-      
-      case @select_dogs_values[num]
-      when '1'
-        @dog = @dogs[num]
-        return
-      when '0'
-        num += 1
-      end
-    end
+    @dog = Dog.find(params[:select_dog])
     if @dog.blank?
-      respond_to do |format|
-        format.html { render :new, flash.now[:error] = t('local.registration_numbers.select_dog') }
-      end
+      flash.now[:error] = t('local.registration_numbers.select_dog')
+      render :new
       return
     end
+
     @registration_number = RegistrationNumber.new(registration_number_params)
+
     if @registration_number.save
       respond_to do |format|
-        format.html { redirect_to send(user_path, current_user), success: t('local.registration_numbers.registered_successfully') }
+        format.html { redirect_to send(@user_path, current_user), success: t('local.registration_numbers.registered_successfully') }
         format.json { header :no_content }
       end
     else

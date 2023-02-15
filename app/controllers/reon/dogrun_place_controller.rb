@@ -39,7 +39,7 @@ class Reon::DogrunPlaceController < ApplicationController
       @article_path = :reon_article_path
       @new_embed_path = :new_reon_embed_path
       @embed_path = :reon_hiroba_embed_path
-      @dogrun_terms_of_service_page = "#"
+      @dogrun_terms_of_service_page = "./terms_of_service"
     end
 
     def set_dogs_and_registration_numbers_at_local

@@ -1,0 +1,10 @@
+<%= render Dogs::EditComponent.new(
+  title: I18n.t('local.dogs.edit.title')) do %>
+  <%= render partial: "shared/dog_edit_form", 
+      locals: { 
+        dog: @dog,
+        dog_profile_path: @dog_profile_path, 
+        registration_number: @registration_number, 
+        registration_number_notation: I18n.t('togo_inu_shitsuke_hiroba.registration_number') } 
+      %>
+<% end %>
