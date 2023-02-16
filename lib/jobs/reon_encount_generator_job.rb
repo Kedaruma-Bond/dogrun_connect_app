@@ -1,12 +1,12 @@
-class TogoInuShitsukeHirobaEncountGeneratorJob
+class ReonEncountGeneratorJob
   def call
     if Rails.cache.exist?('previous_dogs_id')
       previous_dogs_id = Rails.cache.read('previous_dogs_id')
       Rails.cache.delete('previous_dogs_id')
     end
-    
-    dogrun_place_id = 2
 
+    dogrun_place_id = 3
+    
     during_entry_dogs = Dog.dogrun_place_id_for_encount_dog(dogrun_place_id)
     return if during_entry_dogs.blank?
     
