@@ -9,10 +9,7 @@ class Reon::EntriesController < Reon::DogrunPlaceController
 
   def create
     if @dogrun_place.closed_flag == true
-      respond_to do |format|
-        format.html { redirect_to send(@top_path), error: t('local.entries.dogrun_is_closing_now') }
-        format.turbo_stream { flash.now[:error] = t('local.entries.dogrun_is_closing_now') }
-      end
+      redirect_to send(@top_path), error: t('local.entries.dogrun_is_closing_now')
       return
     end
 
