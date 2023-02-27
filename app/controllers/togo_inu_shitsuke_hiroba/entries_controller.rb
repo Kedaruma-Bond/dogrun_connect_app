@@ -8,6 +8,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
   end
 
   def create
+
     if @dogrun_place.closed_flag == true
       respond_to do |format|
         format.html { redirect_to send(@top_path), error: t('local.entries.dogrun_is_closing_now') }
@@ -27,6 +28,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
           @dog = @dogs[@num]
           
           if Entry.where(dog: @dog).where(exit_at: nil).present?
+            set_num_of_playing_dogs
             respond_to do |format|
               format.html { redirect_to send(@top_path), error: t('local.entries.select_dog_has_already_entered') }
               format.turbo_stream { flash.now[:error] = t('local.entries.select_dog_has_already_entered') }
@@ -132,6 +134,11 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
   end
 
   def update
+    if current_entries.blank?
+      redirect_to send(@top_path), success: t('local.entries.exit_success')
+      return
+    end
+
     i = current_entries.size - 1
     @entry = current_entries[i]
     current_entries.each do |entry|
@@ -174,28 +181,6 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
         dog_id: @dog.id,
         registration_number_id: @registration_number.id
       )
-    end
-
-    def set_num_of_playing_dogs
-      dogrun_entry_data = []
-      dogrun_entry_data = Entry.where.not(entry_at: nil).where(exit_at: nil).joins(:registration_number).where(registration_numbers: { dogrun_place: @dogrun_place })
-      @num_of_playing_dogs = dogrun_entry_data.size || 0
-      if !dogrun_entry_data.blank?
-        dogs = dogrun_entry_data.map do |entry_data|
-          Dog.find(entry_data.dog_id)
-        end
-    
-        @dogs_public_view = dogs.select do |dog|
-          dog.public == 'public_view'
-        end
-    
-        @dogs_non_public = dogs.select do |dog|
-          dog.public == 'non_public'
-        end
-      else
-        @dogs_public_view = []
-        @dogs_non_public = [] 
-      end
     end
 
 end

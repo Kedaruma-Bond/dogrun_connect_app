@@ -2,14 +2,14 @@ require 'rails_helper'
 
 RSpec.describe Contact, type: :model do
   context '全てのフィールドが有効な場合' do
-    it '有効であること' do
+    example '有効であること' do
       contact = build(:contact)
       expect(contact).to be_valid
     end
   end
 
   context 'nameが空欄の場合' do
-    it '無効であること' do
+    example '無効であること' do
       contact = build(:contact, name: nil)
       expect(contact).to be_invalid
       expect(contact.errors[:name]).to include('を入力してください')
@@ -17,7 +17,7 @@ RSpec.describe Contact, type: :model do
   end
 
   context 'emailが空欄の場合' do
-    it '無効であること' do
+    example '無効であること' do
       contact = build(:contact, email: nil)
       expect(contact).to be_invalid
       expect(contact.errors[:email]).to include('を入力してください')
@@ -25,7 +25,7 @@ RSpec.describe Contact, type: :model do
   end
 
   context 'emailの様式が正しくない場合' do
-    it '無効であること' do
+    example '無効であること' do
       contact = build(:contact, email: 'user_at_foo.org')
       expect(contact).to be_invalid
       expect(contact.errors[:email]).to include('の様式が正しくありません')
@@ -33,7 +33,7 @@ RSpec.describe Contact, type: :model do
   end
 
   context 'messageが空欄の場合' do
-    it '無効であること' do
+    example '無効であること' do
       contact = build(:contact, message: nil)
       expect(contact).to be_invalid
       expect(contact.errors[:message]).to include('を入力してください')

@@ -1,17 +1,11 @@
-class Encount < ApplicationRecord
-  belongs_to :dogrun_place
-  belongs_to :user
-  belongs_to :dog
-  belongs_to :entry
-
-  # validates
-  
-  # enum
-
-  # scope
-
+FactoryBot.define do
+  factory :encount do
+    association :dog
+    association :dogrun_place
+    association :user
+    association :entry
+  end
 end
-
 # == Schema Information
 #
 # Table name: encounts

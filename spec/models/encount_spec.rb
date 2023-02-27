@@ -1,17 +1,13 @@
-class Encount < ApplicationRecord
-  belongs_to :dogrun_place
-  belongs_to :user
-  belongs_to :dog
-  belongs_to :entry
+require 'rails_helper'
 
-  # validates
-  
-  # enum
-
-  # scope
-
+RSpec.describe Encount, type: :model do
+  context '全てのフィールドが有効な場合' do
+    example '有効であること' do
+      encount = build(:encount)
+      expect(encount).to be_valid
+    end
+  end
 end
-
 # == Schema Information
 #
 # Table name: encounts

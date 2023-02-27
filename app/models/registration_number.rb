@@ -7,7 +7,7 @@ class RegistrationNumber < ApplicationRecord
   attr_accessor :select_dog, :agreement
 
   # validates
-  validates :registration_number, presence: true
+  validates :registration_number, presence: true, length: { maximum: 50 }
   validates :agreement, acceptance: true, on: :create
   validates :agreement, acceptance: true, on: :update, allow_blank: true
   
@@ -24,7 +24,7 @@ end
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  dog_id              :bigint           not null
-#  dogrun_place_id     :bigint
+#  dogrun_place_id     :bigint           not null
 #
 # Indexes
 #

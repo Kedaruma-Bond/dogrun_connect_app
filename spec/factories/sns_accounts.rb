@@ -1,10 +1,18 @@
-class SnsAccount < ApplicationRecord
-  belongs_to :user, optional: true
-  belongs_to :dogrun_place, optional: true
-  include ActiveModel::Validations
+FactoryBot.define do
+  factory :sns_account do
+    facebook_id { 'dogrunconnect' }
+    twitter_id { 'DogrunConnect' }
+    instagram_id { 'dogrun_connect' }
 
-  # validations
-  validates_with SnsAccountValidator
+    trait :created_by_user do
+      association :user
+    end
+
+    trait :created_by_dogrun_place do
+      association :dogrun_place
+    end
+    
+  end
 end
 
 # == Schema Information

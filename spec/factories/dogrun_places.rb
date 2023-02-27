@@ -4,9 +4,13 @@ FactoryBot.define do
 
     trait :togo_inu_shitsuke_hiroba do
       id { '2' }
-      name { 'togo_inu_shitsuke_hiroba' }
+      name { '犬のしつけ広場' }
     end
     
+    trait :reon do
+      id { '3' }
+      name { '里音(Re:on)' }
+    end
   end
 end
 

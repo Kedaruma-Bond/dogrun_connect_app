@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-  it 'factorybotの確認' do
+  example 'factorybotの確認' do
     expect(build(:user)).to be_valid
   end
 
@@ -10,11 +10,11 @@ RSpec.describe 'Users', type: :request do
     context '/signupにget request' do
       before { get togo_inu_shitsuke_hiroba_signup_path }
       
-      it 'レスポンスが正常なこと' do
+      example 'レスポンスが正常なこと' do
         expect(response).to have_http_status(:success)
       end
 
-      it 'タイトルが正常なこと' do
+      example 'タイトルが正常なこと' do
         expect(response.body).to include(I18n.t('togo_inu_shitsuke_hiroba.users.new.title'))
       end
     end
@@ -23,7 +23,7 @@ RSpec.describe 'Users', type: :request do
       #attributes_forはhashでuser情報を返してくれる
       let!(:user) {FactoryBot.attributes_for(:user) }
       context '有効な値で登録されるとき' do
-        it 'ユーザーが正常に登録され、ウェルカムメールが送信されること' do
+        example 'ユーザーが正常に登録され、ウェルカムメールが送信されること' do
           aggregate_failures do
             expect do
               post togo_inu_shitsuke_hiroba_users_path, params: { user: user }
@@ -45,7 +45,7 @@ RSpec.describe 'Users', type: :request do
                                 password_confirmation: '',)
         end
 
-        it 'ユーザーが登録されないこと' do
+        example 'ユーザーが登録されないこと' do
           expect do
             post togo_inu_shitsuke_hiroba_users_path, params: { user: user_params }
           end.to change(User, :count).by(0)
@@ -55,7 +55,7 @@ RSpec.describe 'Users', type: :request do
 
     describe 'user#showにget request' do
       let!(:user) { FactoryBot.create(:user) }
-      it 'レスポンスが正常なこと' do
+      example 'レスポンスが正常なこと' do
         log_in_as(user)
         get togo_inu_shitsuke_hiroba_user_path(user)
         expect(response).to have_http_status(:success)

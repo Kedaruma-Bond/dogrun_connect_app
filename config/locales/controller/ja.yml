@@ -6,7 +6,6 @@ ja:
         registration_number_updated_error: 登録番号は空欄では保存できません
     sns_accounts:
       create:
-        cancel_to_registration: 登録をキャンセルしました
         registration_duplicated: 登録が重複しています
         registration_successful: 登録しました
       update:

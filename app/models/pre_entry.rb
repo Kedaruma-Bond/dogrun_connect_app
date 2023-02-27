@@ -4,6 +4,9 @@ class PreEntry < ApplicationRecord
 
   attr_accessor :select_dog
 
+  # validations
+  validates :minutes_passed_count, presence: true
+  
   # delegate
   delegate :dogrun_place, to: :registration_number
 

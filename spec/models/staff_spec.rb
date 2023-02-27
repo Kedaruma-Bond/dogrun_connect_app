@@ -2,41 +2,51 @@ require 'rails_helper'
 
 RSpec.describe Staff, type: :model do
   context '全てのフィールドが有効な場合' do
-    it '有効であること' do
+    example '有効であること' do
       staff = build(:staff, :disable)
       expect(staff).to be_valid
     end
   end
 
-  context 'nameがnullの場合' do
-    it '無効であること' do
+  context 'nameがnilの場合' do
+    example '無効であること' do
       staff = build(:staff, name: nil)
       expect(staff).to be_invalid
-      expect(staff.errors[:name]).to include('を入力してください')
+      expect(staff.errors).to be_of_kind(:name, :blank)
     end
   end
   
-  context 'emailがnullの場合' do
-    it '無効であること' do
-      staff = build(:staff, email: nil)
-      expect(staff).to be_invalid
-      expect(staff.errors[:email]).to include('を入力してください')
+  describe 'emailフィールドについて' do
+    context 'nilの場合' do
+      example '無効であること' do
+        staff = build(:staff, email: nil)
+        expect(staff).to be_invalid
+        expect(staff.errors).to be_of_kind(:email, :blank)
+      end
+    end
+
+    context '様式が正しくない場合' do
+      example '無効であること' do
+        staff = build(:staff, email: 'henoheno.org')
+        expect(staff).to be_invalid
+        expect(staff.errors).to be_of_kind(:email, I18n.t('defaults.email_message'))
+      end
     end
   end
   
-  context 'enable_notificationがnullの場合' do
-    it '無効であること' do
+  context 'enable_notificationがnilの場合' do
+    example '無効であること' do
       staff = build(:staff, enable_notification: nil)
       expect(staff).to be_invalid
-      expect(staff.errors[:enable_notification]).to include('を入力してください')
+      expect(staff.errors).to be_of_kind(:enable_notification, :blank)
     end
   end
   
-  context 'dogrun_placeがnullの場合' do
-    it '無効であること' do
+  context 'dogrun_placeがnilの場合' do
+    example '無効であること' do
       staff = build(:staff, dogrun_place: nil)
       expect(staff).to be_invalid
-      expect(staff.errors[:dogrun_place]).to include('を入力してください')
+      expect(staff.errors).to be_of_kind(:dogrun_place, :blank)
     end
   end
 end

@@ -1,3 +1,5 @@
+<%= render_turbo_stream_flash_messages %>
+
 <%= turbo_stream.update dom_id(@dogrun_place, :num_of_playing_dogs) do %>
   <%= render partial: "shared/num_of_playing_dogs", locals: { num_of_playing_dogs: @num_of_playing_dogs } %>
 <% end %>
@@ -8,5 +10,3 @@
 <%= turbo_stream.update dom_id(@dogrun_place, :login_top_content) do %>
   <%= render partial: "shared/login_top_content", locals: { entries_path: @entries_path, pre_entries_path: @pre_entries_path } %>
 <% end %>
-
-<%= render_turbo_stream_flash_messages %>

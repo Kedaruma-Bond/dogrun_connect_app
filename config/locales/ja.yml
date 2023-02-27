@@ -1,5 +1,6 @@
 ja:
   defaults:
+    input_any_one_sns_account: どれか1つのSNSは入力してください
     register: 登録
     these_information_is_not_viewable: |
       これらの情報は管理者を除く

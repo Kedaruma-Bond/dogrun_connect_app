@@ -6,11 +6,11 @@ RSpec.describe 'StaticPages', type: :request do
     context 'root pathにget request' do
       before { get root_path }
 
-      it 'レスポンスが正常なこと' do
+      example 'レスポンスが正常なこと' do
         expect(response).to have_http_status(:success)
       end
 
-      it 'タイトルがアプリ名のみになること' do
+      example 'タイトルがアプリ名のみになること' do
         expect(response.body).to include 'DogrunConnect'
       end
     end
@@ -18,11 +18,11 @@ RSpec.describe 'StaticPages', type: :request do
     context 'private_policyにget request' do
       before { get privacy_policy_path }
 
-      it 'レスポンスが正常なこと' do
+      example 'レスポンスが正常なこと' do
         expect(response).to have_http_status(:success)
       end
 
-      it 'タイトルが正常に表示されること' do
+      example 'タイトルが正常に表示されること' do
         expect(response.body).to include(I18n.t('defaults.privacy_policy'))
         expect(response.body).to include '| DogrunConnect'
       end
@@ -31,11 +31,11 @@ RSpec.describe 'StaticPages', type: :request do
     context 'terms_of_serviceにget request' do
       before { get terms_of_service_path }
 
-      it 'レスポンスが正常なこと' do
+      example 'レスポンスが正常なこと' do
         expect(response).to have_http_status(:success)
       end
 
-      it 'タイトルが正常に表示さえれること' do
+      example 'タイトルが正常に表示さえれること' do
         expect(response.body).to include(I18n.t('defaults.terms_of_service'))
         expect(response.body).to include '| DogrunConnect'
       end
@@ -50,11 +50,11 @@ RSpec.describe 'StaticPages', type: :request do
       context 'togo_inu_shitsuke_hiroba/static_pages#topにget request' do
         before { get togo_inu_shitsuke_hiroba_top_path }
   
-        it 'レスポンスが正常なこと' do
+        example 'レスポンスが正常なこと' do
           expect(response).to have_http_status(:success)
         end
   
-        it 'タイトルが正常に表示されていること' do
+        example 'タイトルが正常に表示されていること' do
           expect(response.body).to include('犬のしつけ広場 | DogrunConnect')
         end
       end
@@ -62,7 +62,7 @@ RSpec.describe 'StaticPages', type: :request do
 
     describe 'ログイン後' do
       context 'togo_inu_shitsuke_hiroba/static_pages#detailにget request' do
-        it 'レスポンスが正常なこと' do
+        example 'レスポンスが正常なこと' do
           log_in_as(user)
           get togo_inu_shitsuke_hiroba_detail_path
           expect(response).to have_http_status(:success)
