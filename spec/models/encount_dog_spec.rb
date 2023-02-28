@@ -7,6 +7,30 @@ RSpec.describe EncountDog, type: :model do
       expect(encount_dog).to be_valid
     end
   end
+
+  context 'dogrun_placeがnilの場合' do
+    example '無効であること' do
+      encount_dog = build(:encount_dog, dogrun_place: nil)
+      expect(encount_dog).to be_invalid
+      expect(encount_dog.errors).to be_of_kind(:dogrun_place, :blank)
+    end
+  end
+  
+  context 'dogがnilの場合' do
+    example '無効であること' do
+      encount_dog = build(:encount_dog, dog: nil)
+      expect(encount_dog).to be_invalid
+      expect(encount_dog.errors).to be_of_kind(:dog, :blank)
+    end
+  end
+
+  context 'userがnilの場合' do
+    example '無効であること' do
+      encount_dog = build(:encount_dog, user: nil)
+      expect(encount_dog).to be_invalid
+      expect(encount_dog.errors).to be_of_kind(:user, :blank)
+    end
+  end
 end
 # == Schema Information
 #

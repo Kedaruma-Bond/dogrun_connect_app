@@ -2,6 +2,10 @@ FactoryBot.define do
   factory :dogrun_place do
     sequence(:name) { |n| "Dogrun_Place_#{n}" }
 
+    after(:create) do |dogrun_place|
+      creat_list(:dogrun_place_facility_relations, 1, dogrun_place: dogrun_place, facility: create(:facility))
+    end
+
     trait :togo_inu_shitsuke_hiroba do
       id { '2' }
       name { '犬のしつけ広場' }

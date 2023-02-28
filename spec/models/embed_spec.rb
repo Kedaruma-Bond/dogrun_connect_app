@@ -14,15 +14,25 @@ RSpec.describe Embed, type: :model do
       example '無効であること' do
         embed = build(:embed, :twitter, embed_type: nil)
         expect(embed).to be_invalid
-        expect(embed.errors[:embed_type]).to include('を入力してください')
+        expect(embed.errors).to be_of_kind(:embed_type, :blank)
       end
     end
 
-    context 'identifierがnilの場合' do
-      example '無効であること' do
-        embed = build(:embed, :twitter, identifier: nil)
-        expect(embed).to be_invalid
-        expect(embed.errors[:identifier]).to include('を入力してください')
+    describe 'identifierフィールドについて' do
+      context 'nilの場合' do
+        example '無効であること' do
+          embed = build(:embed, :twitter, identifier: nil)
+          expect(embed).to be_invalid
+          expect(embed.errors).to be_of_kind(:identifier, :blank)
+        end
+      end
+      
+      context '10000字以上の場合' do
+        example '無効であること' do
+          embed = build(:embed, :twitter, identifier: 'a' * 10001)
+          expect(embed).to be_invalid
+          expect(embed.errors).to be_of_kind(:identifier, :too_long)
+        end
       end
     end
   end
@@ -39,15 +49,25 @@ RSpec.describe Embed, type: :model do
       example '無効であること' do
         embed = build(:embed, :instagram, embed_type: nil)
         expect(embed).to be_invalid
-        expect(embed.errors[:embed_type]).to include('を入力してください')
+        expect(embed.errors).to be_of_kind(:embed_type, :blank)
       end
     end
 
-    context 'identifierがnilの場合' do
-      example '無効であること' do
-        embed = build(:embed, :instagram, identifier: nil)
-        expect(embed).to be_invalid
-        expect(embed.errors[:identifier]).to include('を入力してください')
+    describe 'identifierフィールドについて' do
+      context 'nilの場合' do
+        example '無効であること' do
+          embed = build(:embed, :instagram, identifier: nil)
+          expect(embed).to be_invalid
+          expect(embed.errors).to be_of_kind(:identifier, :blank)
+        end
+      end
+      
+      context '10000字以上の場合' do
+        example '無効であること' do
+          embed = build(:embed, :instagram, identifier: 'a' * 10001)
+          expect(embed).to be_invalid
+          expect(embed.errors).to be_of_kind(:identifier, :too_long)
+        end
       end
     end
   end
@@ -64,15 +84,25 @@ RSpec.describe Embed, type: :model do
       example '無効であること' do
         embed = build(:embed, :fb, embed_type: nil)
         expect(embed).to be_invalid
-        expect(embed.errors[:embed_type]).to include('を入力してください')
+        expect(embed.errors).to be_of_kind(:embed_type, :blank)
       end
     end
 
-    context 'identifierがnilの場合' do
-      example '無効であること' do
-        embed = build(:embed, :fb, identifier: nil)
-        expect(embed).to be_invalid
-        expect(embed.errors[:identifier]).to include('を入力してください')
+    describe 'identifierフィールドについて' do
+      context 'identifierがnilの場合' do
+        example '無効であること' do
+          embed = build(:embed, :fb, identifier: nil)
+          expect(embed).to be_invalid
+          expect(embed.errors).to be_of_kind(:identifier, :blank)
+        end
+      end
+
+      context '10000字以上の場合' do
+        example '無効であること' do
+          embed = build(:embed, :fb, identifier: 'a' * 10001)
+          expect(embed).to be_invalid
+          expect(embed.errors).to be_of_kind(:identifier, :too_long)
+        end
       end
     end
   end

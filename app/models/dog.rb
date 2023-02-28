@@ -19,10 +19,10 @@ class Dog < ApplicationRecord
   validates :breed, allow_nil: true, length: { maximum: 50 }
   validates :weight, allow_nil: true, numericality: { greater_than: 0 }
   validates :owner_comment, allow_nil: true, length: { maximum: 400 }
-  validates :thumbnail, size: { less_than: 10.megabytes }
-  validates :mixed_vaccination_certificate, size: { less_than: 10.megabytes }
-  validates :rabies_vaccination_certificate, size: { less_than: 10.megabytes }
-  validates :license_plate, size: { less_than: 10.megabytes }
+  validates :thumbnail, size: { less_than: 10.megabytes }, content_type: [:png, :jpg, :jpeg, :heif]
+  validates :mixed_vaccination_certificate, size: { less_than: 10.megabytes }, content_type: [:png, :jpg, :jpeg, :heif]
+  validates :rabies_vaccination_certificate, size: { less_than: 10.megabytes }, content_type: [:png, :jpg, :jpeg, :heif]
+  validates :license_plate, size: { less_than: 10.megabytes }, content_type: [:png, :jpg, :jpeg, :heif]
   validates :registration_municipality, length: { maximum: 30 }
   validates :municipal_registration_number, length: { maximum: 10 }
 

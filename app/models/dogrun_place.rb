@@ -15,6 +15,7 @@ class DogrunPlace < ApplicationRecord
   # validation
   validates :name, presence: true, length: { maximum: 50 }
   validates :description, length: { maximum: 1000 }
+  validates :logo, size: { less_than: 10.megabytes }, content_type: [:png, :jpg, :jpeg, :heif]
 
   # enum
   enum force_closed: { force_closing: true, releasing: false }   
@@ -23,6 +24,7 @@ end
 
 # 1: grand_admin
 # 2: 犬のしつけ広場
+# 3: 里音(Re:on)
 
 # == Schema Information
 #

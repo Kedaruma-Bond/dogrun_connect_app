@@ -7,12 +7,22 @@ RSpec.describe Article, type: :model do
       expect(article).to be_valid
     end
   end
-  
-  context 'contentがnilの場合' do
-    example '無効であること' do
-      article = build(:article, content: nil)
-      expect(article).to be_invalid
-      expect(article.errors[:content]).to include('を入力してください')
+
+  describe 'contentフィールドについて' do
+    context 'nilの場合' do
+      example '無効であること' do
+        article = build(:article, content: nil)
+        expect(article).to be_invalid
+        expect(article.errors).to be_of_kind(:content, :blank)
+      end
+    end
+
+    context '400字以上の場合' do
+      example '無効であること' do
+        article = build(:article, content: 'a' * 401)
+        expect(article).to be_invalid
+        expect(article.errors).to be_of_kind(:content, :too_long)
+      end
     end
   end
   
@@ -20,8 +30,33 @@ RSpec.describe Article, type: :model do
     example '無効であること' do
       article = build(:article, post: nil)
       expect(article).to be_invalid
-      expect(article.errors[:post]).to include('を入力してください')
+      expect(article.errors).to be_of_kind(:post, :blank)
     end
+  end
+
+  describe 'photoフィールドについて' do
+    context 'サイズが10M以上の場合' do
+      before do
+        @article = build(:article)
+        @article.photo = fixture_file_upload('/images/test_image.jpg')
+      end
+      example '無効であること' do
+        expect(@article).to be_invalid
+        expect(@article.errors).to be_of_kind(:photo, :file_size_out_of_range)
+      end
+    end
+
+    context 'ファイル形式がtiffの場合' do
+      before do
+        @article = build(:article)
+        @article.photo = fixture_file_upload('images/test_image_tiff.tiff')
+      end
+      example '無効であること' do
+        expect(@article).to be_invalid
+        expect(@article.errors).to be_of_kind(:photo, :content_type_invalid)
+      end
+    end
+
   end
 end
 

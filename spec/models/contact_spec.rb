@@ -8,37 +8,60 @@ RSpec.describe Contact, type: :model do
     end
   end
 
-  context 'nameが空欄の場合' do
-    example '無効であること' do
-      contact = build(:contact, name: nil)
-      expect(contact).to be_invalid
-      expect(contact.errors[:name]).to include('を入力してください')
+  describe 'nameフィールドについて' do
+    context '空欄の場合' do
+      example '無効であること' do
+        contact = build(:contact, name: nil)
+        expect(contact).to be_invalid
+        expect(contact.errors).to be_of_kind(:name, :blank)
+      end
+    end
+
+    context '50字以上の場合' do
+      example '無効であること' do
+        contact = build(:contact, name: 'a' * 51)
+        expect(contact).to be_invalid
+        expect(contact.errors).to be_of_kind(:name, :too_long)
+      end
     end
   end
 
-  context 'emailが空欄の場合' do
-    example '無効であること' do
-      contact = build(:contact, email: nil)
-      expect(contact).to be_invalid
-      expect(contact.errors[:email]).to include('を入力してください')
+  describe 'emailフィールドについて' do
+    context '空欄の場合' do
+      example '無効であること' do
+        contact = build(:contact, email: nil)
+        expect(contact).to be_invalid
+        expect(contact.errors).to be_of_kind(:email, :blank)
+      end
+    end
+  
+    context '様式が正しくない場合' do
+      example '無効であること' do
+        contact = build(:contact, email: 'user_at_foo.org')
+        expect(contact).to be_invalid
+        expect(contact.errors).to be_of_kind(:email, I18n.t('defaults.email_message'))
+      end
     end
   end
 
-  context 'emailの様式が正しくない場合' do
-    example '無効であること' do
-      contact = build(:contact, email: 'user_at_foo.org')
-      expect(contact).to be_invalid
-      expect(contact.errors[:email]).to include('の様式が正しくありません')
+  describe 'messageフィールドについて' do
+    context '空欄の場合' do
+      example '無効であること' do
+        contact = build(:contact, message: nil)
+        expect(contact).to be_invalid
+        expect(contact.errors).to be_of_kind(:message, :blank)
+      end
+    end
+    
+    context '1000字以上の場合' do
+      example '無効であること' do
+        contact = build(:contact, message: 'a' * 1001)
+        expect(contact).to be_invalid
+        expect(contact.errors).to be_of_kind(:message, :too_long)
+      end
     end
   end
-
-  context 'messageが空欄の場合' do
-    example '無効であること' do
-      contact = build(:contact, message: nil)
-      expect(contact).to be_invalid
-      expect(contact.errors[:message]).to include('を入力してください')
-    end
-  end
+  
 end
 
 # == Schema Information

@@ -8,7 +8,7 @@ RSpec.describe RegistrationNumber, type: :model do
     end
   end
 
-  context 'dogrun_placeが空欄の場合' do
+  context 'dogrun_placeがnilの場合' do
     example '無効であること' do
       registration_number = build(:registration_number, dogrun_place: nil)
       expect(registration_number).to be_invalid

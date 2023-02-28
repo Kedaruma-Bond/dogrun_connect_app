@@ -12,7 +12,7 @@ RSpec.describe Entry, type: :model do
     example '無効であること' do
       entry = build(:entry, dog: nil)
       expect(entry).to be_invalid
-      expect(entry.errors[:dog]).to include('を入力してください')
+      expect(entry.errors).to be_of_kind(:dog, :blank)
     end
   end
   
@@ -20,7 +20,7 @@ RSpec.describe Entry, type: :model do
     example '無効であること' do
       entry = build(:entry, registration_number: nil)
       expect(entry).to be_invalid
-      expect(entry.errors[:registration_number]).to include('を入力してください')
+      expect(entry.errors).to be_of_kind(:registration_number, :blank)
     end
   end
   
@@ -28,7 +28,7 @@ RSpec.describe Entry, type: :model do
     example '無効であること' do
       entry = build(:entry, entry_at: nil)
       expect(entry).to be_invalid
-      expect(entry.errors[:entry_at]).to include('を入力してください')
+      expect(entry.errors).to be_of_kind(:entry_at, :blank)
     end
   end
 end

@@ -1,5 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+require 'active_storage_validations/matchers'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 
@@ -61,6 +62,8 @@ RSpec.configure do |config|
   config.define_derived_metadata do |meta|
     meta[:aggregate_failures] = true unless meta.key?(:aggregate_failures)
   end
+
+  config.include ActiveStorageValidations::Matchers
 
 end
 # shoulda matcherを入れる
