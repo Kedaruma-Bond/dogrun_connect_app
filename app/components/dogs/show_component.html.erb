@@ -50,7 +50,7 @@
                 </div>
               <% end %>
               <% if !@user.sns_account.nil? && !correct_user?(@user, @current_user) %>
-                <p class="text-gray-600 text-sm text-center md:text-left"><%= t('.dog_owner_sns')%></p>
+                <p class="text-gray-600 text-sm text-center md:text-left"><%= t('local.dogs.show.dog_owner_sns')%></p>
                 <%= render partial: "shared/sns_account_icons", locals: { sns_account: @user.sns_account } %>
               <% end %>
             </div>
