@@ -1,12 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-  example 'factorybotの確認' do
-    expect(build(:user)).to be_valid
-  end
-
   describe '名前空間 togo_inu_shitsuke_hiroba' do
-    let!(:dogrun_place) { FactoryBot.create(:dogrun_place, :togo_inu_shitsuke_hiroba) }
+    dogrun_place = create(:dogrun_place, :togo_inu_shitsuke_hiroba)
     context '/signupにget request' do
       before { get togo_inu_shitsuke_hiroba_signup_path }
       

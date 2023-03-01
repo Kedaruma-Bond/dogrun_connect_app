@@ -3,7 +3,7 @@ FactoryBot.define do
     sequence(:name) { |n| "Dogrun_Place_#{n}" }
 
     after(:create) do |dogrun_place|
-      creat_list(:dogrun_place_facility_relations, 1, dogrun_place: dogrun_place, facility: create(:facility))
+      create_list(:dogrun_place_facility_relation, 1, dogrun_place: dogrun_place, facility: create(:facility))
     end
 
     trait :togo_inu_shitsuke_hiroba do
