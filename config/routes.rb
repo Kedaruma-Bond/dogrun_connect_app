@@ -7,9 +7,6 @@ Rails.application.routes.draw do
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
-  get '/service_worker', to: 'service_workers#service_worker'
-  get '/offline', to: 'service_workers#offline'
-
   get 'sitemap', to: redirect("https://s3-ap-northeast-1.amazonaws.com/#{Rails.application.credentials.aws[:s3_bucket_name]}/sitemaps/sitemap.xml.gz")
   
   resource :contacts, only: %i[new create]
@@ -61,7 +58,6 @@ Rails.application.routes.draw do
   
   namespace :reon do
     get 'top', to: 'static_pages#top'
-    # get 'terms_of_service', to: 'static_pages#terms_of_service'
     resource :sessions, only: %i[new create destroy]
     post '/guest_login', to: 'sessions#guest_login'
     post '/jump_to_signup', to: 'sessions#jump_to_signup'

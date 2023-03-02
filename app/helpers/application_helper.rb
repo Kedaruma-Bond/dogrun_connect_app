@@ -37,4 +37,60 @@ module ApplicationHelper
     }
   end
   
+  def togo_inu_shitsuke_hiroba_meta_tags
+    {
+      site: Rails.application.credentials.meta_tags[:togo_inu_shitsuke_hiroba],
+      charset: 'utf-8',
+      description: Rails.application.credentials.meta_tags[:description],
+      canonical: request.original_url,
+      noindex: ! Rails.env.production?,
+      og: {
+        site_name: Rails.application.credentials.meta_tags[:togo_inu_shitsuke_hiroba],
+        description: Rails.application.credentials.meta_tags[:description],
+        type: 'website',
+        title: Rails.application.credentials.meta_tags[:togo_inu_shitsuke_hiroba],
+        url: request.original_url,
+        image: image_url('https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,%20q_auto/hmk6nbsjoqwqjl88yph1.jpg'),
+        locale: 'ja_JP',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: Rails.application.credentials.meta_tags[:twitter_account],
+        title: Rails.application.credentials.meta_tags[:togo_inu_shitsuke_hiroba], 
+        descreption: Rails.application.credentials.meta_tags[:description],
+      },
+      fb: {
+        app_id: Rails.application.credentials.meta_tags[:facebook_id]
+      }
+    }
+  end
+
+  def reon_meta_tags
+    {
+      site: Rails.application.credentials.meta_tags[:reon],
+      charset: 'utf-8',
+      description: Rails.application.credentials.meta_tags[:description],
+      canonical: request.original_url,
+      noindex: ! Rails.env.production?,
+      og: {
+        site_name: Rails.application.credentials.meta_tags[:reon],
+        description: Rails.application.credentials.meta_tags[:description],
+        type: 'website',
+        title: Rails.application.credentials.meta_tags[:reon],
+        url: request.original_url,
+        image: image_url('https://res.cloudinary.com/hryerpkcw/image/upload/q_auto/powppxfma6fvwetctvtt.jpg'),
+        locale: 'ja_JP',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        site: Rails.application.credentials.meta_tags[:twitter_account],
+        title: Rails.application.credentials.meta_tags[:reon], 
+        descreption: Rails.application.credentials.meta_tags[:description],
+      },
+      fb: {
+        app_id: Rails.application.credentials.meta_tags[:facebook_id]
+      }
+    }
+  end
+  
 end

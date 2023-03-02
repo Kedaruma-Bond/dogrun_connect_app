@@ -14,7 +14,7 @@
     <%= render 'application/favicon' %>
     <%= render 'application/google_tag' %>
     <%= render 'application/fb_sdk' %>
-    <%= display_meta_tags(default_meta_tags) %>
+    <%= display_meta_tags(togo_inu_shitsuke_hiroba_meta_tags) %>
   </head>
 
   <body class="dark:bg-gray-800 break-words flex flex-col min-h-screen">
@@ -27,7 +27,7 @@
       <%= render 'shared/flash' %>
     </div>
     <%= tag.main class: "mb-auto relative" do %>
-      <div class="w-full" data-controller="service-worker">
+      <div class="w-full">
         <%= yield %>
       </div>
     <% end %>
