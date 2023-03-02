@@ -50,7 +50,7 @@ module ApplicationHelper
         type: 'website',
         title: Rails.application.credentials.meta_tags[:togo_inu_shitsuke_hiroba],
         url: request.original_url,
-        image: image_url('https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,%20q_auto/hmk6nbsjoqwqjl88yph1.jpg'),
+        image: image_url('https://res.cloudinary.com/hryerpkcw/image/upload/q_auto/hmk6nbsjoqwqjl88yph1.jpg'),
         locale: 'ja_JP',
       },
       twitter: {
