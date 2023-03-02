@@ -10,8 +10,6 @@ class User < ApplicationRecord
 
   attr_accessor :agreement
 
-  self.ignored_columns = [:facebook_id, :instagram_id, :twitter_id]
-
   # validations
   validates :password, length: { minimum: 6 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }

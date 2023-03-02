@@ -1,71 +1,73 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  context '全てのフィールドが有効な場合' do
-    example '有効であること' do
-      user = build(:user)
-      expect(user).to be_valid
-    end
-  end
-
-  describe 'nameフィールドについて' do
-    context '空欄の場合' do
-      example '無効であること' do
-        user = build(:user, name: nil)
-        expect(user).to be_invalid
-        expect(user.errors).to be_of_kind(:name, :blank)
-      end
-    end
-    context '50字以上の場合' do
-      example '無効であること' do
-        user = build(:user, name: 'a' * 51)
-        expect(user).to be_invalid
-        expect(user.errors).to be_of_kind(:name, :too_long)
-      end
-    end
-  end
-
-  describe 'emailフィールドについて' do
-    context '空欄の場合' do
-      example '無効であること' do
-        user = build(:user, email: nil)
-        expect(user).to be_invalid
-        expect(user.errors).to be_of_kind(:email, :blank)
+  describe 'validations' do
+    context '全てのフィールドが有効な場合' do
+      example '有効であること' do
+        user = build(:user)
+        expect(user).to be_valid
       end
     end
   
-    context '様式が正しくない場合' do
-      example '無効であること' do
-        user = build(:user, email: 'user_at_foo.org')
-        expect(user).to be_invalid
-        expect(user.errors).to be_of_kind(:email, I18n.t('defaults.email_message'))
+    describe 'nameフィールドについて' do
+      context '空欄の場合' do
+        example '無効であること' do
+          user = build(:user, name: nil)
+          expect(user).to be_invalid
+          expect(user.errors).to be_of_kind(:name, :blank)
+        end
+      end
+      context '50字以上の場合' do
+        example '無効であること' do
+          user = build(:user, name: 'a' * 51)
+          expect(user).to be_invalid
+          expect(user.errors).to be_of_kind(:name, :too_long)
+        end
       end
     end
-  end
-
-  describe 'passwordフィールドについて' do
-    context '空欄の場合' do
-      example '無効であること' do
-        user = build(:user, password: nil)
-        expect(user).to be_invalid
-        expect(user.errors).to be_of_kind(:password, :too_short)
+  
+    describe 'emailフィールドについて' do
+      context '空欄の場合' do
+        example '無効であること' do
+          user = build(:user, email: nil)
+          expect(user).to be_invalid
+          expect(user.errors).to be_of_kind(:email, :blank)
+        end
+      end
+    
+      context '様式が正しくない場合' do
+        example '無効であること' do
+          user = build(:user, email: 'user_at_foo.org')
+          expect(user).to be_invalid
+          expect(user.errors).to be_of_kind(:email, I18n.t('defaults.email_message'))
+        end
       end
     end
-    context '6文字未満の場合' do
-      example '無効であること' do
-        user = build(:user, password: 'aaaaa', password_confirmation: 'aaaaa')
-        expect(user).to be_invalid
-        expect(user.errors).to be_of_kind(:password, :too_short)
+  
+    describe 'passwordフィールドについて' do
+      context '空欄の場合' do
+        example '無効であること' do
+          user = build(:user, password: nil)
+          expect(user).to be_invalid
+          expect(user.errors).to be_of_kind(:password, :too_short)
+        end
+      end
+      context '6文字未満の場合' do
+        example '無効であること' do
+          user = build(:user, password: 'aaaaa', password_confirmation: 'aaaaa')
+          expect(user).to be_invalid
+          expect(user.errors).to be_of_kind(:password, :too_short)
+        end
       end
     end
-  end
-
-  describe 'password_confirmationフィールドについて' do
-    context '空欄の場合' do
-      example '無効であること' do
-        user = build(:user, password_confirmation: nil)
-        expect(user).to be_invalid
-        expect(user.errors).to be_of_kind(:password_confirmation, :blank)
+  
+    describe 'password_confirmationフィールドについて' do
+      context '空欄の場合' do
+        example '無効であること' do
+          user = build(:user, password_confirmation: nil)
+          expect(user).to be_invalid
+          expect(user.errors).to be_of_kind(:password_confirmation, :blank)
+        end
       end
     end
   end
