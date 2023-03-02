@@ -72,6 +72,9 @@
           </li>
         <% end %>
       </ul>
+      <p class="text-sm text-red-700 font-medium mb-3">
+        <%= t('.canceled_after_30_mins') %>
+      </p>
       <%= form_with(url: send(pre_entries_path), method: :delete, data: { turbo_confirm: t('.cancel_confirm') }) do |f| %>
         <div class="flex-col mb-5">
           <%= button_tag type: 'submit', class: "flex mx-auto items-center justify-center font-bold h-14 text-white py-4 px-10 bg-red-700 rounded hover:bg-red  -600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>

@@ -54,6 +54,7 @@ ja:
         非公開なワンコは
       unit_of_dogs: 頭です
     login_top_content:
+      canceled_after_30_mins: 30分経過すると自動的にキャンセルされます
       please_signup: |
         ワンコを登録するには
         飼い主さんの新規登録が必要です

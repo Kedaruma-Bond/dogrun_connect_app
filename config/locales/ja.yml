@@ -1,5 +1,9 @@
 ja:
   defaults:
+    opened_incorrect_token_link: |
+      不正なリンクが開かれました
+      お手数ですがアプリ管理者に
+      問い合わせてください
     input_any_one_sns_account: どれか1つのSNSは入力してください
     register: 登録
     these_information_is_not_viewable: |

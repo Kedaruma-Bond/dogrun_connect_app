@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   def not_authenticated
     redirect_to '/', error: t('defaults.require_login')
   end
-
+  
   private
     
     def get_fb_appId

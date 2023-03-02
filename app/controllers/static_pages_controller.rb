@@ -4,10 +4,10 @@ class StaticPagesController < ApplicationController
   def top
     return unless logged_in?
 
-    last_registration_number = RegistrationNumber.joins(:dog).find_by(dogs: { user_id: current_user.id })
-    return unless last_registration_number.present?
+    last_entry = Entry.joins(:dog).where(dogs: { user_id: current_user.id }).last
+    return unless last_entry.present?
 
-    @dogrun_place = DogrunPlace.find(last_registration_number.dogrun_place_id)
+    @dogrun_place = DogrunPlace.find(last_entry.registration_number.dogrun_place_id)
     case @dogrun_place.id
     when 2
       @link = togo_inu_shitsuke_hiroba_top_path
