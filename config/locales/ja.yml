@@ -1,5 +1,6 @@
 ja:
   defaults:
+    illegal_route: 不正なルートで開かれました
     opened_incorrect_token_link: |
       不正なリンクが開かれました
       お手数ですがアプリ管理者に

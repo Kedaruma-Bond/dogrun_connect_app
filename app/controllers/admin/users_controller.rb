@@ -1,6 +1,7 @@
 class Admin::UsersController < Admin::BaseController
   include Pagy::Backend
   before_action :check_grand_admin
+  before_action :dogrun_places_set, only: %i[new create]
   before_action :agreement_set, only: %i[new]
   before_action :user_params, only: %i[create]
   before_action :set_q, only: %i[index search]
@@ -12,7 +13,6 @@ class Admin::UsersController < Admin::BaseController
 
   def new
     @user = User.new
-    @dogrun_places = DogrunPlace.all
   end
 
   def create
@@ -20,9 +20,9 @@ class Admin::UsersController < Admin::BaseController
     if @user.save
       UserMailer.admin_user_registration_success(@user).deliver_now
       redirect_to admin_users_path, success: t('.admin_user_create')
-      return
+    else
+      render :new, status: :unprocessable_entity
     end
-    render :new, status: :unprocessable_entity
   end
 
   def destroy
@@ -76,5 +76,9 @@ class Admin::UsersController < Admin::BaseController
 
     def agreement_set
       params[:agreement] = true
+    end
+
+    def dogrun_places_set
+      @dogrun_places = DogrunPlace.all
     end
 end

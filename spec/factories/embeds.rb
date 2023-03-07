@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :embed do
-    association :post
+    association :post, :embed
 
     trait :twitter do
       embed_type { 'twitter' }

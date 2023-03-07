@@ -5,6 +5,10 @@ class TogoInuShitsukeHiroba::ArticlesController < TogoInuShitsukeHiroba::DogrunP
   
   def new
     @article = Article.new
+    post = Post.find(params[:id])
+    if !post.article?
+      redirect_to send(@top_path), error: t('defaults.illegal_route')
+    end
   end
 
   def create
@@ -12,9 +16,9 @@ class TogoInuShitsukeHiroba::ArticlesController < TogoInuShitsukeHiroba::DogrunP
     if @article.save
       send_notification_mail(@staffs)
       redirect_to send(@top_path), success: t('defaults.post_successfully')
-      return  
+    else
+      render :new, status: :unprocessable_entity
     end
-    render :new, status: :unprocessable_entity
   end
 
   private

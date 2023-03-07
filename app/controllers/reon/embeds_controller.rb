@@ -5,6 +5,10 @@ class Reon::EmbedsController < Reon::DogrunPlaceController
 
   def new
     @embed = Embed.new
+    post = Post.find(params[:id])
+    if !post.embed?
+      redirect_to send(@top_path), error: t('defaults.illegal_route')
+    end
   end
 
   def create
@@ -12,9 +16,9 @@ class Reon::EmbedsController < Reon::DogrunPlaceController
     if @embed.save
       send_notification_mail(@staffs)
       redirect_to send(@top_path), success: t('defaults.post_successfully')
-      return
+    else
+      render :new, status: :unprocessable_entity
     end
-    render :new, status: :unprocessable_entity
   end
 
   private

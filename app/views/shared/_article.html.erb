@@ -3,7 +3,7 @@
     <%= post.box_header_icon %>
   </div>
 </div>
-<div class="p-2 md:px-20 text-gray-200 mt-5" data-controller="lightbox">
+<div class="p-2 text-gray-200 mt-5" data-controller="lightbox">
   <% if !post.article.photo.blank? %>
     <%= link_to "#", data: { "lightbox-source-param": post.article.photo_preview, action: "lightbox#handleOpen" } do %>
       <%= article_photo(post.article) %>

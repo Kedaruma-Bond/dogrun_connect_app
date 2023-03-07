@@ -5,7 +5,7 @@ class Admin::BaseController < ApplicationController
   private
 
   def not_authenticated
-    redirect_to admin_root_path, error: t('defaults.require_login')
+    redirect_to admin_login_path, error: t('defaults.require_login')
   end
   
   def check_admin

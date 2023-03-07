@@ -4,15 +4,19 @@ class Admin::EmbedsController < Admin::BaseController
 
   def new
     @embed = Embed.new
+    post = Post.find(params[:id])
+    if !post.embed?
+      redirect_to admin_posts_path, error: t('defaults.illegal_route')
+    end
   end
 
   def create
     @embed = Embed.new(embed_params)
     if @embed.save
       redirect_to admin_posts_path, success: t('defaults.post_successfully')
-      return
+    else
+      render :new, status: :unprocessable_entity
     end
-    render :new, status: :unprocessable_entity
   end
 
   def edit
@@ -21,7 +25,11 @@ class Admin::EmbedsController < Admin::BaseController
 
   def update
     if @embed.update(embed_params)
-      redirect_to session[:previous_url], success: t('defaults.update_successfully')
+      if session[:previous_url].nil?
+        redirect_to admin_posts_path, success: t('defaults.update_successfully')
+      else
+        redirect_to session[:previous_url], success: t('defaults.update_successfully')
+      end
     else
       render :edit, status: :unprocessable_entity
     end

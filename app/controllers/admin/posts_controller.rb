@@ -27,13 +27,13 @@ class Admin::PostsController < Admin::BaseController
     if @post.save
       case @post.post_type
       when 'article'
-        redirect_to new_admin_article_path(@post), notice: t('defaults.create_article')
+        redirect_to new_admin_article_path(@post), notice: t('local.posts.create_article')
       when 'embed'
-        redirect_to new_admin_embed_path(@post), notice: t('defaults.choice_sns')
+        redirect_to new_admin_embed_path(@post), notice: t('local.posts.choice_sns')
       end
       return
     else
-      redirect_to request.referer, error: t('defaults.post_save_error')
+      redirect_to request.referer, error: t('local.posts.post_save_error')
     end
   end
 
