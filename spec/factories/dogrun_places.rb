@@ -6,6 +6,11 @@ FactoryBot.define do
       create_list(:dogrun_place_facility_relation, 1, dogrun_place: dogrun_place, facility: create(:facility))
     end
 
+    trait :grand_admin do
+      id { '1' }
+      name { 'grand_admin' }
+    end
+
     trait :togo_inu_shitsuke_hiroba do
       id { '2' }
       name { '犬のしつけ広場' }
