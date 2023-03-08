@@ -1,106 +1,357 @@
 require 'rails_helper'
 
 RSpec.describe Admin::DogrunPlacesController, type: :request do
-  let!(:grand_admin_dogrun_place) { create(:dogrun_place, :grand_admin) }
+  let!(:grand_admin_place) { create(:dogrun_place, :grand_admin_place) }
   let!(:dogrun_place_1) { create(:dogrun_place, :togo_inu_shitsuke_hiroba) }
-  let!(:grand_admin) { create(:user, :grand_admin, dogrun_place: :grand_admin) }
-  let!(:admin) { create(:user, :admin, dogrun_place: dogrun_place_1) }
+  let!(:dogrun_place_2) { create(:dogrun_place, :reon) }
+  let!(:grand_admin) { create(:user, :grand_admin, dogrun_place: grand_admin_place) }
+  let!(:admin_1) { create(:user, :admin, dogrun_place: dogrun_place_1) }
+  let!(:admin_2) { create(:user, :admin, dogrun_place: dogrun_place_2) }
   let!(:general) { create(:user, :general) }
 
   describe 'GET #index' do
-    describe '管理者ユーザーでとログインしている場合' do
+    context 'grand_adminユーザーでログインしている場合' do
       before do
-        admin_log_in_as(admin)
+        admin_log_in_as(grand_admin)
+        get admin_dogrun_places_path
+      end
+      
+      example '正常なレスポンスが返ること' do
+        expect(response).to be_successful
       end
     end
 
-    example '正常なレスポンスが返ること' do
-      get admin_dogrun_places_path
-      expect(response).to be_successful
+    context '管理者ユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        get admin_dogrun_places_path
+      end
+
+      example 'エラーメッセージが表示されて管理者home画面にリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(admin_root_path)
+      end
     end
+    
+    context '一般ユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(general)
+        get admin_dogrun_places_path
+      end
+
+      example 'エラーメッセージが表示されてhome画面にリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
   end
 
   describe 'GET #show' do
-    let(:dogrun_place) { FactoryBot.create(:dogrun_place) }
+    context 'grand_adminユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(grand_admin)
+        get admin_dogrun_place_path(dogrun_place_1)
+      end
+      example '正常なレスポンスが返ること' do
+        expect(response).to be_successful
+      end
+    end
 
-    it 'returns a successful response' do
-      get admin_dogrun_place_path(dogrun_place)
-      expect(response).to be_successful
+    context '該当ドッグランの管理者ユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        get admin_dogrun_place_path(dogrun_place_1)
+      end
+
+      example '正常なレスポンスが返ること' do
+        expect(response).to be_successful
+      end
+    end
+    
+    context '該当ドッグランとは別の管理者ユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(admin_2)
+        get admin_dogrun_place_path(dogrun_place_1)
+      end
+
+      example 'エラーメッセージが表示されて管理者home画面にリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(admin_root_path)
+      end
+    end
+    
+    context '一般ユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(general)
+        get admin_dogrun_place_path(dogrun_place_1)
+      end
+
+      example 'エラーメッセージが表示されてhome画面にリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(root_path)
+      end
     end
   end
-
+  
   describe 'GET #new' do
-    it 'returns a successful response' do
-      get new_admin_dogrun_place_path
-      expect(response).to be_successful
+    context 'grand_adminユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(grand_admin)
+        get new_admin_dogrun_place_path
+      end
+
+      example '正常なレスポンスが返ること' do
+        expect(response).to be_successful
+      end
+    end
+
+    context '管理者ユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        get new_admin_dogrun_place_path
+      end
+
+      example 'エラーメッセージが表示されて管理者home画面にリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(admin_root_path)
+      end
+    end
+    
+    context '一般ユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(general)
+        get new_admin_dogrun_place_path
+      end
+
+      example 'エラーメッセージが表示されてhome画面にリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(root_path)
+      end
     end
   end
 
   describe 'POST #create' do
-    let(:valid_params) { { dogrun_place: FactoryBot.attributes_for(:dogrun_place) } }
 
-    context 'with valid parameters' do
-      it 'creates a new dogrun_place' do
-        expect {
-          post admin_dogrun_places_path, params: valid_params
-        }.to change(DogrunPlace, :count).by(1)
+    describe 'grand_adminユーザーでログインしている時' do
+      before { admin_log_in_as(grand_admin) }
+      context '有効なパラメータが入力された場合' do
+        example '新規作成されて一覧画面にリダイレクトされること' do
+          expect {
+            post admin_dogrun_places_path, 
+            params: {
+              dogrun_place: {
+                name: 'test'
+              }
+            }
+          }.to change(DogrunPlace, :count).by(1)
+          expect(flash[:success]).to eq(I18n.t('admin.dogrun_places.create.create_success'))
+          expect(response).to redirect_to(admin_dogrun_places_path)
+        end
       end
 
-      it 'redirects to the dogrun_places index' do
-        post admin_dogrun_places_path, params: valid_params
-        expect(response).to redirect_to(admin_dogrun_places_path)
+      context '無効なパラメータが入力された場合' do
+        example '新規作成されずnewフォーム画面がレンダリングされること' do
+          expect {
+            post admin_dogrun_places_path, 
+            params: {
+              dogrun_place: {
+                name: ''
+              }
+            }
+          }.to_not change(DogrunPlace, :count)
+          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to render_template(:new)
+        end
       end
     end
 
-    context 'with invalid parameters' do
-      let(:invalid_params) { { dogrun_place: { name: nil } } }
-
-      it 'does not create a new dogrun_place' do
-        expect {
-          post admin_dogrun_places_path, params: invalid_params
-        }.to_not change(DogrunPlace, :count)
+    describe '管理者ユーザーでログインしている時' do
+      before do
+        admin_log_in_as(admin_1)
+        post admin_dogrun_places_path
       end
-
-      it 'renders the new template with an error status' do
-        post admin_dogrun_places_path, params: invalid_params
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(response).to render_template(:new)
+      example 'エラーメッセージが表示されて管理者home画面にリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(admin_root_path)
       end
     end
   end
 
   describe 'GET #edit' do
-    let(:dogrun_place) { FactoryBot.create(:dogrun_place) }
+    context 'grand_adminユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(grand_admin)
+        get edit_admin_dogrun_place_path(dogrun_place_1)
+      end
 
-    it 'returns a successful response' do
-      get edit_admin_dogrun_place_path(dogrun_place)
-      expect(response).to be_successful
+      example '正常なレスポンスが返ること' do
+        expect(response).to be_successful
+      end
+    end
+
+    context '該当ドッグランの管理者ユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        get edit_admin_dogrun_place_path(dogrun_place_1)
+      end
+
+      example '正常なレスポンスが返ること' do
+        expect(response).to be_successful
+      end
+    end
+    
+    context '該当ドッグランとは別の管理者ユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(admin_2)
+        get edit_admin_dogrun_place_path(dogrun_place_1)
+      end
+
+      example 'エラーメッセージが表示されて管理者home画面にリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(admin_root_path)
+      end
+    end
+    
+    context '一般ユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(general)
+        get admin_dogrun_place_path(dogrun_place_1)
+      end
+
+      example 'エラーメッセージが表示されてhome画面にリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(root_path)
+      end
     end
   end
 
   describe 'PATCH #update' do
-    let(:dogrun_place) { FactoryBot.create(:dogrun_place) }
-    let(:valid_params) { { dogrun_place: { name: 'New name' } } }
-
-    context 'with valid parameters' do
-      it 'updates the requested dogrun_place' do
-        patch admin_dogrun_place_path(dogrun_place), params: valid_params
-        expect(dogrun_place.reload.name).to eq('New name')
+    describe 'grand_adminユーザーでログインしている時' do
+      before do
+        admin_log_in_as(grand_admin) 
+      end
+      context '有効なパラメータが入力されている場合' do
+        example '更新されてメッセージとともに一覧ページにリダイレクトされること' do
+          patch admin_dogrun_place_path(dogrun_place_1), params: {
+                dogrun_place: {
+                  name: 'New name'
+                }
+              }
+          expect(flash[:success]).to eq(I18n.t('defaults.update_successfully'))
+          expect(dogrun_place_1.reload.name).to eq('New name')
+          expect(response).to redirect_to(admin_dogrun_places_path)
+        end
       end
 
-      it 'redirects to the dogrun_place' do
-        patch admin_dogrun_place_path(dogrun_place), params: valid_params
-        expect(response).to redirect_to(admin_dogrun_place_path(dogrun_place))
+      context '無効なパラメータが入力されている場合' do
+        example '更新されず編集フォームページがレンダリングされること' do
+          expect {
+            patch admin_dogrun_place_path(dogrun_place_1), params: {
+                dogrun_place: {
+                  name: ''
+                }
+              }
+            }.to_not change { dogrun_place_1.reload.name }
+          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to render_template(:edit)
+        end
       end
     end
 
-    context 'with invalid parameters' do
-      let(:invalid_params) { { dogrun_place: { name: nil } } }
+    describe '該当ドッグランの管理者ユーザーでログインしている時' do
+      before { admin_log_in_as(admin_1) }
 
-      it 'does not update the dogrun_place' do
-        expect {
-          patch admin_dogrun_place_path(dogrun_place), params: invalid_params
-        }.to_not change { dogrun_place.reload.name }
+      context '有効なパラメータが入力させている場合' do
+        example '更新されてメッセージとともに詳細ページにリダイレクトされること' do
+          patch admin_dogrun_place_path(dogrun_place_1), params: {
+                dogrun_place: {
+                  name: 'New name'
+                }
+              }
+          expect(flash[:success]).to eq(I18n.t('defaults.update_successfully'))
+          expect(dogrun_place_1.reload.name).to eq('New name')
+          expect(response).to redirect_to(admin_dogrun_place_path(dogrun_place_1))
+        end
       end
+      
+      context '無効なパラメータが入力されている場合' do
+        example '更新されず編集フォームページがレンダリングされること' do
+          expect {
+            patch admin_dogrun_place_path(dogrun_place_1), params: {
+                dogrun_place: {
+                  name: ''
+                }
+              }
+            }.to_not change { dogrun_place_1.reload.name }
+          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to render_template(:edit)
+        end
+      end
+    end
 
-      it 'renders the edit template with an error status
+    describe '該当ドッグランとは別の管理者ユーザーでログインしている時' do
+      before do
+        admin_log_in_as(admin_2) 
+        patch admin_dogrun_place_path(dogrun_place_1)
+      end
+      example 'エラーメッセージが表示され管理者home画面にリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(admin_root_path)
+      end
+    end
+  end
+  
+  describe 'PATCH #force_closed' do
+    describe '該当ドッグランの管理者ユーザーでログインしている時' do
+      before { admin_log_in_as(admin_1) }
+      example 'ドッグランが休業状態となること' do
+        expect do
+          patch force_closed_admin_dogrun_place_path(dogrun_place_1)
+          dogrun_place_1.reload
+        end.to change { dogrun_place_1.force_closed }.from("releasing").to("force_closing")
+        .and change { dogrun_place_1.closed_flag }.from(false).to(true)
+      end
+    end
+
+    describe '該当ドッグランとは別の管理者ユーザーでログインしている時' do
+      before do
+        admin_log_in_as(admin_2)
+        patch force_closed_admin_dogrun_place_path(dogrun_place_1)
+      end
+      example 'エラーメッセージが表示され管理者home画面にリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(admin_root_path)
+      end
+    end
+  end
+
+  describe 'PATCH #release' do
+    let!(:closed_dogrun) { create(:dogrun_place, :force_closed) }
+    let!(:admin) { create(:user, :admin, dogrun_place: closed_dogrun) }
+    
+    describe '該当ドッグランの管理者ユーザーでログインしている時' do
+      before do
+        admin_log_in_as(admin)
+      end
+      example 'ドッグランが休業状態となること' do
+        expect do
+          patch release_admin_dogrun_place_path(closed_dogrun)
+          closed_dogrun.reload
+        end.to change { closed_dogrun.force_closed }.from("force_closing").to("releasing")
+        .and change { closed_dogrun.closed_flag }.from(true).to(false)
+      end
+    end
+
+    describe '該当ドッグランとは別の管理者ユーザーでログインしている時' do
+      before do
+        admin_log_in_as(admin_1)
+        patch release_admin_dogrun_place_path(closed_dogrun)
+      end
+      example 'エラーメッセージが表示され管理者home画面にリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(admin_root_path)
+      end
+    end
+  end
+end

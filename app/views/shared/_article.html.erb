@@ -11,6 +11,6 @@
   <% else %>
     <div class="text-center">no image</div>
   <% end %>
-  <%= simple_format(post.article.content, { class: 'text-base text-gray-300 mt-2 px-3 mb-1 text-left' }, { wrapper_tag: "div" } ) %>
+  <%= simple_format(post.article.content, { class: 'font-semibold text-base text-gray-300 mt-2 px-3 mb-1 text-left' }, { wrapper_tag: "div" } ) %>
   <%= render partial: "shared/photo_modal" %>
 </div>
