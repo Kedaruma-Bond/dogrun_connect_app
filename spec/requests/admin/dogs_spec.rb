@@ -3,23 +3,26 @@ require 'rails_helper'
 RSpec.describe Admin::DogsController, type: :request do
   let!(:grand_admin_place) { create(:dogrun_place, :grand_admin_place) }
   let!(:dogrun_place_1) { create(:dogrun_place, :togo_inu_shitsuke_hiroba) }
-  let!(:dogrun_place_2) { create(:dogrun_place, :reon) }
   let!(:grand_admin) { create(:user, :grand_admin, dogrun_place: grand_admin_place) }
   let!(:admin_1) { create(:user, :admin, dogrun_place: dogrun_place_1) }
-  let!(:admin_2) { create(:user, :admin, dogrun_place: dogrun_place_2) }
   let!(:general) { create(:user, :general) }
   let!(:dog_1) { create(:dog, :castrated, :public_view, user: general) }
   let!(:dog_2) { create(:dog, :castrated, :public_view, user: general) }
   let!(:registration_number_1) { create(:registration_number, dog: dog_1, dogrun_place: dogrun_place_1)}
-  let!(:registration_number_2) { create(:registration_number, dog: dog_2, dogrun_place: dogrun_place_2)}
   
   describe 'GET #index' do
     context 'grand_adminユーザーでログインしている場合' do
-      before { admin_log_in_as(grand_admin) }
+      before do
+        admin_log_in_as(grand_admin)
+        get admin_dogs_path
+      end
 
       example '正常なレスポンスが返ること' do
-        get admin_dogs_path
         expect(response).to be_successful
+      end
+
+      example '全ての犬が表示されること' do
+        expect(assigns(:dogs)).to include(dog_1, dog_2)
       end
     end
 
@@ -34,11 +37,11 @@ RSpec.describe Admin::DogsController, type: :request do
       end
 
       example '登録済の犬が表示されること' do
-        expect(response.body).to include(dog_1.name)
+        expect(assigns(:dogs)).to include(dog_1)
       end
       
       example '登録していないの犬が表示されないこと' do
-        expect(response.body).not_to include(dog_2.name)
+        expect(assigns(:dogs)).not_to include(dog_2)
       end
     end
 
@@ -140,5 +143,4 @@ RSpec.describe Admin::DogsController, type: :request do
       end
     end
   end
-
 end
