@@ -1,5 +1,4 @@
 class TogoInuShitsukeHiroba::PostsController < TogoInuShitsukeHiroba::DogrunPlaceController
-  before_action :post_params, only: :create
 
   def create
     @post = Post.new(post_params)
@@ -17,7 +16,7 @@ class TogoInuShitsukeHiroba::PostsController < TogoInuShitsukeHiroba::DogrunPlac
 
   private
     def post_params
-      params.permit(
+      params.require(:post).permit(
         :post_type, :publish_status
       ).merge(user_id: current_user.id, dogrun_place_id: @dogrun_place.id)
     end

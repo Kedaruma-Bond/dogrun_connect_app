@@ -1,7 +1,6 @@
 class Admin::ArticlesController < Admin::BaseController
-
   before_action :set_article, only: %i[edit update]
-  before_action :article_params, only: %i[create update]
+  before_action :correct_admin_check, only: %i[edit update] 
 
   def new
     @article = Article.new
@@ -46,5 +45,9 @@ class Admin::ArticlesController < Admin::BaseController
 
     def set_article
       @article = Article.find_by(post_id: params[:id])
+    end
+
+    def correct_admin_check
+      redirect_to admin_root_path, error: t('defaults.not_authorized') unless current_user.grand_admin? ||  @article.post.dogrun_place == current_user.dogrun_place
     end
 end

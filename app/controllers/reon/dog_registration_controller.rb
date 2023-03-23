@@ -1,4 +1,5 @@
 class Reon::DogRegistrationController < Reon::DogrunPlaceController
+  before_action :set_new_post, only: %i[new confirm]
   before_action :dog_registration_params, only: :confirm
   before_action :check_not_guest
 

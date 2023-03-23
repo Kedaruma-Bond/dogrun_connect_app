@@ -1,7 +1,7 @@
 class TogoInuShitsukeHiroba::EmbedsController < TogoInuShitsukeHiroba::DogrunPlaceController
   include PostConcern
+  before_action :set_new_post, only: %i[new]
   before_action :set_staffs, only: %i[create]
-  before_action :embed_params, only: %i[create]
 
   def new
     @embed = Embed.new

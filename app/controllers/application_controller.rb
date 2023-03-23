@@ -13,11 +13,11 @@ class ApplicationController < ActionController::Base
   add_flash_types :success, :notice, :error
   protect_from_forgery with: :exception
 
-  def not_authenticated
-    redirect_to '/', error: t('defaults.require_login')
-  end
-  
   private
+    
+    def not_authenticated
+      redirect_to '/', error: t('defaults.require_login')
+    end
     
     def get_fb_appId
       gon.fb_appId = Rails.application.credentials.meta_tags[:facebook_id]
@@ -30,12 +30,16 @@ class ApplicationController < ActionController::Base
         redirect_to '/', error: t('defaults.require_correct_account')
       end
     end
-
+    
     def correct_user
       @user = User.find(params[:id])
       unless correct_user?(@user, current_user)
         redirect_to '/', error: t('defaults.require_correct_account')
       end
+    end
+
+    def set_new_post
+      @post = Post.new
     end
 
 end

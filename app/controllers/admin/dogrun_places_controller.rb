@@ -32,8 +32,7 @@ class Admin::DogrunPlacesController < Admin::BaseController
   def update
     @dogrun_place = DogrunPlace.find(params[:id])
     if @dogrun_place.update(dogrun_place_params)
-      case current_user.name
-      when 'grand_admin'
+      if current_user.grand_admin?
         redirect_to admin_dogrun_places_path, success: t('defaults.update_successfully')
       else
         redirect_to admin_dogrun_place_path(@dogrun_place), success: t('defaults.update_successfully')
@@ -67,12 +66,16 @@ class Admin::DogrunPlacesController < Admin::BaseController
 
   private
 
-  def dogrun_place_params
-    params.require(:dogrun_place).permit(
-      :name, :description, :usage_fee, :prefecture_code, :logo,
-      :address, :opening_time, :closing_time, :web_site, :site_area,
-      :facebook_id, :instagram_id, :twitter_id, facility_ids: []
-    )
-  end
+    def dogrun_place_params
+      params.require(:dogrun_place).permit(
+        :name, :description, :usage_fee, :prefecture_code, :logo,
+        :address, :opening_time, :closing_time, :web_site, :site_area,
+        :facebook_id, :instagram_id, :twitter_id, facility_ids: []
+      )
+    end
+    
+    def correct_admin_user
+      redirect_to admin_root_path, error: t('defaults.not_authorized') unless current_user.grand_admin? || DogrunPlace.find(params[:id]) == current_user.dogrun_place
+    end
 
 end

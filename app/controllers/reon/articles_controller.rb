@@ -1,7 +1,7 @@
 class Reon::ArticlesController < Reon::DogrunPlaceController
   include PostConcern
+  before_action :set_new_post, only: %i[new]
   before_action :set_staffs, only: %i[create]
-  before_action :article_params, only: %i[create]
   
   def new
     @article = Article.new

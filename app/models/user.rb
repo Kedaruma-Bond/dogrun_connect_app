@@ -21,7 +21,7 @@ class User < ApplicationRecord
   validates :agreement, acceptance: true, on: :update, allow_blank: true
 
   #enum
-  enum role: { general: 0, admin: 1, guest: 2 }
+  enum role: { general: 0, admin: 1, guest: 2, grand_admin: 3 }
   enum deactivation: { account_frozen: true, account_activated: false }
 
   # sorceryの垢BAN method

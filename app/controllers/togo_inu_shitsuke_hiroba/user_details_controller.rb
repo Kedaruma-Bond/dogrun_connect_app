@@ -1,4 +1,5 @@
 class TogoInuShitsukeHiroba::UserDetailsController < TogoInuShitsukeHiroba::DogrunPlaceController
+  before_action :set_new_post, only: %i[new edit]
   before_action :check_not_guest
 
   def new

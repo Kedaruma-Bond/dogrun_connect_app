@@ -1,20 +1,15 @@
 class Reon::RegistrationNumbersController < Reon::DogrunPlaceController
+  before_action :set_new_post, only: %i[new]
+  before_action :set_dogs, only: %i[new create]
   before_action :set_registration_number, only: %i[destroy]
   before_action :correct_registration_number_of_dog_owner, only: %i[destroy]
 
   def new
     @registration_number = RegistrationNumber.new
-    @dogs = []
-    dogs = Dog.includes(:user).where(user: current_user)
-    dogs.each do |dog|
-      unless dog.registration_numbers.where(dogrun_place: @dogrun_place).present?
-        @dogs << dog
-      end
-    end
   end
 
   def create
-    @dog = Dog.find(params[:select_dog])
+    @dog = Dog.find_by(id: params[:select_dog])
     if @dog.blank?
       flash.now[:error] = t('local.registration_numbers.select_dog')
       render :new

@@ -25,7 +25,7 @@ User.create!(name: 'grand_admin',
             email: 'grand_admin@erai.com',
             password: 'foobuz',
             password_confirmation: 'foobuz',
-            role: 1,
+            role: 3,
             dogrun_place: grand_admin
             )
 

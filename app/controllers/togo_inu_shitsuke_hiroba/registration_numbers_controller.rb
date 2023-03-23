@@ -1,4 +1,5 @@
 class TogoInuShitsukeHiroba::RegistrationNumbersController < TogoInuShitsukeHiroba::DogrunPlaceController
+  before_action :set_new_post, only: %i[new]
   before_action :set_dogs, only: %i[new create]
   before_action :set_registration_number, only: %i[destroy]
   before_action :correct_registration_number_of_dog_owner, only: %i[destroy]
@@ -8,7 +9,7 @@ class TogoInuShitsukeHiroba::RegistrationNumbersController < TogoInuShitsukeHiro
   end
 
   def create
-    @dog = Dog.find(params[:select_dog])
+    @dog = Dog.find_by(id: params[:select_dog])
     if @dog.blank?
       flash.now[:error] = t('local.registration_numbers.select_dog')
       render :new

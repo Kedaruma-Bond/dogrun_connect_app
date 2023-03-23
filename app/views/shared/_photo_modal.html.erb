@@ -4,10 +4,10 @@
     <div class="opacity-0 fixed inset-0 transition-opacity" data-lightbox-target="background">
       <div class="absolute inset-0 bg-gray-700 bg-opacity-75">
         <%# X-close icon in top-right corner %>
-        <div class="sm:block absolute top-0 right-0 pt-4 pr-4">
+        <div class="sm:block absolute bottom-0 left-0 pb-4 pl-4">
           <%= link_to "#", class: "text-gray-100", data: { action: "click->lightbox#handleClose" } do %>
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
           <% end %>
         </div>

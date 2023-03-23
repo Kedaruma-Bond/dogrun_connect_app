@@ -2,7 +2,7 @@
   <% rn = RegistrationNumber.where(dogrun_place: current_user.dogrun_place).find_by(dog: dog) %>
   <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
     <div class="w-12 h-12 mx-auto my-auto">
-      <% if current_user.name != 'grand_admin' %>
+      <% if !current_user.grand_admin? %>
         <%= link_to admin_dog_path(dog) do %>
           <%= new_registration_number_badge(rn) %>
           <%= dog_thumbnail(dog) %>
@@ -35,7 +35,7 @@
   </td>
   <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap" data-controller="form-modal">
     <div class="flex">
-      <% if current_user.name != "grand_admin" %>
+      <% if !current_user.grand_admin? %>
         <%= turbo_frame_tag dom_id(rn, :update), class: "w-3/4 text-gray-900 text-sm font-light" do %>
           <%= render partial: "registration_number_part", locals: { rn: rn } %>
         <% end %>
@@ -97,7 +97,7 @@
       <%= t('enums.dog.public.non_public') %>
     <% end %>
   </td>
-  <% if current_user.name == "grand_admin" %>
+  <% if current_user.grand_admin? %>
     <td>
       <%= link_to edit_admin_dog_path(dog), 
           class: "flex justify-left ml-2 text-sm text-gray-900 hover:text-gray-500 py-2 px-4" do %>

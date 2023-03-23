@@ -14,7 +14,7 @@ FactoryBot.define do
     end
 
     trait :grand_admin do
-      role { 'admin' }
+      role { 'grand_admin' }
       name { 'grand_admin' }
     end
 

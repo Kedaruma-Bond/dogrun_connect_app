@@ -1,7 +1,5 @@
 <%= render_turbo_stream_flash_messages %>
 
-<% if @correct_update_flag == true %>
-  <%= turbo_stream.update dom_id(@dogrun_place, :sns_icons) do %>
-    <%= render partial: "shared/sns_icon_part" %>
-  <% end %>
+<%= turbo_stream.update dom_id(@dogrun_place, :sns_icons) do %>
+  <%= render partial: "shared/sns_icon_part" %>
 <% end %>

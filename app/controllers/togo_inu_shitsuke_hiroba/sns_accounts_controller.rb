@@ -1,4 +1,5 @@
 class TogoInuShitsukeHiroba::SnsAccountsController < TogoInuShitsukeHiroba::DogrunPlaceController
+  before_action :set_new_post, only: %i[new edit]
   before_action :check_not_guest
 
   def new
@@ -23,7 +24,6 @@ class TogoInuShitsukeHiroba::SnsAccountsController < TogoInuShitsukeHiroba::Dogr
     else
       render :new, status: :unprocessable_entity
     end
-
   end
 
   def edit

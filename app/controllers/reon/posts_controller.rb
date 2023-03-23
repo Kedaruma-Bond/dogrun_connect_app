@@ -1,5 +1,4 @@
 class Reon::PostsController < Reon::DogrunPlaceController
-  before_action :post_params, only: :create
 
   def create
     @post = Post.new(post_params)

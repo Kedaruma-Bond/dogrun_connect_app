@@ -1,4 +1,5 @@
 class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlaceController
+  before_action :set_new_post, only: %i[new show]
   skip_before_action :require_login, only: %i[new create]
   before_action :correct_user, :set_dogs_and_registration_numbers_at_local, only: %i[show]
 
@@ -15,10 +16,6 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
       return
     end
     render :new, status: :unprocessable_entity
-  end
-
-  def edit
-    @user = User.find(params[:id])
   end
 
   def show

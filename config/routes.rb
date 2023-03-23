@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     resources :user_details, only: %i[new create edit update destroy]
     resources :dogs, only: %i[show edit update]
     resources :registration_numbers, only: %i[new create destroy]
-    resources :posts, only: %i[new create] do
+    resources :posts, only: %i[create] do
       member do
         resource :article, only: %i[new create]
         resource :embed, only: %i[new create]
@@ -84,7 +84,7 @@ Rails.application.routes.draw do
     resources :user_details, only: %i[new create edit update destroy]
     resources :dogs, only: %i[show edit update]
     resources :registration_numbers, only: %i[new create destroy]
-    resources :posts, only: %i[new create] do
+    resources :posts, only: %i[create] do
       member do
         resource :article, only: %i[new create]
         resource :embed, only: %i[new create]
@@ -107,7 +107,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :posts, only: %i[index new create destroy] do
+    resources :posts, only: %i[index create destroy] do
       collection do
         get 'search', to: 'posts#search'
       end

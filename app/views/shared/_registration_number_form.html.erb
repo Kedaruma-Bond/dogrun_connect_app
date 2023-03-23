@@ -19,7 +19,7 @@
   </ul>
   <%= form_with model: registration_number, url: send(registration_numbers_path), method: :post, id: "registration_number_form", data: { turbo: false } do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <div class="md:flex items-center justify-center">
+    <div class="md:flex items-center justify-center mt-4">
       <div class="w-full md:w-1/2 flex flex-col"> 
         <%= f.label :registration_number, registration_number_notation, class: "font-semibold text-gray-700 leading-none" %>
         <%= f.text_field :registration_number, class: "block w-full sm:w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" %>

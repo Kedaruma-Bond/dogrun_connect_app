@@ -3,7 +3,7 @@
   <div class="bg-gray-800 shadow-xl fixed bottom-0 mt-12 md:relative h-screen z-10 w-48 content-center">
     <div class="mt-12 w-48 fixed left-0 top-0 content-center md:content-start text-left justify-between">
       <ul class="flex flex-col pt-3 py-3 px-2 text-left">
-        <% if current_user.dogrun_place.name == 'grand_admin' %>
+        <% if current_user.grand_admin? %>
           <li class="flex-1">
             <%= link_to admin_dogrun_places_path, 
                 class: "flex py-3 pl-1 align-middle text-gray-200 no-underline border-b-2 border-gray-800 hover:border-pink-500" do %>

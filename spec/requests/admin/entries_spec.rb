@@ -39,7 +39,17 @@ RSpec.describe Admin::EntriesController, type: :request do
         expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
         expect(response).to redirect_to(root_path)
       end
+    end
+    
+    context 'ログインしていないとき' do
+      before do
+        get admin_entries_path
+      end
 
+      example 'エラーメッセージが表示されて管理者ログイン画面にリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
+        expect(response).to redirect_to(admin_login_path)
+      end
     end
   end
 
@@ -76,6 +86,14 @@ RSpec.describe Admin::EntriesController, type: :request do
         delete admin_entry_path(entry_1)
         expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
         expect(response).to redirect_to(root_path)
+      end
+    end
+    
+    context 'ログインしていないとき' do
+      example 'エラーメッセージが表示されて管理者ログイン画面にリダイレクトされること' do
+        delete admin_entry_path(entry_1)
+        expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
+        expect(response).to redirect_to(admin_login_path)
       end
     end
   end

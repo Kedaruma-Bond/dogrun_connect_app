@@ -85,14 +85,26 @@ RSpec.describe Admin::DogsController, type: :request do
   end
 
   describe "GET #edit" do
+    context 'grand_adminユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(grand_admin)
+        get edit_admin_dog_path(dog_1)
+      end
+
+      example '正常なレスポンスが返ること' do
+        expect(response).to be_successful
+      end
+    end
+
     context '管理者ユーザーでログインしている場合' do
       before do
         admin_log_in_as(admin_1)
         get edit_admin_dog_path(dog_1)
       end
 
-      example "正常なレスポンスが返ること" do
-        expect(response).to be_successful
+      example 'ホーム画面にリダイレクトされエラーメッセージが表示されること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(admin_root_path)
       end
     end
     
@@ -110,9 +122,9 @@ RSpec.describe Admin::DogsController, type: :request do
   end
   
   describe "PATCH #update" do
-    describe '管理者ユーザーでログインしているとき' do
+    describe 'grand_adminユーザーでログインしているとき' do
       before do
-        admin_log_in_as(admin_1)
+        admin_log_in_as(grand_admin)
       end
 
       context '有効なパラメータが入力されている場合' do
@@ -140,6 +152,18 @@ RSpec.describe Admin::DogsController, type: :request do
           expect(response).to have_http_status(:unprocessable_entity)
           expect(response).to render_template(:edit)
         end
+      end
+    end
+
+    describe '管理者ユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1) 
+        patch admin_dog_path(dog_1)
+      end
+
+      example 'エラーメッセージが表示されてhome画面にリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(admin_root_path)
       end
     end
   end

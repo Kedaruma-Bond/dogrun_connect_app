@@ -1,10 +1,9 @@
 class Admin::PostsController < Admin::BaseController
   include Pagy::Backend
-  before_action :set_q, only: %i[index search]
-  before_action :post_params, only: %i[create]
-  before_action :post_params_for_publish, only: %i[start_to_publish]
+  before_action :set_q, :set_new_post, only: %i[index search]
+  before_action :set_dogrun_place, only: %i[index search start_to_publish cancel_to_publish]
   before_action :set_post, only: %i[destroy set_publish_limit start_to_publish cancel_to_publish]
-  before_action :set_dogrun_place, only: %i[index search cancel_to_publish]
+  before_action :correct_admin_check, only: %i[destroy set_publish_limit start_to_publish cancel_to_publish]
 
   def index
     @publishing_post = Post.is_publishing.where(dogrun_place: @dogrun_place)
@@ -33,14 +32,24 @@ class Admin::PostsController < Admin::BaseController
       end
       return
     else
-      redirect_to request.referer, error: t('local.posts.post_save_error')
+      if request.referer.nil?
+        redirect_to admin_posts_path, error: t('local.posts.post_save_error')
+      else
+        redirect_to request.referer, error: t('local.posts.post_save_error')
+      end
     end
   end
 
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to request.referer, success: t('defaults.destroy_successfully'), status: :see_other }
+      format.html { 
+        if request.referer.nil?
+          redirect_to admin_posts_path, success: t('defaults.destroy_successfully'), status: :see_other 
+        else
+          redirect_to request.referer, success: t('defaults.destroy_successfully'), status: :see_other 
+        end
+      }
       format.json { head :no_content }
     end
   end
@@ -53,12 +62,18 @@ class Admin::PostsController < Admin::BaseController
   def start_to_publish
     publishing_post = Post.where(publish_status: 'is_publishing')
     publishing_post.update!(publish_status: 'non_publish')
-    if @post.update!(post_params_for_publish)
+    if @post.update(post_params_for_publish)
       if !@post.user.admin?
-        PostMailer.publish_notification(@post.user, DogrunPlace.find(current_user.dogrun_place_id)).deliver_now
+        PostMailer.publish_notification(@post.user, @dogrun_place).deliver_now
       end
       respond_to do |format|
-        format.html { redirect_to session[:previous_url], success: t('.change_to_be_publishing') }
+        format.html { 
+          if session[:previous_url].nil?
+            redirect_to admin_posts_path, success: t('.change_to_be_publishing')
+          else
+            redirect_to session[:previous_url], success: t('.change_to_be_publishing') 
+          end
+        }
         format.json { head :no_content }
       end
     else
@@ -67,10 +82,15 @@ class Admin::PostsController < Admin::BaseController
   end
 
   def cancel_to_publish
-    @post.update!(publish_status: 'non_publish')
-    @publishing_post = Post.is_publishing
+    @post.update(publish_status: 'non_publish')
     respond_to do |format|
-      format.html { redirect_to request.referer, success: t('.change_to_non_publish')}
+      format.html { 
+        if request.referer.nil?
+          redirect_to admin_posts_path, success: t('.change_to_non_publish')
+        else
+          redirect_to request.referer, success: t('.change_to_non_publish')
+        end
+      }
       format.turbo_stream { flash.now[:success] = t('.change_to_non_publish') }
       format.json { head :no_content }
     end
@@ -97,14 +117,18 @@ class Admin::PostsController < Admin::BaseController
     end
 
     def post_params
-      params.permit(
-        :post_type, :publish_status, :publish_limit
+      params.require(:post).permit(
+        :post_type, :publish_status
       ).merge(user_id: current_user.id, dogrun_place_id: current_user.dogrun_place_id)
     end
 
     def post_params_for_publish
-      params.permit(
+      params.require(:post).permit(
         :publish_status, :publish_limit
       )
+    end
+
+    def correct_admin_check
+      redirect_to admin_root_path, error: t('defaults.not_authorized') unless current_user.grand_admin? ||  @post.dogrun_place == current_user.dogrun_place
     end
 end

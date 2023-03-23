@@ -1,6 +1,6 @@
 class Admin::EmbedsController < Admin::BaseController
   before_action :set_embed, only: %i[edit update]
-  before_action :embed_params, only: %i[create update]
+  before_action :correct_admin_check, only: %i[edit update]
 
   def new
     @embed = Embed.new
@@ -45,5 +45,9 @@ class Admin::EmbedsController < Admin::BaseController
 
     def set_embed
       @embed = Embed.find_by(post_id: params[:id])
+    end
+
+    def correct_admin_check
+      redirect_to admin_root_path, error: t('defaults.not_authorized') unless current_user.grand_admin? ||  @embed.post.dogrun_place == current_user.dogrun_place
     end
 end
