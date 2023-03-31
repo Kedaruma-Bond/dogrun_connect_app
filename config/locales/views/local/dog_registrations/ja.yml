@@ -1,7 +1,13 @@
 ja:
   local:
     dog_registrations:
+      form_selection:
+        title: ワンコの登録前の確認
+        confirmation: |
+          %{registration_card}を
+          お持ちですか？
       new:
         title: ワンコの登録
+        registration_number_hint: "%{registration_card}に記載された番号を入力してください"
       confirm:
         title: ワンコの入力情報確認

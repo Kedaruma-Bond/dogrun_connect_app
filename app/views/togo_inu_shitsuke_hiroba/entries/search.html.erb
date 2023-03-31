@@ -5,5 +5,5 @@
   applicable_path: @search_entries_path,
   search_field_placeholder: I18n.t('local.entries.search_form.search_field_placeholder')
   ) do %>
-    <%= render partial: 'shared/entry', collection: @entries_results, locals: { dog_profile_path: @dog_profile_path } %>
+  <%= render partial: 'shared/entry', collection: @entries_results, locals: { dog_profile_path: @dog_profile_path, entry_path: @entry_path } %>
 <% end %>

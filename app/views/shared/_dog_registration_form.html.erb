@@ -4,7 +4,7 @@
     <div class="md:flex items-center">
       <div class="w-full md:w-1/4 flex flex-col"> 
         <%= f.label :registration_number, registration_number_notation, label_html: { class: "font-bold leading-none" } %>
-        <%= f.input :registration_number, input_html: { class: "block w-full sm:w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint: false, error: false %>
+        <%= f.input :registration_number, input_html: { class: "block w-full sm:w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint_html: { class: "text-gray-500 text-xs" }, hint: registration_number_hint, error: false %>
       </div>
       <div class="w-full md:w-1/4 flex flex-col md:mt-0 mt-7">
         <%= f.label :name, t('defaults.dog_name'), label_html: { class: "font-bold leading-none" } %>

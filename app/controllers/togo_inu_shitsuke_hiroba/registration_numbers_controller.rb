@@ -4,27 +4,45 @@ class TogoInuShitsukeHiroba::RegistrationNumbersController < TogoInuShitsukeHiro
   before_action :set_registration_number, only: %i[destroy]
   before_action :correct_registration_number_of_dog_owner, only: %i[destroy]
 
+  def form_selection
+    @confirmation = I18n.t('local.dog_registrations.form_selection.confirmation', registration_card: I18n.t('togo_inu_shitsuke_hiroba.registration_card'))
+  end
+  
+  def have_registration_card
+    session[:card_flg] = true
+    redirect_to  send(@new_registration_number_path)
+  end
+
+  def not_have_registration_card
+    session[:card_flg] = false
+    redirect_to  send(@new_registration_number_path)
+  end
+
   def new
+    @registration_number_hint = I18n.t('local.dog_registrations.new.registration_number_hint', registration_card: I18n.t('togo_inu_shitsuke_hiroba.registration_card'))
     @registration_number = RegistrationNumber.new
   end
 
   def create
     @dog = Dog.find_by(id: params[:select_dog])
-    if @dog.blank?
-      flash.now[:error] = t('local.registration_numbers.select_dog')
-      render :new
-      return
-    end
-    
-    @registration_number = RegistrationNumber.new(registration_number_params)
-
-    if @registration_number.save
-      respond_to do |format|
-        format.html { redirect_to send(@user_path, current_user), success: t('local.registration_numbers.registered_successfully') }
-        format.json { header :no_content }
+    if !@dog.blank?
+      @registration_number = RegistrationNumber.new(registration_number_params)
+      if @registration_number.save
+        session.delete(:card_flg)
+        respond_to do |format|
+          format.html { redirect_to send(@user_path, current_user), success: t('local.registration_numbers.registered_successfully') }
+          format.json { header :no_content }
+        end
+      else
+        render :new, status: :unprocessable_entity
       end
     else
-      render :new, status: :unprocessable_entity
+      respond_to do |format|
+        format.html {
+          redirect_to send(@new_registration_number_path), error: t('local.registration_numbers.select_dog')
+        }
+        format.json { header :no_content }
+      end
     end
   end
 

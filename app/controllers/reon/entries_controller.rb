@@ -3,6 +3,7 @@ class Reon::EntriesController < Reon::DogrunPlaceController
   before_action :set_new_post, only: %i[index search]
   before_action :set_dogs_and_registration_numbers_at_local, only: %i[create update]
   before_action :set_q, only: %i[index search]
+  before_action :correct_user_check, only: %i[destroy]
 
   def index
     @pagy, @entries = pagy(@entries)
@@ -139,7 +140,7 @@ class Reon::EntriesController < Reon::DogrunPlaceController
     i = current_entries.size - 1
     @entry = current_entries[i]
     current_entries.each do |entry|
-      Entry.find(entry.id).update!(exit_at: Time.zone.now)
+      Entry.find(entry.id).update(exit_at: Time.zone.now)
     end
     set_num_of_playing_dogs
 
@@ -153,6 +154,14 @@ class Reon::EntriesController < Reon::DogrunPlaceController
 
   def search
     @pagy, @entries_results = pagy(@q.result)
+  end
+
+  def destroy
+    @entry.destroy
+    respond_to do |format|
+      format.html { redirect_to send(@entries_path), success: t('defaults.destroy_successfully'), status: :see_other }
+      format.turbo_stream { flash.now[:success] = t('defaults.destroy_successfully') }
+    end
   end
 
   private
@@ -183,4 +192,9 @@ class Reon::EntriesController < Reon::DogrunPlaceController
       )
     end
 
+    def correct_user_check
+      @entry = Entry.find(params[:id])
+      redirect_to send(@entries_path), error: t('defaults.not_authorized') unless @entry.dog.user == current_user
+    end
+    
 end

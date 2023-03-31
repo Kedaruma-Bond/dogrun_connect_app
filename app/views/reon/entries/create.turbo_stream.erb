@@ -1,44 +1,5 @@
 <%= render_turbo_stream_flash_messages %>
 
-<% case params[:pre_flg] %>
-<% when "0" %>
-  <%= turbo_stream.update dom_id(@dogrun_place, :num_of_playing_dogs) do %>
-    <%= render partial: "shared/num_of_playing_dogs", locals: { num_of_playing_dogs: @num_of_playing_dogs } %>
-  <% end %>
-  <%= turbo_stream.update dom_id(@dogrun_place, :among_them_non_public_dogs) do %>
-    <%= render partial: "shared/among_them_non_public_dogs", locals: { dogs_non_public: @dogs_non_public } %>
-  <% end %>
-  <% if !@entries_array.nil? %>
-    <% @entries_array.each do |entry| %>
-      <% if !entry.nil? && entry.dog.public_view? %>
-        <%= turbo_stream.append "entries_list_dogrun_place_#{@dogrun_place.id}" do %>
-          <%= render partial: "shared/entry_dog", locals: { dog: entry.dog, dogrun_place: @dogrun_place, dog_profile_path: @dog_profile_path } %>
-        <% end %>
-      <% end %>
-    <% end %>
-  <% elsif !@current_pre_entries.nil? %>
-    <% @current_pre_entries.each do |entry| %>
-      <% if !entry.nil? && entry.dog.public_view? %>
-        <%= turbo_stream.append "entries_list_dogrun_place_#{@dogrun_place.id}" do %>
-          <%= render partial: "shared/entry_dog", locals: { dog: entry.dog, dogrun_place: @dogrun_place, dog_profile_path: @dog_profile_path } %>
-        <% end %>
-      <% end %>
-    <% end %>
-  
-    <% @current_pre_entries.each do |pre_entry| %>
-      <%= turbo_stream.remove dom_id(@dogrun_place,  "pre_entry_dog_#{pre_entry.dog.id}") %>
-    <% end %>
-  <% end %>
-<% when "1" %>
-  <% @entries_array.each do |pre_entry| %>
-    <% if !pre_entry.nil? && pre_entry.dog.public_view? %>
-      <%= turbo_stream.append "pre_entries_list_dogrun_place_#{@dogrun_place.id}" do %>
-        <%= render partial: "shared/pre_entry_dog", locals: { pre_entry_dog: pre_entry.dog, dogrun_place: @dogrun_place, dog_profile_path: @dog_profile_path } %>
-      <% end %>
-    <% end %>
-  <% end %>
-<% end %>
-
 <%= turbo_stream.update dom_id(@dogrun_place, :login_top_content) do %>
   <%= render partial: "shared/login_top_content", locals: { entries_path: @entries_path, pre_entries_path: @pre_entries_path } %>
 <% end %>

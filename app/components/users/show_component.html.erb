@@ -1,7 +1,7 @@
 <% content_for(:title, @title) %>
 <%= turbo_frame_tag "sns_account_form_modal" %>
 <%= turbo_frame_tag "user_detail_form_modal" %>
-<div class="max-w-5xl mx-3 md:mx-auto sm:px-6 lg:px-8 bg-purple-200 rounded-lg">
+<div class="max-w-5xl md:mx-auto sm:px-6 lg:px-8 bg-purple-200 rounded-lg">
   <div class="w-full p-5">
     <p class="text-2xl md:text-3xl font-bold text-gray-700 text-center my-2">
       <%= @title %>
@@ -16,11 +16,9 @@
       <div class="flex flex-col justify-start mt-6 sm:mt-2 min-w-[245px]">
         <p class="text-gray-500 leading-relaxed text-base"><%= t('defaults.name') %></p>
         <h2 class="text-2xl font-semibold text-gray-700 title-font mb-2"><%= @current_user.name %></h2>
-        <% if @current_user.role != 'guest' %>
+        <% if !@current_user.guest? %>
           <p class="text-gray-500 leading-relaxed text-base"><%= t('defaults.email') %></p>
           <h2 class="text-lg font-semibold text-gray-700 title-font mb-2"><%= @current_user.email %></h2>
-        <% end %>
-        <% if @current_user.role != 'guest' %>
           <%= turbo_frame_tag dom_id(@current_user, :user_detail) do %>
             <%= render partial: "shared/user_detail_part" %>
           <% end %>
@@ -30,7 +28,7 @@
         <% end %>
       </div>
     </div>
-    <% if @current_user.role != 'guest' %>
+    <% if !@current_user.guest? %>
       <div class="flex items-center mt-3 flex-row justify-center text-left">
         <div class="ml-10 md:mr-10 w-auto">
           <p class="text-gray-600 font-light mb-1 pr-5">
@@ -58,36 +56,68 @@
             </p>
           </div>
         </div>
-        <%= link_to send(@dog_registration_path), class: "w-[230px] hidden md:flex items-center px-2 py-2 font-medium tracking-wide text-white bg-amber-600 rounded-md hover:bg-amber-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
-          </svg>
-          <span class="ml-2"><%= t('local.users.show.add_dog') %></span>
-        <% end %>
-        <%= link_to send(@new_registration_number_path) do %>
-          <button class="hidden ml-2 md:flex items-center mx-auto px-2 py-2 font-medium tracking-wide text-white bg-cyan-600 rounded-md hover:bg-cyan-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-            <svg class="w-6 h-6" style="color: rgb(229, 231, 235);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <path d="M288 208C288 216.8 280.8 224 272 224C263.2 224 255.1 216.8 255.1 208C255.1 199.2 263.2 192 272 192C280.8 192 288 199.2 288 208zM256.3-.0068C261.9-.0507 267.3 1.386 272.1 4.066L476.5 90.53C487.7 95.27 495.2 105.1 495.9 118.1C501.6 213.6 466.7 421.9 272.5 507.7C267.6 510.5 261.1 512.1 256.3 512C250.5 512.1 244.9 510.5 239.1 507.7C45.8 421.9 10.95 213.6 16.57 118.1C17.28 105.1 24.83 95.27 36.04 90.53L240.4 4.066C245.2 1.386 250.7-.0507 256.3-.0068H256.3zM160.9 286.2L143.1 320L272 384V320H320C364.2 320 400 284.2 400 240V208C400 199.2 392.8 192 384 192H320L312.8 177.7C307.4 166.8 296.3 160 284.2 160H239.1V224C239.1 259.3 211.3 288 175.1 288C170.8 288 165.7 287.4 160.9 286.2H160.9zM143.1 176V224C143.1 241.7 158.3 256 175.1 256C193.7 256 207.1 241.7 207.1 224V160H159.1C151.2 160 143.1 167.2 143.1 176z" fill="#e5e7eb"></path>
+        <% if @dogrun_place.registration_card.blank? %>
+          <%= link_to send(@dog_registration_path), class: "w-[230px] hidden md:flex items-center px-2 py-2 font-medium tracking-wide text-white bg-amber-600 rounded-md hover:bg-amber-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
             </svg>
-            <span class="ml-2 text-left"><%= simple_format(t('local.users.show.add_registered_dog')) %></span>
-          </button>
+            <span class="ml-2"><%= t'local.users.show.add_dog' %></span>
+          <% end %>
+          <%= link_to send(@new_registration_number_path) do %>
+            <button class="hidden ml-2 md:flex items-center mx-auto px-2 py-2 font-medium tracking-wide text-white bg-cyan-600 rounded-md hover:bg-cyan-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+              <svg class="w-6 h-6" style="color: rgb(229, 231, 235);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M288 208C288 216.8 280.8 224 272 224C263.2 224 255.1 216.8 255.1 208C255.1 199.2 263.2 192 272 192C280.8 192 288 199.2 288 208zM256.3-.0068C261.9-.0507 267.3 1.386 272.1 4.066L476.5 90.53C487.7 95.27 495.2 105.1 495.9 118.1C501.6 213.6 466.7 421.9 272.5 507.7C267.6 510.5 261.1 512.1 256.3 512C250.5 512.1 244.9 510.5 239.1 507.7C45.8 421.9 10.95 213.6 16.57 118.1C17.28 105.1 24.83 95.27 36.04 90.53L240.4 4.066C245.2 1.386 250.7-.0507 256.3-.0068H256.3zM160.9 286.2L143.1 320L272 384V320H320C364.2 320 400 284.2 400 240V208C400 199.2 392.8 192 384 192H320L312.8 177.7C307.4 166.8 296.3 160 284.2 160H239.1V224C239.1 259.3 211.3 288 175.1 288C170.8 288 165.7 287.4 160.9 286.2H160.9zM143.1 176V224C143.1 241.7 158.3 256 175.1 256C193.7 256 207.1 241.7 207.1 224V160H159.1C151.2 160 143.1 167.2 143.1 176z" fill="#e5e7eb"></path>
+              </svg>
+              <span class="ml-2 text-left"><%= simple_format(t('local.users.show.add_registered_dog')) %></span>
+            </button>
+          <% end %>
+        <% else %>
+          <%= link_to send(@form_selection_path), class: "w-[230px] hidden md:flex items-center px-2 py-2 font-medium tracking-wide text-white bg-amber-600 rounded-md hover:bg-amber-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="ml-2"><%= t'local.users.show.add_dog' %></span>
+          <% end %>
+          <%= link_to send(@rns_form_selection_path) do %>
+            <button class="hidden ml-2 md:flex items-center mx-auto px-2 py-2 font-medium tracking-wide text-white bg-cyan-600 rounded-md hover:bg-cyan-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+              <svg class="w-6 h-6" style="color: rgb(229, 231, 235);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M288 208C288 216.8 280.8 224 272 224C263.2 224 255.1 216.8 255.1 208C255.1 199.2 263.2 192 272 192C280.8 192 288 199.2 288 208zM256.3-.0068C261.9-.0507 267.3 1.386 272.1 4.066L476.5 90.53C487.7 95.27 495.2 105.1 495.9 118.1C501.6 213.6 466.7 421.9 272.5 507.7C267.6 510.5 261.1 512.1 256.3 512C250.5 512.1 244.9 510.5 239.1 507.7C45.8 421.9 10.95 213.6 16.57 118.1C17.28 105.1 24.83 95.27 36.04 90.53L240.4 4.066C245.2 1.386 250.7-.0507 256.3-.0068H256.3zM160.9 286.2L143.1 320L272 384V320H320C364.2 320 400 284.2 400 240V208C400 199.2 392.8 192 384 192H320L312.8 177.7C307.4 166.8 296.3 160 284.2 160H239.1V224C239.1 259.3 211.3 288 175.1 288C170.8 288 165.7 287.4 160.9 286.2H160.9zM143.1 176V224C143.1 241.7 158.3 256 175.1 256C193.7 256 207.1 241.7 207.1 224V160H159.1C151.2 160 143.1 167.2 143.1 176z" fill="#e5e7eb"></path>
+              </svg>
+              <span class="ml-2 text-left"><%= simple_format(t('local.users.show.add_registered_dog')) %></span>
+            </button>
+          <% end %>
         <% end %>
       </div>
     <% end %>
     <%= render 'shared/registered_dog' %>
-    <% if @current_user.role != 'guest' %>
+    <% if !@current_user.guest? %>
       <div class="md:hidden sm:w-2/3 sm:pl-8 sm:py-2 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
-        <%= link_to send(@dog_registration_path), class: "mx-auto md:hidden w-[230px] mt-2 flex px-2 py-2 font-medium tracking-wide text-white bg-amber-600 rounded-md hover:bg-amber-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
-          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
-          </svg>
-          <span class="ml-2"><%= t'local.users.show.add_dog' %></span>
-        <% end %>
-        <%= link_to send(@new_registration_number_path), class: "mx-auto w-[230px] md:hidden mt-2 flex items-center mx-auto px-2 py-2 font-medium tracking-wide text-white bg-cyan-600 rounded-md hover:bg-cyan-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
-          <svg class="w-6 h-6" style="color: rgb(229, 231, 235);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            <path d="M288 208C288 216.8 280.8 224 272 224C263.2 224 255.1 216.8 255.1 208C255.1 199.2 263.2 192 272 192C280.8 192 288 199.2 288 208zM256.3-.0068C261.9-.0507 267.3 1.386 272.1 4.066L476.5 90.53C487.7 95.27 495.2 105.1 495.9 118.1C501.6 213.6 466.7 421.9 272.5 507.7C267.6 510.5 261.1 512.1 256.3 512C250.5 512.1 244.9 510.5 239.1 507.7C45.8 421.9 10.95 213.6 16.57 118.1C17.28 105.1 24.83 95.27 36.04 90.53L240.4 4.066C245.2 1.386 250.7-.0507 256.3-.0068H256.3zM160.9 286.2L143.1 320L272 384V320H320C364.2 320 400 284.2 400 240V208C400 199.2 392.8 192 384 192H320L312.8 177.7C307.4 166.8 296.3 160 284.2 160H239.1V224C239.1 259.3 211.3 288 175.1 288C170.8 288 165.7 287.4 160.9 286.2H160.9zM143.1 176V224C143.1 241.7 158.3 256 175.1 256C193.7 256 207.1 241.7 207.1 224V160H159.1C151.2 160 143.1 167.2 143.1 176z" fill="#e5e7eb"></path>
-          </svg>
-          <span class="ml-2 text-left"><%= simple_format(t'local.users.show.add_registered_dog') %></span>
+        <% if @dogrun_place.registration_card.blank? %>
+          <%= link_to send(@dog_registration_path), class: "mx-auto w-[230px] flex md:hidden items-center px-2 py-2 font-medium tracking-wide text-white bg-amber-600 rounded-md hover:bg-amber-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="ml-2"><%= t'local.users.show.add_dog' %></span>
+          <% end %>
+          <%= link_to send(@new_registration_number_path), class: "mx-auto w-[230px] md:hidden mt-2 flex items-center mx-auto px-2 py-2 font-medium tracking-wide text-white bg-cyan-600 rounded-md hover:bg-cyan-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
+            <svg class="w-6 h-6" style="color: rgb(229, 231, 235);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path d="M288 208C288 216.8 280.8 224 272 224C263.2 224 255.1 216.8 255.1 208C255.1 199.2 263.2 192 272 192C280.8 192 288 199.2 288 208zM256.3-.0068C261.9-.0507 267.3 1.386 272.1 4.066L476.5 90.53C487.7 95.27 495.2 105.1 495.9 118.1C501.6 213.6 466.7 421.9 272.5 507.7C267.6 510.5 261.1 512.1 256.3 512C250.5 512.1 244.9 510.5 239.1 507.7C45.8 421.9 10.95 213.6 16.57 118.1C17.28 105.1 24.83 95.27 36.04 90.53L240.4 4.066C245.2 1.386 250.7-.0507 256.3-.0068H256.3zM160.9 286.2L143.1 320L272 384V320H320C364.2 320 400 284.2 400 240V208C400 199.2 392.8 192 384 192H320L312.8 177.7C307.4 166.8 296.3 160 284.2 160H239.1V224C239.1 259.3 211.3 288 175.1 288C170.8 288 165.7 287.4 160.9 286.2H160.9zM143.1 176V224C143.1 241.7 158.3 256 175.1 256C193.7 256 207.1 241.7 207.1 224V160H159.1C151.2 160 143.1 167.2 143.1 176z" fill="#e5e7eb"></path>
+            </svg>
+            <span class="ml-2 text-left"><%= simple_format(t'local.users.show.add_registered_dog') %></span>
+          <% end %>
+        <% else %>
+          <%= link_to send(@form_selection_path), class: "mx-auto w-[230px] flex md:hidden items-center px-2 py-2 font-medium tracking-wide text-white bg-amber-600 rounded-md hover:bg-amber-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="ml-2"><%= t'local.users.show.add_dog' %></span>
+          <% end %>
+          <%= link_to send(@rns_form_selection_path), class: "mx-auto w-[230px] md:hidden mt-2 flex items-center mx-auto px-2 py-2 font-medium tracking-wide text-white bg-cyan-600 rounded-md hover:bg-cyan-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
+            <svg class="w-6 h-6" style="color: rgb(229, 231, 235);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path d="M288 208C288 216.8 280.8 224 272 224C263.2 224 255.1 216.8 255.1 208C255.1 199.2 263.2 192 272 192C280.8 192 288 199.2 288 208zM256.3-.0068C261.9-.0507 267.3 1.386 272.1 4.066L476.5 90.53C487.7 95.27 495.2 105.1 495.9 118.1C501.6 213.6 466.7 421.9 272.5 507.7C267.6 510.5 261.1 512.1 256.3 512C250.5 512.1 244.9 510.5 239.1 507.7C45.8 421.9 10.95 213.6 16.57 118.1C17.28 105.1 24.83 95.27 36.04 90.53L240.4 4.066C245.2 1.386 250.7-.0507 256.3-.0068H256.3zM160.9 286.2L143.1 320L272 384V320H320C364.2 320 400 284.2 400 240V208C400 199.2 392.8 192 384 192H320L312.8 177.7C307.4 166.8 296.3 160 284.2 160H239.1V224C239.1 259.3 211.3 288 175.1 288C170.8 288 165.7 287.4 160.9 286.2H160.9zM143.1 176V224C143.1 241.7 158.3 256 175.1 256C193.7 256 207.1 241.7 207.1 224V160H159.1C151.2 160 143.1 167.2 143.1 176z" fill="#e5e7eb"></path>
+            </svg>
+            <span class="ml-2 text-left"><%= simple_format(t'local.users.show.add_registered_dog') %></span>
+          <% end %>
         <% end %>
       </div>
     <% end %>

@@ -112,6 +112,17 @@
                 <% end %>
               </div>
             </div>
+            <% if !@dogrun_place.registration_card.blank? %>
+              <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6" data-controller="lightbox">
+                <p class="text-gray-600 text-xs font-light">
+                  <%= t('.registration_card_image', registration_card: @naming_of_registration_card) %>
+                </p>
+                <%= link_to "#", data: { "lightbox-source-param": @dogrun_place.registration_card_preview, action: "lightbox#handleOpen" } do %>
+                  <%= registration_card(@dogrun_place) %>
+                <% end %>
+                <%= render partial: "shared/photo_modal" %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>

@@ -3,7 +3,22 @@ class Reon::DogRegistrationController < Reon::DogrunPlaceController
   before_action :dog_registration_params, only: :confirm
   before_action :check_not_guest
 
+  def form_selection
+    @confirmation = I18n.t('local.dog_registrations.form_selection.confirmation', registration_card: I18n.t('reon.registration_card'))
+  end
+  
+  def have_registration_card
+    session[:card_flg] = true
+    redirect_to  send(@dog_registration_path)
+  end
+
+  def not_have_registration_card
+    session[:card_flg] = false
+    redirect_to  send(@dog_registration_path)
+  end
+
   def new
+    @registration_number_hint = I18n.t('local.dog_registrations.new.registration_number_hint', registration_card: I18n.t('reon.registration_card'))
     session.delete(:dog_registration_form)
     @dog_registration = DogRegistration.new
   end
@@ -26,10 +41,11 @@ class Reon::DogRegistrationController < Reon::DogrunPlaceController
 
     if @dog_registration.save
       session.delete(:dog_registration_form)
+      session.delete(:card_flg)
       redirect_to send(@top_path), success: t('local.dog_registrations.dog_registration')
-      return
+    else
+      render :new, status: :unprocessable_entity
     end
-    render :new, status: :unprocessable_entity
   end
 
   private

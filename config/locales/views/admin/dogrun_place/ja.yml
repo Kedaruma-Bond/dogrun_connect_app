@@ -9,6 +9,7 @@ ja:
         title: 新規ドッグラン登録
       show:
         title: ドッグラン詳細情報
+        registration_card_image: "%{registration_card}の画像"
       force_closed_switch:
         force_dogrun_to_close_confirmation: 強制休業としますか？
         release_dogrun_to_open_confirmation: 休業を解除しますか？
@@ -17,6 +18,7 @@ ja:
         title: ドッグラン情報編集
       form:
         change_logo: ロゴを変更
+        registration_card_image: "%{registration_card}の画像"
         choose_a_prefecture: 都道府県を選択してください
         facebook_id_hint: https://www.facebook.com/以降を入力してください
         instagram_id_hint: https://www.instagram.com/以降を入力してください

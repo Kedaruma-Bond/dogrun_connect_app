@@ -9,6 +9,7 @@ class DogrunPlace < ApplicationRecord
   has_many :facilities, through: :dogrun_place_facility_relations, dependent: :destroy
   has_one :sns_account, dependent: :destroy
   has_one_attached :logo
+  has_one_attached :registration_card
   include JpPrefecture
   jp_prefecture :prefecture_code, method_name: :pref
 
@@ -16,6 +17,7 @@ class DogrunPlace < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :description, length: { maximum: 1000 }
   validates :logo, size: { less_than: 10.megabytes }, content_type: [:png, :jpg, :jpeg, :heif]
+  validates :registration_card, size: { less_than: 10.megabytes }, content_type: [:png, :jpg, :jpeg, :heif]
 
   # enum
   enum force_closed: { force_closing: true, releasing: false }   

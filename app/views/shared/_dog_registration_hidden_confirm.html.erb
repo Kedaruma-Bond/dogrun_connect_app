@@ -1,6 +1,6 @@
 <div class="w-full flex flex-col mt-8">
   <div class="md:flex items-center text-gray-700">
-    <div class="w-full md:w-1/4 flex flex-col md:mt-0 mt-7 items-center justify-center">
+    <div class="w-full md:w-1/4 flex flex-col md:mt-0 mt-1 items-center justify-center">
       <p class="font-light text-sm leading-none"><%= t('defaults.dog_name') %></p>
       <p class="block leading-none text-xl p-3 font-bold mt-2"><%= dog_registration.name %></p>
     </div>
@@ -12,7 +12,7 @@
         </p>
       <% else %>
         <p class="block leading-none text-xl font-bold p-3 mt-2">
-          <%= t('enum.dog_registration_castration.non_castrated') %>
+          <%= t('enums.dog_registration.castration.non_castrated') %>
         </p>
       <% end %>
     </div>

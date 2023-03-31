@@ -12,10 +12,14 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
     if @user.save
       UserMailer.user_registration_success(@user).deliver_now
       login(params[:user][:email], params[:user][:password])
-      redirect_to send(@dog_registration_path), success: t('local.users.user_create')
-      return
+      if @dogrun_place.registration_card.blank?
+        redirect_to send(@dog_registration_path), success: t('local.users.user_create')
+      else
+        redirect_to send(@form_selection_path), success: t('local.users.user_create')
+      end
+    else
+      render :new, status: :unprocessable_entity
     end
-    render :new, status: :unprocessable_entity
   end
 
   def show

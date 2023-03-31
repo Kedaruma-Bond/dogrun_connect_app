@@ -1,5 +1,6 @@
 class Admin::EntriesController < Admin::BaseController
   include Pagy::Backend
+  before_action :set_naming_of_registration_number, only: %i[index search]
   before_action :set_q, only: %i[index search]
   before_action :set_entry, only: %i[destroy]
 
