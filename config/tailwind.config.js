@@ -101,9 +101,21 @@ module.exports = {
               opacity: "1"
           }
         },
-        "slide-in-top": {
+        "rotate-in-2-tr-ccw": {
           "0%": {
-              transform: "translateY(-1000px)",
+              transform: "rotate(45deg)",
+              "transform-origin": "100% 0%",
+              opacity: "0"
+          },
+          to: {
+              transform: "rotate(0)",
+              "transform-origin": "100% 0%",
+              opacity: "1"
+          }
+        },
+        "fade-in-top": {
+          "0%": {
+              transform: "translateY(-50px)",
               opacity: "0"
           },
           to: {
@@ -119,7 +131,8 @@ module.exports = {
         "tilt-in-right-2": "tilt-in-right-2 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940)   both",
         "heartbeat": "heartbeat 1.5s ease  infinite both",
         "roll-in-right": "roll-in-right 1.5s ease   both",
-        "slide-in-top": "slide-in-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940)   both",
+        "rotate-in-2-tr-ccw": "rotate-in-2-tr-ccw 0.75s cubic-bezier(0.250, 0.460, 0.450, 0.940)   both",
+        "fade-in-top": "fade-in-top 0.75s cubic-bezier(0.390, 0.575, 0.565, 1.000)   both",
       }
     },
   },

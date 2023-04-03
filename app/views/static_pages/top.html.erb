@@ -15,7 +15,7 @@
     </section>
   <% else %>
     <div class="mx-auto max-w-3xl h-auto mb-3">
-      <%= image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1670480868/anubascj2g0mokzeya6s.png', class: "rounded-lg mx-4") %>
+      <%= image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1670480868/anubascj2g0mokzeya6s.png', class: "rounded-lg mx-0 md:mx-4") %>
     </div>
   <% end %>
   <section>
@@ -115,6 +115,16 @@
           </svg>
           <span class="ml-2">
             SNSの投稿を表示して情報を周知
+          </span>
+        </div>
+
+        <div class="flex items-center text-gray-700 mt-3 dark:text-gray-200">
+          <svg class="w-5 h-5" stroke-width="1.92" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#5416e3">
+            <path d="M7 12.5l3 3 7-7" stroke="#5416e3" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="#5416e3" stroke-width="1.92" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <span class="ml-2">
+            ユーザー登録業務のDX化
           </span>
         </div>
         
@@ -224,16 +234,15 @@
       </p>
       <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
         <div class="text-center">
-          <%= link_to '#', data: { "lightbox-source-param": 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940256/mobile_view.png.001_wiapsi.png', action: "lightbox#handleOpen" } do %>
-            <img class="object-cover w-full rounded-lg h-96 " src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/v1661940256/mobile_view.png.001_wiapsi.png" alt="sample view of mobile screen">
+          <%= link_to '#', data: { "lightbox-source-param": 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/zhyz8slk7otwukg4jfw6.jpg', action: "lightbox#handleOpen" } do %>
+            <img class="object-cover w-full rounded-lg h-96 " src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/zhyz8slk7otwukg4jfw6.jpg" alt="sample view of mobile screen">
           <% end %>
           <h2 class="mt-4 text-2xl font-semibold text-gray-800 dark:text-gray-200">
             ユーザースマホ画面
           </h2>
           <p class="mt-2 text-sm tracking-wider text-gray-500 dark:text-gray-400">
             ドッグラン利用記録機能<br>
-            ワンコのプロフィール設定<br>
-            現在ラン利用中のワンコ一覧
+            その他付加機能
           </p>
         </div>
 

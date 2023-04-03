@@ -33,7 +33,7 @@
     </div>
     <!--/Total entries over the past month Card-->
 
-    <% if current_user.name == 'grand_admin' %>
+    <% if current_user.grand_admin? %>
     <!--Total Users Card-->
       <div class="w-full md:w-1/2 p-6">
         <div class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-5">
@@ -129,7 +129,7 @@
       </div>
     </div>
     <!--/dogrun information at this month Card-->
-    <% if current_user.name != 'grand_admin' %>
+    <% if !current_user.grand_admin? %>
     <!--Total Staff Card-->
     <div class="w-full md:w-1/2 p-6">
       <div class="bg-gradient-to-b from-red-200 to-red-100 border-b-4 border-red-500 rounded-lg shadow-xl p-5">

@@ -1,5 +1,6 @@
 class Reon::StaticPagesController < Reon::DogrunPlaceController
-  skip_before_action :require_login, only: %i[top terms_of_service]
+  before_action :set_new_post, only: %i[top]
+  skip_before_action :require_login, only: %i[top]
   before_action :set_dogs_and_registration_numbers_at_local, only: %i[top]
   before_action :get_dogrun_entry_data, only: %i[top]
 
@@ -38,8 +39,6 @@ class Reon::StaticPagesController < Reon::DogrunPlaceController
     end
 
   end
-
-  def terms_of_service; end
 
   private
   

@@ -7,7 +7,7 @@ class Admin::DashboardsController < Admin::BaseController
     @two_weeks_ago = @today.prev_day(14)
     @one_year_ago = @today.prev_day(365)
 
-    if current_user.name == 'grand_admin'
+    if current_user.grand_admin?
       @entries_over_the_past_month = Entry.where(entry_at: from..to)
       @users = User.all
       @registration_dogs = Dog.all

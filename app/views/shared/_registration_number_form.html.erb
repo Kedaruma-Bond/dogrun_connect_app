@@ -17,12 +17,14 @@
       </li>
     <% end %>
   </ul>
-  <%= form_with model: registration_number, url: send(registration_numbers_path), method: :post, id: "registration_number_form", data: { turbo: false } do |f| %>
+  <%= form_with model: registration_number, url: send(registration_numbers_path), method: :post, id: "registration_number_form" do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <div class="md:flex items-center justify-center">
-      <div class="w-full md:w-1/2 flex flex-col"> 
-        <%= f.label :registration_number, registration_number_notation, class: "font-semibold text-gray-700 leading-none" %>
-        <%= f.text_field :registration_number, class: "block w-full sm:w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" %>
+    <div class="mx-auto md:flex items-center justify-center mt-4">
+        <%= f.label :registration_number do %>
+          <label class="ml-4 font-semibold text-gray-700 leading-none"><%= registration_number_notation %></label>
+          <%= f.text_field :registration_number, class: "mx-auto block w-11/12 sm:w-5/6 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" %>
+          <small class="ml-4 md:ml-9 text-gray-500 text-xs"><%= registration_number_hint %></small>
+        <% end %>
       </div>
     </div>
     <div class="flex mt-7 justify-center text-sm">

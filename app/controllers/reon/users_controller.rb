@@ -1,4 +1,5 @@
 class Reon::UsersController < Reon::DogrunPlaceController
+  before_action :set_new_post, only: %i[new show]
   skip_before_action :require_login, only: %i[new create]
   before_action :correct_user, :set_dogs_and_registration_numbers_at_local, only: %i[show]
 
@@ -11,10 +12,14 @@ class Reon::UsersController < Reon::DogrunPlaceController
     if @user.save
       UserMailer.user_registration_success(@user).deliver_now
       login(params[:user][:email], params[:user][:password])
-      redirect_to send(@dog_registration_path), success: t('local.users.user_create')
-      return
+      if @dogrun_place.registration_card.blank?
+        redirect_to send(@dog_registration_path), success: t('local.users.user_create')
+      else
+        redirect_to send(@form_selection_path), success: t('local.users.user_create')
+      end
+    else
+      render :new, status: :unprocessable_entity
     end
-    render :new, status: :unprocessable_entity
   end
 
   def edit

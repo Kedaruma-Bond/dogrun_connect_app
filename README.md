@@ -2,16 +2,17 @@
 ドッグランの利用記録アプリです。<br>
 入場時、退場時にアプリ上のボタンを押してもらうことで利用記録をレコードとしてDBに記録します。<br>
 今ドッグランを利用しているワンコをアプリ上で遠隔で確認することができるので、不要なトラブルの回避や、仲良しの仔と遭遇しやすくなりドッグランユーザーの利用満足度の向上が見込めます。<br>
-ワンコの接種証明書の写真をアプリに登録できるので、登録制ドッグランの登録時等の証明書が必要な場面で有用です。<br>
+ワンコのワンチンの接種証明書の写真をアプリに登録できるので、登録制ドッグランの登録時等の証明書が必要な場面で有用です。<br>
 運営向けの管理者画面では利用記録のトレンドを確認できたり、アプリのTOP画面に配置された掲示板の掲示内容を操作して情報の周知を図ることができます。<br>
+また、ユーザーに事前にアプリを登録してもらえていれば、来場時の登録手続きの簡略化が見込めます。<br>
 <br>
-![スクリーンショット 2022-08-30 11 28 32](https://user-images.githubusercontent.com/85489708/187335161-8e2c67e1-b6ac-4659-8788-4c546cc62dd0.JPG)
+![スクリーンショット 2023-02-27 14 42 01](https://user-images.githubusercontent.com/85489708/221483750-98e70dda-d0b6-4b3b-9ee6-7ff667281d58.JPG)
 <br>
-![mobile_view png 001](https://user-images.githubusercontent.com/85489708/187360202-870240ad-f177-464d-8e56-3c352401b54c.png)
+![mobile_screens](https://user-images.githubusercontent.com/85489708/221483864-73a14844-921c-4b20-a4dc-8c54872e1681.jpeg)
 <br>
-![admin_view-1 png 002](https://user-images.githubusercontent.com/85489708/187360367-02045eed-3412-4b63-b267-302f35d032b7.png)
+![p5c28bn9fqf829pvxl8s](https://user-images.githubusercontent.com/85489708/221483978-414a50d6-ff9a-47e5-811d-a09480c4ab7b.jpg)
 <br>
-![admin_image-2 png 001](https://user-images.githubusercontent.com/85489708/187360435-a38397c9-f845-4fa9-9d1b-481c2757a079.png)
+![wxr0ztply7rv9450idlu](https://user-images.githubusercontent.com/85489708/221484023-1cac1d69-4f65-4ac3-84eb-6a398206fd3e.jpg)
 <br>
 
 ## 想定ユーザー

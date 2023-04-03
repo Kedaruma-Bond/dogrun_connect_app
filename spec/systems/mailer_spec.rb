@@ -11,7 +11,7 @@ RSpec.describe 'Mailer', type: :system do
     end
 
     context 'メールを送信した場合' do
-      it 'タイトル、メールアドレスが正しく送信される' do
+      example 'タイトル、メールアドレスが正しく送信される' do
         check_sent_mail
       end
     end

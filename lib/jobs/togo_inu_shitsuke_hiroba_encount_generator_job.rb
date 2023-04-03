@@ -5,7 +5,9 @@ class TogoInuShitsukeHirobaEncountGeneratorJob
       Rails.cache.delete('previous_dogs_id')
     end
     
-    during_entry_dogs = Dog.dogrun_place_id_for_encount_dog(2)
+    dogrun_place_id = 2
+
+    during_entry_dogs = Dog.dogrun_place_id_for_encount_dog(dogrun_place_id)
     return if during_entry_dogs.blank?
     
     # p '*' * 10
@@ -66,14 +68,14 @@ class TogoInuShitsukeHirobaEncountGeneratorJob
           # p encount_dog
           # p '*' * 10
     
-          EncountDog.create!(dogrun_place_id: 2, user_id: user_id, dog_id: dog_id) if encount_dog.blank?
+          EncountDog.create!(dogrun_place_id: dogrun_place_id, user_id: user_id, dog_id: dog_id) if encount_dog.blank?
           
           encount_in_present_entry = Encount.where(entry_id: present_entry.id).where(dog_id: dog_id)
           # p 'encount_in_present_entry' 
           # p encount_in_present_entry
           # p '*' * 10
     
-          Encount.create!(dogrun_place_id: 2, user_id: user_id, dog_id: dog_id, entry_id: present_entry.id) if encount_in_present_entry.blank?
+          Encount.create!(dogrun_place_id: dogrun_place_id, user_id: user_id, dog_id: dog_id, entry_id: present_entry.id) if encount_in_present_entry.blank?
     
         end
     

@@ -21,7 +21,7 @@ end
 #  updated_at      :datetime         not null
 #  dog_id          :bigint           not null
 #  dogrun_place_id :bigint           not null
-#  entry_id        :bigint
+#  entry_id        :bigint           not null
 #  user_id         :bigint           not null
 #
 # Indexes

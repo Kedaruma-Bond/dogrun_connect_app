@@ -5,7 +5,7 @@ class Entry < ApplicationRecord
 
   attr_accessor :select_dog, :pre_flg
 
-  #validations
+  # validations
   validates :entry_at, presence: true
 
   # delegate

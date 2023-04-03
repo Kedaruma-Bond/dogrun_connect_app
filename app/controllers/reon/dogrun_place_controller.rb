@@ -23,23 +23,31 @@ class Reon::DogrunPlaceController < ApplicationController
       @new_registration_number_path = :new_reon_registration_number_path
       @registration_numbers_path = :reon_registration_numbers_path
       @registration_number_path = :reon_registration_number_path 
+      @rns_form_selection_path = :reon_registration_numbers_form_selection_path
+      @rns_have_registration_card_path = :reon_registration_numbers_have_registration_card_path
+      @rns_not_have_registration_card_path = :reon_registration_numbers_not_have_registration_card_path
+      @encount_dog_path = :reon_encount_dog_path
       @encount_dogs_path = :reon_encount_dogs_path
       @edit_encount_dog_path = :edit_reon_encount_dog_path
       @search_encount_dogs_path = :search_reon_encount_dogs_path
+      @entry_path = :reon_entry_path
       @entries_path = :reon_entries_path
       @search_entries_path = :search_reon_entries_path
-      @pre_entries_path = :reon_pre_entries_path
+      @pre_entry_path = :reon_pre_entry_path
       @new_sns_account_path = :new_reon_sns_account_path
       @dogrun_name = :reon
       @sns_account_path = :reon_sns_account_path
       @edit_sns_account_path = :edit_reon_sns_account_path
+      @form_selection_path = :reon_dog_registration_form_selection_path
+      @have_registration_card_path = :reon_dog_registration_have_registration_card_path
+      @not_have_registration_card_path = :reon_dog_registration_not_have_registration_card_path
       @dog_registration_path = :reon_dog_registration_path
       @dog_registration_confirm_path = :reon_dog_registration_confirm_path
       @new_article_path = :new_reon_article_path
       @article_path = :reon_article_path
       @new_embed_path = :new_reon_embed_path
-      @embed_path = :reon_hiroba_embed_path
-      @dogrun_terms_of_service_page = "./terms_of_service"
+      @embed_path = :reon_embed_path
+      @dogrun_terms_of_service_page = "https://r.goope.jp/wanko141327/free/riyoukiyaku"
     end
 
     def set_dogs_and_registration_numbers_at_local

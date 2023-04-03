@@ -4,7 +4,7 @@ class Article < ApplicationRecord
 
   # validates
   validates :content, presence: true, length: { maximum: 400 }
-  validates :photo, size: { less_than: 10.megabytes }
+  validates :photo, size: { less_than: 10.megabytes }, content_type: [:png, :jpg, :jpeg, :heif]
 end
 
 # == Schema Information

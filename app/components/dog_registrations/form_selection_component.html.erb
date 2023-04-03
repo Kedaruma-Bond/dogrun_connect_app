@@ -1,0 +1,19 @@
+<% content_for(:title, @title) %>
+<div class="max-w-5xl md:mx-auto sm:px-6 lg:px-8 bg-purple-200 rounded-lg">
+  <div class="w-full p-4 sm:p-12">
+    <p class="my-2">
+      <%= simple_format(@confirmation, class: 'text-2xl md:text-3xl font-bold text-gray-700 text-center') %>
+    </p>
+    <% if !@dogrun_place.registration_card.nil? %>
+      <%= cl_image_tag(@dogrun_place.registration_card.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "mx-auto rounded mt-3 w-full md:w-1/3 h-auto", alt: @notation_registration_card) %>
+    <% end %>
+    <div class="flex flex-col mt-3">
+      <%= link_to send(@have_registration_card_path), class: "mb-3 mx-auto text-center items-center w-1/2 md:w-1/3 px-2 py-2 font-medium tracking-wide text-white bg-green-500 rounded-md hover:bg-green-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
+        <span><%= t('simple_form.yes') %></span>
+      <% end %>
+      <%= link_to send(@not_have_registration_card_path), class: "mx-auto text-center items-center w-1/2 md:w-1/3 px-2 py-2 font-medium tracking-wide text-white bg-cyan-500 rounded-md hover:bg-cyan-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
+        <span><%= t('simple_form.no') %></span>
+      <% end %>
+    </div>
+  </div>
+</div>

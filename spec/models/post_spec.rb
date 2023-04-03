@@ -2,41 +2,41 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   context '全てのフィールドが有効な場合' do
-    it '有効であること' do
+    example '有効であること' do
       post = build(:post, :non_publish, :article)
       expect(post).to be_valid
     end
   end
 
-  context 'post_typeがnullの場合' do
-    it '無効であること' do
+  context 'post_typeがnilの場合' do
+    example '無効であること' do
       post = build(:post, :non_publish, post_type: nil)
       expect(post).to be_invalid
-      expect(post.errors[:post_type]).to include('を入力してください')
+      expect(post.errors).to be_of_kind(:post_type, :blank)
     end
   end
 
-  context 'publish_statusがnullの場合' do
-    it '無効であること' do
+  context 'publish_statusがnilの場合' do
+    example '無効であること' do
       post = build(:post, :article, publish_status: nil)
       expect(post).to be_invalid
-      expect(post.errors[:publish_status]).to include('を入力してください')
+      expect(post.errors).to be_of_kind(:publish_status, :blank)
     end
   end
 
-  context 'dogrun_placeがnullの場合' do
-    it '無効であること' do
+  context 'dogrun_placeがnilの場合' do
+    example '無効であること' do
       post = build(:post, :article, :non_publish, dogrun_place: nil)
       expect(post).to be_invalid
-      expect(post.errors[:dogrun_place]).to include('を入力してください')
+      expect(post.errors).to be_of_kind(:dogrun_place, :blank)
     end
   end
 
-  context 'userがnullの場合' do
-    it '無効であること' do
+  context 'userがnilの場合' do
+    example '無効であること' do
       post = build(:post, :article, :non_publish, user: nil)
       expect(post).to be_invalid
-      expect(post.errors[:user]).to include('を入力してください')
+      expect(post.errors).to be_of_kind(:user, :blank)
     end
   end
 end

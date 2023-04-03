@@ -3,7 +3,19 @@
     dogs: @dogs,
     user_path: @user_path,
     current_user: current_user) do %>
+  <% if session[:card_flg] == true %>
     <%= render partial: 'shared/registration_number_form', 
+        locals: { 
+          dogs: @dogs, 
+          dogrun_place: @dogrun_place,
+          dogrun_terms_of_service_page: @dogrun_terms_of_service_page,
+          registration_number: @registration_number, 
+          registration_numbers_path: @registration_numbers_path, 
+          registration_number_notation: I18n.t('togo_inu_shitsuke_hiroba.registration_number'),
+          registration_number_hint: @registration_number_hint
+        } %>
+  <% else %>
+    <%= render partial: 'shared/registration_number_hidden_form', 
         locals: { 
           dogs: @dogs, 
           dogrun_place: @dogrun_place,
@@ -12,4 +24,5 @@
           registration_numbers_path: @registration_numbers_path, 
           registration_number_notation: I18n.t('togo_inu_shitsuke_hiroba.registration_number') 
         } %>
+  <% end %>
 <% end %>

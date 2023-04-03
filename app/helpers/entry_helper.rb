@@ -46,4 +46,5 @@ module EntryHelper
       return true
     end
   end
+
 end

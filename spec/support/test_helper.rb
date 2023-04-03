@@ -4,12 +4,34 @@ module RequestHelper
     !session[:user_id].nil?
   end
 
-  def log_in_as(user, remember: '1')
-    post togo_inu_shitsuke_hiroba_login_path, params: { session: {
+  def admin_log_in_as(user)
+    post admin_login_path, params: { 
+      session: {
+        email: user.email,
+        password: 'password',
+        remember: true
+      }
+    }
+  end
+
+  def togo_inu_shitsuke_hiroba_log_in_as(user)
+    post togo_inu_shitsuke_hiroba_login_path, params: { 
+      session: {
       email: user.email,
       password: 'password',
-      remember: remember
-    }}
+      remember: true
+      }
+    }
+  end
+  
+  def reon_log_in_as(user)
+    post reon_login_path, params: { 
+      session: {
+      email: user.email,
+      password: 'password',
+      remember: true
+      }
+    }
   end
 end
 

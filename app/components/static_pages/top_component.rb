@@ -10,8 +10,8 @@ class StaticPages::TopComponent < ApplicationViewComponent
     num_of_playing_dogs:,
     dogs_non_public:,
     dog_profile_path:,
-    entries_path:,
-    pre_entries_path:,
+    entry_path:,
+    pre_entry_path:,
     jump_to_signup_path:,
     dogrun_terms_of_service_page:,
     login_path:,
@@ -26,8 +26,8 @@ class StaticPages::TopComponent < ApplicationViewComponent
     @num_of_playing_dogs = num_of_playing_dogs
     @dogs_non_public = dogs_non_public
     @dog_profile_path = dog_profile_path
-    @entries_path = entries_path
-    @pre_entries_path = pre_entries_path
+    @entry_path = entry_path
+    @pre_entry_path = pre_entry_path
     @jump_to_signup_path = jump_to_signup_path
     @dogrun_terms_of_service_page = dogrun_terms_of_service_page
     @login_path = login_path

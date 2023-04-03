@@ -1,9 +1,10 @@
 class SnsAccount < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :dogrun_place, optional: true
+  include ActiveModel::Validations
 
   # validations
-  
+  validates_with SnsAccountValidator
 end
 
 # == Schema Information

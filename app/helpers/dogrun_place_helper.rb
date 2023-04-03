@@ -26,6 +26,19 @@ module DogrunPlaceHelper
     end
   end
 
+  def registration_card(dogrun_place)
+    cl_image_tag(dogrun_place.registration_card.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, alt: "preview of registration card", class: "object-cover rounded mx-auto md:mx-0 h-auto w-20")
+  end
+  
+  def registration_card_for_preview(dogrun_place)
+    if dogrun_place.registration_card.attached?
+      cl_image_tag(dogrun_place.registration_card.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, "data-preview-target": "imagePreview", alt: "preview of registration card", class: "object-cover rounded mx-auto md:mx-0 h-auto w-40")
+    else
+      # 小さい画像ファイルを表示させておき、添付画像と差し替える
+      image_tag 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==', "data-preview-target": "imagePreview"
+    end
+  end
+
   def dogrun_facility_view(name)
     case name
     when 'drinking_fountains'

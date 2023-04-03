@@ -14,7 +14,7 @@ class PasswordResetsController < ApplicationController
 
     return if @user.present?
 
-    not_authenticated
+    incorrect_token_link
   end
 
   def update
@@ -22,7 +22,7 @@ class PasswordResetsController < ApplicationController
     @user = User.load_from_reset_password_token(params[:id])
 
     if @user.blank?
-      not_authenticated
+      incorrect_token_link
       return
     end
 
@@ -35,4 +35,9 @@ class PasswordResetsController < ApplicationController
       render action: :edit
     end
   end
+
+  private
+    def incorrect_token_link
+      redirect_to '/', error: t('defaults.opened_incorrect_token_link')
+    end
 end

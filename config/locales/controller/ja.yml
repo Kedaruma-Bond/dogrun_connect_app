@@ -4,13 +4,6 @@ ja:
       update:
         registration_number_updated_successfully: 登録番号を更新しました
         registration_number_updated_error: 登録番号は空欄では保存できません
-    sns_accounts:
-      create:
-        cancel_to_registration: 登録をキャンセルしました
-        registration_duplicated: 登録が重複しています
-        registration_successful: 登録しました
-      update:
-        cancel_to_update: 編集をキャンセルしました
     posts:
       cancel_to_publish:
         change_to_non_publish: 掲示を取り止めました
@@ -21,9 +14,9 @@ ja:
         staff_create: スタッフが新規登録されました
         fail_to_register: 入力内容を確認してください
       enable_notification:
-        change_to_enable: 通知にしました
+        change_to_enable: 通知に設定しました
       disable_notification:
-        change_to_disable: 非通知にしました
+        change_to_disable: 非通知に設定しました
     users:
       deactivation:
         account_frozen: アカウントを凍結しました
@@ -108,6 +101,10 @@ ja:
       post_save_error: |
         投稿タイプが未選択です
         選択してからOKボタンを押してください
+      guest_cannot_create_post: |
+        ゲストユーザーでは投稿
+        はできません
+        新規登録後に再度お試しください
     entries:
       dogrun_is_closing_now: 現在このドッグランは休業中です
       entry_success: 入場しました
@@ -225,6 +222,7 @@ ja:
       registration_number:
         dogrun_place: 登録ドッグラン
         registration_number: 登録番号
+        agreement: 利用規約
       entry:
         entry_at: 入場時間
         exit_at: 退場時間

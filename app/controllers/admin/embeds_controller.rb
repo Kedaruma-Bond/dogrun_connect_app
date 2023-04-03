@@ -1,18 +1,22 @@
 class Admin::EmbedsController < Admin::BaseController
   before_action :set_embed, only: %i[edit update]
-  before_action :embed_params, only: %i[create update]
+  before_action :correct_admin_check, only: %i[edit update]
 
   def new
     @embed = Embed.new
+    post = Post.find(params[:id])
+    if !post.embed?
+      redirect_to admin_posts_path, error: t('defaults.illegal_route')
+    end
   end
 
   def create
     @embed = Embed.new(embed_params)
     if @embed.save
       redirect_to admin_posts_path, success: t('defaults.post_successfully')
-      return
+    else
+      render :new, status: :unprocessable_entity
     end
-    render :new, status: :unprocessable_entity
   end
 
   def edit
@@ -21,7 +25,11 @@ class Admin::EmbedsController < Admin::BaseController
 
   def update
     if @embed.update(embed_params)
-      redirect_to session[:previous_url], success: t('defaults.update_successfully')
+      if session[:previous_url].nil?
+        redirect_to admin_posts_path, success: t('defaults.update_successfully')
+      else
+        redirect_to session[:previous_url], success: t('defaults.update_successfully')
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -37,5 +45,9 @@ class Admin::EmbedsController < Admin::BaseController
 
     def set_embed
       @embed = Embed.find_by(post_id: params[:id])
+    end
+
+    def correct_admin_check
+      redirect_to admin_root_path, error: t('defaults.not_authorized') unless current_user.grand_admin? ||  @embed.post.dogrun_place == current_user.dogrun_place
     end
 end

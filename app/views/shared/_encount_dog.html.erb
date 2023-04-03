@@ -1,4 +1,5 @@
-<div class="flex mx-auto max-w-md bg-gray-200 text-gray-600 dark:bg-gray-500 dark:text-gray-200 bg-opacity-50 rounded-lg shadow-lg mb-2">
+<%= turbo_frame_tag dom_id(encount_dog) do %>
+<div class="flex mx-auto max-w-md bg-gray-200 text-gray-600 dark:bg-gray-500 dark:text-gray-200 bg-opacity-50 rounded-lg shadow-lg mb-2 relative">
   <div class="w-1/3 mx-auto my-auto ml-1">
     <%= link_to send(dog_profile_path, encount_dog.dog) do %>
       <div class="w-28 h-28">
@@ -46,6 +47,13 @@
     </div>
   </div>
   <div class="w-1/6 my-auto">
+    <div class="absolute top-0 right-0 mr-1 mt-1">
+      <%= link_to send(encount_dog_path, encount_dog), data: { turbo_method: :delete, turbo_confirm: t('shared.encount_dog.destroy_confirmation') }, class: "text-gray-100" do %>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      <% end %>
+    </div>
     <%= link_to send(edit_encount_dog_path, encount_dog) do %>
       <svg class="w-7 h-7 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
@@ -53,3 +61,4 @@
     <% end %> 
   </div>
 </div>
+<% end %>

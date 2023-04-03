@@ -2,33 +2,43 @@ require 'rails_helper'
 
 RSpec.describe RegistrationNumber, type: :model do
   context '全てのフィールドが有効な場合' do
-    it '有効であること' do
+    example '有効であること' do
       registration_number = build(:registration_number)
       expect(registration_number).to be_valid
     end
   end
 
-  context 'dogrun_placeが空欄の場合' do
-    it '無効であること' do
+  context 'dogrun_placeがnilの場合' do
+    example '無効であること' do
       registration_number = build(:registration_number, dogrun_place: nil)
       expect(registration_number).to be_invalid
-      expect(registration_number.errors[:dogrun_place]).to include('を入力してください')
+      expect(registration_number.errors).to be_of_kind(:dogrun_place, :blank)
     end
   end
 
-  context 'registration_numberがnullの場合' do
-    it '無効であること' do
-      registration_number = build(:registration_number, registration_number: nil)
-      expect(registration_number).to be_invalid
-      expect(registration_number.errors[:registration_number]).to include('を入力してください')
+  describe 'registration_numberフィールドについて' do
+    context 'nilの場合' do
+      example '無効であること' do
+        registration_number = build(:registration_number, registration_number: nil)
+        expect(registration_number).to be_invalid
+        expect(registration_number.errors).to be_of_kind(:registration_number, :blank)
+      end
+    end
+
+    context '50字以上の場合' do
+      example '無効であること' do
+        registration_number = build(:registration_number, registration_number: 'a' * 51)
+        expect(registration_number).to be_invalid
+        expect(registration_number.errors).to be_of_kind(:registration_number, :too_long)
+      end
     end
   end
 
-  context 'dogがnullの場合' do
-    it '無効であること' do
+  context 'dogがnilの場合' do
+    example '無効であること' do
       registration_number = build(:registration_number, dog: nil)
       expect(registration_number).to be_invalid
-      expect(registration_number.errors[:dog]).to include('を入力してください')
+      expect(registration_number.errors).to be_of_kind(:dog, :blank)
     end
   end
 end
@@ -43,7 +53,7 @@ end
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  dog_id              :bigint           not null
-#  dogrun_place_id     :bigint
+#  dogrun_place_id     :bigint           not null
 #
 # Indexes
 #

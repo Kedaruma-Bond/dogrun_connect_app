@@ -18,9 +18,13 @@
               <% end %>
             </div>
             <div class="text-gray-700 text-xs font-light">
-              <%= RegistrationNumber.human_attribute_name(:registration_number) %>
+              <%= @naming_of_registration_number %>
               <p class="text-xl font-bold">
-                <%= @registration_number.registration_number %>
+                <% if !@registration_number.nil? %>
+                  <%= @registration_number.registration_number %>
+                <% else %>
+                  -
+                <% end %>
               </p>
             </div>
             <div class="flex flex-col items-center text-center justify-center mt-3">

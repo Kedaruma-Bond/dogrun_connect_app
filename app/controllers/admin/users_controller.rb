@@ -1,6 +1,7 @@
 class Admin::UsersController < Admin::BaseController
   include Pagy::Backend
   before_action :check_grand_admin
+  before_action :dogrun_places_set, only: %i[new create]
   before_action :agreement_set, only: %i[new]
   before_action :user_params, only: %i[create]
   before_action :set_q, only: %i[index search]
@@ -12,7 +13,6 @@ class Admin::UsersController < Admin::BaseController
 
   def new
     @user = User.new
-    @dogrun_places = DogrunPlace.all
   end
 
   def create
@@ -20,16 +20,21 @@ class Admin::UsersController < Admin::BaseController
     if @user.save
       UserMailer.admin_user_registration_success(@user).deliver_now
       redirect_to admin_users_path, success: t('.admin_user_create')
-      return
+    else
+      render :new, status: :unprocessable_entity
     end
-    render :new, status: :unprocessable_entity
   end
 
   def destroy
-    session[:previous_url] = request.referer
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to session[:previous_url], success: t('defaults.destroy_successfully'), status: :see_other }
+      format.html { 
+        if request.referer.nil?
+          redirect_to admin_users_path, success: t('defaults.destroy_successfully'), status: :see_other
+        else
+          redirect_to request.referer, success: t('defaults.destroy_successfully'), status: :see_other
+        end
+      }
       format.json { head :no_content }
     end
   end
@@ -39,19 +44,29 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def deactivation
-    session[:previous_url] = request.referer
     @user.update!(deactivation: true)
     respond_to do |format|
-      format.html { redirect_to session[:previous_url], success: t('.account_frozen') }
+      format.html { 
+        if request.referer.nil?
+          redirect_to admin_users_path, success: t('.account_frozen') 
+        else
+          redirect_to request.referer, success: t('.account_frozen') 
+        end
+        }
       format.json { head :no_content }
     end
   end
 
   def activation
-    session[:previous_url] = request.referer
     @user.update!(deactivation: false)
     respond_to do |format|
-      format.html { redirect_to session[:previous_url], success: t('.account_activated') }
+      format.html {
+        if request.referer.nil?
+          redirect_to admin_users_path, success: t('.account_activated') 
+        else
+          redirect_to request.referer, success: t('.account_activated') 
+        end
+      }
       format.json { head :no_content }
     end
   end
@@ -76,5 +91,9 @@ class Admin::UsersController < Admin::BaseController
 
     def agreement_set
       params[:agreement] = true
+    end
+
+    def dogrun_places_set
+      @dogrun_places = DogrunPlace.all
     end
 end

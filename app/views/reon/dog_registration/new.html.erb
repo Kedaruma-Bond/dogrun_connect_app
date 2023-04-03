@@ -1,11 +1,23 @@
 <%= render DogRegistrations::NewComponent.new(
     title: I18n.t('local.dog_registrations.new.title')) do %>
+  <% if session[:card_flg] == true %>
+    <%= render partial: 'shared/dog_registration_form', 
+    locals: { 
+      dog_registration: @dog_registration, 
+      dog_registration_confirm_path: @dog_registration_confirm_path,
+      registration_number_notation: I18n.t('reon.registration_number'),
+      dogrun_place: @dogrun_place,
+      registration_number_hint: @registration_number_hint,
+      dogrun_terms_of_service_page: @dogrun_terms_of_service_page
+      } %>
+  <% else %>
     <%= render partial: 'shared/dog_registration_hidden_form', 
       locals: { 
         dog_registration: @dog_registration, 
         dog_registration_confirm_path: @dog_registration_confirm_path,
-        registration_number_notation: I18n.t('togo_inu_shitsuke_hiroba.registration_number'),
+        registration_number_notation: I18n.t('reon.registration_number'),
         dogrun_place: @dogrun_place,
         dogrun_terms_of_service_page: @dogrun_terms_of_service_page
         } %>
+  <% end %>
 <% end %>

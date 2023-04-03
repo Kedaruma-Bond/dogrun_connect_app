@@ -1,18 +1,22 @@
 class Admin::ArticlesController < Admin::BaseController
   before_action :set_article, only: %i[edit update]
-  before_action :article_params, only: %i[create update]
+  before_action :correct_admin_check, only: %i[edit update] 
 
   def new
     @article = Article.new
+    post = Post.find(params[:id])
+    if !post.article?
+      redirect_to admin_posts_path, error: t('defaults.illegal_route')
+    end
   end
 
   def create
     @article = Article.new(article_params)
     if @article.save
       redirect_to admin_posts_path, success: t('defaults.post_successfully')
-      return
+    else
+      render :new, status: :unprocessable_entity
     end
-    render :new, status: :unprocessable_entity
   end
 
   def edit
@@ -21,8 +25,11 @@ class Admin::ArticlesController < Admin::BaseController
 
   def update
     if @article.update(article_params)
-      redirect_to session[:previous_url], success: t('defaults.update_successfully')
-      return
+      if session[:previous_url].nil?
+        redirect_to admin_posts_path, success: t('defaults.update_successfully')
+      else
+        redirect_to session[:previous_url], success: t('defaults.update_successfully')
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -38,5 +45,9 @@ class Admin::ArticlesController < Admin::BaseController
 
     def set_article
       @article = Article.find_by(post_id: params[:id])
+    end
+
+    def correct_admin_check
+      redirect_to admin_root_path, error: t('defaults.not_authorized') unless current_user.grand_admin? ||  @article.post.dogrun_place == current_user.dogrun_place
     end
 end

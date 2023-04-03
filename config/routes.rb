@@ -7,9 +7,6 @@ Rails.application.routes.draw do
 
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
-  get '/service_worker', to: 'service_workers#service_worker'
-  get '/offline', to: 'service_workers#offline'
-
   get 'sitemap', to: redirect("https://s3-ap-northeast-1.amazonaws.com/#{Rails.application.credentials.aws[:s3_bucket_name]}/sitemaps/sitemap.xml.gz")
   
   resource :contacts, only: %i[new create]
@@ -19,7 +16,7 @@ Rails.application.routes.draw do
   
   namespace :togo_inu_shitsuke_hiroba do
     get 'top', to: 'static_pages#top'
-    resource :sessions, only: %i[new create destroy]
+    resource :session, only: %i[new create destroy]
     post '/guest_login', to: 'sessions#guest_login'
     post '/jump_to_signup', to: 'sessions#jump_to_signup'
     get 'login', to: 'sessions#new'
@@ -27,25 +24,29 @@ Rails.application.routes.draw do
     delete 'logout', to: 'sessions#destroy', as: :logout
 
     resources :sns_accounts, only: %i[new create edit update destroy]
-    resources :encount_dogs, only: %i[index edit update] do
+    resources :encount_dogs, only: %i[index edit update destroy] do
       collection do
         get 'search', to: 'encount_dogs#search'
       end
     end
 
-    resource :pre_entries, only: %i[destroy]
-    resource :entries, only: %i[create update]
-    resources :entries, only: %i[index] do
+    resource :pre_entry, only: %i[destroy]
+    resources :entries, only: %i[index create destroy] do
       collection do
         get 'search', to: 'entries#search'
         post 'search', to: 'entries#search'
       end
     end
+    resource :entry, only: %i[update]
     resources :users, only: %i[new create show]
     resources :user_details, only: %i[new create edit update destroy]
     resources :dogs, only: %i[show edit update]
     resources :registration_numbers, only: %i[new create destroy]
-    resources :posts, only: %i[new create] do
+    get 'registration_numbers/form_selection', to: 'registration_numbers#form_selection'
+    get 'registration_numbers/have_registration_card', to: 'registration_numbers#have_registration_card'
+    get 'registration_numbers/not_have_registration_card', to: 'registration_numbers#not_have_registration_card' 
+    
+    resources :posts, only: %i[create] do
       member do
         resource :article, only: %i[new create]
         resource :embed, only: %i[new create]
@@ -54,6 +55,9 @@ Rails.application.routes.draw do
     
     get 'signup', to: 'users#new', as: :signup
     
+    get 'dog_registration/form_selection', to: 'dog_registration#form_selection'
+    get 'dog_registration/have_registration_card', to: 'dog_registration#have_registration_card'
+    get 'dog_registration/not_have_registration_card', to: 'dog_registration#not_have_registration_card'
     get 'dog_registration', to: 'dog_registration#new'
     post 'dog_registration', to: 'dog_registration#create'
     post 'dog_registration/confirm', to: 'dog_registration#confirm'
@@ -61,8 +65,7 @@ Rails.application.routes.draw do
   
   namespace :reon do
     get 'top', to: 'static_pages#top'
-    get 'terms_of_service', to: 'static_pages#terms_of_service'
-    resource :sessions, only: %i[new create destroy]
+    resource :session, only: %i[new create destroy]
     post '/guest_login', to: 'sessions#guest_login'
     post '/jump_to_signup', to: 'sessions#jump_to_signup'
     get 'login', to: 'sessions#new'
@@ -70,25 +73,29 @@ Rails.application.routes.draw do
     delete 'logout', to: 'sessions#destroy', as: :logout
 
     resources :sns_accounts, only: %i[new create edit update destroy]
-    resources :encount_dogs, only: %i[index edit update] do
+    resources :encount_dogs, only: %i[index edit update destroy] do
       collection do
         get 'search', to: 'encount_dogs#search'
       end
     end
 
-    resource :pre_entries, only: %i[destroy]
-    resource :entries, only: %i[create update]
-    resources :entries, only: %i[index] do
+    resource :pre_entry, only: %i[destroy]
+    resources :entries, only: %i[index create destroy] do
       collection do
         get 'search', to: 'entries#search'
         post 'search', to: 'entries#search'
       end
     end
+    resource :entry, only: %i[update]
     resources :users, only: %i[new create show]
     resources :user_details, only: %i[new create edit update destroy]
     resources :dogs, only: %i[show edit update]
     resources :registration_numbers, only: %i[new create destroy]
-    resources :posts, only: %i[new create] do
+    get 'registration_numbers/form_selection', to: 'registration_numbers#form_selection'
+    get 'registration_numbers/have_registration_card', to: 'registration_numbers#have_registration_card'
+    get 'registration_numbers/not_have_registration_card', to: 'registration_numbers#not_have_registration_card' 
+    
+    resources :posts, only: %i[create] do
       member do
         resource :article, only: %i[new create]
         resource :embed, only: %i[new create]
@@ -96,7 +103,10 @@ Rails.application.routes.draw do
     end
     
     get 'signup', to: 'users#new', as: :signup
-    
+
+    get 'dog_registration/form_selection', to: 'dog_registration#form_selection'
+    get 'dog_registration/have_registration_card', to: 'dog_registration#have_registration_card'
+    get 'dog_registration/not_have_registration_card', to: 'dog_registration#not_have_registration_card' 
     get 'dog_registration', to: 'dog_registration#new'
     post 'dog_registration', to: 'dog_registration#create'
     post 'dog_registration/confirm', to: 'dog_registration#confirm'
@@ -111,7 +121,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :posts, only: %i[index new create destroy] do
+    resources :posts, only: %i[index create destroy] do
       collection do
         get 'search', to: 'posts#search'
       end
@@ -157,7 +167,7 @@ Rails.application.routes.draw do
       end
     end
     
-    resource :sessions, only: %i[new create destroy]
+    resource :session, only: %i[new create destroy]
     get 'login', to: 'sessions#new'
     post 'login', to: 'sessions#create'
     delete 'logout', to: 'sessions#destroy'

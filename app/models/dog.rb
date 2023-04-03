@@ -19,10 +19,10 @@ class Dog < ApplicationRecord
   validates :breed, allow_nil: true, length: { maximum: 50 }
   validates :weight, allow_nil: true, numericality: { greater_than: 0 }
   validates :owner_comment, allow_nil: true, length: { maximum: 400 }
-  validates :thumbnail, size: { less_than: 10.megabytes }
-  validates :mixed_vaccination_certificate, size: { less_than: 10.megabytes }
-  validates :rabies_vaccination_certificate, size: { less_than: 10.megabytes }
-  validates :license_plate, size: { less_than: 10.megabytes }
+  validates :thumbnail, size: { less_than: 10.megabytes }, content_type: [:png, :jpg, :jpeg, :heif]
+  validates :mixed_vaccination_certificate, size: { less_than: 10.megabytes }, content_type: [:png, :jpg, :jpeg, :heif]
+  validates :rabies_vaccination_certificate, size: { less_than: 10.megabytes }, content_type: [:png, :jpg, :jpeg, :heif]
+  validates :license_plate, size: { less_than: 10.megabytes }, content_type: [:png, :jpg, :jpeg, :heif]
   validates :registration_municipality, length: { maximum: 30 }
   validates :municipal_registration_number, length: { maximum: 10 }
 
@@ -38,7 +38,7 @@ class Dog < ApplicationRecord
 
   #   scope
   scope :dogrun_place_id, -> (id) { joins(:registration_numbers).where(registration_numbers: { dogrun_place_id: id }).includes(:registration_numbers, :user).order(id: :desc)}
-  scope :dogrun_place_id_for_encount_dog, -> (id) { joins(:entries, :registration_numbers).where(entries: { exit_at: nil }).where(registration_numbers: { dogrun_place_id: 2 }).includes(:entries, :registration_numbers, :user)}
+  scope :dogrun_place_id_for_encount_dog, -> (id) { joins(:entries, :registration_numbers).where(entries: { exit_at: nil }).where(registration_numbers: { dogrun_place_id: id }).includes(:entries, :registration_numbers, :user)}
 
 end
 

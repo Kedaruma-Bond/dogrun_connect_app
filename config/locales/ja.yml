@@ -1,5 +1,11 @@
 ja:
   defaults:
+    illegal_route: 不正なルートで開かれました
+    opened_incorrect_token_link: |
+      不正なリンクが開かれました
+      お手数ですがアプリ管理者に
+      問い合わせてください
+    input_any_one_sns_account: どれか1つのSNSは入力してください
     register: 登録
     these_information_is_not_viewable: |
       これらの情報は管理者を除く
@@ -295,6 +301,8 @@ ja:
   errors:
     format: "%{attribute}%{message}"
     messages:
+      content_type_invalid: "のファイル形式はjpeg, jpg, png, heifのいずれかとしてください"
+      file_size_out_of_range: "のファイルサイズは 10MB 以下としてください"
       accepted: に同意してください 
       blank: を入力してください
       confirmation: と%{attribute}の入力が一致しません

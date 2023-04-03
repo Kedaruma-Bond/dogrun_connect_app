@@ -1,5 +1,6 @@
 require "active_support/core_ext/integer/time"
 
+Rails.application.configure do
 # The test environment is used exclusively to run your application's
 # test suite. You never need to work with it otherwise. Remember that
 # your test database is "scratch space" for the test suite and is wiped
@@ -33,7 +34,7 @@ require "active_support/core_ext/integer/time"
   config.action_controller.allow_forgery_protection = false
 
   # Store uploaded files on the local file system in a temporary directory.
-  config.active_storage.service = :local
+  config.active_storage.service = :test
 
   config.action_mailer.perform_caching = false
 

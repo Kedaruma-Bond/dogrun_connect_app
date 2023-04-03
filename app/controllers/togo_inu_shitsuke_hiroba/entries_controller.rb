@@ -1,18 +1,18 @@
 class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPlaceController
   include Pagy::Backend
+  before_action :set_new_post, only: %i[index search]
   before_action :set_dogs_and_registration_numbers_at_local, only: %i[create update]
   before_action :set_q, only: %i[index search]
+  before_action :correct_user_check, only: %i[destroy]
 
   def index
     @pagy, @entries = pagy(@entries)
   end
 
   def create
+
     if @dogrun_place.closed_flag == true
-      respond_to do |format|
-        format.html { redirect_to send(@top_path), error: t('local.entries.dogrun_is_closing_now') }
-        format.turbo_stream { flash.now[:error] = t('local.entries.dogrun_is_closing_now') }
-      end
+      redirect_to send(@top_path), error: t('local.entries.dogrun_is_closing_now')
       return
     end
 
@@ -27,6 +27,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
           @dog = @dogs[@num]
           
           if Entry.where(dog: @dog).where(exit_at: nil).present?
+            set_num_of_playing_dogs
             respond_to do |format|
               format.html { redirect_to send(@top_path), error: t('local.entries.select_dog_has_already_entered') }
               format.turbo_stream { flash.now[:error] = t('local.entries.select_dog_has_already_entered') }
@@ -132,10 +133,15 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
   end
 
   def update
+    if current_entries.blank?
+      redirect_to send(@top_path), success: t('local.entries.exit_success')
+      return
+    end
+
     i = current_entries.size - 1
     @entry = current_entries[i]
     current_entries.each do |entry|
-      Entry.find(entry.id).update!(exit_at: Time.zone.now)
+      Entry.find(entry.id).update(exit_at: Time.zone.now)
     end
     set_num_of_playing_dogs
 
@@ -149,6 +155,14 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
 
   def search
     @pagy, @entries_results = pagy(@q.result)
+  end
+
+  def destroy
+    @entry.destroy
+    respond_to do |format|
+      format.html { redirect_to send(@entries_path), success: t('defaults.destroy_successfully'), status: :see_other }
+      format.turbo_stream { flash.now[:success] = t('defaults.destroy_successfully') }
+    end
   end
 
   private
@@ -176,26 +190,9 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
       )
     end
 
-    def set_num_of_playing_dogs
-      dogrun_entry_data = []
-      dogrun_entry_data = Entry.where.not(entry_at: nil).where(exit_at: nil).joins(:registration_number).where(registration_numbers: { dogrun_place: @dogrun_place })
-      @num_of_playing_dogs = dogrun_entry_data.size || 0
-      if !dogrun_entry_data.blank?
-        dogs = dogrun_entry_data.map do |entry_data|
-          Dog.find(entry_data.dog_id)
-        end
-    
-        @dogs_public_view = dogs.select do |dog|
-          dog.public == 'public_view'
-        end
-    
-        @dogs_non_public = dogs.select do |dog|
-          dog.public == 'non_public'
-        end
-      else
-        @dogs_public_view = []
-        @dogs_non_public = [] 
-      end
+    def correct_user_check
+      @entry = Entry.find(params[:id])
+      redirect_to send(@entries_path), error: t('defaults.not_authorized') unless @entry.dog.user == current_user
     end
 
 end

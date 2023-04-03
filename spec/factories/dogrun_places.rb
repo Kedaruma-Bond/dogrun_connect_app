@@ -2,11 +2,29 @@ FactoryBot.define do
   factory :dogrun_place do
     sequence(:name) { |n| "Dogrun_Place_#{n}" }
 
+    after(:create) do |dogrun_place|
+      create_list(:dogrun_place_facility_relation, 1, dogrun_place: dogrun_place, facility: create(:facility))
+    end
+
+    trait :grand_admin_place do
+      id { '1' }
+      name { 'grand_admin' }
+    end
+
     trait :togo_inu_shitsuke_hiroba do
       id { '2' }
-      name { 'togo_inu_shitsuke_hiroba' }
+      name { '犬のしつけ広場' }
     end
     
+    trait :reon do
+      id { '3' }
+      name { '里音(Re:on)' }
+    end
+
+    trait :force_closed do
+      force_closed { 'force_closing' }
+      closed_flag { true }
+    end
   end
 end
 

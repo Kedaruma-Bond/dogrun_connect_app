@@ -4,7 +4,7 @@
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
     </svg>
   </button>
-  <%= form_with url: admin_registration_number_path(registration_number), method: :patch, data: { form_modal_target: 'form', action: "turbo:submit-end->form-modal#submitEnd" } do |f| %>
+  <%= form_with model: registration_number, url: admin_registration_number_path(registration_number), method: :patch, data: { form_modal_target: 'form', action: "turbo:submit-end->form-modal#submitEnd" } do |f| %>
     <div class="px-4 py-5 border-b border-gray-200">
       <h3 class="text-lg leading-6 font-bold text-gray-700">
         <%= simple_format(t'.input_registration_number') %>

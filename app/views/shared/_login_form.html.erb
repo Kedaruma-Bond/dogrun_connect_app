@@ -35,9 +35,9 @@
     <div class="flex mt-3 justify-center">
       <%= t('defaults.signup_is') %>
       &nbsp;
-      <a href="/togo_inu_shitsuke_hiroba/signup/", target="_blank", rel="noopener noreferrer" class="text-gray-600 hover:text-gray-400">
+      <%= link_to send(signup_path), target: "_blank", rel: "noopener noreferrer", class: "text-gray-600 hover:text-gray-400" do %>
         <%= t('defaults.here') %>
-      </a>
+      <% end %>
     </div>
   </div>
 <% end %>
