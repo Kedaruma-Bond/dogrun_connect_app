@@ -1,5 +1,12 @@
 ja:
   shared:
+    encount_dog:
+      destroy_confirmation: |
+        削除すると
+        -カラーマーカーの色
+        -メモの内容
+        は失われます
+        削除しますか？
     signup_form:
       password_hint: パスワードは６文字以上としてください
     sns_account_form:
