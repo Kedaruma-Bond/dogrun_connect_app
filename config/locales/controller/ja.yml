@@ -101,6 +101,10 @@ ja:
       post_save_error: |
         投稿タイプが未選択です
         選択してからOKボタンを押してください
+      guest_cannot_create_post: |
+        ゲストユーザーでは投稿
+        はできません
+        新規登録後に再度お試しください
     entries:
       dogrun_is_closing_now: 現在このドッグランは休業中です
       entry_success: 入場しました

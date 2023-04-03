@@ -5,5 +5,5 @@
   applicable_path: @search_encount_dogs_path,
   search_field_placeholder: I18n.t('local.encount_dogs.search_form.search_field_placeholder')
   ) do %>
-  <%= render partial: 'shared/encount_dog', collection: @encount_dogs, locals: { dog_profile_path: @dog_profile_path, edit_encount_dog_path: @edit_encount_dog_path } %>
+  <%= render partial: 'shared/encount_dog', collection: @encount_dogs, locals: { dog_profile_path: @dog_profile_path, edit_encount_dog_path: @edit_encount_dog_path, encount_dog_path: @encount_dog_path } %>
 <% end %>

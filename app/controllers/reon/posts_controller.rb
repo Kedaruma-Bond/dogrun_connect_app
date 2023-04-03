@@ -1,6 +1,10 @@
 class Reon::PostsController < Reon::DogrunPlaceController
 
   def create
+    if current_user.guest?
+      redirect_to request.referer, error: t('local.posts.guest_cannot_create_post')
+      return
+    end
     @post = Post.new(post_params)
     if @post.save
       case @post.post_type
@@ -17,7 +21,7 @@ class Reon::PostsController < Reon::DogrunPlaceController
 
   private
     def post_params
-      params.permit(
+      params.require(:post).permit(
         :post_type, :publish_status
       ).merge(user_id: current_user.id, dogrun_place_id: @dogrun_place.id)
     end

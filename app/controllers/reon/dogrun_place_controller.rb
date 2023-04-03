@@ -26,6 +26,7 @@ class Reon::DogrunPlaceController < ApplicationController
       @rns_form_selection_path = :reon_registration_numbers_form_selection_path
       @rns_have_registration_card_path = :reon_registration_numbers_have_registration_card_path
       @rns_not_have_registration_card_path = :reon_registration_numbers_not_have_registration_card_path
+      @encount_dog_path = :reon_encount_dog_path
       @encount_dogs_path = :reon_encount_dogs_path
       @edit_encount_dog_path = :edit_reon_encount_dog_path
       @search_encount_dogs_path = :search_reon_encount_dogs_path
@@ -45,7 +46,7 @@ class Reon::DogrunPlaceController < ApplicationController
       @new_article_path = :new_reon_article_path
       @article_path = :reon_article_path
       @new_embed_path = :new_reon_embed_path
-      @embed_path = :reon_hiroba_embed_path
+      @embed_path = :reon_embed_path
       @dogrun_terms_of_service_page = "https://r.goope.jp/wanko141327/free/riyoukiyaku"
     end
 

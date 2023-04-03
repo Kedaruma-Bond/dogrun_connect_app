@@ -3,7 +3,8 @@ class Reon::EncountDogsController < Reon::DogrunPlaceController
   before_action :set_new_post, only: %i[index edit search]
   before_action :set_encount_dogs, only: %i[index search]
   before_action :set_q, only: %i[index search]
-  before_action :set_encount_dog, only: %i[edit update]
+  before_action :set_encount_dog, only: %i[edit update destroy]
+  before_action :correct_user_check, only: %i[destroy]
   
   def index
     @pagy, @encount_dogs = pagy(EncountDog.encount_dog_of_user(current_user.id))
@@ -26,6 +27,14 @@ class Reon::EncountDogsController < Reon::DogrunPlaceController
     @pagy, @encount_dogs_results = pagy(@q.result)
   end
 
+  def destroy
+    @encount_dog.destroy
+    respond_to do |format|
+      format.html { redirect_to send(@reon_encount_dogs_path), success: t('defaults.destroy_succesffuly') }
+      format.turbo_stream { flash.now[:success] = t('defaults.destroy_successfully') }
+    end
+  end
+  
   private
 
     def set_encount_dogs
@@ -46,4 +55,7 @@ class Reon::EncountDogsController < Reon::DogrunPlaceController
       )
     end
 
+    def correct_user_check
+      redirect_to send(@encount_dogs_path), error: t('defaults.not_authorized') unless @encount_dog.user == current_user
+    end
 end

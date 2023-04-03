@@ -10,9 +10,9 @@
 
   <div class="w-2/3 p-4 md:p-4">
     <% if entry.own_entry? %>
-      <div class="absolute top-0 right-0 mr-4 mt-4">
+      <div class="absolute top-0 right-0 mr-1 mt-1">
         <%= link_to send(entry_path, entry), data: { turbo_method: :delete, turbo_confirm: t('defaults.destroy_confirmation') }, class: "text-gray-100" do %>
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         <% end %>

@@ -1,6 +1,10 @@
 class TogoInuShitsukeHiroba::PostsController < TogoInuShitsukeHiroba::DogrunPlaceController
 
   def create
+    if current_user.guest?
+      redirect_to request.referer, error: t('local.posts.guest_cannot_create_post')
+      return
+    end
     @post = Post.new(post_params)
     if @post.save
       case @post.post_type
