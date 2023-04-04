@@ -84,6 +84,7 @@ ja:
     not_authorized: 権限がありません
     date: 日付
     registration_number: 登録番号
+    registration_card: 登録証
     registration_dogs_num: 登録頭数  
     encount_dogs_num: エンカウント数
     search: 検索

@@ -12,6 +12,9 @@ class Admin::BaseController < ApplicationController
       when 3
         @naming_of_registration_number = t('reon.registration_number')
         @naming_of_registration_card = t('reon.registration_card')
+      else
+        @naming_of_registration_number = t('defaults.registration_number')
+        @naming_of_registration_card = t('defaults.registration_card')
       end
     end
 
