@@ -17,6 +17,7 @@ class TogoInuShitsukeHiroba::DogrunPlaceController < ApplicationController
       @users_path = :togo_inu_shitsuke_hiroba_users_path
       @new_user_detail_path = :new_togo_inu_shitsuke_hiroba_user_detail_path
       @edit_user_detail_path = :edit_togo_inu_shitsuke_hiroba_user_detail_path
+      @new_user_detail_path = :new_togo_inu_shitsuke_hiroba_user_detail_path
       @user_detail_path = :togo_inu_shitsuke_hiroba_user_detail_path
       @dog_profile_path = :togo_inu_shitsuke_hiroba_dog_path
       @edit_dog_path = :edit_togo_inu_shitsuke_hiroba_dog_path

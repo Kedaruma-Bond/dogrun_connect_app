@@ -39,6 +39,9 @@ Rails.application.routes.draw do
     end
     resource :entry, only: %i[update]
     resources :users, only: %i[new create show]
+    get 'users/route_selection', to: 'users#route_selection'
+    get 'users/fully_route', to: 'users#fully_route'
+    get 'users/minimum_route', to: 'users#minimum_route'
     resources :user_details, only: %i[new create edit update destroy]
     resources :dogs, only: %i[show edit update]
     resources :registration_numbers, only: %i[new create destroy]
@@ -88,6 +91,9 @@ Rails.application.routes.draw do
     end
     resource :entry, only: %i[update]
     resources :users, only: %i[new create show]
+    get 'users/route_selection', to: 'users#route_selection'
+    get 'users/fully_route', to: 'users#fully_route'
+    get 'users/minimum_route', to: 'users#minimum_route'
     resources :user_details, only: %i[new create edit update destroy]
     resources :dogs, only: %i[show edit update]
     resources :registration_numbers, only: %i[new create destroy]

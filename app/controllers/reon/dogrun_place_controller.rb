@@ -17,6 +17,7 @@ class Reon::DogrunPlaceController < ApplicationController
       @users_path = :reon_users_path
       @new_user_detail_path = :new_reon_user_detail_path
       @edit_user_detail_path = :edit_reon_user_detail_path
+      @new_user_detail_path = :new_reon_user_detail_path
       @user_detail_path = :reon_user_detail_path
       @dog_profile_path = :reon_dog_path
       @edit_dog_path = :edit_reon_dog_path

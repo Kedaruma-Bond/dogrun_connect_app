@@ -68,6 +68,9 @@ ja:
         ２頭目以降のワンコの登録は
         プロフィール画面から
         実施できます
+      make_user_detail: |
+        引き続き住所と電話番号を
+        登録してください
     sns_accounts:
       registration_successful: 登録しました
       cancel_to_registration: 登録はキャンセルされました
