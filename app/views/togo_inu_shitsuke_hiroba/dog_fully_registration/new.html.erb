@@ -1,0 +1,15 @@
+<%= render DogFullyRegistrations::NewComponent.new(
+    title: I18n.t('local.dog_registrations.new.title'),
+    registration_number_notation: I18n.t('togo_inu_shitsuke_hiroba.registration_number')
+    ) do %>
+  <%= render partial: 'shared/dog_fully_registration_form', 
+    locals: { 
+      dog_fully_registration: @dog_fully_registration, 
+      dog_fully_registration_path: @dog_fully_registration_path,
+      registration_number_notation: I18n.t('togo_inu_shitsuke_hiroba.registration_number'),
+      dogrun_place: @dogrun_place,
+      registration_number_hint: @registration_number_hint,
+      dogrun_terms_of_service_page: @dogrun_terms_of_service_page,
+      fully_form_selection_path: @fully_form_selection_path
+      } %>
+<% end %>

@@ -1,0 +1,3 @@
+<%= render UserDetails::SignupFullyRouteComponent.new(title: t('local.user_details.new.title')) do %>
+  <%= render partial: "shared/address_and_phone_number_form", locals: { user_detail: @user_detail, dogrun_name: @dogrun_name } %>
+<% end %>

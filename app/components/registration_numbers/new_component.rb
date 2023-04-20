@@ -3,14 +3,10 @@
 class RegistrationNumbers::NewComponent < ApplicationViewComponent
   def initialize(
       title:, 
-      dogs:, 
-      user_path:, 
-      current_user:
+      dogs: 
     )
     @title = title
     @dogs = dogs
-    @user_path = user_path
-    @current_user = current_user
   end
 
 end

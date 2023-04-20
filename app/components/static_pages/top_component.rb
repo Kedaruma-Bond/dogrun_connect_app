@@ -15,7 +15,7 @@ class StaticPages::TopComponent < ApplicationViewComponent
     jump_to_signup_path:,
     dogrun_terms_of_service_page:,
     login_path:,
-    signup_path:,
+    route_selection_path:,
     guest_login_path:
     )
     @title = title
@@ -31,7 +31,7 @@ class StaticPages::TopComponent < ApplicationViewComponent
     @jump_to_signup_path = jump_to_signup_path
     @dogrun_terms_of_service_page = dogrun_terms_of_service_page
     @login_path = login_path
-    @signup_path = signup_path
+    @route_selection_path = route_selection_path
     @guest_login_path = guest_login_path
   end
 

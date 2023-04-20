@@ -6,15 +6,32 @@ class TogoInuShitsukeHiroba::UserDetailsController < TogoInuShitsukeHiroba::Dogr
     @user_detail = UserDetail.new
   end
 
+  def signup_fully_route
+    @user_detail = UserDetail.new
+  end
+
   def create
     @user_detail = UserDetail.new(user_detail_params)
-    if @user_detail.save
-      respond_to do |format|
-        format.html { redirect_to send(@user_path, current_user), success: t('local.user_details.created_successfully') }
-        format.turbo_stream { flash.now[:success] = t('local.user_details.created_successfully') }
+    case session[:fully_flg]
+    when true
+      if @user_detail.save
+        if @dogrun_place.registration_card.blank?
+          redirect_to send(@fully_not_have_registration_card_path), success: t('local.user_details.fully_route_created_successfully')
+        else
+          redirect_to send(@fully_form_selection_path), success: t('local.user_details.fully_route_created_successfully')
+        end
+      else
+        render :signup_fully_route, status: :unprocessable_entity
       end
     else
-      render :new, status: :unprocessable_entity
+      if @user_detail.save
+        respond_to do |format|
+          format.html { redirect_to send(@user_path, current_user), success: t('local.user_details.created_successfully') }
+          format.turbo_stream { flash.now[:success] = t('local.user_details.created_successfully') }
+        end
+      else
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 

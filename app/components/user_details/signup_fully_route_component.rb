@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-class DogRegistrations::ConfirmComponent < ApplicationViewComponent
+class UserDetails::SignupFullyRouteComponent < ApplicationViewComponent
+  
   def initialize(title:)
     @title = title
   end
-
+  
 end

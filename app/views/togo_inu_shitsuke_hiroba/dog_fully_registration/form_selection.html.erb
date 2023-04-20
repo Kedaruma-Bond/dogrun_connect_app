@@ -1,0 +1,7 @@
+<%= render DogRegistrations::FormSelectionComponent.new(
+    title: I18n.t('local.dog_registrations.form_selection.title'),
+    dogrun_place: @dogrun_place,
+    confirmation: @confirmation,
+    have_registration_card_path: @fully_have_registration_card_path,
+    not_have_registration_card_path: @fully_not_have_registration_card_path
+    ) %>

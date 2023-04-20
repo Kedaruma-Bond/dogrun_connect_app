@@ -7,8 +7,7 @@ class Users::ShowComponent < ApplicationViewComponent
       current_user:, 
       dogs:, 
       num_of_encount_dogs:, 
-      form_selection_path:,
-      dog_registration_path:,
+      route_selection_path:,
       new_registration_number_path:,
       rns_form_selection_path:
     )
@@ -17,8 +16,7 @@ class Users::ShowComponent < ApplicationViewComponent
     @current_user = current_user
     @dogs = dogs
     @num_of_encount_dogs = num_of_encount_dogs
-    @form_selection_path = form_selection_path
-    @dog_registration_path = dog_registration_path
+    @route_selection_path = route_selection_path
     @new_registration_number_path = new_registration_number_path
     @rns_form_selection_path = rns_form_selection_path
   end

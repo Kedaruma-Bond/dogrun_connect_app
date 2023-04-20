@@ -5,3 +5,6 @@ ja:
         title: 住所・電話番号登録
       edit:
         title: 住所・電話番号編集
+      fully_route_created_successfully: |
+        ユーザー登録が完了しました
+        引き続きワンコの登録をお願いします

@@ -3,6 +3,9 @@ ja:
     users:
       new:
         title: 新規登録
+        keep_secret: |
+          飼い主さんの名前とメールアドレスは
+          管理者を除く他のユーザーには閲覧できません
       show:
         title: プロフィール
         of_dogs: 頭
@@ -10,4 +13,28 @@ ja:
         add_registered_dog: |
           他のドッグランで登録済
           のワンコを登録する
-
+      route_selection:
+        title: 登録コースの選択
+        choose_route_for_registration: |
+          登録コースの説明をご確認の上
+          コースを選択してください
+        require_information: このコースでの登録に必要な情報
+        use_as_checklist: チェックリストとして利用ください
+        information_of_dog_below: 以下ワンコの情報
+        photo_of_thumbnail: サムネイル用の写真
+        photo_of_rabies_vaccination_certificate: 狂犬病接種証明書の写真
+        photo_of_mixed_vaccination_certificate: 混合ワクチン接種証明書の写真
+        photo_of_license_plate: 鑑札の写真
+        whether_castrated: 避妊・去勢しているかどうか
+        if_you_have: "%{registration_card}をお持ちの場合"
+        fully_route: 🐶 スタンダードコース 🐶
+        to_fully_route: スタンダードコースへ
+        explain_of_fully_route: |
+          ドッグランを利用するために必要な種々の情報を登録していただくコースです
+          予め必要な情報をご準備の上でコースへ進んでいただくとスムーズです
+        minimum_route: 🕰️ とりあえずコース 🕰️
+        to_minimum_route: とりあえずコースへ
+        explain_of_minimum_route: |
+          とりあえず登録するだけのコースです
+          とにかく今は時間がない方向けです
+        note_of_minimum_route: ＊登録後にプロフィール画面から情報を追加する必要がありますのでご注意願います

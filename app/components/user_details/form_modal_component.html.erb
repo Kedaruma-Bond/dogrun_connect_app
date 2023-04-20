@@ -1,16 +1,20 @@
 <%= turbo_frame_tag "user_detail_form_modal", autoscroll: true, data: { autoscroll_block: "start" }  do %>
   <%= tag.div data: { controller: "turbo-form-modal", "turbo-form-modal_target": "modal", action: "turbo:submit-end->turbo-form-modal#submitEnd click@window->turbo-form-modal#closeBackground" }, 
-      id: "user_detail_form_modal", class: "mx-2 p-5 absolute z-10 shadow rounded-lg w-80", style: "background-color: #cbd5e1; left: 1.25rem;" do %>
-    <button type="button" data-action="turbo-form-modal#hideModal" class="float-right">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-    <p class="text-xl text-gray-700 font-bold leading-7 text-center mb-2 pt-4">
-      <%= @title %>
-    </p>
-    <div class="w-full p-4">
-      <%= content %>
+      id: "user_detail_form_modal", class: "mx-2 p-2 absolute z-10 shadow rounded-lg border-2 border-white w-11/12 md:w-96", style: "background-color: #cbd5e1; left: 0.5rem;" do %>
+    <div class="relative">
+      <button type="button" data-action="turbo-form-modal#hideModal" class="absolute top-0 right-0">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <div class="flex justify-center items-center h-full">
+        <p class="text-xl text-gray-700 font-bold leading-7 mb-2 pt-4">
+          <%= @title %>
+        </p>
+      </div>
+      <div class="w-full px-4 py-2">
+        <%= content %>
+      </div>
     </div>
   <% end %>
 <% end%>
