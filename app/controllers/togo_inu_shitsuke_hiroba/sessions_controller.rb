@@ -48,7 +48,7 @@ class TogoInuShitsukeHiroba::SessionsController < TogoInuShitsukeHiroba::DogrunP
     return unless current_user.guest?
 
     logout
-    redirect_to send(@signup_path), notice: t('local.sessions.signup_please')
+    redirect_to send(@route_selection_path), notice: t('local.sessions.signup_please')
   end
 
   private

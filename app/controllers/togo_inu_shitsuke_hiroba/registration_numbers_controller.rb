@@ -24,25 +24,22 @@ class TogoInuShitsukeHiroba::RegistrationNumbersController < TogoInuShitsukeHiro
   end
 
   def create
-    @dog = Dog.find_by(id: params[:select_dog])
-    if !@dog.blank?
-      @registration_number = RegistrationNumber.new(registration_number_params)
-      if @registration_number.save
-        session.delete(:card_flg)
-        respond_to do |format|
-          format.html { redirect_to send(@user_path, current_user), success: t('local.registration_numbers.registered_successfully') }
-          format.json { header :no_content }
-        end
-      else
-        render :new, status: :unprocessable_entity
-      end
-    else
+    @registration_number = RegistrationNumber.new(registration_number_params)
+    if @dog_id.blank?
+      @registration_number.errors.add(:dog, :unselected_option)
+      render :new, status: :unprocessable_entity
+      return
+    end
+
+    if @registration_number.valid?
+      @registration_number.save!
+      session.delete(:card_flg)
       respond_to do |format|
-        format.html {
-          redirect_to send(@new_registration_number_path), error: t('local.registration_numbers.select_dog')
-        }
+        format.html { redirect_to send(@user_path, current_user), success: t('local.registration_numbers.registered_successfully') }
         format.json { header :no_content }
       end
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -67,10 +64,11 @@ class TogoInuShitsukeHiroba::RegistrationNumbersController < TogoInuShitsukeHiro
     end
 
     def registration_number_params
+      @dog_id = params[:registration_number][:select_dog]
       params.require(:registration_number).permit(
         :registration_number, :agreement
       ).merge(
-        dog_id: @dog.id,
+        dog_id: @dog_id,
         dogrun_place_id: @dogrun_place.id
       )
     end

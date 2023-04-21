@@ -39,7 +39,14 @@ Rails.application.routes.draw do
     end
     resource :entry, only: %i[update]
     resources :users, only: %i[new create show]
-    resources :user_details, only: %i[new create edit update destroy]
+    get 'route_selection', to: 'users#route_selection'
+    get 'fully_route', to: 'users#fully_route'
+    get 'minimum_route', to: 'users#minimum_route'
+    resources :user_details, only: %i[new create edit update destroy] do
+      collection do
+        get 'signup_fully_route', to: 'user_details#signup_fully_route'
+      end
+    end
     resources :dogs, only: %i[show edit update]
     resources :registration_numbers, only: %i[new create destroy]
     get 'registration_numbers/form_selection', to: 'registration_numbers#form_selection'
@@ -55,12 +62,17 @@ Rails.application.routes.draw do
     
     get 'signup', to: 'users#new', as: :signup
     
+    get 'dog_fully_registration/form_selection', to: 'dog_fully_registration#form_selection'
+    get 'dog_fully_registration/have_registration_card', to: 'dog_fully_registration#have_registration_card'
+    get 'dog_fully_registration/not_have_registration_card', to: 'dog_fully_registration#not_have_registration_card'
+    get 'dog_fully_registration', to: 'dog_fully_registration#new'
+    post 'dog_fully_registration', to: 'dog_fully_registration#create'
+    
     get 'dog_registration/form_selection', to: 'dog_registration#form_selection'
     get 'dog_registration/have_registration_card', to: 'dog_registration#have_registration_card'
     get 'dog_registration/not_have_registration_card', to: 'dog_registration#not_have_registration_card'
     get 'dog_registration', to: 'dog_registration#new'
     post 'dog_registration', to: 'dog_registration#create'
-    post 'dog_registration/confirm', to: 'dog_registration#confirm'
   end
   
   namespace :reon do
@@ -88,7 +100,14 @@ Rails.application.routes.draw do
     end
     resource :entry, only: %i[update]
     resources :users, only: %i[new create show]
-    resources :user_details, only: %i[new create edit update destroy]
+    get 'route_selection', to: 'users#route_selection'
+    get 'fully_route', to: 'users#fully_route'
+    get 'minimum_route', to: 'users#minimum_route'
+    resources :user_details, only: %i[new create edit update destroy] do
+      collection do
+        get 'signup_fully_route', to: 'user_details#signup_fully_route'
+      end
+    end
     resources :dogs, only: %i[show edit update]
     resources :registration_numbers, only: %i[new create destroy]
     get 'registration_numbers/form_selection', to: 'registration_numbers#form_selection'
@@ -104,12 +123,17 @@ Rails.application.routes.draw do
     
     get 'signup', to: 'users#new', as: :signup
 
+    get 'dog_fully_registration/form_selection', to: 'dog_fully_registration#form_selection'
+    get 'dog_fully_registration/have_registration_card', to: 'dog_fully_registration#have_registration_card'
+    get 'dog_fully_registration/not_have_registration_card', to: 'dog_fully_registration#not_have_registration_card'
+    get 'dog_fully_registration', to: 'dog_fully_registration#new'
+    post 'dog_fully_registration', to: 'dog_fully_registration#create'
+
     get 'dog_registration/form_selection', to: 'dog_registration#form_selection'
     get 'dog_registration/have_registration_card', to: 'dog_registration#have_registration_card'
     get 'dog_registration/not_have_registration_card', to: 'dog_registration#not_have_registration_card' 
     get 'dog_registration', to: 'dog_registration#new'
     post 'dog_registration', to: 'dog_registration#create'
-    post 'dog_registration/confirm', to: 'dog_registration#confirm'
   end
 
   namespace :admin do

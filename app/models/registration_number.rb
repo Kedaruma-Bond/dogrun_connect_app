@@ -10,8 +10,16 @@ class RegistrationNumber < ApplicationRecord
   validates :registration_number, presence: true, length: { maximum: 50 }
   validates :agreement, acceptance: true, on: :create
   validates :agreement, acceptance: true, on: :update, allow_blank: true
+  validate :select_dog_validate
   
   # scope
+
+  private
+    def select_dog_validate
+      if dog_id.blank?
+        errors.add(:select_dog, :unselected_option)
+      end
+    end
 end
 
 # == Schema Information

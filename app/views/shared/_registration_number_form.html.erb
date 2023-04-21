@@ -2,31 +2,32 @@
   <div class="text-amber-700 font-medium text-center">
     <%= t("local.registration_numbers.form.registration_is_done_one_by_one") %>
   </div>
-  <ul list-style="none" class="mx-auto mt-5 flex flex-col">
-    <% dogs.each do |dog| %>
-      <li class="mb-5 w-[215px] mx-auto">
-        <label for=<%= dog.id %> class="flex mb-2">
-          <%= tag.input id: dog.id, class: "scale-125 rounded-full mt-4", type: "radio", value: dog.id, name: "select_dog", form: "registration_number_form" %>
-          <div class="w-12 h-12 ml-3">
-            <%= dog_thumbnail(dog) %>
-          </div>
-          <div class="text-left leading-3 text-gray-700 text-xl font-bold ml-3 my-auto">
-            <%= dog.name %>
-          </div>
-        </label>
-      </li>
-    <% end %>
-  </ul>
-  <%= form_with model: registration_number, url: send(registration_numbers_path), method: :post, id: "registration_number_form" do |f| %>
+  <%= form_with model: registration_number, url: send(registration_numbers_path) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <div class="mx-auto md:flex items-center justify-center mt-4">
-        <%= f.label :registration_number do %>
-          <label class="ml-4 font-semibold text-gray-700 leading-none"><%= registration_number_notation %></label>
-          <%= f.text_field :registration_number, class: "mx-auto block w-11/12 sm:w-5/6 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" %>
-          <small class="ml-4 md:ml-9 text-gray-500 text-xs"><%= registration_number_hint %></small>
-        <% end %>
+    <ul list-style="none" class="mx-auto mt-5 flex flex-col">
+      <% dogs.each do |dog| %>
+        <li class="mb-5 w-[215px] mx-auto">
+          <label for=<%= dog.id %> class="flex mb-2">
+            <%= f.radio_button :select_dog, dog.id, { id: dog.id, class: "scale-125 rounded-full mt-4" }%>
+            <div class="w-12 h-12 ml-3">
+              <%= dog_thumbnail(dog) %>
+            </div>
+            <div class="text-left leading-3 text-gray-700 text-xl font-bold ml-3 my-auto">
+              <%= dog.name %>
+            </div>
+          </label>
+        </li>
+      <% end %>
+    </ul>
+    <% if session[:card_flg] == true %>
+      <div class="mx-auto w-full md:w-5/6">
+        <%= label_tag 'registration_number', registration_number_notation, class: "font-semibold text-gray-700 leading-none" %>
+        <%= f.text_field :registration_number, id: 'registration_number', class: "w-full leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200" %>
+        <small class="text-gray-500 text-xs"><%= registration_number_hint %></small>
       </div>
-    </div>
+    <% else %>
+      <%= f.hidden_field :registration_number, value: "-" %>
+    <% end %>
     <div class="flex mt-7 justify-center text-sm">
       <%= f.check_box :agreement, checked: false, label: false, error: false, class: "bg-gray-100 rounded border-gary-300 focus:ring-blue-500 focus:ring-2 mt-1" %>
       <%= f.label :agreement, class: "font-semibold text-gray-500" do %>
@@ -42,10 +43,15 @@
     </div>
     <div class="w-full flex flex-col mt-3 text-gray-700">
       <div class="flex items-center justify-center mt-3">
-        <%= button_tag type: "submit", class: "mt-3 font-bold leading-normal text-white py-4 px-10 bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
+        <%= button_tag type: "submit", class: "w-full sm:w-60 mt-3 font-bold leading-normal py-4 px-10 tracking-wide text-white bg-emerald-400 rounded-md hover:bg-emerald-300 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300" do %>
           <%= t('defaults.register') %>
         <% end %>
       </div>
     </div>
+  <% end %>
+  <%= link_to send(rns_form_selection_path), class: "flex items-center justify-center mt-3 w-auto" do %>
+    <button class="w-full sm:w-60 mt-3 font-bold leading-normal py-4 px-10 tracking-wide text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+      <span class="mx-1"><%= t'defaults.back' %></span>
+    </button>
   <% end %>
 </div>

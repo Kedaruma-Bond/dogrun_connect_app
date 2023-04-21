@@ -9,6 +9,9 @@ class Reon::DogrunPlaceController < ApplicationController
       @top_path = :reon_top_path
       @login_path = :reon_login_path
       @logout_path = :reon_logout_path
+      @route_selection_path = :reon_route_selection_path
+      @fully_route_path = :reon_fully_route_path
+      @minimum_route_path = :reon_minimum_route_path
       @signup_path = :reon_signup_path
       @guest_login_path = :reon_guest_login_path
       @jump_to_signup_path = :reon_jump_to_signup_path
@@ -17,6 +20,7 @@ class Reon::DogrunPlaceController < ApplicationController
       @users_path = :reon_users_path
       @new_user_detail_path = :new_reon_user_detail_path
       @edit_user_detail_path = :edit_reon_user_detail_path
+      @signup_fully_route_user_detail_path = :signup_fully_route_reon_user_details_path
       @user_detail_path = :reon_user_detail_path
       @dog_profile_path = :reon_dog_path
       @edit_dog_path = :edit_reon_dog_path
@@ -42,7 +46,10 @@ class Reon::DogrunPlaceController < ApplicationController
       @have_registration_card_path = :reon_dog_registration_have_registration_card_path
       @not_have_registration_card_path = :reon_dog_registration_not_have_registration_card_path
       @dog_registration_path = :reon_dog_registration_path
-      @dog_registration_confirm_path = :reon_dog_registration_confirm_path
+      @fully_form_selection_path = :reon_dog_fully_registration_form_selection_path
+      @fully_have_registration_card_path = :reon_dog_fully_registration_have_registration_card_path
+      @fully_not_have_registration_card_path = :reon_dog_fully_registration_not_have_registration_card_path
+      @dog_fully_registration_path = :reon_dog_fully_registration_path
       @new_article_path = :new_reon_article_path
       @article_path = :reon_article_path
       @new_embed_path = :new_reon_embed_path

@@ -68,6 +68,9 @@ ja:
         ２頭目以降のワンコの登録は
         プロフィール画面から
         実施できます
+      make_user_detail: |
+        引き続き住所と電話番号を
+        登録してください
     sns_accounts:
       registration_successful: 登録しました
       cancel_to_registration: 登録はキャンセルされました
@@ -220,6 +223,7 @@ ja:
         filming_approval: 撮影OK
         sns_post_approval: SNS投稿OK
       registration_number:
+        dog: ワンコ
         dogrun_place: 登録ドッグラン
         registration_number: 登録番号
         agreement: 利用規約
@@ -255,7 +259,23 @@ ja:
         registration_number: 番号
         name: ワンコの名前
         agreement: 利用規約
-
+      dog_fully_registration:
+        name: ワンコの名前
+        registration_number: 番号
+        breed: 犬種
+        sex: 性別
+        birthday: 生年月日
+        weight: 体重
+        thumbnail: サムネイル
+        registration_municipality: 畜犬登録市町村名
+        municipal_registration_number: 畜犬登録番号
+        agreement: 利用規約
+        date_of_rabies_vaccination: 狂犬病予防接種日
+        date_of_mixed_vaccination: 混合ワクチン接種日
+        registration_prefecture_code: 畜犬登録都道府県
+        rabies_vaccination_certificate: 狂犬病予防接種証明の写真
+        mixed_vaccination_certificate: 混合ワクチン接種証明の写真
+        license_plate: 鑑札の写真
   attributes:
     created_at: 作成日
     updated_at: 更新日

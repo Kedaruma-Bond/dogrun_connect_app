@@ -56,8 +56,8 @@
             </p>
           </div>
         </div>
-        <% if @dogrun_place.registration_card.blank? || Dog.where(user: @current_user).blank? %>
-          <%= link_to send(@dog_registration_path), class: "w-[230px] hidden md:flex items-center px-2 py-2 font-medium tracking-wide text-white bg-amber-600 rounded-md hover:bg-amber-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
+        <% if @dogrun_place.registration_card.blank? %>
+          <%= link_to send(@route_selection_path), class: "w-[230px] hidden md:flex items-center px-2 py-2 font-medium tracking-wide text-white bg-amber-600 rounded-md hover:bg-amber-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
             </svg>
@@ -72,7 +72,7 @@
             </button>
           <% end %>
         <% else %>
-          <%= link_to send(@form_selection_path), class: "w-[230px] hidden md:flex items-center px-2 py-2 font-medium tracking-wide text-white bg-amber-600 rounded-md hover:bg-amber-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
+          <%= link_to send(@route_selection_path), class: "w-[230px] hidden md:flex items-center px-2 py-2 font-medium tracking-wide text-white bg-amber-600 rounded-md hover:bg-amber-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
             </svg>
@@ -92,8 +92,8 @@
     <%= render 'shared/registered_dog' %>
     <% if !@current_user.guest? %>
       <div class="md:hidden sm:w-2/3 sm:pl-8 sm:py-2 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
-        <% if @dogrun_place.registration_card.blank? || Dog.where(user: @current_user).blank? %>
-          <%= link_to send(@dog_registration_path), class: "mx-auto w-[230px] flex md:hidden items-center px-2 py-2 font-medium tracking-wide text-white bg-amber-600 rounded-md hover:bg-amber-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
+        <% if @dogrun_place.registration_card.blank? %>
+          <%= link_to send(@route_selection_path), class: "mx-auto w-[230px] flex md:hidden items-center px-2 py-2 font-medium tracking-wide text-white bg-amber-600 rounded-md hover:bg-amber-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
             </svg>
@@ -106,7 +106,7 @@
             <span class="ml-2 text-left"><%= simple_format(t'local.users.show.add_registered_dog') %></span>
           <% end %>
         <% else %>
-          <%= link_to send(@form_selection_path), class: "mx-auto w-[230px] flex md:hidden items-center px-2 py-2 font-medium tracking-wide text-white bg-amber-600 rounded-md hover:bg-amber-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
+          <%= link_to send(@route_selection_path), class: "mx-auto w-[230px] flex md:hidden items-center px-2 py-2 font-medium tracking-wide text-white bg-amber-600 rounded-md hover:bg-amber-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path>
             </svg>

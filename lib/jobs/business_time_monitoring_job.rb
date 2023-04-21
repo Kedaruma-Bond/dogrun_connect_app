@@ -16,6 +16,10 @@ class BusinessTimeMonitoringJob
         closing_time_num = dogrun_place.closing_time.strftime('%H%M').to_i
         if dogrun_place.force_closing? || closing_time_num < present_time_num
           dogrun_place.update(closed_flag: true) 
+          entries = Entry.includes(:registration_number).where(registration_number: { dogrun_place_id: dogrun_place.id }).where(exit_at: nil)
+          entries.each do |entry|
+            entry.update(exit_at: Time.zone.now)
+          end
         end
         return
       end

@@ -10,6 +10,9 @@ ja:
     these_information_is_not_viewable: |
       これらの情報は管理者を除く
       他のユーザーは閲覧できません
+    below_information_is_not_viewable: |
+      以下の情報は管理者を除く
+      他のユーザーは閲覧できません
     show_address_and_phone_number: 住所・電話番号表示
     address: 住所
     sns: SNS
@@ -51,6 +54,7 @@ ja:
       ゲストログインではなく
       正式な新規登録が必要です
     send: 送信
+    sending: 送信中...
     confirm: 入力内容確認
     back: 戻る
     encount_list: エンカウントリスト
@@ -84,6 +88,7 @@ ja:
     not_authorized: 権限がありません
     date: 日付
     registration_number: 登録番号
+    registration_card: 登録証
     registration_dogs_num: 登録頭数  
     encount_dogs_num: エンカウント数
     search: 検索
@@ -189,10 +194,6 @@ ja:
         force_closing: 強制休業
         releasing: 営業時間依存
   activerecord:
-    attributes:
-      dog_registration:
-        name: ワンコの名前
-        registration_number: 登録番号
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -303,6 +304,9 @@ ja:
     messages:
       content_type_invalid: "のファイル形式はjpeg, jpg, png, heifのいずれかとしてください"
       file_size_out_of_range: "のファイルサイズは 10MB 以下としてください"
+      unselected_option: を選択してください 
+      not_attached: を添付してください
+      not_date: は日付データとしてください
       accepted: に同意してください 
       blank: を入力してください
       confirmation: と%{attribute}の入力が一致しません

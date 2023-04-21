@@ -2,7 +2,7 @@ class Admin::DogrunPlacesController < Admin::BaseController
   include Pagy::Backend
   before_action :check_grand_admin, except: %i[show edit update force_closed release]
   before_action :correct_admin_user, only: %i[show edit update force_closed release]
-  before_action :set_naming_of_registration_number, only: %i[show edit]
+  before_action :set_naming_of_registration_number, only: %i[new show edit]
   
   def index
     @pagy, @dogrun_places = pagy(DogrunPlace.with_attached_logo.includes([:dogrun_place_facility_relations], [:facilities]).order(created_at: :desc))

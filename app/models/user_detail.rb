@@ -1,5 +1,5 @@
 class UserDetail < ApplicationRecord
-  belongs_to :user
+  belongs_to :user,  foreign_key: :user_id
 
   # validations
   VALID_POSTAL_CODE_REGEX = /\A\d{3}[-]?\d{4}\z/ 

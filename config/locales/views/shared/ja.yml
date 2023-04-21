@@ -1,5 +1,12 @@
 ja:
   shared:
+    explain_of_public_modal:
+      title: 利用状況公開とは
+      body: |
+        このワンコのドッグランの利用状況を他のユーザーに公開するかどうかの設定で、チェックONで公開します。<p class="text-left text-gray-700 pt-1 pb-2">公開するとこのワンコがドッグランを利用していることが他の飼い主さんに伝わり、以下のようなことが期待できます。</p><p class="text-left text-gray-700 font-semibold">- 相性のいい仔と会いやすくなる
+        - 相性が悪い仔は避けてくれる</p>
+    dog_fully_registration_form:
+      set_thumbnail: ワンコのサムネイルを登録
     encount_dog:
       destroy_confirmation: |
         削除すると

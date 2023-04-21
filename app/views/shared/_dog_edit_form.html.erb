@@ -1,4 +1,3 @@
-
 <%= simple_form_for dog, url:send(dog_profile_path), data: { controller: 'disable', "disable-with-value": t('defaults.updating') } do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <section class="text-gray-600 body-font">
@@ -59,8 +58,9 @@
               <%= f.label :castration %>
               <%= f.input :castration, as: :boolean, checked_value: 'castrated', unchecked_value: 'non_castrated', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-10" }, label: false,  hint: false, error: false %>
             </div>
-            <div class="w-1/2 items-center md:items-start md:justify-center md:mr-2 mb-3 md:mb-0">
+            <div class="w-1/2 items-center md:items-start md:justify-center md:mr-2 mb-3 md:mb-0 relative" data-controller="sns-post-message-modal">
               <%= f.label :public %>
+              <%= render partial: "shared/explain_of_public_icon" %>
               <%= f.input :public, as: :boolean, checked_value: 'public_view', unchecked_value: 'non_public', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-9" }, label: false, hint: false, error: false %>
             </div>
           </div>
@@ -140,7 +140,7 @@
         <% end %>
       </div>
       <div class="flex justify-center mt-3 sm:mt-0 sm:mx-3">
-        <%= f.button :submit, class: "mt-3 font-bold leading-normal text-white py-4 px-10 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none diabled:cursor-not-allowed disabled:bg-emerald-300" do %>
+        <%= f.button :submit, class: "mt-3 font-bold leading-normal text-white py-4 px-10 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300" do %>
           <span><%= t'defaults.update' %></span>
         <% end %>
       </div>

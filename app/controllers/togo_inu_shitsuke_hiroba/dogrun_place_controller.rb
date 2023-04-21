@@ -9,6 +9,9 @@ class TogoInuShitsukeHiroba::DogrunPlaceController < ApplicationController
       @top_path = :togo_inu_shitsuke_hiroba_top_path
       @login_path = :togo_inu_shitsuke_hiroba_login_path
       @logout_path = :togo_inu_shitsuke_hiroba_logout_path
+      @route_selection_path = :togo_inu_shitsuke_hiroba_route_selection_path
+      @fully_route_path = :togo_inu_shitsuke_hiroba_fully_route_path
+      @minimum_route_path = :togo_inu_shitsuke_hiroba_minimum_route_path
       @signup_path = :togo_inu_shitsuke_hiroba_signup_path
       @guest_login_path = :togo_inu_shitsuke_hiroba_guest_login_path
       @jump_to_signup_path = :togo_inu_shitsuke_hiroba_jump_to_signup_path
@@ -17,6 +20,7 @@ class TogoInuShitsukeHiroba::DogrunPlaceController < ApplicationController
       @users_path = :togo_inu_shitsuke_hiroba_users_path
       @new_user_detail_path = :new_togo_inu_shitsuke_hiroba_user_detail_path
       @edit_user_detail_path = :edit_togo_inu_shitsuke_hiroba_user_detail_path
+      @signup_fully_route_user_detail_path = :signup_fully_route_togo_inu_shitsuke_hiroba_user_details_path
       @user_detail_path = :togo_inu_shitsuke_hiroba_user_detail_path
       @dog_profile_path = :togo_inu_shitsuke_hiroba_dog_path
       @edit_dog_path = :edit_togo_inu_shitsuke_hiroba_dog_path
@@ -42,7 +46,10 @@ class TogoInuShitsukeHiroba::DogrunPlaceController < ApplicationController
       @have_registration_card_path = :togo_inu_shitsuke_hiroba_dog_registration_have_registration_card_path
       @not_have_registration_card_path = :togo_inu_shitsuke_hiroba_dog_registration_not_have_registration_card_path
       @dog_registration_path = :togo_inu_shitsuke_hiroba_dog_registration_path
-      @dog_registration_confirm_path = :togo_inu_shitsuke_hiroba_dog_registration_confirm_path
+      @fully_form_selection_path = :togo_inu_shitsuke_hiroba_dog_fully_registration_form_selection_path
+      @fully_have_registration_card_path = :togo_inu_shitsuke_hiroba_dog_fully_registration_have_registration_card_path
+      @fully_not_have_registration_card_path = :togo_inu_shitsuke_hiroba_dog_fully_registration_not_have_registration_card_path
+      @dog_fully_registration_path = :togo_inu_shitsuke_hiroba_dog_fully_registration_path
       @new_article_path = :new_togo_inu_shitsuke_hiroba_article_path
       @article_path = :togo_inu_shitsuke_hiroba_article_path
       @new_embed_path = :new_togo_inu_shitsuke_hiroba_embed_path
