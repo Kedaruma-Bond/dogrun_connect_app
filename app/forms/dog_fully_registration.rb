@@ -79,7 +79,7 @@ class DogFullyRegistration
       [:thumbnail, :rabies_vaccination_certificate, :mixed_vaccination_certificate, :license_plate].each do |field|
         attachment = send(field)
         if !attachment.nil?
-          # errors.add(field, :content_type_invalid) unless attachment.content_type.in?(%w[image/png image/jpg image/jpeg image/heif])
+          errors.add(field, :content_type_invalid) unless attachment.content_type.in?(%w[image/png image/jpg image/jpeg image/heif])
         end
       end
     end

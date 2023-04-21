@@ -34,7 +34,18 @@ Rails.application.configure do
   config.action_controller.allow_forgery_protection = false
 
   # Store uploaded files on the local file system in a temporary directory.
+  config.after_initialize do
+    FileUtils.rm_rf(Dir["#{Rails.root}/tmp/storage"])
+  end
+  
   config.active_storage.service = :test
+  
+  config.active_storage.service_configurations = {
+    test: {
+      service: :disk.to_s,
+      root: "#{Rails.root}/tmp/storage"
+    }
+  }
 
   config.action_mailer.perform_caching = false
 
