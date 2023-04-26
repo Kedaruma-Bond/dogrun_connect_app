@@ -4,6 +4,10 @@ FactoryBot.define do
     exit_at { Time.zone.now }
     association :dog
     association :registration_number
+
+    trait :not_exit do
+      exit_at { nil }
+    end
   end
 end
 

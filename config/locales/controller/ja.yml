@@ -1,5 +1,8 @@
 ja:
   admin:
+    entries:
+      force_exit:
+        force_exit_successfully: 強制退場させました
     registration_numbers:
       update:
         registration_number_updated_successfully: 登録番号を更新しました

@@ -189,6 +189,9 @@ Rails.application.routes.draw do
       collection do
         get 'search', to: 'entries#search'
       end
+      member do
+        patch 'force_exit', to: 'entries#force_exit'
+      end
     end
     
     resource :session, only: %i[new create destroy]

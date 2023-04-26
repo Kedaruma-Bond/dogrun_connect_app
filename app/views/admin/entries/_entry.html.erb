@@ -26,10 +26,13 @@
     <%= l entry.entry_at, format: :short2 %>
   </td>
   <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-    <% if entry.exit_at.nil? %>
-      <%= t('.entering') %>
-    <% else %>
-      <%= l entry.exit_at, format: :short2 %>
+    <%= turbo_frame_tag dom_id(entry, :exit_at) do %>
+      <%= render partial: "exit_at_part", locals: { entry: entry } %>
+    <% end %>
+  </td>
+  <td>
+    <%= turbo_frame_tag dom_id(entry, :force_exit) do %>
+      <%= render partial: "force_exit_part", locals: { entry: entry } %>
     <% end %>
   </td>
   <td>
