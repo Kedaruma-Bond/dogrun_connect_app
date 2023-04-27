@@ -168,7 +168,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
   private
 
     def set_q
-      @entries = Entry.includes(:registration_number, :dog).where(registration_number: { dogrun_place: @dogrun_place }).where(dog: { public: "public_view" } ).order(entry_at: :desc)
+      @entries = Entry.includes(:registration_number, :dog).where(registration_number: { dogrun_place: @dogrun_place }).where(dogs: { public: "public_view" } ).order(entry_at: :desc)
       @q = @entries.ransack(params[:q])
     end
 
