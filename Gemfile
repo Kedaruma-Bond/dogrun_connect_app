@@ -113,8 +113,6 @@ group :development do
   # error詳細確認用
   gem 'better_errors'
   gem 'binding_of_caller'
-  # code補完
-  gem 'solargraph'
   # 模擬メール機能
   gem 'letter_opener_web'
 

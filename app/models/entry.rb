@@ -35,6 +35,14 @@ class Entry < ApplicationRecord
     broadcast_update_to [dogrun_place, "top"], target: "among_them_non_public_dogs_dogrun_place_#{dogrun_place.id}", partial: "shared/among_them_non_public_dogs", locals: { dogs_non_public: dogs_non_public }
   end
 
+  # ransack authorization
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "dog_id", "entry_at", "entry_digest", "exit_at", "id", "registration_number_id", "updated_at"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["dog", "encounts", "registration_number"]
+  end
 end
 
 # == Schema Information
@@ -43,7 +51,6 @@ end
 #
 #  id                     :bigint           not null, primary key
 #  entry_at               :datetime         not null
-#  entry_digest           :string
 #  exit_at                :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null

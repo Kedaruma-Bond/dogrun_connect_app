@@ -28,6 +28,15 @@ class User < ApplicationRecord
   def active_for_authentication?
     !account_frozen?
   end
+
+  # ransacl autorization
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "deactivation", "dogrun_place_id", "email", "name", "reset_password_token_expires_at", "role", "updated_at"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["dogrun_place", "dogs", "encount_dogs", "encounts", "posts", "sns_account", "user_detail"]
+  end
 end
 
 # == Schema Information
