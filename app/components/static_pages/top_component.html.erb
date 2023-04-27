@@ -28,7 +28,7 @@
         <%= @publishing_post[0].post_viewing %>
       </div>
     <% end %>
-    <%= turbo_frame_tag dom_id(@dogrun_place, "top_view_changeover_closing"), class: "w-full sm:px-10 pb-5 pt-1" do %>
+    <div class="w-full sm:px-10 pb-5 pt-1">
       <% if @dogrun_place.closed_flag == true %>
         <div class="my-10">
           <%= simple_format(I18n.t("local.static_pages.top.dogrun_is_closing_now", dogrun_name: @dogrun_place.name), class: "text-gray-700 font-bold text-2xl") %>
@@ -67,7 +67,7 @@
         <% end %>
         <%= render partial: 'shared/during_entry_dogs_content', locals: { dog_profile_path: @dog_profile_path } %>
       <% end %>
-    <% end %>
+    </div>
 
     <% if @current_user.guest? %>
       <%= button_to send(@jump_to_signup_path), method: :post,
