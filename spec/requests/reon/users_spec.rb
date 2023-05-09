@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe TogoInuShitsukeHiroba::UsersController, type: :request do
-  let!(:dogrun_place) { create(:dogrun_place, :togo_inu_shitsuke_hiroba) }
+RSpec.describe Reon::UsersController, type: :request do
+  let!(:dogrun_place) { create(:dogrun_place, :reon) }
   let!(:general) { create(:user, :general) }
 
   describe 'GET #route_selection' do
     before do
-      get togo_inu_shitsuke_hiroba_route_selection_path
+      get reon_route_selection_path
     end
     example 'レスポンスが正常なこと' do
       expect(response).to have_http_status(:success) 
@@ -15,25 +15,25 @@ RSpec.describe TogoInuShitsukeHiroba::UsersController, type: :request do
   
   describe 'GET #fully_route' do
     before do
-      get togo_inu_shitsuke_hiroba_fully_route_path
+      get reon_fully_route_path
     end
     example 'レスポンスが正常なこと' do
-      expect(response).to redirect_to(togo_inu_shitsuke_hiroba_signup_path) 
+      expect(response).to redirect_to(reon_signup_path) 
     end
   end
   
   describe 'GET #minimum_route' do
     before do
-      get togo_inu_shitsuke_hiroba_minimum_route_path
+      get reon_minimum_route_path
     end
     example 'レスポンスが正常なこと' do
-      expect(response).to redirect_to(togo_inu_shitsuke_hiroba_signup_path) 
+      expect(response).to redirect_to(reon_signup_path) 
     end
   end
   
   describe 'GET #new' do
     before do
-      get togo_inu_shitsuke_hiroba_signup_path
+      get reon_signup_path
     end
     example 'レスポンスが正常なこと' do
       expect(response).to have_http_status(:success) 
@@ -47,11 +47,11 @@ RSpec.describe TogoInuShitsukeHiroba::UsersController, type: :request do
     context '入力値が正しい場合' do
       example '新規登録できること' do
         expect {
-          post togo_inu_shitsuke_hiroba_users_path, params: {
+          post reon_users_path, params: {
             user: valid_attributes
           }
         }.to change(User, :count).by(1)
-        expect(response).to redirect_to(togo_inu_shitsuke_hiroba_dog_registration_path)
+        expect(response).to redirect_to(reon_dog_registration_path)
         expect(flash[:success]).to eq(I18n.t("local.users.user_create"))
       end
     end
@@ -59,7 +59,7 @@ RSpec.describe TogoInuShitsukeHiroba::UsersController, type: :request do
     context '不正な入力値の場合' do
       example '新規作成されないこと' do
         expect {
-          post togo_inu_shitsuke_hiroba_users_path, params: {
+          post reon_users_path, params: {
             user: invalid_attributes
           }
         }.not_to change(User, :count)

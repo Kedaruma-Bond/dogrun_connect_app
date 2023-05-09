@@ -205,12 +205,12 @@ RSpec.describe Dog, type: :model do
       end
     end
     
-    context 'scope :dogrun_place_id_for_encount_dog' do
-      example '正常に動作すること' do
-        dog_1.entries.create(entry_at: Time.zone.now, exit_at: nil, registration_number: RegistrationNumber.find_by(dog: dog_1))
-        expect(Dog.dogrun_place_id_for_encount_dog(dogrun_place.id)).to eq([dog_1])
-      end
-    end
+    # context 'scope :dogrun_place_id_for_encount_dog' do
+    #   example '正常に動作すること' do
+    #     dog_1.entries.create(entry_at: Time.zone.now, exit_at: nil, registration_number: RegistrationNumber.find_by(dog: dog_1))
+    #     expect(Dog.dogrun_place_id_for_encount_dog(dogrun_place.id)).to eq([dog_1])
+    #   end
+    # end
   
   end
 

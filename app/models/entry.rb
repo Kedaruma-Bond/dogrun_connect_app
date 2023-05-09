@@ -15,6 +15,7 @@ class Entry < ApplicationRecord
   scope :dogrun_place_id, -> (dogrun_place_id) { includes(:registration_number, dog: { thumbnail_attachment: :blob }).eager_load(dog: [:user]).where(registration_numbers: { dogrun_place_id: dogrun_place_id }).order(entry_at: :desc).where(dogs: { public: 'public_view'} ) }
   scope :user_id, -> (user_id) { includes(dog: [:user]).where(dogs: { user_id: user_id }) }
   scope :user_id_at_local, -> (user_id) { includes(:dog, :registration_number).where(dogs: { user_id: user_id }) }
+  scope :dogrun_place_id_for_encount_dog, -> (dogrun_place_id) { joins(:registration_number).includes(:dog).where(exit_at: nil).where(registration_number: { dogrun_place_id: dogrun_place_id }) }
 
   # broadcast
   after_update_commit do

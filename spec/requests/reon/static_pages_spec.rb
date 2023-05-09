@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe TogoInuShitsukeHiroba::StaticPagesController, type: :request do
-  let!(:dogrun_place) { create(:dogrun_place, :togo_inu_shitsuke_hiroba) }
+RSpec.describe Reon::StaticPagesController, type: :request do
+  let!(:dogrun_place) { create(:dogrun_place, :reon) }
 
   describe 'GET #top' do
     context 'ログインしていない時' do
-      before { get togo_inu_shitsuke_hiroba_top_path }
+      before { get reon_top_path }
 
       example 'レスポンスが正常なこと' do
         expect(response).to have_http_status(:success)
@@ -23,8 +23,8 @@ RSpec.describe TogoInuShitsukeHiroba::StaticPagesController, type: :request do
       let!(:article) { create(:article, content: "test", post: create(:post, :article, :is_publishing, dogrun_place: dogrun_place)) } 
 
       before do
-        togo_inu_shitsuke_hiroba_log_in_as(general)
-        get togo_inu_shitsuke_hiroba_top_path
+        reon_log_in_as(general)
+        get reon_top_path
       end
 
       example 'レスポンスが正常なこと' do

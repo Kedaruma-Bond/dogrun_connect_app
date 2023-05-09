@@ -17,19 +17,20 @@ module RequestHelper
   def togo_inu_shitsuke_hiroba_log_in_as(user)
     post togo_inu_shitsuke_hiroba_login_path, params: { 
       session: {
-      email: user.email,
-      password: 'password',
-      remember: true
+        email: user.email,
+        password: 'password',
+        remember: true
       }
     }
   end
+
   
   def reon_log_in_as(user)
     post reon_login_path, params: { 
       session: {
-      email: user.email,
-      password: 'password',
-      remember: true
+        email: user.email,
+        password: 'password',
+        remember: true
       }
     }
   end

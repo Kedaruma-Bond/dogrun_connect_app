@@ -86,7 +86,6 @@ RSpec.describe Admin::UsersController, type: :request do
       end
       context '有効なパラメータが入力されている場合' do
         example '新規登録されること' do
-          p valid_attributes
           expect {
             post admin_users_path, params: {
               user: valid_attributes

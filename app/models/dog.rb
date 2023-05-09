@@ -37,8 +37,8 @@ class Dog < ApplicationRecord
   delegate :user_detail, to: :user
 
   # scope
-  scope :dogrun_place_id, -> (id) { joins(:registration_numbers).where(registration_numbers: { dogrun_place_id: id }).includes(:registration_numbers, :user).order(id: :desc)}
-  scope :dogrun_place_id_for_encount_dog, -> (id) { joins(:entries, :registration_numbers).where(entries: { exit_at: nil }).where(registration_numbers: { dogrun_place_id: id }).includes(:entries, :registration_numbers, :user)}
+  scope :dogrun_place_id, -> (id) { includes(:registration_numbers, :user).where(registration_numbers: { dogrun_place_id: id }).order(id: :desc)}
+  # scope :dogrun_place_id_for_encount_dog, -> (id) { includes(:entries, :registration_numbers, :user).where(entries: { exit_at: nil }).where(registration_numbers: { dogrun_place_id: id }) }
 
   # ransack authorization
   def self.ransackable_attributes(auth_object = nil)
