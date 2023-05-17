@@ -6,7 +6,7 @@ class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::Dogr
 
   def top
     return unless logged_in?
-    @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place: @dogrun_place }).find_by(exit_at: nil) unless not_entry?
+    @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place: @dogrun_place }).find_by(exit_at: nil) unless not_entry?(current_user, @dogrun_place)
     @publishing_post = Post.where(publish_status: 'is_publishing').where(dogrun_place: @dogrun_place)
     
     if !@dogrun_entry_data.blank?

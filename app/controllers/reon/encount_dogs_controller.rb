@@ -13,11 +13,16 @@ class Reon::EncountDogsController < Reon::DogrunPlaceController
 
   def edit
     @encount_dog.update!(acknowledge: true)
+    session[:previous_url] = request.referer
   end
 
   def update
     if @encount_dog.update(encount_dog_params)
-      redirect_to send(@encount_dogs_path), success: t('local.encount_dogs.encount_dog_updated')
+      if session[:previous_url].nil?
+        redirect_to send(@encount_dogs_path), success: t('local.encount_dogs.encount_dog_updated')
+      else
+        redirect_to session[:previous_url], success: t('local.encount_dogs.encount_dog_updated') 
+      end
     else
       render :edit, status: :unprocessable_entity
     end

@@ -61,10 +61,10 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
             format.turbo_stream { flash.now[:error] = t('local.entries.select_entry_dog') }
           end
         else
-          @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place: @dogrun_place }).find_by(exit_at: nil) unless not_entry?
+          @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place: @dogrun_place }).find_by(exit_at: nil) unless not_entry?(current_user, @dogrun_place)
           set_num_of_playing_dogs
 
-          @entry.after_entry_broadcast(@num_of_playing_dogs, @dogs_non_public)
+          @entry.update_broadcast(@num_of_playing_dogs, @dogs_non_public)
           respond_to do |format|
             format.html { redirect_to send(@top_path), success: t('local.entries.entry_success') }
             format.turbo_stream { flash.now[:success] = t('local.entries.entry_success') }
@@ -121,10 +121,10 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
         end
         pre_entry.destroy
       end
-      @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place: @dogrun_place }).find_by(exit_at: nil) unless not_entry?
+      @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place: @dogrun_place }).find_by(exit_at: nil) unless not_entry?(current_user, @dogrun_place)
       set_num_of_playing_dogs
 
-      @entry.after_entry_broadcast(@num_of_playing_dogs, @dogs_non_public)
+      @entry.update_broadcast(@num_of_playing_dogs, @dogs_non_public)
       respond_to do |format|
         format.html { redirect_to send(@top_path), success: t('local.entries.entry_success') }
         format.turbo_stream { flash.now[:success] = t('local.entries.entry_success') }
@@ -145,7 +145,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
     end
     set_num_of_playing_dogs
 
-    @entry.exit_broadcast(@num_of_playing_dogs, @dogs_non_public)
+    @entry.update_broadcast(@num_of_playing_dogs, @dogs_non_public)
 
     respond_to do |format|
       format.html { redirect_to send(@top_path), success: t('local.entries.exit_success') }
@@ -159,6 +159,8 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
 
   def destroy
     @entry.destroy
+    set_num_of_playing_dogs
+    @entry.update_broadcast(@num_of_playing_dogs, @dogs_non_public)
     respond_to do |format|
       format.html { redirect_to send(@entries_path), success: t('defaults.destroy_successfully'), status: :see_other }
       format.turbo_stream { flash.now[:success] = t('defaults.destroy_successfully') }

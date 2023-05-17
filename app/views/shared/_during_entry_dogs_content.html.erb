@@ -4,10 +4,10 @@
       <h1 class="mx-auto text-base font-semibold mb-2"><%= t('.during_entry_dogs') %></h1>
       <div class="w-full h-px bg-gray-700 rounded mb-2"></div>
       <div data-controller="display-empty" data-display-empty-hide-class="hidden">
-        <%= turbo_frame_tag dom_id(@dogrun_place, "entries_list"), data: { "display-empty-target": "list" } do %>
+        <%= turbo_frame_tag dom_id(dogrun_place, "entries_list"), data: { "display-empty-target": "list" } do %>
           <% if !@dogs_public_view.nil? %>
             <% @dogs_public_view.size.times do |t| %>
-              <%= render partial: "shared/entry_dog", locals: { dog: @dogs_public_view[t], dogrun_place: @dogrun_place, dog_profile_path: dog_profile_path } %>
+              <%= render partial: "shared/entry_dog", locals: { dog: @dogs_public_view[t], dogrun_place: dogrun_place, dog_profile_path: dog_profile_path } %>
             <% end %>
           <% end %>
         <% end %>
