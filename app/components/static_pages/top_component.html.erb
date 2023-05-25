@@ -1,6 +1,6 @@
 <%= turbo_stream_from @dogrun_place, "top" %>
 <% content_for(:title, @title) %>
-<div data-controller="filming-message-modal sns-post-message-modal reloadable">
+<div data-controller="filming-message-modal sns-post-message-modal">
   <div class="block md:hidden">
     <% if !@current_user.nil? %>
       <% if !@publishing_post.blank? %>
@@ -47,33 +47,31 @@
             <% end %>
           </div>
         <% else %>
-          <div data-reloadable-target="reloadPart">
-            <div class="flex flex-col mt-2 font-bold">
-              <p class='text-center text-gray-700 text-2xl relative right-7'>
-                <%= t('local.static_pages.top.site_in') %>
-              </p>
-              <%= turbo_frame_tag dom_id(@dogrun_place, :num_of_playing_dogs) do %>
-                <%= render partial: "shared/num_of_playing_dogs", locals: { num_of_playing_dogs: @num_of_playing_dogs } %>
-              <% end %>
-              <%= turbo_frame_tag dom_id(@dogrun_place, :among_them_non_public_dogs) do %>
-                <%= render partial: "shared/among_them_non_public_dogs", locals: { dogs_non_public: @dogs_non_public }  %>
-              <% end %>
-            </div>
-            <%= render partial: 'shared/during_pre_entry_dogs_content', locals: { dogrun_place: @dogrun_place, dog_profile_path: @dog_profile_path, pre_entry_dogs_public_view: @pre_entry_dogs_public_view } %>
-            <% if !@current_user.guest? %>
-              <%= turbo_frame_tag dom_id(@dogrun_place, :login_top_content) do %>
-                <%= render partial: 'shared/login_top_content', 
-                  locals: { 
-                    current_user: @current_user, 
-                    dogrun_place: @dogrun_place,
-                    dogs: @dogs,
-                    entries_path: @entries_path,
-                  } 
-                %>
-              <% end %>
+          <div class="flex flex-col mt-2 font-bold">
+            <p class='text-center text-gray-700 text-2xl relative right-7'>
+              <%= t('local.static_pages.top.site_in') %>
+            </p>
+            <%= turbo_frame_tag dom_id(@dogrun_place, :num_of_playing_dogs) do %>
+              <%= render partial: "shared/num_of_playing_dogs", locals: { num_of_playing_dogs: @num_of_playing_dogs } %>
             <% end %>
-            <%= render partial: 'shared/during_entry_dogs_content', locals: { dog_profile_path: @dog_profile_path, dogrun_place: @dogrun_place } %>
+            <%= turbo_frame_tag dom_id(@dogrun_place, :among_them_non_public_dogs) do %>
+              <%= render partial: "shared/among_them_non_public_dogs", locals: { dogs_non_public: @dogs_non_public }  %>
+            <% end %>
           </div>
+          <%= render partial: 'shared/during_pre_entry_dogs_content', locals: { dogrun_place: @dogrun_place, dog_profile_path: @dog_profile_path, pre_entry_dogs_public_view: @pre_entry_dogs_public_view } %>
+          <% if !@current_user.guest? %>
+            <%= turbo_frame_tag dom_id(@dogrun_place, :login_top_content) do %>
+              <%= render partial: 'shared/login_top_content', 
+                locals: { 
+                  current_user: @current_user, 
+                  dogrun_place: @dogrun_place,
+                  dogs: @dogs,
+                  entries_path: @entries_path,
+                } 
+              %>
+            <% end %>
+          <% end %>
+          <%= render partial: 'shared/during_entry_dogs_content', locals: { dog_profile_path: @dog_profile_path, dogrun_place: @dogrun_place } %>
         <% end %>
       </div>
 

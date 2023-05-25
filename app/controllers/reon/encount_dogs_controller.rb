@@ -8,7 +8,6 @@ class Reon::EncountDogsController < Reon::DogrunPlaceController
   
   def index
     @pagy, @encount_dogs = pagy(EncountDog.encount_dog_of_user(current_user.id))
-    @encount_dogs_for_count = EncountDog.includes(:dog).where(user: current_user).where(dogs: { public: "public_view" })
   end
 
   def edit

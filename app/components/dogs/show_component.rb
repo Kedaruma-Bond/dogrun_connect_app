@@ -2,7 +2,19 @@
 
 class Dogs::ShowComponent < ApplicationViewComponent
 
-  def initialize(title:, registration_number_notation:, current_user:, dog:, registration_number:, user:, encount_dog:, dog_profile_path:, edit_dog_path:)
+  def initialize(
+    title:, 
+    registration_number_notation:, 
+    current_user:, 
+    dog:, 
+    registration_number:, 
+    user:, 
+    encount_dog:, 
+    dog_profile_path:, 
+    edit_dog_path:,
+    entries:,
+    num_of_entry_records_to_display:
+  )
     @title = title
     @registration_number_notation = registration_number_notation
     @current_user = current_user
@@ -12,6 +24,8 @@ class Dogs::ShowComponent < ApplicationViewComponent
     @encount_dog = encount_dog
     @dog_profile_path = dog_profile_path
     @edit_dog_path = edit_dog_path
+    @entries = entries
+    @num_of_entry_records_to_display = num_of_entry_records_to_display
   end
 
 end

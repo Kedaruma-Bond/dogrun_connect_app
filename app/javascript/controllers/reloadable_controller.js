@@ -1,14 +1,14 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["reloadPart"]
+  static targets = ["reloadFrame"]
 
   connect() {
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden) {
         // location.reload();
-        this.reloadPartTargets.forEach((reloadPart) => {
-          reloadPart.src = reloadPart.src
+        this.reloadFrameTargets.forEach((reloadFrame) => {
+          reloadFrame.src = reloadFrame.src
         })
       }
     })
