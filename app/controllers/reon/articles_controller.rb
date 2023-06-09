@@ -6,7 +6,7 @@ class Reon::ArticlesController < Reon::DogrunPlaceController
   def new
     @article = Article.new
     post = Post.find(params[:id])
-    if !post.article?
+    if !post.article? || post.user != current_user || post.dogrun_place != @dogrun_place
       redirect_to send(@top_path), error: t('defaults.illegal_route')
     end
   end

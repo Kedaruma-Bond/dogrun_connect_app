@@ -6,7 +6,7 @@ class Reon::EmbedsController < Reon::DogrunPlaceController
   def new
     @embed = Embed.new
     post = Post.find(params[:id])
-    if !post.embed?
+    if !post.embed? || post.user != current_user || post.dogrun_place != @dogrun_place
       redirect_to send(@top_path), error: t('defaults.illegal_route')
     end
   end
