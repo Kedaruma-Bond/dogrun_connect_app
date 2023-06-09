@@ -10,8 +10,8 @@ RSpec.describe DogFullyRegistration, type: :model do
         DogFullyRegistration.new(
           name: "bond",
           thumbnail: fixture_file_upload("/images/bond_icon.png", "image/png"),
-          castration: false,
-          public: true,
+          castration: "non_castrated",
+          public: "public_view",
           birthday: Date.today - 1.year,
           breed: "ウィペット",
           sex: "male",
