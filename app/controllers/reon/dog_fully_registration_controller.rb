@@ -18,7 +18,6 @@ class Reon::DogFullyRegistrationController < Reon::DogrunPlaceController
 
   def new
     @registration_number_hint = I18n.t('local.dog_registrations.new.registration_number_hint', registration_card: I18n.t('reon.registration_card'))
-    session.delete(:dog_fully_registration_form)
     @dog_fully_registration = DogFullyRegistration.new
   end
 
