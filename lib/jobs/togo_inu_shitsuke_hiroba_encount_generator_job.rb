@@ -6,18 +6,18 @@ class TogoInuShitsukeHirobaEncountGeneratorJob
         Rails.cache.delete('togo_inu_shitsuke_hiroba_previous_dogs_id')
       end
       
-      p '*' * 10
-      p 'redis store data' 
-      p previous_dogs_id
+      # p '*' * 10
+      # p 'redis store data' 
+      # p previous_dogs_id
       
       dogrun_place_id = 2
   
       during_entry_dogs_id = Entry.dogrun_place_id_for_encount_dog(dogrun_place_id).pluck(:dog_id)
       return if during_entry_dogs_id.blank?
       
-      p 'present data' 
-      p during_entry_dogs_id
-      p '*' * 10
+      # p 'present data' 
+      # p during_entry_dogs_id
+      # p '*' * 10
       
       Rails.cache.write('togo_inu_shitsuke_hiroba_previous_dogs_id', during_entry_dogs_id)
       return if previous_dogs_id.blank?

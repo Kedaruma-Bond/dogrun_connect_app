@@ -13,7 +13,8 @@ class Dogs::ShowComponent < ApplicationViewComponent
     dog_profile_path:, 
     edit_dog_path:,
     entries:,
-    num_of_entry_records_to_display:
+    num_of_entry_records_to_display:,
+    dogrun_place:
   )
     @title = title
     @registration_number_notation = registration_number_notation
@@ -26,6 +27,7 @@ class Dogs::ShowComponent < ApplicationViewComponent
     @edit_dog_path = edit_dog_path
     @entries = entries
     @num_of_entry_records_to_display = num_of_entry_records_to_display
+    @dogrun_place = dogrun_place
   end
 
 end

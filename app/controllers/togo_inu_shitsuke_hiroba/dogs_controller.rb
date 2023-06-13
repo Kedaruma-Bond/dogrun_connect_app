@@ -6,8 +6,18 @@ class TogoInuShitsukeHiroba::DogsController < TogoInuShitsukeHiroba::DogrunPlace
   def show
     @user = User.find(@dog.user_id)
     @entries = Entry.where(dog: @dog).where(registration_number_id: @registration_number.id).joins(:registration_number).where(registration_number: { dogrun_place: @dogrun_place } ).sort.reverse
-    @num_of_entry_records_to_display = 5
     @encount_dog = EncountDog.where(user_id: current_user.id).find_by(dog_id: @dog)
+    
+    # x 個以上重複したencount recordを削除
+    @num_of_entry_records_to_display = 5
+    # 直近 x 件のentryのIDを取得
+    recent_entry_ids = Entry.includes(:dog, :registration_number).where(dog: @dog).where(registration_numbers: { dogrun_place_id: @dogrun_place.id } ).order(entry_at: :desc).first(@num_of_entry_records_to_display).pluck(:id)
+    p "*" * 10
+    p recent_entry_ids
+    p "*" * 10
+    # 直近 x 件以外のentryが関連付けられたencountデータを削除
+    encounts = Encount.where(user_id: current_user.id)
+    encounts.where.not(entry_id: recent_entry_ids).destroy_all
   end
 
   def edit; end
