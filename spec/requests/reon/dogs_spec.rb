@@ -7,8 +7,11 @@ RSpec.describe Reon::DogsController, type: :request do
   let!(:registration_number) { create(:registration_number, dog: dog, dogrun_place: dogrun_place)}
 
   describe 'GET #show' do
+    let!(:dogrun_place_2) { create(:dogrun_place, :togo_inu_shitsuke_hiroba) }
+    let!(:registration_number_2) { create(:registration_number, dog: dog, dogrun_place: dogrun_place_2)}
     let!(:other) { create(:user, :general) }
     let!(:dog_other) { create(:dog, :castrated, :public_view, user: other) }
+    let!(:registration_number_other) { create(:registration_number, dog: dog_other, dogrun_place: dogrun_place)}
     let!(:entry_0) { create(:entry, entry_at: DateTime.now - 0, dog: dog, registration_number: registration_number) }
     let!(:entry_1) { create(:entry, entry_at: DateTime.now - 1, dog: dog, registration_number: registration_number) }
     let!(:entry_2) { create(:entry, entry_at: DateTime.now - 2, dog: dog, registration_number: registration_number) }
@@ -28,6 +31,8 @@ RSpec.describe Reon::DogsController, type: :request do
       end
 
       example '直近5以上のentryに紐づいたencountが削除され正常なレスポンスがかえること' do
+        get reon_dog_path(dog_other)
+        get togo_inu_shitsuke_hiroba_dog_path(dog)
         get reon_dog_path(dog)
         expect(response).to be_successful
         expect(assigns(:entries)).to match_array(Entry.where(dog: dog, registration_number_id: registration_number.id).joins(:registration_number).where(registration_number: { dogrun_place: dogrun_place }).order(created_at: :desc))
