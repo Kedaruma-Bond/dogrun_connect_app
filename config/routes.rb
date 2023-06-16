@@ -34,7 +34,6 @@ Rails.application.routes.draw do
     resources :entries, only: %i[index create destroy] do
       collection do
         get 'search', to: 'entries#search'
-        post 'search', to: 'entries#search'
       end
     end
     resource :entry, only: %i[update]
@@ -95,7 +94,6 @@ Rails.application.routes.draw do
     resources :entries, only: %i[index create destroy] do
       collection do
         get 'search', to: 'entries#search'
-        post 'search', to: 'entries#search'
       end
     end
     resource :entry, only: %i[update]
