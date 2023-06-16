@@ -34,7 +34,7 @@ class Reon::EncountDogsController < Reon::DogrunPlaceController
   def destroy
     @encount_dog.destroy
     respond_to do |format|
-      format.html { redirect_to send(@reon_encount_dogs_path), success: t('defaults.destroy_succesffuly') }
+      format.html { redirect_to send(@encount_dogs_path), success: t('defaults.destroy_successfully') }
       format.turbo_stream { flash.now[:success] = t('defaults.destroy_successfully') }
     end
   end

@@ -36,3 +36,6 @@
 
 # Ignore sitemap file
 public/sitemap.xml.gz
+
+# Ignore spec/example file
+spec/examples.txt
