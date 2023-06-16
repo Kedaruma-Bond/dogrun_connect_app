@@ -8,7 +8,7 @@ RSpec.describe Admin::UsersController, type: :request do
   let!(:admin_1) { create(:user, :admin, dogrun_place: dogrun_place_1) }
   let!(:general) { create(:user, :general) }
 
-  describe "GET #users" do
+  describe "GET #index" do
     context 'grand_adminでログインしているとき' do
       before { admin_log_in_as(grand_admin) }
 
@@ -25,6 +25,16 @@ RSpec.describe Admin::UsersController, type: :request do
         get admin_users_path
         expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
         expect(response).to redirect_to(admin_root_path)
+      end
+    end
+
+    context '一般ユーザーでログインしているとき' do
+      before { admin_log_in_as(general) }
+
+      example 'エラーメッセージが表示されてhome画面にリダイレクトされること' do
+        get admin_users_path
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -188,6 +198,47 @@ RSpec.describe Admin::UsersController, type: :request do
     end
   end
 
+  describe 'GET #search' do
+    context 'grand_adminでログインしているとき' do
+      before { admin_log_in_as(grand_admin) }
+
+      example "正常なレスポンスがかえること" do
+        get search_admin_users_path
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    context '管理者ユーザーでログインしているとき' do
+      before { admin_log_in_as(admin_1) }
+      
+      example 'エラーメッセージが表示され管理home画面がにリダイレクトされること' do
+        get search_admin_users_path
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(admin_root_path)
+      end
+
+    end
+    
+    context '一般ユーザーでログインしているとき' do
+      before { admin_log_in_as(general) }
+
+      example 'エラーメッセージが表示されてhome画面にリダイレクトされること' do
+        get search_admin_users_path
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(root_path)
+      end
+      
+    end
+    
+    context 'ログインしていないとき' do
+      example 'エラーメッセージが表示されて管理者ログイン画面にリダイレクトされること' do
+        get search_admin_users_path
+        expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
+        expect(response).to redirect_to(admin_login_path)
+      end
+    end
+  end
+
   describe "PATCH #deactivation" do
     let!(:not_BAN_user) { create(:user, :general) }
     context 'grand_adminでログインしているとき' do
@@ -268,6 +319,5 @@ RSpec.describe Admin::UsersController, type: :request do
         expect(response).to redirect_to(admin_login_path)
       end
     end
-
   end
 end
