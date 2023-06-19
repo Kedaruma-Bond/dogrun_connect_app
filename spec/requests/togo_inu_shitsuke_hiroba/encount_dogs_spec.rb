@@ -79,6 +79,7 @@ RSpec.describe TogoInuShitsukeHiroba::EncountDogsController, type: :request do
 
       example '正常なレスポンスが返ること' do
         get search_togo_inu_shitsuke_hiroba_encount_dogs_path
+        expect(response).to render_template(:search)
         expect(response).to have_http_status(:success)
       end
     end

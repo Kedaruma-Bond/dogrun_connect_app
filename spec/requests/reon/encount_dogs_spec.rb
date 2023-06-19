@@ -79,6 +79,7 @@ RSpec.describe Reon::EncountDogsController, type: :request do
 
       example '正常なレスポンスが返ること' do
         get search_reon_encount_dogs_path
+        expect(response).to render_template(:search)
         expect(response).to have_http_status(:success)
       end
     end
