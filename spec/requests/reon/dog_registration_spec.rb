@@ -13,7 +13,7 @@ RSpec.describe Reon::DogRegistrationController, type: :request do
       example '正しくレンダリングされること' do
         get reon_dog_registration_form_selection_path
         expect(response).to render_template(:form_selection)
-        expect(response).to have_http_status(:ok)
+        expect(assigns(:confirmation)).to eq(I18n.t('local.dog_registrations.form_selection.confirmation', registration_card: I18n.t('reon.registration_card')))
       end
     end
 
@@ -79,7 +79,7 @@ RSpec.describe Reon::DogRegistrationController, type: :request do
       example '正常なレスポンスがかえること' do
         get reon_dog_registration_path
         expect(response).to render_template(:new)
-        expect(response).to have_http_status(:ok)
+        expect(assigns(:registration_number_hint)).to eq(I18n.t('local.dog_registrations.new.registration_number_hint', registration_card: I18n.t('reon.registration_card')))
       end
     end
 

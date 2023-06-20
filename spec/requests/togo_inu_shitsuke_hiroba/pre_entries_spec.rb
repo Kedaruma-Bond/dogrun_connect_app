@@ -13,7 +13,7 @@ RSpec.describe TogoInuShitsukeHiroba::PreEntriesController, type: :request do
         togo_inu_shitsuke_hiroba_log_in_as(general)
       end
 
-      example 'pre_entryが削除されdogrunのtop画面にリダイレクトしてエラーメッセージが表示されること' do
+      example 'pre_entryが削除されdogrunのtop画面にリダイレクトしてメッセージが表示されること' do
         delete togo_inu_shitsuke_hiroba_pre_entry_path
         expect(PreEntry.count).to be_zero
         expect(response).to redirect_to(togo_inu_shitsuke_hiroba_top_path)
