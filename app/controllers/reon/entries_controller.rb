@@ -16,7 +16,14 @@ class Reon::EntriesController < Reon::DogrunPlaceController
     end
 
     if not_pre_entry?
-      @entries_array = []
+      if params[:select_dog].blank?
+        respond_to do |format|
+          format.html { redirect_to send(@top_path), error: t('local.entries.pre_entry_has_been_expired') }
+          format.turbo_stream { flash.now[:error] = t('local.entries.pre_entry_has_been_expired') }
+        end
+        return
+      end
+
       clear_zero
       select_dogs_allocation(params[:select_dog])
       

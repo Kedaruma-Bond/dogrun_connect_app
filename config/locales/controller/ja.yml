@@ -128,6 +128,9 @@ ja:
         すでに利用予定となっている
         ワンコが選択されています
       exit_success: またのご来場をお待ちしています
+      pre_entry_has_been_expired: |
+        プレエントリー後30分以上経過しています
+        お手数ですが再度ワンコを選択し「入場する」ボタンを押してください
     encount_dogs:
       encount_dog_updated: 情報を更新しました
     dogs:

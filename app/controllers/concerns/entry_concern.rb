@@ -19,6 +19,7 @@ module EntryConcern
   end
   
   def clear_zero
+    @entries_array = []
     @num = 0
     @zero_count = 0
   end

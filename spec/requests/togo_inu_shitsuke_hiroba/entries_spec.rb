@@ -38,6 +38,21 @@ RSpec.describe TogoInuShitsukeHiroba::EntriesController, type: :request do
 
       describe 'ドッグランが営業中の場合' do
         describe 'プレエントリーしていないとき' do
+          context 'params[:select_dog]がblankの場合' do
+            example 'dogrunのtop画面リダイレクトされエラーメッセージが表示されること' do
+              expect {
+                post togo_inu_shitsuke_hiroba_entries_path, 
+                params: {
+                  pre_flg: "0",                      
+                  select_dog: ""
+                }
+              }.not_to change(Entry, :count)
+              expect(response).to redirect_to(togo_inu_shitsuke_hiroba_top_path)
+              expect(flash[:error]).to eq(I18n.t('local.entries.pre_entry_has_been_expired'))
+              expect(response).to have_http_status(:found) 
+            end
+          end
+
           describe '入場する場合' do
             describe 'ユーザーのワンコの入場中の記録がないとき' do
               context 'ワンコが選択されている場合' do
