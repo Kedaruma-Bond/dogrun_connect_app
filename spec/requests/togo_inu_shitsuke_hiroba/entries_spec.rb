@@ -243,7 +243,7 @@ RSpec.describe TogoInuShitsukeHiroba::EntriesController, type: :request do
         togo_inu_shitsuke_hiroba_log_in_as(general)
       end
       
-      example 'destroys the entry' do
+      example 'entryが削除されdogrunのtop画面にリダイレクトしてエラーメッセージが表示されること' do
         delete togo_inu_shitsuke_hiroba_entry_path(entry_3)
         expect(Entry.count).to be_zero
         expect(response).to redirect_to(togo_inu_shitsuke_hiroba_entries_path)

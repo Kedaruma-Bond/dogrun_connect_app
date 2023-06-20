@@ -243,7 +243,7 @@ RSpec.describe Reon::EntriesController, type: :request do
         reon_log_in_as(general)
       end
       
-      example 'destroys the entry' do
+      example 'entryが削除されdogrunのtop画面にリダイレクトしてエラーメッセージが表示されること' do
         delete reon_entry_path(entry_3)
         expect(Entry.count).to be_zero
         expect(response).to redirect_to(reon_entries_path)
