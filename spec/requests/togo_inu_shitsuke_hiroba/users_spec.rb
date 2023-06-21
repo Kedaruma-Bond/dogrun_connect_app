@@ -18,6 +18,7 @@ RSpec.describe TogoInuShitsukeHiroba::UsersController, type: :request do
       get togo_inu_shitsuke_hiroba_fully_route_path
     end
     example 'レスポンスが正常なこと' do
+      session[:fully_flg] = true
       expect(response).to redirect_to(togo_inu_shitsuke_hiroba_signup_path) 
     end
   end
@@ -27,6 +28,7 @@ RSpec.describe TogoInuShitsukeHiroba::UsersController, type: :request do
       get togo_inu_shitsuke_hiroba_minimum_route_path
     end
     example 'レスポンスが正常なこと' do
+      session[:fully_flg] = false
       expect(response).to redirect_to(togo_inu_shitsuke_hiroba_signup_path) 
     end
   end
@@ -53,6 +55,10 @@ RSpec.describe TogoInuShitsukeHiroba::UsersController, type: :request do
         }.to change(User, :count).by(1)
         expect(response).to redirect_to(togo_inu_shitsuke_hiroba_dog_registration_path)
         expect(flash[:success]).to eq(I18n.t("local.users.user_create"))
+        # ログインできていることの検証
+        get togo_inu_shitsuke_hiroba_top_path
+        expect(response.body).to include(valid_attributes[:name])
+        expect(response.body).to include(I18n.t('shared.login_top_content.please_register_dog'))
       end
     end
 

@@ -192,6 +192,5 @@ RSpec.describe TogoInuShitsukeHiroba::RegistrationNumbersController, type: :requ
         expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
       end
     end
-
   end
 end

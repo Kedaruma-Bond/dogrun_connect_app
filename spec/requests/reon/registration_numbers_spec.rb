@@ -192,6 +192,5 @@ RSpec.describe Reon::RegistrationNumbersController, type: :request do
         expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
       end
     end
-
   end
 end

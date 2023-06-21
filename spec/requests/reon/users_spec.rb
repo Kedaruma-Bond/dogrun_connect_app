@@ -18,6 +18,7 @@ RSpec.describe Reon::UsersController, type: :request do
       get reon_fully_route_path
     end
     example 'レスポンスが正常なこと' do
+      session[:fully_flg] = true
       expect(response).to redirect_to(reon_signup_path) 
     end
   end
@@ -27,6 +28,7 @@ RSpec.describe Reon::UsersController, type: :request do
       get reon_minimum_route_path
     end
     example 'レスポンスが正常なこと' do
+      session[:fully_flg] = false
       expect(response).to redirect_to(reon_signup_path) 
     end
   end
@@ -53,6 +55,10 @@ RSpec.describe Reon::UsersController, type: :request do
         }.to change(User, :count).by(1)
         expect(response).to redirect_to(reon_dog_registration_path)
         expect(flash[:success]).to eq(I18n.t("local.users.user_create"))
+        # ログインできていることの検証
+        get reon_top_path
+        expect(response.body).to include(valid_attributes[:name])
+        expect(response.body).to include(I18n.t('shared.login_top_content.please_register_dog'))
       end
     end
 
