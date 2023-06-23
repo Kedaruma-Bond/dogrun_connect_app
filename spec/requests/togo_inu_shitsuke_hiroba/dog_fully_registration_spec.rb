@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe TogoInuShitsukeHiroba::DogFullyRegistrationController, type: :request do
   let!(:dogrun_place) { create(:dogrun_place, :togo_inu_shitsuke_hiroba) }
   let!(:general) { create(:user, :general) }
+  let!(:guest) { create(:user, :guest) }
 
   describe 'GET #form_selection' do
     describe 'ログインしているとき' do
@@ -14,6 +15,18 @@ RSpec.describe TogoInuShitsukeHiroba::DogFullyRegistrationController, type: :req
         get togo_inu_shitsuke_hiroba_dog_fully_registration_form_selection_path
         expect(response).to render_template(:form_selection)
         expect(assigns(:confirmation)).to eq(I18n.t('local.dog_registrations.form_selection.confirmation', registration_card: I18n.t('togo_inu_shitsuke_hiroba.registration_card')))
+      end
+    end
+
+    describe 'ゲストログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(guest)
+      end
+      
+      example 'signup画面にリダイレクトされエラーメッセージが表示されること' do
+        get togo_inu_shitsuke_hiroba_dog_fully_registration_form_selection_path
+        expect(response).to redirect_to(togo_inu_shitsuke_hiroba_signup_path)
+        expect(flash[:error]).to eq(I18n.t('defaults.require_signup'))
       end
     end
 
@@ -36,6 +49,18 @@ RSpec.describe TogoInuShitsukeHiroba::DogFullyRegistrationController, type: :req
         get togo_inu_shitsuke_hiroba_dog_fully_registration_have_registration_card_path
         expect(session[:card_flg]).to be true
         expect(response).to redirect_to(togo_inu_shitsuke_hiroba_dog_fully_registration_path)
+      end
+    end
+    
+    describe 'ゲストログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(guest)
+      end
+      
+      example 'signup画面にリダイレクトされエラーメッセージが表示されること' do
+        get togo_inu_shitsuke_hiroba_dog_fully_registration_have_registration_card_path
+        expect(response).to redirect_to(togo_inu_shitsuke_hiroba_signup_path)
+        expect(flash[:error]).to eq(I18n.t('defaults.require_signup'))
       end
     end
 
@@ -61,6 +86,18 @@ RSpec.describe TogoInuShitsukeHiroba::DogFullyRegistrationController, type: :req
       end
     end
 
+    describe 'ゲストログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(guest)
+      end
+      
+      example 'signup画面にリダイレクトされエラーメッセージが表示されること' do
+        get togo_inu_shitsuke_hiroba_dog_fully_registration_not_have_registration_card_path
+        expect(response).to redirect_to(togo_inu_shitsuke_hiroba_signup_path)
+        expect(flash[:error]).to eq(I18n.t('defaults.require_signup'))
+      end
+    end
+
     describe 'ログインしていないとき' do
       example 'root画面にリダイレクトされエラーメッセージが表示されること' do
         get togo_inu_shitsuke_hiroba_dog_fully_registration_not_have_registration_card_path
@@ -80,6 +117,18 @@ RSpec.describe TogoInuShitsukeHiroba::DogFullyRegistrationController, type: :req
         get togo_inu_shitsuke_hiroba_dog_fully_registration_path
         expect(response).to render_template(:new)
         expect(assigns(:registration_number_hint)).to eq(I18n.t('local.dog_registrations.new.registration_number_hint', registration_card: I18n.t('togo_inu_shitsuke_hiroba.registration_card')))
+      end
+    end
+    
+    describe 'ゲストログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(guest)
+      end
+      
+      example 'signup画面にリダイレクトされエラーメッセージが表示されること' do
+        get togo_inu_shitsuke_hiroba_dog_fully_registration_path
+        expect(response).to redirect_to(togo_inu_shitsuke_hiroba_signup_path)
+        expect(flash[:error]).to eq(I18n.t('defaults.require_signup'))
       end
     end
 
@@ -149,6 +198,18 @@ RSpec.describe TogoInuShitsukeHiroba::DogFullyRegistrationController, type: :req
           expect(response).to have_http_status(:unprocessable_entity)
           expect(assigns(:dog_fully_registration).errors).to be_of_kind(:name, :blank)
         end
+      end
+    end
+    
+    describe 'ゲストログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(guest)
+      end
+      
+      example 'signup画面にリダイレクトされエラーメッセージが表示されること' do
+        post togo_inu_shitsuke_hiroba_dog_fully_registration_path
+        expect(response).to redirect_to(togo_inu_shitsuke_hiroba_signup_path)
+        expect(flash[:error]).to eq(I18n.t('defaults.require_signup'))
       end
     end
 
