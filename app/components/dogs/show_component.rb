@@ -10,6 +10,7 @@ class Dogs::ShowComponent < ApplicationViewComponent
     registration_number:, 
     user:, 
     encount_dog:, 
+    edit_encount_dog_path:,
     dog_profile_path:, 
     edit_dog_path:,
     entries:,
@@ -23,6 +24,7 @@ class Dogs::ShowComponent < ApplicationViewComponent
     @registration_number = registration_number
     @user = user
     @encount_dog = encount_dog
+    @edit_encount_dog_path = edit_encount_dog_path
     @dog_profile_path = dog_profile_path
     @edit_dog_path = edit_dog_path
     @entries = entries

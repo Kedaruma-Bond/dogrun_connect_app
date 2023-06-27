@@ -48,7 +48,7 @@
               <%= f.label :castration %>
               <%= f.input :castration, as: :boolean, checked_value: 'castrated', unchecked_value: 'non_castrated', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-10" }, label: false,  hint: false, error: false %>
             </div>
-            <div class="w-1/2 md:mr-2 mb-3 md:mb-0 relative" data-controller="sns-post-message-modal">
+            <div class="w-[120px] md:mr-2 mb-3 md:mb-0 relative" data-controller="sns-post-message-modal">
               <%= f.label :public %>
               <%= render partial: "shared/explain_of_public_icon" %>
               <%= f.input :public, as: :boolean, checked_value: 'public_view', unchecked_value: 'non_public', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-9" }, label: false, hint: false, error: false %>

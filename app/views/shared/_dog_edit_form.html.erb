@@ -21,14 +21,14 @@
             </h2>
             <div class="w-32 h-1 bg-gray-200 rounded mt-2 mb-4"></div>
           </div>
-          <div class="flex justify-items-center md:justify-start mb-2">
-            <div class="w-1/2 items-center md:items-start mb-1 md:mb-0">
+          <div class="flex mb-2">
+            <div class="w-1/2 mb-1 md:mb-0">
               <%= f.label :filming_approval %>
-              <%= f.input :filming_approval, as: :boolean, checked_value: 'filming_approval', unchecked_value: 'filming_not_approval', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-10" }, label: false,  hint: false, error: false %>
+              <%= f.input :filming_approval, as: :boolean, checked_value: 'filming_approval', unchecked_value: 'filming_not_approval', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto" }, label: false,  hint: false, error: false %>
             </div>
-            <div class="w-1/2 items-center md:items-start md:justify-center md:mr-2 mb-1 md:mb-0">
+            <div class="w-1/2 items-center md:mr-2 mb-1 md:mb-0">
               <%= f.label :sns_post_approval %>
-              <%= f.input :sns_post_approval, as: :boolean, checked_value: 'sns_post_approval', unchecked_value: 'sns_post_not_approval', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-9" }, label: false, hint: false, error: false %>
+              <%= f.input :sns_post_approval, as: :boolean, checked_value: 'sns_post_approval', unchecked_value: 'sns_post_not_approval', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto" }, label: false, hint: false, error: false %>
             </div>
           </div>
         </div>
@@ -58,7 +58,7 @@
               <%= f.label :castration %>
               <%= f.input :castration, as: :boolean, checked_value: 'castrated', unchecked_value: 'non_castrated', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-10" }, label: false,  hint: false, error: false %>
             </div>
-            <div class="w-1/2 items-center md:items-start md:justify-center md:mr-2 mb-3 md:mb-0 relative" data-controller="sns-post-message-modal">
+            <div class="w-[120px] items-center md:items-start md:justify-center md:mr-2 mb-3 md:mb-0 relative" data-controller="sns-post-message-modal">
               <%= f.label :public %>
               <%= render partial: "shared/explain_of_public_icon" %>
               <%= f.input :public, as: :boolean, checked_value: 'public_view', unchecked_value: 'non_public', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-9" }, label: false, hint: false, error: false %>

@@ -51,6 +51,11 @@
                       <span class="mx-2 text-lg"><%= t'defaults.edit' %></span>
                     </button>
                   <% end %>
+                  <div class="ml-4">
+                    <button data-controller="back-button" data-action="back-button#goBack" class="items-center w-[92px] h-[44px] px-3 py-2 text-base font-semibold text-white bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+                      <span><%= t('defaults.back') %></span>
+                    </button>
+                  </div>
                 </div>
               <% end %>
               <% if !@user.sns_account.nil? && !correct_user?(@user, @current_user) %>
@@ -59,6 +64,13 @@
               <% end %>
             </div>
           </div>
+          <% if !correct_user?(@user, @current_user) %>
+            <div class="md:hidden mx-auto mt-5">
+              <button data-controller="back-button" data-action="back-button#goBack" class="items-center px-5 py-2 text-base font-semibold text-white bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+                <span><%= t('defaults.back') %></span>
+              </button>
+            </div>
+          <% end %>
           <div class="sm:w-2/3 sm:pl-8 sm:py-2 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
             <div class="grid grid-cols-3 gap-2 mb-3">
               <div class="col-span-2 flex-raw flex-shrink-0 items-start justify-center mb-0">
@@ -158,16 +170,18 @@
                 </h1>
               </div>
             </div>
-            <div class="grid grid-cols-1">
-              <div class="justify-center md:justify-start mb-3">
-                <p class="text-gray-600 text-sm font-light">
-                  <%= t'defaults.owner_comment' %>
-                </p>
-                <div class="mt-1">
-                  <%= simple_format(@dog.owner_comment, class: "text-lg text-gray-700 font-bold text-left") %>
+            <% if not @dog.owner_comment.blank? %>
+              <div class="grid grid-cols-1">
+                <div class="justify-center md:justify-start mb-3">
+                  <p class="text-gray-600 text-sm font-light">
+                    <%= t'defaults.owner_comment' %>
+                  </p>
+                  <div class="mt-1">
+                    <%= simple_format(@dog.owner_comment, class: "text-lg text-gray-700 font-bold text-left") %>
+                  </div>
                 </div>
               </div>
-            </div>
+            <% end %>
             <% if not @encount_dog.blank? %>
               <div class="justify-center md:justify-start">
                 <p class="text-gray-600 text-sm font-light">
@@ -176,6 +190,14 @@
                 <div class="mt-1">
                   <%= simple_format(@encount_dog.memo, class: "text-lg text-gray-700 font-bold text-left") %>
                 </div>
+              </div>
+              <div class="justify-center md:justify-start">
+                <%= link_to send(@edit_encount_dog_path, @encount_dog), class: "mx-auto md:ml-0 mt-3 w-[120px] flex px-2 py-2 font-medium tracking-wide text-white bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
+                  </svg>
+                  <span class="ml-2"><%= t'local.users.show.edit_memo' %></span>
+                <% end %> 
               </div>
             <% end %>
             <% if correct_user?(@user, @current_user) %>
@@ -204,9 +226,15 @@
             <span class="mx-2 text-lg"><%= t('defaults.edit') %></span>
           </button>
         <% end %>
+        <div class="ml-4">
+          <button data-controller="back-button" data-action="back-button#goBack" class="items-center w-[92px] h-[44px] px-3 py-2 text-base font-semibold text-white bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+            <span><%= t('defaults.back') %></span>
+          </button>
+        </div>
       </div>
     <% end %>
-    <% if !@entries.nil? %>
+    
+    <% if !@entries.blank? %>
       <%= render partial: 'shared/entries_table', locals: {
           dog_profile_path: @dog_profile_path, 
           num_of_entry_records_to_display: @num_of_entry_records_to_display, 

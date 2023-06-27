@@ -3,8 +3,7 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
   before_action :set_new_post, only: %i[index edit search]
   before_action :set_encount_dogs, only: %i[index search]
   before_action :set_q, only: %i[index search]
-  before_action :set_encount_dog, only: %i[edit update destroy]
-  before_action :correct_user_check, only: %i[destroy]
+  before_action :correct_user_check, only: %i[edit update destroy]
   
   def index
     @pagy, @encount_dogs = pagy(EncountDog.encount_dog_of_user(current_user.id))
@@ -49,10 +48,6 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
       @q = @encount_dogs.ransack(params[:q])
     end
 
-    def set_encount_dog
-      @encount_dog = EncountDog.find(params[:id])
-    end
-
     def encount_dog_params
       params.require(:encount_dog).permit(
         :color_marker, :memo
@@ -60,6 +55,7 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
     end
 
     def correct_user_check
+      @encount_dog = EncountDog.find(params[:id])
       redirect_to send(@encount_dogs_path), error: t('defaults.not_authorized') unless @encount_dog.user == current_user
     end
 end

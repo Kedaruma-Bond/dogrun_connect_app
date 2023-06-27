@@ -129,14 +129,8 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
       end
 
       context '別のアカウントに紐づいたsns_accountをeditする場合' do
-        example '更新できないこと' do
-          get edit_togo_inu_shitsuke_hiroba_sns_account_path(sns_accounts_2),
-            params: {
-              sns_account: {
-                twitter_id: ""
-              }
-            }
-          expect(sns_accounts_2.reload.twitter_id).not_to eq("")
+        example '表示されないこと' do
+          get edit_togo_inu_shitsuke_hiroba_sns_account_path(sns_accounts_2)
           expect(response).to redirect_to(togo_inu_shitsuke_hiroba_user_path(general))
           expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
         end
