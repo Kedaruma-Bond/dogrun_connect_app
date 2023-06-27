@@ -12,12 +12,12 @@ export default class extends Controller {
 
   disableForm() {
     const submitButtons = this.submitButtons()
-    const isBackButtonPressed = submitButtons.some(button => button === document.activeElement)
+    const isBackButtonPressed = submitButtons.some(button => this.backButton === document.activeElement)
 
     console.log(isBackButtonPressed)
 
     submitButtons.forEach((button) => {
-      if (isBackButtonPressed && button !== this.backButton) {
+      if (!isBackButtonPressed && button !== this.backButton) {
         button.disabled = true
         button.value = this.withValue
       }
