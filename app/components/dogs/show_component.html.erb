@@ -52,9 +52,11 @@
                     </button>
                   <% end %>
                   <div class="ml-4">
-                    <button data-controller="back-button" data-action="back-button#goBack" class="items-center w-[92px] h-[44px] px-3 py-2 text-base font-semibold text-white bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
-                      <span><%= t('defaults.back') %></span>
-                    </button>
+                    <%= link_to session[:previous_path] do %>
+                      <button class="items-center w-[92px] h-[44px] px-3 py-2 text-base font-semibold text-white bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+                        <span><%= t('defaults.back') %></span>
+                      </button>
+                    <% end %>
                   </div>
                 </div>
               <% end %>
@@ -63,14 +65,16 @@
                 <%= render partial: "shared/sns_account_icons", locals: { sns_account: @user.sns_account } %>
               <% end %>
             </div>
+            <% if !correct_user?(@user, @current_user) %>
+              <div class="mx-auto mt-5">
+                <%= link_to session[:previous_path] do %>
+                  <button class="items-center px-5 py-2 text-base font-semibold text-white bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+                    <span><%= t('defaults.back') %></span>
+                  </button>
+                <% end %>
+              </div>
+            <% end %>
           </div>
-          <% if !correct_user?(@user, @current_user) %>
-            <div class="md:hidden mx-auto mt-5">
-              <button data-controller="back-button" data-action="back-button#goBack" class="items-center px-5 py-2 text-base font-semibold text-white bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
-                <span><%= t('defaults.back') %></span>
-              </button>
-            </div>
-          <% end %>
           <div class="sm:w-2/3 sm:pl-8 sm:py-2 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
             <div class="grid grid-cols-3 gap-2 mb-3">
               <div class="col-span-2 flex-raw flex-shrink-0 items-start justify-center mb-0">
