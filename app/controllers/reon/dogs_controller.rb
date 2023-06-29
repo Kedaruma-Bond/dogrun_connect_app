@@ -7,18 +7,24 @@ class Reon::DogsController < Reon::DogrunPlaceController
     session[:previous_path] = request.referer unless previous_action_was_edit?
     
     @user = User.find(@dog.user_id)
-    @entries = Entry.where(dog: @dog).where(registration_number_id: @registration_number.id).joins(:registration_number).where(registration_number: { dogrun_place: @dogrun_place } ).sort.reverse
+    if !@registration_number.nil?
+      @entries = Entry.where(dog: @dog).where(registration_number_id: @registration_number.id).joins(:registration_number).where(registration_number: { dogrun_place: @dogrun_place } ).sort.reverse
+    end
     @encount_dog = EncountDog.where(user_id: current_user.id).find_by(dog_id: @dog)
     @num_of_entry_records_to_display = 5
 
     # x 個以上重複したencount recordを削除
     if current_user == @user
+      dogs = Dog.includes(:registration_numbers).where(user: current_user).where(registration_numbers: { dogrun_place: @dogrun_place } )
+      recent_entry_ids = []
       # 直近 x 件のentryのIDを取得
-      recent_entry_ids = Entry.includes(:dog, :registration_number).where(dog: @dog).where(registration_numbers: { dogrun_place_id: @dogrun_place.id } ).order(entry_at: :desc).first(@num_of_entry_records_to_display).pluck(:id)
+      dogs.each do |dog|
+        recent_entry_ids << Entry.includes(:dog, :registration_number).where(dog: dog).where(registration_numbers: { dogrun_place_id: @dogrun_place.id } ).order(entry_at: :desc).first(@num_of_entry_records_to_display).pluck(:id)
+      end
   
       # 直近 x 件以外のentryが関連付けられたencountデータを削除
       encounts = Encount.where(user_id: current_user.id).where(dogrun_place_id: @dogrun_place.id)
-      encounts.where.not(entry_id: recent_entry_ids).destroy_all
+      encounts.where.not(entry_id: recent_entry_ids.flatten).destroy_all
     end
   end
 

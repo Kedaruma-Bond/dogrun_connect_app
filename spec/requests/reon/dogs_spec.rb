@@ -9,6 +9,8 @@ RSpec.describe Reon::DogsController, type: :request do
   describe 'GET #show' do
     let!(:dogrun_place_2) { create(:dogrun_place, :togo_inu_shitsuke_hiroba) }
     let!(:registration_number_2) { create(:registration_number, dog: dog, dogrun_place: dogrun_place_2)}
+    let!(:dog_another) { create(:dog, :castrated, :public_view, user: general) }
+    let!(:registration_number_another) { create(:registration_number, dog: dog_another, dogrun_place: dogrun_place)}
     let!(:other) { create(:user, :general) }
     let!(:dog_other) { create(:dog, :castrated, :public_view, user: other) }
     let!(:registration_number_other) { create(:registration_number, dog: dog_other, dogrun_place: dogrun_place)}
@@ -17,6 +19,7 @@ RSpec.describe Reon::DogsController, type: :request do
     let!(:entry_2) { create(:entry, entry_at: DateTime.now - 2, dog: dog, registration_number: registration_number) }
     let!(:entry_3) { create(:entry, entry_at: DateTime.now - 3, dog: dog, registration_number: registration_number) }
     let!(:entry_4) { create(:entry, entry_at: DateTime.now - 4, dog: dog, registration_number: registration_number) }
+    let!(:entry_another) { create(:entry, entry_at: DateTime.now - 6, dog: dog_another, registration_number: registration_number_another) }
     let!(:entry_5) { create(:entry, entry_at: DateTime.now - 5, dog: dog, registration_number: registration_number) }
     let!(:encount_0) { create(:encount, user: general, dog: dog_other, entry: entry_0, dogrun_place: dogrun_place ) }
     let!(:encount_1) { create(:encount, user: general, dog: dog_other, entry: entry_1, dogrun_place: dogrun_place ) }
@@ -24,19 +27,22 @@ RSpec.describe Reon::DogsController, type: :request do
     let!(:encount_3) { create(:encount, user: general, dog: dog_other, entry: entry_3, dogrun_place: dogrun_place ) }
     let!(:encount_4) { create(:encount, user: general, dog: dog_other, entry: entry_4, dogrun_place: dogrun_place ) }
     let!(:encount_5) { create(:encount, user: general, dog: dog_other, entry: entry_5, dogrun_place: dogrun_place ) }
+    let!(:encount_another) { create(:encount, user: general, dog: dog_other, entry: entry_another, dogrun_place: dogrun_place ) }
     
     describe 'ログインしているとき' do
       before do
         reon_log_in_as(general)
       end
 
-      example '直近5以上のentryに紐づいたencountが削除され正常なレスポンスがかえること' do
+      example '直近x以上のentryに紐づいたencountが削除され正常なレスポンスがかえること' do
         get reon_dog_path(dog_other)
         get togo_inu_shitsuke_hiroba_dog_path(dog)
         get reon_dog_path(dog)
         expect(response).to be_successful
         expect(assigns(:entries)).to match_array(Entry.where(dog: dog, registration_number_id: registration_number.id).joins(:registration_number).where(registration_number: { dogrun_place: dogrun_place }).order(created_at: :desc))
-        expect(Encount.last).to eq(encount_4)
+        expect(Encount.count).to eq(6)
+        expect(Encount.last).to eq(encount_another)
+        expect(Encount.last(2).first).to eq(encount_4)
       end
     end
 
