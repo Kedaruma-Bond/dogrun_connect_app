@@ -258,11 +258,27 @@ RSpec.describe TogoInuShitsukeHiroba::EntriesController, type: :request do
         togo_inu_shitsuke_hiroba_log_in_as(general)
       end
       
-      example 'entryが削除されdogrunのtop画面にリダイレクトしてエラーメッセージが表示されること' do
-        delete togo_inu_shitsuke_hiroba_entry_path(entry_3)
-        expect(Entry.count).to be_zero
-        expect(response).to redirect_to(togo_inu_shitsuke_hiroba_entries_path)
-        expect(flash[:success]).to eq(I18n.t('defaults.destroy_successfully'))
+      context 'ログインしているアカウントに紐づいたdogのentryを削除する場合' do
+        example 'entryが削除されdogrunのtop画面にリダイレクトしてエラーメッセージが表示されること' do
+          delete togo_inu_shitsuke_hiroba_entry_path(entry_3)
+          expect(Entry.count).to be_zero
+          expect(response).to redirect_to(togo_inu_shitsuke_hiroba_entries_path)
+          expect(flash[:success]).to eq(I18n.t('defaults.destroy_successfully'))
+        end
+      end
+
+      context '別のアカウントに紐づいたdogのentryを削除する場合' do
+        let!(:user) { create(:user, :general) }
+        let!(:dog_other_user) { create(:dog, :castrated, :public_view, user: user) }
+        let!(:registration_number_other_user) { create(:registration_number, registration_number: "777", dog: dog_other_user, dogrun_place: dogrun_place) }
+        let!(:entry_4){ create(:entry, dog: dog_other_user, registration_number: registration_number_other_user) }
+        example '削除できないこと' do
+          expect {
+            delete togo_inu_shitsuke_hiroba_entry_path(entry_4)
+          }.not_to change(Entry, :count)
+          expect(response).to redirect_to(togo_inu_shitsuke_hiroba_entries_path)
+          expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        end
       end
     end
     
