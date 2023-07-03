@@ -89,7 +89,13 @@
         <% end %>
       </div>
     <% end %>
-    <%= render 'shared/registered_dog' %>
+    <%= render partial: 'shared/registered_dog', 
+              locals: { 
+                dogs: @dogs, 
+                dog_profile_path: @dog_profile_path, 
+                registration_numbers: @registration_numbers, 
+                registration_number_path: @registration_number_path 
+              } %>
     <% if !@current_user.guest? %>
       <div class="md:hidden sm:w-2/3 sm:pl-8 sm:py-2 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
         <% if @dogrun_place.registration_card.blank? %>

@@ -189,6 +189,10 @@ RSpec.describe Dog, type: :model do
     end
   end
 
+  describe 'delegations' do
+    it { should delegate_method(:user_detail).to(:user) }
+  end
+
   describe 'scope' do
     let(:dogrun_place) { create(:dogrun_place) }
     let!(:dog_1) { create(:dog, :castrated, :public_view, :male) }

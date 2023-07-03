@@ -23,8 +23,6 @@ class ContactsController < ApplicationController
       session.delete(:contact)
       redirect_to '/', success: t('.success')
       return
-    else
-      render :new, status: :unprocessable_entity
     end
   end
 

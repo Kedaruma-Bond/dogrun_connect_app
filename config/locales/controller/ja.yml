@@ -156,6 +156,7 @@ ja:
         ドッグランで活用してください
     user_details:
       created_successfully: 住所と電話番号を登録しました
+      registration_duplicated: 登録が重複しています
   togo_inu_shitsuke_hiroba:
     users:
       create:

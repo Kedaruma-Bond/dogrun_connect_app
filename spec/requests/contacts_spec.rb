@@ -45,33 +45,13 @@ RSpec.describe 'Contacts', type: :request do
 
       example 'フォームに戻ること' do
         expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to render_template(:new)
       end
     end
   end
 
   describe '#create' do
-    context "戻るボタンが押された場合" do
-      
-      before do
-        post confirm_path, 
-          params: { 
-            contact: { 
-              name: 'test', 
-              email: 'test@example.com', 
-              message: 'test message' 
-            } 
-          }
-      end
-
-      example "新しいお問い合わせフォームを表示する" do
-        post contacts_path, params: { back: "true" }
-        expect(response).to render_template(:new)
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
-    end
-
     context '有効なパラメータを送信した場合' do
-
       before do
         post confirm_path, 
           params: { 
@@ -84,8 +64,10 @@ RSpec.describe 'Contacts', type: :request do
       end
 
       example "新規作成され、トップページにリダイレクトする" do
-        allow(ContactMailer).to receive_message_chain(:send_mail, :deliver_now)
-        post contacts_path
+        expect do
+          post contacts_path
+        end.to change { ActionMailer::Base.deliveries.count }.by(1)
+        # allow(ContactMailer).to receive_message_chain(:send_mail, :deliver_now)
         expect(response).to redirect_to(root_path)
         expect(session[:contact]).to be_nil
         expect(flash[:success]).to eq(I18n.t('contacts.create.success'))

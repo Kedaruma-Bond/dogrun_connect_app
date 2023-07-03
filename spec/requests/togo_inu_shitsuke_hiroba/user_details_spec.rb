@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
+RSpec.describe TogoInuShitsukeHiroba::UserDetailsController, type: :request do
   let!(:dogrun_place) { create(:dogrun_place, :togo_inu_shitsuke_hiroba) }
   let!(:general) { create(:user, :general) }
   let!(:other) { create(:user, :general) }
-  let!(:sns_accounts_1) { create(:sns_account, user: general) }
-  let!(:sns_accounts_2) { create(:sns_account, user: other) }
+  let!(:user_detail_1) { create(:user_detail, user: general) }
+  let!(:user_detail_2) { create(:user_detail, user: other) }
   let!(:guest) { create(:user, :guest) }
 
   describe 'GET #new' do
@@ -15,7 +15,7 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
       end
 
       example '正常にレスポンスがかえること' do
-        get new_togo_inu_shitsuke_hiroba_sns_account_path
+        get new_togo_inu_shitsuke_hiroba_user_detail_path
         expect(response).to have_http_status(:success)
         expect(response).to render_template(:new)
       end
@@ -27,7 +27,7 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
       end
       
       example 'signup画面にリダイレクトされエラーメッセージが表示されること' do
-        get new_togo_inu_shitsuke_hiroba_sns_account_path
+        get new_togo_inu_shitsuke_hiroba_user_detail_path
         expect(response).to redirect_to(togo_inu_shitsuke_hiroba_signup_path)
         expect(flash[:error]).to eq(I18n.t('defaults.require_signup'))
       end
@@ -35,60 +35,23 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
 
     context 'ログインしていない時' do
       example 'root画面にリダイレクトされエラーメッセージが表示されること' do
-        get new_togo_inu_shitsuke_hiroba_sns_account_path
+        get new_togo_inu_shitsuke_hiroba_user_detail_path
         expect(response).to redirect_to(root_path)
         expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
       end
     end
   end
 
-  describe 'POST #create' do
-    let!(:user) { create(:user, :general) }
-
-    describe 'ログインしている時' do
+  describe 'GET #signup_fully_route' do
+    context 'ログインしている時' do
       before do
-        togo_inu_shitsuke_hiroba_log_in_as(user)
-      end
-      
-      context 'すでにsns_accountが登録済の場合' do
-        let!(:sns_accounts_3) { create(:sns_account, user: user) }
-        let(:valid_params) { attributes_for(:sns_account, user: user) }
-        example '新規作成されないこと' do
-          expect { 
-            post togo_inu_shitsuke_hiroba_sns_accounts_path, params: { sns_account: valid_params }
-          }.not_to change(SnsAccount, :count)
-          expect(response).to redirect_to(togo_inu_shitsuke_hiroba_user_path(user))
-          expect(flash[:error]).to eq(I18n.t('local.sns_accounts.registration_duplicated'))
-        end
+        togo_inu_shitsuke_hiroba_log_in_as(general)
       end
 
-      context '有効なパラメータが入力されている場合' do
-        let!(:valid_params) { attributes_for(:sns_account, user: user) }
-        example '新規作成されること' do
-          expect {
-            post togo_inu_shitsuke_hiroba_sns_accounts_path,
-            params: {
-              sns_account: valid_params
-            }
-          }.to change(SnsAccount, :count).by(1)
-          expect(response).to redirect_to(togo_inu_shitsuke_hiroba_user_path(user))
-          expect(flash[:success]).to eq(I18n.t('local.sns_accounts.registration_successful'))
-        end
-      end
-
-      context '無効なパラメータが入力されている場合' do
-        let!(:invalid_params) { attributes_for(:sns_account, twitter_id: "", instagram_id: "", facebook_id: "", user: user)}
-        example '新規登録されないこと' do
-          expect {
-            post togo_inu_shitsuke_hiroba_sns_accounts_path,
-            params: {
-              sns_account: invalid_params
-            }
-          }.not_to change(SnsAccount, :count)
-          expect(response).to render_template(:new)
-          expect(response).to have_http_status(:unprocessable_entity)
-          expect(assigns(:sns_account).errors).to be_of_kind(:base, I18n.t('defaults.input_any_one_sns_account'))
-        end
+      example '正常にレスポンスがかえること' do
+        get signup_fully_route_togo_inu_shitsuke_hiroba_user_details_path
+        expect(response).to have_http_status(:success)
+        expect(response).to render_template(:signup_fully_route)
       end
     end
     
@@ -98,7 +61,77 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
       end
       
       example 'signup画面にリダイレクトされエラーメッセージが表示されること' do
-        post togo_inu_shitsuke_hiroba_sns_accounts_path
+        get signup_fully_route_togo_inu_shitsuke_hiroba_user_details_path
+        expect(response).to redirect_to(togo_inu_shitsuke_hiroba_signup_path)
+        expect(flash[:error]).to eq(I18n.t('defaults.require_signup'))
+      end
+    end
+
+    context 'ログインしていない時' do
+      example 'root画面にリダイレクトされエラーメッセージが表示されること' do
+        get signup_fully_route_togo_inu_shitsuke_hiroba_user_details_path
+        expect(response).to redirect_to(root_path)
+        expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
+      end
+    end
+  end
+
+  describe 'POST #create' do
+    let!(:user) { create(:user, :general) }
+    let!(:valid_params) { attributes_for(:user_detail, user: user) }
+    let!(:invalid_params) { attributes_for(:user_detail, zip_code: "", user: user)}
+
+    describe 'ログインしている時' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(user)
+      end
+
+      describe 'すでにuser_detailが登録済の場合' do
+        let!(:user_detail_3) { create(:user_detail, user: user) }
+        example '新規作成されないこと' do
+          expect { 
+            post togo_inu_shitsuke_hiroba_user_details_path, params: { user_detail: valid_params }
+          }.not_to change(UserDetail, :count)
+          expect(response).to redirect_to(togo_inu_shitsuke_hiroba_user_path(user))
+          expect(flash[:error]).to eq(I18n.t('local.user_details.registration_duplicated'))
+        end
+      end
+      
+      describe '有効なパラメータが入力されている時' do
+        example '新規作成されること' do
+          expect {
+            post togo_inu_shitsuke_hiroba_user_details_path,
+            params: {
+              user_detail: valid_params
+            }
+          }.to change(UserDetail, :count).by(1)
+          expect(response).to redirect_to(togo_inu_shitsuke_hiroba_user_path(user))
+          expect(flash[:success]).to eq(I18n.t('local.user_details.created_successfully'))
+        end
+      end
+  
+      describe '無効なパラメータが入力されている時' do
+        example '新規登録されないこと' do
+          expect {
+            post togo_inu_shitsuke_hiroba_user_details_path,
+            params: {
+              user_detail: invalid_params
+            }
+          }.not_to change(SnsAccount, :count)
+          expect(response).to render_template(:new)
+          expect(response).to have_http_status(:unprocessable_entity)
+          expect(assigns(:user_detail).errors).to be_of_kind(:zip_code, :blank)
+        end
+      end 
+    end
+    
+    describe 'ゲストログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(guest)
+      end
+      
+      example 'signup画面にリダイレクトされエラーメッセージが表示されること' do
+        post togo_inu_shitsuke_hiroba_user_details_path
         expect(response).to redirect_to(togo_inu_shitsuke_hiroba_signup_path)
         expect(flash[:error]).to eq(I18n.t('defaults.require_signup'))
       end
@@ -106,7 +139,7 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
 
     describe 'ログインしていない時' do
       example 'root画面にリダイレクトされエラーメッセージが表示されること' do
-        post togo_inu_shitsuke_hiroba_sns_accounts_path
+        post togo_inu_shitsuke_hiroba_user_details_path
         expect(response).to redirect_to(root_path)
         expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
       end
@@ -121,16 +154,16 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
 
       context 'ログインしているアカウントに紐づいたdataをeditする場合' do
         example '正常にレスポンスがかえること' do
-          get edit_togo_inu_shitsuke_hiroba_sns_account_path(sns_accounts_1)
+          get edit_togo_inu_shitsuke_hiroba_user_detail_path(user_detail_1)
           expect(response).to have_http_status(:success)
           expect(response).to render_template(:edit)
-          expect(assigns(:sns_account)).to eq(sns_accounts_1)
+          expect(assigns(:user_detail)).to eq(user_detail_1)
         end
       end
 
       context '別のアカウントに紐づいたdataをeditする場合' do
         example '表示されないこと' do
-          get edit_togo_inu_shitsuke_hiroba_sns_account_path(sns_accounts_2)
+          get edit_togo_inu_shitsuke_hiroba_user_detail_path(user_detail_2)
           expect(response).to redirect_to(togo_inu_shitsuke_hiroba_user_path(general))
           expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
         end
@@ -143,7 +176,7 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
       end
       
       example 'signup画面にリダイレクトされエラーメッセージが表示されること' do
-        get edit_togo_inu_shitsuke_hiroba_sns_account_path(sns_accounts_1)
+        get edit_togo_inu_shitsuke_hiroba_sns_account_path(user_detail_1)
         expect(response).to redirect_to(togo_inu_shitsuke_hiroba_signup_path)
         expect(flash[:error]).to eq(I18n.t('defaults.require_signup'))
       end
@@ -151,7 +184,7 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
 
     context 'ログインしていない時' do
       example 'root画面にリダイレクトされエラーメッセージが表示されること' do
-        get edit_togo_inu_shitsuke_hiroba_sns_account_path(sns_accounts_1)
+        get edit_togo_inu_shitsuke_hiroba_sns_account_path(user_detail_1)
         expect(response).to redirect_to(root_path)
         expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
       end
@@ -164,29 +197,45 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
         togo_inu_shitsuke_hiroba_log_in_as(general)
       end
 
-      context 'ログイン中のアカウントと紐づいたdataを更新する場合' do
-        example '更新できること' do
-          patch togo_inu_shitsuke_hiroba_sns_account_path(sns_accounts_1),
+      describe 'ログイン中のアカウントと紐づいたdataを更新する場合' do
+        context '入力値が正しいとき' do
+          example '更新できること' do
+            patch togo_inu_shitsuke_hiroba_user_detail_path(user_detail_1),
+              params: {
+                user_detail: {
+                  zip_code: "777-7777"
+                }
+              }
+            expect(user_detail_1.reload.zip_code).to eq("777-7777")
+            expect(response).to redirect_to(togo_inu_shitsuke_hiroba_user_path(general))
+            expect(flash[:success]).to eq(I18n.t('defaults.update_successfully'))
+          end
+        end
+
+        context '入力値が不正なとき' do
+          example '更新できないこと' do
+            patch togo_inu_shitsuke_hiroba_user_detail_path(user_detail_1),
             params: {
-              sns_account: {
-                twitter_id: ""
+              user_detail: {
+                zip_code: ""
               }
             }
-          expect(sns_accounts_1.reload.twitter_id).to eq("")
-          expect(response).to redirect_to(togo_inu_shitsuke_hiroba_user_path(general))
-          expect(flash[:success]).to eq(I18n.t('defaults.update_successfully'))
+            expect(user_detail_1.reload.zip_code).not_to eq("")
+            expect(response).to render_template(:edit)
+            expect(assigns(:user_detail).errors).to be_of_kind(:zip_code, :blank)
+          end
         end
       end
 
       context '別のアカウントに紐づいたdataを更新する場合' do
         example '更新できないこと' do
-          patch togo_inu_shitsuke_hiroba_sns_account_path(sns_accounts_2),
+          patch togo_inu_shitsuke_hiroba_user_detail_path(user_detail_2),
             params: {
-              sns_account: {
-                twitter_id: ""
+              user_detail: {
+                zip_code: "777-7777"
               }
             }
-          expect(sns_accounts_2.reload.twitter_id).not_to eq("")
+          expect(user_detail_2.reload.zip_code).not_to eq("777-7777")
           expect(response).to redirect_to(togo_inu_shitsuke_hiroba_user_path(general))
           expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
         end
@@ -199,7 +248,7 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
       end
       
       example 'signup画面にリダイレクトされエラーメッセージが表示されること' do
-        patch togo_inu_shitsuke_hiroba_sns_account_path(sns_accounts_1)
+        patch togo_inu_shitsuke_hiroba_user_detail_path(user_detail_1)
         expect(response).to redirect_to(togo_inu_shitsuke_hiroba_signup_path)
         expect(flash[:error]).to eq(I18n.t('defaults.require_signup'))
       end
@@ -207,7 +256,7 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
 
     describe 'ログインしていない時' do
       example 'root画面にリダイレクトされエラーメッセージが表示されること' do
-        patch togo_inu_shitsuke_hiroba_sns_account_path(sns_accounts_1)
+        patch togo_inu_shitsuke_hiroba_user_detail_path(user_detail_1)
         expect(response).to redirect_to(root_path)
         expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
       end
@@ -223,8 +272,8 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
       context 'ログインしているアカウントに紐づいたdataを削除する場合' do
         example '削除できること' do
           expect {
-            delete togo_inu_shitsuke_hiroba_sns_account_path(sns_accounts_1)
-          }.to change(SnsAccount, :count).by(-1)
+            delete togo_inu_shitsuke_hiroba_user_detail_path(user_detail_1)
+          }.to change(UserDetail, :count).by(-1)
           expect(response).to redirect_to(togo_inu_shitsuke_hiroba_user_path(general))
           expect(flash[:success]).to eq(I18n.t('defaults.destroy_successfully'))
         end
@@ -233,7 +282,7 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
       context '別のアカウントに紐づいているdataを削除する時' do
         example '削除できないこと' do
           expect {
-            delete togo_inu_shitsuke_hiroba_sns_account_path(sns_accounts_2)
+            delete togo_inu_shitsuke_hiroba_user_detail_path(user_detail_2)
           }.not_to change(SnsAccount, :count)
           expect(response).to redirect_to(togo_inu_shitsuke_hiroba_user_path(general))
           expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
@@ -247,7 +296,7 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
       end
       
       example 'signup画面にリダイレクトされエラーメッセージが表示されること' do
-        delete togo_inu_shitsuke_hiroba_sns_account_path(sns_accounts_1)
+        delete togo_inu_shitsuke_hiroba_user_detail_path(user_detail_1)
         expect(response).to redirect_to(togo_inu_shitsuke_hiroba_signup_path)
         expect(flash[:error]).to eq(I18n.t('defaults.require_signup'))
       end
@@ -256,11 +305,10 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
 
     describe 'ログインしていない時' do
       example 'root画面にリダイレクトされエラーメッセージが表示されること' do
-        delete togo_inu_shitsuke_hiroba_sns_account_path(sns_accounts_1)
+        delete togo_inu_shitsuke_hiroba_user_detail_path(user_detail_1)
         expect(response).to redirect_to(root_path)
         expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
       end
     end
-
   end
 end

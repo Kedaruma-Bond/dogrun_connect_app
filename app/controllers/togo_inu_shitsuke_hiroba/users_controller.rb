@@ -40,14 +40,7 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
   end
 
   def show
-    @registration_numbers_for_profile = @registration_numbers.map do |registration_number|
-      registration_number.registration_number
-    end
-    @end = @dogs.size - 1
-    @times = 0
-
     @num_of_encount_dogs = EncountDog.encount_dog_of_user(current_user).size
-    
   end
 
   private
