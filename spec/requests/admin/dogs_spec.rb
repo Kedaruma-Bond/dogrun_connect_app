@@ -119,6 +119,14 @@ RSpec.describe Admin::DogsController, type: :request do
         expect(response).to redirect_to(root_path)
       end
     end
+    
+    describe 'ログインしていない場合' do
+      example 'エラーメッセージが表示されて管理者ログイン画面にリダイレクトされること' do
+        get admin_dog_path(dog_1)
+        expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
+        expect(response).to redirect_to(admin_login_path)
+      end
+    end
   end
   
   describe "PATCH #update" do
@@ -164,6 +172,70 @@ RSpec.describe Admin::DogsController, type: :request do
       example 'エラーメッセージが表示されてhome画面にリダイレクトされること' do
         expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
         expect(response).to redirect_to(admin_root_path)
+      end
+    end
+    
+    describe '一般ユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(general) 
+        patch admin_dog_path(dog_1)
+      end
+
+      example 'エラーメッセージが表示されてhome画面にリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+    
+    describe 'ログインしていない場合' do
+      example 'エラーメッセージが表示されて管理者ログイン画面にリダイレクトされること' do
+        patch admin_dog_path(dog_1)
+        expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
+        expect(response).to redirect_to(admin_login_path)
+      end
+    end
+  end
+
+  describe 'GET #search' do
+    describe 'grand_adminユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(grand_admin)
+      end
+
+      example '正常なレスポンスがかえること' do
+        get search_admin_dogs_path
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe '管理者ユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1) 
+      end
+
+      example '正常なレスポンスがかえること' do
+        get search_admin_dogs_path
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe '一般ユーザーでログインしている場合' do
+      before do
+        admin_log_in_as(general) 
+      end
+
+      example 'エラーメッセージが表示されてhome画面にリダイレクトされること' do
+        get search_admin_dogs_path
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    describe 'ログインしていない場合' do
+      example 'エラーメッセージが表示されて管理者ログイン画面にリダイレクトされること' do
+        get search_admin_dogs_path
+        expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
+        expect(response).to redirect_to(admin_login_path)
       end
     end
   end

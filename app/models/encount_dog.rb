@@ -11,6 +11,15 @@ class EncountDog < ApplicationRecord
 
   # scope
   scope :encount_dog_of_user, -> (user_id) { joins(:dogrun_place, :dog).includes(dog: { thumbnail_attachment: :blob }).where(user_id: user_id).where(dogs: { public: 'public_view' }).order(created_at: :desc)} 
+
+  # ransack authorization
+  def self.ransackable_attributes(auth_object = nil)
+    ["acknowledge", "color_marker", "created_at", "dog_id", "dogrun_place_id", "id", "memo", "updated_at", "user_id"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["dog", "dogrun_place", "user"]
+  end
 end
 
 # == Schema Information

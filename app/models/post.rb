@@ -14,6 +14,15 @@ class Post < ApplicationRecord
   enum publish_status: { non_publish: false, is_publishing: true }
   enum post_type: { article: 0, embed: 1 }
 
+  # ransack authorization
+  def self.ransackable_attributes(auth_object = nil)
+    ["acknowledge", "created_at", "dogrun_place_id", "id", "post_type", "publish_limit", "publish_status", "updated_at", "user_id"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["article", "dogrun_place", "embed", "user"]
+  end
+  
 end
 
 # == Schema Information

@@ -1,31 +1,37 @@
 require 'rails_helper'
 
-RSpec.describe 'TogoInuShitsukeHiroba::StaticPages', type: :request do
+RSpec.describe TogoInuShitsukeHiroba::StaticPagesController, type: :request do
   let!(:dogrun_place) { create(:dogrun_place, :togo_inu_shitsuke_hiroba) }
-  let!(:user) { create(:user, :general) }
-  let!(:dog) { create(:dog, user: user) }
-  let!(:entry) { create(:entry, dog: dog, registration_number: create(:registration_number, dogrun_place: dogrun_place)) } 
 
-  describe 'ログイン前' do
-    context 'togo_inu_shitsuke_hiroba/static_pages#topにget request' do
+  describe 'GET #top' do
+    context 'ログインしていない時' do
       before { get togo_inu_shitsuke_hiroba_top_path }
 
       example 'レスポンスが正常なこと' do
         expect(response).to have_http_status(:success)
       end
-
-      example 'タイトルが正常に表示されていること' do
-        expect(response.body).to include('犬のしつけ広場 | DogrunConnect')
-      end
     end
-  end
+  
+    context 'ログインしているとき' do
+      let!(:general) { create(:user, :general) }
+      let!(:dog_1) { create(:dog, :castrated, :public_view) }
+      let!(:rn_1) { create(:registration_number, dog: dog_1, dogrun_place: dogrun_place) }
+      let!(:entry_1) { create(:entry, registration_number: rn_1, dog: dog_1, exit_at: nil) }
+      let!(:dog_2) { create(:dog, :castrated, :non_public) }
+      let!(:rn_2) { create(:registration_number, dog: dog_2, dogrun_place: dogrun_place) }
+      let!(:entry_2) { create(:entry, registration_number: rn_2, dog: dog_2, exit_at: nil) }
+      let!(:article) { create(:article, content: "test", post: create(:post, :article, :is_publishing, dogrun_place: dogrun_place)) } 
 
-  describe 'ログイン後' do
-    context 'togo_inu_shitsuke_hiroba/static_pages#detailにget request' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        get togo_inu_shitsuke_hiroba_top_path
+      end
+
       example 'レスポンスが正常なこと' do
-        log_in_as(user)
-        get togo_inu_shitsuke_hiroba_detail_path
         expect(response).to have_http_status(:success)
+        expect(response.body).to include(entry_1.dog.name)
+        expect(response.body).not_to include(entry_2.dog.name)
+        expect(response.body).to include(article.content)
       end
     end
   end

@@ -5,12 +5,12 @@
         <div class="flex flex-wrap items-center">
           <div class="relative w-full px-4 max-w-full flex-grow flex-1 ">
             <h3 class="font-semibold text-lg text-white text-center">
-              <%= I18n.t("shared.entries_table.table_of_entries_latest_max_five", times: @Num_of_entry_records_to_display) %>
+              <%= I18n.t("shared.entries_table.table_of_entries_latest_max_five", times: num_of_entry_records_to_display) %>
             </h3>
           </div>
         </div>
       </div>
-      <div class="block w-full overflow-x-auto ">
+      <div class="block w-full overflow-x-auto">
         <table class="table-auto items-center w-full bg-transparent border-collapse">
           <thead>
             <tr>
@@ -29,8 +29,8 @@
             </tr>
           </thead>
           <tbody>
-            <% @Num_of_entry_records_to_display.times do |t| %>
-              <% if @entries[t].nil? %>
+            <% num_of_entry_records_to_display.times do |t| %>
+              <% if entries[t].nil? %>
                 <tr>
                   <% 4.times do %>
                     <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
@@ -40,21 +40,21 @@
               <% else %>
                 <tr>
                   <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm font-semibold whitespace-nowrap p-4">
-                    <%= l @entries[t].entry_at, format: :long2 %>
+                    <%= l entries[t].entry_at, format: :long2 %>
                   </td>
                   <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm font-semibold whitespace-nowrap p-4">
-                    <%= l @entries[t].entry_at, format: :short2 %>
+                    <%= l entries[t].entry_at, format: :short2 %>
                   </td>
                   <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm font-semibold whitespace-nowrap p-4">
-                    <% if @entries[t].exit_at.nil? %>
+                    <% if entries[t].exit_at.nil? %>
                       <%= t('defaults.entering') %>
                     <% else %>
-                      <%= l @entries[t].exit_at, format: :short2 %>
+                      <%= l entries[t].exit_at, format: :short2 %>
                     <% end %>
                   </td>
                   <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
                     <ul class="flex">
-                      <% encount_dogs_at_this_entry(@entries[t], @dogrun_place).each do |dog| %>
+                      <% encounts_at_this_entry(entries[t], dogrun_place).each do |dog| %>
                         <li class="w-12 h-12 mx-1">
                           <%= link_to send(dog_profile_path, dog) do %>
                             <%= dog_thumbnail(dog) %>

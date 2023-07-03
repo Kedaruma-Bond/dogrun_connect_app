@@ -1,5 +1,8 @@
 ja:
   admin:
+    entries:
+      force_exit:
+        force_exit_successfully: 強制退場させました
     registration_numbers:
       update:
         registration_number_updated_successfully: 登録番号を更新しました
@@ -125,6 +128,9 @@ ja:
         すでに利用予定となっている
         ワンコが選択されています
       exit_success: またのご来場をお待ちしています
+      pre_entry_has_been_expired: |
+        プレエントリー後30分以上経過しています
+        お手数ですが再度ワンコを選択し「入場する」ボタンを押してください
     encount_dogs:
       encount_dog_updated: 情報を更新しました
     dogs:
@@ -150,6 +156,7 @@ ja:
         ドッグランで活用してください
     user_details:
       created_successfully: 住所と電話番号を登録しました
+      registration_duplicated: 登録が重複しています
   togo_inu_shitsuke_hiroba:
     users:
       create:

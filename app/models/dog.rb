@@ -36,9 +36,17 @@ class Dog < ApplicationRecord
   # delegate
   delegate :user_detail, to: :user
 
-  #   scope
-  scope :dogrun_place_id, -> (id) { joins(:registration_numbers).where(registration_numbers: { dogrun_place_id: id }).includes(:registration_numbers, :user).order(id: :desc)}
-  scope :dogrun_place_id_for_encount_dog, -> (id) { joins(:entries, :registration_numbers).where(entries: { exit_at: nil }).where(registration_numbers: { dogrun_place_id: id }).includes(:entries, :registration_numbers, :user)}
+  # scope
+  scope :dogrun_place_id, -> (id) { includes(:registration_numbers, :user).where(registration_numbers: { dogrun_place_id: id }).order('registration_numbers.id DESC')}
+
+  # ransack authorization
+  def self.ransackable_attributes(auth_object = nil)
+    ["birthday", "breed", "castration", "created_at", "date_of_mixed_vaccination", "date_of_rabies_vaccination", "filming_approval", "id", "municipal_registration_number", "name", "public", "registration_municipality", "registration_prefecture_code", "sex", "sns_post_approval", "updated_at", "user_id"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["encount_dogs", "encounts", "entries", "license_plate_attachment", "license_plate_blob", "mixed_vaccination_certificate_attachment", "mixed_vaccination_certificate_blob", "pre_entry", "rabies_vaccination_certificate_attachment", "rabies_vaccination_certificate_blob", "registration_numbers", "thumbnail_attachment", "thumbnail_blob", "user"]
+  end
 
 end
 

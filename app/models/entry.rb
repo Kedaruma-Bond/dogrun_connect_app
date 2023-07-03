@@ -15,9 +15,14 @@ class Entry < ApplicationRecord
   scope :dogrun_place_id, -> (dogrun_place_id) { includes(:registration_number, dog: { thumbnail_attachment: :blob }).eager_load(dog: [:user]).where(registration_numbers: { dogrun_place_id: dogrun_place_id }).order(entry_at: :desc).where(dogs: { public: 'public_view'} ) }
   scope :user_id, -> (user_id) { includes(dog: [:user]).where(dogs: { user_id: user_id }) }
   scope :user_id_at_local, -> (user_id) { includes(:dog, :registration_number).where(dogs: { user_id: user_id }) }
+  scope :dogrun_place_id_for_encount_dog, -> (dogrun_place_id) { joins(:registration_number).includes(:dog).where(exit_at: nil).where(registration_number: { dogrun_place_id: dogrun_place_id }) }
 
   # broadcast
   after_update_commit do
+    broadcast_remove_to [dogrun_place, "top"], target: "entry_dog_#{self.dog.id}_dogrun_place_#{self.dogrun_place.id}"
+  end
+  
+  after_destroy_commit do
     broadcast_remove_to [dogrun_place, "top"], target: "entry_dog_#{self.dog.id}_dogrun_place_#{self.dogrun_place.id}"
   end
 
@@ -25,16 +30,19 @@ class Entry < ApplicationRecord
     broadcast_append_to [dogrun_place, "top"], target: "entries_list_dogrun_place_#{dogrun_place.id}", partial: "shared/entry_dog", locals: { dog: dog, current_user: current_user, dogrun_place: dogrun_place, dog_profile_path: dog_profile_path }
   end
 
-  def after_entry_broadcast(num_of_playing_dogs, dogs_non_public)
+  def update_broadcast(num_of_playing_dogs, dogs_non_public)
     broadcast_update_to [dogrun_place, "top"], target: "num_of_playing_dogs_dogrun_place_#{dogrun_place.id}", partial: "shared/num_of_playing_dogs", locals: { num_of_playing_dogs: num_of_playing_dogs }
     broadcast_update_to [dogrun_place, "top"], target: "among_them_non_public_dogs_dogrun_place_#{dogrun_place.id}", partial: "shared/among_them_non_public_dogs", locals: { dogs_non_public: dogs_non_public }
   end
 
-  def exit_broadcast(num_of_playing_dogs, dogs_non_public)
-    broadcast_update_to [dogrun_place, "top"], target: "num_of_playing_dogs_dogrun_place_#{dogrun_place.id}", partial: "shared/num_of_playing_dogs", locals: { num_of_playing_dogs: num_of_playing_dogs }
-    broadcast_update_to [dogrun_place, "top"], target: "among_them_non_public_dogs_dogrun_place_#{dogrun_place.id}", partial: "shared/among_them_non_public_dogs", locals: { dogs_non_public: dogs_non_public }
+  # ransack authorization
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "dog_id", "entry_at", "entry_digest", "exit_at", "id", "registration_number_id", "updated_at"]
   end
 
+  def self.ransackable_associations(auth_object = nil)
+    ["dog", "encounts", "registration_number"]
+  end
 end
 
 # == Schema Information
@@ -43,7 +51,6 @@ end
 #
 #  id                     :bigint           not null, primary key
 #  entry_at               :datetime         not null
-#  entry_digest           :string
 #  exit_at                :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null

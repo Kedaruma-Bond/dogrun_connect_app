@@ -1,15 +1,17 @@
 module DogHelper
   include Pagy::Frontend
 
-  def encount_dogs_at_this_entry(entry, dogrun_place)
-    encount_dogs_created_at_this_entry = Encount.where(created_at: entry.entry_at .. entry.exit_at)
-                                                .where(dogrun_place_id: dogrun_place)
-                                                .where(user_id: @dog.user_id)
-                                                .joins(:dog).where(dogs: { public: 'public_view' })
-    @encount_dogs_at_this_entry = encount_dogs_created_at_this_entry.map do |encount|
+  def encounts_at_this_entry(entry, dogrun_place)
+    encounts_created_at_this_entry = Encount.where(created_at: entry.entry_at .. entry.exit_at)
+                                            .where(dogrun_place_id: dogrun_place.id)
+                                            .where(user_id: entry.dog.user_id)
+                                            .joins(:dog).where(dogs: { public: 'public_view' })
+
+    @encounts_at_this_entry = encounts_created_at_this_entry.map do |encount|
       Dog.find(encount.dog_id)
     end
-    return @encount_dogs_at_this_entry
+
+    return @encounts_at_this_entry
   end
 
   def birthday_marker(dog)
@@ -78,7 +80,7 @@ module DogHelper
     if dog.thumbnail.attached?
       cl_image_tag(dog.thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: css_class_dog_color_marker_for_top(dog, current_user), alt: dog.name)
     else
-      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.png', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full mx-auto", alt: dog.name)
+      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.png', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: css_class_dog_color_marker_for_top(dog, current_user), alt: dog.name)
     end 
   end
 
@@ -86,7 +88,7 @@ module DogHelper
     if dog.thumbnail.attached?
       cl_image_tag(dog.thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: css_class_dog_color_marker(dog), alt: dog.name)
     else
-      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.png', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full mx-auto", alt: dog.name)
+      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.png', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: css_class_dog_color_marker(dog), alt: dog.name)
     end 
   end
 
@@ -94,7 +96,7 @@ module DogHelper
     if dog.thumbnail.attached?
       cl_image_tag(dog.thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: css_class_dog_color_marker(dog), alt: dog.name, "data-preview-target": "imagePreview")
     else
-      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.png', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full mx-auto w-full h-full aspect-square object-cover", alt: dog.name, "data-preview-target": "imagePreview")
+      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.png', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: css_class_dog_color_marker(dog), alt: dog.name, "data-preview-target": "imagePreview")
     end 
   end
 
@@ -102,7 +104,7 @@ module DogHelper
     if dog.thumbnail.attached?
       cl_image_tag(dog.thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: css_class_encount_dog_color_marker(encount_dog), alt: dog.name)
     else
-      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.png', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded-full mx-auto", alt: dog.name)
+      cl_image_tag('https://res.cloudinary.com/hryerpkcw/image/upload/v1668863628/j1leiksnvylye7rtun0r.png', gravity: :auto, quality_auto: :good, fetch_format: :auto, class: css_class_encount_dog_color_marker(encount_dog), alt: dog.name)
     end
   end
 

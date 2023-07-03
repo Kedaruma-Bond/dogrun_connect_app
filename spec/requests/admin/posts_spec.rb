@@ -309,12 +309,43 @@ RSpec.describe Admin::PostsController, type: :request do
         expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
         expect(response).to redirect_to(root_path)
       end
-
     end
 
     describe 'ログインしていないとき' do
       example 'エラーメッセージが表示されて管理者ログイン画面にリダイレクトされること' do
         patch cancel_to_publish_admin_post_path(post_6)
+        expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
+        expect(response).to redirect_to(admin_login_path)
+      end
+    end
+  end
+
+  describe 'GET #search' do
+    describe '管理者ユーザーでログインしているとき' do
+      before { admin_log_in_as(admin_1) }
+
+      example '正常なレスポンスがかえり正しい投稿が表示されること' do
+        get search_admin_posts_path
+        expect(response).to have_http_status(:success)
+        expect(assigns(:posts)).to include(post_1)
+      end
+    end
+
+    describe '一般ユーザーでログインしているとき' do
+      before do
+        admin_log_in_as(general)
+        get search_admin_posts_path
+      end
+      
+      example 'エラーメッセージが表示されてhome画面にリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  
+    describe 'ログインしていないとき' do
+      example 'エラーメッセージが表示されて管理者ログイン画面にリダイレクトされること' do
+        get search_admin_posts_path
         expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
         expect(response).to redirect_to(admin_login_path)
       end

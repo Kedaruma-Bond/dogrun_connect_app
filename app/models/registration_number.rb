@@ -12,7 +12,10 @@ class RegistrationNumber < ApplicationRecord
   validates :agreement, acceptance: true, on: :update, allow_blank: true
   validate :select_dog_validate
   
-  # scope
+  # ransack authorization
+  def self.ransackable_attributes(auth_object = nil)
+    ["acknowledge", "created_at", "dog_id", "dogrun_place_id", "id", "registration_number", "updated_at"]
+  end
 
   private
     def select_dog_validate

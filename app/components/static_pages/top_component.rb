@@ -16,7 +16,9 @@ class StaticPages::TopComponent < ApplicationViewComponent
     dogrun_terms_of_service_page:,
     login_path:,
     route_selection_path:,
-    guest_login_path:
+    guest_login_path:,
+    pre_entry_dogs_public_view:,
+    entries_path:
     )
     @title = title
     @dogrun_place = dogrun_place
@@ -33,6 +35,8 @@ class StaticPages::TopComponent < ApplicationViewComponent
     @login_path = login_path
     @route_selection_path = route_selection_path
     @guest_login_path = guest_login_path
+    @pre_entry_dogs_public_view = pre_entry_dogs_public_view
+    @entries_path = entries_path
   end
 
 end

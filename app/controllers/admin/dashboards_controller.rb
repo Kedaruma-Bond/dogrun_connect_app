@@ -26,7 +26,11 @@ class Admin::DashboardsController < Admin::BaseController
       e.entry_at.strftime('%Y%m%d')
     end
 
-    @entries_daily = entries_daily.each_with_object(Hash.new(0)){|v,o| o[v]+=1}
+    # @entries_daily = entries_daily.each_with_object(Hash.new(0)){|v,o| o[v]+=1}
+    @entries_daily = (@two_weeks_ago..@today).map do |date|
+      [date.strftime('%Y%m%d'), entries_daily.count(date.strftime('%Y%m%d'))]
+    end.to_h
+
     entries_monthly = entries.map do |e|
       e.entry_at.strftime('%Y-%b')
     end

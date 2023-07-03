@@ -1,0 +1,5 @@
+<% if entry.exit_at.nil? %>
+  <%= t('admin.entries.entry.entering') %>
+<% else %>
+  <%= l entry.exit_at, format: :short2 %>
+<% end %>

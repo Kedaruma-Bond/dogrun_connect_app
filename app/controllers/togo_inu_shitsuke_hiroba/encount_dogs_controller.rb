@@ -3,21 +3,24 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
   before_action :set_new_post, only: %i[index edit search]
   before_action :set_encount_dogs, only: %i[index search]
   before_action :set_q, only: %i[index search]
-  before_action :set_encount_dog, only: %i[edit update destroy]
-  before_action :correct_user_check, only: %i[destroy]
+  before_action :correct_user_check, only: %i[edit update destroy]
   
   def index
     @pagy, @encount_dogs = pagy(EncountDog.encount_dog_of_user(current_user.id))
-    @encount_dogs_for_count = EncountDog.includes(:dog).where(user: current_user).where(dogs: { public: "public_view" })
   end
 
   def edit
     @encount_dog.update!(acknowledge: true)
+    session[:previous_url] = request.referer
   end
 
   def update
     if @encount_dog.update(encount_dog_params)
-      redirect_to send(@encount_dogs_path), success: t('local.encount_dogs.encount_dog_updated')
+      if session[:previous_url].nil?
+        redirect_to send(@encount_dogs_path), success: t('local.encount_dogs.encount_dog_updated')
+      else
+        redirect_to session[:previous_url],success: t('local.encount_dogs.encount_dog_updated') 
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -30,7 +33,7 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
   def destroy
     @encount_dog.destroy
     respond_to do |format|
-      format.html { redirect_to send(@reon_encount_dogs_path), success: t('defaults.destroy_succesffuly') }
+      format.html { redirect_to send(@encount_dogs_path), success: t('defaults.destroy_successfully') }
       format.turbo_stream { flash.now[:success] = t('defaults.destroy_successfully') }
     end
   end
@@ -45,10 +48,6 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
       @q = @encount_dogs.ransack(params[:q])
     end
 
-    def set_encount_dog
-      @encount_dog = EncountDog.find(params[:id])
-    end
-
     def encount_dog_params
       params.require(:encount_dog).permit(
         :color_marker, :memo
@@ -56,6 +55,7 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
     end
 
     def correct_user_check
+      @encount_dog = EncountDog.find(params[:id])
       redirect_to send(@encount_dogs_path), error: t('defaults.not_authorized') unless @encount_dog.user == current_user
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_23_021925) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_27_140339) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -148,7 +148,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_23_021925) do
     t.datetime "exit_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "entry_digest"
     t.index ["dog_id", "registration_number_id", "entry_at"], name: "registration_dog_entry_time_index", unique: true
     t.index ["dog_id"], name: "index_entries_on_dog_id"
     t.index ["registration_number_id"], name: "index_entries_on_registration_number_id"

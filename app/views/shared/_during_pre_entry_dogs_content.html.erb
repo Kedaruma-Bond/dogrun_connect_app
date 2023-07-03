@@ -13,12 +13,12 @@
       <div class="w-full h-px bg-gray-700 rounded mb-2"></div>
       <div class="block w-full overflow-x-auto">
         <div class="border-t-0 px-3 align-middle border-l-0 border-r-0 whitespace-nowrap p-2">
-          <%= turbo_frame_tag dom_id(@dogrun_place, "pre_entries_list"), class: "flex" do %>
+          <%= turbo_frame_tag dom_id(dogrun_place, "pre_entries_list"), class: "flex" do %>
             <div class="mx-auto pt-2 text-gray-400 text-sm hidden only:block h-[48px]">
               <%= t('.no_one_will_come_for_a_while') %>
             </div>
-            <% @pre_entry_dogs_public_view.each do |pre_entry_dog| %>
-              <%= render partial: "shared/pre_entry_dog", locals: { pre_entry_dog: pre_entry_dog, dogrun_place: @dogrun_place, dog_profile_path: dog_profile_path } %>
+            <% pre_entry_dogs_public_view.each do |pre_entry_dog| %>
+              <%= render partial: "shared/pre_entry_dog", locals: { pre_entry_dog: pre_entry_dog, dogrun_place: dogrun_place, dog_profile_path: dog_profile_path } %>
             <% end %>
           <% end %>
         </div>

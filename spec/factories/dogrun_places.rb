@@ -25,6 +25,32 @@ FactoryBot.define do
       force_closed { 'force_closing' }
       closed_flag { true }
     end
+
+    trait :with_images do
+      transient do
+        logo_path { Rails.root.join('spec', 'fixtures', 'files', 'images', 'bond_icon.png') }
+        registration_card_path { Rails.root.join('spec', 'fixtures', 'files', 'images', 'bond_icon.png') }
+      end
+
+      after(:build) do |dogrun_place, evaluator|
+        logo_file = File.open(evaluator.logo_path)
+        registration_card_file = File.open(evaluator.registration_card_path)
+
+        logo_blob = ActiveStorage::Blob.create_and_upload!(
+          io: logo_file,
+          filename: File.basename(logo_file),
+          content_type: 'image/png'
+        )
+        registration_card_blob = ActiveStorage::Blob.create_and_upload!(
+          io: registration_card_file,
+          filename: File.basename(registration_card_file),
+          content_type: 'image/png'
+        )
+
+        dogrun_place.logo.attach(logo_blob)
+        dogrun_place.registration_card.attach(registration_card_blob)
+      end
+    end
   end
 end
 

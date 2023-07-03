@@ -14,8 +14,8 @@ class DogFullyRegistration
     validates :weight, numericality: { greater_than: 0 }
     validates :registration_municipality, length: { maximum: 30 }
     validates :municipal_registration_number, length: { maximum: 10 }
-    validates :agreement, acceptance: true
   end
+  validates :agreement, acceptance: true
   validates :sex, presence: true
   validates :birthday, presence: true
   validates :date_of_rabies_vaccination, presence: true

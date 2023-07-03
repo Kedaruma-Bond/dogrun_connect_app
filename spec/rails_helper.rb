@@ -1,5 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+require 'view_component/test_helpers'
 require 'active_storage_validations/matchers'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
@@ -64,6 +65,9 @@ RSpec.configure do |config|
   end
 
   config.include ActiveStorageValidations::Matchers
+
+  config.include ViewComponent::TestHelpers, type: :component
+  config.include ActionView::RecordIdentifier
 
 end
 # shoulda matcherを入れる

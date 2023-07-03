@@ -19,8 +19,8 @@ module EntryHelper
     
   end
 
-  def not_entry?
-    Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place_id: @dogrun_place.id }).where(exit_at: nil).blank?
+  def not_entry?(user, dogrun_place)
+    Entry.user_id_at_local(user.id).where(registration_numbers: { dogrun_place_id: dogrun_place.id }).where(exit_at: nil).blank?
   end
 
   def current_pre_entries

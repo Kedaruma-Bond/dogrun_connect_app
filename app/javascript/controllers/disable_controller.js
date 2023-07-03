@@ -7,18 +7,18 @@ export default class extends Controller {
 
   connect() {
     this.element.dataset['action'] = 'submit->disable#disableForm'
+    this.backButton = this.element.querySelector('[data-action="back-button#goBack"]')
+    this.submitButton = this.element.querySelector("input[type='submit']")
   }
+
 
   disableForm() {
-    this.submitButtons().forEach(button => {
-      if (!button.matches('[name="back"]')) {
-        button.disabled = true
-        button.value = this.withValue
+    const isBackButtonPressed = this.backButton && this.backButton === document.activeElement
+
+      if(!isBackButtonPressed) {
+        this.submitButton.disabled = true
+        this.submitButton.value = this.withValue
       }
-    })
   }
 
-  submitButtons() {
-    return this.element.querySelectorAll("input[type='submit']")
-  }
 }

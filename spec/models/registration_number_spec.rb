@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe RegistrationNumber, type: :model do
   context '全てのフィールドが有効な場合' do
+    let!(:dog) { create(:dog, :public_view, :castrated) }
     example '有効であること' do
-      registration_number = build(:registration_number)
+      registration_number = build(:registration_number, dog: dog)
       expect(registration_number).to be_valid
     end
   end
