@@ -26,20 +26,23 @@ https://www.dogrunconnect.com
 
 ## 使用技術 
 --- 
-- Ruby 3.1.2
+- Ruby 3.2.2
 - Ruby on Rails 7.0.3
   - importmap
   - tailwindcss
   - clockwork
 - puma
-- Heroku (Hobby dynos)
-  - Heroku Postgres 14.4
-  - Cloudinary (add-on)
-  - Papertrail
-  - Heroku Scheduler
+- Heroku (Basic dynos)
+  - Heroku Postgres 14.8 (Mini)
+  - Cloudinary (Starter)
+  - Heroku Data for Redis (Mini)
+  - Heroku Scheduler (Standard)
+  - Librato (Development)
+  - Papertrail (Choklad)
+  - Scout APM (Chair Lift)
 - aws
   - S3 (sitemapのアップロード)
-- RSpec
+- RSpec 
 
 ## 機能一覧
 ---
