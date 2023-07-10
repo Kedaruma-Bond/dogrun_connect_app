@@ -2,7 +2,7 @@
   <div class="text-amber-700 font-medium text-center">
     <%= t("local.registration_numbers.form.registration_is_done_one_by_one") %>
   </div>
-  <%= form_with model: registration_number, url: send(registration_numbers_path) do |f| %>
+  <%= form_with model: registration_number, url: send(registration_numbers_path), data: { controller: 'disable', "disable-with-value": t('defaults.processing')} do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <ul list-style="none" class="mx-auto mt-5 flex flex-col">
       <% dogs.each do |dog| %>
@@ -43,8 +43,9 @@
     </div>
     <div class="w-full flex flex-col mt-3 text-gray-700">
       <div class="flex items-center justify-center mt-3">
-        <%= button_tag type: "submit", class: "w-full sm:w-60 mt-3 font-bold leading-normal py-4 px-10 tracking-wide text-white bg-emerald-400 rounded-md hover:bg-emerald-300 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300" do %>
-          <%= t('defaults.register') %>
+        <%= f.button class: "flex justify-center w-full sm:w-60 mt-3 font-bold leading-normal py-4 px-10 tracking-wide text-white bg-emerald-400 rounded-md hover:bg-emerald-300 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300", data: { "disable-target": "submitButton" } do %>
+          <%= spinner_icon_for_form_disable_button %>
+          <span data-disable-target="buttonText"><%= t('defaults.register') %></span>
         <% end %>
       </div>
     </div>

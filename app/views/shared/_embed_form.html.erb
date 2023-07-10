@@ -1,8 +1,8 @@
-<%= form_with model: embed, url: send(embed_path),  data: { controller: 'disable', 'disable-with-value': t('defaults.posting') } do |f| %>
+<%= form_with model: embed, url: send(embed_path),  data: { controller: 'disable disable-selector', 'disable-with-value': t('defaults.posting') } do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="text-gray-600 w-full flex flex-col mt-4">
     <%= f.label :embed_type, class: "font-bold leading-none" %>
-    <%= f.select :embed_type, Embed.embed_types_i18n.invert, {include_blank: t('.select_sns')}, { class: "block w-full leading-1 text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200" } %>
+    <%= f.select :embed_type, Embed.embed_types_i18n.invert, {include_blank: t('.select_sns')}, { class: "block w-full leading-1 text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200", data: { "disable_selector-target": "selector", action: "change->disable-selector#selectorValueChanged" } } %>
   </div>
   <div class="text-gray-600 items-center justify-center w-full mt-4">
     <%= f.label :identifier, class: "font-bold leading-none" %>
@@ -12,14 +12,16 @@
     </p>
   </div>
   <div class="sm:flex mt-9">
-    <div class="flex justify-center sm:ml-0 sm:mx-3">
-      <%= link_to send(@top_path), class: "font-bold leading-none text-white py-4 px-2 bg-rose-700 rounded hover:bg-rose-600 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
-        <span class="py-4 px-10"><%= t('defaults.back') %></span>
+    <div class="flex justify-center item-center h-[48px] sm:mr-3 mb-3 sm:mb-0 w-auto">
+      <%= link_to send(@top_path), class: "font-bold leading-none text-white py-4 px-12 bg-rose-700 rounded hover:bg-rose-600 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
+        <span><%= t('defaults.back') %></span>
       <% end %>
     </div>
-    <div class="flex justify-center mt-3 sm:mt-0 sm:mx-3 sm:pt-3">
-      <%= f.submit t('defaults.post'), class: "font-bold leading-none text-white py-4 px-12 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300" do %>
-        <span><%= t'defaults.post' %></span>
+    <div class="flex justify-center mt-3 sm:mt-0 sm:ml-3">
+      <%= f.button class: "flex font-bold leading-none text-white py-4 px-12 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300 disabled:py-[14px] disabled:px-[54px]", data: { "disable-target": "submitButton", "disable-selector-target": "submitButton" } do %>
+        <%= spinner_icon_for_form_disable_button %>
+        <span data-disable-target="buttonText" data-disable-selector-target="buttonText" class="hidden"><%= t'defaults.post' %></span>
+        <%= inoperable_icon %>
       <% end %>
     </div>
   </div>

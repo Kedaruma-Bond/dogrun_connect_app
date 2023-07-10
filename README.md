@@ -68,5 +68,5 @@ https://www.dogrunconnect.com
 ---
 - Rspec
   - 単体テスト(model) 
-  - 機能テスト(request) 実装中
-  - 統合テスト(system) 未実装
+  - 機能テスト(request) 
+  - 統合テスト(system) 実装中

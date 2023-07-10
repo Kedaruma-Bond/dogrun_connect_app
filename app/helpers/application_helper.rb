@@ -9,6 +9,18 @@ module ApplicationHelper
     turbo_stream.append "flash", partial: "shared/flash"
   end
   
+  def spinner_icon_for_form_disable_button
+    image_tag '90-ring-with-bg-white-36.svg', class: "hidden my-auto mr-2 w-6 h-6", data: { "disable-target": "spinner", "disable-confirm-target": "spinner" }
+  end
+  
+  def spinner_icon_for_form_disable_button
+    image_tag '90-ring-with-bg-white-36.svg', class: "hidden my-auto mr-2 w-6 h-6", data: { "disable-target": "spinner", "disable-confirm-target": "spinner" }
+  end
+  
+  def inoperable_icon
+    image_tag 'inoperable_icon.svg', class: "w-5 h-5 rounded-full text-gray-200 shadow", data: { "disable-selector-target": "icon" }
+  end
+
   def default_meta_tags
     {
       site: Rails.application.credentials.meta_tags[:app],

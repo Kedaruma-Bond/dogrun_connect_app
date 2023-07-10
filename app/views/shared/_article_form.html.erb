@@ -12,14 +12,15 @@
     <%= article_photo_for_preview(article) %>
   </div>
   <div class="sm:flex mt-9">
-    <div class="flex justify-center sm:ml-0 sm:mx-3">
-      <%= link_to send(top_path), class: "font-bold leading-none text-white py-4 px-2 bg-rose-700 rounded hover:bg-rose-600 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
-        <span class="py-4 px-10"><%= t('defaults.back') %></span>
+    <div class="flex justify-center item-center h-[48px] sm:mr-3 mb-3 sm:mb-0 w-auto">
+      <%= link_to send(top_path), class: "px-12 flex justify-center items-center font-bold leading-none text-white bg-rose-700 rounded hover:bg-rose-600 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
+        <%= t('defaults.back') %>
       <% end %>
     </div>
-    <div class="flex justify-center mt-3 sm:mt-0 sm:mx-3 sm:pt-3">
-      <%= f.button :submit, t('defaults.post'), class: "font-bold leading-none text-white py-4 px-12 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300" do %>
-        <span class="py-4 px-10"><%= t('defaults.post') %></span>
+    <div class="flex justify-center mt-3 sm:mt-0 sm:ml-3">
+      <%= f.button :button, class: "flex font-bold leading-none text-white py-4 px-12 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300", data: { "disable-target": "submitButton" } do %>
+        <%= spinner_icon_for_form_disable_button %>
+        <span data-disable-target="buttonText"><%= t('defaults.post') %></span>
       <% end %>
     </div>
   </div>
