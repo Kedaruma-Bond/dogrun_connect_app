@@ -18,11 +18,9 @@ export default class extends Controller {
     if(isCheckBoxEmpty) {
       this.buttonTextTarget.classList.add("hidden")
       this.disableTextTarget.classList.remove("hidden")
-      this.submitButtonTarget.classList.add("disabled:px-[10px]")
     } else {
       this.buttonTextTarget.classList.remove("hidden")
       this.disableTextTarget.classList.add("hidden")
-      this.submitButtonTarget.classList.remove("disabled:px-[10px]")
     }
   }
 
