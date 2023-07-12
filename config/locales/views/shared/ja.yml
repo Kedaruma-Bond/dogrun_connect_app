@@ -72,8 +72,8 @@ ja:
       please_signup: |
         ワンコを登録するには
         飼い主さんの新規登録が必要です
-      please_select_dog: ワンコを選択してください
-      pre_entry_or_entry_confirm: ワンコを選択されていますか？
+      please_select_dog: ワンコを選んでください
+      pre_entry_confirm: 30分以内に来れますか？
       entry_confirm: 入場してよろしいですか？
       cancel_confirm: 入場予定をキャンセルしますか？
       exit_confirm: 退場前の見回りは実施しましたか？

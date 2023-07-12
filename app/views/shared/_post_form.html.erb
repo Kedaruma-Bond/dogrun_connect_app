@@ -12,7 +12,8 @@
     <div class="w-full h-1 bg-gray-200 rounded mt-2 mb-2"></div>
     <%= form_with model: post, url: { controller: "posts", action: "create"}, data: { controller: "disable disable-selector", "disable-with-value": t('defaults.processing'), "form-modal-target": 'form' } do |f| %>
       <div class="w-full flex flex-col mt-4">
-        <%= f.select :post_type, Post.post_types_i18n.invert, {include_blank: t('.select_it')}, { class: "block w-full leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200", data: { "disable_selector-target": "selector", action: "change->disable-selector#selectorValueChanged" } } %>
+        <%= f.select :post_type, Post.post_types_i18n.invert, {include_blank: t('.select_it')}, { class: "block w-full leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200", 
+            data: { "disable_selector-target": "selector", action: "change->disable-selector#selectorValueChanged" } } %>
       </div>
       <%= f.hidden_field :publish_status, value: "non_publish" %>
       <div class="flex items-center justify-center mt-3">
