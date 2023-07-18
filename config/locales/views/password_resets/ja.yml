@@ -5,9 +5,15 @@ ja:
       update: 更新する
       new_password: 新しいパスワード
       new_password_confirmation: 新しいパスワード 確認 
+      password_update_confirm: |
+        新しいパスワードを
+        設定しますか？
     new:
       title: パスワードのリセット
       input_email: |
         登録したメールアドレスを入力してください
         パスワードリセット案内メールを送信します
       email_form: メールアドレスを入力
+      email_send_confirm: |
+        こちらのメールアドレスにパスワード
+        リセットのリンクを送付しますか？

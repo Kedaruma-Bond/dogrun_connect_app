@@ -8,6 +8,7 @@ export default class extends Controller {
       if (!document.hidden) {
         // location.reload();
         this.reloadFrameTargets.forEach((reloadFrame) => {
+          reloadFrame.innerHTML = ""
           reloadFrame.src = reloadFrame.src
         })
       }

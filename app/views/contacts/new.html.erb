@@ -2,7 +2,7 @@
 <div class="max-w-5xl md:mx-auto px-2 pb-2 sm:mx-32 bg-purple-200 rounded-lg">
   <div class="w-full p-8 sm:p-10">
     <p class="text-3xl font-bold leading-7 text-center  text-gray-700 mb-5 mt-3"><%= t'.title' %></p>
-    <p class="text-left"><%= simple_format(t('.caution'), class: "text-gray-700 text-sm") %></p>
+    <%= simple_format(t('.caution'), class: "text-left text-gray-700 text-sm") %>
     <%= simple_form_for @contact, url: confirm_path, data: { turbo: false } do |f| %>
       <%= render 'shared/error_messages', object: f.object %> 
       <div class="md:flex items-center mt-6">

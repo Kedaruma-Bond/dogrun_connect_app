@@ -1,5 +1,6 @@
 class PasswordResetsController < ApplicationController
   skip_before_action :require_login
+
   def create
     @user = User.find_by(email: params[:email])
 
@@ -26,13 +27,20 @@ class PasswordResetsController < ApplicationController
       return
     end
 
+    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+      @user.errors.add(:password, :blank)
+      @user.errors.add(:password_confirmation, :blank)
+      render action: :edit, status: :unprocessable_entity
+      return
+    end
+
     # the next line makes the password confirmation validation work
     @user.password_confirmation = params[:user][:password_confirmation]
     # the next line clears the temporary token and updates the password
     if @user.change_password(params[:user][:password])
       redirect_to(root_path, success: t('.success'))
     else
-      render action: :edit
+      render action: :edit, status: :unprocessable_entity
     end
   end
 

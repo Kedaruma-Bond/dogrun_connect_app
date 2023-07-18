@@ -48,7 +48,7 @@
               <%= f.label :castration %>
               <%= f.input :castration, as: :boolean, checked_value: 'castrated', unchecked_value: 'non_castrated', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-10" }, label: false,  hint: false, error: false %>
             </div>
-            <div class="w-[120px] md:mr-2 mb-3 md:mb-0 relative" data-controller="sns-post-message-modal">
+            <div class="w-[140px] sm:w-[120px] md:mr-2 mb-3 md:mb-0 relative" data-controller="sns-post-message-modal">
               <%= f.label :public %>
               <%= render partial: "shared/explain_of_public_icon" %>
               <%= f.input :public, as: :boolean, checked_value: 'public_view', unchecked_value: 'non_public', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto md:ml-9" }, label: false, hint: false, error: false %>
@@ -123,7 +123,10 @@
       </div>
     </div>
     <div class="flex items-center justify-center mt-3">
-      <%= f.button :submit, t('defaults.registration'), class: "w-full sm:w-60 mt-3 font-bold leading-normal text-white py-4 px-10 bg-emerald-400 rounded hover:bg-emerald-300 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300" %>
+      <%= f.button :button, class: "flex justify-center w-full sm:w-60 mt-3 font-bold leading-normal text-white py-4 px-10 bg-emerald-400 rounded hover:bg-emerald-300 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300", data: { "disable-target": "submitButton" } do %>
+        <%= spinner_icon_for_form_disable_button %>
+        <span data-disable-target="buttonText"><%= t('defaults.registration') %></span>
+      <% end %>
     </div>
   </section>
 <% end %>

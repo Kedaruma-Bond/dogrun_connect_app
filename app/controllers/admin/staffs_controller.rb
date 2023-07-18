@@ -5,8 +5,11 @@ class Admin::StaffsController < Admin::BaseController
   before_action :correct_admin_check, only: %i[destroy enable_notification disable_notification]
 
   def index
-    @staff = Staff.new
     @pagy, @staffs = pagy(Staff.where(dogrun_place_id: current_user.dogrun_place_id).order(id: :desc))
+  end
+
+  def new
+    @staff = Staff.new
   end
 
   def create
@@ -17,10 +20,10 @@ class Admin::StaffsController < Admin::BaseController
       StaffMailer.staff_registration_success(@staff, @dogrun_place).deliver_now
       respond_to do |format|
         format.html { redirect_to admin_staffs_path, success: t('.staff_create') }
-        format.json { head :no_content }
+        format.turbo_stream { flash.now[:success] = t('.staff_create') }
       end
     else
-      redirect_to  admin_staffs_path, error: t(".fail_to_register")
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -34,7 +37,7 @@ class Admin::StaffsController < Admin::BaseController
           redirect_to request.referer, success: t('defaults.destroy_successfully'), status: :see_other
         end
       }
-      format.json { head :no_content }
+      format.turbo_stream { flash.now[:success] = t('defaults.destroy_successfully') }
     end
   end
 

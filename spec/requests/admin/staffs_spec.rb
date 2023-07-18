@@ -76,8 +76,9 @@ RSpec.describe Admin::StaffsController, type: :request do
           expect {
             post admin_staffs_path, params: { staff: invalid_attributes }
           }.not_to change(Staff, :count)
-          expect(response).to redirect_to(admin_staffs_path)
-          expect(flash[:error]).to eq(I18n.t('admin.staffs.create.fail_to_register'))
+          expect(response).to render_template(:new)
+          expect(response).to have_http_status(:unprocessable_entity)
+          expect(assigns(:staff).errors).to be_of_kind(:name, :blank)
         end
 
         example '登録メールが送信されないこと' do

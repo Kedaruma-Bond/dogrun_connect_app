@@ -15,7 +15,6 @@ ja:
     staffs:
       create:
         staff_create: スタッフが新規登録されました
-        fail_to_register: 入力内容を確認してください
       enable_notification:
         change_to_enable: 通知に設定しました
       disable_notification:

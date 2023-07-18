@@ -1,0 +1,13 @@
+<% if !object.nil? %>
+  <% if object.errors.any? %>
+    <div id="error_explanation">
+      <div class="items-center w-[300px] mx-auto <%= css_class_for_flash('error') %> py-3 px-5 rounded-lg mt-2 text-gray-200">
+        <ul>
+            <% object.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+<% end %>

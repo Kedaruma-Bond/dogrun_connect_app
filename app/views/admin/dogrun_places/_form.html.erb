@@ -1,6 +1,6 @@
 <%= render 'shared/error_messages', object: f.object %>
 <section class="text-gray-600">
-  <div class="container px-0 md:px-3 py-3 mx-auto flex flex-col">
+  <div class="px-0 md:px-3 py-3 mx-auto flex flex-col">
     <div class="flex flex-col sm:flex-row mt-2">
       <div class="sm:w-1/3 sm:pr-8 sm:py-2 items-center justify-center">
         <div class="mb-3" data-controller="preview">
@@ -67,21 +67,18 @@
       </div>
     </div>
   </div>
-  <div class="mt-9 sm:flex justify-center">
-    <div class="flex justify-center sm:mr-2">
-      <% if current_user.grand_admin? %>
-        <%= link_to  admin_dogrun_places_path, class: "mt-3 font-bold leading-normal text-white py-4 px-10 bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
-          <span><%= t('defaults.back') %></span>
-        <% end %>
-      <% else %>
-        <%= link_to  admin_dogrun_place_path(current_user.dogrun_place), 
-            class: "mt-3 font-bold leading-normal text-white py-4 px-10 bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
-          <span><%= t('defaults.back') %></span>
-        <% end %>
-      <% end %>
+  <div class="mt-4 sm:flex justify-center">
+    <div class="flex justify-center sm:ml-0 sm:mx-3 h-[56px] mt-0 md:mt-3">
+      <button data-controller="back-button" data-action="back-button#goBack" class="font-bold leading-normal text-white px-10 bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+        <span><%= t('defaults.back') %></span>
+      </button>
     </div>
     <div class="flex justify-center">
-      <%= f.button :submit, t('defaults.send'), class: "mt-3 font-bold leading-normal text-white py-4 px-10 bg-emerald-400 rounded hover:bg-emerald-300 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none diabled:cursor-not-allowed disabled:bg-emerald-300" %>
+      <%= f.button :button, data: { "disable-target": "submitButton" },
+        class: "flex mt-3 font-bold leading-normal text-white py-4 px-10 bg-emerald-400 rounded hover:bg-emerald-300 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none diabled:cursor-not-allowed disabled:bg-emerald-300" do %>
+        <%= spinner_icon_for_form_disable_button %>
+        <span data-disable-target="buttonText"><%= t('defaults.send') %></span>
+      <% end %>
     </div>
   </div>
 </section>

@@ -19,7 +19,11 @@
       <% end %>
     </div>
     <div class="flex justify-center mt-3 sm:mt-0 sm:mx-3">
-      <%= f.button :submit, t('defaults.update'), class: "h-11 font-bold leading-none text-white py-2 px-12 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300" %>
+      <%= f.button :button, data: { "disable-target": "submitButton" }, 
+        class: "flex items-center h-11 font-bold leading-none text-white py-2 px-12 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300" do %>
+        <%= spinner_icon_for_form_disable_button %>
+        <span data-disable-target="buttonText"><%= t('defaults.post') %></span>
+      <% end %>
     </div>
   </div>
 <% end %>

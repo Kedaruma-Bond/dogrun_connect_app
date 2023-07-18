@@ -4,7 +4,8 @@
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
     </svg>
   </button>
-  <%= form_with model: registration_number, url: admin_registration_number_path(registration_number), method: :patch, data: { form_modal_target: 'form', action: "turbo:submit-end->form-modal#submitEnd" } do |f| %>
+  <%= form_with model: registration_number, url: admin_registration_number_path(registration_number), method: :patch, 
+      data: { form_modal_target: 'form', action: "turbo:submit-end->form-modal#submitEnd" } do |f| %>
     <div class="px-4 py-5 border-b border-gray-200">
       <h3 class="text-lg leading-6 font-bold text-gray-700">
         <%= simple_format(t'.input_registration_number') %>
@@ -13,7 +14,9 @@
         <%= f.text_field :registration_number, { class: "block w-full leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" } %>
       </div>
       <div class="flex items-center justify-center mt-3">
-        <%= f.submit 'OK', class: "mt-3 font-bold leading-normal text-white py-4 px-10 bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" %>
+        <%= f.button class: "mt-3 text-white py-3 px-8 bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
+          <span class="text-lg font-semibold"><%= t('defaults.update') %></span>
+        <% end %>
       </div>
     </div>
   <% end %>

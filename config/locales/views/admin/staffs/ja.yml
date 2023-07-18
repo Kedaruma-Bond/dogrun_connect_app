@@ -4,8 +4,13 @@ ja:
       index:
         title: ドッグランスタッフ一覧
         sign_up: 新規登録
+        notification: 投稿通知
       staff:
-        enable_confirmation: 通知を有効にしますか？
+        enable_confirmation: |
+          ドッグランに投稿があるとメールで通知されるようになります。
+          通知を有効にしますか？
         disable_confirmation: 通知を無効にしますか？
       form:
         signup_staff: スタッフ新規登録
+      new:
+        title: スタッフ新規登録

@@ -34,9 +34,14 @@
             <span><%= t('defaults.back') %></span>
           </button>
         </div>
-        <%= simple_form_for @contact, url: contacts_path, data: { controller: 'disable', 'disable-with-value': t('defaults.posting') } do |f| %>
+        <%= simple_form_for @contact, url: contacts_path, 
+          data: { "turbo-confirm": t('.contact_confirm'), controller: 'disable-confirm', 'disable-confirm-with-value': t('defaults.posting') } do |f| %>
           <div class="overflow-hidden shadow sm:w-auto sm:mx-3 sm:mt-0 mt-4">
-            <%= f.button :submit, t('.send'), class: "inline-block items-center w-full px-10 py-4 text-base font-semibold text-white bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300" %> 
+            <%= f.button :button, data: { "disable-confirm-target": "submitButton" }, 
+              class: "flex justify-center w-full px-10 py-4 text-base font-semibold text-white bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300" do %> 
+            <%= spinner_icon_for_form_disable_button %>
+            <span data-disable-confirm-target="buttonText"><%= t'defaults.post' %></span>
+          <% end %>
           </div>
         <% end %>
         </div>

@@ -4,21 +4,23 @@ export default class extends Controller {
   static values = { 
     with: String
     }
+  static targets = ['spinner', 'submitButton', 'buttonText']
 
   connect() {
     this.element.dataset['action'] = 'submit->disable#disableForm'
     this.backButton = this.element.querySelector('[data-action="back-button#goBack"]')
-    this.submitButton = this.element.querySelector("input[type='submit']")
   }
-
 
   disableForm() {
     const isBackButtonPressed = this.backButton && this.backButton === document.activeElement
 
-      if(!isBackButtonPressed) {
-        this.submitButton.disabled = true
-        this.submitButton.value = this.withValue
-      }
+    if(!isBackButtonPressed) {
+      this.submitButtonTargets.forEach((button) => {
+        button.disabled = true
+      })
+      this.buttonTextTarget.textContent = this.withValue
+      this.spinnerTarget.classList.remove("hidden")
+    }
   }
 
 }

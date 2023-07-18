@@ -156,7 +156,7 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :staffs, only: %i[index create destroy] do
+    resources :staffs, only: %i[index new create destroy] do
       member do
         patch 'enable_notification', to: 'staffs#enable_notification'
         patch 'disable_notification', to: 'staffs#disable_notification'
