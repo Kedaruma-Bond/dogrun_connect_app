@@ -28,20 +28,20 @@
       <%= form_with(url: send(entries_path), id: "entry_form", data: { turbo_method: :post, controller: "disable-confirm", "disable-confirm-with-value": t('defaults.processing') } ) do |f| %>
         <div class="flex-col mb-5">
           <%= f.button name: "pre_flg", value: "1", data: { "disable-confirm-target": "submitButton", "disable-checkbox-target": "submitButton", "turbo-confirm": t(".pre_entry_confirm") },
-              class: "disabled:px-[59px] disabled:cursor-not-allowed disabled:bg-gray-400 mx-auto font-bold h-14 text-white py-4 px-5 bg-blue-400 rounded-full hover:bg-blue-300 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
+              class: "disabled:px-[59px] disabled:cursor-not-allowed disabled:bg-gray-400 mx-auto font-bold text-white py-4 px-5 bg-blue-400 rounded-full hover:bg-blue-300 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
             <div data-disable-checkbox-target="buttonText" class="hidden flex">
               <%= spinner_icon_for_form_disable_button %>
               <div data-disable-confirm-target="buttonText" class="flex">
                 <svg class="w-5 h-5 my-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path clip-rule="evenodd" fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z"></path>
                 </svg>
-                <span class="text-lg font-semibold ml-2">
+                <p class="text-lg font-semibold ml-2 my-auto">
                   <%= t('.pre_entry') %>
-                </span>
+                </p>
               </div>
             </div>
             <div data-disable-checkbox-target="disableText" class="flex">
-              <%= image_tag 'dog-white_icon.svg', class: "w-5 h-5 my-auto" %>
+              <%= image_tag 'dog-white_icon.svg', class: "w-5 h-5" %>
               <p class="my-auto text-base text-gray-200 font-semibold ml-1"><%= t('.please_select_dog') %></p>
             </div>
           <% end %>
@@ -49,7 +49,7 @@
 
         <div class="flex-col">
           <%= f.button name: "pre_flg", value: "0", data: { "disable-confirm-target": "submitButton", "disable-checkbox-target": "submitButton", "turbo-confirm": t(".entry_confirm") },
-              class: "mx-auto disabled:hidden flex font-bold h-14 text-white py-4 px-10 bg-blue-700 rounded-full hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
+              class: "mx-auto disabled:hidden flex font-bold text-white py-4 px-10 bg-blue-700 rounded-full hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
             <div data-disable-confirm-target="buttonText" class="flex">
               <svg class="w-6 h-6 my-auto" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19 12H12M12 12L15 15M12 12L15 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
@@ -86,7 +86,7 @@
       <%= form_with(url: send(@pre_entry_path), method: :delete, data: { turbo_confirm: t('.cancel_confirm'), controller: "disable-confirm", "disable-confirm-with-value": t('defaults.processing')} ) do |f| %>
         <div class="flex-col mb-5">
           <%= f.button data: { "disable-confirm-target": "submitButton" },
-            class: "disabled:px-[59px] disabled:cursor-not-allowed disabled:bg-gray-400 flex mx-auto items-center justify-center font-bold h-14 text-white py-4 px-10 bg-red-700 rounded-full hover:bg-red-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
+            class: "disabled:px-[59px] disabled:cursor-not-allowed disabled:bg-gray-400 flex mx-auto items-center justify-center font-bold text-white py-4 px-10 bg-red-700 rounded-full hover:bg-red-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
             <%= spinner_icon_for_form_disable_button %>
             <div data-disable-confirm-target="buttonText" class="flex">
               <svg class="w-5 h-5 my-auto" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -103,7 +103,7 @@
       <%= form_with(url: send(@entries_path), data: { turbo_method: :post, turbo_confirm: t('.entry_confirm'), controller: "disable-confirm", "disable-confirm-with-value": t('defaults.processing') } ) do |f| %>
         <div class="flex-col">
           <%= f.button data: { "disable-confirm-target": "submitButton" },
-              name: "pre_flg", value: "0", class: "disabled:px-[59px] disabled:cursor-not-allowed disabled:bg-gray-400 flex mx-auto items-center justify-center font-bold h-14 text-white py-4 px-10 bg-blue-700 rounded-full hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
+              name: "pre_flg", value: "0", class: "disabled:px-[59px] disabled:cursor-not-allowed disabled:bg-gray-400 flex mx-auto items-center justify-center font-bold text-white py-4 px-10 bg-blue-700 rounded-full hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
             <%= spinner_icon_for_form_disable_button %>
             <div data-disable-confirm-target="buttonText" class="flex">
               <svg class="w-6 h-6 my-auto" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -147,7 +147,7 @@
       <%= form_with(url: { controller: "entries", action: "update" }, method: :patch, data: { turbo_confirm: t('.exit_confirm'), controller: "disable-confirm", "disable-confirm-with-value": t("defaults.processing") }) do |f| %>
         <div class="flex-col">
           <%= f.button data: { "disable-confirm-target": "submitButton" },
-              class: "disabled:px-[59px] disabled:cursor-not-allowed disabled:bg-gray-400 flex mx-auto items-center justify-center font-bold h-14 text-white py-4 px-10 bg-blue-700 rounded-full hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
+              class: "disabled:px-[59px] disabled:cursor-not-allowed disabled:bg-gray-400 flex mx-auto items-center justify-center font-bold text-white py-4 px-10 bg-blue-700 rounded-full hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
             <%= spinner_icon_for_form_disable_button %>
             <div data-disable-confirm-target="buttonText" class="flex">
               <svg class="w-6 h-6 my-auto" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
