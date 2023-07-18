@@ -14,7 +14,7 @@
       <div class="block w-full overflow-x-auto">
         <div class="border-t-0 px-3 align-middle border-l-0 border-r-0 whitespace-nowrap p-2">
           <%= turbo_frame_tag dom_id(dogrun_place, "pre_entries_list"), class: "flex" do %>
-            <div class="mx-auto pt-2 text-gray-400 text-sm hidden only:block h-[48px]">
+            <div class="mx-auto pt-2 text-gray-400 text-sm font-medium hidden only:block h-[48px]">
               <%= t('.no_one_will_come_for_a_while') %>
             </div>
             <% pre_entry_dogs_public_view.each do |pre_entry_dog| %>

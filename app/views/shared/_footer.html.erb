@@ -28,7 +28,7 @@
           <% end %>
           <li>
             <% if !@dogrun_place.sns_account.nil?  %>
-              <%= render partial: "shared/sns_account_icons", locals: { sns_account: @dogrun_place.sns_account } %>
+              <%= render partial: "static_pages/sns_account_icons", locals: { sns_account: @dogrun_place.sns_account } %>
             <% end %>
           </li>
         </ul>

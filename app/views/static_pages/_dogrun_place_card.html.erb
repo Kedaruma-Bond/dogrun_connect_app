@@ -2,13 +2,13 @@
   <%= link_to dogrun_top_path(dogrun_place.id) do %>
     <%= cl_image_tag(dogrun_place.logo.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover h-auto w-auto", alt: DogrunPlace.find(2).name) %>
     <div class ="text-center">
-      <h1 class="mt-4 text-2xl font-semibold text-gray-600 dark:text-gray-200">
+      <h1 class="mt-4 text-2xl font-semibold text-gray-700 dark:text-gray-200">
         <%= dogrun_place.name %>
       </h1>
     </div>
   <% end %>
-  <div class="flex-col mt-2 text-gray-500 dark:text-gray-200 capitalize items-center">
-    <%= simple_format(dogrun_place.description, { class: "text-sm text-gray-500 dark:text-gray-400" }) %>
+  <div class="flex-col mt-2 text-gray-700 dark:text-gray-200 capitalize items-center">
+    <%= simple_format(dogrun_place.description, { class: "text-sm text-gray-700 dark:text-gray-200 text-center" }) %>
     <details data-controller="accordion" class="text-center">
       <summary data-accordion-target="summary" data-action="click->accordion#toggle" class="mt-3 flex justify-center hover:cursor-pointer">
         <h1 class="flex font-bold text-lg dark:text-gray-200">
@@ -36,7 +36,7 @@
           <%= DogrunPlace.human_attribute_name(:usage_fee) %>
         </p>
         <h2 class="mt-1">
-          <%= simple_format(dogrun_place.usage_fee, class: "text-gray-700 dark:text-gray-300 text-base text-left") %>
+          <%= simple_format(dogrun_place.usage_fee, class: "text-gray-700 dark:text-gray-300 text-base") %>
         </h2>
         <p class="text-sm mt-2">
           <%= DogrunPlace.human_attribute_name(:site_area) %>
@@ -59,7 +59,7 @@
             <p class="text-sm mt-2">
               <%= t('defaults.sns') %>
             </p>
-            <%= render partial: "shared/sns_account_icons", locals: { sns_account: dogrun_place.sns_account } %>
+            <%= render partial: "sns_account_icons", locals: { sns_account: dogrun_place.sns_account } %>
           <% end %>
           <% if !dogrun_place.facilities.blank? %>
             <p class="text-sm mt-2">

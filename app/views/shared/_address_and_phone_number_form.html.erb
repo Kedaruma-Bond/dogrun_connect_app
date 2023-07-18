@@ -1,5 +1,5 @@
 <%= simple_form_for [dogrun_name, user_detail], data: { controller: 'disable address-autofil', "address-autofil-apikey-value": set_postcodejp_apikey, "disable-with-value": t('defaults.processing') } do |f|  %>
-  <%= render 'shared/error_messages', object: f.object %>
+  <%= render 'shared/error_messages_for_modal', object: f.object %>
   <%= simple_format(t('defaults.these_information_is_not_viewable'), class: "text-red-500 text-sm text-center" )%>
   <div class="mt-1">
     <%= f.input :zip_code, input_html: { data: { "address_autofil_target": 'zipcode', action: "change->address-autofil#fetchAddress" }, class: "block w-full leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200"}, label: UserDetail.human_attribute_name(:zip_code), hint: false, error: false %>

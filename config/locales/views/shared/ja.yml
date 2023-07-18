@@ -17,9 +17,9 @@ ja:
     signup_form:
       password_hint: パスワードは６文字以上としてください
     sns_account_form:
-      facebook_id_hint: https://www.facebook.com/以降を入力してください
-      instagram_id_hint: https://www.instagram.com/以降を入力してください
-      twitter_id_hint: https://twitter.com/以降を入力してください
+      facebook_id_hint: https://www.facebook.com/以降を入力
+      instagram_id_hint: https://www.instagram.com/以降を入力
+      twitter_id_hint: https://twitter.com/以降を入力
     encount_dog_edit_form:
       select_color_marker: 色を選択してください
       memo_placeholder: |
@@ -94,16 +94,11 @@ ja:
         ありますのでご参照ください
     post_form:
       select_post_type: |
-        作成する投稿のタイプを
-        選択してください
+        投稿のタイプの選択
       select_it: 選択してください
     entries_table:
       table_of_entries_latest_max_five: "過去%{times}回の利用状況"
       playing_together: 一緒に遊んだワンコ
-    sns_account_form:
-      facebook_id_hint: https://www.facebook.com/以降を入力してください
-      instagram_id_hint: https://www.instagram.com/以降を入力してください
-      twitter_id_hint: https://twitter.com/以降を入力してください
     filming_message_modal:
       title: 撮影OKについて
       body: |

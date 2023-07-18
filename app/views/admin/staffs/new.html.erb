@@ -1,0 +1,3 @@
+<%= render Staffs::FormModalComponent.new(title: t('.title')) do %>
+  <%= render partial: "form", locals: { staff: @staff } %>
+<% end %>

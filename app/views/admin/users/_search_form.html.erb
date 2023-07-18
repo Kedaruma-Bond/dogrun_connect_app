@@ -1,5 +1,5 @@
 <%= search_form_for @q, url: search_admin_users_path, 
-    html: { method: :get, class: "flex w-full md:w-4/5 ml-3 items-center" } do |f| %>
+    html: { method: :get, class: "flex w-full md:w-4/5 ml-3 items-center" }, data: { controller: "disable", "disable-with-value": nil } do |f| %>
   <div class="flex-grow relative ml-3">
     <div class="flex w-full">
       <div class="absolute inset-y-0 left-0 items-center pt-3 pl-3 pointer-events-none">
@@ -8,7 +8,14 @@
         </svg>
       </div>
       <%= f.search_field :name_or_email_cont, include_blank: true, placeholder: t('.search_field'), class: "w-full md:w-1/3 h-10 mr-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5" %>
-      <%= f.submit t('defaults.search'), class: "mr-2 md:mr-7 px-4 py-2 h-10 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" %>
+      <%= f.button data: { "disable-target": "submitButton" },
+        class: "disabled:cursor-not-allowed disabled:bg-blue-400 mr-2 md:mr-7 px-4 py-2 h-10 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
+        <%= image_tag '90-ring-with-bg-white-36.svg', class: "hidden mx-auto w-6 h-6", data: { "disable-target": "spinner" } %>
+        <div data-disable-target="buttonText" class="font-medium flex text-sm w-8 justify-center">
+          <%= t('defaults.search') %>
+        </div>
+      <% end %>
+
     </div>
   </div>
 <% end %>
