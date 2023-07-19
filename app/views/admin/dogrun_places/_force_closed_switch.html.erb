@@ -1,4 +1,4 @@
-<p class="text-sm text-gray-700"><%= t('.manual_closing') %></p>
+<p class="text-base text-gray-700"><%= t('.manual_closing') %></p>
 <% if dogrun_place.force_closing? %>
   <%= link_to release_admin_dogrun_place_path(dogrun_place), 
     data: { turbo_method: :patch, turbo_confirm: t('.release_dogrun_to_open_confirmation')},
