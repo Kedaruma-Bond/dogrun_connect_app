@@ -14,13 +14,13 @@
   <div class="sm:flex mt-9">
     <div class="flex justify-center sm:ml-0 sm:mx-3">
       <%= link_to admin_posts_path, 
-          class: "font-bold leading-none text-white py-4 px-12 bg-rose-700 rounded hover:bg-rose-600 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
+          class: "font-bold text-white py-4 px-12 bg-rose-700 rounded hover:bg-rose-600 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
         <%= t('defaults.back') %>
       <% end %>
     </div>
     <div class="flex justify-center mt-3 sm:mt-0 sm:mx-3">
       <%= f.button :button, data: { "disable-target": "submitButton" }, 
-        class: "flex items-center font-bold leading-none text-white py-2 px-12 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300" do %>
+        class: "flex items-center font-bold text-white py-4 px-12 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300" do %>
         <%= spinner_icon_for_form_disable_button %>
         <span data-disable-target="buttonText"><%= t('defaults.post') %></span>
       <% end %>

@@ -50,7 +50,7 @@ class Admin::PostsController < Admin::BaseController
           redirect_to request.referer, success: t('defaults.destroy_successfully'), status: :see_other 
         end
       }
-      format.json { head :no_content }
+      format.turbo_stream { flash.now[:success] = t('defaults.destroy_successfully') }
     end
   end
 

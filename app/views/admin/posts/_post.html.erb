@@ -1,26 +1,26 @@
-<tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-  <td class="px-3 py-2 whitespace-nowrap text-sm font-medium text-gray-900">
+<%= turbo_frame_tag post, class: "table-row bg-gray-100 border-b hover:bg-gray-50 h-[60px] whitespace-nowrap text-sm font-light text-gray-900" do %>
+  <div class="table-cell px-3 py-2 align-middle font-medium">
     <%= turbo_frame_tag dom_id(post, :post_icon) do %>
       <%= render partial: "post_icon", locals: { post: post } %>
     <% end %>
-  </td>
-  <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
+  </div>
+  <div class="table-cell px-3 py-2 align-middle">
     <%= l post.created_at, format: :long %>
-  </td>
-  <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
+  </div>
+  <div class="table-cell px-3 py-2 align-middle">
     <%= post.user.name %>
-  </td>
-  <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
+  </div>
+  <div class="table-cell px-3 py-2 align-middle">
     <%= post.post_type_i18n %>
-  </td>
-  <td class="text-sm text-gray-900 font-light px-3 py-2 whitespace-nowrap">
+  </div>
+  <div class="table-cell px-3 py-2 align-middle">
     <% if post.article? %>
       -
     <% else %>
       <%= post.embed.embed_type_i18n %>
     <% end %>
-  </td>
-  <td>
+  </div>
+  <div class="table-cell align-middle">
     <% if post.article? %>
       <%= link_to edit_admin_article_path(post), data: { turbo_method: :get, turbo_confirm: t('defaults.edit_confirmation') }, 
           class: "flex justify-left ml-2 text-sm text-gray-900 hover:text-gray-500 py-2 px-4" do %>
@@ -36,8 +36,8 @@
         </svg>
       <% end %>
     <% end %>
-  </td>
-  <td>
+  </div>
+  <div class="table-cell align-middle">
     <%= link_to admin_post_path(post), 
         data: { turbo_method: :delete, turbo_confirm: t('defaults.destroy_confirmation') }, 
         class: "flex justify-left ml-2 text-sm text-gray-900 hover:text-gray-500 py-2 px-4" do %>
@@ -45,5 +45,5 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
       </svg>
     <% end %>
-  </td>
-</tr>
+  </div>
+<% end %>

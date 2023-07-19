@@ -238,9 +238,7 @@ ja:
         exit_at: 退場時間
       post:
         post_type: 投稿タイプ
-        publish_status: |
-          掲載
-          状態
+        publish_status: 掲載状態
         publish_limit: 掲示期限
       article:
         content: 内容
