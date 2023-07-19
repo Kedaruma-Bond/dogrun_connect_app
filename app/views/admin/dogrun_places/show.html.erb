@@ -2,7 +2,7 @@
 <%= turbo_frame_tag "sns_account_form_modal" %>
 <div class="w-full mx-auto px-1 sm:px-3 lg:px-0">
   <div class="bg-purple-200 w-full shadow rounded p-8 sm:p-10">
-    <p class="text-2xl md:text-3xl font-bold mb-5 text-center text-gray-700">
+    <p class="text-3xl font-bold mb-2md:mb-5 text-center text-gray-700">
       <%= t'.title' %>
     </p>
     <section class="text-gray-600 body-font">
@@ -62,7 +62,7 @@
               <p class="text-gray-700 text-base font-light">
                 <%= DogrunPlace.human_attribute_name(:prefecture_code) %>
               </p>
-              <h2 class="mt-1 text-gray-700 text-base md:text-lg mt-3 sm:mt-0 font-semibold">
+              <h2 class="text-gray-700 text-lg font-semibold">
                 <% if @dogrun_place.pref.blank? %>
                   -
                 <% else %>
@@ -74,7 +74,7 @@
               <p class="text-gray-700 text-base font-light">
                 <%= DogrunPlace.human_attribute_name(:address) %>
               </p>
-              <h1 class="mt-1 text-base md:text-lg text-gray-700 font-semibold">
+              <h1 class="text-lg text-gray-700 font-semibold">
                 <%= @dogrun_place.address %>
               </h1>
             </div>
@@ -82,25 +82,19 @@
               <p class="text-gray-700 text-base font-light">
                 <%= DogrunPlace.human_attribute_name(:description) %>
               </p>
-              <h1 class="mt-1">
-                <%= simple_format(@dogrun_place.description, class: "text-base md:text-lg text-gray-700 text-left font-semibold") %>
-              </h1>
+              <%= simple_format(@dogrun_place.description, class: "text-base md:text-lg text-gray-700 text-left font-semibold") %>
             </div>
             <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
               <p class="text-gray-700 text-base font-light">
                 <%= DogrunPlace.human_attribute_name(:usage_fee) %>
               </p>
-              <h1 class="mt-1">
-                <%= simple_format(@dogrun_place.usage_fee, class: "text-base md:text-lg text-gray-700 font-semibold") %>
-              </h1>
+              <%= simple_format(@dogrun_place.usage_fee, class: "text-base md:text-lg text-gray-700 font-semibold") %>
             </div>
             <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
               <p class="text-gray-700 text-base font-light">
                 <%= DogrunPlace.human_attribute_name(:site_area) %>
               </p>
-              <h1 class="mt-1">
-                <%= simple_format(@dogrun_place.site_area, class: "text-base md:text-lg text-gray-700 font-semibold") %>
-              </h1>
+              <%= simple_format(@dogrun_place.site_area, class: "text-base md:text-lg text-gray-700 font-semibold") %>
             </div>
             <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
               <p class="text-gray-700 text-base font-light">
