@@ -17,7 +17,7 @@
             <% end %>
           </button>
         </div>
-        <div class="mx-auto px-0 md:px-2 py-2 w-full md:w-1/3 rounded-xl border-2 border-neutral-400
+        <div class="mx-auto px-0 sm:px-2 py-2 w-full sm:w-[400px] rounded-xl border-2 border-neutral-400
           bg-[url('https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,g_center,q_auto/v1671380081/w4ygbtfdkxu3gzrixk6u.jpg')]">
           <%= turbo_frame_tag dom_id(@dogrun_place, :dogrun_board) do %>
             <%= render partial: "dogrun_board", locals: { publishing_post: @publishing_post } %>
@@ -25,9 +25,9 @@
         </div>
       </div>
       <% if !@publishing_post.blank? %>
-        <div class="flex-col ml-5">
-          <p class="text-black"><%= t('defaults.publishing_limit') %></p>
-          <h3>
+        <div class="flex-col ml-5 text-gray-700">
+          <p class="text-base font-base"><%= t('defaults.publishing_limit') %></p>
+          <h3 class="text-lg font-semibold">
             <% if !@publishing_post.blank? %>
               <%= l @publishing_post[0].publish_limit, format: :long %>
             <% else %>
@@ -38,7 +38,7 @@
       <% end %>
     </div>
     <%= render partial: 'admin/posts/search_form' %>
-    <div class= "flex justify-start mr-1">
+    <div class= "flex justify-start ml-1">
       <button data-action="click->form-modal#open" class="mt-2 flex px-4 py-2 font-medium ml-2 text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
@@ -49,34 +49,10 @@
     <%= render partial: 'shared/post_form', locals: { post: @post } %>
     <div class="overflow-x-auto mt-2">
       <div class="table my-2 px-2 w-full border-collapse bg-gray-100 rounded-lg">
-        <div class="table-header-group border-gray-700 border-b">
-          <div class="table-row text-left text-gray-900 font-medium text-sm h-[60px]">
-            <div class="table-cell px-6 py-4 align-middle text-center">
-              <%= Post.human_attribute_name(:publish_status) %>
-            </div>
-            <div class="table-cell px-6 py-4 align-middle">
-              <%= t('defaults.posted_time') %>
-            </div>
-            <div class="table-cell px-6 py-4 align-middle">
-              <%= t('defaults.posted_by') %>
-            </div>
-            <div class="table-cell px-6 py-4 align-middle">
-              <%= Post.human_attribute_name(:post_type) %>
-            </div>
-            <div class="table-cell px-6 py-4 align-middle">
-              <%= t('defaults.sns_type') %>
-            </div>
-            <div class="table-cell px-6 py-4 align-middle">
-              <%= t('defaults.edit') %>
-            </div>
-            <div class="table-cell px-6 py-4 align-middle">
-              <%= t('defaults.delete') %>
-            </div>
-          </div>
-        </div>
-        <div id="posts" class="table-row-group">
+        <%= render partial: "post_index_table_header" %>
+        <%= turbo_frame_tag dom_id(@dogrun_place, "posts"), class: "table-row-group" do %>
           <%= render @posts %>
-        </div>
+        <% end %>
       </div>
       <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>
     </div>

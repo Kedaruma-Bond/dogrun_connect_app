@@ -29,6 +29,7 @@ RSpec.describe StaticPages::TopComponent, type: :component do
   let!(:num_of_playing_dogs) { 2 }
   let!(:dogs_non_public) { [dog_2] }
   let!(:pre_entry_dogs_public_view) { [dog_3] }
+  let!(:entry_for_time) { entry_1 }
 
   
   describe 'current_userがnilの時' do
@@ -52,6 +53,7 @@ RSpec.describe StaticPages::TopComponent, type: :component do
           guest_login_path: guest_login_path,
           pre_entry_dogs_public_view: pre_entry_dogs_public_view,
           entries_path: entries_path,
+          entry_for_time: entry_for_time,
         )
       )
     end
@@ -88,6 +90,7 @@ RSpec.describe StaticPages::TopComponent, type: :component do
           guest_login_path: guest_login_path,
           pre_entry_dogs_public_view: pre_entry_dogs_public_view,
           entries_path: entries_path,
+          entry_for_time: entry_for_time,
         )
       )
     end
@@ -122,6 +125,7 @@ RSpec.describe StaticPages::TopComponent, type: :component do
           guest_login_path: guest_login_path,
           pre_entry_dogs_public_view: pre_entry_dogs_public_view,
           entries_path: entries_path,
+          entry_for_time: entry_for_time,
         )
       )
     end

@@ -14,7 +14,7 @@
                 <%= tag.input id: dog.id, class: "scale-125 rounded-full my-auto", type: "checkbox", value: "1", name: "select_dog[#{dog.name}]", form: "entry_form", 
                     data: { "disable-checkbox-target": "checkboxes", action: "change->disable-checkbox#checkBoxesValueChanged" } %>
                 <div class="w-16 h-16 ml-3">
-                  <%= dog_thumbnail(dog) %>
+                  <%= dog_thumbnail(dog, current_user) %>
                 </div>
                 <div class="text-left leading-3 text-gray-700 text-xl font-bold ml-3 my-auto">
                   <%= dog.name %>
@@ -72,7 +72,7 @@
         <% current_pre_entries.each do |pre_entry| %>
           <li class="flex mb-5 text-left text-xl text-gray-700 font-bold">
             <div class="h-16 w-16 mr-3">
-              <%= dog_thumbnail(pre_entry.dog) %>
+              <%= dog_thumbnail(pre_entry.dog, current_user) %>
             </div>
             <div class="my-auto">
               <%= pre_entry.dog.name %>
@@ -83,7 +83,7 @@
       <p class="text-sm text-red-700 font-medium mb-3">
         <%= t('.canceled_after_30_mins') %>
       </p>
-      <%= form_with(url: send(@pre_entry_path), method: :delete, data: { turbo_confirm: t('.cancel_confirm'), controller: "disable-confirm", "disable-confirm-with-value": t('defaults.processing')} ) do |f| %>
+      <%= form_with(url: send(pre_entry_path), method: :delete, data: { turbo_confirm: t('.cancel_confirm'), controller: "disable-confirm", "disable-confirm-with-value": t('defaults.processing')} ) do |f| %>
         <div class="flex-col mb-5">
           <%= f.button data: { "disable-confirm-target": "submitButton" },
             class: "disabled:px-[59px] disabled:cursor-not-allowed disabled:bg-gray-400 flex mx-auto items-center justify-center font-bold text-white py-4 px-10 bg-red-700 rounded-full hover:bg-red-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
@@ -100,7 +100,7 @@
         </div>
       <% end %>
 
-      <%= form_with(url: send(@entries_path), data: { turbo_method: :post, turbo_confirm: t('.entry_confirm'), controller: "disable-confirm", "disable-confirm-with-value": t('defaults.processing') } ) do |f| %>
+      <%= form_with(url: send(entries_path), data: { turbo_method: :post, turbo_confirm: t('.entry_confirm'), controller: "disable-confirm", "disable-confirm-with-value": t('defaults.processing') } ) do |f| %>
         <div class="flex-col">
           <%= f.button data: { "disable-confirm-target": "submitButton" },
               name: "pre_flg", value: "0", class: "disabled:px-[59px] disabled:cursor-not-allowed disabled:bg-gray-400 flex mx-auto items-center justify-center font-bold text-white py-4 px-10 bg-blue-700 rounded-full hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
@@ -127,7 +127,7 @@
         <% current_entries.each do |entry| %>
           <li class="flex mb-5 text-left text-xl text-gray-700 font-bold">
             <div class="h-16 w-16 mr-3">
-              <%= dog_thumbnail(entry.dog) %>
+              <%= dog_thumbnail(entry.dog, current_user) %>
             </div>
             <div class="my-auto">
               <%= entry.dog.name %>
@@ -141,7 +141,7 @@
           &nbsp;
         </p>
         <p class="text-left text-xl font-bold mb-5 text-gray-700">
-          <%= l @entry_for_time.entry_at, format: :short2 %>
+          <%= l entry_for_time.entry_at, format: :short2 %>
         </p>
       </div>
       <%= form_with(url: { controller: "entries", action: "update" }, method: :patch, data: { turbo_confirm: t('.exit_confirm'), controller: "disable-confirm", "disable-confirm-with-value": t("defaults.processing") }) do |f| %>

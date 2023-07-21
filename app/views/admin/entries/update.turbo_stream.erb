@@ -1,0 +1,9 @@
+<%= render_turbo_stream_flash_messages %>
+
+<%= turbo_stream.replace "entry_#{@entry.id}" do %>
+  <%= render partial: "entry", locals: { entry: @entry } %>
+<% end %>
+
+<%= turbo_stream.update dom_id(@dogrun_place, "admin_num_of_playing_dogs") do %>
+  <%= render partial: "num_of_playing_dogs", locals: { num_of_playing_dogs: @num_of_playing_dogs } %>
+<% end %>

@@ -92,7 +92,6 @@ class Admin::PostsController < Admin::BaseController
         end
       }
       format.turbo_stream { flash.now[:success] = t('.change_to_non_publish') }
-      format.json { head :no_content }
     end
   end
 

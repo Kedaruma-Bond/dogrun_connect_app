@@ -3,7 +3,7 @@
   <div class="mx-auto w-full max-w-md px-8 py-4 mt-16 bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200 bg-opacity-50 rounded-lg shadow-lg">
     <div class="w-28 h-28 sm:w-16 sm:h-16 flex -mt-16">
       <%= link_to send(dog_profile_path, rn.dog) do %>
-        <%= dog_thumbnail(rn.dog) %>
+        <%= dog_thumbnail(rn.dog, current_user) %>
       <% end %>
     </div>
 

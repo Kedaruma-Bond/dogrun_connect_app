@@ -13,6 +13,8 @@ RSpec.describe Dogs::ShowComponent, type: :component do
   let!(:encount_dog) { create(:encount_dog, user: current_user, dog: dog_2, dogrun_place: dogrun_place) }
   let!(:dog_profile_path) { "privacy_policy_path" }
   let!(:edit_dog_path) { "edit_reon_dog_path" }
+  let!(:edit_encount_dog_path) { "edit_reon_encount_dog_path" }
+  let!(:previous_path) { "root_path" }
   let!(:num_of_entry_records_to_display) { 5 }
   let!(:entries) { [] }
 
@@ -27,10 +29,13 @@ RSpec.describe Dogs::ShowComponent, type: :component do
           dog: dog_1,
           registration_number: registration_number_1,
           encount_dog: encount_dog,
+          edit_encount_dog_path: edit_encount_dog_path,
           dog_profile_path: dog_profile_path,
           edit_dog_path: edit_dog_path,
           entries: entries,
-          num_of_entry_records_to_display: num_of_entry_records_to_display
+          num_of_entry_records_to_display: num_of_entry_records_to_display,
+          dogrun_place: dogrun_place,
+          previous_path: previous_path
         )
       )
 
@@ -54,10 +59,13 @@ RSpec.describe Dogs::ShowComponent, type: :component do
           dog: dog_2,
           registration_number: registration_number_2,
           encount_dog: encount_dog,
+          edit_encount_dog_path: edit_encount_dog_path,
           dog_profile_path: dog_profile_path,
           edit_dog_path: edit_dog_path,
           entries: entries,
-          num_of_entry_records_to_display: num_of_entry_records_to_display
+          num_of_entry_records_to_display: num_of_entry_records_to_display,
+          dogrun_place: dogrun_place,
+          previous_path: previous_path
         )
       )
 

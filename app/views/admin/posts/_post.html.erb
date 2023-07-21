@@ -1,8 +1,6 @@
 <%= turbo_frame_tag post, class: "table-row bg-gray-100 border-b hover:bg-gray-50 h-[60px] whitespace-nowrap text-sm font-light text-gray-900" do %>
   <div class="table-cell px-3 py-2 align-middle font-medium">
-    <%= turbo_frame_tag dom_id(post, :post_icon) do %>
-      <%= render partial: "post_icon", locals: { post: post } %>
-    <% end %>
+    <%= render partial: "post_icon", locals: { post: post } %>
   </div>
   <div class="table-cell px-3 py-2 align-middle">
     <%= l post.created_at, format: :long %>

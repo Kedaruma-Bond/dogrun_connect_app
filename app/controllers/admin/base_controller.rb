@@ -4,6 +4,10 @@ class Admin::BaseController < ApplicationController
 
   private
 
+    def set_dogrun_place
+      @dogrun_place = DogrunPlace.find(current_user.dogrun_place_id)
+    end
+
     def set_naming_of_registration_number
       case current_user.dogrun_place.id
       when 2

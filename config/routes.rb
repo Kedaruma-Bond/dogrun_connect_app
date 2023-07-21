@@ -183,12 +183,9 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :entries, only: %i[index destroy] do
+    resources :entries, only: %i[index create update destroy] do
       collection do
         get 'search', to: 'entries#search'
-      end
-      member do
-        patch 'force_exit', to: 'entries#force_exit'
       end
     end
     

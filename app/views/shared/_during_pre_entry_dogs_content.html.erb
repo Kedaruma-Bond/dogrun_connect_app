@@ -18,7 +18,7 @@
               <%= t('.no_one_will_come_for_a_while') %>
             </div>
             <% pre_entry_dogs_public_view.each do |pre_entry_dog| %>
-              <%= render partial: "shared/pre_entry_dog", locals: { pre_entry_dog: pre_entry_dog, dogrun_place: dogrun_place, dog_profile_path: dog_profile_path } %>
+              <%= render partial: "shared/pre_entry_dog", locals: { pre_entry_dog: pre_entry_dog, dogrun_place: dogrun_place, dog_profile_path: dog_profile_path, current_user: current_user } %>
             <% end %>
           <% end %>
         </div>

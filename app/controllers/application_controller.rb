@@ -31,6 +31,7 @@ class ApplicationController < ActionController::Base
       end
     end
     
+    # users#showのアカウントチェックで適用してる
     def correct_user
       @user = User.find(params[:id])
       unless correct_user?(@user, current_user)

@@ -10,7 +10,7 @@
           <label for=<%= dog.id %> class="flex mb-2">
             <%= f.radio_button :select_dog, dog.id, { id: dog.id, class: "scale-125 rounded-full mt-4" }%>
             <div class="w-12 h-12 ml-3">
-              <%= dog_thumbnail(dog) %>
+              <%= dog_thumbnail(dog, current_user) %>
             </div>
             <div class="text-left leading-3 text-gray-700 text-xl font-bold ml-3 my-auto">
               <%= dog.name %>

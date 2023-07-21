@@ -53,26 +53,38 @@ RSpec.describe Admin::EntriesController, type: :request do
     end
   end
 
-  describe 'PATCH #force_exit' do
+  describe 'PATCH #update' do
     let!(:entry_3) { create(:entry, :not_exit, dog: dog_1, registration_number: registration_number_1) }
     let!(:entry_4) { create(:entry, :not_exit, dog: dog_1, registration_number: registration_number_2) }
     describe '管理者ユーザーとしてログインしているとき' do
       before do
         admin_log_in_as(admin_1)
       end
-      context 'ログインしている管理者の該当ドッグランの記録を強制退場させる場合' do
-        example '入場中の記録が退場されメッサージと共に前回表示していたページにリダイレクトされること' do
-          patch force_exit_admin_entry_path(entry_3)
-          expect(entry_3.reload.exit_at).not_to eq(nil)
-          expect(ActionMailer::Base.deliveries.count).to eq(1)
-          expect(response).to redirect_to(admin_entries_path)
-          expect(flash[:success]).to eq(I18n.t('admin.entries.force_exit.force_exit_successfully'))
+      describe 'ログインしている管理者の該当ドッグランの記録を退場させる場合' do
+        context 'params[:force_flg]が"1"の場合' do
+          example '入場中の記録を強制退場して通知メールを送信しメッサージと共に前回表示していたページにリダイレクトされること' do
+            patch admin_entry_path(entry_3), params: { force_flg: "1" }
+            expect(entry_3.reload.exit_at).not_to eq(nil)
+            expect(ActionMailer::Base.deliveries.count).to eq(1)
+            expect(response).to redirect_to(admin_entries_path)
+            expect(flash[:success]).to eq(I18n.t('admin.entries.update.force_exit_successfully'))
+          end
+        end
+        
+        context 'params[:force_flg]が"0"の場合' do
+          example '入場中の記録を退場してメッサージと共に前回表示していたページにリダイレクトされること' do
+            patch admin_entry_path(entry_3), params: { force_flg: "0" }
+            expect(entry_3.reload.exit_at).not_to eq(nil)
+            expect(ActionMailer::Base.deliveries.count).not_to eq(1)
+            expect(response).to redirect_to(admin_entries_path)
+            expect(flash[:success]).to eq(I18n.t('admin.entries.update.exit_successfully'))
+          end
         end
       end
 
-      context 'ログインしている管理者とは別のドッグランの記録を退場させる場合' do
+      describe 'ログインしている管理者とは別のドッグランの記録を退場させる場合' do
         example '退場できずエラーメッセージが表示され管理者home画面にリダイレクトされること' do
-          patch force_exit_admin_entry_path(entry_4)
+          patch admin_entry_path(entry_4)
           expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
           expect(response).to redirect_to(admin_root_path)
         end
@@ -84,7 +96,7 @@ RSpec.describe Admin::EntriesController, type: :request do
         admin_log_in_as(general)
       end
       example 'エラーメッセージが表示されてhome画面にリダイレクトされること' do
-        patch force_exit_admin_entry_path(entry_3)
+        patch admin_entry_path(entry_3)
         expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
         expect(response).to redirect_to(root_path)
       end
@@ -92,7 +104,7 @@ RSpec.describe Admin::EntriesController, type: :request do
 
     context 'ログインしていないとき' do
       example 'エラーメッセージが表示されて管理者ログイン画面にリダイレクトされること' do
-        patch force_exit_admin_entry_path(entry_3)
+        patch admin_entry_path(entry_3)
         expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
         expect(response).to redirect_to(admin_login_path)
       end

@@ -67,8 +67,10 @@ ja:
       退場
       時間
     force_exit: 強制退場
-    force_exit_confirmation: 強制退場してよろしいですか？
     exit: 退場
+    exit_operation: |
+      退場
+      操作
     detail: 詳細
     update: 更新
     updating: 更新中...

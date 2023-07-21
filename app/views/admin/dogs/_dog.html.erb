@@ -5,10 +5,10 @@
       <% if !current_user.grand_admin? %>
         <%= link_to admin_dog_path(dog) do %>
           <%= new_registration_number_badge(rn) %>
-          <%= dog_thumbnail(dog) %>
+          <%= dog_thumbnail_for_admin(dog) %>
         <% end %>
       <% else %>
-        <%= dog_thumbnail(dog) %>
+        <%= dog_thumbnail_for_admin(dog) %>
       <% end %>
     </div>
   </td>

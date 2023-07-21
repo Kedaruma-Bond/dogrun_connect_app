@@ -9,7 +9,10 @@
       <div class= "flex justify-start mr-2">
         <%= link_to new_admin_staff_path, data: { turbo_frame: 'staff_form_modal' } do %>
           <button class="flex px-4 py-2 font-medium mr-5 tracking-wide text-white bg-blue-700 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-            <span class="mx-auto"><%= t('defaults.signup') %></span>
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            </svg>
+            <span class="mx-1"><%= t('defaults.signup') %></span>
           </button>
         <% end %>
       </div>
@@ -30,9 +33,9 @@
             </div>
           </div>
         </div>
-        <div id="staffs" class="table-row-group">
+        <%= turbo_frame_tag dom_id(@dogrun_place, "staffs"), class: "table-row-group" do %>
           <%= render @staffs %>
-        </div>
+        <% end %>
       </div>
     </div>
     <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>

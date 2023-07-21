@@ -1,0 +1,31 @@
+<div class="table-header-group border-gray-700 border-b">
+  <div class="table-row text-left text-sm font-medium text-gray-900">
+    <div class="table-cell px-6 py-4 align-middle">
+      <%= t('defaults.date') %>
+    </div>
+    <div class="table-cell px-3 py-4 align-middle text-center">
+      <%= @naming_of_registration_number %>
+    </div>
+    <div class="table-cell px-3 py-4 align-middle">
+      <%= User.human_attribute_name(:name) %>
+    </div>
+    <div class="table-cell px-6 py-4 align-middle text-center">
+      <%= t('defaults.thumbnail') %>
+    </div>
+    <div class="table-cell px-6 py-4 align-middle">
+      <%= t('defaults.dog_name') %>
+    </div>
+    <div class="table-cell px-6 py-4 align-middle text-center">
+      <%= t('defaults.entry_at') %>
+    </div>
+    <div class="table-cell px-6 py-4 align-middle text-center">
+      <%= t('defaults.exit_at') %>
+    </div>
+    <div class="table-cell px-3 py-4 align-middle text-center">
+      <%= simple_format(t('defaults.exit_operation')) %>
+    </div>
+    <div class="table-cell px-6 py-4 align-middle text-center">
+      <%= t('defaults.delete') %>
+    </div>
+  </div>
+</div>

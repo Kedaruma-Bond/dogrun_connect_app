@@ -11,10 +11,10 @@
             <div class="w-40 h-40 flex-shrink-0 mx-auto mb-3 md:md-0 inline-flex items-center justify-center">
               <% if @dog.thumbnail.present? %>
                 <%= link_to "#", data: { "lightbox-source-param": @dog.thumbnail_preview, action: "lightbox#handleOpen" } do %>
-                  <%= dog_thumbnail(@dog) %>
+                  <%= dog_thumbnail_for_admin(@dog) %>
                 <% end %>
               <% else %>
-                <%= dog_thumbnail(@dog) %>
+                <%= dog_thumbnail_for_admin(@dog) %>
               <% end %>
             </div>
             <div class="text-gray-700 text-xs font-light">
