@@ -52,6 +52,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
             @entry = @entries_array[@num]
             if @entry.dog.public_view?
               @entry.entry_broadcast_for_top(@entry.dog, current_user, @dogrun_place, @dog_profile_path)
+              @entry.entry_broadcast_for_index(@dog_profile_path, @entry_path, current_user)
             end
           else # 該当ワンコが非選択時の処理
             @zero_count += 1
@@ -124,6 +125,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
           entry_at: Time.zone.now)
         if @entry.dog.public_view?
           @entry.entry_broadcast_for_top(@entry.dog, current_user, @dogrun_place, @dog_profile_path)
+          @entry.entry_broadcast_for_index(@dog_profile_path, @entry_path, current_user)
         end
         pre_entry.destroy
       end
@@ -148,8 +150,6 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
     @entry = current_entries[i]
     current_entries.each do |entry|
       Entry.find(entry.id).update(exit_at: Time.zone.now)
-      @entry = Entry.find(entry.id)
-      @entry.exit_broadcast(@dog_profile_path, @entry_path, current_user)
     end
     set_num_of_playing_dogs
 

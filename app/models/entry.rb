@@ -21,6 +21,7 @@ class Entry < ApplicationRecord
   after_update_commit do
     broadcast_remove_to [dogrun_place, "top"], target: "entry_dog_#{self.dog.id}_dogrun_place_#{self.dogrun_place.id}"
     broadcast_replace_to [dogrun_place, "admin_entries_index"], target: "entry_#{self.id}", partial: "admin/entries/entry", locals: { entry: self }
+    broadcast_replace_to [dogrun_place, "entries_index"], target: "exit_time_part_entry_#{self.id}", partial: "shared/exit_time_part", locals: { entry: self }
   end
   
   after_destroy_commit do
@@ -37,8 +38,8 @@ class Entry < ApplicationRecord
     broadcast_append_to [dogrun_place, "top"], target: "entries_list_dogrun_place_#{dogrun_place.id}", partial: "shared/entry_dog", locals: { dog: dog, current_user: current_user, dogrun_place: dogrun_place, dog_profile_path: dog_profile_path }
   end
 
-  def exit_broadcast(dog_profile_path, entry_path, current_user)
-    broadcast_replace_to [dogrun_place, "entries_index"], target: "entry_#{self.id}", partial: "shared/entry", locals: { dog_profile_path: dog_profile_path, entry_path: entry_path, current_user: current_user }
+  def entry_broadcast_for_index(dog_profile_path, entry_path, current_user)
+    broadcast_prepend_to [dogrun_place, "entries_index"], target: "entries_dogrun_place_#{dogrun_place.id}", partial: "shared/entry_turbo", locals: { dog_profile_path: dog_profile_path, entry_path: entry_path }
   end
 
   def update_broadcast(num_of_playing_dogs, dogs_non_public)

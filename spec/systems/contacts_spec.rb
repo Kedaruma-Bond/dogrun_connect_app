@@ -36,9 +36,11 @@ RSpec.describe 'contacts', type: :system do
       end
 
       example '送信ボタンを押したらTop画面遷移すること' do
-        button_text = I18n.t('contacts.confirm.send')
+        button_text = I18n.t('defaults.post')
         button = find_button(button_text)
-        button.click
+        accept_confirm do
+          button.click
+        end
         expect(page).to have_content('ドッグランに導入して利用記録をDX化')
         expect(page).to have_content('お問い合わせメールを')
       end
