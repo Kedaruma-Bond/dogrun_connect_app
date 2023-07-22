@@ -52,7 +52,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
             @entry = @entries_array[@num]
             if @entry.dog.public_view?
               @entry.entry_broadcast_for_top(@entry.dog, current_user, @dogrun_place, @dog_profile_path)
-              @entry.entry_broadcast_for_index(@dog_profile_path, @entry_path, current_user)
+              @entry.entry_broadcast_for_index(@dog_profile_path, @entry_path)
             end
           else # 該当ワンコが非選択時の処理
             @zero_count += 1
@@ -125,7 +125,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
           entry_at: Time.zone.now)
         if @entry.dog.public_view?
           @entry.entry_broadcast_for_top(@entry.dog, current_user, @dogrun_place, @dog_profile_path)
-          @entry.entry_broadcast_for_index(@dog_profile_path, @entry_path, current_user)
+          @entry.entry_broadcast_for_index(@dog_profile_path, @entry_path)
         end
         pre_entry.destroy
       end

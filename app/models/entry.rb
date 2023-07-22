@@ -38,7 +38,7 @@ class Entry < ApplicationRecord
     broadcast_append_to [dogrun_place, "top"], target: "entries_list_dogrun_place_#{dogrun_place.id}", partial: "shared/entry_dog", locals: { dog: dog, current_user: current_user, dogrun_place: dogrun_place, dog_profile_path: dog_profile_path }
   end
 
-  def entry_broadcast_for_index(dog_profile_path, entry_path, current_user)
+  def entry_broadcast_for_index(dog_profile_path, entry_path)
     broadcast_prepend_to [dogrun_place, "entries_index"], target: "entries_dogrun_place_#{dogrun_place.id}", partial: "shared/entry_turbo", locals: { dog_profile_path: dog_profile_path, entry_path: entry_path }
   end
 
