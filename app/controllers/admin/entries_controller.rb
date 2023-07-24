@@ -11,6 +11,25 @@ class Admin::EntriesController < Admin::BaseController
     @pagy, @entries = pagy(@entries)
   end
 
+  def create
+    session[:previous_url] = request.referer
+    @dog = Dog.find(params[:dog])
+    @rn = dog_relative_registration_number(@dog, current_user)
+    @entry = Entry.new(entry_params)
+    @entry.entry_at = Time.zone.now
+    @entry.save!
+    respond_to do |format|
+      format.html { 
+        if session[:previous_url].nil?
+          redirect_to admin_dogs_path, success: t('local.entries.entry_success')
+        else
+          redirect_to session[:previous_url], success: t('local.entries.entry_success')
+        end
+        }
+      format.turbo_stream { flash.now[:success] = t('local.entries.entry_success') }
+    end
+  end
+
   def update
     # rspec通すためにこんなことしてるの馬鹿げてる
     session[:previous_url] = request.referer
@@ -73,6 +92,16 @@ class Admin::EntriesController < Admin::BaseController
     def set_q
       @entries = Entry.admin_dogrun_place_id(current_user.dogrun_place_id)
       @q = @entries.ransack(params[:q])
+    end
+
+    def entry_params
+      params.permit(
+        :dog_id, :registration_number_id,
+        :entry_at, :exit_at
+      ).merge(
+        dog_id: @dog.id,
+        registration_number_id: @rn.id
+      )
     end
 
     def set_entry

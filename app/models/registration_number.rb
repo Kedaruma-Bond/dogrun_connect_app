@@ -12,6 +12,19 @@ class RegistrationNumber < ApplicationRecord
   validates :agreement, acceptance: true, on: :update, allow_blank: true
   validate :select_dog_validate
   
+  # broadcast
+  after_create_commit do
+    broadcast_prepend_to [dogrun_place, "admin_dogs_index"], target: "admin_dogs_dogrun_place_#{dogrun_place.id}", partial: "admin/dogs/dog", locals: { dog: self.dog, dogrun_place: dogrun_place, current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+    broadcast_replace_to [dogrun_place, "admin_navbar"], target: "new_registration_number_count_badge_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/new_registration_number_count_badge", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+    broadcast_replace_to [dogrun_place, "admin_sidebar"], target: "new_registration_number_count_badge_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/new_registration_number_count_badge", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+  end
+
+  after_destroy_commit do
+    broadcast_remove_to [dogrun_place, "admin_dogs_index"], target: "registration_number_#{self.id}"
+    broadcast_replace_to [dogrun_place, "admin_navbar"], target: "new_registration_number_count_badge_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/new_registration_number_count_badge", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+    broadcast_replace_to [dogrun_place, "admin_sidebar"], target: "new_registration_number_count_badge_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/new_registration_number_count_badge", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+  end
+
   # ransack authorization
   def self.ransackable_attributes(auth_object = nil)
     ["acknowledge", "created_at", "dog_id", "dogrun_place_id", "id", "registration_number", "updated_at"]

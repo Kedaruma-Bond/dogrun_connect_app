@@ -1,3 +1,4 @@
+<%= turbo_stream_from current_user.dogrun_place, "admin_sidebar" %>
 <!-- Sidebar -->
 <nav class="hidden md:block">
   <div class="bg-gray-800 shadow-xl fixed bottom-0 mt-12 md:relative h-screen z-10 w-48 content-center">
@@ -75,7 +76,9 @@
               </svg>
               <span class="flex pt-1 text-sm text-gray-200">
                 <%= t('.registered_dogs_list') %>
-                <%= new_registration_number_count_badge %>
+                <%= turbo_frame_tag dom_id(current_user.dogrun_place, "new_registration_number_count_badge") do %>
+                  <%= new_registration_number_count_badge(current_user) %>
+                <% end %>
               </span>
             <% end %>
           </li>

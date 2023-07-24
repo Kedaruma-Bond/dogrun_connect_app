@@ -1,7 +1,7 @@
 module RegistrationNumberHelper
 
-  def new_registration_number_count_badge
-    current_dogrun_new_registration_numbers_count = RegistrationNumber.where(dogrun_place_id: current_user.dogrun_place_id).where(acknowledge: false).count
+  def new_registration_number_count_badge(admin_user)
+    current_dogrun_new_registration_numbers_count = RegistrationNumber.where(dogrun_place_id: admin_user.dogrun_place_id).where(acknowledge: false).count
     unless current_dogrun_new_registration_numbers_count == 0
       tag.span class: "flex w-5 h-5 ml-3" do
         concat tag.span(class: "animate-ping inline-flex h-full w-full rounded-full aspect-square bg-indigo-400 dark:bg-indigo-200 opacity-75")
@@ -17,5 +17,9 @@ module RegistrationNumberHelper
         concat tag.span(class: "content-center rounded-full aspect-square h-3 w-3 relative bg-indigo-500 dark:bg-indeigo-300")
       end
     end
+  end
+
+  def dog_relative_registration_number(dog, admin_user)
+    RegistrationNumber.where(dogrun_place: admin_user.dogrun_place).find_by(dog: dog)
   end
 end

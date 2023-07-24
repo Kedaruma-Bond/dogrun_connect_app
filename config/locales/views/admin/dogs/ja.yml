@@ -1,16 +1,45 @@
 ja:
   admin:
     dogs:
-      registration_number_form:
+      explain_of_vaccination_modal:
+        title: |
+          接種証明欄のアイコン
+          について
+        meaning_of_word: アイコンは下表の通り接種証明書、鑑札の写真のアップロードの有無を表しています。
+        icon: アイコン
+        rabies: 狂犬病
+        mixed: 混合ワクチン
+        license_plate: 鑑札
+      dog:
+        select_exit_operation_type: 退場操作のタイプ選択
+        exit_confirmation: 退場してよろしいですか？
+        force_exit_confirmation: |
+          強制退場すると飼い主さんに通知メールが送信されます。
+          強制退場してよろしいですか？
+        entry_confirm: 入場しますか？
+        exited: 退場済
         input_registration_number: |
-          更新する登録番号を
+          更新する番号を
           入力してください
+      dog_index_table_header:
+        entry_exit_operation: |
+          入退場
+          操作
+        photo_of_certificate: |
+          接種
+          証明
+        notice: 通知
+        castration: |
+          去勢
+          避妊
+        public: |
+          利用
+          状況
+        edit: |
+          ワンコ
+          情報編集
       index:
         title: 登録犬一覧
-        notice: 通知
-        photo_of_certificate: |
-          接種証明書
-          写真
       search:
         title: 登録犬検索結果
       search_form:

@@ -47,4 +47,13 @@ module EntryHelper
     end
   end
 
+  def admin_active_entry_serach(registration_number)
+    entry = Entry.admin_dogrun_place_id(current_user.dogrun_place_id).where(registration_number: registration_number).find_by(exit_at: nil)
+    if entry
+      return entry
+    else
+      return false
+    end
+  end
+
 end

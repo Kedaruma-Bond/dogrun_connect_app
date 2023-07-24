@@ -33,7 +33,7 @@
               </h2>
               <div class="w-32 h-1 bg-gray-200 rounded mt-2 mb-2"></div>
               <% if @dog.filming_approval? %>
-                <div class="flex mb-4">
+                <div class="flex mb-2">
                   <%= render partial: "shared/filming_approval" %>
                   <% if @dog.sns_post_approval? %>
                     <%= render partial: "shared/sns_post_approval" %>

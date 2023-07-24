@@ -47,7 +47,7 @@ class Reon::RegistrationNumbersController < Reon::DogrunPlaceController
     @registration_number.destroy
     respond_to do |format|
       format.html { redirect_to send(@user_path, current_user), success: t('local.registration_numbers.destroy_successfully'), status: :see_other }
-      format.json { header :no_content}
+      format.turbo_stream { flash.now[:success] = t('local.registration_numbers.destroy_successfully') }
     end
   end
 
