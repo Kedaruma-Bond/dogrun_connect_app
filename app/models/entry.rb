@@ -18,19 +18,8 @@ class Entry < ApplicationRecord
   scope :dogrun_place_id_for_encount_dog, -> (dogrun_place_id) { joins(:registration_number).includes(:dog).where(exit_at: nil).where(registration_number: { dogrun_place_id: dogrun_place_id }) }
 
   # broadcast
-  after_update_commit do
-    broadcast_remove_to [dogrun_place, "top"], target: "entry_dog_#{self.dog.id}_dogrun_place_#{self.dogrun_place.id}"
-    broadcast_replace_to [dogrun_place, "admin_entries_index"], target: "entry_#{self.id}", partial: "admin/entries/entry", locals: { entry: self }
-    broadcast_replace_to [dogrun_place, "entries_index"], target: "exit_time_part_entry_#{self.id}", partial: "shared/exit_time_part", locals: { entry: self }
-  end
-  
-  after_destroy_commit do
-    broadcast_remove_to [dogrun_place, "top"], target: "entry_dog_#{self.dog.id}_dogrun_place_#{self.dogrun_place.id}"
-    broadcast_remove_to [dogrun_place, "admin_entries_index"], target: "entry_#{self.id}"
-    broadcast_remove_to [dogrun_place, "entries_index"], target: "entry_#{self.id}"
-  end
 
-  after_create_commit do
+  def create_broadcast
     broadcast_prepend_to [dogrun_place, "admin_entries_index"], target: "admin_entries_dogrun_place_#{dogrun_place.id}", partial: "admin/entries/entry", locals: { entry: self }
   end
 
@@ -42,10 +31,22 @@ class Entry < ApplicationRecord
     broadcast_prepend_to [dogrun_place, "entries_index"], target: "entries_dogrun_place_#{dogrun_place.id}", partial: "shared/entry_turbo", locals: { dog_profile_path: dog_profile_path, entry_path: entry_path }
   end
 
-  def update_broadcast(num_of_playing_dogs, dogs_non_public)
+  def update_broadcast
+    broadcast_remove_to [dogrun_place, "top"], target: "entry_dog_#{self.dog.id}_dogrun_place_#{self.dogrun_place.id}"
+    broadcast_replace_to [dogrun_place, "admin_entries_index"], target: "entry_#{self.id}", partial: "admin/entries/entry", locals: { entry: self }
+    broadcast_replace_to [dogrun_place, "entries_index"], target: "exit_time_part_entry_#{self.id}", partial: "shared/exit_time_part", locals: { entry: self }
+  end
+
+  def update_num_of_playing_dogs_broadcast(num_of_playing_dogs, dogs_non_public)
     broadcast_update_to [dogrun_place, "top"], target: "num_of_playing_dogs_dogrun_place_#{dogrun_place.id}", partial: "shared/num_of_playing_dogs", locals: { num_of_playing_dogs: num_of_playing_dogs }
     broadcast_update_to [dogrun_place, "top"], target: "among_them_non_public_dogs_dogrun_place_#{dogrun_place.id}", partial: "shared/among_them_non_public_dogs", locals: { dogs_non_public: dogs_non_public }
     broadcast_update_to [dogrun_place, "admin_entries_index"], target: "admin_num_of_playing_dogs_dogrun_place_#{dogrun_place.id}", partial: "admin/entries/num_of_playing_dogs", locals: { num_of_playing_dogs: num_of_playing_dogs }
+  end
+
+  def destroy_broadcast
+    broadcast_remove_to [dogrun_place, "top"], target: "entry_dog_#{self.dog.id}_dogrun_place_#{self.dogrun_place.id}"
+    broadcast_remove_to [dogrun_place, "admin_entries_index"], target: "entry_#{self.id}"
+    broadcast_remove_to [dogrun_place, "entries_index"], target: "entry_#{self.id}"
   end
 
   # ransack authorization

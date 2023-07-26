@@ -48,6 +48,7 @@ class Reon::EntriesController < Reon::DogrunPlaceController
             @entries_array[@num] = Entry.new(entry_params)
             @entries_array[@num].entry_at = Time.zone.now
             @entries_array[@num].save!
+            @entries_array[@num].create_broadcast
 
             @entry = @entries_array[@num]
             if @entry.dog.public_view?
@@ -62,16 +63,19 @@ class Reon::EntriesController < Reon::DogrunPlaceController
         end
 
         if @dogs.count == @zero_count # ワンコがわんこが一頭も選択されていない場合の処理
-          set_num_of_playing_dogs
           respond_to do |format|
-            format.html { redirect_to send(@top_path), error: t('local.entries.select_entry_dog') }
+            format.html { 
+              set_num_of_playing_dogs
+              redirect_to send(@top_path), error: t('local.entries.select_entry_dog') 
+            }
             format.turbo_stream { flash.now[:error] = t('local.entries.select_entry_dog') }
           end
         else # 一頭でもワンコが選択されていた場合の処理
           @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place: @dogrun_place }).find_by(exit_at: nil) unless not_entry?(current_user, @dogrun_place)
+          
           set_num_of_playing_dogs
+          @entry.update_num_of_playing_dogs_broadcast(@num_of_playing_dogs, @dogs_non_public)
 
-          @entry.update_broadcast(@num_of_playing_dogs, @dogs_non_public)
           respond_to do |format|
             format.html { redirect_to send(@top_path), success: t('local.entries.entry_success') }
             format.turbo_stream { flash.now[:success] = t('local.entries.entry_success') }
@@ -94,8 +98,9 @@ class Reon::EntriesController < Reon::DogrunPlaceController
           when '1' # 該当ワンコが選択されていたらプレエントリーさせる処理
             @entries_array[@num] = PreEntry.new(pre_entry_params)
             @entries_array[@num].save!
+
             if @entries_array[@num].dog.public_view?
-              @entries_array[@num].pre_entry_broadcast(@entries_array[@num].dog, current_user, @dogrun_place, @dog_profile_path)
+              @entries_array[@num].pre_entry_create_broadcast(@entries_array[@num].dog, current_user, @dogrun_place, @dog_profile_path)
             end
           else # 該当ワンコが非選択時の処理
             @zero_count += 1
@@ -105,9 +110,11 @@ class Reon::EntriesController < Reon::DogrunPlaceController
         end
 
         if @dogs.count == @zero_count # ワンコが選択されていない場合の処理
-          set_num_of_playing_dogs
           respond_to do |format|
-            format.html { redirect_to send(@top_path), error: t('local.entries.select_pre_entry_dog') }
+            format.html { 
+              set_num_of_playing_dogs
+              redirect_to send(@top_path), error: t('local.entries.select_pre_entry_dog') 
+            }
             format.turbo_stream { flash.now[:error] = t('local.entries.select_pre_entry_dog') }
           end
         else # 一頭でもワンコが選択されていた場合の処理
@@ -123,16 +130,19 @@ class Reon::EntriesController < Reon::DogrunPlaceController
         @entry = Entry.create(dog: pre_entry.dog, 
           registration_number: pre_entry.registration_number,
           entry_at: Time.zone.now)
+        @entry.create_broadcast
         if @entry.dog.public_view?
           @entry.entry_broadcast_for_top(@entry.dog, current_user, @dogrun_place, @dog_profile_path)
           @entry.entry_broadcast_for_index(@dog_profile_path, @entry_path)
         end
         pre_entry.destroy
+        pre_entry.destroy_broadcast
       end
       @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place: @dogrun_place }).find_by(exit_at: nil) unless not_entry?(current_user, @dogrun_place)
+      
       set_num_of_playing_dogs
+      @entry.update_num_of_playing_dogs_broadcast(@num_of_playing_dogs, @dogs_non_public)
 
-      @entry.update_broadcast(@num_of_playing_dogs, @dogs_non_public)
       respond_to do |format|
         format.html { redirect_to send(@top_path), success: t('local.entries.entry_success') }
         format.turbo_stream { flash.now[:success] = t('local.entries.entry_success') }
@@ -150,10 +160,11 @@ class Reon::EntriesController < Reon::DogrunPlaceController
     @entry = current_entries[i]
     current_entries.each do |entry|
       Entry.find(entry.id).update(exit_at: Time.zone.now)
+      Entry.find(entry.id).update_broadcast
     end
+    
     set_num_of_playing_dogs
-
-    @entry.update_broadcast(@num_of_playing_dogs, @dogs_non_public)
+    @entry.update_num_of_playing_dogs_broadcast(@num_of_playing_dogs, @dogs_non_public)
 
     respond_to do |format|
       format.html { redirect_to send(@top_path), success: t('local.entries.exit_success') }
@@ -167,8 +178,11 @@ class Reon::EntriesController < Reon::DogrunPlaceController
 
   def destroy
     @entry.destroy
+    
+    @entry.destroy_broadcast
     set_num_of_playing_dogs
-    @entry.update_broadcast(@num_of_playing_dogs, @dogs_non_public)
+    @entry.update_num_of_playing_dogs_broadcast(@num_of_playing_dogs, @dogs_non_public)
+
     respond_to do |format|
       format.html { redirect_to send(@entries_path), success: t('defaults.destroy_successfully'), status: :see_other }
       format.turbo_stream { flash.now[:success] = t('defaults.destroy_successfully') }

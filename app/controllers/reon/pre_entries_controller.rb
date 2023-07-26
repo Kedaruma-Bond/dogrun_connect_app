@@ -5,6 +5,7 @@ class Reon::PreEntriesController < Reon::DogrunPlaceController
     current_pre_entries
     @current_pre_entries.each do |pre_entry|
       pre_entry.destroy
+      pre_entry.destroy_broadcast
     end
     respond_to do |format|
       format.html { redirect_to send(@top_path), success: t('local.pre_entries.pre_entries_canceled_successfully'), status: :see_other }

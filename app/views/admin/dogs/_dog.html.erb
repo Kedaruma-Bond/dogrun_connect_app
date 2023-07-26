@@ -3,7 +3,7 @@
   class: "table-row bg-gray-100 border-b hover:bg-gray-50 h-[80px] whitespace-nowrap text-sm font-light text-gray-900" do %>
   <div class="table-cell px-3 py-4 align-middle">
     <div class="w-12 h-12 mx-auto my-auto">
-      <%= link_to admin_dog_path(dog) do %>
+      <%= link_to admin_dog_path(dog), data: { turbo: false } do %>
         <% if !current_user.grand_admin? %>
           <%= new_registration_number_badge(rn) %>
         <% end %>
@@ -84,7 +84,7 @@
     </div>
     <div class="table-cell px-3 py-4 align-middle" data-controller="form-modal">
       <div class="flex">
-      <% if admin_active_entry_serach(rn) %>
+      <% if admin_active_entry_search(rn, current_user) %>
         <div clsss="w-1/4">
           <button data-action="click->form-modal#open" class="flex items-center text-blue-500 hover:text-blue-400" do %>
             <svg class="w-6 h-6 rounded-lg shadow-md" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -127,7 +127,7 @@
       <% else %>
         <div clsss="w-1/4">
           <%= form_with(url: admin_entries_path, data: { turbo_method: :post } ) do |f| %>
-            <%= f.button name: "dog", value: "#{dog.id}", data: { turbo_confirm: t('.entry_confirm') }, class: "flex items-center" do %>
+            <%= f.button name: "dog_id", value: "#{dog.id}", data: { turbo_confirm: t('.entry_confirm') }, class: "flex items-center" do %>
               <svg class="w-6 h-6 text-green-400 rounded-lg shadow-md" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M19 12H12M12 12L15 15M12 12L15 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M19 6V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
@@ -190,7 +190,7 @@
     <% end %>
   </div>
   <div class="table-cell px-3 py-2 align-middle">
-    <%= link_to edit_admin_dog_path(dog) do %>
+    <%= link_to edit_admin_dog_path(dog), data: { turbo: false } do %>
       <svg class="w-6 h-6 mx-auto shadow rounded-lg text-blue-600 hover:text-blue-500" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32l8.4-8.4z"></path>
         <path d="M5.25 5.25a3 3 0 00-3 3v10.5a3 3 0 003 3h10.5a3 3 0 003-3V13.5a.75.75 0 00-1.5 0v5.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5V8.25a1.5 1.5 0 011.5-1.5h5.25a.75.75 0 000-1.5H5.25z"></path>

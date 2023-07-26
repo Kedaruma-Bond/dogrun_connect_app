@@ -4,7 +4,7 @@ class Admin::EntriesController < Admin::BaseController
   before_action :set_q, only: %i[index search]
   before_action :set_entry, only: %i[update destroy]
   before_action :correct_admin_check, only: %i[update destroy]
-  before_action :set_dogrun_place, only: %i[index update destroy search]
+  before_action :set_dogrun_place, only: %i[index create update destroy search]
 
   def index
     set_num_of_playing_dogs
@@ -13,11 +13,26 @@ class Admin::EntriesController < Admin::BaseController
 
   def create
     session[:previous_url] = request.referer
-    @dog = Dog.find(params[:dog])
+    if @dogrun_place.closed_flag == true
+      respond_to do |format|
+        format.html { 
+          if session[:previous_url].nil?
+            redirect_to admin_dogs_path, error: t('local.entries.dogrun_is_closing_now')
+          else
+            redirect_to session[:previous_url], error: t('local.entries.dogrun_is_closing_now')
+          end
+        }
+        format.turbo_stream { flash.now[:error] = t('local.entries.dogrun_is_closing_now') }
+      end
+      return
+    end
+
+    @dog = Dog.find(params[:dog_id])
     @rn = dog_relative_registration_number(@dog, current_user)
     @entry = Entry.new(entry_params)
     @entry.entry_at = Time.zone.now
     @entry.save!
+    @entry.create_broadcast
     respond_to do |format|
       format.html { 
         if session[:previous_url].nil?
@@ -34,7 +49,11 @@ class Admin::EntriesController < Admin::BaseController
     # rspec通すためにこんなことしてるの馬鹿げてる
     session[:previous_url] = request.referer
     @entry.update(exit_at: Time.zone.now)
+
+    @entry.update_broadcast
     set_num_of_playing_dogs
+    @entry.update_num_of_playing_dogs_broadcast(@num_of_playing_dogs, @dogs_non_public)
+
     case params[:force_flg]
     when "1"
       UserMailer.force_exit_notification(@entry.dog.user,@entry.dog,@entry.registration_number.dogrun_place).deliver_now
@@ -60,14 +79,17 @@ class Admin::EntriesController < Admin::BaseController
         format.turbo_stream { flash.now[:success] = t('.exit_successfully')}
       end
     end
-    @entry.update_broadcast(@num_of_playing_dogs, @dogs_non_public)
   end
 
   def destroy
     # rspec通すためにこんなことしてるの馬鹿げてる
     session[:previous_url] = request.referer
     @entry.destroy
+
+    @entry.destroy_broadcast
     set_num_of_playing_dogs
+    @entry.update_num_of_playing_dogs_broadcast(@num_of_playing_dogs, @dogs_non_public)
+
     respond_to do |format|
       format.html { 
         if session[:previous_url].nil?
@@ -78,8 +100,6 @@ class Admin::EntriesController < Admin::BaseController
       }
       format.turbo_stream { flash.now[:success] = t('defaults.destroy_successfully') }
     end
-    @entry.update_broadcast(@num_of_playing_dogs, @dogs_non_public)
-
   end
 
   def search
@@ -97,7 +117,8 @@ class Admin::EntriesController < Admin::BaseController
     def entry_params
       params.permit(
         :dog_id, :registration_number_id,
-        :entry_at, :exit_at
+        :entry_at, :exit_at,
+        :dog_id
       ).merge(
         dog_id: @dog.id,
         registration_number_id: @rn.id
