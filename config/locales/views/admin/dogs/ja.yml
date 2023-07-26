@@ -43,7 +43,7 @@ ja:
       search:
         title: 登録犬検索結果
       search_form:
-        search_field: 飼い主さんの名前/ワンコの名前/犬種検索 
+        search_field: "飼い主さんの名前/ワンコの名前/犬種/%{naming_of_registration_number}検索"
       show:
         title: ワンコのプロフィール
         dog_owner_sns: 飼い主さんのSNS
