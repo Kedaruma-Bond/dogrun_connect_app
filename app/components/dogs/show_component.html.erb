@@ -1,5 +1,5 @@
 <% content_for(:title, @title) %>
-<div class="max-w-5xl md:mx-auto sm:px-6 lg:px-8 bg-purple-200 rounded-lg" data-controller="filming-message-modal sns-post-message-modal lightbox">
+<div class="max-w-5xl md:mx-auto sm:px-6 lg:px-8 bg-purple-200 rounded-lg" data-controller="lightbox">
   <div class="w-full p-5 sm:p-10">
     <p class="text-2xl md:text-3xl font-bold text-gray-700 text-center my-2">
       <%= @title %>
@@ -61,7 +61,7 @@
                 </div>
               <% end %>
               <% if !@user.sns_account.nil? && !correct_user?(@user, @current_user) %>
-                <p class="text-gray-700 text-base text-center md:text-left"><%= t('local.dogs.show.dog_owner_sns')%></p>
+                <p class="text-gray-700 text-base text-center md:text-left mb-3"><%= t('local.dogs.show.dog_owner_sns')%></p>
                 <%= render partial: "shared/sns_account_icons", locals: { sns_account: @user.sns_account } %>
               <% end %>
             </div>
@@ -231,9 +231,11 @@
           </button>
         <% end %>
         <div class="ml-4">
-          <button data-controller="back-button" data-action="back-button#goBack" class="items-center w-[92px] h-[44px] px-3 py-2 text-base font-semibold text-white bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
-            <span><%= t('defaults.back') %></span>
-          </button>
+          <%= link_to @previous_path do %>
+            <button class="items-center w-[92px] h-[44px] px-3 py-2 text-base font-semibold text-white bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+              <span><%= t('defaults.back') %></span>
+            </button>
+          <% end %>
         </div>
       </div>
     <% end %>

@@ -26,7 +26,7 @@
               <% end %>
             </li>
           <% end %>
-          <li>
+          <li class="mt-2">
             <% if !@dogrun_place.sns_account.nil?  %>
               <%= render partial: "static_pages/sns_account_icons", locals: { sns_account: @dogrun_place.sns_account } %>
             <% end %>

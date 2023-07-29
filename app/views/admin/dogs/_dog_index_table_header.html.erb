@@ -3,12 +3,13 @@
     <div class="table-cell py-4 align-middle">
       <%= t('defaults.thumbnail') %>
     </div>
-    <div class="table-cell px-2 py-2 align-middle relative" data-controller="sns-post-message-modal">
+    <div class="table-cell px-2 py-2 align-middle relative">
       <%= simple_format(t('.photo_of_certificate')) %>
       <%= render "explain_of_vaccination_icon" %>
     </div>
-    <div class="table-cell py-4 align-middle">
+    <div class="table-cell px-2 py-2 align-middle relative">
       <%= t('.notice') %>
+      <%= render "explain_of_notice_icon" %>
     </div>
     <% if !current_user.grand_admin? %>
       <div class="table-cell py-4 align-middle">

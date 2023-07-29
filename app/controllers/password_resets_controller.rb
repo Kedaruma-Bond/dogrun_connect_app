@@ -1,5 +1,5 @@
 class PasswordResetsController < ApplicationController
-  skip_before_action :require_login
+  skip_before_action :require_login, :is_account_deactivated?
 
   def create
     @user = User.find_by(email: params[:email])

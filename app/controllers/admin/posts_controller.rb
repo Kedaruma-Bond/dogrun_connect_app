@@ -1,7 +1,7 @@
 class Admin::PostsController < Admin::BaseController
   include Pagy::Backend
   before_action :set_q, :set_new_post, only: %i[index search]
-  before_action :set_dogrun_place, only: %i[index search start_to_publish cancel_to_publish]
+  before_action :set_dogrun_place, only: %i[index search start_to_publish cancel_to_publish dogrun_board]
   before_action :set_post, only: %i[destroy set_publish_limit start_to_publish cancel_to_publish]
   before_action :correct_admin_check, only: %i[destroy set_publish_limit start_to_publish cancel_to_publish]
 
@@ -19,6 +19,11 @@ class Admin::PostsController < Admin::BaseController
     end
 
     @pagy, @posts = pagy(@posts)
+  end
+
+  def dogrun_board
+    @publishing_post = Post.is_publishing.where(dogrun_place: @dogrun_place)
+    render template: "admin/posts/dogrun_board"
   end
 
   def create

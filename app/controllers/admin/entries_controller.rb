@@ -5,6 +5,7 @@ class Admin::EntriesController < Admin::BaseController
   before_action :set_entry, only: %i[update destroy]
   before_action :correct_admin_check, only: %i[update destroy]
   before_action :set_dogrun_place, only: %i[index create update destroy search]
+  before_action :set_each_path, only: %i[create]
 
   def index
     set_num_of_playing_dogs
@@ -33,6 +34,8 @@ class Admin::EntriesController < Admin::BaseController
     @entry.entry_at = Time.zone.now
     @entry.save!
     @entry.create_broadcast
+    @entry.entry_broadcast_for_top(@entry.dog, current_user, @dogrun_place, @dog_profile_path)
+    @entry.entry_broadcast_for_index(@dog_profile_path, @entry_path)
     respond_to do |format|
       format.html { 
         if session[:previous_url].nil?

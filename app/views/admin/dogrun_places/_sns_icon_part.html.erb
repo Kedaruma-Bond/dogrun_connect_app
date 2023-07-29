@@ -19,6 +19,6 @@
   </div>
 <% end %>
 <% if !dogrun_place.sns_account.nil? %>
-  <p class="text-sm text-gray-700 mt-3"><%= t('defaults.sns') %></p>
+  <p class="text-sm text-gray-700 my-3"><%= t('defaults.sns') %></p>
   <%= render partial: "shared/sns_account_icons", locals: { sns_account: dogrun_place.sns_account } %>
 <% end %>

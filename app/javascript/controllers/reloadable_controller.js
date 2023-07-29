@@ -6,9 +6,7 @@ export default class extends Controller {
   connect() {
     document.addEventListener("visibilitychange", async() => {
       if (!document.hidden) {
-        // location.reload();
         this.reloadFrameTargets.forEach((reloadFrame) => {
-          reloadFrame.innerHTML = ""
           reloadFrame.src = reloadFrame.src
         })
       }

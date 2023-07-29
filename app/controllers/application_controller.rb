@@ -9,11 +9,20 @@ class ApplicationController < ActionController::Base
   include DogrunPlaceHelper
   include StaffHelper
   include EntryConcern
-  before_action :require_login
+  before_action :require_login, :is_account_deactivated?
   add_flash_types :success, :notice, :error
   protect_from_forgery with: :exception
 
   private
+
+    def is_account_deactivated?
+      if current_user.active_for_authentication?
+        return
+      else
+        logout
+        redirect_to root_path, error: t('defaults.request_denied')
+      end
+    end
     
     def not_authenticated
       redirect_to '/', error: t('defaults.require_login')

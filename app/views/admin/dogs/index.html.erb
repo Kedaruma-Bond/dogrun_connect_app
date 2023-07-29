@@ -5,7 +5,7 @@
     <h2 class="mt-2 ml-2 text-xl font-bold"><%= t('.title') %></h2>
     <%= render partial: 'admin/dogs/search_form' %>
     <div class="overflow-x-auto">
-      <div class="table rounded-lg py-2 px-4 bg-gray-100 border-collapse mt-3 w-full">
+      <div class="table rounded-lg bg-gray-100 border-collapse mt-3 w-full">
         <%= render partial: "dog_index_table_header" %>
         <%= turbo_frame_tag dom_id(@dogrun_place, "admin_dogs"), class: "table-row-group" do %>
           <%= render @dogs %>

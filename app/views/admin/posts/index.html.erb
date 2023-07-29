@@ -5,7 +5,7 @@
   </h2>
   <div class="py-2 w-full px-0 md:px-2">
     <div class="flex-col mb-3">
-      <div class="flex-col">
+      <div class="flex-col" data-controller="reloadable">
         <div class="flex justify-center">
           <p class="text-lg font-semibold ml-2"><%= t('defaults.on_board') %></p>
           <button class="rounded-md bg-amber-500 w-7 h-7 relative ml-2 flex">
@@ -17,11 +17,9 @@
             <% end %>
           </button>
         </div>
-        <div class="mx-auto px-0 sm:px-2 py-2 w-full sm:w-[400px] rounded-xl border-2 border-neutral-400
+        <div class="mx-auto py-2 px-4 max-w-min rounded-xl border-2 border-neutral-400
           bg-[url('https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,g_center,q_auto/v1671380081/w4ygbtfdkxu3gzrixk6u.jpg')]">
-          <%= turbo_frame_tag dom_id(@dogrun_place, :dogrun_board) do %>
-            <%= render partial: "dogrun_board", locals: { publishing_post: @publishing_post } %>
-          <% end %>
+          <%= turbo_frame_tag dom_id(@dogrun_place, "dogrun_board"), src: "posts/dogrun_board", data: { "reloadable-target": "reloadFrame" } %>
         </div>
       </div>
       <% if !@publishing_post.blank? %>

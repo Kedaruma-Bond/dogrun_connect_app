@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  skip_before_action :require_login
+  skip_before_action :require_login, :is_account_deactivated?
 
   def top
     return unless logged_in?

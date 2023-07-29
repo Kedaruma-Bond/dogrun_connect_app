@@ -5,5 +5,5 @@
 <% end %>
 
 <%= turbo_stream.update dom_id(@dogrun_place, :dogrun_board) do %>
-  <%= render partial: "dogrun_board", locals: { publishing_post: @publishing_post } %>
+  <%= render partial: "dogrun_board", locals: { publishing_post: @publishing_post, dogrun_place: @dogrun_place } %>
 <% end %>

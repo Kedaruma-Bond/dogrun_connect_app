@@ -3,14 +3,14 @@
   <div class="py-2 px-2">
     <h2 class="mt-2 ml-2 text-xl font-bold"><%= t('.title') %></h2>
     <%= render partial: 'admin/dogs/search_form' %>
+    <h2 class="text-gray-700 text-sm flex items-end justify-end mr-7 mt-3">
+      <%= t('defaults.search_results_is')%>
+      <span class="text-xl mr-2 ml-2">
+        <%= @pagy.vars[:conunt] ? 0 : @pagy.vars[:count] %> 
+      </span>
+      <%= t('defaults.search_results_unit') %>
+    </h2>
     <div class="overflow-x-auto">
-      <h2 class="text-gray-700 text-sm flex items-end justify-end mr-7 mt-3">
-        <%= t('defaults.search_results_is')%>
-        <span class="text-xl mr-2 ml-2">
-          <%= @pagy.vars[:conunt] ? 0 : @pagy.vars[:count] %> 
-        </span>
-        <%= t('defaults.search_results_unit') %>
-      </h2>
       <div class="table rounded-lg py-2 px-4 bg-gray-100 border-collapse mt-3 w-full">
         <%= render partial: "dog_index_table_header" %>
         <div class="table-row-group">

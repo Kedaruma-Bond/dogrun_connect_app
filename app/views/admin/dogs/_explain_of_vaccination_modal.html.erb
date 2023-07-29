@@ -1,6 +1,6 @@
-<%= tag.dialog data: { "sns-post-message-modal-target": "modal" },
+<%= tag.dialog data: { "message-modal-target": "modal" },
   class: "p-1 z-10 border-2 border-gray-700 dark:border-white rounded-lg bg-purple-200 shadow-xl w-4/5 md:w-1/3 max-h-screen backdrop:bg-gray-700 backdrop:bg-opacity-50 open:animate-fade-in open:backdrop:animate-fade-in" do %>
-  <button type="button" data-action="sns-post-message-modal#close" class="rounded-full bg-gray-200 border-2 border-gray-700 shadow-md float-right">
+  <button type="button" data-action="message-modal#close" class="rounded-full bg-gray-200 border-2 border-gray-700 shadow-md float-right">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
     </svg>
@@ -11,9 +11,9 @@
     </div>
     <div class="w-full h-1 bg-gray-700 text-base rounded mt-1 mb-2"></div>
       <div class="w-11/12 mx-auto">
-        <%= t('.meaning_of_word') %>
+        <%= t('.meaning_of_icons') %>
       </div>
-    <div class="table py-2 px-4 border-collapse mt-3 mx-auto bg-gray-50 rounded-lg">
+    <div class="table py-2 px-4 border-collapse mt-3 mx-auto bg-gray-50 rounded-sm">
       <div class="table-header-group border-gray-600 border-b">
         <div class="table-row text-center text-xs font-light text-gray-900">
           <div class="w-[80px] table-cell border-gray-500 border-r border-opacity-50 align-middle">
@@ -82,7 +82,7 @@
           <div class="table-cell">
           </div>
           <div class="table-cell text-xs text-gray-700 text-center align-middle">
-          上記以外
+            <%= t('.other_than_the_above') %>
           </div>
         </div>
       </div>

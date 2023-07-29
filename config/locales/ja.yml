@@ -1,5 +1,7 @@
 ja:
   defaults:
+    cancel: キャンセル
+    request_denied: 要求が拒否されました
     illegal_route: 不正なルートで開かれました
     opened_incorrect_token_link: |
       不正なリンクが開かれました
@@ -100,7 +102,6 @@ ja:
     search_period: |
       検索
       期間
-    nothing_on_board: 掲示中の記事はありません
     on_board: 掲示板に表示している投稿
     create_post: 新規作成
     publishing_limit: 掲示期限

@@ -146,6 +146,7 @@ Rails.application.routes.draw do
     resources :posts, only: %i[index create destroy] do
       collection do
         get 'search', to: 'posts#search'
+        get 'dogrun_board', to: 'posts#dogrun_board'
       end
       member do
         get 'set_publish_limit', to: 'posts#set_publish_limit'

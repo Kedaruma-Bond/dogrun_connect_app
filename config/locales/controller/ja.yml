@@ -23,6 +23,7 @@ ja:
     users:
       deactivation:
         account_frozen: アカウントを凍結しました
+        grand_admin_cannot_be_deactivated: grand_adminを凍結することはできません
       activation:
         account_activated: アカウントを有効化しました
       create:

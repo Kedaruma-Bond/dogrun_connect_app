@@ -21,7 +21,7 @@
           <%= f.label :castration, label_html: { class: "font-bold leading-none" } %>
           <%= f.input :castration, as: :boolean, checked_value: 'castrated', unchecked_value: 'non_castrated', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-4" }, label: false, hint: false, error: false %>
         </div>
-        <div class="relative w-[145px] flex flex-col md:mt-0 mt-7 items-center justify-center" data-controller="sns-post-message-modal"> 
+        <div class="relative w-[145px] flex flex-col md:mt-0 mt-7 items-center justify-center"> 
           <%= f.label :public, label_html: { class: "font-bold leading-none" } %>
           <%= render partial: "shared/explain_of_public_icon" %>
           <%= f.input :public, as: :boolean, checked_value: 'public_view', unchecked_value: 'non_public', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-4" }, label: false, hint: false, error: false %>

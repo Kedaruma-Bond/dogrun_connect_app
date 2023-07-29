@@ -4,6 +4,17 @@ class Admin::BaseController < ApplicationController
 
   private
 
+    def set_each_path
+      case current_user.dogrun_place.id
+      when 2
+        @dog_profile_path = :togo_inu_shitsuke_hiroba_dog_path
+        @entry_path = :togo_inu_shitsuke_hiroba_entry_path
+      when 3
+        @dog_profile_path = :reon_dog_path
+        @entry_path = :reon_entry_path
+      end
+    end
+
     def set_dogrun_place
       @dogrun_place = DogrunPlace.find(current_user.dogrun_place_id)
     end
