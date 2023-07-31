@@ -91,7 +91,9 @@
               <span class="flex">
                 <%= simple_format(t('.dogrun_post_list'), class: "text-xs text-gray-200") %>
                 <div class="pt-2">
-                  <%= new_post_count_badge %>
+                  <%= turbo_frame_tag dom_id(current_user.dogrun_place, "new_post_count_budge") do %>
+                    <%= new_post_count_badge(current_user) %>
+                  <% end %>
                 </div>
               </span>
             <% end %>

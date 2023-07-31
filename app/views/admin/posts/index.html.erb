@@ -1,3 +1,4 @@
+<%= turbo_stream_from @dogrun_place, "admin_posts_index" %>
 <% content_for(:title, t('.title')) %>
 <div class="container bg-gray-300 flex flex-col" data-controller="form-modal">
   <h2 class="mt-2 ml-2 font-bold text-xl">
@@ -5,7 +6,7 @@
   </h2>
   <div class="py-2 w-full px-0 md:px-2">
     <div class="flex-col mb-3">
-      <div class="flex-col" data-controller="reloadable">
+      <div class="flex-col">
         <div class="flex justify-center">
           <p class="text-lg font-semibold ml-2"><%= t('defaults.on_board') %></p>
           <button class="rounded-md bg-amber-500 w-7 h-7 relative ml-2 flex">
@@ -19,7 +20,7 @@
         </div>
         <div class="mx-auto py-2 px-4 max-w-min rounded-xl border-2 border-neutral-400
           bg-[url('https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,g_center,q_auto/v1671380081/w4ygbtfdkxu3gzrixk6u.jpg')]">
-          <%= turbo_frame_tag dom_id(@dogrun_place, "dogrun_board"), src: "posts/dogrun_board", data: { "reloadable-target": "reloadFrame" } %>
+          <%= turbo_frame_tag dom_id(@dogrun_place, "dogrun_board"), src: "posts/dogrun_board" %>
         </div>
       </div>
       <% if !@publishing_post.blank? %>
@@ -46,6 +47,7 @@
     </div>
     <%= render partial: 'shared/post_form', locals: { post: @post } %>
     <div class="overflow-x-auto mt-2">
+      <%= turbo_frame_tag "set_publish_limit_form_modal" %>
       <div class="table my-2 px-2 w-full border-collapse bg-gray-100 rounded-lg">
         <%= render partial: "post_index_table_header" %>
         <%= turbo_frame_tag dom_id(@dogrun_place, "posts"), class: "table-row-group" do %>

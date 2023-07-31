@@ -1,3 +1,14 @@
 <%= render_turbo_stream_flash_messages %>
 
 <%= turbo_stream.remove "post_#{@post.id}" %>
+
+<% if !@publishing_post.blank? %>
+  <%= turbo_stream.update "dogrun_board_dogrun_place_#{@dogrun_place.id}" do %>
+    <%= render partial: "dogrun_board", locals: { dogrun_place: @dogrun_place, publishing_post: @publishing_post } %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.update "dogrun_board_dogrun_place_#{@dogrun_place.id}" do %>
+    <%= render partial: "dogrun_board_blank", locals: { dogrun_place: @dogrun_place } %>
+  <% end %>
+<% end %>
+

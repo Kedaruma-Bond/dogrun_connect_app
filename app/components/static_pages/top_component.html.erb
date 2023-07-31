@@ -10,7 +10,7 @@
           <h3 class="text-white font-bold text-lg self-center mb-2"><%= t('local.static_pages.top.dogrun_board') %></h3>
         </div>
         <div class="flex justify-center">
-          <%= @publishing_post[0].post_viewing %>
+          <%= post_viewing(@publishing_post[0]) %>
         </div>
       </div>
     <% end %>
@@ -102,15 +102,15 @@
         </button>
       <% end %>
       <%= button_to send(@guest_login_path), method: :post,
-          class: "mx-auto px-4 py-2 text-lg mt-7 text-indigo-500 capitalize transition-colors duration-300 transform bg-stone-300 rounded-full hover:bg-stone-100 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
-        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="text-indigo-500 w-6 h-6 mb-1 inline-block" viewBox="0 0 24 24">
+          class: "mx-auto flex px-4 py-2 text-lg mt-7 text-indigo-500 bg-stone-300 rounded-full hover:bg-stone-100 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="text-indigo-500 w-6 h-6 mb-1" viewBox="0 0 24 24">
           <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
           <circle cx="9" cy="7" r="4"></circle>
           <path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"></path>
         </svg>
         <span class="text-base font-medium ml-2"><%= t('local.static_pages.top.guest_login') %></span>
       <% end %>
-      <p class="text-center"><%= simple_format(t('local.static_pages.top.check_app_by_trial_guest_login'), class: "text-indigo-500 text-sm") %></p>
+      <p><%= simple_format(t('local.static_pages.top.check_app_by_trial_guest_login'), class: "text-indigo-500 text-sm text-center") %></p>
     </div>
   <% end %>
 </div>

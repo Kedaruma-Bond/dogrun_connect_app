@@ -14,6 +14,7 @@ class Reon::ArticlesController < Reon::DogrunPlaceController
   def create
     @article = Article.new(article_params)
     if @article.save
+      @article.create_broadcast
       send_notification_mail(@staffs)
       redirect_to send(@top_path), success: t('defaults.post_successfully')
     else

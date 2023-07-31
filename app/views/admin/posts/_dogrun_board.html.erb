@@ -1,7 +1,7 @@
 <%= turbo_frame_tag dom_id(dogrun_place, "dogrun_board") do %>
   <% if !publishing_post.blank? %>
     <div class="flex justify-center">
-      <%= publishing_post[0].post_viewing %>
+      <%= post_viewing(publishing_post[0]) %>
     </div>
   <% else %>
     <div class="flex text-white">

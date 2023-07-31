@@ -13,6 +13,7 @@ class Admin::ArticlesController < Admin::BaseController
   def create
     @article = Article.new(article_params)
     if @article.save
+      @article.create_broadcast
       redirect_to admin_posts_path, success: t('defaults.post_successfully')
     else
       render :new, status: :unprocessable_entity

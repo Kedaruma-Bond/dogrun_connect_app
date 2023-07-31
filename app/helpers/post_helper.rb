@@ -1,6 +1,25 @@
 module PostHelper
-  def new_post_count_badge
-    current_dogrun_new_posts_count = Post.where(dogrun_place_id: current_user.dogrun_place_id).where(acknowledge: false).count
+
+  def post_viewing(post)
+    case post.post_type
+    when 'article'
+      render partial: 'shared/article', locals: { post: post }
+    when 'embed'
+      case post.embed.embed_type
+      when 'twitter'
+        render partial: 'shared/twitter', locals: { post: post }
+      when 'instagram'
+        render partial: 'shared/instagram', locals: { post: post }
+      when 'fb'
+        render partial: 'shared/facebook', locals: { post: post }
+      end
+    end
+  end
+
+  def new_post_count_badge(admin_user)
+    current_dogrun_new_articles_count = Post.joins(:article).where(dogrun_place_id: admin_user.dogrun_place_id, acknowledge: false).count
+    current_dogrun_new_embeds_count = Post.joins(:embed).where(dogrun_place_id: admin_user.dogrun_place_id, acknowledge: false).count
+    current_dogrun_new_posts_count = current_dogrun_new_articles_count + current_dogrun_new_embeds_count
     unless current_dogrun_new_posts_count == 0
       tag.span class: "flex w-5 h-5 ml-3" do
         concat tag.span(class: "animate-ping inline-flex h-full w-full rounded-full aspect-square bg-indigo-400 dark:bg-indigo-200 opacity-75")

@@ -14,6 +14,7 @@ class Reon::EmbedsController < Reon::DogrunPlaceController
   def create
     @embed = Embed.new(embed_params)
     if @embed.save
+      @embed.create_broadcast
       send_notification_mail(@staffs)
       redirect_to send(@top_path), success: t('defaults.post_successfully')
     else

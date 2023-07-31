@@ -1,7 +1,7 @@
 ja:
   defaults:
     cancel: キャンセル
-    request_denied: 要求が拒否されました
+    your_account_is_deactivating: アカウントが凍結されています
     illegal_route: 不正なルートで開かれました
     opened_incorrect_token_link: |
       不正なリンクが開かれました

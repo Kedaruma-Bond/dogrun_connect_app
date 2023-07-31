@@ -64,6 +64,7 @@ RSpec.describe TogoInuShitsukeHiroba::ArticlesController, type: :request do
   end
 
   describe 'POST #create' do
+    let!(:admin) { create(:user, :admin, dogrun_place: dogrun_place) }
     describe 'ログインしているとき' do
       before do
         togo_inu_shitsuke_hiroba_log_in_as(general)

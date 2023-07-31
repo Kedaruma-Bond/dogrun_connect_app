@@ -1,12 +1,5 @@
-<% content_for(:title, t('.title')) %>
-<div class="w-full mx-auto px-0 sm:px-6 mt-5 bg-gray-300">
-  <h2 class="text-2xl font-bold text-gray-700 text-center my-3"><%= t('.title') %></h2>
-  <%= render partial: 'publish_limit_form', locals: { post: @post } %>
-  <div class="mt-4 mx-auto px-4 py-2 max-w-min rounded-xl border-2 border-neutral-400
-    bg-[url('https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,g_center,q_auto/v1671380081/w4ygbtfdkxu3gzrixk6u.jpg')]
-  ">
-    <div class="flex justify-center">
-      <%= @post.post_viewing %>
-    </div>
-  </div>
-</div>
+<%= render Posts::SetPublishLimitFormModalComponent.new(
+  title: t('.title'),
+  post: @post,
+  spinner_icon_for_form_disable_button: spinner_icon_for_form_disable_button
+  ) %>

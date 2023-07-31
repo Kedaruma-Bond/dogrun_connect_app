@@ -1,24 +1,24 @@
 <div class="table-header-group border-gray-700 border-b">
   <div class="table-row text-left text-gray-900 font-medium text-sm h-[60px]">
-    <div class="table-cell px-6 py-4 align-middle text-center">
-      <%= Post.human_attribute_name(:publish_status) %>
+    <div class="table-cell px-2 py-2 align-middle text-center">
+      <%= simple_format(Post.human_attribute_name(:publish_status)) %>
     </div>
-    <div class="table-cell px-6 py-4 align-middle">
+    <div class="table-cell px-3 py-2 align-middle">
       <%= t('defaults.posted_time') %>
     </div>
-    <div class="table-cell px-6 py-4 align-middle">
+    <div class="table-cell px-3 py-4 align-middle">
       <%= t('defaults.posted_by') %>
     </div>
-    <div class="table-cell px-6 py-4 align-middle">
+    <div class="table-cell px-3 py-4 align-middle">
       <%= Post.human_attribute_name(:post_type) %>
     </div>
-    <div class="table-cell px-6 py-4 align-middle">
+    <div class="table-cell px-3 py-4 align-middle">
       <%= t('defaults.sns_type') %>
     </div>
-    <div class="table-cell px-6 py-4 align-middle">
+    <div class="table-cell px-2 py-4 align-middle">
       <%= t('defaults.edit') %>
     </div>
-    <div class="table-cell px-6 py-4 align-middle">
+    <div class="table-cell pr-4 py-4 align-middle text-center">
       <%= t('defaults.delete') %>
     </div>
   </div>

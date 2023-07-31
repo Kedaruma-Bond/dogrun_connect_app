@@ -14,6 +14,16 @@ class Post < ApplicationRecord
   enum publish_status: { non_publish: false, is_publishing: true }
   enum post_type: { article: 0, embed: 1 }
 
+  # broadcast
+  def remove_new_badge
+    broadcast_replace_to [dogrun_place, "admin_posts_index"], target: "post_#{self.id}", partial: "admin/posts/post", locals: { post: self}
+  end
+
+  def destroy_broadcast
+    broadcast_replace_to [dogrun_place, "admin_navbar"], target: "new_post_count_badge_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/new_post_count_badge", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+    broadcast_replace_to [dogrun_place, "admin_sidebar"], target: "new_post_count_badge_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/new_post_count_badge", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+  end
+
   # ransack authorization
   def self.ransackable_attributes(auth_object = nil)
     ["acknowledge", "created_at", "dogrun_place_id", "id", "post_type", "publish_limit", "publish_status", "updated_at", "user_id"]

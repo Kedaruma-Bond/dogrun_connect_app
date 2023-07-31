@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
         return
       else
         logout
-        redirect_to root_path, error: t('defaults.request_denied')
+        redirect_to root_path, error: t('defaults.your_account_is_deactivating')
       end
     end
     

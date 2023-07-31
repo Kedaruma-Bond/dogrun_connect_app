@@ -15,4 +15,11 @@ ja:
     admin_view_component:
       admin_user_create: 管理者ユーザー作成
       account_frozen: 凍結
+  posts:
+    set_publish_limit_form_modal_component:
+      start_to_publish_confirmation: この投稿を掲示しますか？
+      please_set_publish_limit: 掲載期限を設定してください
+      until: 迄
+      posting_datetime: "投稿日:"
+      posting_by: "投稿者:"
       
