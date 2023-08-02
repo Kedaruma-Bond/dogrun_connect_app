@@ -4,6 +4,7 @@
   <h2 class="mt-2 ml-2 font-bold text-xl">
     <%= t('.title') %>
   </h2>
+  <%= turbo_frame_tag "set_publish_limit_form_modal" %>
   <div class="py-2 w-full px-0 md:px-2">
     <div class="flex-col mb-3">
       <div class="flex-col">
@@ -45,7 +46,6 @@
     </div>
     <%= render partial: 'shared/post_form', locals: { post: @post } %>
     <div class="overflow-x-auto mt-2">
-      <%= turbo_frame_tag "set_publish_limit_form_modal" %>
       <div class="table my-2 px-2 w-full border-collapse bg-gray-100 rounded-lg">
         <%= render partial: "post_index_table_header" %>
         <%= turbo_frame_tag dom_id(@dogrun_place, "posts"), class: "table-row-group" do %>
