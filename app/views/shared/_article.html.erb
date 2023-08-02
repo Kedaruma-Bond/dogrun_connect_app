@@ -2,7 +2,7 @@
   <div class="flex absolute right-0 pr-5 text-gray-400 mt-3">
     <%= post.box_header_icon %>
   </div>
-  <div class="mx-1 p-2 bg-gray-200 rounded-2xl" data-controller="lightbox">
+  <div class="p-2 bg-gray-200 rounded-2xl" data-controller="lightbox">
     <% if !post.article.photo.blank? %>
       <%= link_to "#", data: { "lightbox-source-param": post.article.photo_preview, action: "lightbox#handleOpen" } do %>
         <%= article_photo(post.article) %>
