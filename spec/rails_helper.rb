@@ -23,6 +23,8 @@ require 'capybara/rspec'
 Rails.logger = Logger.new(STDOUT)
 ActiveRecord::Base.logger = Logger.new(STDOUT)
 
+Webdrivers::Chromedriver.required_version = '114.0.5735.90'
+
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
