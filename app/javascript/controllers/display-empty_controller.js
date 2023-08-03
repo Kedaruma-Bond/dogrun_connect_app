@@ -16,14 +16,14 @@ import { useMutation } from "stimulus-use";
  *
  */
 export default class extends Controller {
-  static targets = ["list", "emptyMessage"];
-  static classes = ["hide"];
+  static targets = ["list", "emptyMessage"]
+  static classes = ["hide"]
 
   connect() {
     useMutation(this, {
       element: this.listTarget,
       childList: true,
-    });
+    })
   }
 
   mutate(entries) {
