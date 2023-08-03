@@ -3,17 +3,17 @@
     <div class="mx-auto max-w-md flex flex-col min-w-0 w-full px-1 py-3 rounded-xl bg-gray-600 text-gray-200">
       <h1 class="mx-auto text-base font-semibold mb-2"><%= t('.during_entry_dogs') %></h1>
       <div class="w-full h-px bg-gray-700 rounded mb-2"></div>
-      <div data-controller="display-empty" data-display-empty-hide-class="hidden">
-        <%= turbo_frame_tag dom_id(dogrun_place, "entries_list"), data: { "display-empty-target": "list" } do %>
+      <div>
+        <%= turbo_frame_tag dom_id(dogrun_place, "entries_list") do %>
           <% if !@dogs_public_view.nil? %>
             <% @dogs_public_view.size.times do |t| %>
               <%= render partial: "shared/entry_dog", locals: { dog: @dogs_public_view[t], dogrun_place: dogrun_place, dog_profile_path: dog_profile_path } %>
             <% end %>
           <% end %>
+          <div class="text-center text-sm font-light mt-1 hidden only:block">
+            <%= t('.waiting_your_coming') %>
+          </div>
         <% end %>
-        <div class="text-center text-sm font-light mt-1" data-display-empty-target="emptyMessage">
-          <%= t('.waiting_your_coming') %>
-        </div>
       </div>
     </div>
   </div>
