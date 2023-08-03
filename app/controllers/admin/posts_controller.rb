@@ -47,6 +47,7 @@ class Admin::PostsController < Admin::BaseController
 
   def destroy
     @post.destroy
+    @publishing_post = Post.is_publishing.where(dogrun_place: @dogrun_place)
     respond_to do |format|
       format.html { 
         if request.referer.nil?
