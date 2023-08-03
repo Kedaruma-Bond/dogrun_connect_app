@@ -1,5 +1,7 @@
 ja:
   defaults:
+    cancel: キャンセル
+    your_account_is_deactivating: アカウントが凍結されています
     illegal_route: 不正なルートで開かれました
     opened_incorrect_token_link: |
       不正なリンクが開かれました
@@ -67,8 +69,10 @@ ja:
       退場
       時間
     force_exit: 強制退場
-    force_exit_confirmation: 強制退場してよろしいですか？
     exit: 退場
+    exit_operation: |
+      退場
+      操作
     detail: 詳細
     update: 更新
     updating: 更新中...
@@ -98,7 +102,6 @@ ja:
     search_period: |
       検索
       期間
-    nothing_on_board: 掲示中の記事はありません
     on_board: 掲示板に表示している投稿
     create_post: 新規作成
     publishing_limit: 掲示期限

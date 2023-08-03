@@ -35,7 +35,7 @@ class Admin::UsersController < Admin::BaseController
           redirect_to request.referer, success: t('defaults.destroy_successfully'), status: :see_other
         end
       }
-      format.json { head :no_content }
+      format.turbo_stream { flash.now[:success] = t('defaults.destroy_successfully') }
     end
   end
 
@@ -44,16 +44,29 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def deactivation
-    @user.update!(deactivation: true)
-    respond_to do |format|
-      format.html { 
-        if request.referer.nil?
-          redirect_to admin_users_path, success: t('.account_frozen') 
-        else
-          redirect_to request.referer, success: t('.account_frozen') 
-        end
-        }
-      format.json { head :no_content }
+    unless @user.grand_admin?
+      @user.update!(deactivation: true)
+      respond_to do |format|
+        format.html { 
+          if request.referer.nil?
+            redirect_to admin_users_path, success: t('.account_frozen') 
+          else
+            redirect_to request.referer, success: t('.account_frozen') 
+          end
+          }
+        format.turbo_stream { flash.now[:success] = t('.account_frozen') }
+      end
+    else
+      respond_to do |format|
+        format.html { 
+          if request.referer.nil?
+            redirect_to admin_users_path, error: t('.grand_admin_cannot_be_deactivated') 
+          else
+            redirect_to request.referer, error: t('.grand_admin_cannot_be_deactivated') 
+          end
+          }
+        format.turbo_stream { flash.now[:error] = t('.grand_admin_cannot_be_deactivated') }
+      end
     end
   end
 
@@ -67,7 +80,7 @@ class Admin::UsersController < Admin::BaseController
           redirect_to request.referer, success: t('.account_activated') 
         end
       }
-      format.json { head :no_content }
+      format.turbo_stream { flash.now[:success] = t('.account_activated') }
     end
   end
 

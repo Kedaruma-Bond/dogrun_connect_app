@@ -1,5 +1,5 @@
-<%= turbo_frame_tag staff, class: "table-row bg-white border-b border-transition duration-300 ease-in-out hover:bg-gray-100 h-[60px]" do %>
-  <div class="table-cell px-3 whitespace-nowrap text-sm font-medium text-gray-900 align-middle rounded-tl-lg rounded-bl-lg">
+<%= turbo_frame_tag staff, class: "table-row border-b hover:bg-gray-50 h-[60px] whitespace-nowrap text-sm font-medium text-gray-900" do %>
+  <div class="table-cell px-3 align-middle">
     <% if staff.enable? %>
       <%= link_to disable_notification_admin_staff_path(staff),
           data: { turbo_method: :patch, turbo_confirm: t('.disable_confirmation') }, 
@@ -18,13 +18,13 @@
       <% end %>
     <% end %>
   </div>
-  <div class="table-cell text-sm text-gray-900 font-light px-3 whitespace-nowrap align-middle">
+  <div class="table-cell font-light px-3 align-middle">
     <%= staff.name %>
   </div>
-  <div class="table-cell text-sm text-gray-900 font-light px-3 whitespace-nowrap align-middle">
+  <div class="table-cell font-light px-3 align-middle">
     <%= staff.email %>
   </div>
-  <div class="table-cell align-middle rounded-tr-lg rounded-br-lg">
+  <div class="table-cell align-middle">
     <%= link_to admin_staff_path(staff), data: { turbo_method: :delete, turbo_confirm: t('defaults.destroy_confirmation') }, class: "flex justify-left ml-2 text-sm text-gray-900 hover:text-gray-500 px-4" do %>
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>

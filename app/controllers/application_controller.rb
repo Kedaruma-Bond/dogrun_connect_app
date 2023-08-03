@@ -9,11 +9,20 @@ class ApplicationController < ActionController::Base
   include DogrunPlaceHelper
   include StaffHelper
   include EntryConcern
-  before_action :require_login
+  before_action :require_login, :is_account_deactivated?
   add_flash_types :success, :notice, :error
   protect_from_forgery with: :exception
 
   private
+
+    def is_account_deactivated?
+      if current_user.active_for_authentication?
+        return
+      else
+        logout
+        redirect_to root_path, error: t('defaults.your_account_is_deactivating')
+      end
+    end
     
     def not_authenticated
       redirect_to '/', error: t('defaults.require_login')
@@ -31,6 +40,7 @@ class ApplicationController < ActionController::Base
       end
     end
     
+    # users#showのアカウントチェックで適用してる
     def correct_user
       @user = User.find(params[:id])
       unless correct_user?(@user, current_user)

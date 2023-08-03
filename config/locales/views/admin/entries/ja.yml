@@ -5,9 +5,18 @@ ja:
         title: 入場記録検索結果
       search_form:
         registration_number: 登録番号検索
-        search_field: 登録番号/飼い主さん/ワンコの名前検索
+        search_field: "飼い主さんの名前/ワンコの名前/%{naming_of_registration_number}検索"
       index:
         title: 入場記録一覧
+        site_in: 今、ドッグランで遊んでいる仔は
       entry:
         entering: 入場中
+        select_exit_operation_type: 退場操作のタイプ選択
+        exit_confirmation: 退場してよろしいですか？
+        force_exit_confirmation: |
+          強制退場すると飼い主さんに通知メールが送信されます。
+          強制退場してよろしいですか？
+      exit_operation_modal:
+      num_of_playing_dogs:
+        playing: 頭です
 

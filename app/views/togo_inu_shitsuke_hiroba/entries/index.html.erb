@@ -3,7 +3,8 @@
   pagy: @pagy,
   q: @q,
   applicable_path: @search_entries_path,
-  search_field_placeholder: I18n.t('local.entries.search_form.search_field_placeholder')
+  search_field_placeholder: I18n.t('local.entries.search_form.search_field_placeholder'),
+  dogrun_place: @dogrun_place
   ) do %>
   <%= render partial: 'shared/entry', collection: @entries, locals: { dog_profile_path: @dog_profile_path, entry_path: @entry_path } %>
 <% end %>

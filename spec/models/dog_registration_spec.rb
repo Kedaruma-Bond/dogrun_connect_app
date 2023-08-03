@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe DogRegistration, type: :model do
   let!(:user) { create(:user) }
   let!(:dogrun_place) { create(:dogrun_place) }
+  let!(:admin) { create(:user, :admin, dogrun_place: dogrun_place) }
 
   describe '#save' do
     context '入力値が正しい場合' do

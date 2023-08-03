@@ -4,7 +4,6 @@ class Admin::RegistrationNumbersController < Admin::BaseController
 
   def update
     if @registration_number.update(registration_number_params)
-      @update_success_flg = true
       respond_to do |format|
         format.html { 
           if request.referer.nil?
@@ -16,7 +15,6 @@ class Admin::RegistrationNumbersController < Admin::BaseController
         format.turbo_stream { flash.now[:success] = t('.registration_number_updated_successfully') }
       end
     else
-      @update_success_flg = false 
       respond_to do |format|
         format.html { 
           if request.referer.nil?

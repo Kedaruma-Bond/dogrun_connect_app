@@ -33,6 +33,7 @@ class Reon::RegistrationNumbersController < Reon::DogrunPlaceController
 
     if @registration_number.valid?
       @registration_number.save!
+      @registration_number.create_broadcast
       session.delete(:card_flg)
       respond_to do |format|
         format.html { redirect_to send(@user_path, current_user), success: t('local.registration_numbers.registered_successfully') }
@@ -45,9 +46,10 @@ class Reon::RegistrationNumbersController < Reon::DogrunPlaceController
 
   def destroy
     @registration_number.destroy
+    @registration_number.destroy_broadcast
     respond_to do |format|
       format.html { redirect_to send(@user_path, current_user), success: t('local.registration_numbers.destroy_successfully'), status: :see_other }
-      format.json { header :no_content}
+      format.turbo_stream { flash.now[:success] = t('local.registration_numbers.destroy_successfully') }
     end
   end
 

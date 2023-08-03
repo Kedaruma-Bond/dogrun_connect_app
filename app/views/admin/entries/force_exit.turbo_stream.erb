@@ -1,8 +1,0 @@
-<%= render_turbo_stream_flash_messages %>
-
-<%= turbo_stream.update dom_id(@entry, :exit_at) do %>
-  <%= render partial: "exit_at_part", locals: { entry: @entry } %>
-<% end %>
-<%= turbo_stream.update dom_id(@entry, :force_exit) do %>
-  <%= render partial: "force_exit_part", locals: { entry: @entry } %>
-<% end %>

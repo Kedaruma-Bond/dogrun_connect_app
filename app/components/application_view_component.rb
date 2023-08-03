@@ -5,4 +5,5 @@ class ApplicationViewComponent < ViewComponent::Base
   include DogHelper
   include SessionHelper
   include DogrunPlaceHelper
+  include PostHelper
 end

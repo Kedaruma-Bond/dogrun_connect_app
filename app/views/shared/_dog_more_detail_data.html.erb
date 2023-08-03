@@ -1,17 +1,17 @@
 <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
   <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
-    <span class="flex justify-center md:justify-start text-sm font-light text-gray-600"><%= Dog.human_attribute_name(:rabies_vaccination_certificate) %></span>
+    <span class="flex justify-center md:justify-start text-base font-light text-gray-700"><%= Dog.human_attribute_name(:rabies_vaccination_certificate) %></span>
     <% if dog.rabies_vaccination_certificate.blank? %>
       <p class="flex justify-center md:justify-start">no_image</p>
     <% else %>
       <%= link_to "#", data: { "lightbox-source-param": dog.rabies_vaccination_certificate_preview, action: "lightbox#handleOpen" } do %>
-        <%= cl_image_tag dog.rabies_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded mx-auto md:mx-0 h-auto w-10", alt: "rabies vaccination certificate" %>
+        <%= cl_image_tag dog.rabies_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded mx-auto md:mx-0 h-auto w-24", alt: "rabies vaccination certificate" %>
       <% end %>
     <% end %>
   </div>
   <div class="w-full mb-3 md:mb-0">
-    <span class="flex justify-center md:justify-start text-sm font-light text-gray-600"><%= Dog.human_attribute_name(:date_of_rabies_vaccination) %></span>
-    <p class="flex justify-center md:justify-start text-base font-bold">
+    <span class="flex justify-center md:justify-start text-base font-light text-gray-700"><%= Dog.human_attribute_name(:date_of_rabies_vaccination) %></span>
+    <p class="flex justify-center md:justify-start text-lg font-bold">
       <% if dog.date_of_rabies_vaccination.blank? %>
         -
       <% else %>
@@ -22,18 +22,18 @@
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-2 w-full mb-3">
   <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
-    <span class="flex justify-center md:justify-start text-sm font-light text-gray-600"><%= Dog.human_attribute_name(:mixed_vaccination_certificate) %></span>
+    <span class="flex justify-center md:justify-start text-base font-light text-gray-700"><%= Dog.human_attribute_name(:mixed_vaccination_certificate) %></span>
     <% if dog.mixed_vaccination_certificate.blank? %>
       <p class="flex justify-center md:justify-start">no_image</p>
     <% else %>
       <%= link_to "#", data: { "lightbox-source-param": dog.mixed_vaccination_certificate_preview, action: "lightbox#handleOpen" } do %>
-        <%= cl_image_tag dog.mixed_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded mx-auto md:mx-0 h-auto w-10", alt: "mixed vaccination certificate" %>
+        <%= cl_image_tag dog.mixed_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded mx-auto md:mx-0 h-auto w-24", alt: "mixed vaccination certificate" %>
       <% end %>
     <% end %>
   </div>
   <div class="w-full mb-3 md:mb-0">
-    <span class="flex justify-center md:justify-start text-sm font-light text-gray-600"><%= Dog.human_attribute_name(:date_of_mixed_vaccination) %></span>
-    <p class="flex justify-center md:justify-start text-base font-bold">
+    <span class="flex justify-center md:justify-start text-base font-light text-gray-700"><%= Dog.human_attribute_name(:date_of_mixed_vaccination) %></span>
+    <p class="flex justify-center md:justify-start text-lg font-bold">
       <% if dog.date_of_mixed_vaccination.blank? %>
         -
       <% else %>
@@ -44,8 +44,8 @@
 </div>
 <div class="grid grid-cols-2 gap-2 w-full mb-3">
   <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
-    <span class="flex justify-center md:justify-start text-sm font-light text-gray-600"><%= Dog.human_attribute_name(:registration_prefecture_code) %></span>
-    <p class="flex justify-center md:justify-start text-base font-bold">
+    <span class="flex justify-center md:justify-start text-base font-light text-gray-700"><%= Dog.human_attribute_name(:registration_prefecture_code) %></span>
+    <p class="flex justify-center md:justify-start text-lg font-bold">
       <% if dog.pref.blank? %>
         -
       <% else %>
@@ -54,8 +54,8 @@
     </p>
   </div>
   <div class="w-full mb-3 md:mb-0">
-    <span class="flex justify-center md:justify-start text-sm font-light text-gray-600"><%= Dog.human_attribute_name(:registration_municipality) %></span>
-    <p class="flex justify-center md:justify-start text-base font-bold">
+    <span class="flex justify-center md:justify-start text-base font-light text-gray-700"><%= Dog.human_attribute_name(:registration_municipality) %></span>
+    <p class="flex justify-center md:justify-start text-lg font-bold">
       <% if dog.registration_municipality.blank? %>
         -
       <% else %>
@@ -66,8 +66,8 @@
 </div>
 <div class="grid grid-cols-2 gap-2 w-full mb-3">
   <div class="w-full mb-3 md:mb-0 mr-3 md:mr-0">
-    <span class="flex justify-center md:justify-start text-sm font-light text-gray-600"><%= Dog.human_attribute_name(:municipal_registration_number) %></span>
-    <p class="flex justify-center md:justify-start text-base font-bold">
+    <span class="flex justify-center md:justify-start text-base font-light text-gray-700"><%= Dog.human_attribute_name(:municipal_registration_number) %></span>
+    <p class="flex justify-center md:justify-start font-bold text-lg">
       <% if dog.municipal_registration_number.blank? %>
         -
       <% else %>
@@ -76,12 +76,12 @@
     </p>
   </div>
   <div class="w-full mb-3 md:mb-0">
-    <span class="flex justify-center md:justify-start text-sm font-light text-gray-600"><%= Dog.human_attribute_name(:license_plate) %></span>
+    <span class="flex justify-center md:justify-start text-base font-light text-gray-700"><%= Dog.human_attribute_name(:license_plate) %></span>
     <% if dog.license_plate.blank? %>
       <p class="flex justify-center md:justify-start">no_image</p>
     <% else %>
       <%= link_to "#", data: { "lightbox-source-param": dog.license_plate_preview, action: "lightbox#handleOpen" } do %>
-        <%= cl_image_tag dog.license_plate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded mx-auto md:mx-0 h-auto w-10", alt: "license plate" %>
+        <%= cl_image_tag dog.license_plate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded mx-auto md:mx-0 h-auto w-24", alt: "license plate" %>
       <% end %>
     <% end %>
   </div>

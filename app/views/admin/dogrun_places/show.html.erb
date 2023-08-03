@@ -2,7 +2,7 @@
 <%= turbo_frame_tag "sns_account_form_modal" %>
 <div class="w-full mx-auto px-1 sm:px-3 lg:px-0">
   <div class="bg-purple-200 w-full shadow rounded p-8 sm:p-10">
-    <p class="text-2xl md:text-3xl font-bold mb-5 text-center text-gray-700">
+    <p class="text-3xl font-bold mb-2md:mb-5 text-center text-gray-700">
       <%= t'.title' %>
     </p>
     <section class="text-gray-600 body-font">
@@ -13,7 +13,7 @@
               <%= dogrun_logo(@dogrun_place) %>
             </div>
             <div class="flex flex-col items-center justify-center mt-3">
-              <h2 class="text-center font-bold text-gray-600 text-2xl">
+              <h2 class="text-center font-bold text-gray-700 text-2xl">
                 <%= @dogrun_place.name %>
               </h2>
               <div class="w-32 h-1 bg-gray-200 rounded mt-2 mb-4"></div>
@@ -29,9 +29,14 @@
                     <span class="mx-1 text-lg"><%= t'defaults.edit' %></span>
                   </button>
                 <% end %>
+                <div class="ml-4">
+                  <button data-controller="back-button" data-action="back-button#goBack" class="items-center w-[92px] h-[44px] px-3 py-2 text-base font-semibold text-white bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+                    <span><%= t('defaults.back') %></span>
+                  </button>
+                </div>
               </div>
-              <p class="mt-3 text-gray-700 text-sm"><%= t('defaults.business_time') %></p>
-              <h2 class="flex text-gray-700 text-base mt-3">
+              <p class="mt-3 text-gray-700 text-base"><%= t('defaults.business_time') %></p>
+              <h2 class="flex text-gray-700 text-base mt-3 font-semibold">
                 <% if @dogrun_place.opening_time.blank? || @dogrun_place.closing_time.blank? %>
                   -
                 <% else %>
@@ -41,7 +46,7 @@
                 <% end %>
               </h2>
               <p class="text-sm text-gray-700 mt-3"><%= t('defaults.web_site') %></p>
-              <h2 class="flex text-gray-700 text-base my-3">
+              <h2 class="flex text-gray-500 text-base mt-1 mb-6">
                 <% if @dogrun_place.web_site.blank? %>
                 -
                 <% else %>
@@ -59,10 +64,10 @@
           </div>
           <div class="sm:w-2/3 sm:pl-8 sm:py-2 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
             <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
-              <p class="text-gray-700 text-sm font-light">
+              <p class="text-gray-700 text-base font-light">
                 <%= DogrunPlace.human_attribute_name(:prefecture_code) %>
               </p>
-              <h2 class="mt-1 text-gray-600 text-base md:text-lg mt-3 sm:mt-0">
+              <h2 class="text-gray-700 text-lg font-semibold">
                 <% if @dogrun_place.pref.blank? %>
                   -
                 <% else %>
@@ -71,50 +76,44 @@
               </h2>
             </div>
             <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
-              <p class="text-gray-700 text-sm font-light">
+              <p class="text-gray-700 text-base font-light">
                 <%= DogrunPlace.human_attribute_name(:address) %>
               </p>
-              <h1 class="mt-1 text-base md:text-lg text-gray-700">
+              <h1 class="text-lg text-gray-700 font-semibold">
                 <%= @dogrun_place.address %>
               </h1>
             </div>
             <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
-              <p class="text-gray-700 text-sm font-light">
+              <p class="text-gray-700 text-base font-light">
                 <%= DogrunPlace.human_attribute_name(:description) %>
               </p>
-              <h1 class="mt-1">
-                <%= simple_format(@dogrun_place.description, class: "text-base md:text-lg text-gray-700 text-left") %>
-              </h1>
+              <%= simple_format(@dogrun_place.description, class: "text-base md:text-lg text-gray-700 text-left font-semibold") %>
             </div>
             <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
-              <p class="text-gray-700 text-sm font-light">
+              <p class="text-gray-700 text-base font-light">
                 <%= DogrunPlace.human_attribute_name(:usage_fee) %>
               </p>
-              <h1 class="mt-1">
-                <%= simple_format(@dogrun_place.usage_fee, class: "text-base md:text-lg text-gray-700") %>
-              </h1>
+              <%= simple_format(@dogrun_place.usage_fee, class: "text-base md:text-lg text-gray-700 font-semibold") %>
             </div>
             <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
-              <p class="text-gray-700 text-sm font-light">
+              <p class="text-gray-700 text-base font-light">
                 <%= DogrunPlace.human_attribute_name(:site_area) %>
               </p>
-              <h1 class="mt-1">
-                <%= simple_format(@dogrun_place.site_area, class: "text-base md:text-lg text-gray-700") %>
-              </h1>
+              <%= simple_format(@dogrun_place.site_area, class: "text-base md:text-lg text-gray-700 font-semibold") %>
             </div>
             <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
-              <p class="text-gray-700 text-sm font-light">
+              <p class="text-gray-700 text-base font-light">
                 <%= Facility.human_attribute_name(:name) %>
               </p>
               <div class="flex flex-wrap">
                 <% @dogrun_place.facilities.each do |facility| %>
-                  <span class="whitespace-nowrap leading-none text-white py-2 px-2 bg-blue-700 rounded ml-2 mt-2"><%= dogrun_facility_view(facility.name) %></span>
+                  <span class="leading-none text-white py-2 px-2 bg-blue-700 rounded ml-2 mt-2"><%= dogrun_facility_view(facility.name) %></span>
                 <% end %>
               </div>
             </div>
             <% if !@dogrun_place.registration_card.blank? %>
               <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6" data-controller="lightbox">
-                <p class="text-gray-700 text-sm font-light">
+                <p class="text-gray-700 text-base font-light">
                   <%= t('.registration_card_image', registration_card: @naming_of_registration_card) %>
                 </p>
                 <%= link_to "#", data: { "lightbox-source-param": @dogrun_place.registration_card_preview, action: "lightbox#handleOpen" } do %>
@@ -129,13 +128,18 @@
     </section>
     <div class="hidden md:flex items-center mt-1 flex-row justify-center text-left">
       <%= link_to edit_admin_dogrun_place_path(@dogrun_place) do %>
-        <button class="flex items-center px-2 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+        <button class="flex items-center px-2 py-2 font-medium tracking-wide text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
           </svg>
           <span class="mx-1 text-lg"><%= t'defaults.edit' %></span>
         </button>
       <% end %>
+      <div class="ml-4">
+        <button data-controller="back-button" data-action="back-button#goBack" class="items-center w-[92px] h-[44px] px-3 py-2 text-base font-semibold text-white bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+          <span><%= t('defaults.back') %></span>
+        </button>
+      </div>
     </div>
   </div>
 </div>

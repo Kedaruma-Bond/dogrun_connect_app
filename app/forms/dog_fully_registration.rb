@@ -54,6 +54,7 @@ class DogFullyRegistration
       dog_id: dog.id,
       dogrun_place_id: dogrun_place_id
     )
+    RegistrationNumber.where(dog_id: dog.id).find_by(dogrun_place_id: dogrun_place_id).create_broadcast
   end
 
   private

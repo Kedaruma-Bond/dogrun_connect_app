@@ -8,15 +8,18 @@
     <div class="py-2 w-full px-2">
       <div class= "flex justify-start mr-2">
         <%= link_to new_admin_staff_path, data: { turbo_frame: 'staff_form_modal' } do %>
-          <button class="flex px-4 py-2 font-medium mr-5 tracking-wide text-gray-200 capitalize transition-colors duration-200 transform bg-blue-700 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-            <span class="mx-auto"><%= t('defaults.signup') %></span>
+          <button class="flex px-4 py-2 font-medium mr-5 tracking-wide text-white bg-blue-700 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            </svg>
+            <span class="mx-1"><%= t('defaults.signup') %></span>
           </button>
         <% end %>
       </div>
-      <div class="table mt-3 w-full border-collapse">
-        <div class="table-header-group bg-white border-b">
+      <div class="table mt-3 w-full border-collapse bg-gray-100 rounded-lg">
+        <div class="table-header-group border-gray-700 border-b">
           <div class="table-row text-left text-gray-900 font-medium text-sm h-[60px]">
-            <div class="table-cell px-3 py-4 rounded-tl-lg rounded-bl-lg align-middle">
+            <div class="table-cell px-5 py-4 align-middle">
               <%= t('.notification') %>
             </div>
             <div class="table-cell px-6 py-4 align-middle">
@@ -25,14 +28,14 @@
             <div class="table-cell px-6 py-4 align-middle">
               <%= Staff.human_attribute_name(:email) %>
             </div>
-            <div class="table-cell px-6 py-4 rounded-tr-lg rounded-br-lg align-middle">
+            <div class="table-cell px-6 py-4 align-middle">
               <%= t('defaults.delete') %>
             </div>
           </div>
         </div>
-        <div id="staffs" class="table-row-group">
+        <%= turbo_frame_tag dom_id(@dogrun_place, "staffs"), class: "table-row-group" do %>
           <%= render @staffs %>
-        </div>
+        <% end %>
       </div>
     </div>
     <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>

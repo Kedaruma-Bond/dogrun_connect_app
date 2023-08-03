@@ -60,7 +60,7 @@
         </div>
         <%= f.collection_check_boxes :facility_ids, Facility.all, :id, :name do |facility| %>
           <%= facility.label class: "block text-left" do %>
-            <%= facility.check_box %>
+            <%= facility.check_box class: "rounded" %>
             <%= dogrun_facility_view(facility.text) %>
           <% end %>
         <% end %>

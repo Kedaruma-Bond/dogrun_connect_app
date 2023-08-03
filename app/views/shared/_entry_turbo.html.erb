@@ -1,0 +1,45 @@
+<%= turbo_frame_tag dom_id(entry), data: { controller: "hidden-button" } do %>
+<div class="flex overflow-hidden bg-gray-200 text-gray-600 dark:bg-gray-500 dark:text-gray-200 bg-opacity-50 rounded-lg shadow-lg mb-2 relative">
+  <div class="w-1/3 mx-auto my-auto ml-1">
+    <%= link_to send(dog_profile_path, entry.dog) do %>
+      <div class="w-28 h-28 mx-auto">
+        <%= dog_thumbnail_for_admin(entry.dog) %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="w-2/3 p-4 md:p-4">
+
+    <h1 class="text-2xl font-semibold">
+      <%= entry.dog.name %>
+    </h1>
+
+    <div class="flex my-2">
+      <h1 class="text-sm leading-none my-auto">
+        <%= l entry.entry_at, format: :short2 %> 
+      </h1>
+      <svg class="w-6 h-6 leading-none text-gray-600 dark:text-gray-200 mx-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path clip-rule="evenodd" fill-rule="evenodd" d="M5 10a.75.75 0 01.75-.75h6.638L10.23 7.29a.75.75 0 111.04-1.08l3.5 3.25a.75.75 0 010 1.08l-3.5 3.25a.75.75 0 11-1.04-1.08l2.158-1.96H5.75A.75.75 0 015 10z"></path>
+      </svg>  
+      <h1 class="text-sm flex items-center">
+        <%= turbo_frame_tag dom_id(entry, "exit_time_part") do %>
+          <% if entry.exit_at.blank? %>
+            <p class="absolute animate-ping inline-flex ml-1 bg-green-400 opacity-40">
+              <%= t('defaults.entering') %>
+            </p>
+            <p class="text-emerald-300 font-medium text-base relative">
+              <%= t('defaults.entering') %>
+            </p>
+          <% else %>
+            <%= l entry.exit_at, format: :short2 %>
+          <% end %>
+        <% end %>
+      </h1>
+    </div>
+
+    <h1 class="text-sm text-gray-700 dark:text-gray-200">
+      <%= l entry.entry_at, format: :long2 %>
+    </h1>
+  </div>
+</div>
+<% end %>

@@ -1,4 +1,5 @@
 class Admin::EmbedsController < Admin::BaseController
+  before_action :set_dogrun_place, only: %i[create]
   before_action :set_embed, only: %i[edit update]
   before_action :correct_admin_check, only: %i[edit update]
 
@@ -13,6 +14,7 @@ class Admin::EmbedsController < Admin::BaseController
   def create
     @embed = Embed.new(embed_params)
     if @embed.save
+      @embed.create_broadcast
       redirect_to admin_posts_path, success: t('defaults.post_successfully')
     else
       render :new, status: :unprocessable_entity

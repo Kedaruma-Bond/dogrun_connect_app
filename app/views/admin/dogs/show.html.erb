@@ -1,5 +1,5 @@
 <% content_for(:title, t('.title')) %>
-<div class="w-full mx-auto mx-4" data-controller="filming-message-modal sns-post-message-modal lightbox">
+<div class="w-full mx-auto mx-4" data-controller="lightbox">
   <div class="container bg-purple-200 w-full shadow rounded p-5 sm:p-10">
     <p class="text-2xl md:text-3xl font-bold text-gray-700 text-center my-2">
       <%= t'.title' %>
@@ -11,30 +11,32 @@
             <div class="w-40 h-40 flex-shrink-0 mx-auto mb-3 md:md-0 inline-flex items-center justify-center">
               <% if @dog.thumbnail.present? %>
                 <%= link_to "#", data: { "lightbox-source-param": @dog.thumbnail_preview, action: "lightbox#handleOpen" } do %>
-                  <%= dog_thumbnail(@dog) %>
+                  <%= dog_thumbnail_for_admin(@dog) %>
                 <% end %>
               <% else %>
-                <%= dog_thumbnail(@dog) %>
+                <%= dog_thumbnail_for_admin(@dog) %>
               <% end %>
             </div>
-            <div class="text-gray-700 text-xs font-light">
-              <%= @naming_of_registration_number %>
-              <p class="text-xl font-bold">
-                <% if !@registration_number.nil? %>
-                  <%= @registration_number.registration_number %>
-                <% else %>
-                  -
-                <% end %>
-              </p>
-            </div>
+            <% if !current_user.grand_admin? %>
+              <div class="text-gray-700 text-xs font-light">
+                <%= @naming_of_registration_number %>
+                <p class="text-xl font-bold">
+                  <% if !@registration_number.nil? %>
+                    <%= @registration_number.registration_number %>
+                  <% else %>
+                    -
+                  <% end %>
+                </p>
+              </div>
+            <% end %>
             <div class="flex flex-col items-center text-center justify-center mt-3">
               <h2 class="font-bold text-gray-700 text-2xl">
                 <%= @dog.name %>
               </h2>
               <div class="w-32 h-1 bg-gray-200 rounded mt-2 mb-4"></div>
-              <div class="mb-2">
+              <div class="mb-1">
                 <% if @dog.filming_approval? %>
-                  <div class="flex mb-4">
+                  <div class="flex mb-2">
                     <%= render partial: "shared/filming_approval" %>
                     <% if @dog.sns_post_approval? %>
                       <%= render partial: "shared/sns_post_approval" %>
@@ -44,7 +46,7 @@
               </div>
               <%= render partial: "shared/notice_message", locals: { dog: @dog }  %>
               <% if !@dog.user.sns_account.nil? %>
-                <p class="text-gray-600 text-xs text-center md:text-left"><%= t('.dog_owner_sns')%></p>
+                <p class="text-gray-600 text-xs text-center md:text-left my-2"><%= t('.dog_owner_sns')%></p>
                 <%= render partial: "shared/sns_account_icons", locals: { sns_account: @dog.user.sns_account } %>
               <% end %>
               <div class="mx-auto mt-5">

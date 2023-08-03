@@ -146,6 +146,7 @@ Rails.application.routes.draw do
     resources :posts, only: %i[index create destroy] do
       collection do
         get 'search', to: 'posts#search'
+        get 'dogrun_board', to: 'posts#dogrun_board'
       end
       member do
         get 'set_publish_limit', to: 'posts#set_publish_limit'
@@ -183,12 +184,9 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :entries, only: %i[index destroy] do
+    resources :entries, only: %i[index create update destroy] do
       collection do
         get 'search', to: 'entries#search'
-      end
-      member do
-        patch 'force_exit', to: 'entries#force_exit'
       end
     end
     

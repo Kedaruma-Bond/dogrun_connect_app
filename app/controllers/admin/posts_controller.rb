@@ -1,7 +1,7 @@
 class Admin::PostsController < Admin::BaseController
   include Pagy::Backend
   before_action :set_q, :set_new_post, only: %i[index search]
-  before_action :set_dogrun_place, only: %i[index search start_to_publish cancel_to_publish]
+  before_action :set_dogrun_place, only: %i[index search start_to_publish cancel_to_publish dogrun_board destroy]
   before_action :set_post, only: %i[destroy set_publish_limit start_to_publish cancel_to_publish]
   before_action :correct_admin_check, only: %i[destroy set_publish_limit start_to_publish cancel_to_publish]
 
@@ -19,6 +19,11 @@ class Admin::PostsController < Admin::BaseController
     end
 
     @pagy, @posts = pagy(@posts)
+  end
+
+  def dogrun_board
+    @publishing_post = Post.is_publishing.where(dogrun_place: @dogrun_place)
+    render template: "admin/posts/dogrun_board"
   end
 
   def create
@@ -42,6 +47,7 @@ class Admin::PostsController < Admin::BaseController
 
   def destroy
     @post.destroy
+    @publishing_post = Post.is_publishing.where(dogrun_place: @dogrun_place)
     respond_to do |format|
       format.html { 
         if request.referer.nil?
@@ -50,19 +56,24 @@ class Admin::PostsController < Admin::BaseController
           redirect_to request.referer, success: t('defaults.destroy_successfully'), status: :see_other 
         end
       }
-      format.json { head :no_content }
+      format.turbo_stream { flash.now[:success] = t('defaults.destroy_successfully') }
     end
   end
 
   def set_publish_limit
     session[:previous_url] = request.referer
     @post.update!(acknowledge: true)
+    @post.remove_new_badge
   end
 
   def start_to_publish
-    publishing_post = Post.where(publish_status: 'is_publishing')
-    publishing_post.update!(publish_status: 'non_publish')
+    @previous_published_post = Post.find_by(publish_status: 'is_publishing')
+    if !@previous_published_post.nil?
+      Post.where(publish_status: 'is_publishing').update!(publish_status: 'non_publish')
+      @previous_published_post = Post.find(@previous_published_post.id)
+    end
     if @post.update(post_params_for_publish)
+      @publishing_post = Post.is_publishing.where(dogrun_place: @dogrun_place)
       if !@post.user.admin?
         PostMailer.publish_notification(@post.user, @dogrun_place).deliver_now
       end
@@ -74,7 +85,7 @@ class Admin::PostsController < Admin::BaseController
             redirect_to session[:previous_url], success: t('.change_to_be_publishing') 
           end
         }
-        format.json { head :no_content }
+        format.turbo_stream { flash.now[:success] = t('.change_to_be_publishing') }
       end
     else
       render :set_publish_limit, status: :unprocessable_entity
@@ -92,7 +103,6 @@ class Admin::PostsController < Admin::BaseController
         end
       }
       format.turbo_stream { flash.now[:success] = t('.change_to_non_publish') }
-      format.json { head :no_content }
     end
   end
 

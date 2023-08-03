@@ -1,0 +1,15 @@
+<%= render_turbo_stream_flash_messages %>
+
+<%= turbo_stream.replace "post_#{@post.id}" do %>
+  <%= render partial: "post", locals: { post: @post } %>
+<% end %>
+
+<% if !@previous_published_post.nil? %>
+  <%= turbo_stream.replace "post_#{@previous_published_post.id}" do %>
+    <%= render partial: "post", locals: { post: @previous_published_post } %>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.update "dogrun_board_dogrun_place_#{@dogrun_place.id}" do %>
+  <%= render partial: "dogrun_board", locals: { dogrun_place: @dogrun_place, publishing_post: @publishing_post } %>
+<% end %>

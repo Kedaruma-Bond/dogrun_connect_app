@@ -1,6 +1,6 @@
 class Admin::SessionsController < Admin::BaseController
   layout 'admin_login'
-  skip_before_action :require_login, only: %i[new create]
+  skip_before_action :require_login, :is_account_deactivated?, only: %i[new create]
   skip_before_action :check_admin, only: %i[new create]
 
 

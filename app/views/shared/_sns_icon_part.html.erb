@@ -6,7 +6,7 @@
   <% end %>
 <% else %>
   <p class="text-gray-600 text-sm text-center md:text-left"><%= t('.sns_account')%></p>
-  <div class="flex justify-center md:justify-start">
+  <div class="flex justify-center md:justify-start mt-2">
     <%= render partial: "shared/sns_account_icons", locals: { sns_account: current_user.sns_account } %>
   </div>
   <div class="flex mt-4 mb-2 justify-center">

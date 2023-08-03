@@ -1,9 +1,9 @@
 class Admin::DogsController < Admin::BaseController
   include Pagy::Backend
   before_action :set_dog, only: %i[show edit update]
-  before_action :check_grand_admin, only: %i[edit update]
   before_action :set_q, only: %i[index search]
   before_action :set_naming_of_registration_number, only: %i[index show search]
+  before_action :set_dogrun_place, only: %i[index search]
 
   def index
     @pagy, @dogs = pagy(@dogs)

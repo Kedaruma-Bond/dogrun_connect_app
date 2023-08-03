@@ -6,7 +6,6 @@ export default class extends Controller {
 
   connect() {
     this.updateSubmitButtonState()
-    console.log(this.checkboxes)
   }
 
   updateSubmitButtonState() {

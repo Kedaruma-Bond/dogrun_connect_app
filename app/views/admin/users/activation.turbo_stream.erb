@@ -1,0 +1,5 @@
+<%= render_turbo_stream_flash_messages %>
+
+<%= turbo_stream.replace dom_id(@user) do %>
+  <%= render partial: "user", locals: { user: @user } %>
+<% end %>

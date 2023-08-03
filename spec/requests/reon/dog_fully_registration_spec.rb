@@ -142,6 +142,8 @@ RSpec.describe Reon::DogFullyRegistrationController, type: :request do
   end
 
   describe 'POST #create' do
+    let!(:admin) { create(:user, :admin, dogrun_place: dogrun_place) }
+
     describe 'ログインしているとき' do
       before do
         reon_log_in_as(general)

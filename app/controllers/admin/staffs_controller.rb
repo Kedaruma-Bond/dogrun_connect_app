@@ -3,6 +3,7 @@ class Admin::StaffsController < Admin::BaseController
   before_action :staff_params, only: %i[create]
   before_action :set_staff, only: %i[destroy enable_notification disable_notification]
   before_action :correct_admin_check, only: %i[destroy enable_notification disable_notification]
+  before_action :set_dogrun_place, only: %i[index create]
 
   def index
     @pagy, @staffs = pagy(Staff.where(dogrun_place_id: current_user.dogrun_place_id).order(id: :desc))
@@ -14,7 +15,6 @@ class Admin::StaffsController < Admin::BaseController
 
   def create
     @staff = Staff.new(staff_params)
-    @dogrun_place = DogrunPlace.find(current_user.dogrun_place_id)
 
     if @staff.save
       StaffMailer.staff_registration_success(@staff, @dogrun_place).deliver_now

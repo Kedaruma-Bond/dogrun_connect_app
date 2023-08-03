@@ -12,6 +12,19 @@ class RegistrationNumber < ApplicationRecord
   validates :agreement, acceptance: true, on: :update, allow_blank: true
   validate :select_dog_validate
   
+  # broadcast
+  def create_broadcast
+    broadcast_prepend_to [dogrun_place, "admin_dogs_index"], target: "admin_dogs_dogrun_place_#{dogrun_place.id}", partial: "admin/dogs/dog", locals: { dog: self.dog, dogrun_place: dogrun_place, current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+    broadcast_replace_to [dogrun_place, "admin_navbar"], target: "admin_navbar_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/navbar", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+    broadcast_replace_to [dogrun_place, "admin_sidebar"], target: "admin_sidebar_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/sidebar", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+  end
+
+  def destroy_broadcast
+    broadcast_remove_to [dogrun_place, "admin_dogs_index"], target: "registration_number_#{self.id}"
+    broadcast_replace_to [dogrun_place, "admin_navbar"], target: "admin_navbar_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/navbar", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+    broadcast_replace_to [dogrun_place, "admin_sidebar"], target: "admin_sidebar_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/sidebar", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+  end
+
   # ransack authorization
   def self.ransackable_attributes(auth_object = nil)
     ["acknowledge", "created_at", "dog_id", "dogrun_place_id", "id", "registration_number", "updated_at"]

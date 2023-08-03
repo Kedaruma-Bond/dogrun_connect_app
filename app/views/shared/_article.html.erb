@@ -1,16 +1,16 @@
-<div class="relative">
+<div class="relative w-[350px] mx-auto">
   <div class="flex absolute right-0 pr-5 text-gray-400 mt-3">
     <%= post.box_header_icon %>
   </div>
-</div>
-<div class="mx-1 p-2 bg-gray-200 rounded-2xl" data-controller="lightbox">
-  <% if !post.article.photo.blank? %>
-    <%= link_to "#", data: { "lightbox-source-param": post.article.photo_preview, action: "lightbox#handleOpen" } do %>
-      <%= article_photo(post.article) %>
+  <div class="p-2 bg-gray-200 rounded-2xl" data-controller="lightbox">
+    <% if !post.article.photo.blank? %>
+      <%= link_to "#", data: { "lightbox-source-param": post.article.photo_preview, action: "lightbox#handleOpen" } do %>
+        <%= article_photo(post.article) %>
+      <% end %>
+    <% else %>
+      <div class="text-center text-gray-700">no image</div>
     <% end %>
-  <% else %>
-    <div class="text-center text-gray-700">no image</div>
-  <% end %>
-  <%= simple_format(post.article.content, { class: 'font-semibold text-base text-gray-700 mt-2 px-3 mb-1 text-left' }, { wrapper_tag: "div" } ) %>
-  <%= render partial: "shared/photo_modal" %>
+    <%= simple_format(post.article.content, { class: 'font-semibold text-base text-gray-700 mt-2 px-3 mb-1 text-left' }, { wrapper_tag: "div" } ) %>
+    <%= render partial: "shared/photo_modal" %>
+  </div>
 </div>

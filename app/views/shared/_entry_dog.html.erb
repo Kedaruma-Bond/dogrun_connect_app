@@ -3,7 +3,7 @@
     <div class="w-1/3 mx-auto my-auto ml-1 animate-rotate-in-2-tr-ccw">
       <%= link_to send(dog_profile_path, dog) do %>
         <div class="w-28 h-28 flex">
-          <%= dog_thumbnail_for_top(dog, current_user) %>
+          <%= dog_thumbnail(dog, current_user) %>
           <%= birthday_marker(dog) %>
         </div>
       <% end %>

@@ -100,6 +100,8 @@ RSpec.describe Reon::RegistrationNumbersController, type: :request do
   end
 
   describe 'POST #create' do
+    let!(:admin) { create(:user, :admin, dogrun_place: dogrun_place) }
+
     describe 'ログインしている時' do
       before do
         reon_log_in_as(general)
@@ -170,6 +172,8 @@ RSpec.describe Reon::RegistrationNumbersController, type: :request do
   end
 
   describe 'DELETE #destroy' do
+    let!(:admin) { create(:user, :admin, dogrun_place: dogrun_place) }
+    
     describe 'ログインしているとき' do
       before do
         reon_log_in_as(general)

@@ -1,8 +1,9 @@
 ja:
   admin:
     entries:
-      force_exit:
+      update:
         force_exit_successfully: 強制退場させました
+        exit_successfully: 退場させました
     registration_numbers:
       update:
         registration_number_updated_successfully: 登録番号を更新しました
@@ -22,6 +23,7 @@ ja:
     users:
       deactivation:
         account_frozen: アカウントを凍結しました
+        grand_admin_cannot_be_deactivated: grand_adminを凍結することはできません
       activation:
         account_activated: アカウントを有効化しました
       create:

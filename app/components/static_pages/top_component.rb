@@ -18,7 +18,8 @@ class StaticPages::TopComponent < ApplicationViewComponent
     route_selection_path:,
     guest_login_path:,
     pre_entry_dogs_public_view:,
-    entries_path:
+    entries_path:,
+    entry_for_time:
     )
     @title = title
     @dogrun_place = dogrun_place
@@ -37,6 +38,7 @@ class StaticPages::TopComponent < ApplicationViewComponent
     @guest_login_path = guest_login_path
     @pre_entry_dogs_public_view = pre_entry_dogs_public_view
     @entries_path = entries_path
+    @entry_for_time = entry_for_time
   end
 
 end
