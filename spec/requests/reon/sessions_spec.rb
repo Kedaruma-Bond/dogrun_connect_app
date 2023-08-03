@@ -16,6 +16,7 @@ RSpec.describe Reon::SessionsController, type: :request do
     context '正しいパラメータが渡された場合' do
       example 'ログインし、リダイレクトされること' do
         post reon_login_path, params: { session: { email: general.email, password: 'password' } }
+        expect(is_logged_in?).to eq(true)
         expect(response).to redirect_to(reon_top_path)
         expect(flash[:success]).to eq(I18n.t('local.sessions.login_successfully'))
       end
@@ -24,6 +25,7 @@ RSpec.describe Reon::SessionsController, type: :request do
     context '無効なパラメータが渡された場合' do
       example 'ログインが失敗し、エラーメッセージが表示されること' do
         post reon_login_path, params: { session: { email: general.email, password: 'invalid' } }
+        expect(is_logged_in?).to eq(false)
         expect(response).to have_http_status(:unprocessable_entity)
         expect(flash[:error]).to eq(I18n.t('local.sessions.login_failed'))
         expect(response).to render_template(:new)
@@ -38,9 +40,23 @@ RSpec.describe Reon::SessionsController, type: :request do
       end
 
       example 'ログイン機能が一時的にロックされること' do
+        expect(is_logged_in?).to eq(false)
         expect(response).to have_http_status(:unprocessable_entity)
         expect(flash[:error]).to eq(I18n.t('local.sessions.account_locked'))
         expect(general.reload.lock_expires_at).to be_within(1.second).of(5.minutes.from_now)
+      end
+    end
+
+    describe '凍結されたアカウントでログインを試みた場合' do
+      before do
+        general.update(deactivation: 'account_frozen')
+      end
+
+      example 'ログインできずエラーメッセージが表示されること' do
+        post reon_login_path, params: { session: { email: general.email, password: 'invalid' } }
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('local.sessions.login_failed'))
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
@@ -52,6 +68,7 @@ RSpec.describe Reon::SessionsController, type: :request do
 
     example 'ユーザーがログアウトし、リダイレクトされること' do
       delete reon_logout_path
+      expect(is_logged_in?).to eq(false)
       expect(response).to redirect_to(reon_top_path)
       expect(flash[:notice]).to eq(I18n.t('local.sessions.logout'))
     end
@@ -62,6 +79,7 @@ RSpec.describe Reon::SessionsController, type: :request do
       expect {
         post reon_guest_login_path
       }.to change(User, :count).by(1)
+      expect(is_logged_in?).to eq(true)
       expect(response).to redirect_to(reon_top_path)
       expect(flash[:success]).to eq(I18n.t('local.sessions.guest_login_successfully'))
       # redirectされているだけではrequest spec上は画面がgetされていないので
@@ -82,6 +100,7 @@ RSpec.describe Reon::SessionsController, type: :request do
 
       example 'ログアウトし、リダイレクトされること' do
         post reon_jump_to_signup_path
+        expect(is_logged_in?).to eq(false)
         expect(response).to redirect_to(reon_route_selection_path)
         expect(flash[:notice]).to eq(I18n.t('local.sessions.signup_please'))
         get reon_top_path

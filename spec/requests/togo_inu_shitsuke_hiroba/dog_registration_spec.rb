@@ -18,6 +18,20 @@ RSpec.describe TogoInuShitsukeHiroba::DogRegistrationController, type: :request 
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get togo_inu_shitsuke_hiroba_dog_registration_form_selection_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ゲストログインしているとき' do
       before do
         togo_inu_shitsuke_hiroba_log_in_as(guest)
@@ -49,6 +63,20 @@ RSpec.describe TogoInuShitsukeHiroba::DogRegistrationController, type: :request 
         get togo_inu_shitsuke_hiroba_dog_registration_have_registration_card_path
         expect(session[:card_flg]).to be true
         expect(response).to redirect_to(togo_inu_shitsuke_hiroba_dog_registration_path)
+      end
+    end
+
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get togo_inu_shitsuke_hiroba_dog_registration_have_registration_card_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -86,6 +114,20 @@ RSpec.describe TogoInuShitsukeHiroba::DogRegistrationController, type: :request 
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get togo_inu_shitsuke_hiroba_dog_registration_not_have_registration_card_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ゲストログインしているとき' do
       before do
         togo_inu_shitsuke_hiroba_log_in_as(guest)
@@ -120,6 +162,20 @@ RSpec.describe TogoInuShitsukeHiroba::DogRegistrationController, type: :request 
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get togo_inu_shitsuke_hiroba_dog_registration_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ゲストログインしているとき' do
       before do
         togo_inu_shitsuke_hiroba_log_in_as(guest)
@@ -190,6 +246,20 @@ RSpec.describe TogoInuShitsukeHiroba::DogRegistrationController, type: :request 
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        post togo_inu_shitsuke_hiroba_dog_registration_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ゲストログインしているとき' do
       before do
         togo_inu_shitsuke_hiroba_log_in_as(guest)

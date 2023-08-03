@@ -18,7 +18,20 @@ RSpec.describe TogoInuShitsukeHiroba::RegistrationNumbersController, type: :requ
         expect(response).to render_template(:form_selection)
         expect(assigns(:confirmation)).to eq(I18n.t('local.dog_registrations.form_selection.confirmation', registration_card: I18n.t('togo_inu_shitsuke_hiroba.registration_card')))
       end
+    end
 
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get togo_inu_shitsuke_hiroba_registration_numbers_form_selection_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
     end
 
     context 'ログインしていない時' do
@@ -40,6 +53,20 @@ RSpec.describe TogoInuShitsukeHiroba::RegistrationNumbersController, type: :requ
         get togo_inu_shitsuke_hiroba_registration_numbers_have_registration_card_path
         expect(session[:card_flg]).to be true
         expect(response).to redirect_to(new_togo_inu_shitsuke_hiroba_registration_number_path)
+      end
+    end
+
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get togo_inu_shitsuke_hiroba_registration_numbers_have_registration_card_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -65,6 +92,20 @@ RSpec.describe TogoInuShitsukeHiroba::RegistrationNumbersController, type: :requ
       end
     end
 
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get togo_inu_shitsuke_hiroba_registration_numbers_not_have_registration_card_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     context 'ログインしていないとき' do
       example 'root画面にリダイレクトされエラーメッセージが表示されること' do
         get togo_inu_shitsuke_hiroba_registration_numbers_not_have_registration_card_path
@@ -87,6 +128,20 @@ RSpec.describe TogoInuShitsukeHiroba::RegistrationNumbersController, type: :requ
         expect(assigns(:registration_number_hint)).to eq(I18n.t('local.dog_registrations.new.registration_number_hint', registration_card: I18n.t('togo_inu_shitsuke_hiroba.registration_card')))
         expect(response.body).to include(dog_1.name)
         expect(response.body).not_to include(dog_2.name)
+      end
+    end
+
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get new_togo_inu_shitsuke_hiroba_registration_number_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -162,6 +217,20 @@ RSpec.describe TogoInuShitsukeHiroba::RegistrationNumbersController, type: :requ
       end
     end
 
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        post togo_inu_shitsuke_hiroba_registration_numbers_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ログインしていない時' do
       example 'root画面にリダイレクトされエラーメッセージが表示されること' do
         post togo_inu_shitsuke_hiroba_registration_numbers_path
@@ -184,6 +253,22 @@ RSpec.describe TogoInuShitsukeHiroba::RegistrationNumbersController, type: :requ
         expect(RegistrationNumber.count).to be_zero
         expect(response).to redirect_to(togo_inu_shitsuke_hiroba_user_path(general))
         expect(flash[:success]).to eq(I18n.t('local.registration_numbers.destroy_successfully'))
+      end
+    end
+
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect {
+          delete  togo_inu_shitsuke_hiroba_registration_number_path(registration_number)
+        }.not_to change(PreEntry, :count)
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
 

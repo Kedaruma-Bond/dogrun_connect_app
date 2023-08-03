@@ -48,6 +48,20 @@ RSpec.describe TogoInuShitsukeHiroba::EmbedsController, type: :request do
       end
     end
 
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get new_togo_inu_shitsuke_hiroba_embed_path(id: post_embed.id)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ログインしていないとき' do
       example 'root画面にリダイレクトされエラーメッセージが表示されること' do
         get new_togo_inu_shitsuke_hiroba_embed_path(id: post_embed.id)
@@ -95,6 +109,20 @@ RSpec.describe TogoInuShitsukeHiroba::EmbedsController, type: :request do
           expect(assigns(:embed).errors).to be_of_kind(:embed_type, :blank)
           expect(assigns(:embed).errors).to be_of_kind(:identifier, :blank)
         end
+      end
+    end
+
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        post togo_inu_shitsuke_hiroba_embed_path(post_embed) 
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
 

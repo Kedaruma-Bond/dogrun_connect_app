@@ -43,7 +43,6 @@ RSpec.describe Reon::ArticlesController, type: :request do
         end
       end
   
-  
       context 'postのtypeがarticleでuserとdogrun_placeが正しい場合' do
         example '正常にレンダリングされること' do
           get new_reon_article_path(id: post_article.id)
@@ -51,6 +50,20 @@ RSpec.describe Reon::ArticlesController, type: :request do
           expect(response).to have_http_status(:ok)
           expect(assigns(:article)).to be_a_new(Article)
         end
+      end
+    end
+
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get new_reon_article_path(id: post_article.id)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -100,6 +113,20 @@ RSpec.describe Reon::ArticlesController, type: :request do
           expect(response).to have_http_status(:unprocessable_entity)
           expect(assigns(:article).errors).to be_of_kind(:content, :blank)
         end
+      end
+    end
+
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        post reon_article_path(post_article)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
 

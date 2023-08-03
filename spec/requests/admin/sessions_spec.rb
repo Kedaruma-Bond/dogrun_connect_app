@@ -33,6 +33,7 @@ RSpec.describe Admin::SessionsController, type: :request do
             password: ""
           }
         }
+        expect(is_logged_in?).to eq(false)
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response).to render_template(:new)
         expect(flash[:error]).to eq(I18n.t('admin.sessions.create.login_fail'))
@@ -66,6 +67,7 @@ RSpec.describe Admin::SessionsController, type: :request do
       
       example 'メッセージが表示されてログアウトし管理者ログイン画面にリダイレクトされること' do
         delete admin_logout_path
+        expect(is_logged_in?).to eq(false)
         expect(response).to have_http_status(:see_other)
         expect(response).to redirect_to('/admin/login')
         expect(flash[:success]).to eq(I18n.t('admin.sessions.destroy.logout'))
