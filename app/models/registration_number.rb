@@ -15,14 +15,14 @@ class RegistrationNumber < ApplicationRecord
   # broadcast
   def create_broadcast
     broadcast_prepend_to [dogrun_place, "admin_dogs_index"], target: "admin_dogs_dogrun_place_#{dogrun_place.id}", partial: "admin/dogs/dog", locals: { dog: self.dog, dogrun_place: dogrun_place, current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
-    broadcast_replace_to [dogrun_place, "admin_navbar"], target: "new_registration_number_count_badge_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/new_registration_number_count_badge", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
-    broadcast_replace_to [dogrun_place, "admin_sidebar"], target: "new_registration_number_count_badge_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/new_registration_number_count_badge", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+    broadcast_replace_to [dogrun_place, "admin_navbar"], target: "admin_navbar_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/navbar", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+    broadcast_replace_to [dogrun_place, "admin_sidebar"], target: "admin_sidebar_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/sidebar", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
   end
 
   def destroy_broadcast
     broadcast_remove_to [dogrun_place, "admin_dogs_index"], target: "registration_number_#{self.id}"
-    broadcast_replace_to [dogrun_place, "admin_navbar"], target: "new_registration_number_count_badge_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/new_registration_number_count_badge", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
-    broadcast_replace_to [dogrun_place, "admin_sidebar"], target: "new_registration_number_count_badge_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/new_registration_number_count_badge", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+    broadcast_replace_to [dogrun_place, "admin_navbar"], target: "admin_navbar_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/navbar", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+    broadcast_replace_to [dogrun_place, "admin_sidebar"], target: "admin_sidebar_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/sidebar", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
   end
 
   # ransack authorization

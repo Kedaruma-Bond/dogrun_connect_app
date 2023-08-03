@@ -30,7 +30,7 @@ module PostHelper
 
   def new_post_badge(post)
     if post.acknowledge == false
-      tag.div class: "flex relative w-0 h-0" do
+      tag.div class: "flex relative w-0 h-0 ml-2" do
         concat tag.span(class: "content-center top-3 w-3 h-3 absolute animate-ping rounded-full aspect-square bbg-indigo-400 dark:bg-indigo-200 opacity-75")
         concat tag.span(class: "content-center top-3 rounded-full aspect-square h-3 w-3 relative bg-indigo-500 dark:bg-indeigo-300")
       end

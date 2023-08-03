@@ -17,11 +17,8 @@ class Post < ApplicationRecord
   # broadcast
   def remove_new_badge
     broadcast_replace_to [dogrun_place, "admin_posts_index"], target: "post_#{self.id}", partial: "admin/posts/post", locals: { post: self}
-  end
-
-  def destroy_broadcast
-    broadcast_replace_to [dogrun_place, "admin_navbar"], target: "new_post_count_badge_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/new_post_count_badge", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
-    broadcast_replace_to [dogrun_place, "admin_sidebar"], target: "new_post_count_badge_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/new_post_count_badge", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+    broadcast_replace_to [dogrun_place, "admin_navbar"], target: "admin_navbar_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/navbar", locals:{ current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+    broadcast_replace_to [dogrun_place, "admin_sidebar"], target: "admin_sidebar_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/sidebar", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
   end
 
   # ransack authorization

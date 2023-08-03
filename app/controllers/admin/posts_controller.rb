@@ -57,14 +57,12 @@ class Admin::PostsController < Admin::BaseController
       }
       format.turbo_stream { flash.now[:success] = t('defaults.destroy_successfully') }
     end
-    @post.destroy_broadcast
   end
 
   def set_publish_limit
     session[:previous_url] = request.referer
     @post.update!(acknowledge: true)
     @post.remove_new_badge
-    
   end
 
   def start_to_publish

@@ -2,13 +2,16 @@
 
 <%= turbo_stream.remove "post_#{@post.id}" %>
 
-<% if !@publishing_post.blank? %>
-  <%= turbo_stream.update "dogrun_board_dogrun_place_#{@dogrun_place.id}" do %>
-    <%= render partial: "dogrun_board", locals: { dogrun_place: @dogrun_place, publishing_post: @publishing_post } %>
-  <% end %>
-<% else %>
+<% if @publishing_post.blank? %>
   <%= turbo_stream.update "dogrun_board_dogrun_place_#{@dogrun_place.id}" do %>
     <%= render partial: "dogrun_board_blank", locals: { dogrun_place: @dogrun_place } %>
   <% end %>
 <% end %>
 
+<%= turbo_stream.update "admin_sidebar_dogrun_place_#{@dogrun_place.id}" do %>
+  <%= render partial: "admin/shared/sidebar", locals: {current_user: current_user } %>
+<% end %>
+
+<%= turbo_stream.update "admin_navbar_dogrun_place_#{@dogrun_place.id}" do %>
+  <%= render partial: "admin/shared/navbar", locals: {current_user: current_user } %>
+<% end %>

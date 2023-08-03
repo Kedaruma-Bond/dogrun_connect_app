@@ -1,6 +1,8 @@
 <%= turbo_frame_tag "set_publish_limit_form_modal", autoscroll: true, data: { "autoscroll-behavior": "smooth" }  do %>
   <%= tag.div data: { controller: "turbo-form-modal", "turbo-form-modal_target": "modal", action: "turbo:submit-end->turbo-form-modal#submitEnd click@window->turbo-form-modal#closeBackground" }, 
-      id: "user_detail_form_modal", class: "mx-1 p-2 absolute z-10 shadow-xl rounded-lg border-2 border-gray-700 dark:border-white w-full md:w-auto", style: "background-color: #cbd5e1;" do %>
+      id: "user_detail_form_modal", 
+      class: "mx-1 p-2 absolute z-20 shadow-xl rounded-lg border-2 border-gray-700 dark:border-white w-full md:w-auto", 
+      style: "background-color: #cbd5e1; " do %>
     <div class="relative">
       <button type="button" data-action="turbo-form-modal#hideModal" class="absolute top-0 right-0 rounded-full bg-gray-200 border-2 border-gray-700 shadow-md">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
