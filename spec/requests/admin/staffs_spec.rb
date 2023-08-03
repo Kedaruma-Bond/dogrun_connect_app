@@ -28,6 +28,20 @@ RSpec.describe Admin::StaffsController, type: :request do
       end
     end
 
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        get admin_staffs_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+    
     describe '一般ユーザーでログインしているとき' do
       before do
         admin_log_in_as(general)
@@ -89,6 +103,20 @@ RSpec.describe Admin::StaffsController, type: :request do
       end
     end
 
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        post admin_staffs_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+    
     describe '一般ユーザーでログインしているとき' do
       before { admin_log_in_as(general) }
       example 'エラーメッセージが表示されてhome画面にリダイレクトされること' do
@@ -131,10 +159,28 @@ RSpec.describe Admin::StaffsController, type: :request do
       end
     end
 
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect {
+          delete admin_staff_path(staff_1)
+        }.not_to change(Staff, :count)
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+    
     describe '一般ユーザーでログインしているとき' do
       before { admin_log_in_as(general) }
       example 'エラーメッセージが表示されhome画面にリダイレクトされること' do
-        delete admin_staff_path(staff_1)
+        expect {
+          delete admin_staff_path(staff_1)
+        }.not_to change(Staff, :count)
         expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
         expect(response).to redirect_to(root_path)
       end
@@ -171,6 +217,20 @@ RSpec.describe Admin::StaffsController, type: :request do
       end
     end
 
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        patch enable_notification_admin_staff_path(staff_1)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+    
     describe '一般ユーザーでログインしているとき' do
       before { admin_log_in_as(general) }
       example 'エラーメッセージが表示されhome画面にリダイレクトされること' do
@@ -213,6 +273,20 @@ RSpec.describe Admin::StaffsController, type: :request do
       end
     end
 
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        patch disable_notification_admin_staff_path(staff_3)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+    
     describe '一般ユーザーでログインしているとき' do
       before { admin_log_in_as(general) }
       example 'エラーメッセージが表示されてhome画面にリダイレクトされること' do

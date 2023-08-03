@@ -53,6 +53,20 @@ RSpec.describe Admin::RegistrationNumbersController, type: :request do
       end
     end
 
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        patch admin_registration_number_path(registration_number_1) 
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+    
     describe '一般ユーザーでログインしているとき' do
       before { admin_log_in_as(general) } 
       

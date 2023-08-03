@@ -15,6 +15,20 @@ RSpec.describe Admin::SnsAccountsController, type: :request do
       end
     end
 
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        get new_admin_sns_account_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+    
     context '一般ユーザーでログインしているとき' do
       before { admin_log_in_as(general) }
       example 'エラーメッセージが表示されてhome画面にリダイレクトされること' do
@@ -71,6 +85,20 @@ RSpec.describe Admin::SnsAccountsController, type: :request do
       end
     end
 
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        post admin_sns_accounts_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+    
     describe '一般ユーザーでログインしているとき' do
       before { admin_log_in_as(general) }
       example 'エラーメッセージが表示されてhome画面にリダイレクトされること' do
@@ -90,10 +118,10 @@ RSpec.describe Admin::SnsAccountsController, type: :request do
   end
 
   describe 'GET #edit' do
+    let!(:sns_accounts_1) { create(:sns_account, dogrun_place: dogrun_place_1) }
     describe '管理者ユーザーでログインしているとき' do
       before { admin_log_in_as(admin_1) }
       context '管理ドッグランに紐づいたsns_accountを編集する場合' do
-        let!(:sns_accounts_1) { create(:sns_account, dogrun_place: dogrun_place_1) }
         example '正常なレスポンスが返ること' do
           get edit_admin_sns_account_path(sns_accounts_1)
           expect(response).to have_http_status(:success)
@@ -109,6 +137,20 @@ RSpec.describe Admin::SnsAccountsController, type: :request do
           expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
           expect(response).to redirect_to(admin_root_path)
         end
+      end
+    end
+    
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        get edit_admin_sns_account_path(sns_accounts_1)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
   end
@@ -140,6 +182,20 @@ RSpec.describe Admin::SnsAccountsController, type: :request do
           expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
           expect(response).to redirect_to(admin_root_path)
         end
+      end
+    end
+
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        patch admin_sns_account_path(sns_accounts_1) 
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -190,6 +246,22 @@ RSpec.describe Admin::SnsAccountsController, type: :request do
           expect(response).to redirect_to(admin_root_path)
           expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
         end
+      end
+    end
+
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect {
+          delete admin_sns_account_path(sns_accounts_1)
+        }.not_to change(SnsAccount, :count)
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
 
