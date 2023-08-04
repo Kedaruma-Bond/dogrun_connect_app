@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Contacts', type: :request do
+  let(:user) { create(:user) }
   describe '#create' do
-    let(:user) { create(:user) }
     context '有効なemail addressが入力されたとき' do
       example 'password reset mailが送信されること' do
         expect do
@@ -21,13 +21,24 @@ RSpec.describe 'Contacts', type: :request do
         end.not_to change { ActionMailer::Base.deliveries.count }
 
         expect(response).to redirect_to(root_path)
-        expect(flash[:notice]).to eq(I18n.t('password_resets.create.instruction'))
+        expect(flash[:error]).to eq(I18n.t('password_resets.create.user_not_found'))
+      end
+    end
+
+    context '凍結されたアカウントのパスワード変更を試みるとき' do
+      before do
+        user.update(deactivation: 'account_frozen')
+        post password_resets_path, params: { email: user.email }
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
   end
 
   describe '#edit' do
-    let(:user) { create(:user) }
 
     context '正しいリンクを開いたとき' do
       before { user.deliver_reset_password_instructions! }
@@ -51,7 +62,6 @@ RSpec.describe 'Contacts', type: :request do
   end
 
   describe '#update' do
-    let(:user) { create(:user) }
 
     context '有効なパスワードが入力されたとき' do
       before { user.deliver_reset_password_instructions! }
