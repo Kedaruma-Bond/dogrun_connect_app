@@ -2,7 +2,7 @@ class PasswordResetsController < ApplicationController
   skip_before_action :require_login, :is_account_deactivated?
 
   def create
-    @user = User.find_by(email: params[:email])
+    @user = User.find_by_email(params[:email])
 
     if @user.blank?
       redirect_to(root_path, error: t('.user_not_found'))

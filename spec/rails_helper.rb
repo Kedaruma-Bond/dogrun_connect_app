@@ -1,5 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+require 'capybara/email/rspec'
 require 'view_component/test_helpers'
 require 'active_storage_validations/matchers'
 ENV['RAILS_ENV'] ||= 'test'
@@ -71,6 +72,13 @@ RSpec.configure do |config|
   config.include ViewComponent::TestHelpers, type: :component
   config.include ActionView::RecordIdentifier
 
+  config.before(:each, type: :system) do
+    driven_by :selenium, using: :headless_chrome
+  end
+
+  # sorcery gem のhelper
+  config.include Sorcery::TestHelpers::Rails::Request, type: :request
+  config.include Sorcery::TestHelpers::Rails::Integration, type: :system
 end
 # shoulda matcherを入れる
 Shoulda::Matchers.configure do |config|

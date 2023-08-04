@@ -58,6 +58,7 @@ class Admin::PostsController < Admin::BaseController
       }
       format.turbo_stream { flash.now[:success] = t('defaults.destroy_successfully') }
     end
+    @post.change_posting(@publishing_post)
   end
 
   def set_publish_limit
@@ -87,6 +88,7 @@ class Admin::PostsController < Admin::BaseController
         }
         format.turbo_stream { flash.now[:success] = t('.change_to_be_publishing') }
       end
+      @post.change_posting(@publishing_post)
     else
       render :set_publish_limit, status: :unprocessable_entity
     end
@@ -104,6 +106,8 @@ class Admin::PostsController < Admin::BaseController
       }
       format.turbo_stream { flash.now[:success] = t('.change_to_non_publish') }
     end
+    @publishing_post = Post.is_publishing.where(dogrun_place: @dogrun_place)
+    @post.change_posting(@publishing_post)
   end
 
   def search 

@@ -15,6 +15,10 @@ class Post < ApplicationRecord
   enum post_type: { article: 0, embed: 1 }
 
   # broadcast
+  def change_posting(publishing_post)
+    broadcast_replace_to [dogrun_place, "top"], target: "dogrun_board_dogrun_place_#{dogrun_place.id}", partial: "shared/dogrun_board", locals: { publishing_post: publishing_post }
+  end
+
   def remove_new_badge
     broadcast_replace_to [dogrun_place, "admin_posts_index"], target: "post_#{self.id}", partial: "admin/posts/post", locals: { post: self}
     broadcast_replace_to [dogrun_place, "admin_navbar"], target: "admin_navbar_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/navbar", locals:{ current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
