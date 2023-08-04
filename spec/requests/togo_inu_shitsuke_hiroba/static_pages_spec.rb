@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe TogoInuShitsukeHiroba::StaticPagesController, type: :request do
   let!(:dogrun_place) { create(:dogrun_place, :togo_inu_shitsuke_hiroba) }
+  let!(:general) { create(:user, :general) }
 
   describe 'GET #top' do
     context 'ログインしていない時' do
@@ -13,7 +14,6 @@ RSpec.describe TogoInuShitsukeHiroba::StaticPagesController, type: :request do
     end
   
     context 'ログインしているとき' do
-      let!(:general) { create(:user, :general) }
       let!(:dog_1) { create(:dog, :castrated, :public_view) }
       let!(:rn_1) { create(:registration_number, dog: dog_1, dogrun_place: dogrun_place) }
       let!(:entry_1) { create(:entry, registration_number: rn_1, dog: dog_1, exit_at: nil) }
@@ -32,6 +32,20 @@ RSpec.describe TogoInuShitsukeHiroba::StaticPagesController, type: :request do
         expect(response.body).to include(entry_1.dog.name)
         expect(response.body).not_to include(entry_2.dog.name)
         expect(response.body).to include(article.content)
+      end
+    end
+
+    context '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get togo_inu_shitsuke_hiroba_top_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
   end
