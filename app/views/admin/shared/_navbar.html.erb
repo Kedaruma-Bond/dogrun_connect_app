@@ -3,7 +3,7 @@
   <header class="bg-gray-600 h-14 w-full sticky top-0 z-30" data-controller="menu" data-action="click@window->menu#closeBackground">
     <!--Nav md or above -->
     <div class="hidden md:flex items-center">
-      <div class="flex flex-shrink w-1/5 justify-start text-white">
+      <div class="flex flex-shrink w-1/5 justify-start mt-1">
         <%= link_to admin_root_path, class:"ml-2 w-12 h-auto", data: { turbo: false } do %>
           <%= dogrun_logo(current_user.dogrun_place) %>
         <% end %>
