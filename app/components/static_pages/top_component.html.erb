@@ -8,9 +8,9 @@
     <div class="w-full sm:px-10 pb-5 pt-1">
       <% if @dogrun_place.closed_flag == true %>
         <div class="my-10">
-          <%= simple_format(I18n.t("local.static_pages.top.dogrun_is_closing_now", dogrun_name: @dogrun_place.name), class: "text-gray-700 font-bold text-2xl") %>
+          <%= simple_format(I18n.t("local.static_pages.top.dogrun_is_closing_now", dogrun_name: @dogrun_place.name), class: "text-gray-700 font-bold text-2xl text-center") %>
           <% if !@dogrun_place.force_closing? %>
-            <div class="mt-3 text-gray-700 font-medium">
+            <div class="mt-3 text-gray-700 font-medium text-center">
                 <% if !@dogrun_place.opening_time.blank? || !@dogrun_place.closing_time.blank? %>
                   <p class="text-sm mt-2">
                     <%= t('defaults.business_time') %>

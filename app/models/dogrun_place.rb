@@ -22,6 +22,11 @@ class DogrunPlace < ApplicationRecord
   # enum
   enum force_closed: { force_closing: true, releasing: false }   
 
+  # broadcast
+  def update_broadcast
+    broadcast_replace_to [self, "admin_navbar"], target: "admin_navbar_dogrun_place_#{self.id}", partial: "admin/shared/navbar", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: self) }
+  end
+
 end
 
 # 1: grand_admin

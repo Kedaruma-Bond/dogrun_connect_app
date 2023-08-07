@@ -11,6 +11,9 @@ ja:
         dogrun_place_list: ドッグラン一覧
         registered_dogs_list: 登録犬一覧
         dogrun_place_detail_information: ドッグラン詳細情報
+        dogrun_is_opening: 営業中
+        dogrun_is_force_closing: 強制休業中
+        dogrun_is_closing: 営業時間外
       sidebar:
         user_list: 利用者一覧
         dogrun_post_list: |

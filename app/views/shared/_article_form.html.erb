@@ -20,7 +20,7 @@
     <div class="flex justify-center mt-3 sm:mt-0 sm:ml-3">
       <%= f.button :button, class: "flex font-bold leading-none text-white py-4 px-12 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300", data: { "disable-target": "submitButton" } do %>
         <%= spinner_icon_for_form_disable_button %>
-        <span data-disable-target="buttonText"><%= t('defaults.post') %></span>
+        <span data-disable-target="buttonText" class="my-auto"><%= t('defaults.post') %></span>
       <% end %>
     </div>
   </div>
