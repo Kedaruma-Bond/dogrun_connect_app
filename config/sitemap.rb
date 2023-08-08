@@ -35,5 +35,6 @@ SitemapGenerator::Sitemap.create do
   #     add article_path(article), :lastmod => article.updated_at
   #   end
   add '/togo_inu_shitsuke_hiroba', :priority => 0.75, :changefreq => 'daily'
+  add '/reon', :priority => 0.75, :changefreq => 'daily'
 
 end
