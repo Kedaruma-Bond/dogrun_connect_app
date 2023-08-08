@@ -16,17 +16,21 @@
             </span>
           </li>
           <li class="flex-none mr-3">
-            <span class="py-2 px-4 text-white font-bold">
-              <% if current_user.dogrun_place.closed_flag === false %>
-                <span class="py-2 px-4 text-white font-bold"><%= t('.dogrun_is_opening') %></span>
-              <% else %>
-                <% if current_user.dogrun_place.force_closing? %>
-                  <span class="py-2 px-4 text-white font-bold"><%= t('.dogrun_is_force_closing') %></span>
+            <% if current_user.grand_admin? %>
+              <span class="text-white">-</span>
+            <% else %>
+              <span class="py-2 px-4 text-white font-bold">
+                <% if current_user.dogrun_place.closed_flag === false %>
+                  <span class="py-2 px-4 text-white font-bold"><%= t('.dogrun_is_opening') %></span>
                 <% else %>
-                  <span class="py-2 px-4 text-white font-bold"><%= t('.dogrun_is_closing') %></span>
+                  <% if current_user.dogrun_place.force_closing? %>
+                    <span class="py-2 px-4 text-white font-bold"><%= t('.dogrun_is_force_closing') %></span>
+                  <% else %>
+                    <span class="py-2 px-4 text-white font-bold"><%= t('.dogrun_is_closing') %></span>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </span>
+              </span>
+            <% end %>
           </li>
           <li class="flex-none justify-items-end">
             <%= link_to admin_logout_path, 

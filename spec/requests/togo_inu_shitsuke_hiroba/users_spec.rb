@@ -45,6 +45,7 @@ RSpec.describe TogoInuShitsukeHiroba::UsersController, type: :request do
   describe 'POST #create' do
     let!(:valid_attributes) { attributes_for(:user, :general, dogrun_place_id: nil)}
     let!(:invalid_attributes) { attributes_for(:user, :general, name: "", dogrun_place_id: nil)}
+    let!(:article) { create(:article, content: "test", post: create(:post, :article, :is_publishing, dogrun_place: dogrun_place)) } 
     
     describe '入力値が正しい場合' do
       example '登録完了メールが送信されること' do
@@ -61,7 +62,7 @@ RSpec.describe TogoInuShitsukeHiroba::UsersController, type: :request do
         }
         get togo_inu_shitsuke_hiroba_top_path
         expect(response.body).to include(valid_attributes[:name])
-        expect(response.body).to include(I18n.t('shared.login_top_content.please_register_dog'))
+        expect(response.body).to include(article.content)
       end
 
       example '新規登録できること' do
