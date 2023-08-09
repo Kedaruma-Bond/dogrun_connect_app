@@ -18,6 +18,20 @@ RSpec.describe Reon::DogFullyRegistrationController, type: :request do
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get reon_dog_fully_registration_form_selection_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ゲストログインしているとき' do
       before do
         reon_log_in_as(guest)
@@ -52,6 +66,20 @@ RSpec.describe Reon::DogFullyRegistrationController, type: :request do
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get reon_dog_fully_registration_have_registration_card_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ゲストログインしているとき' do
       before do
         reon_log_in_as(guest)
@@ -86,6 +114,20 @@ RSpec.describe Reon::DogFullyRegistrationController, type: :request do
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get reon_dog_registration_not_have_registration_card_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ゲストログインしているとき' do
       before do
         reon_log_in_as(guest)
@@ -120,6 +162,20 @@ RSpec.describe Reon::DogFullyRegistrationController, type: :request do
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get reon_dog_fully_registration_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ゲストログインしているとき' do
       before do
         reon_log_in_as(guest)
@@ -203,6 +259,20 @@ RSpec.describe Reon::DogFullyRegistrationController, type: :request do
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        post reon_dog_fully_registration_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ゲストログインしているとき' do
       before do
         reon_log_in_as(guest)

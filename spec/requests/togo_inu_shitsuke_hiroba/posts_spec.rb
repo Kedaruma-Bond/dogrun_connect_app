@@ -7,25 +7,6 @@ RSpec.describe TogoInuShitsukeHiroba::PostsController, type: :request do
   describe 'POST #create' do
     let!(:guest) { create(:user, :guest) }
 
-    describe 'ゲストログインしている時' do
-      before do
-        togo_inu_shitsuke_hiroba_log_in_as(guest)
-      end
-
-      example '直前の表示画面にリダイレクトされエラーメッセージが表示されること' do
-        expect {
-          post togo_inu_shitsuke_hiroba_posts_path, headers: { 'HTTP_REFERER' => '/togo_inu_shitsuke_hiroba/top' },
-          params: {
-            post: {
-              post_type: 'article'
-            }
-          } 
-        }.not_to change(Post, :count)
-        expect(response).to redirect_to('/togo_inu_shitsuke_hiroba/top')
-        expect(flash[:error]).to eq(I18n.t('local.posts.guest_cannot_create_post'))
-      end
-    end
-
     describe 'ログインしている時' do
       before do
         togo_inu_shitsuke_hiroba_log_in_as(general)
@@ -72,6 +53,46 @@ RSpec.describe TogoInuShitsukeHiroba::PostsController, type: :request do
         expect(response).to redirect_to('/togo_inu_shitsuke_hiroba/top')
         expect(flash[:error]).to eq(I18n.t('local.posts.post_save_error'))
         end
+      end
+    end
+    
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect {
+          post togo_inu_shitsuke_hiroba_posts_path, headers: { 'HTTP_REFERER' => '/togo_inu_shitsuke_hiroba/top' },
+          params: {
+            post: {
+              post_type: 'article'
+            }
+          } 
+        }.not_to change(Post, :count)
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    describe 'ゲストログインしている時' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(guest)
+      end
+
+      example '直前の表示画面にリダイレクトされエラーメッセージが表示されること' do
+        expect {
+          post togo_inu_shitsuke_hiroba_posts_path, headers: { 'HTTP_REFERER' => '/togo_inu_shitsuke_hiroba/top' },
+          params: {
+            post: {
+              post_type: 'article'
+            }
+          } 
+        }.not_to change(Post, :count)
+        expect(response).to redirect_to('/togo_inu_shitsuke_hiroba/top')
+        expect(flash[:error]).to eq(I18n.t('local.posts.guest_cannot_create_post'))
       end
     end
 

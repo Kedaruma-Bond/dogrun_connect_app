@@ -21,6 +21,20 @@ RSpec.describe Reon::UserDetailsController, type: :request do
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get new_reon_user_detail_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ゲストログインしているとき' do
       before do
         reon_log_in_as(guest)
@@ -55,6 +69,20 @@ RSpec.describe Reon::UserDetailsController, type: :request do
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get signup_fully_route_reon_user_details_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ゲストログインしているとき' do
       before do
         reon_log_in_as(guest)
@@ -125,6 +153,25 @@ RSpec.describe Reon::UserDetailsController, type: :request do
       end 
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect {
+          post reon_user_details_path,
+          params: {
+            user_detail: valid_params
+          }
+        }.not_to change(UserDetail, :count)
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ゲストログインしているとき' do
       before do
         reon_log_in_as(guest)
@@ -170,6 +217,20 @@ RSpec.describe Reon::UserDetailsController, type: :request do
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get edit_reon_user_detail_path(user_detail_1)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     context 'ゲストログインしているとき' do
       before do
         reon_log_in_as(guest)
@@ -242,6 +303,20 @@ RSpec.describe Reon::UserDetailsController, type: :request do
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        patch reon_user_detail_path(user_detail_1)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ゲストログインしているとき' do
       before do
         reon_log_in_as(guest)
@@ -287,6 +362,22 @@ RSpec.describe Reon::UserDetailsController, type: :request do
           expect(response).to redirect_to(reon_user_path(general))
           expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
         end
+      end
+    end
+
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect {
+          delete reon_user_detail_path(user_detail_1)
+        }.not_to change(UserDetail, :count)
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
 

@@ -1,13 +1,23 @@
 class Reon::StaticPagesController < Reon::DogrunPlaceController
-  before_action :set_new_post, only: %i[top]
   skip_before_action :require_login, :is_account_deactivated?, only: %i[top]
-  before_action :set_dogs_and_registration_numbers_at_local, only: %i[top]
-  before_action :get_dogrun_entry_data, only: %i[top]
+  before_action :set_new_post, only: %i[top]
+  before_action :set_dogs_and_registration_numbers_at_local, only: %i[top_contents]
+  before_action :get_dogrun_entry_data, only: %i[top_contents]
 
   def top
     return unless logged_in?
-    @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place: @dogrun_place }).find_by(exit_at: nil) unless not_entry?(current_user, @dogrun_place)
+    
+    unless current_user.active_for_authentication?
+      logout
+      redirect_to root_path, error: t('defaults.your_account_is_deactivating')
+      return
+    end
+    
     @publishing_post = Post.where(publish_status: 'is_publishing').where(dogrun_place: @dogrun_place)
+  end
+
+  def top_contents
+    @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place: @dogrun_place }).find_by(exit_at: nil) unless not_entry?(current_user, @dogrun_place)
     
     if !@dogrun_entry_data.blank?
       dogs = @dogrun_entry_data.map do |entry_data|
@@ -37,7 +47,6 @@ class Reon::StaticPagesController < Reon::DogrunPlaceController
     else
       @pre_entry_dogs_public_view  = []
     end
-
   end
 
   private

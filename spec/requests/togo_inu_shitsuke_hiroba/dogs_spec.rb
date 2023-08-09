@@ -46,6 +46,20 @@ RSpec.describe TogoInuShitsukeHiroba::DogsController, type: :request do
       end
     end
 
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get togo_inu_shitsuke_hiroba_dog_path(dog)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ログインしていないとき' do
       example 'root画面にリダイレクトされエラーメッセージが表示されること' do
         get togo_inu_shitsuke_hiroba_dog_path(dog)
@@ -67,6 +81,20 @@ RSpec.describe TogoInuShitsukeHiroba::DogsController, type: :request do
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get edit_togo_inu_shitsuke_hiroba_dog_path(dog)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ログインしていないとき' do
       example 'root画面にリダイレクトされエラーメッセージが表示されること' do
         get edit_togo_inu_shitsuke_hiroba_dog_path(dog)
@@ -103,6 +131,20 @@ RSpec.describe TogoInuShitsukeHiroba::DogsController, type: :request do
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        patch togo_inu_shitsuke_hiroba_dog_path(dog)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ログインしていないとき' do
       example 'root画面にリダイレクトされエラーメッセージが表示されること' do
         patch togo_inu_shitsuke_hiroba_dog_path(dog)

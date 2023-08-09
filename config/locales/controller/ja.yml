@@ -57,6 +57,9 @@ ja:
       instruction: |
         パスワードリセット案内メールを送信しました
         ご確認ください
+      user_not_found: |
+        入力されたメールアドレスをもつユーザーが
+        見つかりませんでした
     update:
       success: パスワードが更新されました
   unlock_account:

@@ -46,6 +46,7 @@ class Admin::DogrunPlacesController < Admin::BaseController
   def force_closed
     @dogrun_place = DogrunPlace.find(params[:id]) 
     @dogrun_place.update(force_closed: true, closed_flag: true)
+    @dogrun_place.update_broadcast
     current_entries = Entry.includes(:registration_number).where(registration_numbers: { dogrun_place: @dogrun_place }).where(exit_at: nil)
     current_entries.each do |entry|
       entry.update(exit_at: Time.zone.now)
@@ -59,6 +60,7 @@ class Admin::DogrunPlacesController < Admin::BaseController
   def release
     @dogrun_place = DogrunPlace.find(params[:id]) 
     @dogrun_place.update(force_closed: false, closed_flag: false)
+    @dogrun_place.update_broadcast
     respond_to do |format|
       format.html { redirect_to  admin_dogrun_place_path(@dogrun_place), success: t('.released_dogrun_to_open') }
       format.turbo_stream { flash.now[:success] = t('.released_dogrun_to_open') }

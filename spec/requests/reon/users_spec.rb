@@ -45,6 +45,7 @@ RSpec.describe Reon::UsersController, type: :request do
   describe 'POST #create' do
     let!(:valid_attributes) { attributes_for(:user, :general, dogrun_place_id: nil)}
     let!(:invalid_attributes) { attributes_for(:user, :general, name: "", dogrun_place_id: nil)}
+    let!(:article) { create(:article, content: "test", post: create(:post, :article, :is_publishing, dogrun_place: dogrun_place)) } 
     
     context '入力値が正しい場合' do
       example '登録完了メールが送信されること' do
@@ -61,7 +62,7 @@ RSpec.describe Reon::UsersController, type: :request do
         }
         get reon_top_path
         expect(response.body).to include(valid_attributes[:name])
-        expect(response.body).to include(I18n.t('shared.login_top_content.please_register_dog'))
+        expect(response.body).to include(article.content)
       end
 
       example '新規登録できること' do
@@ -112,6 +113,20 @@ RSpec.describe Reon::UsersController, type: :request do
           expect(response).to redirect_to(root_path)
           expect(flash[:error]).to eq(I18n.t("defaults.require_correct_account"))
         end
+      end
+    end
+
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get reon_user_path(user)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
 

@@ -25,7 +25,7 @@ gem "turbo-rails", github: "hotwired/turbo-rails", branch: "main"
 gem 'stimulus-rails', '~>1.2.1'
 
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
-gem 'tailwindcss-rails', '~>2.0.21'
+gem 'tailwindcss-rails', '~>2.0.30'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
@@ -121,4 +121,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem 'spring'
+end
+
+group :test do
+  gem "capybara-email"
 end

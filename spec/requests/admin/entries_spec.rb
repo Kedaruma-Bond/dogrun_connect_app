@@ -30,6 +30,20 @@ RSpec.describe Admin::EntriesController, type: :request do
       end
     end
 
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        get admin_entries_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     context '一般ユーザーでログインしているとき' do
       before do
         admin_log_in_as(general)
@@ -85,6 +99,20 @@ RSpec.describe Admin::EntriesController, type: :request do
           expect(flash[:error]).to eq(I18n.t('local.entries.dogrun_is_closing_now'))
           expect(response).to have_http_status(:found)
         end
+      end
+    end
+
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        post admin_entries_path, params: { dog_id: dog_1.id }
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -150,6 +178,20 @@ RSpec.describe Admin::EntriesController, type: :request do
       end
     end
 
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        patch admin_entry_path(entry_3)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     context '一般ユーザーでログインしている時' do
       before do
         admin_log_in_as(general)
@@ -194,6 +236,20 @@ RSpec.describe Admin::EntriesController, type: :request do
           expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
           expect(response).to redirect_to(admin_root_path)
         end
+      end
+    end
+
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        delete admin_entry_path(entry_5)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
 

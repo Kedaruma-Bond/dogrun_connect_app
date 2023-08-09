@@ -19,6 +19,7 @@ RSpec.describe Admin::SessionsController, type: :request do
             password: "password"
           }
         }
+        expect(is_logged_in?).to eq(true)
         expect(response).to redirect_to(admin_root_path)
         expect(flash[:success]).to eq(I18n.t('admin.sessions.create.admin_login'))
       end
@@ -32,11 +33,31 @@ RSpec.describe Admin::SessionsController, type: :request do
             password: ""
           }
         }
+        expect(is_logged_in?).to eq(false)
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response).to render_template(:new)
         expect(flash[:error]).to eq(I18n.t('admin.sessions.create.login_fail'))
       end
     end
+
+    context '凍結されたアカウントでログインを試みる場合' do
+      before do
+        admin.update(deactivation: 'account_frozen')
+      end
+
+      example 'ログインできずエラーメッセージが表示されること' do
+        post admin_login_path, params: { 
+          session: {
+            email: admin.email,
+            password: "password"
+          }
+        }
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('admin.sessions.create.login_fail'))
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+    
   end
 
   describe 'DELETE #destroy' do
@@ -46,6 +67,7 @@ RSpec.describe Admin::SessionsController, type: :request do
       
       example 'メッセージが表示されてログアウトし管理者ログイン画面にリダイレクトされること' do
         delete admin_logout_path
+        expect(is_logged_in?).to eq(false)
         expect(response).to have_http_status(:see_other)
         expect(response).to redirect_to('/admin/login')
         expect(flash[:success]).to eq(I18n.t('admin.sessions.destroy.logout'))

@@ -69,9 +69,9 @@
   </div>
   <div class="mt-4 sm:flex justify-center">
     <div class="flex justify-center sm:ml-0 sm:mx-3 h-[56px] mt-0 md:mt-3">
-      <button data-controller="back-button" data-action="back-button#goBack" class="font-bold leading-normal text-white px-10 bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
+      <a href="javascript:history.back()" class="flex items-center font-bold leading-normal text-white px-10 bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
         <span><%= t('defaults.back') %></span>
-      </button>
+      </a>
     </div>
     <div class="flex justify-center">
       <%= f.button :button, data: { "disable-target": "submitButton" },

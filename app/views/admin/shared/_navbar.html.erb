@@ -1,163 +1,200 @@
 <%= turbo_stream_from current_user.dogrun_place, "admin_navbar" %>
 <%= turbo_frame_tag dom_id(current_user.dogrun_place, "admin_navbar") do %>
-<header class="bg-gray-600 h-14 w-full sticky top-0 z-30" data-controller="menu" data-action="click@window->menu#closeBackground">
-  <!--Nav-->
-  <div class="flex items-center">
-    <div class="flex flex-shrink w-1/3 justify-start text-white">
-      <div class="md:hidden" data-action="click->menu#open">
-        <button data-menu-target="open_button" type="button" class="inline-flex justify-center w-full px-2 py-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500", id="options-menu" aria-haspopup="true" aria-expanded="true">                                                                                                                 
-          <svg class="mr-3 w-10 h-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-          </svg>
-        </button>
+  <header class="bg-gray-600 h-14 w-full sticky top-0 z-30" data-controller="menu" data-action="click@window->menu#closeBackground">
+    <!--Nav md or above -->
+    <div class="hidden md:flex items-center h-full">
+      <div class="flex flex-shrink w-1/5 justify-start">
+        <%= link_to admin_root_path, class:"ml-2 w-12 h-auto", data: { turbo: false } do %>
+          <%= dogrun_logo(current_user.dogrun_place) %>
+        <% end %>
       </div>
-      <div data-action="click->menu#close">
-        <button data-menu-target="close_button" type="button" class="hidden inline-flex justify-center w-full px-2 py-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500", id="options-menu" aria-haspopup="true" aria-expanded="true">                                                                                                                 
-          <svg class="mr-3 w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-      <%= link_to admin_root_path, class:" hidden md:block ml-2 w-12 h-auto", data: { turbo: false } do %>
-        <%= dogrun_logo(current_user.dogrun_place) %>
-      <% end %>
-    </div>
-    <div class="pt-2 content-center w-2/3 justify-end">
-      <ul class="flex justify-between flex-none items-center">
-        <li class="flex-none mr-3">
-          <span class="py-2 px-4 text-white font-bold">
-            <%= current_user.dogrun_place.name %>
-          </span>
-        </li>
-        <li class="flex-none mr-0 md:mr-3">
-          <%= link_to admin_logout_path, 
-              data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation') }, 
-              class: "flex text-white hover:text-gray-200 py-2 px-4" do %>
-            <svg class="w-7 h-7" stroke-width="2.0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 12H19M19 12L16 15M19 12L16 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M19 6V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="hidden md:block my-auto">
-              <%= t('defaults.logout') %>
+      <div class="content-center w-4/5 justify-end">
+        <ul class="flex justify-between flex-none items-center">
+          <li class="flex-none mr-3">
+            <span class="py-2 px-4 text-white font-bold">
+              <%= current_user.dogrun_place.name %>
             </span>
-          <% end %>
-        </li>
-      </ul>
+          </li>
+          <li class="flex-none mr-3">
+            <% if current_user.grand_admin? %>
+              <span class="text-white">-</span>
+            <% else %>
+              <span class="py-2 px-4 text-white font-bold">
+                <% if current_user.dogrun_place.closed_flag === false %>
+                  <span class="py-2 px-4 text-white font-bold"><%= t('.dogrun_is_opening') %></span>
+                <% else %>
+                  <% if current_user.dogrun_place.force_closing? %>
+                    <span class="py-2 px-4 text-white font-bold"><%= t('.dogrun_is_force_closing') %></span>
+                  <% else %>
+                    <span class="py-2 px-4 text-white font-bold"><%= t('.dogrun_is_closing') %></span>
+                  <% end %>
+                <% end %>
+              </span>
+            <% end %>
+          </li>
+          <li class="flex-none justify-items-end">
+            <%= link_to admin_logout_path, 
+                data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation') }, 
+                class: "flex text-white hover:text-gray-200 px-4 items-center" do %>
+              <svg class="w-7 h-7" stroke-width="2.0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 12H19M19 12L16 15M19 12L16 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19 6V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="my-auto">
+                <%= t('defaults.logout') %>
+              </span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-  <!-- sidebar toggle menu -->
-  <div data-menu-target="container" class="hidden absolute shadow-xl fixed bottom-0 mt-12 md:relative z-10 w-60 content-center">
-    <div class="rounded bg-gray-600 w-48 fixed left-0 top-0 content-center md:content-start text-left justify-between">
-      <ul class="flex flex-col pt-3 py-3 px-2 text-left">
-        <li class="w-10 h-auto">
-          <%= link_to admin_root_path, data: {turbo: false } do %>
-            <%= dogrun_logo(current_user.dogrun_place) %>
-          <% end %>
-        </li>
-        <% if current_user.grand_admin? %>
-          <li class="flex-1">
-            <%= link_to admin_dogrun_places_path, data: { turbo: false },
-                class: "flex pb-1 pt-2 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500" do %>
-              <svg class="pr-2 pb-1 w-7 h-7" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 14V8.5M6 13V6C6 4.34315 7.34315 3 9 3H14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M16.9922 4H19.9922M22.9922 4L19.9922 4M19.9922 4V1M19.9922 4V7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 21H6C3.79086 21 2 19.2091 2 17C2 14.7909 3.79086 13 6 13H17H18C15.7909 13 14 14.7909 14 17C14 19.2091 15.7909 21 18 21C20.2091 21 22 19.2091 22 17V14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span class="text-sm text-gray-200">
-                <%= t('.dogrun_place_list') %>
-              </span>
+    
+    <!--Nav below md -->
+    <div class="md:hidden flex items-center">
+      <div class="flex flex-shrink w-1/6 justify-start text-white">
+        <div data-action="click->menu#open">
+          <button data-menu-target="open_button" type="button" class="inline-flex justify-center w-full px-2 py-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500", id="options-menu" aria-haspopup="true" aria-expanded="true">                                                                                                                 
+            <svg class="mr-3 w-10 h-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>
+        <div data-action="click->menu#close">
+          <button data-menu-target="close_button" type="button" class="hidden inline-flex justify-center w-full px-2 py-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500", id="options-menu" aria-haspopup="true" aria-expanded="true">                                                                                                                 
+            <svg class="mr-3 w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="w-4/6">
+        <span class="py-2 px-4 text-white font-bold flex justify-center"><%= current_user.dogrun_place.name %></span>
+      </div>
+      <div class="w-1/6">
+        <%= link_to admin_logout_path, 
+            data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation') }, 
+            class: "flex text-white hover:text-gray-200 px-4 my-auto justify-end" do %>
+          <svg class="w-8 h-8" stroke-width="2.0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 12H19M19 12L16 15M19 12L16 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19 6V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- sidebar toggle menu -->
+    <div data-menu-target="container" class="hidden absolute shadow-xl fixed bottom-0 mt-12 md:relative z-10 w-60 content-center">
+      <div class="rounded bg-gray-600 w-48 fixed left-0 top-0 content-center md:content-start text-left justify-between">
+        <ul class="flex flex-col pt-3 py-3 px-2 text-left">
+          <li class="w-10 h-auto">
+            <%= link_to admin_root_path, data: {turbo: false } do %>
+              <%= dogrun_logo(current_user.dogrun_place) %>
             <% end %>
           </li>
-          <li class="flex-1">
-              <%= link_to admin_users_path, data: { turbo: false }, 
-                  class: "flex py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-800 hover:border-red-500" do %>
-                  <svg class="mr-1 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                  </svg>
-                  <span class="pt-1 text-sm text-gray-200">
-                    <%= t('.user_list') %>
-                  </span>
+          <% if current_user.grand_admin? %>
+            <li class="flex-1">
+              <%= link_to admin_dogrun_places_path, data: { turbo: false },
+                  class: "flex pb-1 pt-2 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500" do %>
+                <svg class="pr-2 pb-1 w-7 h-7" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22 14V8.5M6 13V6C6 4.34315 7.34315 3 9 3H14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M16.9922 4H19.9922M22.9922 4L19.9922 4M19.9922 4V1M19.9922 4V7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12 21H6C3.79086 21 2 19.2091 2 17C2 14.7909 3.79086 13 6 13H17H18C15.7909 13 14 14.7909 14 17C14 19.2091 15.7909 21 18 21C20.2091 21 22 19.2091 22 17V14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="text-sm text-gray-200">
+                  <%= t('.dogrun_place_list') %>
+                </span>
               <% end %>
-          </li>
-          <li class="flex-1">
-            <%= link_to admin_dogs_path, data: { turbo: false },
-                class: "flex py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-800 hover:border-blue-300" do %>
-              <svg class="mr-1 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-              </svg>
-              <span class="pt-1 text-sm text-gray-200">
-                <%= t('.registered_dogs_list') %>
-              </span>
-            <% end %>
-          </li>
-        <% else %>
-          <li class="flex-1">
-            <%= link_to admin_dogrun_place_path(current_user.dogrun_place), data: { turbo: false },
-              class: "flex py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-800 hover:border-red-300" do %>
-              <svg class="pt-1 mr-1 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-              </svg>
-              <span class="pt-1 text-sm text-gray-200">
-                <%= t('.dogrun_place_detail_information') %>
-              </span>
-            <% end %>
-          </li>
-          <li class="flex-1">
-            <%= link_to admin_entries_path, data: { turbo: false }, 
-                class: "flex py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-800 hover:border-purple-500" do %>
-                <svg class="pt-1 mr-1 w-6 h-6" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 6L20 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M4 6.01L4.01 5.99889" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M4 12.01L4.01 11.9989" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M4 18.01L4.01 17.9989" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M8 12L20 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M8 18L20 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </li>
+            <li class="flex-1">
+                <%= link_to admin_users_path, data: { turbo: false }, 
+                    class: "flex py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-800 hover:border-red-500" do %>
+                    <svg class="mr-1 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <span class="pt-1 text-sm text-gray-200">
+                      <%= t('.user_list') %>
+                    </span>
+                <% end %>
+            </li>
+            <li class="flex-1">
+              <%= link_to admin_dogs_path, data: { turbo: false },
+                  class: "flex py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-800 hover:border-blue-300" do %>
+                <svg class="mr-1 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
                 </svg>
                 <span class="pt-1 text-sm text-gray-200">
-                  <%= t('defaults.entry_list') %>
+                  <%= t('.registered_dogs_list') %>
                 </span>
-            <% end %>
-          </li>
-          <li class="flex-1">
-            <%= link_to admin_dogs_path, data: { turbo: false },
-                class: "flex py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-800 hover:border-blue-300" do %>
-              <svg class="mr-1 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-              </svg>
-              <span class="pt-1 text-sm text-gray-200 flex">
-                <%= t('.registered_dogs_list') %>
-                <%= new_registration_number_count_badge(current_user) %>
-              </span>
-            <% end %>
-          </li>
-          <li class="flex-1">
-            <%= link_to admin_posts_path, data: { turbo: false },
-                class: "flex py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-800 hover:border-green-300" do %>
-              <svg class="pt-1 mr-1 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-              </svg>
-              <span class="flex">
-                <%= simple_format(t('.dogrun_post_list'), class: "text-xs text-gray-200") %>
-                <div class="pt-2">
-                  <%= new_post_count_badge(current_user) %>
-                </div>
-              </span>
-            <% end %>
-          </li>
-          <li class="flex-1">
-            <%= link_to admin_staffs_path, data: { turbo: false },
-                class: "flex py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-800 hover:border-pink-300" do %>
-              <svg class="mr-1 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"></path>
-              </svg>
-              <span class="pt-1 text-sm text-gray-200">
-                <%= t('.staff_list') %>
-              </span>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
+              <% end %>
+            </li>
+          <% else %>
+            <li class="flex-1">
+              <%= link_to admin_dogrun_place_path(current_user.dogrun_place), data: { turbo: false },
+                class: "flex py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-800 hover:border-red-300" do %>
+                <svg class="pt-1 mr-1 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+                <span class="pt-1 text-sm text-gray-200">
+                  <%= t('.dogrun_place_detail_information') %>
+                </span>
+              <% end %>
+            </li>
+            <li class="flex-1">
+              <%= link_to admin_entries_path, data: { turbo: false }, 
+                  class: "flex py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-800 hover:border-purple-500" do %>
+                  <svg class="pt-1 mr-1 w-6 h-6" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 6L20 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M4 6.01L4.01 5.99889" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M4 12.01L4.01 11.9989" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M4 18.01L4.01 17.9989" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8 12L20 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8 18L20 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="pt-1 text-sm text-gray-200">
+                    <%= t('defaults.entry_list') %>
+                  </span>
+              <% end %>
+            </li>
+            <li class="flex-1">
+              <%= link_to admin_dogs_path, data: { turbo: false },
+                  class: "flex py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-800 hover:border-blue-300" do %>
+                <svg class="mr-1 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                </svg>
+                <span class="pt-1 text-sm text-gray-200 flex">
+                  <%= t('.registered_dogs_list') %>
+                  <%= new_registration_number_count_badge(current_user) %>
+                </span>
+              <% end %>
+            </li>
+            <li class="flex-1">
+              <%= link_to admin_posts_path, data: { turbo: false },
+                  class: "flex py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-800 hover:border-green-300" do %>
+                <svg class="pt-1 mr-1 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                </svg>
+                <span class="flex">
+                  <%= simple_format(t('.dogrun_post_list'), class: "text-xs text-gray-200") %>
+                  <div class="pt-2">
+                    <%= new_post_count_badge(current_user) %>
+                  </div>
+                </span>
+              <% end %>
+            </li>
+            <li class="flex-1">
+              <%= link_to admin_staffs_path, data: { turbo: false },
+                  class: "flex py-3 pl-1 align-middle text-white no-underline border-b-2 border-gray-800 hover:border-pink-300" do %>
+                <svg class="mr-1 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"></path>
+                </svg>
+                <span class="pt-1 text-sm text-gray-200">
+                  <%= t('.staff_list') %>
+                </span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 <% end %>

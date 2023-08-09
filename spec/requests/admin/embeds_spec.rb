@@ -36,7 +36,20 @@ RSpec.describe Admin::EmbedsController, type: :request do
           expect(response).to redirect_to(admin_posts_path)
         end
       end
+    end
 
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin)
+        admin.update(deactivation: 'account_frozen')
+        get new_admin_embed_path(id: post_1.id)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
     end
 
     describe '一般ユーザーでログインしている場合' do
@@ -96,6 +109,20 @@ RSpec.describe Admin::EmbedsController, type: :request do
       end
     end
 
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin)
+        admin.update(deactivation: 'account_frozen')
+        post admin_embed_path(post_1)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe '一般ユーザーでログインしている場合' do
       before do
         togo_inu_shitsuke_hiroba_log_in_as(general)
@@ -139,7 +166,20 @@ RSpec.describe Admin::EmbedsController, type: :request do
           expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
           expect(response).to redirect_to(admin_root_path)
         end
+      end
+    end
 
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin)
+        admin.update(deactivation: 'account_frozen')
+        get edit_admin_embed_path(embed_1.post_id)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -215,6 +255,20 @@ RSpec.describe Admin::EmbedsController, type: :request do
       end
     end
     
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin)
+        admin.update(deactivation: 'account_frozen')
+        patch admin_embed_path(embed_1.post_id)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe '一般ユーザーでログインしている場合' do
       before do
         togo_inu_shitsuke_hiroba_log_in_as(general)

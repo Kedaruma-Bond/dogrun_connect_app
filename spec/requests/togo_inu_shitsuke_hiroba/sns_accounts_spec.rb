@@ -21,6 +21,20 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get new_togo_inu_shitsuke_hiroba_sns_account_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ゲストログインしているとき' do
       before do
         togo_inu_shitsuke_hiroba_log_in_as(guest)
@@ -92,6 +106,26 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      let!(:invalid_params) { attributes_for(:sns_account, twitter_id: "", instagram_id: "", facebook_id: "", user: user)}
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(user)
+        user.update(deactivation: 'account_frozen')
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect {
+          post togo_inu_shitsuke_hiroba_sns_accounts_path,
+          params: {
+            sns_account: invalid_params
+          }
+        }.not_to change(SnsAccount, :count)
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ゲストログインしているとき' do
       before do
         togo_inu_shitsuke_hiroba_log_in_as(guest)
@@ -136,7 +170,21 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
         end
       end
     end
-    
+
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get edit_togo_inu_shitsuke_hiroba_sns_account_path(sns_accounts_1)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     context 'ゲストログインしているとき' do
       before do
         togo_inu_shitsuke_hiroba_log_in_as(guest)
@@ -193,6 +241,20 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        patch togo_inu_shitsuke_hiroba_sns_account_path(sns_accounts_1)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ゲストログインしているとき' do
       before do
         togo_inu_shitsuke_hiroba_log_in_as(guest)
@@ -238,6 +300,22 @@ RSpec.describe TogoInuShitsukeHiroba::SnsAccountsController, type: :request do
           expect(response).to redirect_to(togo_inu_shitsuke_hiroba_user_path(general))
           expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
         end
+      end
+    end
+
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        togo_inu_shitsuke_hiroba_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect {
+          delete togo_inu_shitsuke_hiroba_sns_account_path(sns_accounts_1)
+        }.not_to change(SnsAccount, :count)
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
 

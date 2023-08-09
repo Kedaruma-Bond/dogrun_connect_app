@@ -33,6 +33,20 @@ RSpec.describe Admin::DogrunPlacesController, type: :request do
       end
     end
     
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        get admin_dogrun_places_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     context '一般ユーザーでログインしている場合' do
       before do
         admin_log_in_as(general)
@@ -81,6 +95,20 @@ RSpec.describe Admin::DogrunPlacesController, type: :request do
       end
     end
     
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        get admin_dogrun_place_path(dogrun_place_1)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+    
     context '一般ユーザーでログインしている場合' do
       before do
         admin_log_in_as(general)
@@ -118,6 +146,20 @@ RSpec.describe Admin::DogrunPlacesController, type: :request do
       end
     end
     
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        get new_admin_dogrun_place_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     context '一般ユーザーでログインしている場合' do
       before do
         admin_log_in_as(general)
@@ -176,6 +218,20 @@ RSpec.describe Admin::DogrunPlacesController, type: :request do
         expect(response).to redirect_to(admin_root_path)
       end
     end
+    
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        post admin_dogrun_places_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
   end
 
   describe 'GET #edit' do
@@ -210,6 +266,20 @@ RSpec.describe Admin::DogrunPlacesController, type: :request do
       example 'エラーメッセージが表示されて管理者home画面にリダイレクトされること' do
         expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
         expect(response).to redirect_to(admin_root_path)
+      end
+    end
+    
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        get admin_dogrun_place_path(dogrun_place_1)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
     
@@ -300,6 +370,20 @@ RSpec.describe Admin::DogrunPlacesController, type: :request do
         expect(response).to redirect_to(admin_root_path)
       end
     end
+    
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        patch admin_dogrun_place_path(dogrun_place_1)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
   end
   
   describe 'PATCH #force_closed' do
@@ -322,6 +406,20 @@ RSpec.describe Admin::DogrunPlacesController, type: :request do
       example 'エラーメッセージが表示され管理者home画面にリダイレクトされること' do
         expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
         expect(response).to redirect_to(admin_root_path)
+      end
+    end
+    
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        patch force_closed_admin_dogrun_place_path(dogrun_place_1)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
   end
@@ -351,6 +449,20 @@ RSpec.describe Admin::DogrunPlacesController, type: :request do
       example 'エラーメッセージが表示され管理者home画面にリダイレクトされること' do
         expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
         expect(response).to redirect_to(admin_root_path)
+      end
+    end
+    
+    describe '凍結された管理者アカウントでログインしている場合' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        patch release_admin_dogrun_place_path(closed_dogrun)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
   end

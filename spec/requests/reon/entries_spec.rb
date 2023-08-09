@@ -21,6 +21,20 @@ RSpec.describe Reon::EntriesController, type: :request do
       end
     end
 
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get reon_entries_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ログインしていないとき' do
       example 'root画面にリダイレクトされエラーメッセージが表示されること' do
         get reon_entries_path
@@ -193,6 +207,20 @@ RSpec.describe Reon::EntriesController, type: :request do
       end
     end
 
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        post reon_entries_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ログインしていないとき' do
       example 'root画面にリダイレクトされエラーメッセージが表示されること' do
         post reon_entries_path
@@ -220,6 +248,20 @@ RSpec.describe Reon::EntriesController, type: :request do
       end
     end
 
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        patch("/reon/entry")
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ログインしていないとき' do
       example 'root画面にリダイレクトされエラーメッセージが表示されること' do
         patch("/reon/entry")
@@ -239,6 +281,20 @@ RSpec.describe Reon::EntriesController, type: :request do
         get search_reon_entries_path
         expect(response).to render_template(:search)
         expect(response).to have_http_status(:ok)
+      end
+    end
+
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+        get search_reon_entries_path
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -282,6 +338,22 @@ RSpec.describe Reon::EntriesController, type: :request do
       end
     end
     
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect {
+          delete reon_entry_path(entry_3)
+        }.not_to change(Entry, :count)
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ログインしていないとき' do
       example 'root画面にリダイレクトされエラーメッセージが表示されること' do
         expect {

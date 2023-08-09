@@ -21,6 +21,22 @@ RSpec.describe Reon::PreEntriesController, type: :request do
       end
     end
 
+    describe '凍結されたアカウントでログインしているとき' do
+      before do
+        reon_log_in_as(general)
+        general.update(deactivation: 'account_frozen')
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect {
+          delete reon_pre_entry_path
+        }.not_to change(PreEntry, :count)
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     describe 'ログインしていないとき' do
       example 'root画面にリダイレクトされエラーメッセージが表示されること' do
         expect {
