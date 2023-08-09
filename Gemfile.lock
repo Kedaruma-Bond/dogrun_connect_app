@@ -369,9 +369,9 @@ GEM
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     strscan (3.0.3)
-    tailwindcss-rails (2.0.22-x86_64-darwin)
+    tailwindcss-rails (2.0.30-x86_64-darwin)
       railties (>= 6.0.0)
-    tailwindcss-rails (2.0.22-x86_64-linux)
+    tailwindcss-rails (2.0.30-x86_64-linux)
       railties (>= 6.0.0)
     thor (1.2.1)
     timeout (0.3.0)
@@ -450,7 +450,7 @@ DEPENDENCIES
   sorcery
   sprockets-rails
   stimulus-rails (~> 1.2.1)
-  tailwindcss-rails (~> 2.0.21)
+  tailwindcss-rails (~> 2.0.30)
   turbo-rails!
   tzinfo-data
   validates_email_format_of

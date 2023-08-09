@@ -2,13 +2,13 @@
 <%= turbo_frame_tag dom_id(current_user.dogrun_place, "admin_navbar") do %>
   <header class="bg-gray-600 h-14 w-full sticky top-0 z-30" data-controller="menu" data-action="click@window->menu#closeBackground">
     <!--Nav md or above -->
-    <div class="hidden md:flex items-center">
-      <div class="flex flex-shrink w-1/5 justify-start mt-1">
+    <div class="hidden md:flex items-center h-full">
+      <div class="flex flex-shrink w-1/5 justify-start">
         <%= link_to admin_root_path, class:"ml-2 w-12 h-auto", data: { turbo: false } do %>
           <%= dogrun_logo(current_user.dogrun_place) %>
         <% end %>
       </div>
-      <div class="pt-2 content-center w-4/5 justify-end">
+      <div class="content-center w-4/5 justify-end">
         <ul class="flex justify-between flex-none items-center">
           <li class="flex-none mr-3">
             <span class="py-2 px-4 text-white font-bold">
