@@ -76,7 +76,7 @@ class Admin::PostsController < Admin::BaseController
     if @post.update(post_params_for_publish)
       @publishing_post = Post.is_publishing.where(dogrun_place: @dogrun_place)
       if !@post.user.admin?
-        PostMailer.publish_notification(@post.user, @dogrun_place).deliver_now
+        PostMailer.publish_notification(@post.user, @dogrun_place, @post.publish_limit).deliver_now
       end
       respond_to do |format|
         format.html { 

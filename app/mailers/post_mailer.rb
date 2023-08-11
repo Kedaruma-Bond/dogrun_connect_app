@@ -9,9 +9,10 @@ class PostMailer < ApplicationMailer
       )
   end
 
-  def publish_notification(user, dogrun_place)
+  def publish_notification(user, dogrun_place, publish_limit)
     @user = user
     @dogrun_place = dogrun_place
+    @publish_limit = publish_limit
     mail(
       from: Rails.application.credentials.users[:MAILER_USER_ID],
       to: @user.email,
