@@ -224,7 +224,7 @@
   </section>
 
   <section>
-    <div data-controller="lightbox" class="container px-6 py-10 mx-auto">
+    <div class="container px-6 py-10 mx-auto">
       <h1 class="text-3xl font-semibold text-center text-gray-800 dark:text-gray-200 capitalize lg:text-4xl">
         Sample View
       </h1>
@@ -238,48 +238,35 @@
       <p class="mt-4 text-center text-gray-500 dark:text-gray-200">
         ※画像は開発中のものです。
       </p>
-      <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
-        <div class="text-center">
-          <%= link_to '#', data: { "lightbox-source-param": 'https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/zhyz8slk7otwukg4jfw6.jpg', action: "lightbox#handleOpen" } do %>
-            <img class="object-cover w-full rounded-lg h-96 " src="https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,q_auto/zhyz8slk7otwukg4jfw6.jpg" alt="sample view of mobile screen">
-          <% end %>
-          <h2 class="mt-4 text-2xl font-semibold text-gray-800 dark:text-gray-200">
-            ユーザースマホ画面
-          </h2>
-          <p class="mt-2 text-sm tracking-wider text-gray-500 dark:text-gray-400">
-            ドッグラン利用記録機能<br>
-            その他付加機能
-          </p>
-        </div>
 
-        <div class="text-center">
-          <%= link_to "#", data: { "lightbox-source-param": cl_image_path("p5c28bn9fqf829pvxl8s.jpg", :quality=>"auto", :fetch_format=>:auto), action: "lightbox#handleOpen" } do %>
-            <%= cl_image_tag("p5c28bn9fqf829pvxl8s.jpg", :quality=>"auto", :fetch_format=>:auto, class: "object-cover w-full rounded-lg h-96") %>
-          <% end %>
-          <h2 class="mt-4 text-2xl font-semibold text-gray-800 dark:text-gray-200">
-            管理者画面
-          </h2>
-          <p class="mt-2 text-sm tracking-wider text-gray-500  dark:text-gray-400">
-            ダッシュボード<br>
-            ひと月の利用記録総計<br>
-            デイリー利用数のグラフ
-          </p>
+      <section data-controller="lightbox carousel" class="splide w-full md:w-5/6 mx-auto mt-3" aria-label="Sample_view">
+        <div class="splide__track">
+          <ul class="splide__list">
+            <li class="splide__slide">
+              <%= sample_view_slide("zhyz8slk7otwukg4jfw6.jpg") %>
+            </li>
+            <li class="splide__slide">
+              <%= sample_view_slide("p5c28bn9fqf829pvxl8s.jpg") %>
+            </li>
+            <li class="splide__slide">
+              <%= sample_view_slide("tbh6dmvoyt1uw2j9oqc0.jpg") %>
+            </li>
+            <li class="splide__slide">
+              <%= sample_view_slide("mozsgh8aa9baokf3iieo.jpg") %>
+            </li>
+            <li class="splide__slide">
+              <%= sample_view_slide("y20nuvp0tj7wrysl4phd.jpg") %>
+            </li>
+            <li class="splide__slide">
+              <%= sample_view_slide("jximsfuqdtabx2h1flio.jpg") %>
+            </li>
+            <li class="splide__slide">
+              <%= sample_view_slide("fb39nohjgw6ry2ohu8u3.jpg") %>
+            </li>
+          </ul>
         </div>
-
-        <div class="text-center">
-          <%= link_to "#", data: { "lightbox-source-param": cl_image_path("wxr0ztply7rv9450idlu.jpg", :quality=>"auto", :fetch_format=>:auto), action: "lightbox#handleOpen" } do %>
-            <%= cl_image_tag("wxr0ztply7rv9450idlu.jpg", :quality=>"auto", :fetch_format=>:auto, class: "object-cover w-full rounded-lg h-96") %>
-          <% end %>
-          <h2 class="mt-4 text-2xl font-semibold text-gray-800 dark:text-gray-200">
-            管理者画面
-          </h2>
-          <p class="mt-2 text-sm tracking-wider text-gray-500 dark:text-gray-400">
-            利用記録一覧<br>
-            期間での検索可能
-          </p>
-        </div>
-      </div>
-      <%= render partial: "shared/photo_modal" %>
+        <%= render partial: "shared/photo_modal" %>
+      </section>
     </div>
-  </section>
+  </section >
 </header>

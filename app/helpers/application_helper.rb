@@ -17,6 +17,12 @@ module ApplicationHelper
     image_tag 'inoperable_icon.svg', class: "w-5 h-5 rounded-full text-gray-200 shadow", data: { "disable-selector-target": "icon" }
   end
 
+  def sample_view_slide(file_name)
+    link_to "#", data: { "lightbox-source-param": cl_image_path(file_name, :quality=>"auto", :fetch_format=>:auto), action: "lightbox#handleOpen" } do
+      cl_image_tag(file_name, :quality=>"auto", :fetch_format=>:auto, class: "object-cover w-full rounded-lg h-auto")
+    end
+  end
+
   def default_meta_tags
     {
       site: Rails.application.credentials.meta_tags[:app],
