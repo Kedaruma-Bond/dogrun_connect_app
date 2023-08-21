@@ -10,7 +10,7 @@ module ApplicationHelper
   end
   
   def spinner_icon_for_form_disable_button
-    image_tag '90-ring-with-bg-white-36.svg', class: "hidden my-auto mr-2 w-6 h-6", data: { "disable-target": "spinner", "disable-confirm-target": "spinner" }
+    image_tag '90-ring-with-bg-white-36.svg', class: "hidden my-auto mr-2 w-6 h-6", data: { "disable-target": "spinner", "disable-confirm-target": "spinner", "disable-trigger-target": "spinner" }
   end
   
   def inoperable_icon

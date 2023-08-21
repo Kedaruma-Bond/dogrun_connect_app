@@ -7,7 +7,7 @@ export default class extends Controller {
   static targets = ['spinner', 'submitButton', 'buttonText']
 
   connect() {
-    this.element.dataset['action'] = 'turbo:submit-start->disable-confirm#handleFormSubmit'
+    this.element.dataset['action'] = 'turbo:submit-start->disable-confirm#handleFormSubmit disable-confirm:submit->disable-confirm#disabledSubmitButton'
   }
 
   handleFormSubmit(event) {
@@ -15,10 +15,14 @@ export default class extends Controller {
       // キャンセルされた場合は処理を中断する
       return
     }
-
+    this.dispatch('submit')
     this.disabledSubmitButton()
   }
-  
+
+  check() {
+    console.log('It works!')
+  }
+
   disabledSubmitButton() {
     this.submitButtonTargets.forEach((button) => {
       button.disabled = true
