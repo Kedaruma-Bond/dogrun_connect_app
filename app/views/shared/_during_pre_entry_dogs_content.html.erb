@@ -17,7 +17,7 @@
             <div class="mx-auto pt-2 text-gray-400 text-sm font-medium hidden only:block h-[48px]">
               <%= t('.no_one_will_come_for_a_while') %>
             </div>
-            <% pre_entry_dogs_public_view.each do |pre_entry_dog| %>
+            <% @pre_entry_dogs_public_view_include_own_dog.each do |pre_entry_dog| %>
               <%= render partial: "shared/pre_entry_dog", locals: { pre_entry_dog: pre_entry_dog, dogrun_place: dogrun_place, dog_profile_path: dog_profile_path, current_user: current_user } %>
             <% end %>
           <% end %>

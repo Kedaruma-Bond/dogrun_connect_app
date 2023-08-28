@@ -1,5 +1,15 @@
 ja:
   shared:
+    birthday_message_modal:
+      title: Happy Birthday!🎉
+      body: |
+        こちらのワンコが今日誕生日であることを示すアイコンです
+        おめでとうございます🥳長生きしてください‼️
+    non_public_message_modal:
+      title: 利用状況非公開
+      body: |
+        このワンコは利用状況が非公開に設定されています
+        他のユーザーの画面には表示されていません
     explain_of_public_modal:
       title: 利用状況公開とは
       body: |

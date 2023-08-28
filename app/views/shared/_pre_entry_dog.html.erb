@@ -1,6 +1,6 @@
 <%= turbo_frame_tag dom_id(dogrun_place, "pre_entry_dog_#{pre_entry_dog.id}") do %>
   <div class="w-12 h-12 mx-1 animate-roll-in-right">
-    <%= link_to send(dog_profile_path, pre_entry_dog) do %>
+    <%= link_to send(dog_profile_path, pre_entry_dog), class: private_entry(pre_entry_dog) do %>
       <%= dog_thumbnail(pre_entry_dog, current_user) %>
     <% end %>
   </div>

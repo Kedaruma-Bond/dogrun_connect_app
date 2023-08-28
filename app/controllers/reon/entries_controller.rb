@@ -15,6 +15,8 @@ class Reon::EntriesController < Reon::DogrunPlaceController
       return
     end
     
+    clear_zero # 初期化
+    
     if not_pre_entry? # プレエントリーしていない場合
       if params[:select_dog].blank? # プレエントリー失効時の処理
         respond_to do |format|
@@ -24,7 +26,6 @@ class Reon::EntriesController < Reon::DogrunPlaceController
         return
       end
 
-      clear_zero
       select_dogs_allocation(params[:select_dog]) # select_dogを配列化して取得
       
       case params[:pre_flg]
@@ -54,6 +55,8 @@ class Reon::EntriesController < Reon::DogrunPlaceController
             if @entry.dog.public_view?
               @entry.entry_broadcast_for_top(@entry.dog, current_user, @dogrun_place, @dog_profile_path)
               @entry.entry_broadcast_for_index(@dog_profile_path, @entry_path)
+            elsif @entry.dog.non_public?
+              @non_public_dog_entries << @entry
             end
           else # 該当ワンコが非選択時の処理
             @zero_count += 1
@@ -74,7 +77,7 @@ class Reon::EntriesController < Reon::DogrunPlaceController
           @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place: @dogrun_place }).find_by(exit_at: nil) unless not_entry?(current_user, @dogrun_place)
           
           set_num_of_playing_dogs
-          @entry.update_num_of_playing_dogs_broadcast(@num_of_playing_dogs, @dogs_non_public)
+          @entry.update_num_of_playing_dogs_broadcast(@num_of_playing_dogs, @entry_dogs_non_public)
 
           respond_to do |format|
             format.html { redirect_to send(@top_path), success: t('local.entries.entry_success') }
@@ -101,6 +104,8 @@ class Reon::EntriesController < Reon::DogrunPlaceController
 
             if @entries_array[@num].dog.public_view?
               @entries_array[@num].pre_entry_create_broadcast(@entries_array[@num].dog, current_user, @dogrun_place, @dog_profile_path)
+            elsif @entries_array[@num].dog.non_public?
+              @non_public_dog_pre_entries << @entries_array[@num]
             end
           else # 該当ワンコが非選択時の処理
             @zero_count += 1
@@ -134,6 +139,8 @@ class Reon::EntriesController < Reon::DogrunPlaceController
         if @entry.dog.public_view?
           @entry.entry_broadcast_for_top(@entry.dog, current_user, @dogrun_place, @dog_profile_path)
           @entry.entry_broadcast_for_index(@dog_profile_path, @entry_path)
+        elsif @entry.dog.non_public?
+          @non_public_dog_entries << @entry
         end
         pre_entry.destroy
         pre_entry.destroy_broadcast
@@ -141,7 +148,7 @@ class Reon::EntriesController < Reon::DogrunPlaceController
       @entry_for_time = Entry.user_id_at_local(current_user.id).where(registration_numbers: { dogrun_place: @dogrun_place }).find_by(exit_at: nil) unless not_entry?(current_user, @dogrun_place)
       
       set_num_of_playing_dogs
-      @entry.update_num_of_playing_dogs_broadcast(@num_of_playing_dogs, @dogs_non_public)
+      @entry.update_num_of_playing_dogs_broadcast(@num_of_playing_dogs, @entry_dogs_non_public)
 
       respond_to do |format|
         format.html { redirect_to send(@top_path), success: t('local.entries.entry_success') }
@@ -164,7 +171,7 @@ class Reon::EntriesController < Reon::DogrunPlaceController
     end
     
     set_num_of_playing_dogs
-    @entry.update_num_of_playing_dogs_broadcast(@num_of_playing_dogs, @dogs_non_public)
+    @entry.update_num_of_playing_dogs_broadcast(@num_of_playing_dogs, @entry_dogs_non_public)
 
     respond_to do |format|
       format.html { redirect_to send(@top_path), success: t('local.entries.exit_success') }
@@ -181,7 +188,7 @@ class Reon::EntriesController < Reon::DogrunPlaceController
     
     @entry.destroy_broadcast
     set_num_of_playing_dogs
-    @entry.update_num_of_playing_dogs_broadcast(@num_of_playing_dogs, @dogs_non_public)
+    @entry.update_num_of_playing_dogs_broadcast(@num_of_playing_dogs, @entry_dogs_non_public)
 
     respond_to do |format|
       format.html { redirect_to send(@entries_path), success: t('defaults.destroy_successfully'), status: :see_other }
@@ -192,7 +199,10 @@ class Reon::EntriesController < Reon::DogrunPlaceController
   private
 
     def set_q
-      @entries = Entry.includes(:registration_number, :dog).where(registration_number: { dogrun_place: @dogrun_place }).where(dogs: { public: "public_view" } ).order(entry_at: :desc)
+      @entries = Entry.includes(:registration_number, :dog)
+                .where(registration_number: { dogrun_place: @dogrun_place })
+                .where('dogs.public = ? OR dogs.user_id = ?', 'true', current_user.id)
+                .order(entry_at: :desc)
       @q = @entries.ransack(params[:q])
     end
 

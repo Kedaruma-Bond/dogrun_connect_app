@@ -20,6 +20,8 @@ module EntryConcern
   
   def clear_zero
     @entries_array = []
+    @non_public_dog_pre_entries = []
+    @non_public_dog_entries = []
     @num = 0
     @zero_count = 0
   end
@@ -33,16 +35,16 @@ module EntryConcern
         Dog.find(entry_data.dog_id)
       end
   
-      @dogs_public_view = dogs.select do |dog|
-        dog.public == 'public_view'
+      @entry_dogs_public_view_include_own_dog = dogs.select do |dog|
+        dog.public == 'public_view' || dog.user == current_user
       end
   
-      @dogs_non_public = dogs.select do |dog|
+      @entry_dogs_non_public = dogs.select do |dog|
         dog.public == 'non_public'
       end
     else
-      @dogs_public_view = []
-      @dogs_non_public = [] 
+      @entry_dogs_public_view_include_own_dog = []
+      @entry_dogs_non_public = [] 
     end
   end
 
