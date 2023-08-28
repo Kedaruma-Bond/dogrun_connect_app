@@ -14,7 +14,9 @@
         <div class="text-2xl font-semibold text-left">
           <%= dog.name %>
         </div>
-        <% if dog.filming_approval? %>
+        <% if dog.non_public? %>
+            <%= render partial: "shared/non_public" %>
+        <% elsif dog.filming_approval? %>
           <div class="flex">
             <%= render partial: "shared/filming_approval" %>
             <% if dog.sns_post_approval? %>
@@ -22,11 +24,7 @@
             <% end %>
           </div>
         <% else %>
-          <% if dog.non_public? %>
-            <%= render partial: "shared/non_public" %>
-          <% else %>
             <div class="h-[24px]"></div>
-          <% end %>
         <% end %>
 
         <div class="flex mt-2">
