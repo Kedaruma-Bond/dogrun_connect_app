@@ -1,0 +1,7 @@
+<%= turbo_stream.append "encount_dogs" do %>
+  <%= render partial: "shared/encount_dog", collection: @encount_dogs_results, locals: { dog_profile_path: @dog_profile_path, edit_encount_dog_path: @edit_encount_dog_path, encount_dog_path: @encount_dog_path } %>
+<% end %>
+
+<%= turbo_stream.replace "pager" do %>
+  <%= render partial: "shared/pager", locals: { pagy: @pagy, current_path: @search_enncount_dogs_path } %>
+<% end %>

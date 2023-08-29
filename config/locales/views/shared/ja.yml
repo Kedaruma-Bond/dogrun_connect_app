@@ -1,5 +1,7 @@
 ja:
   shared:
+    entries_pager:
+      load_more_entries: さらに読み込む
     birthday_message_modal:
       title: Happy Birthday!🎉
       body: |

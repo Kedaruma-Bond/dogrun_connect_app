@@ -7,6 +7,7 @@ class Entries::ViewComponent < ApplicationViewComponent
     pagy:, 
     q:, 
     applicable_path:, 
+    current_path:,
     search_field_placeholder:, 
     dogrun_place:
   )
@@ -14,6 +15,7 @@ class Entries::ViewComponent < ApplicationViewComponent
     @pagy = pagy
     @q = q
     @applicable_path = applicable_path
+    @current_path = current_path
     @search_field_placeholder = search_field_placeholder
     @dogrun_place = dogrun_place
   end
