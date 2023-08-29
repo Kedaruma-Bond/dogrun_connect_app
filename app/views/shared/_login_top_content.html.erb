@@ -64,7 +64,7 @@
       <% end %>
     </div>
   <% elsif !not_pre_entry? && not_entry?(current_user, dogrun_place) %>
-    <div class="flex flex-col justify-center mt-3">
+    <div class="flex flex-col justify-center mt-3" data-controller="multiform-disable">
       <p class="text-base text-center text-gray-700 font-semibold">
         <%= t('.during_pre_entry_your_dogs') %>
       </p>
@@ -83,12 +83,16 @@
       <p class="text-sm text-center text-red-700 font-medium mb-3">
         <%= t('.canceled_after_30_mins') %>
       </p>
-      <%= form_with(url: send(pre_entry_path), method: :delete, data: { turbo_confirm: t('.cancel_confirm'), controller: "disable-confirm", "disable-confirm-with-value": t('defaults.processing')} ) do |f| %>
+      <div data-multiform-disable-target="disable_indicator" class="hidden px-[59px] cursol-not-allowd bg-gray-400 mx-auto font-bold text-white py-4 rounded-full">
+        <div class="flex">
+          <%= image_tag '90-ring-with-bg-white-36.svg', class: "my-auto mr-2 w-6 h-6" %>
+          <span><%= t('defaults.processing') %>
+        </div>
+      </div>
+      <%= form_with(url: send(pre_entry_path), method: :delete, data: { "multiform-disable-target": "form", turbo_confirm: t('.cancel_confirm'), controller: "disable-trigger" } ) do |f| %>
         <div class="flex-col mb-5">
-          <%= f.button data: { "disable-confirm-target": "submitButton" },
-            class: "disabled:px-[59px] disabled:cursor-not-allowed disabled:bg-gray-400 flex mx-auto items-center justify-center font-bold text-white py-4 px-10 bg-red-700 rounded-full hover:bg-red-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
-            <%= spinner_icon_for_form_disable_button %>
-            <div data-disable-confirm-target="buttonText" class="flex">
+          <%= f.button class: "flex mx-auto items-center justify-center font-bold text-white py-4 px-10 bg-red-700 rounded-full hover:bg-red-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
+            <div class="flex">
               <svg class="w-5 h-5 my-auto" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
@@ -100,12 +104,10 @@
         </div>
       <% end %>
 
-      <%= form_with(url: send(entries_path), data: { turbo_method: :post, turbo_confirm: t('.entry_confirm'), controller: "disable-confirm", "disable-confirm-with-value": t('defaults.processing') } ) do |f| %>
+      <%= form_with(url: send(entries_path), data: { "multiform-disable-target": "form", turbo_method: :post, turbo_confirm: t('.entry_confirm'), controller: "disable-trigger" } ) do |f| %>
         <div class="flex-col">
-          <%= f.button data: { "disable-confirm-target": "submitButton" },
-              name: "pre_flg", value: "0", class: "disabled:px-[59px] disabled:cursor-not-allowed disabled:bg-gray-400 flex mx-auto items-center justify-center font-bold text-white py-4 px-10 bg-blue-700 rounded-full hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
-            <%= spinner_icon_for_form_disable_button %>
-            <div data-disable-confirm-target="buttonText" class="flex">
+          <%= f.button class: "flex mx-auto items-center justify-center font-bold text-white py-4 px-10 bg-blue-700 rounded-full hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
+            <div class="flex">
               <svg class="w-6 h-6 my-auto" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 12H19M19 12L16 15M19 12L16 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M19 6V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>

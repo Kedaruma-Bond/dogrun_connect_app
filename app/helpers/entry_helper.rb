@@ -1,6 +1,12 @@
 module EntryHelper
   include Pagy::Frontend
-  
+
+  def private_entry(dog)
+    if dog.non_public?
+      return "opacity-40"
+    end
+  end
+
   def current_entries
     return unless logged_in?
 

@@ -321,8 +321,9 @@ RSpec.describe Admin::PostsController, type: :request do
 
       describe '管理ドッグランに紐づいたpostを更新するとき' do
         context '正しいパラメータが入力された場合' do
+          let!(:limit_time) { Time.current.floor + 1.hour }
           let!(:post_5) { create(:post, :article, :is_publishing, user: general, dogrun_place: dogrun_place_1) }
-          let!(:valid_params) { attributes_for(:post, publish_status: 'is_publishing', publish_limit: Time.current + 1.hour) }
+          let!(:valid_params) { attributes_for(:post, publish_status: 'is_publishing', publish_limit: limit_time) }
           before { patch start_to_publish_admin_post_path(post_1), params: { post: valid_params } }
           
           example '掲載中のpostの掲載が中止され、該当postが掲載中になること' do
@@ -331,7 +332,7 @@ RSpec.describe Admin::PostsController, type: :request do
           end
     
           example 'post作成者が一般ユーザーの場合通知メールを送信すること' do
-            expect(PostMailer).to have_received(:publish_notification).with(post_1.user, dogrun_place_1)
+            expect(PostMailer).to have_received(:publish_notification).with(post_1.user, dogrun_place_1, limit_time)
           end
     
           example '投稿一覧画面にリダイレクトされメッセージが表示されること' do

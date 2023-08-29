@@ -16,6 +16,22 @@ module PostHelper
     end
   end
 
+  def admin_post_viewing(post)
+    case post.post_type
+    when 'article'
+      render partial: 'shared/article', locals: { post: post }
+    when 'embed'
+      case post.embed.embed_type
+      when 'twitter'
+        render partial: 'shared/twitter', locals: { post: post }
+      when 'instagram'
+        render partial: 'shared/instagram', locals: { post: post }
+      when 'fb'
+        render partial: 'shared/facebook', locals: { post: post }
+      end
+    end
+  end
+
   def new_post_count_badge(admin_user)
     current_dogrun_new_articles_count = Post.joins(:article).where(dogrun_place_id: admin_user.dogrun_place_id, acknowledge: false).count
     current_dogrun_new_embeds_count = Post.joins(:embed).where(dogrun_place_id: admin_user.dogrun_place_id, acknowledge: false).count

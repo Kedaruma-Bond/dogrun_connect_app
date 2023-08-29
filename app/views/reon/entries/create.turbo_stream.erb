@@ -11,3 +11,33 @@
     } 
   %>
 <% end %>
+
+<% if !@non_public_dog_entries.blank? %>
+  <% @non_public_dog_entries.each do |entry| %>
+    <%= turbo_stream.append dom_id(@dogrun_place, "entries_list") do %>
+      <%= render partial: "shared/entry_dog",
+        locals: {
+          dog: entry.dog,
+          current_user: current_user,
+          dogrun_place: @dogrun_place,
+          dog_profile_path: @dog_profile_path
+        }
+      %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if !@non_public_dog_pre_entries.blank? %>
+  <% @non_public_dog_pre_entries.each do |pre_entry| %>
+    <%= turbo_stream.append dom_id(@dogrun_place, "pre_entries_list") do %>
+      <%= render partial: "shared/pre_entry_dog",
+        locals: {
+          pre_entry_dog: pre_entry.dog,
+          current_user: current_user,
+          dogrun_place: @dogrun_place,
+          dog_profile_path: @dog_profile_path
+        }
+      %>
+    <% end %>
+  <% end %>
+<% end %>

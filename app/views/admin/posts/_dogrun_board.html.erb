@@ -11,6 +11,12 @@
       <% end %>
       <%= post_viewing(publishing_post[0]) %>
     </div>
+    <div class="flex text-gray-300 items-center justify-end mt-2">
+      <p class="text-base font-base mr-3"><%= t('defaults.publishing_limit') %> :</p>
+      <h3 class="text-lg font-semibold">
+        <%= l publishing_post[0].publish_limit, format: :long %>
+      </h3>
+    </div>
   <% else %>
     <%= render partial: "dogrun_board_blank", locals: { dogrun_place: dogrun_place } %>
   <% end %>

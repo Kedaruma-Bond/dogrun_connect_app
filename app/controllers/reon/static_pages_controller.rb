@@ -24,16 +24,16 @@ class Reon::StaticPagesController < Reon::DogrunPlaceController
         Dog.find(entry_data.dog_id)
       end
   
-      @dogs_public_view = dogs.select do |dog|
-        dog.public == 'public_view'
+      @entry_dogs_public_view_include_own_dog = dogs.select do |dog|
+        dog.public == 'public_view' || dog.user == current_user
       end
   
-      @dogs_non_public = dogs.select do |dog|
+      @entry_dogs_non_public = dogs.select do |dog|
         dog.public == 'non_public'
       end
     else
-      @dogs_public_view = []
-      @dogs_non_public = [] 
+      @entry_dogs_public_view_include_own_dog = []
+      @entry_dogs_non_public = [] 
     end
 
     if !@dogrun_pre_entry_data.blank?
@@ -41,12 +41,13 @@ class Reon::StaticPagesController < Reon::DogrunPlaceController
         Dog.find(pre_entry_data.dog_id)
       end
 
-      @pre_entry_dogs_public_view = pre_entry_dogs.select do |dog|
-        dog.public == 'public_view'
+      @pre_entry_dogs_public_view_include_own_dog = pre_entry_dogs.select do |dog|
+        dog.public == 'public_view' || dog.user == current_user
       end
     else
-      @pre_entry_dogs_public_view  = []
+      @pre_entry_dogs_public_view_include_own_dog  = []
     end
+
   end
 
   private
