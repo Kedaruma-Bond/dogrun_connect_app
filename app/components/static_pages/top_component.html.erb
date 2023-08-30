@@ -2,7 +2,7 @@
 <% content_for(:title, @title) %>
 <div class='max-w-5xl mx-auto pt-2 pb-2 bg-purple-200 rounded-lg'>
   <% if !@current_user.nil? %>
-    <%= turbo_frame_tag dom_id(@dogrun_place, "dogrun_board") do %>
+    <%= turbo_frame_tag dom_id(@dogrun_place, "dogrun_board"), loading: :lazy do %>
       <%= render partial: "shared/dogrun_board", locals: { publishing_post: @publishing_post } %>
     <% end %>
     <div class="w-full sm:px-10 pb-5 pt-1" data-controller="reloadable">
@@ -25,7 +25,9 @@
           <% end %>
         </div>
       <% else %>
-        <%= turbo_frame_tag dom_id(@dogrun_place, "top_contents"), src: "top_contents", data: { "reloadable-target": "reloadFrame" } %>
+        <%= turbo_frame_tag dom_id(@dogrun_place, "top_contents"), src: "top_contents", loading: :lazy, data: { "reloadable-target": "reloadFrame" } do %>
+          <%= image_tag 'tadpole.svg', class: "mt-1 mx-auto w-10 h-10", data: { "disable-target": "spinner", "disable-confirm-target": "spinner", "disable-trigger-target": "spinner" }%>
+        <% end %>
       <% end %>
     </div>
 

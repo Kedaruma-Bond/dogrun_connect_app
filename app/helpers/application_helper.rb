@@ -8,6 +8,10 @@ module ApplicationHelper
   def render_turbo_stream_flash_messages
     turbo_stream.append "flash", partial: "shared/flash"
   end
+
+  def loading_spinner
+    image_tag 'tadpole.svg', class: "mt-1 mx-auto w-8 h-8"
+  end
   
   def spinner_icon_for_form_disable_button
     image_tag '90-ring-with-bg-white-36.svg', class: "hidden my-auto mr-2 w-6 h-6", data: { "disable-target": "spinner", "disable-confirm-target": "spinner", "disable-trigger-target": "spinner" }

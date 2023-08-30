@@ -6,7 +6,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
   before_action :correct_user_check, only: %i[destroy]
 
   def index
-    @pagy, @entries = pagy(@entries)
+    @pagy, @entries = pagy(@entries, link_extra: 'data-turbo-stream="true" data-controller="autoclick"')
   end
 
   def create
@@ -180,7 +180,7 @@ class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPl
   end
 
   def search
-    @pagy, @entries_results = pagy(@q.result)
+    @pagy, @entries_results = pagy(@q.result, link_extra: 'data-turbo-stream="true" data-controller="autoclick"')
   end
 
   def destroy

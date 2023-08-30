@@ -10,7 +10,7 @@
     <%= render partial: "shared/among_them_non_public_dogs", locals: { entry_dogs_non_public: @entry_dogs_non_public }  %>
   <% end %>
 </div>
-<%= render partial: 'shared/during_pre_entry_dogs_content', locals: { dogrun_place: @dogrun_place, dog_profile_path: @dog_profile_path, current_user: @current_user } %>
+<%= render partial: 'shared/during_pre_entry_dogs_content', locals: { pre_entry_dogs_public_view_include_own_dog: @pre_entry_dogs_public_view_include_own_dog, dogrun_place: @dogrun_place, dog_profile_path: @dog_profile_path, current_user: @current_user } %>
 <% if !@current_user.guest? %>
   <%= turbo_frame_tag dom_id(@dogrun_place, :login_top_content) do %>
     <%= render partial: 'shared/login_top_content', 

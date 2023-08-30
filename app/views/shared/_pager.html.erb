@@ -1,0 +1,8 @@
+<div id="pager" class="my-4 flex justify-center">
+  <div>
+    <% if pagy.next %>
+      <% link = pagy_link_proc(pagy) %>
+      <%== link.call(pagy.next, loading_spinner) %>
+    <% end %>
+  </div>
+</div>

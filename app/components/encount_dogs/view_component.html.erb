@@ -22,8 +22,10 @@
     <p class="text-center md:hidden text-xs text-gray-600 mt-3"><%= t('defaults.thumbnail_tap') %></p>
     <div class="w-full sm:p-10">
       <div class="block w-full">
-        <%= content %>
-        <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>
+        <%= turbo_frame_tag "encount_dogs" do %>
+          <%= content %>
+        <% end %>
+        <%= render partial: "shared/pager", locals: { pagy: @pagy }%>
       </div>
     </div>
   <% end %>

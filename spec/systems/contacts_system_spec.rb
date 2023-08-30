@@ -27,7 +27,7 @@ RSpec.describe 'contacts', type: :system do
 
       example '戻るボタンを押したら入力画面に戻ること' do
         button_text = I18n.t('defaults.back')
-        button = find_button(button_text)
+        button = find_link(button_text)
         button.click
         expect(page).to have_content(I18n.t('contacts.new.title'))
         expect(page).to have_field('contact[name]', with: 'Test User')
