@@ -97,13 +97,7 @@ gem 'scout_apm'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'annotate'
-  gem 'capybara'
-  gem 'factory_bot_rails'
   gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
-  gem 'rails-controller-testing'
-  gem 'rspec-rails'
-  gem 'shoulda-matchers'
-  gem 'webdrivers'
 end
 
 group :development do
@@ -124,5 +118,11 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
   gem "capybara-email"
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'rails-controller-testing'
+  gem 'selenium-webdriver'
 end

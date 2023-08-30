@@ -19,8 +19,8 @@ describe StaticPages::TopContentsComponent, type: :component do
   let!(:pre_entry) { create(:pre_entry, dog: dog_3, registration_number: registration_number_3) }
   let!(:dogs) { [dog_1, dog_2] }
   let!(:num_of_playing_dogs) { 2 }
-  let!(:dogs_non_public) { [dog_2] }
-  let!(:pre_entry_dogs_public_view) { [dog_3] }
+  let!(:entry_dogs_non_public) { [dog_2] }
+  let!(:pre_entry_dogs_public_view_include_own_dog) { [dog_3] }
   let!(:entry_for_time) { entry_1 }
 
   
@@ -32,10 +32,10 @@ describe StaticPages::TopContentsComponent, type: :component do
           current_user: general_user,
           dogs: dogs,
           num_of_playing_dogs: num_of_playing_dogs,
-          dogs_non_public: dogs_non_public,
+          entry_dogs_non_public: entry_dogs_non_public,
           dog_profile_path: dog_profile_path,
           pre_entry_path: pre_entry_path,
-          pre_entry_dogs_public_view: pre_entry_dogs_public_view,
+          pre_entry_dogs_public_view_include_own_dog: pre_entry_dogs_public_view_include_own_dog,
           entries_path: entries_path,
           entry_for_time: entry_for_time,
         )
