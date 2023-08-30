@@ -3,5 +3,5 @@
 <% end %>
 
 <%= turbo_stream.replace "pager" do %>
-  <%= render partial: "shared/pager", locals: { pagy: @pagy, current_path: @search_entries_path } %>
+  <%= render partial: "shared/pager", locals: { pagy: @pagy } %>
 <% end %>

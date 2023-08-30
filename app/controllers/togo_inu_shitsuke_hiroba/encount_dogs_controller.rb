@@ -6,7 +6,7 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
   before_action :correct_user_check, only: %i[edit update destroy]
   
   def index
-    @pagy, @encount_dogs = pagy(EncountDog.encount_dog_of_user(current_user.id))
+    @pagy, @encount_dogs = pagy(EncountDog.encount_dog_of_user(current_user.id), link_extra: 'data-turbo-stream="true" data-controller="autoclick"')
   end
 
   def edit
@@ -27,7 +27,7 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
   end
 
   def search
-    @pagy, @encount_dogs_results = pagy(@q.result)
+    @pagy, @encount_dogs_results = pagy(@q.result, link_extra: 'data-turbo-stream="true" data-controller="autoclick"')
   end
 
   def destroy

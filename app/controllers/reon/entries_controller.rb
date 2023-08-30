@@ -6,7 +6,7 @@ class Reon::EntriesController < Reon::DogrunPlaceController
   before_action :correct_user_check, only: %i[destroy]
 
   def index
-    @pagy, @entries = pagy(@entries)
+    @pagy, @entries = pagy(@entries, link_extra: 'data-turbo-stream="true" data-controller="autoclick"')
   end
 
   def create
@@ -180,7 +180,7 @@ class Reon::EntriesController < Reon::DogrunPlaceController
   end
 
   def search
-    @pagy, @entries_results = pagy(@q.result)
+    @pagy, @entries_results = pagy(@q.result, link_extra: 'data-turbo-stream="true" data-controller="autoclick"')
   end
 
   def destroy

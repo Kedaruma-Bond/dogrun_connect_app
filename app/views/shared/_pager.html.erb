@@ -1,13 +1,8 @@
 <div id="pager" class="my-4 flex justify-center">
   <div>
     <% if pagy.next %>
-      <%= link_to send(current_path, page: pagy.next),
-        data: {
-          turbo_stream: "",
-          controller: "autoclick"
-        } do %>
-        <%= image_tag 'tadpole.svg', class: "mt-1 mx-auto w-8 h-8" %>
-      <% end %>
+      <% link = pagy_link_proc(pagy) %>
+      <%== link.call(pagy.next, loading_spinner) %>
     <% end %>
   </div>
 </div>

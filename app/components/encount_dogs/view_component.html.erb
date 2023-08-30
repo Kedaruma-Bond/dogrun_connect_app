@@ -25,8 +25,7 @@
         <%= turbo_frame_tag "encount_dogs" do %>
           <%= content %>
         <% end %>
-        <%#= render partial: "shared/pagination", locals: { pagy: @pagy } %>
-        <%= render partial: "shared/pager", locals: { pagy: @pagy, current_path: @current_path }%>
+        <%= render partial: "shared/pager", locals: { pagy: @pagy }%>
       </div>
     </div>
   <% end %>
