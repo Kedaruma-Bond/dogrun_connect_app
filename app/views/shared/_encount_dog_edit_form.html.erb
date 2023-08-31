@@ -1,4 +1,4 @@
-<%= form_with model: @encount_dog, url: {controller: "encount_dogs", action: "update"}, data: { controller: 'disable', "disable-with-value": t('defaults.updating') } do |f| %>
+<%= form_with model: @encount_dog, url: {controller: "encount_dogs", action: "update"}, data: { controller: 'disable', "disable-with-value": t('defaults.updating'), turbo: false } do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="text-gray-600 w-full md:w-1/3 mt-4">
       <%= f.label :color_marker, class: "font-bold leading-none" %>
