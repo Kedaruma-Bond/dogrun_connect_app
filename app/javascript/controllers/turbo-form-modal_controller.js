@@ -14,12 +14,4 @@ export default class extends Controller {
     }
   }
 
-  // modal外をタップで close
-  // action: "click@window->turbo-modal#closeBackground"
-  closeBackground(e) {
-    if (e && this.modalTarget.contains(e.target)) {
-      return
-    }
-    this.hideModal()
-  }
 }
