@@ -15,12 +15,7 @@ export default class extends Controller {
       // キャンセルされた場合は処理を中断する
       return
     }
-    this.dispatch('submit')
     this.disabledSubmitButton()
-  }
-
-  check() {
-    console.log('It works!')
   }
 
   disabledSubmitButton() {

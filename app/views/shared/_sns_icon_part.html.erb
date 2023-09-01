@@ -9,7 +9,7 @@
   <div class="flex justify-center md:justify-start mt-2">
     <%= render partial: "shared/sns_account_icons", locals: { sns_account: current_user.sns_account } %>
   </div>
-  <div class="flex mt-4 mb-2 justify-center">
+  <div class="flex mt-4 mb-2 justify-center md:justify-start">
     <%= link_to send(@edit_sns_account_path, current_user.sns_account), data: { turbo_frame: 'sns_account_form_modal' } do %>
       <button class="px-2 py-2 text-sm font-normal mr-5 ml-5 md:mr-1 md:ml-0 tracking-wide text-gray-200 capitalize transition-colors duration-200 transform bg-sky-700 rounded-md hover:bg-sky-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
         <span class="mx-auto"><%= t'.update_sns_id' %></span>

@@ -40,6 +40,7 @@ class TogoInuShitsukeHiroba::UsersController < TogoInuShitsukeHiroba::DogrunPlac
   end
 
   def show
+    @notation_of_registration_number = I18n.t('togo_inu_shitsuke_hiroba.registration_number')
     @num_of_encount_dogs = EncountDog.encount_dog_of_user(current_user).size
   end
 

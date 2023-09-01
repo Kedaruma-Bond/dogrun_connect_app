@@ -1,6 +1,6 @@
-<div class="flex flex-col items-center p-4 border sm:p-6 rounded-xl">
+<div class="bg-gray-200 dark:bg-gray-800 flex flex-col items-center p-4 border border-gray-800 dark:border-gray-200 sm:p-6 rounded-xl">
   <%= link_to dogrun_top_path(dogrun_place.id) do %>
-    <%= cl_image_tag(dogrun_place.logo.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover h-auto w-auto", alt: DogrunPlace.find(2).name) %>
+    <%= cl_image_tag(dogrun_place.logo.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-scale-down h-[294px] w-auto", alt: dogrun_place.name) %>
     <div class ="text-center">
       <h1 class="mt-4 text-2xl font-semibold text-gray-700 dark:text-gray-200">
         <%= dogrun_place.name %>
