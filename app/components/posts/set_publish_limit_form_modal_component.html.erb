@@ -1,9 +1,8 @@
 <%= turbo_frame_tag "set_publish_limit_form_modal", autoscroll: true, data: { "autoscroll-behavior": "smooth" }  do %>
-  <%= tag.div data: { controller: "turbo-form-modal", "turbo-form-modal_target": "modal", action: "turbo:submit-end->turbo-form-modal#submitEnd click@window->turbo-form-modal#closeBackground" }, 
-      id: "user_detail_form_modal", 
-      class: "mx-1 p-2 absolute z-20 shadow-xl rounded-lg border-2 border-gray-700 dark:border-white w-full md:w-auto", 
-      style: "background-color: #cbd5e1; " do %>
-    <div class="relative">
+  <%= tag.div data: { controller: "turbo-form-modal", "turbo-form-modal_target": "modal", action: "turbo:submit-end->turbo-form-modal#submitEnd" }, 
+      class: "flex items-center justify-center fixed z-40 inset-0 h-full p-6" do %>
+    <button data-action="turbo-form-modal#hideModal" class="cursor-default w-full h-full fixed inset-0 bg-gray-700 bg-opacity-50"></button>
+    <div class="relative bg-slate-300 p-2 absolute shadow-xl rounded-lg border-2 border-gray-700 dark:border-white w-full md:w-auto backdrop-blur bg-opacity-75">
       <button type="button" data-action="turbo-form-modal#hideModal" class="absolute top-0 right-0 rounded-full bg-gray-200 border-2 border-gray-700 shadow-md">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -13,7 +12,7 @@
         <%= @title %>
       </p>
       <div class="w-full px-4 py-2">
-        <div class="w-full mx-auto px-0 sm:px-6 mt-5 bg-gray-300">
+        <div class="w-full mx-auto px-0 sm:px-6 mt-2">
           <%= form_with model: @post, url: start_to_publish_admin_post_path(@post), method: :patch, 
               data: { turbo_method: :patch, turbo_confirm: t('.start_to_publish_confirmation'), controller: "disable-confirm", "disable-confirm-with-value": t('defaults.posting') } do |f| %>
             <p class= "text-lg text-center leading-6 font-base text-gray-700"><%= t('.please_set_publish_limit')%></p>
@@ -34,22 +33,22 @@
           <% end %>
         </div>
       </div>
-    </div>
-    <div class="px-0 md:px-4">
-      <div class="mt-4 mx-auto px-4 py-2 max-w-min rounded-xl border-2 border-neutral-400
-        bg-[url('https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,g_center,q_auto/v1671380081/w4ygbtfdkxu3gzrixk6u.jpg')]
-      ">
-        <div class="flex justify-center">
-          <%= post_viewing(@post) %>
-        </div>
-        <div class="mt-2 text-gray-200">
-          <div class="flex justify-end">
-            <p class="mr-2"><%= t('.posting_datetime') %></p>
-            <%= l @post.created_at, format: :long %>
+      <div class="px-0 md:px-4">
+        <div class="mt-4 mx-auto px-4 py-2 max-w-min rounded-xl border-2 border-neutral-400
+          bg-[url('https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,g_center,q_auto/v1671380081/w4ygbtfdkxu3gzrixk6u.jpg')]
+        ">
+          <div class="flex justify-center">
+            <%= post_viewing(@post) %>
           </div>
-          <div class="flex justify-end">
-            <p class="mr-2"><%= t('.posting_by') %></p>
-            <%= @post.user.name %>
+          <div class="mt-2 text-gray-200">
+            <div class="flex justify-end">
+              <p class="mr-2"><%= t('.posting_datetime') %></p>
+              <%= l @post.created_at, format: :long %>
+            </div>
+            <div class="flex justify-end">
+              <p class="mr-2"><%= t('.posting_by') %></p>
+              <%= @post.user.name %>
+            </div>
           </div>
         </div>
       </div>

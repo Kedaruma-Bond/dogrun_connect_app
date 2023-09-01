@@ -1,8 +1,8 @@
 <%= turbo_frame_tag "sns_account_form_modal", autoscroll: true, data: { autoscroll_block: "start" } do %>
-  <div class="cursor-default w-full h-full fixed inset-0 bg-gray-800 bg-opacity-25"></div>
-  <%= tag.div data: { controller: "turbo-form-modal", "turbo-form-modal_target": "modal", action: "turbo:submit-end->turbo-form-modal#submitEnd click@window->turbo-form-modal#closeBackground" }, 
-      id: "sns_form_modal", class: "modal-window mx-2 p-2 absolute z-10 shadow-xl rounded-lg border-2 border-gray-700 dark:border-white w-11/12 md:w-96", style: "background-color: #cbd5e1; left: 0.5rem;" do %>
-    <div class="relative">
+  <%= tag.div data: { controller: "turbo-form-modal", "turbo-form-modal_target": "modal", action: "turbo:submit-end->turbo-form-modal#submitEnd" }, 
+      class: "flex items-center justify-center fixed z-40 inset-0 h-full p-3" do %>
+    <button data-action="turbo-form-modal#hideModal" class="cursor-default w-full h-full fixed inset-0 bg-gray-700 bg-opacity-50"></button>
+    <div class="relative bg-slate-300 p-2 absolute shadow-xl rounded-lg border-2 border-gray-700 dark:border-white w-full md:w-96 backdrop-blur bg-opacity-75">
       <button type="button" data-action="turbo-form-modal#hideModal" class="absolute top-0 right-0 rounded-full bg-gray-200 border-2 border-gray-700 shadow-md">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
