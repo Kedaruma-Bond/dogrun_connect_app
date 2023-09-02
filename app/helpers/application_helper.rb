@@ -12,7 +12,7 @@ module ApplicationHelper
   def toggle_button_marker
     current_user_new_encount_dogs_count = EncountDog.joins(:dog).where(dogs: { public: 'public_view' }).where(user_id: current_user.id).where(acknowledge: false).count
     if current_user_new_encount_dogs_count != 0
-      tag.span class: "absolute top-1 right-3" do
+      tag.span class: "absolute top-1 right-2" do
         concat tag.span(class: "text-sm font-medium relative inline-flex w-3 h-3 rounded-full bg-indigo-500 dark:bg-indigo-300 justify-center aspect-square")
       end
     end
