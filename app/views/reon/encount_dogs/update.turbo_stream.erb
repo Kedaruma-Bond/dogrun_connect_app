@@ -1,0 +1,11 @@
+<%= render_turbo_stream_flash_messages %>
+
+<%= turbo_stream.replace "encount_dog_#{@encount_dog.id}" do %>
+  <%= render partial: "shared/encount_dog", 
+    locals: { 
+      encount_dog: @encount_dog, 
+      dog_profile_path: @dog_profile_path, 
+      encount_dog_path: @encount_dog_path, 
+      edit_encount_dog_path: @edit_encount_dog_path 
+      } %>
+<% end %>

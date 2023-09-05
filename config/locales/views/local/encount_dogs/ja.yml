@@ -5,8 +5,7 @@ ja:
         title: エンカウントリスト
       edit:
         title: | 
-          出会ったワンコの
-          情報を編集
+          出会ったワンコの情報を編集
         encount_dog_name: 出会ったワンコの名前
       search:
         title: |

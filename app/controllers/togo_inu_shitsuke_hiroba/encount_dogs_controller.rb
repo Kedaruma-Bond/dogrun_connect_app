@@ -16,10 +16,15 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
 
   def update
     if @encount_dog.update(encount_dog_params)
-      if session[:previous_url].nil?
-        redirect_to send(@encount_dogs_path), success: t('local.encount_dogs.encount_dog_updated')
-      else
-        redirect_to session[:previous_url],success: t('local.encount_dogs.encount_dog_updated') 
+      respond_to do |format|
+        format.html {
+          if session[:previous_url].nil?
+            redirect_to send(@encount_dogs_path), success: t('local.encount_dogs.encount_dog_updated')
+          else
+            redirect_to session[:previous_url],success: t('local.encount_dogs.encount_dog_updated') 
+          end
+        }
+        format.turbo_stream { flash.now[:success] = t('local.encount_dogs.encount_dog_updated')}
       end
     else
       render :edit, status: :unprocessable_entity
