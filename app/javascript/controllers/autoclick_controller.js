@@ -10,7 +10,7 @@ export default class extends Controller {
     useIntersection(this, this.options)
   }
 
-  appear(entry) {
+  appear() {
     this.element.click()
   }
 }

@@ -1,11 +1,19 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-
+  
   connect() {
+    this.enterClass = 'animate-tilt-in-right-2'
+    this.exitClass = 'animate-fade-out'
+
     setTimeout(() => {
       this.dismiss();
     }, 10000);
+  }
+
+  unmount_animate() {
+    this.element.classList.remove(this.enterClass)
+    this.element.classList.add(this.exitClass)
   }
 
   disconnect() {
@@ -13,7 +21,10 @@ export default class extends Controller {
   }
 
   dismiss() {
-    this.element.remove();
+    this.unmount_animate()
+    setTimeout(() => {
+      this.element.remove();
+    }, 500)
   }
 
   close(event) {

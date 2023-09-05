@@ -1,7 +1,7 @@
 <%= form_with model: @encount_dog, url: {controller: "encount_dogs", action: "update"},  
   data: { controller: 'disable', "disable-with-value": t('defaults.updating') } do |f| %>
   <%= render 'shared/error_messages_for_modal', object: f.object %>
-  <div class="text-gray-600 w-full mt-4">
+  <div class="text-gray-600 w-full mt-2">
       <%= f.label :color_marker, class: "font-bold leading-none" %>
       <%= f.select :color_marker, EncountDog.color_markers_i18n.invert, {include_blank: t('.select_color_marker')}, { class: "block w-full leading-1 text-gray-900 p-3 focus:outline-none focus:border-blue-700 bg-gray-100 rounded border border-gray-200" } %>
   </div>
