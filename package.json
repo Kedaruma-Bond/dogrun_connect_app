@@ -1,8 +1,9 @@
 {
-  "devDependencies": {
-    "@tailwindcss/aspect-ratio": "^0.4.2"
-  },
   "dependencies": {
-    "caniuse-lite": "^1.0.30001514"
+    "caniuse-lite": "^1.0.30001526"
+  },
+  "engines": {
+    "node": "20.x",
+    "npm": "10.x"
   }
 }
