@@ -13,6 +13,7 @@
 <%= render partial: 'shared/during_pre_entry_dogs_content', locals: { pre_entry_dogs_public_view_include_own_dog: @pre_entry_dogs_public_view_include_own_dog, dogrun_place: @dogrun_place, dog_profile_path: @dog_profile_path, current_user: @current_user } %>
 <% if !@current_user.guest? %>
   <%= turbo_frame_tag dom_id(@dogrun_place, :login_top_content) do %>
+    <%= image_tag 'tadpole.svg', class: "hidden mt-1 mx-auto w-10 h-10", data: { "reloadable-target": "spinner" } %>
     <%= render partial: 'shared/login_top_content', 
       locals: { 
         current_user: @current_user, 
