@@ -6,8 +6,9 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       <% end %>
+      <%= birthday_marker(rn.dog) %>
       <div class="w-28 h-28 sm:w-16 sm:h-16 my-auto">
-        <%= link_to send(dog_profile_path, rn.dog) do %>
+        <%= link_to send(dog_profile_path, rn.dog), data: { turbo_frame: "dog_profile_modal" } do %>
           <%= dog_thumbnail(rn.dog, current_user) %>
         <% end %>
       </div>
@@ -24,7 +25,7 @@
           </div>
 
           <div class="flex text-2xl font-semibold text-gray-700 dark:text-white md:mt-0 text-2xl">
-            <%= link_to send(dog_profile_path, rn.dog) do %>
+            <%= link_to send(dog_profile_path, rn.dog), data: { turbo_frame: "dog_profile_modal" } do %>
               <%= rn.dog.name %>
             <% end %>
             <div class="flex ml-2 items-center">

@@ -48,7 +48,7 @@ ja:
     embed_form:
       fb: Facebook
       instagram: Instagram
-      twitter: Twitter
+      twitter: X(Twitter)
       select_sns: SNSを選択してください
       facebook_only_pc: FacebookはPCからしかcodeを取得できません
     user_detail_part:        

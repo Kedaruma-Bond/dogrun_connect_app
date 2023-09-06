@@ -58,7 +58,7 @@ https://www.dogrunconnect.com
 - 記事投稿機能
   - 利用者・運営側がドッグランに関する以下のような投稿ができる
     - 文＋写真添付可能な記事
-    - SNS（Twitter、Facebook、Instagram）投稿埋め込み
+    - SNS（X(Twitter)、Facebook、Instagram）投稿埋め込み
   - 運営側で投稿内容を承認してアプリのTOP画面に掲示できる。
 - エンカウントリスト機能
   - ドッグランで出会ったワンコをフレンドリストに自動登録

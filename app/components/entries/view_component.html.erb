@@ -5,8 +5,8 @@
     <%= simple_format(@title) %>
   </h1>
   <%= render partial: 'shared/search_form', locals: { q: @q, applicable_path: @applicable_path, search_field_placeholder: @search_field_placeholder } %>
-  <p class="text-center md:hidden text-xs text-gray-600 mt-3"><%= t('defaults.thumbnail_tap') %></p>
-  <div class="container w-full mx-auto sm:p-10">
+  <p class="text-center md:hidden text-sm text-gray-600 mb-1 mt-3"><%= t('defaults.thumbnail_tap') %></p>
+  <div class="container w-full mx-auto">
     <div class="block w-full">
       <%= turbo_frame_tag dom_id(@dogrun_place, "entries") do %>
         <%= content %>

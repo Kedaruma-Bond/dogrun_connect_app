@@ -1,5 +1,6 @@
-<%= turbo_stream_from @dogrun_place, "top" %>
 <% content_for(:title, @title) %>
+<%= turbo_stream_from @dogrun_place, "top" %>
+<%= turbo_frame_tag "dog_profile_modal" %>
 <div class='max-w-5xl mx-auto pt-2 pb-2 bg-purple-200 rounded-lg'>
   <% if !@current_user.nil? %>
     <%= turbo_frame_tag dom_id(@dogrun_place, "dogrun_board"), loading: :lazy do %>
@@ -25,7 +26,7 @@
           <% end %>
         </div>
       <% else %>
-        <%= turbo_frame_tag dom_id(@dogrun_place, "top_contents"), src: "top_contents", loading: :lazy, data: { "reloadable-target": "reloadFrame" } do %>
+        <%= turbo_frame_tag dom_id(@dogrun_place, "top_contents"), src: "top_contents", data: { "reloadable-target": "reloadFrame" } do %>
           <%= image_tag 'tadpole.svg', class: "my-3 mx-auto w-10 h-10" %>
         <% end %>
       <% end %>

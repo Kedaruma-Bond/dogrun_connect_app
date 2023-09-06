@@ -24,7 +24,7 @@ export default class extends Controller {
     this.unmount_animate()
     setTimeout(() => {
       this.element.remove();
-    }, 500)
+    }, 300)
   }
 
   close(event) {

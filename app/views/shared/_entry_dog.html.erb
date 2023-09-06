@@ -2,7 +2,7 @@
   <div class="flex mx-auto bg-transparent text-gray-200 mb-1 <%= private_entry(dog) %>">
     <div class="w-1/3 mx-auto my-auto ml-1 animate-rotate-in-2-tr-ccw">
       <%= birthday_marker(dog) %>
-      <%= link_to send(dog_profile_path, dog) do %>
+      <%= link_to send(dog_profile_path, dog), data: { turbo_frame: "dog_profile_modal" } do %>
         <div class="w-28 h-28 flex">
           <%= dog_thumbnail(dog, current_user) %>
         </div>
