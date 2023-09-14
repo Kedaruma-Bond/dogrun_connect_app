@@ -7,11 +7,11 @@
   <div class="py-2 w-full px-0 md:px-2">
     <div class="flex-col mb-3">
       <div class="flex-col">
-        <div class="flex justify-center">
-          <p class="text-lg font-semibold ml-2"><%= t('defaults.on_board') %></p>
-        </div>
         <div class="mx-auto py-2 px-4 max-w-min rounded-xl border-2 border-neutral-400
           bg-[url('https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,g_center,q_auto/v1671380081/w4ygbtfdkxu3gzrixk6u.jpg')]">
+          <h3 class="mx-auto w-2/3 flex justify-center p-[4px] text-white rounded-xl font-bold text-xl text-opacity-80 bg-gray-500 backdrop-blur bg-opacity-30" style="box-shadow: inset 1px 3px 6px rgba( 0, 0, 0, 0.5);">
+            <%= t('defaults.on_board') %>
+          </h3>
           <%= turbo_frame_tag dom_id(@dogrun_place, "dogrun_board"), src: "posts/dogrun_board" %>
         </div>
       </div>

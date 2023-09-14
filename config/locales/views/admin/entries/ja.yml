@@ -19,4 +19,10 @@ ja:
       exit_operation_modal:
       num_of_playing_dogs:
         playing: 頭です
+      exit_command_selector:
+        select_exit_operation_type: 退場操作のタイプ選択
+        exit_confirmation: 退場してよろしいですか？
+        force_exit_confirmation: |
+          強制退場すると飼い主さんに通知メールが送信されます。
+          強制退場してよろしいですか？
 

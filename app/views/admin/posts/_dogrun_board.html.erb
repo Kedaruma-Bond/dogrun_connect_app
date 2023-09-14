@@ -4,9 +4,9 @@
       <%= post_viewing(publishing_post[0]) %>
     </div>
     <div class="flex items-center justify-between">
-      <%= link_to cancel_to_publish_admin_post_path(publishing_post[0]), class:"mt-2 rounded-full bg-gray-500 shadow-lg border border-gray-200", data: { turbo_method: :patch, turbo_confirm: t('admin.posts.post_icon.cancel_to_publish_confirmation') } do %>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      <%= link_to cancel_to_publish_admin_post_path(publishing_post[0]), class:"mt-2 rounded-full bg-red-400 shadow-lg p-1", data: { turbo_method: :patch, turbo_confirm: t('admin.posts.post_icon.cancel_to_publish_confirmation') } do %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-200" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M6 18L18 6M6 6l12 12" />
         </svg>
       <% end %>
       <div class="flex text-gray-300 items-center justify-end mt-2">

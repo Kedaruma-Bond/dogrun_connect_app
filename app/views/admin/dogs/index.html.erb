@@ -1,13 +1,13 @@
-<%= turbo_stream_from @dogrun_place, "admin_dogs_index" %>
 <% content_for(:title, t('.title')) %>
+<%= turbo_frame_tag "dog_profile_modal" %>
 <div class="container bg-gray-300 w-full flex flex-col">
   <div class="py-2 px-2">
     <h2 class="mt-2 ml-2 text-xl font-bold"><%= t('.title') %></h2>
-    <%= render partial: 'admin/dogs/search_form' %>
+    <%= render partial: 'search_form' %>
     <div class="overflow-x-auto">
       <div class="table rounded-lg bg-gray-100 border-collapse mt-3 w-full">
         <%= render partial: "dog_index_table_header" %>
-        <%= turbo_frame_tag dom_id(@dogrun_place, "admin_dogs"), class: "table-row-group" do %>
+        <%= tag.div class: "table-row-group" do %>
           <%= render @dogs %>
         <% end %>
       </div>

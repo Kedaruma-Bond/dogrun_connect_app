@@ -1,8 +1,8 @@
-<%= turbo_frame_tag dom_id(dogrun_place, "pre_entry_dog_#{pre_entry_dog.id}") do %>
-  <div class="w-12 h-12 mx-1 animate-roll-in-right">
-    <%= link_to send(dog_profile_path, pre_entry_dog), data: { turbo_frame: "dog_profile_modal" },
-      class: private_entry(pre_entry_dog) do %>
+<%= turbo_frame_tag dom_id(dogrun_place, "pre_entry_dog_#{pre_entry_dog.id}"), class: "animate-roll-in-right" do %>
+  <%= link_to send(dog_profile_path, pre_entry_dog), data: { turbo_frame: "dog_profile_modal" },
+    class: private_entry(pre_entry_dog) do %>
+    <%= tag.div class: "w-12 h-12 mx-1", id: "pre_entry_dog_thumbnail_#{pre_entry_dog.id}" do %>
       <%= dog_thumbnail(pre_entry_dog, current_user) %>
     <% end %>
-  </div>
+  <% end %>
 <% end %>

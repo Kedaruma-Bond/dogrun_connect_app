@@ -2,7 +2,7 @@ class Admin::EntriesController < Admin::BaseController
   include Pagy::Backend
   before_action :set_naming_of_registration_number, only: %i[index search]
   before_action :set_q, only: %i[index search]
-  before_action :set_entry, only: %i[update destroy]
+  before_action :set_entry, only: %i[exit_command_selector update destroy]
   before_action :correct_admin_check, only: %i[update destroy]
   before_action :set_dogrun_place, only: %i[index create update destroy search]
   before_action :set_each_path, only: %i[create]
@@ -28,8 +28,8 @@ class Admin::EntriesController < Admin::BaseController
       return
     end
 
-    @dog = Dog.find(params[:dog_id])
-    @rn = dog_relative_registration_number(@dog, current_user)
+    @registration_number = RegistrationNumber.find(params[:registration_number_id])
+    @dog = @registration_number.dog
     @entry = Entry.new(entry_params)
     @entry.entry_at = Time.zone.now
     @entry.save!
@@ -47,6 +47,8 @@ class Admin::EntriesController < Admin::BaseController
       format.turbo_stream { flash.now[:success] = t('local.entries.entry_success') }
     end
   end
+
+  def exit_command_selector; end
 
   def update
     # rspec通すためにこんなことしてるの馬鹿げてる
@@ -124,7 +126,7 @@ class Admin::EntriesController < Admin::BaseController
         :dog_id
       ).merge(
         dog_id: @dog.id,
-        registration_number_id: @rn.id
+        registration_number_id: @registration_number.id
       )
     end
 

@@ -4,9 +4,11 @@
     <% if dog.rabies_vaccination_certificate.blank? %>
       <p class="flex justify-center md:justify-start">no_image</p>
     <% else %>
+      <div class="w-24 mx-auto md:ml-0">
       <%= link_to "#", data: { "lightbox-source-param": dog.rabies_vaccination_certificate_preview, action: "lightbox#handleOpen" } do %>
-        <%= cl_image_tag dog.rabies_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded mx-auto md:mx-0 h-auto w-24", alt: "rabies vaccination certificate" %>
+        <%= cl_image_tag dog.rabies_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded mx-auto md:mx-0 h-auto", alt: "rabies vaccination certificate" %>
       <% end %>
+      </div>
     <% end %>
   </div>
   <div class="w-full mb-3 md:mb-0">
@@ -26,9 +28,11 @@
     <% if dog.mixed_vaccination_certificate.blank? %>
       <p class="flex justify-center md:justify-start">no_image</p>
     <% else %>
-      <%= link_to "#", data: { "lightbox-source-param": dog.mixed_vaccination_certificate_preview, action: "lightbox#handleOpen" } do %>
-        <%= cl_image_tag dog.mixed_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded mx-auto md:mx-0 h-auto w-24", alt: "mixed vaccination certificate" %>
-      <% end %>
+      <div class="w-24 mx-auto md:ml-0">
+        <%= link_to "#", data: { "lightbox-source-param": dog.mixed_vaccination_certificate_preview, action: "lightbox#handleOpen" } do %>
+          <%= cl_image_tag dog.mixed_vaccination_certificate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded mx-auto md:mx-0 h-auto", alt: "mixed vaccination certificate" %>
+        <% end %>
+      </div>
     <% end %>
   </div>
   <div class="w-full mb-3 md:mb-0">
@@ -80,9 +84,11 @@
     <% if dog.license_plate.blank? %>
       <p class="flex justify-center md:justify-start">no_image</p>
     <% else %>
-      <%= link_to "#", data: { "lightbox-source-param": dog.license_plate_preview, action: "lightbox#handleOpen" } do %>
-        <%= cl_image_tag dog.license_plate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover rounded mx-auto md:mx-0 h-auto w-24", alt: "license plate" %>
-      <% end %>
+      <div class="w-24 mx-auto md:ml-0">
+        <%= link_to "#", data: { "lightbox-source-param": dog.license_plate_preview, action: "lightbox#handleOpen" } do %>
+          <%= cl_image_tag dog.license_plate.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "rounded mx-auto md:mx-0 h-auto", alt: "license plate" %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

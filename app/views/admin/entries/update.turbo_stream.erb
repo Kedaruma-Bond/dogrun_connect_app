@@ -9,5 +9,5 @@
 <% end %>
 
 <%= turbo_stream.replace "registration_number_#{@entry.registration_number.id}" do %>
-  <%= render partial: "admin/dogs/dog", locals: { dog: @entry.dog } %>
+  <%= render partial: "admin/registration_numbers/registration_number", locals: { registration_number: @entry.registration_number } %>
 <% end %>

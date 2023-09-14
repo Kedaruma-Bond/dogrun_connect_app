@@ -1,13 +1,9 @@
-<%= turbo_frame_tag "set_publish_limit_form_modal", autoscroll: true, data: { "autoscroll-behavior": "smooth" }  do %>
+<%= turbo_frame_tag "set_publish_limit_form_modal" do %>
   <%= tag.div data: { controller: "turbo-form-modal", "turbo-form-modal_target": "modal", action: "turbo:submit-end->turbo-form-modal#submitEnd" }, 
-      class: "overflow-y-scroll flex items-center justify-center fixed z-40 inset-0 h-full p-2 md:px-3" do %>
+      class: "animate-fade-in flex items-center justify-center fixed z-40 inset-0 h-full p-0" do %>
     <button data-action="turbo-form-modal#hideModal" class="cursor-default w-full h-full fixed inset-0 bg-gray-700 bg-opacity-50"></button>
-    <div class="max-h-[770px] relative bg-slate-300 p-2 shadow-xl rounded-lg border-2 border-gray-700 dark:border-white w-full md:w-auto backdrop-blur bg-opacity-75">
-      <button type="button" data-action="turbo-form-modal#hideModal" class="absolute top-0 right-0 rounded-full bg-gray-200 border-2 border-gray-700 shadow-md">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
+    <%= turbo_frame_modal_close_button %>
+    <div class="max-h-[770px] overflow-scroll bg-slate-300 shadow-xl rounded-lg border-2 border-gray-700 dark:border-white w-[95%] md:w-auto backdrop-blur bg-opacity-75 p-2">
       <p class="text-center text-xl md:text-2xl text-gray-700 font-bold mb-0 md:mb-2 pt-1">
         <%= @title %>
       </p>
@@ -21,7 +17,7 @@
               <span class="absolute right-5 md:right-0 bottom-0 leading-none text-base text-gray-700 "><%= t('.until') %></span>
             </div>
             <%= f.hidden_field :publish_status, value: 'is_publishing' %>
-            <div class="flex items-center justify-center mt-1">
+            <div class="flex items-center justify-center mt-3">
               <%= f.button data: { "disable-confirm-target": "submitButton" },
                 class: "flex disabled:cursor-not-allowed disabled:bg-emerald-400 font-bold text-white py-2 px-5 bg-emerald-500 rounded hover:bg-emerald-400 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
                 <%= @spinner_icon_for_form_disable_button %>
@@ -33,22 +29,20 @@
           <% end %>
         </div>
       </div>
-      <div class="px-0 md:px-2">
-        <div class="mt-4 mx-auto px-2 py-2 max-w-min rounded-xl border-2 border-neutral-400
-          bg-[url('https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,g_center,q_auto/v1671380081/w4ygbtfdkxu3gzrixk6u.jpg')]
-        ">
-          <div class="flex justify-center max-h-[280px] md:max-h-screen" data-controller="facebook-sdk">
-            <%= post_viewing(@post) %>
+      <div class="mt-2 mx-auto px-2 py-1 max-w-min rounded-xl border-2 border-neutral-400
+        bg-[url('https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,g_center,q_auto/v1671380081/w4ygbtfdkxu3gzrixk6u.jpg')]
+      ">
+        <div class="flex justify-center max-h-[300px] md:max-h-[450px]" data-controller="facebook-sdk">
+          <%= post_viewing(@post) %>
+        </div>
+        <div class="mt-2 text-gray-200">
+          <div class="flex justify-end">
+            <p class="mr-2"><%= t('.posting_datetime') %></p>
+            <%= l @post.created_at, format: :long %>
           </div>
-          <div class="mt-2 text-gray-200">
-            <div class="flex justify-end">
-              <p class="mr-2"><%= t('.posting_datetime') %></p>
-              <%= l @post.created_at, format: :long %>
-            </div>
-            <div class="flex justify-end">
-              <p class="mr-2"><%= t('.posting_by') %></p>
-              <%= @post.user.name %>
-            </div>
+          <div class="flex justify-end">
+            <p class="mr-2"><%= t('.posting_by') %></p>
+            <%= @post.user.name %>
           </div>
         </div>
       </div>

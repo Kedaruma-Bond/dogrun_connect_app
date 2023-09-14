@@ -7,18 +7,17 @@
 <% else %>
   <div class="flex mb-2">
     <%= link_to edit_admin_sns_account_path(dogrun_place.sns_account), data: { turbo_frame: 'sns_account_form_modal' } do %>
-      <button class="px-2 py-2 text-sm font-normal mr-5 ml-5 md:mr-1 md:ml-1 tracking-wide text-gray-200 bg-sky-700 rounded-md hover:bg-sky-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+      <button class="px-2 py-2 text-sm font-normal mr-5 ml-5 md:mr-1 md:ml-1 tracking-wide text-gray-200 bg-blue-700 rounded-md hover:bg-blue-800 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
         <span class="mx-auto"><%= t'.update_sns_id' %></span>
       </button>
     <% end %>
     <%= link_to admin_sns_account_path(dogrun_place.sns_account), data: { turbo_method: :delete, turbo_confirm: t('defaults.destroy_confirmation') } do %>
-      <button class="px-2 py-2 text-sm font-normal mr-5 md:mr-1 tracking-wide text-gray-200 bg-red-700 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+      <button class="px-2 py-2 text-sm font-normal mr-5 md:mr-1 tracking-wide text-gray-200 bg-red-700 rounded-md hover:bg-red-800 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
         <span class="mx-auto"><%= t'.delete_sns_id' %></span>
       </button>
     <% end %>
   </div>
 <% end %>
 <% if !dogrun_place.sns_account.nil? %>
-  <p class="text-sm text-gray-700 my-3"><%= t('defaults.sns') %></p>
   <%= render partial: "shared/sns_account_icons", locals: { sns_account: dogrun_place.sns_account } %>
 <% end %>

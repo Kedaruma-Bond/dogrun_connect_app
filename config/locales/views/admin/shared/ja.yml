@@ -1,9 +1,27 @@
 ja:
   admin:
     shared:
+      explain_of_notice_modal:
+        title: 通知欄のアイコンについて
+        meaning_of_icons: 各アイコンは下表の通り、ワクチン接種後の有効免疫の残り期間を表しています。
+        icon: アイコン
+        description: 説明
+        description_of_checked_icon: いずれのワクチンも有効免疫期間が半月以上残っている状態
+        description_of_alert_icon: ワクチン接種から1年以上経過し、有効免疫期間が失効している状態
+        description_of_notice_icon: 接種したワクチンの有効免疫期間失効まで半月を切っている状態
+        description_of_hyphen: ワクチン接種日が未登録
+      explain_of_vaccination_modal:
+        title: 接種証明欄のアイコンについて
+        meaning_of_icons: 各アイコンは下表の通り、接種証明書、鑑札の写真のアップロードの有無を表しています。
+        icon: アイコン
+        rabies: 狂犬病
+        mixed: 混合ワクチン
+        license_plate: 鑑札
+        other_than_the_above: 上記以外
       navbar:
         logout_confirmation: 管理者ユーザーからログアウトしますか？
         user_list: 利用者一覧
+        dashboard: ダッシュボード
         dogrun_post_list: |
           ドッグランへの
           投稿一覧

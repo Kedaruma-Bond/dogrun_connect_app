@@ -1,0 +1,26 @@
+<%= render_turbo_stream_flash_messages %>
+
+<%= turbo_stream.replace "dog_profile_contents" do %>
+  <%= render partial: "shared/dog_profile_contents",
+    locals: {
+      registration_number_notation: I18n.t('togo_inu_shitsuke_hiroba.registration_number'),
+      user: @user,
+      dog: @dog, 
+      current_user: current_user,
+      registration_number: @registration_number,
+      encount_dog: @encount_dog,
+      edit_encount_dog_path: @edit_encount_dog_path,
+      dog_profile_path: @dog_profile_path,
+    } %>
+<% end %>
+
+<%= turbo_stream.replace @registration_number do %>
+  <%= render partial: 'shared/registered_dog', 
+    locals: { 
+      dogs: @dogs, 
+      dog_profile_path: @dog_profile_path, 
+      registration_number: @registration_number, 
+      registration_number_path: @registration_number_path,
+      notation_of_registration_number: I18n.t('togo_inu_shitsuke_hiroba.registration_number')
+    } %>
+<% end %>

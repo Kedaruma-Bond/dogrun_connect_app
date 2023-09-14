@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ['summary', 'content']
+  static targets = ['summary', 'content', 'openText', 'closeText']
 
   connect() {
     this.resetState()
@@ -20,8 +20,12 @@ export default class extends Controller {
 
     if (this.isClosing || !this.element.open) {
       this.open()
+      this.openTextTarget.classList.add("hidden")
+      this.closeTextTarget.classList.remove("hidden")
     } else if (this.isExpanding || this.element.open) {
       this.shrink()
+      this.closeTextTarget.classList.add("hidden")
+      this.openTextTarget.classList.remove("hidden")
     }
   }
 

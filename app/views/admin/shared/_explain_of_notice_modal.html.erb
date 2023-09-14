@@ -1,31 +1,27 @@
 <%= tag.dialog data: { "message-modal-target": "modal" },
-  class: "p-1 z-10 border-2 border-gray-700 dark:border-white rounded-lg bg-purple-200 shadow-xl w-4/5 md:w-1/3 max-h-screen backdrop:bg-gray-700 backdrop:bg-opacity-50 open:animate-fade-in open:backdrop:animate-fade-in" do %>
-  <button type="button" data-action="message-modal#close" class="rounded-full bg-gray-200 border-2 border-gray-700 shadow-md float-right">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-    </svg>
-  </button>
+  class: "message-modal" do %>
+  <%= message_modal_close_button %>
   <div class="px-2 py-3 text-left">
     <div class="px-4 sm:px-6">
       <h3 class="text-xl font-bold text-gray-700 my-2 text-center"><%= t('.title') %></h3>
     </div>
     <div class="w-full h-1 bg-gray-700 text-base rounded mt-1 mb-2"></div>
-      <div class="w-11/12 mx-auto">
+      <div class="w-11/12 mx-auto text-gray-700">
         <%= t('.meaning_of_icons') %>
       </div>
-    <div class="table py-2 px-4 border-collapse mt-3 mx-auto bg-gray-50 rounded-sm">
+    <div class="w-full table py-2 px-4 border-collapse mt-3 mx-auto bg-gray-50 rounded-sm">
       <div class="table-header-group border-gray-600 border-b">
-        <div class="table-row text-center text-xs font-light text-gray-900">
-          <div class="w-[80px] table-cell border-gray-500 border-r border-opacity-50 align-middle">
+        <div class="table-row text-center text-sm font-normal text-gray-900 h-[41px]">
+          <div class="w-[20%] table-cell border-gray-500 border-r border-opacity-50 align-middle">
             <%= t('.icon') %>
           </div>
-          <div class="w-[270px] table-cell align-middle">
+          <div class="w-[80%] table-cell align-middle">
             <%= t('.description') %>
           </div>
         </div>
       </div>
-      <div class="table-row-group text-xs">
-        <div class="table-row border-b border-gray-500">
+      <div class="table-row-group text-sm font-normal">
+        <div class="table-row border-b border-gray-500 h-[41px]">
           <div class="table-cell border-r border-gray-500 border-opacity-50 align-middle">
             <svg class="mx-auto w-5 h-5 text-green-500" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
@@ -35,7 +31,7 @@
             <%= t('.description_of_checked_icon') %>
           </div>
         </div>
-        <div class="table-row border-b border-gray-500">
+        <div class="table-row border-b border-gray-500 h-[41px]">
           <div class="table-cell border-r border-gray-500 border-opacity-50 align-middle">
             <svg class="mx-auto w-5 h-5" stroke-width="1.69" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#6366f1">
               <path d="M18 8.4c0-1.697-.632-3.325-1.757-4.525C15.117 2.675 13.59 2 12 2c-1.591 0-3.117.674-4.243 1.875C6.632 5.075 6 6.703 6 8.4 6 15.867 3 18 3 18h18s-3-2.133-3-9.6zM13.73 21a1.999 1.999 0 01-3.46 0" stroke="#6366f1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -45,7 +41,7 @@
             <%= t('.description_of_notice_icon') %>
           </div>
         </div>
-        <div class="table-row border-b border-gray-500">
+        <div class="table-row border-b border-gray-500 h-[41px]">
           <div class="table-cell border-r border-gray-500 border-opacity-50 align-middle">
             <svg class="mx-auto w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
@@ -55,7 +51,7 @@
             <%= t('.description_of_alert_icon') %>
           </div>
         </div>
-        <div class="table-row">
+        <div class="table-row h-[41px]">
           <div class="table-cell text-center border-r border-gray-500 border-opacity-50 align-middle">
           -
           </div>
@@ -64,7 +60,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 <% end %>

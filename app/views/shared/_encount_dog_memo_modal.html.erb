@@ -1,10 +1,6 @@
 <%= tag.dialog data: { "message-modal-target": "modal" },
-  class: "p-1 z-10 border-2 border-gray-700 dark:border-white rounded-lg bg-purple-200 shadow-xl w-5/6 md:w-1/2 lg:w-1/3 backdrop:bg-gray-700 backdrop:bg-opacity-50 open:animate-fade-in open:backdrop:animate-fade-in backdrop-blur bg-opacity-75" do %>
-  <button type="button" data-action="message-modal#close" class="rounded-full bg-gray-200 border-2 border-gray-700 shadow-md float-right">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-    </svg>
-  </button>
+  class: "message-modal" do %>
+  <%= message_modal_close_button %>
   <div class="px-2 py-3">
     <div class="px-4 sm:px-6 flex">
       <div class="w-11 h-11 items-center mr-3">
@@ -13,6 +9,6 @@
       <h3 class="text-lg font-bold text-gray-700 my-2"><%= t('defaults.encount_dog_memo') %></h3>
     </div>
     <div class="w-full h-1 bg-gray-700 rounded mt-1 mb-2"></div>
-    <%= simple_format(encount_dog.memo, class: "text-base font-normal text-gray-700 text-left break-normal") %>
+    <%= simple_format(encount_dog.memo, class: "text-base font-medium text-gray-700 text-left") %>
   </div>
 <% end %>

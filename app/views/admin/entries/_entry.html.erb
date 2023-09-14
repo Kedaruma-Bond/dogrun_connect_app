@@ -10,10 +10,13 @@
     <%= entry.dog.user.name %>
   </div>
   <div class="table-cell px-3 py-2 align-middle">
-    <div class="w-12 h-12 mx-auto my-auto">
-      <%= link_to admin_dog_path(entry.dog) do %>
+    <div class="relative w-12 h-12 mx-auto my-auto">
+      <%= link_to admin_dog_path(entry.dog), data: { turbo_frame: "dog_profile_modal" } do %>
         <%= dog_thumbnail_for_admin(entry.dog) %>
       <% end %>
+      <div class="absolute -top-1.5 -left-3">
+        <%= birthday_marker(entry.dog) %>
+      </div>
     </div>
   </div>
   <div class="table-cell px-6 py-4 align-middle">
@@ -32,51 +35,27 @@
     <% end %>
   </div>
   <div class="table-cell align-middle text-center">
+    <div class="w-6 mx-auto">
     <% if entry.exit_at.nil? %>
-      <button data-action="click->form-modal#open" class="text-blue-500 hover:text-blue-400 rounded shadow-md" do %>
-        <svg class="w-6 h-6 mt-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <%= link_to exit_command_selector_admin_entry_path(entry), data: { turbo_frame: "exit_command_selector_modal" }, 
+          class: "text-blue-500 hover:text-blue-400 rounded shadow-md" do %>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"></path>
         </svg>
-      </button>
+      <% end %>
     <% else %>
-      <p class="text-center mx-6">-</p>
+      <p class="mx-auto">-</p>
     <% end %>
-    <%= tag.dialog class: "p-1 z-10 shadow-xl rounded-lg bg-slate-300 border-2 border-gray-700 dark:border-white w-5/6 md:w-1/3 backdrop:bg-gray-700 backdrop:bg-opacity-50 open:animate-fade-in open:backdrop:animate-fade-in",
-      data: { form_modal_target: "modal" } do %>
-      <button type="button" data-action="form-modal#close" class="rounded-full bg-gray-200 border-2 border-gray-700 shadow-md float-right">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-      <div class="px-4 py-5">
-        <h3 class="text-xl font-bold text-center text-gray-700 relative">
-          <%= t('.select_exit_operation_type') %>
-        </h3>
-        <div class="w-full h-1 bg-gray-200 rounded mt-2 mb-2"></div>
-        <%= form_with url: admin_entry_path(entry), method: :patch, 
-          data: { controller: "disable-confirm", "disable-confirm-with-value": t('defaults.processing'), "form-modal-target": 'form' } do |f| %>
-          <div class="flex items-center justify-center mt-3">
-            <%= f.button name: "force_flg", value: "0", data: { "disable-confirm-target": "submitButton", "turbo_confirm": t(".exit_confirmation") },
-              class: "flex font-bold leading-normal text-white py-4 disabled:py-[18px] px-10 bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-500" do %>
-              <%= spinner_icon_for_form_disable_button %>
-              <span data-disable-confirm-target="buttonText"><%= t('defaults.exit') %></span>
-            <% end %>
-            
-            <%= f.button name: "force_flg", value: "1", data: { "disable-confirm-target": "submitButton", "turbo_confirm": t('.force_exit_confirmation')  },
-              class: "disabled:hidden flex ml-6 font-bold leading-normal text-white py-4 px-7 bg-sky-700 rounded hover:bg-sky-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
-              <span data-disable-confirm-target="buttonText"><%= t('defaults.force_exit') %></span>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+    </div>
   </div>
   <div class="table-cell align-middle">
+    <div class="w-5 mx-auto">
     <%= link_to admin_entry_path(entry), data: { turbo_method: :delete, turbo_confirm: t('defaults.destroy_confirmation') }, 
-        class: "flex justify-center mx-6 text-sm text-gray-900 hover:text-gray-500 py-2 px-4" do %>
+        class: "mx-6 text-sm text-gray-900 hover:text-gray-500 py-2 px-4" do %>
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
       </svg>
     <% end %>
+    </div>
   </div>
 <% end %>

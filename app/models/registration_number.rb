@@ -14,7 +14,7 @@ class RegistrationNumber < ApplicationRecord
   
   # broadcast
   def create_broadcast
-    broadcast_prepend_to [dogrun_place, "admin_dogs_index"], target: "admin_dogs_dogrun_place_#{dogrun_place.id}", partial: "admin/dogs/dog", locals: { dog: self.dog, dogrun_place: dogrun_place, current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
+    broadcast_prepend_to [dogrun_place, "admin_dogs_index"], target: "admin_registration_numbers_dogrun_place_#{dogrun_place.id}", partial: "admin/registration_numbers/registration_number", locals: { registration_number: self, dogrun_place: dogrun_place, current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
     broadcast_replace_to [dogrun_place, "admin_navbar"], target: "admin_navbar_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/navbar", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
     broadcast_replace_to [dogrun_place, "admin_sidebar"], target: "admin_sidebar_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/sidebar", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
   end
@@ -25,9 +25,16 @@ class RegistrationNumber < ApplicationRecord
     broadcast_replace_to [dogrun_place, "admin_sidebar"], target: "admin_sidebar_dogrun_place_#{dogrun_place.id}", partial: "admin/shared/sidebar", locals: { current_user: User.where(role: "admin").find_by(dogrun_place: dogrun_place) }
   end
 
+  # scope
+  scope :dogrun_place_id, -> (id) { where(dogrun_place_id: id).includes(dog: { thumbnail_attachment: :blob,  rabies_vaccination_certificate_attachment: :blob, mixed_vaccination_certificate_attachment: :blob, license_plate_attachment: :blob } [:user]) }
+
   # ransack authorization
   def self.ransackable_attributes(auth_object = nil)
     ["acknowledge", "created_at", "dog_id", "dogrun_place_id", "id", "registration_number", "updated_at"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["dog", "user"]
   end
 
   private

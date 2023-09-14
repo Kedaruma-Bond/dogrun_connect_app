@@ -1,53 +1,67 @@
 <%= turbo_frame_tag dom_id(dogrun_place, "entry_dog_#{dog.id}"), class: "w-full" do %>
-  <div class="flex mx-auto bg-transparent text-gray-200 mb-1 <%= private_entry(dog) %>">
-    <div class="w-1/3 mx-auto my-auto ml-1 animate-rotate-in-2-tr-ccw">
-      <%= birthday_marker(dog) %>
+  <div class="flex mx-auto bg-transparent text-gray-200 mb-2 <%= private_entry(dog) %>">
+    <div class="w-1/3 mx-auto my-auto ml-1 animate-rotate-in-2-tr-ccw relative">
       <%= link_to send(dog_profile_path, dog), data: { turbo_frame: "dog_profile_modal" } do %>
-        <div class="w-28 h-28 flex">
+        <%= tag.div class: "w-28 h-28 flex", id: "entry_dog_thumnail_#{dog.id}" do %>
           <%= dog_thumbnail(dog, current_user) %>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="flex w-2/3 animate-fade-in-top">
-      <div class="w-5/6 py-2 ml-7">
-        <div class="text-2xl font-semibold text-left">
-          <%= dog.name %>
-        </div>
-        <% if dog.non_public? %>
-            <%= render partial: "shared/non_public" %>
-        <% elsif dog.filming_approval? %>
-          <div class="flex">
-            <%= render partial: "shared/filming_approval" %>
-            <% if dog.sns_post_approval? %>
-              <%= render partial: "shared/sns_post_approval" %>
-            <% end %>
-          </div>
-        <% else %>
-            <div class="h-[24px]"></div>
         <% end %>
-
-        <div class="flex mt-2">
-          <div class="flex-col text-base ml-1">
-            entry at
-            <%= l Entry.where(dog: dog).last.entry_at, format: :short2 %>
-          </div>
-        </div>
+      <% end %>
+      <div class="absolute top-0 -left-1">
+        <%= birthday_marker(dog) %>
       </div>
-      <div class="w-1/6 my-auto">
-        <div data-controller="form-modal" class="table-cell align-middle">
-          <% if !dog.owner_comment.blank? %>
-            <div data-action="click->form-modal#open">
-              <svg class="w-7 h-7 mx-auto text-gray-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path>
-              </svg>
-            </div>
-            <%= render partial: 'shared/owner_comment_modal', locals: { dog: dog, current_user: current_user } %>
-          <% else %>
-            <div class="pl-2">-</div>
+      <div class="absolute -bottom-1 -right-1">
+      <% if dog.non_public? %>
+          <%= render partial: "shared/non_public" %>
+      <% elsif dog.filming_approval? %>
+        <div class="flex">
+          <%= render partial: "shared/filming_approval" %>
+          <% if dog.sns_post_approval? %>
+            <%= render partial: "shared/sns_post_approval" %>
           <% end %>
         </div>
+      <% end %>
       </div>
+    </div>
+
+    <div class="w-full animate-fade-in-top ml-4 h-full">
+      <div class="text-2xl font-bold text-left my-2">
+        <%= dog.name %>
+      </div>
+
+      <div class="flex text-xl font-bold mt-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 my-auto" fill="currentColor" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+          <path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/>
+        </svg>
+        
+        <div class="flex ml-2 my-auto">
+          <%= l Entry.where(dog: dog).last.entry_at, format: :short2 %>
+        </div>
+        ~
+      </div>
+
+      <div class="flex items-end justify-end mr-2 gap-x-4">
+        <% if !dog.owner_comment.blank? %>
+          <div data-controller="message-modal">
+            <button data-action="click->message-modal#open">
+              <svg class="w-8 h-8 mx-auto text-gray-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path>
+              </svg>
+            </button>
+            <%= render partial: 'shared/owner_comment_modal', locals: { dog: dog, current_user: current_user } %>
+          </div>
+        <% end %>
+        <% if dog.user != current_user && EncountDog.where(user: current_user).find_by(dog: dog).present? && !EncountDog.where(user: current_user).find_by(dog: dog).memo.blank? %>
+          <div data-controller="message-modal">
+            <button data-action="click->message-modal#open">
+              <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                <path d="M200,32H184V24a8,8,0,0,0-16,0v8H136V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H56A16,16,0,0,0,40,48V200a32,32,0,0,0,32,32H184a32,32,0,0,0,32-32V48A16,16,0,0,0,200,32ZM160,168H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Zm0-32H96a8,8,0,0,1,0-16h64a8,8,0,0,1,0,16Z"/>
+              </svg>
+            </button>
+            <%= render partial: 'shared/encount_dog_memo_modal', locals: { encount_dog: EncountDog.where(user: current_user).find_by(dog: dog) } %>
+          </div>
+        <% end %>
+      </div>
+      
     </div>
   </div>
 <% end %>

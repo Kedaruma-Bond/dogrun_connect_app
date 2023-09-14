@@ -1,86 +1,95 @@
 <% content_for(:title, @title) %>
 <%= turbo_stream_from @dogrun_place, "top" %>
 <%= turbo_frame_tag "dog_profile_modal" %>
-<div class='max-w-5xl mx-auto pt-2 pb-2 bg-purple-200 rounded-lg'>
-  <% if !@current_user.nil? %>
-    <%= turbo_frame_tag dom_id(@dogrun_place, "dogrun_board"), loading: :lazy do %>
-      <%= render partial: "shared/dogrun_board", locals: { publishing_post: @publishing_post } %>
-    <% end %>
-    <div class="w-full sm:px-10 pb-5 pt-1" data-controller="reloadable">
-      <% if @dogrun_place.closed_flag == true %>
-        <div class="my-10">
-          <%= simple_format(I18n.t("local.static_pages.top.dogrun_is_closing_now", dogrun_name: @dogrun_place.name), class: "text-gray-700 font-bold text-2xl text-center") %>
-          <% if !@dogrun_place.force_closing? %>
-            <div class="mt-3 text-gray-700 font-medium text-center">
-                <% if !@dogrun_place.opening_time.blank? || !@dogrun_place.closing_time.blank? %>
-                  <p class="text-sm mt-2">
-                    <%= t('defaults.business_time') %>
-                  </p>
-                  <h2 class="mt-1">
-                    <%= l @dogrun_place.opening_time, format: :short2 %>
-                    〜
-                    <%= l @dogrun_place.closing_time, format: :short2 %>
-                  </h2>
-                <% end %>
+<%= turbo_frame_tag "dog_edit_modal" %>
+<%= turbo_frame_tag "encount_dog_edit_modal" %>
+<div class='md:flex md:items-center md:justify-center max-w-5xl mx-auto pt-2 pb-2 bg-purple-200 rounded-lg min-h-[calc(100vh_-_250px)]'>
+  <div class="w-full">
+    <% if !@current_user.nil? %>
+      <%= turbo_frame_tag dom_id(@dogrun_place, "dogrun_board") do %>
+        <%= render partial: "shared/dogrun_board", locals: { publishing_post: @publishing_post } %>
+      <% end %>
+      <div class="w-full sm:px-10 pb-5 pt-1 my-auto" data-controller="reloadable">
+        <% if @dogrun_place.closed_flag == true %>
+          <div class="my-10">
+            <%= simple_format(I18n.t("local.static_pages.top.dogrun_is_closing_now", dogrun_name: @dogrun_place.name), class: "text-gray-700 font-bold text-2xl text-center") %>
+            <% if !@dogrun_place.force_closing? %>
+              <div class="mt-3 text-gray-700 font-medium text-center">
+                  <% if !@dogrun_place.opening_time.blank? || !@dogrun_place.closing_time.blank? %>
+                    <p class="text-sm mt-2">
+                      <%= t('defaults.business_time') %>
+                    </p>
+                    <h2 class="mt-1">
+                      <%= l @dogrun_place.opening_time, format: :short2 %>
+                      〜
+                      <%= l @dogrun_place.closing_time, format: :short2 %>
+                    </h2>
+                  <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <%= turbo_frame_tag dom_id(@dogrun_place, "top_contents"), src: "top_contents", data: { "reloadable-target": "reloadFrame" } do %>
+            <div class="animate-fade-in flex items-center justify-center fixed z-40 inset-0 h-full p-3">
+              <div class="w-full h-full fixed inset-0 bg-gray-700 bg-opacity-50"></div>
+              <div class="bg-gray-200 w-12 h-12 p-2 rounded-full opacity-80">
+                <%= image_tag 'tadpole.svg', class: "my-auto mx-auto" %>
+              </div>
             </div>
           <% end %>
-        </div>
-      <% else %>
-        <%= turbo_frame_tag dom_id(@dogrun_place, "top_contents"), src: "top_contents", data: { "reloadable-target": "reloadFrame" } do %>
-          <%= image_tag 'tadpole.svg', class: "my-3 mx-auto w-10 h-10" %>
-        <% end %>
-      <% end %>
-    </div>
-
-    <% if @current_user.guest? %>
-      <div class="flex justify-center">
-        <%= button_to send(@jump_to_signup_path), method: :post,
-            class: "rounded-lg w-auto px-5 py-3 text-base font-medium text-gray-200 bg-blue-500 hover:bg-blue-600 animate-heartbeat" do %>
-          <svg class="w-7 h-7 inline-block" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path>
-          </svg>
-          <span class="mx-2">
-            <%= t('local.static_pages.top.jump_to_signup') %>
-          </span>
         <% end %>
       </div>
-    <% end %>
-  <% else %>
-    <div class="w-1/2 md:w-1/3 lg:1/4 h-auto mx-auto mt-3">
-      <%= dogrun_logo(@dogrun_place) %>
-    </div>
-    <%= link_to @dogrun_terms_of_service_page, target: "_blank", rel: "noopener noreferrer" do %>
-      <p class="mt-10 text-2xl text-center font-semibold text-blue-500 underline transform hover:scale-110 hover:text-blue-400 duration-500">
-        <%= t('local.static_pages.top.before_using_dogrun') %>
-      </p>
-    <% end %>
-    <div class="flex-col">
-      <%= link_to send(@login_path) do %>
-        <button class="mx-auto flex px-6 py-4 text-2xl mt-10 text-white bg-emerald-500 transform hover:scale-110 hover:bg-emerald-400 duration-500 focus:outline-none focus:shadow-outline rounded-full focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+
+      <% if @current_user.guest? %>
+        <div class="flex justify-center">
+          <%= button_to send(@jump_to_signup_path), method: :post,
+              class: "rounded-lg w-auto px-5 py-3 text-base font-medium text-gray-200 bg-blue-500 hover:bg-blue-600 animate-heartbeat" do %>
+            <svg class="w-7 h-7 inline-block" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path>
+            </svg>
+            <span class="mx-2">
+              <%= t('local.static_pages.top.jump_to_signup') %>
+            </span>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="w-1/2 md:w-1/3 lg:1/4 h-auto mx-auto mt-3">
+        <%= dogrun_logo(@dogrun_place) %>
+      </div>
+      <%= link_to @dogrun_terms_of_service_page, target: "_blank", rel: "noopener noreferrer" do %>
+        <p class="mt-10 text-2xl text-center font-semibold text-blue-500 underline transform hover:scale-110 hover:text-blue-400 duration-500">
+          <%= t('local.static_pages.top.before_using_dogrun') %>
+        </p>
+      <% end %>
+      <div class="flex-col">
+        <%= link_to send(@login_path) do %>
+          <button class="mx-auto flex px-6 py-4 text-2xl mt-10 text-white bg-emerald-500 transform hover:scale-110 hover:bg-emerald-400 duration-500 focus:outline-none focus:shadow-outline rounded-full focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="text-xl font-semibold ml-2"><%= t('defaults.login') %></span>
+          </button>
+        <% end %>
+        <%= link_to send(@route_selection_path) do %>
+          <button class="mx-auto flex px-6 py-4 text-2xl mt-5 text-white bg-blue-500 transform hover:scale-110 hover:bg-blue-400 duration-500 focus:outline-none focus:shadow-outline rounded-full focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path>
+            </svg>
+            <span class="text-xl font-semibold ml-2"><%= t('defaults.signup') %></span>
+          </button>
+        <% end %>
+        <%= button_to send(@guest_login_path), method: :post,
+            class: "mx-auto flex px-4 py-2 text-lg mt-7 text-indigo-500 bg-stone-300 rounded-full hover:bg-stone-100 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="text-indigo-500 w-6 h-6 mb-1" viewBox="0 0 24 24">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"></path>
           </svg>
-          <span class="text-xl font-semibold ml-2"><%= t('defaults.login') %></span>
-        </button>
-      <% end %>
-      <%= link_to send(@route_selection_path) do %>
-        <button class="mx-auto flex px-6 py-4 text-2xl mt-5 text-white bg-blue-500 transform hover:scale-110 hover:bg-blue-400 duration-500 focus:outline-none focus:shadow-outline rounded-full focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path>
-          </svg>
-          <span class="text-xl font-semibold ml-2"><%= t('defaults.signup') %></span>
-        </button>
-      <% end %>
-      <%= button_to send(@guest_login_path), method: :post,
-          class: "mx-auto flex px-4 py-2 text-lg mt-7 text-indigo-500 bg-stone-300 rounded-full hover:bg-stone-100 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
-        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="text-indigo-500 w-6 h-6 mb-1" viewBox="0 0 24 24">
-          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
-          <circle cx="9" cy="7" r="4"></circle>
-          <path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"></path>
-        </svg>
-        <span class="text-base font-medium ml-2"><%= t('local.static_pages.top.guest_login') %></span>
-      <% end %>
-      <p><%= simple_format(t('local.static_pages.top.check_app_by_trial_guest_login'), class: "text-indigo-500 text-sm text-center") %></p>
-    </div>
-  <% end %>
+          <span class="text-base font-medium ml-2"><%= t('local.static_pages.top.guest_login') %></span>
+        <% end %>
+        <p><%= simple_format(t('local.static_pages.top.check_app_by_trial_guest_login'), class: "text-indigo-500 text-sm text-center") %></p>
+      </div>
+    <% end %>
+  </div>
 </div>

@@ -1,0 +1,42 @@
+<div class="table-header-group border-gray-700 border-b">
+  <div class="table-row text-center text-sm font-medium text-gray-900 h-[80px]">
+    <div class="table-cell py-4 align-middle">
+      <%= t('defaults.thumbnail') %>
+    </div>
+    <div class="table-cell px-2 py-2 align-middle relative">
+      <%= simple_format(t('admin.dogs.dog_index_table_header.photo_of_certificate')) %>
+      <%= render "admin/shared/explain_of_vaccination_icon" %>
+    </div>
+    <div class="table-cell px-2 py-2 align-middle relative">
+      <%= t('admin.dogs.dog_index_table_header.notice') %>
+      <%= render "admin/shared/explain_of_notice_icon" %>
+    </div>
+    <div class="table-cell py-4 align-middle">
+      <%= @naming_of_registration_number %>
+    </div>
+    <div class="table-cell py-4 align-middle">
+      <%= simple_format(t('admin.registration_numbers.registration_number_index_table_header.entry_exit_operation')) %>
+    </div>
+    <div class="table-cell px-3 py-2 align-middle text-left">
+      <%= User.human_attribute_name(:name) %>
+    </div>
+    <div class="table-cell px-3 py-2 align-middle text-left">
+      <%= Dog.human_attribute_name(:name) %>
+    </div>
+    <div class="table-cell px-3 py-2 align-middle text-left">
+      <%= Dog.human_attribute_name(:breed) %>
+    </div>
+    <div class="table-cell pr-4 py-2 align-middle text-left">
+      <%= t('defaults.age') %>
+    </div>
+    <div class="table-cell px-3 py-2 align-middle">
+      <%= Dog.human_attribute_name(:sex) %>
+    </div>
+    <div class="table-cell px-3 py-2 align-middle">
+      <%= simple_format(t('admin.dogs.dog_index_table_header.castration')) %>
+    </div>
+    <div class="table-cell px-3 py-2 align-middle">
+      <%= simple_format(t('admin.dogs.dog_index_table_header.public')) %>
+    </div>
+  </div>
+</div>

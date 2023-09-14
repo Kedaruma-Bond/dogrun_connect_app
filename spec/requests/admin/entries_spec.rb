@@ -79,7 +79,7 @@ RSpec.describe Admin::EntriesController, type: :request do
           expect {
             post admin_entries_path,
             params: {
-              dog_id: dog_1.id
+              registration_number_id: registration_number_1.id
             }
           }.to change(Entry, :count).to(1)
           expect(response).to redirect_to(admin_dogs_path)
@@ -106,7 +106,7 @@ RSpec.describe Admin::EntriesController, type: :request do
       before do
         admin_log_in_as(admin_1)
         admin_1.update(deactivation: 'account_frozen')
-        post admin_entries_path, params: { dog_id: dog_1.id }
+        post admin_entries_path, params: { registration_number_id: registration_number_1.id }
       end
 
       example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
@@ -140,18 +140,72 @@ RSpec.describe Admin::EntriesController, type: :request do
     end
   end
 
+  describe 'GET #exit_command_selector' do
+    describe '管理者ユーザーとしてログインしているとき' do
+      let!(:entry_3) { create(:entry, :not_exit, dog: dog_1, registration_number: registration_number_1) }
+      before do
+        admin_log_in_as(admin_1)
+        get exit_command_selector_admin_entry_path(entry_3)
+      end
+
+      example '正常なレスポンスが返ること' do
+        expect(response).to have_http_status(:success)
+      end      
+    end
+
+    describe '凍結された管理者アカウントでログインしているとき' do
+      before do
+        admin_log_in_as(admin_1)
+        admin_1.update(deactivation: 'account_frozen')
+        get exit_command_selector_admin_entry_path(registration_number_1)
+      end
+
+      example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
+        expect(is_logged_in?).to eq(false)
+        expect(flash[:error]).to eq(I18n.t('defaults.your_account_is_deactivating'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    describe '一般ユーザーでログインしているとき' do
+      before do
+        admin_log_in_as(general)
+        get exit_command_selector_admin_entry_path(_1)
+      end
+      
+      example 'エラーメッセージが表示されてhome画面にリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    describe 'ログインしていないとき' do
+      before do
+        get exit_command_selector_admin_entry_path(registration_number_1)
+      end
+
+      example 'エラーメッセージが表示されて管理者ログイン画面にリダイレクトされること' do
+        expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
+        expect(response).to redirect_to(admin_login_path)
+      end
+
+    end
+  end
+
   describe 'PATCH #update' do
-    let!(:entry_3) { create(:entry, :not_exit, dog: dog_1, registration_number: registration_number_1) }
-    let!(:entry_4) { create(:entry, :not_exit, dog: dog_1, registration_number: registration_number_2) }
+    let!(:entry_4) { create(:entry, :not_exit, dog: dog_1, registration_number: registration_number_1) }
+    let!(:entry_5) { create(:entry, :not_exit, dog: dog_1, registration_number: registration_number_2) }
+
     describe '管理者ユーザーとしてログインしているとき' do
       before do
         admin_log_in_as(admin_1)
       end
+
       describe 'ログインしている管理者の該当ドッグランの記録を退場させる場合' do
         context 'params[:force_flg]が"1"の場合' do
           example '入場中の記録を強制退場して通知メールを送信しメッサージと共に前回表示していたページにリダイレクトされること' do
-            patch admin_entry_path(entry_3), params: { force_flg: "1" }
-            expect(entry_3.reload.exit_at).not_to eq(nil)
+            patch admin_entry_path(entry_4), params: { force_flg: "1" }
+            expect(entry_4.reload.exit_at).not_to eq(nil)
             expect(ActionMailer::Base.deliveries.count).to eq(1)
             expect(response).to redirect_to(admin_entries_path)
             expect(flash[:success]).to eq(I18n.t('admin.entries.update.force_exit_successfully'))
@@ -160,8 +214,8 @@ RSpec.describe Admin::EntriesController, type: :request do
         
         context 'params[:force_flg]が"0"の場合' do
           example '入場中の記録を退場してメッサージと共に前回表示していたページにリダイレクトされること' do
-            patch admin_entry_path(entry_3), params: { force_flg: "0" }
-            expect(entry_3.reload.exit_at).not_to eq(nil)
+            patch admin_entry_path(entry_4), params: { force_flg: "0" }
+            expect(entry_4.reload.exit_at).not_to eq(nil)
             expect(ActionMailer::Base.deliveries.count).not_to eq(1)
             expect(response).to redirect_to(admin_entries_path)
             expect(flash[:success]).to eq(I18n.t('admin.entries.update.exit_successfully'))
@@ -171,7 +225,7 @@ RSpec.describe Admin::EntriesController, type: :request do
 
       describe 'ログインしている管理者とは別のドッグランの記録を退場させる場合' do
         example '退場できずエラーメッセージが表示され管理者home画面にリダイレクトされること' do
-          patch admin_entry_path(entry_4)
+          patch admin_entry_path(entry_5)
           expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
           expect(response).to redirect_to(admin_root_path)
         end
@@ -182,7 +236,7 @@ RSpec.describe Admin::EntriesController, type: :request do
       before do
         admin_log_in_as(admin_1)
         admin_1.update(deactivation: 'account_frozen')
-        patch admin_entry_path(entry_3)
+        patch admin_entry_path(entry_4)
       end
 
       example 'ログアウトしてエラーメッセージが表示されroot_pathにリダイレクトされること' do
@@ -197,7 +251,7 @@ RSpec.describe Admin::EntriesController, type: :request do
         admin_log_in_as(general)
       end
       example 'エラーメッセージが表示されてhome画面にリダイレクトされること' do
-        patch admin_entry_path(entry_3)
+        patch admin_entry_path(entry_4)
         expect(flash[:error]).to eq(I18n.t('defaults.not_authorized'))
         expect(response).to redirect_to(root_path)
       end
@@ -205,7 +259,7 @@ RSpec.describe Admin::EntriesController, type: :request do
 
     context 'ログインしていないとき' do
       example 'エラーメッセージが表示されて管理者ログイン画面にリダイレクトされること' do
-        patch admin_entry_path(entry_3)
+        patch admin_entry_path(entry_4)
         expect(flash[:error]).to eq(I18n.t('defaults.require_login'))
         expect(response).to redirect_to(admin_login_path)
       end

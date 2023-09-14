@@ -6,6 +6,9 @@ export default class extends Controller {
   open(event) {
     event.preventDefault();
 
+    this.modalTarget.classList.add('open:animate-fade-in')
+    this.modalTarget.classList.add('open:backdrop:animate-fade-in')
+
     this.modalTarget.showModal();
 
     this.modalTarget.addEventListener('click', (e) => this.backdropClick(e));
@@ -24,7 +27,13 @@ export default class extends Controller {
   close(event) {
     event.preventDefault();
 
-    this.modalTarget.close();
+    this.modalTarget.classList.remove('open:animate-fade-in')
+    this.modalTarget.classList.remove('open:backdrop:animate-fade-in')
+    this.modalTarget.classList.add('animate-fade-out')
+    this.modalTarget.classList.add('backdrop:animate-fade-out')
+    setTimeout(() => {
+      this.modalTarget.close();
+    }, 300)
 
     if (this.hasFormTarget) {
       this.formTarget.reset();

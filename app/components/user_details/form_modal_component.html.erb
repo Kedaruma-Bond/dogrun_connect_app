@@ -1,13 +1,9 @@
-<%= turbo_frame_tag "user_detail_form_modal", autoscroll: true, data: { autoscroll_block: "start" }  do %>
-  <%= tag.div data: { controller: "turbo-form-modal", "turbo-form-modal_target": "modal", action: "turbo:submit-end->turbo-form-modal#submitEnd" }, 
-      class: "animate-fade-in flex items-center justify-center fixed z-40 inset-0 h-full p-3" do %>
+<%= turbo_frame_tag "user_detail_form_modal" do %>
+  <div data-controller="turbo-form-modal" data-turbo-form-modal-target="modal" data-action="turbo:submit-end->turbo-form-modal#submitEnd" 
+    class="animate-fade-in flex items-center justify-center fixed z-30 inset-0 h-full p-3">
     <button data-action="turbo-form-modal#hideModal" class="cursor-default w-full h-full fixed inset-0 bg-gray-700 bg-opacity-50"></button>
-    <div class="relative bg-slate-300 p-2 shadow-xl rounded-lg border-2 border-gray-700 dark:border-white w-full md:w-96 backdrop-blur bg-opacity-75">
-      <button type="button" data-action="turbo-form-modal#hideModal" class="absolute top-0 right-0 rounded-full bg-gray-200 border-2 border-gray-700 shadow-md">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
+    <%= turbo_frame_modal_close_button %>
+    <div class="turbo-form-modal bg-slate-300 backdrop-blur bg-opacity-75">
       <p class="text-center text-2xl text-gray-700 font-bold leading-7 mb-2 pt-4">
         <%= @title %>
       </p>
@@ -15,5 +11,5 @@
         <%= content %>
       </div>
     </div>
-  <% end %>
+  </div>
 <% end%>

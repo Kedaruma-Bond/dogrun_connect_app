@@ -51,9 +51,8 @@
             <%= f.button name: "pre_flg", value: "0", data: { "disable-confirm-target": "submitButton", "disable-checkbox-target": "submitButton", "turbo-confirm": t(".entry_confirm") },
                 class: "mx-auto disabled:hidden flex font-bold text-white py-4 px-10 bg-blue-700 rounded-full hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
               <div data-disable-confirm-target="buttonText" class="flex">
-                <svg class="w-6 h-6 my-auto" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19 12H12M12 12L15 15M12 12L15 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M19 6V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 my-auto" fill="currentColor" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                  <path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/>
                 </svg>
                 <span class="ml-2 text-lg font-semibold">
                   <%= t('.entry') %>
@@ -65,22 +64,22 @@
       </div>
     </div>
   <% elsif !not_pre_entry? && not_entry?(current_user, dogrun_place) %>
-    <div class="flex flex-col justify-center mt-3" data-controller="multiform-disable">
-      <p class="text-base text-center text-gray-700 font-semibold">
-        <%= t('.during_pre_entry_your_dogs') %>
-      </p>
-      <ul list-sytle=none class="mt-3 flex flex-col text-center mx-auto">
-        <% current_pre_entries.each do |pre_entry| %>
-          <li class="flex mb-5 text-left text-xl text-gray-700 font-bold">
-            <div class="h-16 w-16 mr-3">
-              <%= dog_thumbnail(pre_entry.dog, current_user) %>
-            </div>
-            <div class="my-auto">
-              <%= pre_entry.dog.name %>
-            </div>
-          </li>
-        <% end %>
-      </ul>
+      <div class="flex flex-col justify-center mt-3" data-controller="multiform-disable">
+        <p class="text-base text-center text-gray-700 font-semibold">
+          <%= t('.during_pre_entry_your_dogs') %>
+        </p>
+        <ul list-sytle=none class="mt-3 flex flex-col text-center mx-auto">
+          <% current_pre_entries.each do |pre_entry| %>
+            <li class="flex mb-5 text-left text-xl text-gray-700 font-bold">
+              <div class="h-16 w-16 mr-3">
+                <%= dog_thumbnail(pre_entry.dog, current_user) %>
+              </div>
+              <div class="my-auto">
+                <%= pre_entry.dog.name %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
       <div data-reloadable-target="switchArea">
         <p class="text-sm text-center text-red-700 font-medium mb-3">
           <%= t('.canceled_after_30_mins') %>
@@ -149,24 +148,23 @@
         </p>
       </div>
       <div data-reloadable-target="switchArea">
-      <%= form_with(url: { controller: "entries", action: "update" }, method: :patch, data: { turbo_confirm: t('.exit_confirm'), controller: "disable-confirm", "disable-confirm-with-value": t("defaults.processing") }) do |f| %>
-        <div class="flex-col">
-          <%= f.button data: { "disable-confirm-target": "submitButton" },
-              class: "disabled:px-[59px] disabled:cursor-not-allowed disabled:bg-gray-400 flex mx-auto items-center justify-center font-bold text-white py-4 px-10 bg-blue-700 rounded-full hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
-            <%= spinner_icon_for_form_disable_button %>
-            <div data-disable-confirm-target="buttonText" class="flex">
-              <svg class="w-6 h-6 my-auto" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 12H19M19 12L16 15M19 12L16 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M19 6V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span class="ml-2 text-lg font-semibold">
-                <%= t('.exit') %>
-              </span>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
+        <%= form_with(url: { controller: "entries", action: "update" }, method: :patch, data: { turbo_confirm: t('.exit_confirm'), controller: "disable-confirm", "disable-confirm-with-value": t("defaults.processing") }) do |f| %>
+          <div class="flex-col">
+            <%= f.button data: { "disable-confirm-target": "submitButton" },
+                class: "disabled:px-[59px] disabled:cursor-not-allowed disabled:bg-gray-400 flex mx-auto items-center justify-center font-bold text-white py-4 px-10 bg-blue-700 rounded-full hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none" do %>
+              <%= spinner_icon_for_form_disable_button %>
+              <div data-disable-confirm-target="buttonText" class="flex">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 my-auto" fill="currentColor" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                  <path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z"/>
+                </svg>
+                <span class="ml-2 text-lg font-semibold">
+                  <%= t('.exit') %>
+                </span>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
   <% end %>
 </div>

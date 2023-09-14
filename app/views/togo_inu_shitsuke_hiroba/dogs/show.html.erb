@@ -1,16 +1,21 @@
 <%= render Dogs::ShowComponent.new(
-    title: I18n.t('local.dogs.show.title'),
-    registration_number_notation: I18n.t('togo_inu_shitsuke_hiroba.registration_number'),
     dog: @dog,
     current_user: current_user,
-    registration_number: @registration_number,
     user: @user,
-    encount_dog: @encount_dog,
-    edit_encount_dog_path: @edit_encount_dog_path,
     dog_profile_path: @dog_profile_path,
     edit_dog_path: @edit_dog_path,
     entries: @entries,
     num_of_entry_records_to_display: @num_of_entry_records_to_display,
     dogrun_place: @dogrun_place,
-    previous_path: session[:previous_path]
-    ) %>
+    ) do %>
+  <%= render partial: "shared/dog_profile_contents", locals: {
+      registration_number_notation: I18n.t('togo_inu_shitsuke_hiroba.registration_number'),
+      user: @user,
+      dog: @dog, 
+      current_user: current_user,
+      registration_number: @registration_number,
+      encount_dog: @encount_dog,
+      edit_encount_dog_path: @edit_encount_dog_path,
+      dog_profile_path: @dog_profile_path,
+    } %>
+<% end %>

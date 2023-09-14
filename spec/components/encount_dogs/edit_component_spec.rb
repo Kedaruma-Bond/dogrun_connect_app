@@ -15,7 +15,7 @@ RSpec.describe EncountDogs::EditComponent, type: :component do
       )
     )
 
-    expect(page).to have_selector("div", class: "relative bg-slate-300 p-2 absolute shadow-xl rounded-lg border-2 border-gray-700 dark:border-white w-full md:w-96 backdrop-blur bg-opacity-75")
+    expect(page).to have_selector("div", class: "animate-fade-in flex items-center justify-center fixed z-40 inset-0 h-full p-3")
     expect(page).to have_selector("p", text: I18n.t("local.encount_dogs.edit.encount_dog_name"))
     expect(page).to have_selector("p", text: dog.name)
   end

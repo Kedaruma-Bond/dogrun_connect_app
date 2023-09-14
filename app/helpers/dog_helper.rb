@@ -115,11 +115,7 @@ module DogHelper
     end
 
     if notification == true
-      return tag.svg(class: "w-4 h-4 ml-2", "stroke-width": "2.11", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg", color: "#6366f1") { |tag| tag.path d: "M18 8.4c0-1.697-.632-3.325-1.757-4.525C15.117 2.675 13.59 2 12 2c-1.591 0-3.117.674-4.243 1.875C6.632 5.075 6 6.703 6 8.4 6 15.867 3 18 3 18h18s-3-2.133-3-9.6zM13.73 21a1.999 1.999 0 01-3.46 0", 
-        stroke: "#6366f1", 
-        "stroke-width": "3", 
-        "stroke-linecap": "round", 
-        "stroke-linejoin": "round" }
+      return tag.svg(xmlns: "http://www.w3.org/2000/svg", class: "ml-2 w-5 h-5 text-blue-700", fill: "currentColor", viewBox:"0 0 448 512") { |tag| tag.path d: "M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v18.8c0 47-17.3 92.4-48.5 127.6l-7.4 8.3c-8.4 9.4-10.4 22.9-5.3 34.4S19.4 416 32 416H416c12.6 0 24-7.4 29.2-18.9s3.1-25-5.3-34.4l-7.4-8.3C401.3 319.2 384 273.9 384 226.8V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm45.3 493.3c12-12 18.7-28.3 18.7-45.3H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7z" }
     else
       return
     end
@@ -149,7 +145,7 @@ module DogHelper
     end
 
     if notification == true
-      return tag.svg(class: "w-5 h-5 ml-2 text-red-500", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", xmlns: "http://www.w3.org/2000/svg") { |tag| tag.path "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "3", d: "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" }
+      return tag.svg(xmlns: "http://www.w3.org/2000/svg", class: "w-5 h-5 ml-2 text-red-700", fill: "currentColor", viewBox: "0 0 512 512") { |tag| tag.path d: "M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z" }
     else
       return
     end
