@@ -19,9 +19,8 @@
             <h2 class="font-bold text-gray-600 text-2xl">
               <%= dog.name %>
             </h2>
-            <div class="w-32 h-1 bg-gray-200 rounded mt-2 mb-4"></div>
           </div>
-          <div class="flex mb-2">
+          <div class="flex mt-4 mb-2">
             <div class="w-1/2 mb-1 md:mb-0">
               <%= f.label :filming_approval %>
               <%= f.input :filming_approval, as: :boolean, checked_value: 'filming_approval', unchecked_value: 'filming_not_approval', input_html: { class: "block rounded-lg leading-none p-3 focus:outline-none focus:border-blue-700 mt-2 mx-auto" }, label: false,  hint: false, error: false %>
@@ -39,7 +38,7 @@
             </div>
           </div>
           <div class="flex-row flex-shrink-0 items-center md:items-start md:justify-center mb-6">
-            <%= f.input :birthday, start_year: Date.today.year - 30, end_year: Date.today.year, html5: true, input_html: { class: "block w-full md:w-1/2 leding-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200"}, label: t('defaults.birthday'), hint: false, error: false %>
+            <%= f.input :birthday, start_year: Date.today.year - 30, end_year: Date.today.year, html5: true, input_html: { class: "block w-full md:w-1/2 leding-none text-gray-900 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200"}, label: t('defaults.birthday'), hint: false, error: false %>
           </div>
           <div class="flex-row flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
             <%= f.input :breed, input_html: { class: "block w-full leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200"}, hint: false, error: false %>
@@ -70,8 +69,11 @@
           </div>
           <details data-controller="accordion" class="text-center">
             <summary data-accordion-target="summary" data-action="click->accordion#toggle" class="mt-3 flex justify-center hover:cursor-pointer">
-              <h1 class="flex font-bold text-base mb-1 text-gray-600">
-                <%= t('.register_more_detail_data')%>
+              <h1 data-accordion-target="openText" class="flex font-normal text-sm mb-1 text-gray-200 rounded-lg p-2 bg-blue-700 hover:bg-blue-800">
+                <%= t('.show_more_detail_data_form')%>
+              </h1>
+              <h1 data-accordion-target="closeText" class="flex hidden font-normal text-sm mb-1 text-gray-200 rounded-lg p-2 bg-gray-500 hover:bg-gray-600">
+                <%= t('.hide_more_detail_data_form')%>
               </h1>
             </summary>
             <div data-accordion-target="content">
@@ -132,15 +134,10 @@
         </div>
       </div>
     </div>
-    <div class="sm:flex mt-3 justify-center">
-      <div class="flex justify-center sm:ml-0 sm:mx-3 h-[56px] mt-0 md:mt-3">
-        <a href="javascript:history.back()" class="flex justify-center items-center px-10 py-4 text-base font-bold text-white bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
-          <span><%= t('defaults.back') %></span>
-        </a>
-      </div>
+    <div class="sm:flex justify-center">
       <div class="flex justify-center mt-3 sm:mt-0 sm:mx-3">
         <%= f.button :button, data: { "disable-target": "submitButton" },
-          class: "flex mt-3 font-bold leading-normal text-white py-4 px-10 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300" do %>
+          class: "flex font-bold leading-normal text-white py-4 px-10 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300" do %>
           <%= spinner_icon_for_form_disable_button %>
           <span data-disable-target="buttonText"><%= t('defaults.update') %></span>
         <% end %>

@@ -1,6 +1,16 @@
 class Admin::RegistrationNumbersController < Admin::BaseController
-  before_action :set_registration_number, only: %i[update]
+  include Pagy::Backend
+  before_action :set_q, only: %i[index search]
+  before_action :set_registration_number, only: %i[edit update]
+  before_action :set_naming_of_registration_number, only: %i[index search]
   before_action :correct_admin_check, only: %i[update]
+  before_action :set_dogrun_place, only: %i[index search]
+
+  def index
+    @pagy, @registration_numbers = pagy(@registration_numbers)
+  end
+
+  def edit; end
 
   def update
     if @registration_number.update(registration_number_params)
@@ -28,6 +38,10 @@ class Admin::RegistrationNumbersController < Admin::BaseController
     end
   end
 
+  def search
+    @pagy, @registration_numbers_results = pagy(@q.result)
+  end
+
   private
     def registration_number_params
       params.require(:registration_number).permit(
@@ -37,6 +51,11 @@ class Admin::RegistrationNumbersController < Admin::BaseController
 
     def set_registration_number
       @registration_number = RegistrationNumber.find(params[:id])
+    end
+
+    def set_q
+      @registration_numbers = RegistrationNumber.dogrun_place_id(current_user.dogrun_place_id).order(created_at: :desc)
+      @q = @registration_numbers.ransack(params[:q])
     end
 
     def correct_admin_check

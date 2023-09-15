@@ -1,14 +1,17 @@
-<% content_for(:title, @title) %>
-<div class="max-w-5xl md:mx-auto lg:px-8">
-  <div class="bg-purple-200 w-full shadow rounded p-8 sm:p-12">
-    <%= simple_format(@title, { class: 'text-2xl font-bold leading-7 text-center mb-4 text-gray-700' }, { wrapper_tag: "div" } ) %>
-    <div class="w-28 h-28 mb-3 md:mb-0 mx-auto">
-      <%= encount_dog_thumbnail(@encount_dog.dog, @encount_dog) %>
+<%= turbo_frame_tag "encount_dog_edit_modal" do %>
+  <div data-controller="turbo-form-modal" data-turbo-form-modal-target="modal" data-action="turbo:submit-end->turbo-form-modal#submitEnd" 
+    class="animate-fade-in flex items-center justify-center fixed z-40 inset-0 h-full p-3">
+    <button data-action="turbo-form-modal#hideModal" class="cursor-default w-full h-full fixed inset-0 bg-gray-700 bg-opacity-50"></button>
+    <%= turbo_frame_modal_close_button %>
+    <div class="turbo-form-modal bg-slate-300 backdrop-blur bg-opacity-75 max-w-[400px]">
+      <div class="w-28 h-28 mb-1 md:mb-0 mx-auto">
+        <%= encount_dog_thumbnail(@encount_dog.dog, @encount_dog) %>
+      </div>
+      <div class="w-full mt-1 text-center">
+        <p class="text-gray-600 font-bold leading-none"><%= t('local.encount_dogs.edit.encount_dog_name') %></p>
+        <p class="text-gray-800 mt-2 text-2xl font-bold leading-none"><%= @encount_dog.dog.name %></p>
+      </div>
+      <%= content %>
     </div>
-    <div class="w-full md:w-1/3 mt-4">
-      <p class="text-gray-600 font-bold leading-none"><%= t('local.encount_dogs.edit.encount_dog_name') %></p>
-      <p class="text-gray-800 mt-2 text-xl font-bold leading-none"><%= @encount_dog.dog.name %></p>
-    </div>
-    <%= content %>
   </div>
-</div>
+<% end %>

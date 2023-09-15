@@ -3,9 +3,17 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ "modal" ]
 
+  connect() {
+    this.enterClass = 'animate-fade-in'
+    this.exitClass = 'animate-fade-out'
+  }
+
   hideModal() {
-    this.element.parentElement.removeAttribute("src")
-    this.element.remove()
+    this.unmount_animate()
+    setTimeout(() => {
+      this.element.parentElement.removeAttribute("src")
+      this.element.remove()
+    }, 300)
   }
 
   submitEnd(event) {
@@ -14,12 +22,8 @@ export default class extends Controller {
     }
   }
 
-  // modal外をタップで close
-  // action: "click@window->turbo-modal#closeBackground"
-  closeBackground(e) {
-    if (e && this.modalTarget.contains(e.target)) {
-      return
-    }
-    this.hideModal()
+  unmount_animate() {
+    this.modalTarget.classList.remove(this.enterClass)
+    this.modalTarget.classList.add(this.exitClass)
   }
 }

@@ -4,9 +4,18 @@ module ApplicationHelper
     base_title = 'DogrunConnect'
     page_title.empty? ? base_title : "#{page_title} | #{base_title}"
   end
-  
+
   def render_turbo_stream_flash_messages
     turbo_stream.append "flash", partial: "shared/flash"
+  end
+
+  def toggle_button_marker
+    current_user_new_encount_dogs_count = EncountDog.joins(:dog).where(dogs: { public: 'public_view' }).where(user_id: current_user.id).where(acknowledge: false).count
+    if current_user_new_encount_dogs_count != 0
+      tag.span class: "absolute top-1 right-2" do
+        concat tag.span(class: "text-sm font-medium relative inline-flex w-3 h-3 rounded-full bg-indigo-500 dark:bg-indigo-300 justify-center aspect-square")
+      end
+    end
   end
 
   def loading_spinner
@@ -111,4 +120,21 @@ module ApplicationHelper
     }
   end
   
+  def turbo_frame_modal_close_button
+    tag.button type: "button", data: { action: "turbo-form-modal#hideModal" }, class: "opacity-75 z-40 fixed rounded-full bg-red-400 shadow-md top-5 right-3 p-2" do
+      concat tag.svg(xmlns: "http://www.w3.org/2000/svg", class: "h-6 w-6 text-white", fill: "none", viewBox: "0 0 24 24", stroke:"currentColor") { |tag| tag.path "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "5", d: "M6 18L18 6M6 6l12 12" }
+    end
+  end
+
+  def message_modal_close_button
+    tag.button type: "button", data: { action: "message-modal#close" }, class: "opacity-75 rounded-full bg-red-400 shadow-md float-right" do
+      concat tag.svg(xmlns: "http://www.w3.org/2000/svg", class: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor") { |tag| tag.path "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "3", d: "M6 18L18 6M6 6l12 12" }
+    end
+  end
+
+  def form_modal_close_button
+    tag.button type: "button", data: { action: "form-modal#close" }, class: "opacity-75 rounded-full bg-red-400 shadow-md float-right" do
+      concat tag.svg(xmlns: "http://www.w3.org/2000/svg", class: "h-5 w-5 text-white", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor") { |tag| tag.path "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "3", d: "M6 18L18 6M6 6l12 12" }
+    end
+  end
 end

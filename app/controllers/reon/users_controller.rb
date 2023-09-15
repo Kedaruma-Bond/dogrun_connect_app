@@ -40,6 +40,7 @@ class Reon::UsersController < Reon::DogrunPlaceController
   end
 
   def show
+    @notation_of_registration_number = I18n.t('reon.registration_number')
     @num_of_encount_dogs = EncountDog.encount_dog_of_user(current_user).size
   end
 

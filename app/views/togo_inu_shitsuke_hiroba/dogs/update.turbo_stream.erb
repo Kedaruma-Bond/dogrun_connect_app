@@ -1,0 +1,55 @@
+<%= render_turbo_stream_flash_messages %>
+
+<%= turbo_stream.replace "dog_profile_contents" do %>
+  <%= render partial: "shared/dog_profile_contents",
+    locals: {
+      registration_number_notation: I18n.t('togo_inu_shitsuke_hiroba.registration_number'),
+      user: @user,
+      dog: @dog, 
+      current_user: current_user,
+      registration_number: @registration_number,
+      encount_dog: @encount_dog,
+      edit_encount_dog_path: @edit_encount_dog_path,
+      dog_profile_path: @dog_profile_path,
+    } %>
+<% end %>
+
+<%= turbo_stream.replace @registration_number do %>
+  <%= render partial: 'shared/registered_dog', 
+    locals: { 
+      dogs: @dogs, 
+      dog_profile_path: @dog_profile_path, 
+      registration_number: @registration_number, 
+      registration_number_path: @registration_number_path,
+      notation_of_registration_number: I18n.t('togo_inu_shitsuke_hiroba.registration_number')
+    } %>
+<% end %>
+
+<%= turbo_stream.replace "birthday_marker_#{@dog.id}" do %>
+  <div class="absolute top-0 left-0.5" id="birthday_marker_<%= @dog.id %>">
+    <%= birthday_marker(@dog) %>
+  </div>
+<% end %>
+
+<%= turbo_stream.replace "option_marker_#{@dog.id}" do %>
+  <div class="absolute -bottom-1 -right-1" id="option_marker_<%= @dog.id %>">
+    <% if @dog.non_public? %>
+        <%= render partial: "shared/non_public" %>
+    <% elsif @dog.filming_approval? %>
+      <div class="flex">
+        <%= render partial: "shared/filming_approval" %>
+        <% if @dog.sns_post_approval? %>
+          <%= render partial: "shared/sns_post_approval" %>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+<% end %>
+
+<%= turbo_stream.replace "non_public_marker_#{@dog.id}" do %>
+  <div class="absolute bottom-0 right-0 md:right-2" id="non_public_marker_<%= @dog.id %>">
+    <% if @dog.non_public? %>
+      <%= render partial: "shared/non_public" %>
+    <% end %>
+  </div>
+<% end %>

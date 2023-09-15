@@ -1,12 +1,16 @@
 <%= turbo_stream_from @dogrun_place, "entries_index" %>
 <% content_for(:title, @title) %>
-<div class="max-w-5xl md:mx-auto px-1 sm:px-6 lg:px-8 py-5 bg-purple-200 rounded-lg">
+<%= turbo_frame_tag "dog_profile_modal" %>
+<%= turbo_frame_tag "dog_edit_modal" %>
+<%= turbo_frame_tag "encount_dog_edit_modal" %>
+<div data-controller="back-to-top" class="relative max-w-5xl md:mx-auto px-1 sm:px-6 lg:px-8 py-5 bg-purple-200 rounded-lg">
   <h1 class='text-3xl text-gray-700 font-semibold text-center mb-3'>
     <%= simple_format(@title) %>
   </h1>
   <%= render partial: 'shared/search_form', locals: { q: @q, applicable_path: @applicable_path, search_field_placeholder: @search_field_placeholder } %>
-  <p class="text-center md:hidden text-xs text-gray-600 mt-3"><%= t('defaults.thumbnail_tap') %></p>
-  <div class="container w-full mx-auto sm:p-10">
+  <p class="text-center md:hidden text-sm text-gray-600 mb-1 mt-3"><%= t('defaults.thumbnail_tap') %></p>
+  <p class="text-center hidden md:block text-sm text-gray-600 mb-1 mt-3"><%= t('defaults.thumbnail_click') %></p>
+  <div class="container w-full mx-auto">
     <div class="block w-full">
       <%= turbo_frame_tag dom_id(@dogrun_place, "entries") do %>
         <%= content %>
@@ -14,5 +18,6 @@
       <%= render partial: "shared/pager", locals: { pagy: @pagy } %>
     </div>
   </div>
+  <%= render partial: "shared/back_to_top_button" %>
 </div>
 

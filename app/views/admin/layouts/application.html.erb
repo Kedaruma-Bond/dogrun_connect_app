@@ -3,10 +3,12 @@
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-cache-control" content="no-cache">
+    <% if current_page?(controller: "posts", action: "dogrun_board") %>
+      <meta name="turbo-visit-control" content="reload">
+    <% end %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
@@ -18,13 +20,13 @@
     <%= display_meta_tags(default_meta_tags) %>
   </head>
 
-  <body class="bg-gray-800 font-sans min-h-screen">
+  <body class="bg-gray-800 font-sans">
     <%= render partial: 'admin/shared/navbar' %>
     <div id="flash" class="z-50 flex-col fixed top-16 right-1">
       <%= render 'shared/flash' %>
     </div>
     <%= tag.main class: "relative" do %>
-      <div class="flex flex-row">
+      <div class="flex">
         <%= render partial: 'admin/shared/sidebar' %>
         <%= yield %>
       </div>

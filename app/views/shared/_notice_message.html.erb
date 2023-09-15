@@ -1,7 +1,7 @@
 <% if !dog.notice_badge.nil? || !dog.alart_badge.nil? %>
-  <div class="grid grid-cols-5 gap-1 mx-auto">
+  <div class="grid grid-cols-5 gap-1 mx-auto mb-3">
     <% if !dog.notice_badge.nil? %>
-      <div class="my-auto">
+      <div class="my-auto text-blue-700">
         <%= dog.notice_badge %>
       </div>
       <div class="col-span-4">

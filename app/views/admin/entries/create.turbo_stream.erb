@@ -1,7 +1,7 @@
 <%= render_turbo_stream_flash_messages %>
 
-<%= turbo_stream.replace "registration_number_#{@rn.id}" do %>
-  <%= render partial: "admin/dogs/dog", locals: { dog: @dog } %>
+<%= turbo_stream.replace "registration_number_#{@registration_number.id}" do %>
+  <%= render partial: "admin/registration_numbers/registration_number", locals: { registration_number: @registration_number } %>
 <% end %>
 
 

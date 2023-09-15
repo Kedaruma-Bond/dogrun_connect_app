@@ -1,21 +1,20 @@
 <%= turbo_frame_tag dom_id(dogrun_place, "dogrun_board") do %>
   <% if !publishing_post.blank? %>
     <div class="relative flex justify-center">
-      <% if publishing_post[0].embed? && publishing_post[0].embed.instagram? %>
-        <%= link_to('javascript:void(0);', onclick: "window.location.reload();", 
-            class: "z-10 absolute top-1 right-1 rounded-full bg-amber-500 w-7 h-7 ml-2 flex focus:outline-none shadow-xl drop-shadow-lg") do %>
-          <svg class="w-5 h-5 text-white mx-auto my-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
-          </svg>
-        <% end %>
-      <% end %>
       <%= post_viewing(publishing_post[0]) %>
     </div>
-    <div class="flex text-gray-300 items-center justify-end mt-2">
-      <p class="text-base font-base mr-3"><%= t('defaults.publishing_limit') %> :</p>
-      <h3 class="text-lg font-semibold">
-        <%= l publishing_post[0].publish_limit, format: :long %>
-      </h3>
+    <div class="flex items-center justify-between">
+      <%= link_to cancel_to_publish_admin_post_path(publishing_post[0]), class:"mt-2 rounded-full bg-red-400 shadow-lg p-1", data: { turbo_method: :patch, turbo_confirm: t('admin.posts.post_icon.cancel_to_publish_confirmation') } do %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-200" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="5" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      <% end %>
+      <div class="flex text-gray-300 items-center justify-end mt-2">
+        <p class="text-base font-base mr-3"><%= t('defaults.publishing_limit') %> :</p>
+        <h3 class="text-lg font-semibold">
+          <%= l publishing_post[0].publish_limit, format: :long %>
+        </h3>
+      </div>
     </div>
   <% else %>
     <%= render partial: "dogrun_board_blank", locals: { dogrun_place: dogrun_place } %>

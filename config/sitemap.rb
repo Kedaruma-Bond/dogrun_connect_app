@@ -13,7 +13,5 @@ SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
 
 SitemapGenerator::Sitemap.create do
   add '/togo_inu_shitsuke_hiroba/top', :priority => 0.8, :changefreq => 'daily'
-  add '/togo_inu_shitsuke_hiroba/entries', :priority => 0.8, :changefreq => 'daily'
   add '/reon/top', :priority => 0.8, :changefreq => 'daily'
-  add '/reon/entries', :priority => 0.8, :changefreq => 'daily'
 end

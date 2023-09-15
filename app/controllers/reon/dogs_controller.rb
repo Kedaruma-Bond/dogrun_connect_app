@@ -4,8 +4,6 @@ class Reon::DogsController < Reon::DogrunPlaceController
   before_action :correct_dog_owner, only: %i[edit update]
 
   def show
-    session[:previous_path] = request.referer unless previous_action_was_edit?
-    
     @user = User.find(@dog.user_id)
     if !@registration_number.nil?
       @entries = Entry.where(dog: @dog).where(registration_number_id: @registration_number.id).joins(:registration_number).where(registration_number: { dogrun_place: @dogrun_place } ).sort.reverse
@@ -32,18 +30,16 @@ class Reon::DogsController < Reon::DogrunPlaceController
 
   def update
     if @dog.update(dog_params)
-      redirect_to send(@dog_profile_path, @dog.id), success: t('local.dogs.dog_profile_updated')
+      respond_to do |format|
+        format.html { redirect_to send(@dog_profile_path, @dog.id), success: t('local.dogs.dog_profile_updated') }
+        format.turbo_stream { flash.now[:success] = t('local.dogs.dog_profile_updated') }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   private
-
-    def previous_action_was_edit?
-      request.referer&.include?("edit")
-    end
-
     def set_dog_and_registration_number
       @dog = Dog.find(params[:id])
       @registration_number = RegistrationNumber.where(dog_id: @dog.id).find_by(dogrun_place: @dogrun_place)

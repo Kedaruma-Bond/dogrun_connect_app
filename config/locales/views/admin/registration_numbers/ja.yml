@@ -1,0 +1,21 @@
+ja:
+  admin:
+    registration_numbers:
+      index:
+        title: 登録犬一覧
+      search:
+        title: 登録犬検索結果
+      search_form:
+        search_field: "飼い主さんの名前/ワンコの名前/犬種/%{naming_of_registration_number}検索"
+      registration_number_index_table_header:
+        entry_exit_operation: |
+          入退場
+          操作
+      registration_number:
+        entry_confirm: 入場しますか？
+        exited: 退場済
+      edit:
+        input_registration_number: |
+          更新する番号を
+          入力してください
+

@@ -1,9 +1,13 @@
-<% content_for(:title, @title) %>
-<div class="max-w-5xl sm:mx-auto sm:px-3 lg:px-4 bg-purple-200 rounded-lg">
-  <div class="w-full p-5 sm:p-10">
+<%= turbo_frame_tag "dog_edit_modal" do %>
+<div data-controller="turbo-form-modal" data-turbo-form-modal-target="modal" data-action="turbo:submit-end->turbo-form-modal#submitEnd" 
+  class="animate-fade-in flex items-center justify-center fixed z-40 inset-0 h-full p-3">
+  <button data-action="turbo-form-modal#hideModal" class="cursor-default w-full h-full fixed inset-0 bg-gray-700 bg-opacity-50"></button>
+  <%= turbo_frame_modal_close_button %>
+  <div class="turbo-form-modal bg-purple-200 backdrop-blur bg-opacity-80">
     <p class="my-2">
       <%= simple_format(t(@title), class: "text-2xl md:text-3xl font-bold text-gray-700 text-center") %>
     </p>
     <%= content %>
   </div>
 </div>
+<% end %>

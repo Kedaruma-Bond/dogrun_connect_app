@@ -1,6 +1,6 @@
-<div class="flex flex-col items-center p-4 border sm:p-6 rounded-xl">
+<div class="bg-gray-200 dark:bg-gray-800 flex flex-col items-center p-4 border border-gray-800 dark:border-gray-200 sm:p-6 rounded-xl">
   <%= link_to dogrun_top_path(dogrun_place.id) do %>
-    <%= cl_image_tag(dogrun_place.logo.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-cover h-auto w-auto", alt: DogrunPlace.find(2).name) %>
+    <%= cl_image_tag(dogrun_place.logo.key, gravity: :auto, quality_auto: :good, fetch_format: :auto, class: "object-scale-down h-[294px] w-auto", alt: dogrun_place.name) %>
     <div class ="text-center">
       <h1 class="mt-4 text-2xl font-semibold text-gray-700 dark:text-gray-200">
         <%= dogrun_place.name %>
@@ -59,15 +59,15 @@
             <p class="text-sm my-2">
               <%= t('defaults.sns') %>
             </p>
-            <%= render partial: "sns_account_icons", locals: { sns_account: dogrun_place.sns_account } %>
+            <%= render partial: "shared/sns_account_icons", locals: { sns_account: dogrun_place.sns_account } %>
           <% end %>
           <% if !dogrun_place.facilities.blank? %>
-            <p class="text-sm mt-2">
+            <p class="text-sm mt-4">
             <%= Facility.human_attribute_name(:name) %>
             </p>
             <div class="flex flex-wrap">
               <% dogrun_place.facilities.each do |facility| %>
-                <span class="whitespace-nowrap leading-none text-white py-2 px-2 bg-blue-700 rounded ml-2 mt-2"><%= dogrun_facility_view(facility.name) %></span>
+                <span class="whitespace-nowrap leading-none text-white py-2 px-2 bg-sky-700 rounded mr-1 mt-2"><%= dogrun_facility_view(facility.name) %></span>
               <% end %>
             </div>
           <% end %>

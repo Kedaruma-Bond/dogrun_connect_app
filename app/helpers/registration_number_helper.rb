@@ -1,4 +1,5 @@
 module RegistrationNumberHelper
+  include Pagy::Frontend
 
   def new_registration_number_count_badge(admin_user)
     current_dogrun_new_registration_numbers_count = RegistrationNumber.where(dogrun_place_id: admin_user.dogrun_place_id).where(acknowledge: false).count
@@ -17,9 +18,5 @@ module RegistrationNumberHelper
         concat tag.span(class: "content-center rounded-full aspect-square h-3 w-3 relative bg-indigo-500 dark:bg-indeigo-300")
       end
     end
-  end
-
-  def dog_relative_registration_number(dog, admin_user)
-    RegistrationNumber.where(dogrun_place: admin_user.dogrun_place).find_by(dog: dog)
   end
 end

@@ -13,7 +13,6 @@ ja:
         add_registered_dog: |
           他のドッグランで登録済
           のワンコを登録する
-        edit_memo: メモ編集
       route_selection:
         title: 登録コースの選択
         choose_route_for_registration: |

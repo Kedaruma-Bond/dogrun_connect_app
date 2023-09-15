@@ -3,6 +3,9 @@
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-cache-control" content="no-cache">
+    <% if current_page?(controller: 'static_pages', action: "top") %>
+      <meta name="turbo-visit-control" content="reload">
+    <% end %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
@@ -17,7 +20,7 @@
     <%= display_meta_tags(togo_inu_shitsuke_hiroba_meta_tags) %>
   </head>
 
-  <body class="dark:bg-gray-800 break-words flex flex-col min-h-screen">
+  <body class="bg-gray-100 dark:bg-gray-800 break-words flex flex-col min-h-screen">
     <% if logged_in? %>
       <%= render 'shared/login_navbar' %>
     <% else %>
@@ -26,7 +29,7 @@
     <div id="flash" class="z-50 flex-col fixed top-16 right-1">
       <%= render 'shared/flash' %>
     </div>
-    <%= tag.main class: "mb-auto relative" do %>
+    <%= tag.main class: "relative flex-grow" do %>
       <div class="w-full">
         <%= yield %>
       </div>

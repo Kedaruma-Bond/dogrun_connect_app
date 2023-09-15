@@ -3,13 +3,14 @@ ja:
     birthday_message_modal:
       title: Happy Birthday!🎉
       body: |
-        こちらのワンコが今日誕生日であることを示すアイコンです
-        おめでとうございます🥳長生きしてください‼️
+        こちらのワンコが今日誕生日であることを示すアイコンです。
+        おめでとうございます🥳
+        長生きしてください‼️
     non_public_message_modal:
       title: 利用状況非公開
       body: |
         このワンコは利用状況が非公開に設定されています
-        他のユーザーの画面には表示されていません
+        他のユーザーの画面には表示されません
     explain_of_public_modal:
       title: 利用状況公開とは
       body: |
@@ -40,7 +41,8 @@ ja:
       dog_name: ワンコの名前
       clear: クリア
       owner_comment_placeholder: ワンコの性格等、ドッグランで過ごす際に周りの方に知っておいてもらいたいことなどを記載してください
-      register_more_detail_data: 接種証明・鑑札情報の登録
+      show_more_detail_data_form: 接種証明・鑑札情報の登録フォームを表示
+      hide_more_detail_data_form: 接種証明・鑑札情報の登録フォームを閉じる
       register_rabies_vaccination_certificate: 狂犬病予防接種証明の写真登録
       register_mixed_vaccination_certificate: 混合ワクチン接種証明の写真登録
       choose_a_prefecture: 都道府県を選択してください
@@ -48,10 +50,12 @@ ja:
     embed_form:
       fb: Facebook
       instagram: Instagram
-      twitter: Twitter
+      twitter: X(Twitter)
       select_sns: SNSを選択してください
       facebook_only_pc: FacebookはPCからしかcodeを取得できません
     user_detail_part:        
+      show_address_and_phone_number: 住所・電話番号を表示する
+      hide_address_and_phone_number: 住所・電話番号を閉じる
       register_address_and_telephone_number: 住所・電話番号登録
       update_user_detail: 編集
       delete_user_detail: 削除

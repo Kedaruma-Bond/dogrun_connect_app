@@ -3,7 +3,7 @@ class Admin::DogsController < Admin::BaseController
   before_action :set_dog, only: %i[show edit update]
   before_action :set_q, only: %i[index search]
   before_action :set_naming_of_registration_number, only: %i[index show search]
-  before_action :set_dogrun_place, only: %i[index search]
+  before_action :set_dogrun_place, :check_grand_admin, only: %i[index search]
 
   def index
     @pagy, @dogs = pagy(@dogs)
@@ -51,12 +51,7 @@ class Admin::DogsController < Admin::BaseController
     end
 
     def set_q
-      if current_user.grand_admin?
-        @dogs = Dog.with_attached_thumbnail.with_attached_rabies_vaccination_certificate.with_attached_mixed_vaccination_certificate.includes([:user]).order(id: :desc)
-      else
-        @dogs = Dog.dogrun_place_id(current_user.dogrun_place_id).with_attached_thumbnail.with_attached_rabies_vaccination_certificate.with_attached_mixed_vaccination_certificate.with_attached_license_plate
-      end
-
+      @dogs = Dog.with_attached_thumbnail.with_attached_rabies_vaccination_certificate.with_attached_mixed_vaccination_certificate.with_attached_license_plate.includes([:user]).order(id: :desc)
       @q = @dogs.ransack(params[:q])
     end
     

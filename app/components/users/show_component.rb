@@ -12,7 +12,8 @@ class Users::ShowComponent < ApplicationViewComponent
       num_of_encount_dogs:, 
       route_selection_path:,
       new_registration_number_path:,
-      rns_form_selection_path:
+      rns_form_selection_path:,
+      notation_of_registration_number:
     )
     @title = title
     @dogrun_place = dogrun_place
@@ -25,6 +26,7 @@ class Users::ShowComponent < ApplicationViewComponent
     @route_selection_path = route_selection_path
     @new_registration_number_path = new_registration_number_path
     @rns_form_selection_path = rns_form_selection_path
+    @notation_of_registration_number = notation_of_registration_number
   end
 
 end

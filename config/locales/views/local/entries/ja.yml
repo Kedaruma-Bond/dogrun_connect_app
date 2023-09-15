@@ -3,11 +3,9 @@ ja:
     entries:
       index:
         title: |
-          %{dogrun} の
           利用記録一覧
       search:
         title: |
-          %{dogrun} の
           利用記録検索結果
       search_form:
         search_field_placeholder: ワンコの名前検索

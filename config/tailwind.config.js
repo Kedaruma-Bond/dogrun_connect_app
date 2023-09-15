@@ -123,6 +123,14 @@ module.exports = {
               opacity: "1"
           }
         },
+        "fade-out": {
+          "0%": {
+              opacity: "1"
+          },
+          to: {
+              opacity: "0"
+          }
+        },
       },
       animation: {
         "fade-in": 'fade-in 0.3s ease-in-out',
@@ -133,6 +141,7 @@ module.exports = {
         "roll-in-right": "roll-in-right 1.5s ease   both",
         "rotate-in-2-tr-ccw": "rotate-in-2-tr-ccw 0.75s cubic-bezier(0.250, 0.460, 0.450, 0.940)   both",
         "fade-in-top": "fade-in-top 0.75s cubic-bezier(0.390, 0.575, 0.565, 1.000)   both",
+        "fade-out": "fade-out 0.3s ease   both",
       }
     },
   },

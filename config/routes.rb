@@ -172,7 +172,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :registration_numbers, only: %i[update]
+    resources :registration_numbers, only: %i[index edit update] do
+      collection do
+        get 'search', to: 'registration_numbers#search'
+      end
+    end
 
     resources :sns_accounts, only: %i[new create edit update destroy]
 
@@ -189,6 +193,9 @@ Rails.application.routes.draw do
     resources :entries, only: %i[index create update destroy] do
       collection do
         get 'search', to: 'entries#search'
+      end
+      member do
+        get 'exit_command_selector', to: 'entries#exit_command_selector'
       end
     end
     
