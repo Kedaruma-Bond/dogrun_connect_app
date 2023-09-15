@@ -13,14 +13,18 @@
           <div class="absolute top-0 -left-1">
             <%= birthday_marker(dog) %>
           </div>
-          <% if dog.filming_approval? %>
-            <div class="flex mb-2 absolute -bottom-3 -right-2">
-              <%= render partial: "shared/filming_approval" %>
-              <% if dog.sns_post_approval? %>
-                <%= render partial: "shared/sns_post_approval" %>
-              <% end %>
-            </div>
-          <% end %>
+          <div class="absolute -bottom-3 -right-0">
+            <% if dog.non_public? %>
+              <%= render partial: "shared/non_public" %>
+            <% elsif dog.filming_approval? %>
+              <div class="flex">
+                <%= render partial: "shared/filming_approval" %>
+                <% if dog.sns_post_approval? %>
+                  <%= render partial: "shared/sns_post_approval" %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
         </div>
         <div class="text-gray-700 text-base font-light">
           <%= registration_number_notation %>
@@ -97,7 +101,7 @@
           <p class="text-gray-700 text-base font-light">
             <%= t'defaults.breed' %>
           </p>
-          <h1 class="mt-1 text-base font-bold md:text-2xl text-gray-700">
+          <h1 class="mt-1 text-lg font-bold md:text-2xl text-gray-700">
             <% if dog.breed == '' %>
               -
             <% else %>

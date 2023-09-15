@@ -58,4 +58,7 @@
   .edit-button {
     @apply flex items-center px-2 py-2 text-gray-500 bg-blue-300 rounded-full hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80;
   }
+  .entries_table_row {
+    @apply align-middle text-base font-semibold whitespace-nowrap px-6 py-4;
+  }
 }

@@ -14,16 +14,16 @@
         <table class="table-auto items-center w-full bg-transparent border-collapse">
           <thead class="text-gray-700 bg-purple-200 opacity-75">
             <tr>
-              <th class="px-6 align-middle py-3 text-xs whitespace-nowrap font-semibold text-left">
+              <th class="px-6 align-middle py-3 text-sm whitespace-nowrap font-semibold text-left">
                 <%= t'defaults.date' %>
               </th>
-              <th class="px-6 align-middle py-3 text-xs whitespace-nowrap font-semibold text-left">
+              <th class="px-6 align-middle py-3 text-sm whitespace-nowrap font-semibold text-left">
                 <%= t'defaults.entry_at' %>
               </th>
-              <th class="px-6 align-middle py-3 text-xs whitespace-nowrap font-semibold text-left">
+              <th class="px-6 align-middle py-3 text-sm whitespace-nowrap font-semibold text-left">
                 <%= t'defaults.exit_at' %>
               </th>
-              <th class="px-6 align-middle py-3 text-xs whitespace-nowrap font-semibold text-left">
+              <th class="px-6 align-middle py-3 text-sm whitespace-nowrap font-semibold text-left">
                 <%= t'.playing_together' %>
               </th>
             </tr>
@@ -39,20 +39,20 @@
                 </tr>
               <% else %>
                 <tr>
-                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm font-semibold whitespace-nowrap p-4">
+                  <td class="entries_table_row">
                     <%= l entries[t].entry_at, format: :long2 %>
                   </td>
-                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm font-semibold whitespace-nowrap p-4">
+                  <td class="entries_table_row">
                     <%= l entries[t].entry_at, format: :short2 %>
                   </td>
-                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm font-semibold whitespace-nowrap p-4">
+                  <td class="entries_table_row">
                     <% if entries[t].exit_at.nil? %>
                       <%= t('defaults.entering') %>
                     <% else %>
                       <%= l entries[t].exit_at, format: :short2 %>
                     <% end %>
                   </td>
-                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                  <td class="entries_table_row">
                     <ul class="flex">
                       <% encounts_at_this_entry(entries[t], dogrun_place).each do |dog| %>
                         <li class="w-12 h-12 mx-1">
@@ -69,7 +69,7 @@
           </tbody>
         </table>
       </div>
-      <p class="text-center md:hidden text-xs text-white"><%= t('defaults.slide_available') %></p>
+      <p class="text-center md:hidden text-xs font-medium text-gray-200"><%= t('defaults.slide_available') %></p>
     </div>
   </div>
 </section>

@@ -21,13 +21,13 @@
 <% end %>
 
 <%= turbo_stream.replace "entry_dog_thumbnail_#{@encount_dog.dog.id}" do %>
-  <div class="w-28 h-28 mx-auto" id="entry_dog_thumbnail">
+  <div class="w-28 h-28 mx-auto" id="entry_dog_thumbnail_<%= @encount_dog.dog.id %>">
     <%= dog_thumbnail(@encount_dog.dog, current_user) %>
   </div>
 <% end %>
 
 <%= turbo_stream.replace "pre_entry_dog_thumbnail_#{@encount_dog.dog.id}" do %>
-  <div class="w-12 h-12 mx-1" id="pre_entry_dog_thumbnail">
+  <div class="w-12 h-12 mx-1" id="pre_entry_dog_thumbnail_<%= @encount_dog.dog.id %>">
     <%= dog_thumbnail(@encount_dog.dog, current_user) %>
   </div>
 <% end %>

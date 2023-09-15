@@ -59,10 +59,10 @@
             <p class="text-sm my-2">
               <%= t('defaults.sns') %>
             </p>
-            <%= render partial: "sns_account_icons", locals: { sns_account: dogrun_place.sns_account } %>
+            <%= render partial: "shared/sns_account_icons", locals: { sns_account: dogrun_place.sns_account } %>
           <% end %>
           <% if !dogrun_place.facilities.blank? %>
-            <p class="text-sm mt-2">
+            <p class="text-sm mt-4">
             <%= Facility.human_attribute_name(:name) %>
             </p>
             <div class="flex flex-wrap">
