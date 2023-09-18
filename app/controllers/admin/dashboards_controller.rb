@@ -24,7 +24,7 @@ class Admin::DashboardsController < Admin::BaseController
   def entries_count
     @q = Entry.ransack(params[:q])
     return @entries = nil if params[:q].blank?
-    
+
     if current_user.grand_admin?
       @entries = @q.result.all
     else
@@ -45,9 +45,9 @@ class Admin::DashboardsController < Admin::BaseController
     def data_modify_for_graph
 
       if current_user.grand_admin?
-        entries = Entry.all.where(created_at: @one_year_ago..@today)
+        entries = Entry.all.where(created_at: @one_year_ago..@today.end_of_day)
       else
-        entries = Entry.includes(:registration_number).where(registration_number: { dogrun_place_id: current_user.dogrun_place_id }).where(created_at: @one_year_ago..@today)
+        entries = Entry.includes(:registration_number).where(registration_number: { dogrun_place_id: current_user.dogrun_place_id }).where(created_at: @one_year_ago..@today.end_of_day)
       end
 
       entries_daily = entries.map do |e|
