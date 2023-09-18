@@ -1,18 +1,20 @@
-  <%= simple_format(t('.refer_to_sns'), class: "text-sm font-medium text-center text-gray-600") %>
-  <div class="flex justify-center text-gray-600">
+  <%= simple_format(t('.refer_to_sns'), class: "text-base font-medium text-center text-gray-700") %>
+  <div class="flex justify-center text-gray-600 mt-3">
     <%= link_to "https://www.facebook.com/dogrunconnect/", target: "_blank", rel: "noopener noreferrer" do %>
-      <svg class="w-5 h-5 fill-current mx-2 mt-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="w-8 h-8 text-blue-600 fill-current mx-2 my-auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M2.00195 12.002C2.00312 16.9214 5.58036 21.1101 10.439 21.881V14.892H7.90195V12.002H10.442V9.80204C10.3284 8.75958 10.6845 7.72064 11.4136 6.96698C12.1427 6.21332 13.1693 5.82306 14.215 5.90204C14.9655 5.91417 15.7141 5.98101 16.455 6.10205V8.56104H15.191C14.7558 8.50405 14.3183 8.64777 14.0017 8.95171C13.6851 9.25566 13.5237 9.68693 13.563 10.124V12.002H16.334L15.891 14.893H13.563V21.881C18.8174 21.0506 22.502 16.2518 21.9475 10.9611C21.3929 5.67041 16.7932 1.73997 11.4808 2.01722C6.16831 2.29447 2.0028 6.68235 2.00195 12.002Z"></path>
       </svg>
     <% end %>
     <%= link_to "https://www.instagram.com/dogrun_connect/", target: "_blank", rel: "noopener noreferrer" do %>
-      <svg class ="w-5 h-5 mx-2 mt-3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
-        <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-        <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-      </svg>
+      <div class="w-8 h-8 mx-2 bg-gradient-to-r from-yellow-500 via-pink-600 to-purple-600 rounded-lg">
+        <svg class="p-[2px]" fill="none" stroke="#e5e7eb" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+          <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+        </svg>
+      </div>
     <% end %>
     <%= link_to "https://twitter.com/DogrunConnect", target: "_blank", rel: "noopener noreferrer" do %>
-      <svg class="w-5 h-5 fill-current mx-2 mt-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+      <svg class="mx-2 w-8 h-8 my-auto text-white bg-zinc-900 rounded-lg fill-current p-1.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
         <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
       </svg>
     <% end %>

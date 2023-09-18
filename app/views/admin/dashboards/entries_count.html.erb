@@ -1,0 +1,12 @@
+<%= turbo_frame_tag "dashboards_entries_count" do %>
+  <div class="flex flex-col lg:flex-row">
+    <%= render partial: "search_form" %>
+    <p class="ml-5 font-bold text-3xl text-right w-full pr-5 lg:pr-0">
+      <% if @entries.blank? %>
+        -
+      <% else %>
+        <%= @entries.count %>
+      <% end %>
+    </p>
+  </div>
+<% end %>

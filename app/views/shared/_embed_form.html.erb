@@ -18,7 +18,7 @@
       <% end %>
     </div>
     <div class="flex justify-center mt-3 sm:mt-0 sm:ml-3">
-      <%= f.button class: "flex font-bold leading-none text-white py-4 px-12 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300 disabled:py-[14px] disabled:px-[54px]", data: { "disable-target": "submitButton", "disable-selector-target": "submitButton" } do %>
+      <%= f.button class: "flex font-bold leading-none text-white py-4 px-12 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-500 disabled:py-[14px] disabled:px-[54px]", data: { "disable-target": "submitButton", "disable-selector-target": "submitButton" } do %>
         <%= spinner_icon_for_form_disable_button %>
         <span data-disable-target="buttonText" data-disable-selector-target="buttonText" class="hidden my-auto"><%= t'defaults.post' %></span>
         <%= inoperable_icon %>

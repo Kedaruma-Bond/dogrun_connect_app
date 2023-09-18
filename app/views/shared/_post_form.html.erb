@@ -15,7 +15,7 @@
       <%= f.hidden_field :publish_status, value: "non_publish" %>
       <div class="flex items-center justify-center mt-3">
         <%= f.button data: { "disable-target": "submitButton", "disable_selector-target": "submitButton" },
-          class: "flex mt-3 font-bold leading-normal text-white py-4 disabled:py-[18px] px-10 disabled:px-[42px] bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-blue-500" do %>
+          class: "flex mt-3 font-bold leading-normal text-white py-4 disabled:py-[18px] px-10 disabled:px-[42px] bg-blue-600 rounded hover:bg-blue-800 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-blue-800" do %>
           <%= spinner_icon_for_form_disable_button %>
           <span data-disable-target="buttonText" data-disable-selector-target="buttonText" class="hidden"><%= 'OK' %></span>
           <%= inoperable_icon %>

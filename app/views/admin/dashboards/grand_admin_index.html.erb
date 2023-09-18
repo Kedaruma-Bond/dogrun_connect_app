@@ -1,4 +1,4 @@
-<% content_for(:title, t('.title')) %>
+<% content_for(:title, t('admin.dashboards.index.title')) %>
 <div id="main" class="main-content flex-1 bg-gray-100 mt-5 md:mt-2 pb-24 md:pb-5">
   <div class="bg-gray-800 pt-2">
     <div class="rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
@@ -27,7 +27,7 @@
           </div>
           <div class="flex flex-col justify-end w-full">
             <h2 class="font-bold text-gray-600 mb-1 text-right">
-              <%= t('.period_entry_number_search_form')%>
+              <%= t('admin.dashboards.index.period_entry_number_search_form')%>
             </h2>
             <%= turbo_frame_tag "dashboards_entries_count", src: "/admin/entries_count" %>
           </div>
@@ -35,6 +35,30 @@
       </div>
     </div>
     <!--/Total entries over the past month Card-->
+
+    <!--Total Users Card-->
+    <div class="w-full md:w-1/2 p-6">
+      <div class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-5">
+        <div class="flex flex-row items-center">
+          <div class="flex-shrink pr-4">
+            <div class="rounded-full p-5 bg-pink-600">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="flex-1 text-right md:text-center">
+            <h2 class="font-bold uppercase text-gray-600">
+              <%= t('admin.dashboards.index.total_users') %>
+            </h2>
+            <p class="font-bold text-3xl">
+              <%= @users.count %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Total Users Card-->
 
     <!--Total Registration dogs Card-->
     <div class="w-full md:w-1/2 p-6">
@@ -47,7 +71,7 @@
           </div>
           <div class="flex-1 text-right md:text-center">
             <h2 class="font-bold uppercase text-gray-600">
-              <%= t('.total_registration_dogs')%>
+              <%= t('admin.dashboards.index.total_registration_dogs')%>
             </h2>
             <p class="font-bold text-3xl">
               <%= @registration_dogs.count %>
@@ -73,7 +97,7 @@
           </div>
           <div class="flex-1 text-right md:text-center">
             <h2 class="font-bold uppercase text-gray-600">
-              <%= t('.new_registration_dogs_over_the_past_month') %>
+              <%= t('admin.dashboards.index.new_registration_dogs_over_the_past_month') %>
             </h2>
             <p class="font-bold text-3xl">
               <%= @new_registration_dogs_over_the_past_month.count %>
@@ -83,63 +107,39 @@
       </div>
     </div>
     <!--/New Registration dogs at this month Card-->
-    
-    <!--Total Staff Card-->
-    <div class="w-full md:w-1/2 p-6">
-      <div class="bg-gradient-to-b from-red-200 to-red-100 border-b-4 border-red-500 rounded-lg shadow-xl p-5">
-        <div class="flex flex-row items-center">
-          <div class="flex-shrink pr-4">
-            <div class="rounded-full p-5 bg-red-600">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"></path>
-              </svg>
-            </div>
-          </div>
-          <div class="flex-1 text-right md:text-center">
-            <h2 class="font-bold uppercase text-gray-600">
-              <%= t('.total_staffs') %>
-            </h2>
-            <p class="font-bold text-3xl">
-              <%= Staff.where(dogrun_place_id: current_user.dogrun_place_id).count %>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--/Total Staff Card-->
     <!--/Card Section-->
-  </div>
 
-  <!--Graph Section-->
-  <div class="flex flex-row flex-wrap flex-grow mt-2">
-    <!--Daily Total Entries Graph-->
-    <div class="w-full p-3">
-      <div class="bg-white border-transparent rounded-lg shadow-xl">
-        <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-          <h2 class="font-bold uppercase text-gray-600">
-            <%= t('.daily_entries_graph') %>
-          </h2>
-        </div>
-        <div class="p-1">
-          <%= area_chart @entries_daily, library: { animation: { startup: true, duration: 1000 } }, curve: false, width: "100%", height: "300px" ,min: 0, max: "undefined", xmin: @one_month_ago, xmax: @today, label: false, xtitle: t('.date'), ytitle: t('.total_entries') %>
+    <!--Graph Section-->
+    <div class="flex flex-row flex-wrap flex-grow mt-2">
+      <!--Daily Total Entries Graph-->
+      <div class="w-full p-3">
+        <div class="bg-white border-transparent rounded-lg shadow-xl">
+          <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+            <h2 class="font-bold uppercase text-gray-600">
+              <%= t('admin.dashboards.index.daily_entries_graph') %>
+            </h2>
+          </div>
+          <div class="p-1">
+            <%= area_chart @entries_daily, library: { animation: { startup: true, duration: 1000 } }, curve: false, width: "100%", height: "300px" ,min: 0, max: "undefined", xmin: @one_month_ago, xmax: @today, label: false, xtitle: t('admin.dashboards.index.date'), ytitle: t('admin.dashboards.index.total_entries') %>
+          </div>
         </div>
       </div>
-    </div>
-    <!--/Daily Total Entries Graph-->
+      <!--/Daily Total Entries Graph-->
 
-    <!--Monthly Total Entries Graph-->
-    <div class="w-full p-3">
-      <div class="bg-white border-transparent rounded-lg shadow-xl">
-        <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-          <h2 class="font-bold uppercase text-gray-600">
-            <%= t('.monthly_entries_graph') %>
-          </h2>
-        </div>
-        <div class="p-1">
-          <%= area_chart @entries_monthly, library: { animation: { startup: true, duration: 1000 }, colors: ['#6ee7b7'] }, width: "100%", height: "300px" ,min: 0, max: "undefined", xmin:@one_year_ago, xmax:@today, label: false, xtitle: t('.month'), ytitle: t('.total_entries') %>
+      <!--Monthly Total Entries Graph-->
+      <div class="w-full p-3">
+        <div class="bg-white border-transparent rounded-lg shadow-xl">
+          <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+            <h2 class="font-bold uppercase text-gray-600">
+              <%= t('admin.dashboards.index.monthly_entries_graph') %>
+            </h2>
+          </div>
+          <div class="p-1">
+            <%= area_chart @entries_monthly, library: { animation: { startup: true, duration: 1000 }, colors: ['#6ee7b7'] }, width: "100%", height: "300px" ,min: 0, max: "undefined", xmin:@one_year_ago, xmax:@today, label: false, xtitle: t('admin.dashboards.index.month'), ytitle: t('admin.dashboards.index.total_entries') %>
+          </div>
         </div>
       </div>
+      <!--/Monthly Total Entries Graph-->
     </div>
-    <!--/Monthly Total Entries Graph-->
   </div>
 </div>

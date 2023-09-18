@@ -1,0 +1,19 @@
+<%= search_form_for @q, url: admin_entries_count_path, html: { class: "flex items-center" }, data: { turbo_frame: "dashbord_entries_count", controller: "disable", "disable-with-value": nil } do |f| %>
+  <div class="flex">
+    <h2 class="w-[32px]"><%= simple_format(t('defaults.search_period'), class: "text-gray-700 text-xs" ) %></h2>
+    <%= f.date_field :entry_at_gteq, class: "flex-grow h-8 w-[70px] lg:w-[130px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block" %>
+    <span class="mx-1 lg:mx-3 mt-1">~</span>
+    <%= f.date_field :entry_at_lteq_end_of_day, class: "flex-grow h-8 w-[70px] lg:w-[130px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block" %>
+  </div>
+  <div class="flex items-center justify-end ml-0 lg:ml-1">
+    <%= f.button data: { "disable-target": "submitButton" },
+      class: "disabled:cursor-not-allowed disabled:bg-blue-400 px-2 h-7 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80" do %>
+      <%= image_tag '90-ring-with-bg-white-36.svg', class: "hidden mx-auto w-6 h-6", data: { "disable-target": "spinner" } %>
+      <div data-disable-target="buttonText" class="font-medium flex text-sm w-4 justify-center">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+        </svg>
+      </div>
+    <% end %>
+  </div>
+<% end %>
