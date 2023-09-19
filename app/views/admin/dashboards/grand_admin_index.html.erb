@@ -41,11 +41,13 @@
       <div class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-5">
         <div class="flex flex-row items-center">
           <div class="flex-shrink pr-4">
-            <div class="rounded-full p-5 bg-pink-600">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-              </svg>
-            </div>
+            <%= link_to admin_users_path, data: { turbo_frame: "_top" } do %>
+              <div class="rounded-full p-5 bg-pink-600">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+              </div>
+            <% end %>
           </div>
           <div class="flex-1 text-right md:text-center">
             <h2 class="font-bold uppercase text-gray-600">
@@ -65,9 +67,11 @@
       <div class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-5">
         <div class="flex flex-row items-center">
           <div class="flex-shrink pr-4">
-            <div class="rounded-full p-5 bg-yellow-600">
-              <%= image_tag 'dog_icon.svg', class: "w-7 h-7" %>
-            </div>
+            <%= link_to admin_dogs_path, data: { turbo_frame: "_top" } do %>
+              <div class="rounded-full p-5 bg-yellow-600">
+                <%= image_tag 'dog_icon.svg', class: "w-7 h-7" %>
+              </div>
+            <% end %>
           </div>
           <div class="flex-1 text-right md:text-center">
             <h2 class="font-bold uppercase text-gray-600">
@@ -108,38 +112,9 @@
     </div>
     <!--/New Registration dogs at this month Card-->
     <!--/Card Section-->
-
-    <!--Graph Section-->
-    <div class="flex flex-row flex-wrap flex-grow mt-2">
-      <!--Daily Total Entries Graph-->
-      <div class="w-full p-3">
-        <div class="bg-white border-transparent rounded-lg shadow-xl">
-          <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-            <h2 class="font-bold uppercase text-gray-600">
-              <%= t('admin.dashboards.index.daily_entries_graph') %>
-            </h2>
-          </div>
-          <div class="p-1">
-            <%= area_chart @entries_daily, library: { animation: { startup: true, duration: 1000 } }, curve: false, width: "100%", height: "300px" ,min: 0, max: "undefined", xmin: @one_month_ago, xmax: @today, label: false, xtitle: t('admin.dashboards.index.date'), ytitle: t('admin.dashboards.index.total_entries') %>
-          </div>
-        </div>
-      </div>
-      <!--/Daily Total Entries Graph-->
-
-      <!--Monthly Total Entries Graph-->
-      <div class="w-full p-3">
-        <div class="bg-white border-transparent rounded-lg shadow-xl">
-          <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-            <h2 class="font-bold uppercase text-gray-600">
-              <%= t('admin.dashboards.index.monthly_entries_graph') %>
-            </h2>
-          </div>
-          <div class="p-1">
-            <%= area_chart @entries_monthly, library: { animation: { startup: true, duration: 1000 }, colors: ['#6ee7b7'] }, width: "100%", height: "300px" ,min: 0, max: "undefined", xmin:@one_year_ago, xmax:@today, label: false, xtitle: t('admin.dashboards.index.month'), ytitle: t('admin.dashboards.index.total_entries') %>
-          </div>
-        </div>
-      </div>
-      <!--/Monthly Total Entries Graph-->
-    </div>
   </div>
+
+  <%= turbo_frame_tag "graph_section", src: "/admin/graph_section", loading: :lazy do %>
+    <%= image_tag 'tadpole.svg', class: "my-10 mx-auto w-10 h-10" %>
+  <% end %>
 </div>

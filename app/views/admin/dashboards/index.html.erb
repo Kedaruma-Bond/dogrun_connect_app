@@ -14,16 +14,18 @@
       <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-5">
         <div class="flex flex-row items-center">
           <div class="flex-shrink pr-2">
-            <div class="rounded-full p-5 bg-green-600">
-              <svg class="w-7 h-7 current-fill" stroke-width="3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 6L20 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M4 6.01L4.01 5.99889" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M4 12.01L4.01 11.9989" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M4 18.01L4.01 17.9989" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M8 12L20 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M8 18L20 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
+            <%= link_to admin_entries_path, data:{ turbo_frame: "_top" } do %>
+              <div class="rounded-full p-5 bg-green-600">
+                <svg class="w-7 h-7 current-fill" stroke-width="3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 6L20 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M4 6.01L4.01 5.99889" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M4 12.01L4.01 11.9989" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M4 18.01L4.01 17.9989" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M8 12L20 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M8 18L20 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            <% end %>
           </div>
           <div class="flex flex-col justify-end w-full">
             <h2 class="font-bold text-gray-600 mb-1 text-right">
@@ -41,12 +43,14 @@
       <div class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-5">
         <div class="flex flex-row items-center">
           <div class="flex-shrink pr-4">
-            <div class="rounded-full p-5 bg-yellow-600">
-              <%= image_tag 'dog_icon.svg', class: "w-7 h-7" %>
-            </div>
+            <%= link_to admin_registration_numbers_path, data: { turbo_frame: "_top" } do %>
+              <div class="rounded-full p-5 bg-yellow-600">
+                <%= image_tag 'dog_icon.svg', class: "w-7 h-7" %>
+              </div>
+            <% end %>
           </div>
           <div class="flex-1 text-right md:text-center">
-            <h2 class="font-bold uppercase text-gray-600">
+            <h2 class="font-bold text-gray-600">
               <%= t('.total_registration_dogs')%>
             </h2>
             <p class="font-bold text-3xl">
@@ -72,7 +76,7 @@
             </div>
           </div>
           <div class="flex-1 text-right md:text-center">
-            <h2 class="font-bold uppercase text-gray-600">
+            <h2 class="font-bold text-gray-600">
               <%= t('.new_registration_dogs_over_the_past_month') %>
             </h2>
             <p class="font-bold text-3xl">
@@ -89,14 +93,16 @@
       <div class="bg-gradient-to-b from-red-200 to-red-100 border-b-4 border-red-500 rounded-lg shadow-xl p-5">
         <div class="flex flex-row items-center">
           <div class="flex-shrink pr-4">
-            <div class="rounded-full p-5 bg-red-600">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"></path>
-              </svg>
-            </div>
+            <%= link_to admin_staffs_path, data: { turbo_frame: "_top" } do %>
+              <div class="rounded-full p-5 bg-red-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"></path>
+                </svg>
+              </div>
+            <% end %>
           </div>
           <div class="flex-1 text-right md:text-center">
-            <h2 class="font-bold uppercase text-gray-600">
+            <h2 class="font-bold text-gray-600">
               <%= t('.total_staffs') %>
             </h2>
             <p class="font-bold text-3xl">
@@ -107,39 +113,42 @@
       </div>
     </div>
     <!--/Total Staff Card-->
+    <!--Entries Ranking Card -->
+    <div class="w-full md:w-1/2 p-6">
+      <div class="bg-gradient-to-b from-cyan-200 to-cyan-100 border-b-4 border-cyan-500 rounded-lg shadow-xl px-2 py-5">
+        <div class="text-gray-600 font-bold text-gray text-center md:text-center">
+          <%= t('.ranking_of_entry_times_in_the_past_year') %>
+        </div>
+        <div class="flex items-center justify-center">
+          <section class="text-gray-600 body-font">
+            <div class="px-2 py-2 mx-auto flex flex-col">
+              <div class="flex items-center justify-start mb-2">
+                <div class="flex-shrink-0 w-8 h-8 rounded-full mt-10 sm:mt-0 inline-flex items-center justify-center bg-yellow-500 text-white relative z-10 title-font font-medium text-sm">
+                  <svg class="current-fill p-2 text-gray-200" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <path d="M309 106c11.4-7 19-19.7 19-34c0-22.1-17.9-40-40-40s-40 17.9-40 40c0 14.4 7.6 27 19 34L209.7 220.6c-9.1 18.2-32.7 23.4-48.6 10.7L72 160c5-6.7 8-15 8-24c0-22.1-17.9-40-40-40S0 113.9 0 136s17.9 40 40 40c.2 0 .5 0 .7 0L86.4 427.4c5.5 30.4 32 52.6 63 52.6H426.6c30.9 0 57.4-22.1 63-52.6L535.3 176c.2 0 .5 0 .7 0c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40c0 9 3 17.3 8 24l-89.1 71.3c-15.9 12.7-39.5 7.5-48.6-10.7L309 106z"/>
+                  </svg>
+                </div>
+                <div class="flex-grow md:pl-4 pl-3 flex sm:items-center items-start flex-col sm:flex-row">
+                  <div class="flex-shrink-0 w-12 h-12 bg-gray-800 text-indigo-400 rounded-full inline-flex items-center justify-center">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="p-2" viewBox="0 0 24 24">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                  </div>
+                  <div class="flex-grow sm:pl-6 mt-6 sm:mt-0">
+                    <h2 class="font-medium text-gray-700 mb-1 text-lg">Shooting Stars</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <!--/Entries Ranking Card -->
     <!--/Card Section-->
   </div>
 
-  <!--Graph Section-->
-  <div class="flex flex-row flex-wrap flex-grow mt-2">
-    <!--Daily Total Entries Graph-->
-    <div class="w-full p-3">
-      <div class="bg-white border-transparent rounded-lg shadow-xl">
-        <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-          <h2 class="font-bold uppercase text-gray-600">
-            <%= t('.daily_entries_graph') %>
-          </h2>
-        </div>
-        <div class="p-1">
-          <%= area_chart @entries_daily, library: { animation: { startup: true, duration: 1000 } }, curve: false, width: "100%", height: "300px" ,min: 0, max: "undefined", xmin: @one_month_ago, xmax: @today, label: false, xtitle: t('.date'), ytitle: t('.total_entries') %>
-        </div>
-      </div>
-    </div>
-    <!--/Daily Total Entries Graph-->
-
-    <!--Monthly Total Entries Graph-->
-    <div class="w-full p-3">
-      <div class="bg-white border-transparent rounded-lg shadow-xl">
-        <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
-          <h2 class="font-bold uppercase text-gray-600">
-            <%= t('.monthly_entries_graph') %>
-          </h2>
-        </div>
-        <div class="p-1">
-          <%= area_chart @entries_monthly, library: { animation: { startup: true, duration: 1000 }, colors: ['#6ee7b7'] }, width: "100%", height: "300px" ,min: 0, max: "undefined", xmin:@one_year_ago, xmax:@today, label: false, xtitle: t('.month'), ytitle: t('.total_entries') %>
-        </div>
-      </div>
-    </div>
-    <!--/Monthly Total Entries Graph-->
-  </div>
+  <%= turbo_frame_tag "graph_section", src: "/admin/graph_section", loading: :lazy do %>
+    <%= image_tag 'tadpole.svg', class: "my-10 mx-auto w-10 h-10" %>
+  <% end %>
 </div>

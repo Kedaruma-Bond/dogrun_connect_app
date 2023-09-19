@@ -140,6 +140,7 @@ Rails.application.routes.draw do
     root 'dashboards#index'
     get 'grand_admin_index', to: 'dashboards#grand_admin_index', as: :grand_admin_index
     get 'entries_count', to: 'dashboards#entries_count', as: :entries_count
+    get 'graph_section', to: 'dashboards#graph_section', as: :graph_section
     resources :dogrun_places, only: %i[index new create edit update show] do
       member do
         patch 'force_closed', to: 'dogrun_places#force_closed'
