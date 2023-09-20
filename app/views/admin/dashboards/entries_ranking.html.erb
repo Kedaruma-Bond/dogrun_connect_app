@@ -1,0 +1,66 @@
+<%= turbo_frame_tag "entries_ranking" do %>
+<div class="flex items-center justify-center">
+  <% if @entries_ranking.blank? %>
+    <h2 class="my-3">
+      <%= simple_format(t('.ranking_func_not_activated'), class: "text-gray-700 opacity-50 font-bold text-lg") %>
+    </h2>
+  <% else %>
+    <section class="table text-gray-600">
+      <div class="table-row-group px-2 py-2 mx-auto">
+        <% @entries_ranking.each do |array| %>
+          <div class="table-row mb-4">
+            <% if array[0] == 1 %>
+              <div class="table-cell align-middle p-3">
+                <div class="w-8 h-8 rounded-full bg-yellow-500">
+                  <svg class="current-fill p-2 text-gray-200" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <path d="M309 106c11.4-7 19-19.7 19-34c0-22.1-17.9-40-40-40s-40 17.9-40 40c0 14.4 7.6 27 19 34L209.7 220.6c-9.1 18.2-32.7 23.4-48.6 10.7L72 160c5-6.7 8-15 8-24c0-22.1-17.9-40-40-40S0 113.9 0 136s17.9 40 40 40c.2 0 .5 0 .7 0L86.4 427.4c5.5 30.4 32 52.6 63 52.6H426.6c30.9 0 57.4-22.1 63-52.6L535.3 176c.2 0 .5 0 .7 0c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40c0 9 3 17.3 8 24l-89.1 71.3c-15.9 12.7-39.5 7.5-48.6-10.7L309 106z"/>
+                  </svg>
+                </div>
+              </div>
+            <% elsif array[0] == 2 %>
+              <div class="table-cell align-middle p-3">
+                <div class="w-8 h-8 rounded-full bg-slate-400">
+                  <svg class="current-fill p-2 text-gray-200" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <path d="M309 106c11.4-7 19-19.7 19-34c0-22.1-17.9-40-40-40s-40 17.9-40 40c0 14.4 7.6 27 19 34L209.7 220.6c-9.1 18.2-32.7 23.4-48.6 10.7L72 160c5-6.7 8-15 8-24c0-22.1-17.9-40-40-40S0 113.9 0 136s17.9 40 40 40c.2 0 .5 0 .7 0L86.4 427.4c5.5 30.4 32 52.6 63 52.6H426.6c30.9 0 57.4-22.1 63-52.6L535.3 176c.2 0 .5 0 .7 0c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40c0 9 3 17.3 8 24l-89.1 71.3c-15.9 12.7-39.5 7.5-48.6-10.7L309 106z"/>
+                  </svg>
+                </div>
+              </div>
+            <% elsif array[0] == 3 %>
+              <div class="table-cell align-middle p-3">
+                <div class="w-8 h-8 rounded-full bg-[#b87333]">
+                  <svg class="current-fill p-2 text-gray-200" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <path d="M309 106c11.4-7 19-19.7 19-34c0-22.1-17.9-40-40-40s-40 17.9-40 40c0 14.4 7.6 27 19 34L209.7 220.6c-9.1 18.2-32.7 23.4-48.6 10.7L72 160c5-6.7 8-15 8-24c0-22.1-17.9-40-40-40S0 113.9 0 136s17.9 40 40 40c.2 0 .5 0 .7 0L86.4 427.4c5.5 30.4 32 52.6 63 52.6H426.6c30.9 0 57.4-22.1 63-52.6L535.3 176c.2 0 .5 0 .7 0c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40c0 9 3 17.3 8 24l-89.1 71.3c-15.9 12.7-39.5 7.5-48.6-10.7L309 106z"/>
+                  </svg>
+                </div>
+              </div>
+            <% else %>
+              <div class="table-cell align-middle p-3">
+                <div class="w-8 h-8 rounded-full bg-gray-700 p-1">
+                  <p class="text-center font-bold text-gray-200"><%= array[0] %></p>
+                </div>
+              </div>
+            <% end %>
+
+            <div class="table-cell px-3 py-4 align-middle">
+              <div class="w-12 h-12 mx-auto my-auto">
+                <%= link_to admin_dog_path(array[1]), data: { turbo_frame: "dog_profile_modal" } do %>
+                  <%= dog_thumbnail_for_admin(array[1]) %>
+                <% end %>
+              </div>
+            </div>
+            <div class="table-cell align-middle pl-2">
+              <h2 class="font-semibold text-gray-700. text-lg"><%= array[1].name %></h2>
+            </div>
+            <div class="table-cell align-middle pl-4">
+              <div class="flex items-end">
+                <h2 class="font-semibold text-gray-700 text-lg"><%= array[2] %></h2>
+                <p class="pl-1 text-sm text-gray-700"><%= t('.times') %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </section>
+  <% end %>
+</div>
+<% end %>

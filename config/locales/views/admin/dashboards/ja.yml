@@ -16,6 +16,11 @@ ja:
         total_entries: 利用頭数
         daily_entries_graph: デイリー利用頭数
         monthly_entries_graph: マンスリー利用頭数
+      entries_ranking:
+        ranking_func_not_activated: |
+          過去1年間の利用記録数が300回以上になると
+          ランキング機能が有効になります
+        times: 回
 
 
 

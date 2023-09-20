@@ -16,12 +16,12 @@
           <circle cx="12" cy="7" r="4"></circle>
         </svg>
       </div>
-      <div class="flex flex-col justify-start mt-6 sm:mt-2 min-w-[245px]">
+      <div class="flex flex-col justify-start mt-6 sm:mt-2 min-w-[245px] max-w-[75%]">
         <p class="text-gray-500 leading-relaxed text-base"><%= t('defaults.name') %></p>
         <h2 class="text-2xl font-semibold text-gray-700 title-font mb-2"><%= @current_user.name %></h2>
         <% if !@current_user.guest? %>
           <p class="text-gray-500 leading-relaxed text-base"><%= t('defaults.email') %></p>
-          <h2 class="text-lg font-semibold text-gray-700 title-font mb-2"><%= @current_user.email %></h2>
+          <h2 class="text-lg font-semibold text-gray-700 title-font mb-2 break-all"><%= @current_user.email %></h2>
           <%= turbo_frame_tag dom_id(@current_user, :user_detail) do %>
             <%= render partial: "shared/user_detail_part" %>
           <% end %>

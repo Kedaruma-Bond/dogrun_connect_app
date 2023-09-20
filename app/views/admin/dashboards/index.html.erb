@@ -31,7 +31,9 @@
             <h2 class="font-bold text-gray-600 mb-1 text-right">
               <%= t('.period_entry_number_search_form')%>
             </h2>
-            <%= turbo_frame_tag "dashboards_entries_count", src: "/admin/entries_count" %>
+            <%= turbo_frame_tag "dashboards_entries_count", src: "/admin/entries_count" do %>
+              <%= image_tag 'tadpole.svg', class: "my-2 mx-auto w-10 h-10" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -119,29 +121,9 @@
         <div class="text-gray-600 font-bold text-gray text-center md:text-center">
           <%= t('.ranking_of_entry_times_in_the_past_year') %>
         </div>
-        <div class="flex items-center justify-center">
-          <section class="text-gray-600 body-font">
-            <div class="px-2 py-2 mx-auto flex flex-col">
-              <div class="flex items-center justify-start mb-2">
-                <div class="flex-shrink-0 w-8 h-8 rounded-full mt-10 sm:mt-0 inline-flex items-center justify-center bg-yellow-500 text-white relative z-10 title-font font-medium text-sm">
-                  <svg class="current-fill p-2 text-gray-200" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                    <path d="M309 106c11.4-7 19-19.7 19-34c0-22.1-17.9-40-40-40s-40 17.9-40 40c0 14.4 7.6 27 19 34L209.7 220.6c-9.1 18.2-32.7 23.4-48.6 10.7L72 160c5-6.7 8-15 8-24c0-22.1-17.9-40-40-40S0 113.9 0 136s17.9 40 40 40c.2 0 .5 0 .7 0L86.4 427.4c5.5 30.4 32 52.6 63 52.6H426.6c30.9 0 57.4-22.1 63-52.6L535.3 176c.2 0 .5 0 .7 0c22.1 0 40-17.9 40-40s-17.9-40-40-40s-40 17.9-40 40c0 9 3 17.3 8 24l-89.1 71.3c-15.9 12.7-39.5 7.5-48.6-10.7L309 106z"/>
-                  </svg>
-                </div>
-                <div class="flex-grow md:pl-4 pl-3 flex sm:items-center items-start flex-col sm:flex-row">
-                  <div class="flex-shrink-0 w-12 h-12 bg-gray-800 text-indigo-400 rounded-full inline-flex items-center justify-center">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="p-2" viewBox="0 0 24 24">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                    </svg>
-                  </div>
-                  <div class="flex-grow sm:pl-6 mt-6 sm:mt-0">
-                    <h2 class="font-medium text-gray-700 mb-1 text-lg">Shooting Stars</h2>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
+        <%= turbo_frame_tag "entries_ranking", src: "/admin/entries_ranking", loading: :lazy do %>
+          <%= image_tag 'tadpole.svg', class: "my-2 mx-auto w-10 h-10" %>
+        <% end %>
       </div>
     </div>
     <!--/Entries Ranking Card -->
