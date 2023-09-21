@@ -10,10 +10,6 @@ ja:
         new_registration_dogs_over_the_past_month: 過去ひと月の新規登録犬頭数
         total_staffs: 登録スタッフ数
         ranking_of_entry_times_in_the_past_year: 過去１年間利用回数ランキング
-      graph_section:
-        date: 日付
-        month: 月
-        total_entries: 利用頭数
         daily_entries_graph: デイリー利用頭数
         monthly_entries_graph: マンスリー利用頭数
       entries_ranking:
@@ -21,6 +17,17 @@ ja:
           過去1年間の利用記録数が300回以上になると
           ランキング機能が有効になります
         times: 回
+      sex_type_ratio_graph:
+        sex_type_ratio_of_registration_dogs: 登録犬の雌雄比率
+        not_answered: 未回答
+        male: オス
+        female: メス
+      daily_entries_graph:
+        date: 日付
+        total_entries: 利用頭数
+      monthly_entries_graph:
+        month: 月
+
 
 
 

@@ -8,7 +8,6 @@
       </h1>
     </div>
   </div>
-  <!--Card Section-->
   <div class="flex flex-wrap">
     <!--Total entries over the past month Card-->
     <div class="w-full md:w-1/2 p-6">
@@ -118,20 +117,32 @@
     <!--/Total Staff Card-->
     <!--Entries Ranking Card -->
     <div class="w-full md:w-1/2 p-6">
-      <div class="bg-gradient-to-b from-cyan-200 to-cyan-100 border-b-4 border-cyan-500 rounded-lg shadow-xl px-2 py-5">
-        <div class="text-gray-600 font-bold text-gray text-center md:text-center">
-          <%= t('.ranking_of_entry_times_in_the_past_year') %>
+      <div class="bg-white border-transparent rounded-lg shadow-xl">
+        <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+          <h2 class="font-bold uppercase text-gray-600">
+            <%= t('.ranking_of_entry_times_in_the_past_year') %>
+          </h2>
         </div>
-        <%= turbo_frame_tag "entries_ranking", src: "/admin/entries_ranking", loading: :lazy do %>
-          <%= image_tag 'tadpole.svg', class: "my-2 mx-auto w-10 h-10" %>
-        <% end %>
+        <div class="py-1 px-3 bg-gradient-to-b from-stone-100 to-slate-300">
+          <%= turbo_frame_tag "entries_ranking", src: "/admin/entries_ranking", loading: :lazy do %>
+            <%= image_tag 'tadpole.svg', class: "my-2 mx-auto w-10 h-10" %>
+          <% end %>
+        </div>
       </div>
     </div>
     <!--/Entries Ranking Card -->
-    <!--/Card Section-->
-  </div>
+    
+    <!--Sex Type Ratio Graph Card -->
+    <%= render partial: "sex_type_ratio_graph", locals: { sex_type_ratio: @sex_type_ratio } %>
+    <!--/Sex Type Ratio Graph Card -->
 
-  <%= turbo_frame_tag "graph_section", src: "/admin/graph_section", loading: :lazy do %>
-    <%= image_tag 'tadpole.svg', class: "my-10 mx-auto w-10 h-10" %>
-  <% end %>
+    <!--Daily Entries Graph-->
+    <%= render partial: "daily_entries_graph", locals: { entries_daily: @entries_daily, one_month_ago: @one_month_ago, today: @today  } %>
+    <!--/Daily Entries Graph-->
+    
+    <!--Monthly Entries Graph-->
+    <%= render partial: "monthly_entries_graph", locals: { entries_monthly: @entries_monthly, one_year_ago: @one_year_ago, today: @today  } %>
+    <!--/Monthly Entries Graph-->
+
+  </div>
 </div>

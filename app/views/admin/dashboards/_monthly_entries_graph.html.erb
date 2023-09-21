@@ -1,0 +1,16 @@
+<div class="w-full p-6">
+  <div class="bg-white border-transparent rounded-lg shadow-xl">
+    <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+      <h2 class="font-bold uppercase text-gray-600">
+        <%= t('.daily_entries_graph') %>
+      </h2>
+    </div>
+    <div class="bg-gradient-to-b from-stone-100 to-slate-300">
+      <%= area_chart entries_monthly, 
+        library: { animation: { startup: true, duration: 1000 }, colors: ['#6ee7b7'] }, 
+        width: "100%", height: "300px", min: 0, max: "undefined", 
+        xmin: one_year_ago, xmax: today, label: false, xtitle: t('.month'), ytitle: t('.total_entries') 
+        %>
+    </div>
+  </div>
+</div>

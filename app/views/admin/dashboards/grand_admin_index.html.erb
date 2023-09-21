@@ -7,7 +7,6 @@
       </h1>
     </div>
   </div>
-  <!--Card Section-->
   <div class="flex flex-wrap">
     <!--Total entries over the past month Card-->
     <div class="w-full md:w-1/2 p-6">
@@ -111,10 +110,18 @@
       </div>
     </div>
     <!--/New Registration dogs at this month Card-->
-    <!--/Card Section-->
-  </div>
+    
+    <!--Sex Type Ratio Graph Card -->
+    <%= render partial: "sex_type_ratio_graph", locals: { sex_type_ratio: @sex_type_ratio } %>
+    <!--/Sex Type Ratio Graph Card -->
 
-  <%= turbo_frame_tag "graph_section", src: "/admin/graph_section", loading: :lazy do %>
-    <%= image_tag 'tadpole.svg', class: "my-10 mx-auto w-10 h-10" %>
-  <% end %>
+    <!--Daily Entries Graph-->
+    <%= render partial: "daily_entries_graph", locals: { entries_daily: @entries_daily, one_month_ago: @one_month_ago, today: @today  } %>
+    <!--/Daily Entries Graph-->
+    
+    <!--Monthly Entries Graph-->
+    <%= render partial: "monthly_entries_graph", locals: { entries_monthly: @entries_monthly, one_year_ago: @one_year_ago, today: @today  } %>
+    <!--/Monthly Entries Graph-->
+
+  </div>
 </div>
