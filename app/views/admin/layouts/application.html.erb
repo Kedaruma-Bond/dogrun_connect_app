@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-cache-control" content="no-cache">
-    <% if current_page?(controller: "posts", action: "dogrun_board") %>
+    <% if current_page?(controller: "posts", action: "dogrun_board") || current_page?(controller: "dashboards", action: "index") || current_page?(controller: "dashboards", action: "grand_admin_index") %>
       <meta name="turbo-visit-control" content="reload">
     <% end %>
     <%= csrf_meta_tags %>

@@ -9,7 +9,58 @@
     </div>
   </div>
   <div class="flex flex-wrap">
-    <!--Total entries over the past month Card-->
+    <!--Total Registration dogs Card-->
+    <div class="w-full md:w-1/2 p-6">
+      <div class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-5">
+        <div class="flex flex-row items-center">
+          <div class="flex-shrink pr-4">
+            <%= link_to admin_registration_numbers_path, data: { turbo_frame: "_top" } do %>
+              <div class="rounded-full p-5 bg-yellow-600">
+                <%= image_tag 'dog_icon.svg', class: "w-7 h-7" %>
+              </div>
+            <% end %>
+          </div>
+          <div class="flex-1 text-right md:text-center">
+            <h2 class="font-bold text-gray-600">
+              <%= t('.total_registration_dogs')%>
+            </h2>
+            <p class="font-bold text-3xl">
+              <%= @registration_dogs.count %>
+              <span class="text-yellow-600">
+                <i class="fas fa-caret-up"></i>
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/Total Registration dogs Card-->
+
+    <!--New Registration dogs at this month Card-->
+    <div class="w-full md:w-1/2 p-6">
+      <div class="bg-gradient-to-b from-blue-200 to-blue-100 border-b-4 border-blue-500 rounded-lg shadow-xl p-5">
+        <div class="flex flex-row items-center">
+          <div class="flex-shrink pr-4">
+            <div class="rounded-full p-5 bg-blue-600">
+              <svg class="w-6 h-6 font-bold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="flex-1 text-right md:text-center">
+            <h2 class="font-bold text-gray-600">
+              <%= t('.new_registration_dogs_over_the_past_month') %>
+            </h2>
+            <p class="font-bold text-3xl">
+              <%= @new_registration_dogs_over_the_past_month.count %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/New Registration dogs at this month Card-->
+    
+    <!--Total entries search Card-->
     <div class="w-full md:w-1/2 p-6">
       <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-5">
         <div class="flex flex-row items-center">
@@ -38,58 +89,8 @@
         </div>
       </div>
     </div>
-    <!--/Total entries over the past month Card-->
+    <!--/Total entries search Card--> 
 
-    <!--Total Registration dogs Card-->
-    <div class="w-full md:w-1/2 p-6">
-      <div class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-5">
-        <div class="flex flex-row items-center">
-          <div class="flex-shrink pr-4">
-            <%= link_to admin_registration_numbers_path, data: { turbo_frame: "_top" } do %>
-              <div class="rounded-full p-5 bg-yellow-600">
-                <%= image_tag 'dog_icon.svg', class: "w-7 h-7" %>
-              </div>
-            <% end %>
-          </div>
-          <div class="flex-1 text-right md:text-center">
-            <h2 class="font-bold text-gray-600">
-              <%= t('.total_registration_dogs')%>
-            </h2>
-            <p class="font-bold text-3xl">
-              <%= @registration_dogs.count %>
-              <span class="text-yellow-600">
-                <i class="fas fa-caret-up"></i>
-              </span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--/Total Registration dogs Card-->
-    <!--New Registration dogs at this month Card-->
-    <div class="w-full md:w-1/2 p-6">
-      <div class="bg-gradient-to-b from-blue-200 to-blue-100 border-b-4 border-blue-500 rounded-lg shadow-xl p-5">
-        <div class="flex flex-row items-center">
-          <div class="flex-shrink pr-4">
-            <div class="rounded-full p-5 bg-blue-600">
-              <svg class="w-6 h-6 font-bold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-              </svg>
-            </div>
-          </div>
-          <div class="flex-1 text-right md:text-center">
-            <h2 class="font-bold text-gray-600">
-              <%= t('.new_registration_dogs_over_the_past_month') %>
-            </h2>
-            <p class="font-bold text-3xl">
-              <%= @new_registration_dogs_over_the_past_month.count %>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--/New Registration dogs at this month Card-->
-    
     <!--Total Staff Card-->
     <div class="w-full md:w-1/2 p-6">
       <div class="bg-gradient-to-b from-red-200 to-red-100 border-b-4 border-red-500 rounded-lg shadow-xl p-5">
@@ -115,6 +116,7 @@
       </div>
     </div>
     <!--/Total Staff Card-->
+
     <!--Entries Ranking Card -->
     <div class="w-full md:w-1/2 p-6">
       <div class="bg-white border-transparent rounded-lg shadow-xl">

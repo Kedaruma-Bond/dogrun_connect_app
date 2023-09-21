@@ -8,58 +8,6 @@
     </div>
   </div>
   <div class="flex flex-wrap">
-    <!--Total entries over the past month Card-->
-    <div class="w-full md:w-1/2 p-6">
-      <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-5">
-        <div class="flex flex-row items-center">
-          <div class="flex-shrink pr-2">
-            <div class="rounded-full p-5 bg-green-600">
-              <svg class="w-7 h-7 current-fill" stroke-width="3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 6L20 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M4 6.01L4.01 5.99889" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M4 12.01L4.01 11.9989" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M4 18.01L4.01 17.9989" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M8 12L20 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M8 18L20 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-          </div>
-          <div class="flex flex-col justify-end w-full">
-            <h2 class="font-bold text-gray-600 mb-1 text-right">
-              <%= t('admin.dashboards.index.period_entry_number_search_form')%>
-            </h2>
-            <%= turbo_frame_tag "dashboards_entries_count", src: "/admin/entries_count" %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--/Total entries over the past month Card-->
-
-    <!--Total Users Card-->
-    <div class="w-full md:w-1/2 p-6">
-      <div class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-5">
-        <div class="flex flex-row items-center">
-          <div class="flex-shrink pr-4">
-            <%= link_to admin_users_path, data: { turbo_frame: "_top" } do %>
-              <div class="rounded-full p-5 bg-pink-600">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                </svg>
-              </div>
-            <% end %>
-          </div>
-          <div class="flex-1 text-right md:text-center">
-            <h2 class="font-bold uppercase text-gray-600">
-              <%= t('admin.dashboards.index.total_users') %>
-            </h2>
-            <p class="font-bold text-3xl">
-              <%= @users.count %>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--Total Users Card-->
 
     <!--Total Registration dogs Card-->
     <div class="w-full md:w-1/2 p-6">
@@ -87,6 +35,7 @@
       </div>
     </div>
     <!--/Total Registration dogs Card-->
+
     <!--New Registration dogs at this month Card-->
     <div class="w-full md:w-1/2 p-6">
       <div class="bg-gradient-to-b from-blue-200 to-blue-100 border-b-4 border-blue-500 rounded-lg shadow-xl p-5">
@@ -109,8 +58,85 @@
         </div>
       </div>
     </div>
-    <!--/New Registration dogs at this month Card-->
+    <!--/New Registration dogs at this month Card-->   
     
+    <!--Total Users Card-->
+    <div class="w-full md:w-1/2 p-6">
+      <div class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-5">
+        <div class="flex flex-row items-center">
+          <div class="flex-shrink pr-4">
+            <%= link_to admin_users_path, data: { turbo_frame: "_top" } do %>
+              <div class="rounded-full p-5 bg-pink-600">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+              </div>
+            <% end %>
+          </div>
+          <div class="flex-1 text-right md:text-center">
+            <h2 class="font-bold uppercase text-gray-600">
+              <%= t('admin.dashboards.index.total_users') %>
+            </h2>
+            <p class="font-bold text-3xl">
+              <%= @users.count %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Total Users Card-->
+
+    <!-- New Users at this month Card-->
+    <div class="w-full md:w-1/2 p-6">
+      <div class="bg-gradient-to-b from-fuchsia-200 to-fuchsia-100 border-b-4 border-fuchsia-500 rounded-lg shadow-xl p-5">
+        <div class="flex flex-row items-center">
+          <div class="flex-shrink pr-4">
+            <div class="rounded-full p-5 bg-pink-600">
+              <svg class="w-6 h-6 font-bold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="flex-1 text-right md:text-center">
+            <h2 class="font-bold uppercase text-gray-600">
+              <%= t('admin.dashboards.index.new_users_over_the_past_month') %>
+            </h2>
+            <p class="font-bold text-3xl">
+              <%= @users_over_the_past_month.count %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ New Users at this month Card-->
+    
+    <!--Total entries search Card-->
+    <div class="w-full md:w-1/2 p-6">
+      <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-5">
+        <div class="flex flex-row items-center">
+          <div class="flex-shrink pr-2">
+            <div class="rounded-full p-5 bg-green-600">
+              <svg class="w-7 h-7 current-fill" stroke-width="3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 6L20 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 6.01L4.01 5.99889" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 12.01L4.01 11.9989" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M4 18.01L4.01 17.9989" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 12L20 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 18L20 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="flex flex-col justify-end w-full">
+            <h2 class="font-bold text-gray-600 mb-1 text-right">
+              <%= t('admin.dashboards.index.period_entry_number_search_form')%>
+            </h2>
+            <%= turbo_frame_tag "dashboards_entries_count", src: "/admin/entries_count" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/Total entries search Card-->
+
     <!--Sex Type Ratio Graph Card -->
     <%= render partial: "sex_type_ratio_graph", locals: { sex_type_ratio: @sex_type_ratio } %>
     <!--/Sex Type Ratio Graph Card -->
