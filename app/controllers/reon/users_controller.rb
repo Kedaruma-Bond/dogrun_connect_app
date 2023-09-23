@@ -1,5 +1,4 @@
 class Reon::UsersController < Reon::DogrunPlaceController
-  before_action :set_new_post, only: %i[show]
   skip_before_action :require_login, :is_account_deactivated?, only: %i[new create route_selection fully_route minimum_route]
   before_action :correct_user, :set_dogs_and_registration_numbers_at_local, only: %i[show]
   

@@ -3,7 +3,7 @@
   >
   <!-- logo -->
   <div class="container mx-auto flex flex-wrap flex-col lg:flex-row lg:pl-10">
-    <%= link_to send(@top_path), 
+    <%= link_to send(@top_path), data: { turbo_frame: "_top" }, 
         class: "flex order-first title-font font-medium items-center mb-0" do %>
       <div class="w-10 h-auto">
         <%= dogrun_logo(@dogrun_place) %>
@@ -68,14 +68,25 @@
         </span>
       <% end %>
       
-      <button data-action="click->form-modal#open" class="flex items-center p-3 text-base text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100">
-        <svg class="w-7 h-7 mx-1 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
-        </svg>
-        <span class="ml-1 text-lg text-gray-700 dark:text-gray-200">
-          <%= t('defaults.dogrun_post') %>
-        </span>
-      </button>
+      <% if !current_user.guest? %>
+        <%= link_to send(@article_post_path), data: { turbo_frame: "article_post_form_modal" }, class: "flex items-center p-3 text-base text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100" do %>
+          <svg class="w-7 h-7 mx-1 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+          </svg>
+          <span class="ml-1 text-lg text-gray-700 dark:text-gray-200">
+            <%= t('defaults.dogrun_post') %>
+          </span>
+        <% end %>
+      <% else %>
+        <div class="flex items-center p-3 text-base text-gray-400 capitalize transition-colors duration-200 transform hover:bg-gray-100 opacity-75">
+          <svg class="w-7 h-7 mx-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+          </svg>
+          <span class="ml-1 text-lg text-gray-400">
+            <%= t('defaults.dogrun_post') %>
+          </span>
+        </div>
+      <% end %>
 
       <%= link_to send(@encount_dogs_path), 
           class: "flex items-center p-3 text-base text-gray-600 capitalize transition-colors duration-200 transform hover:bg-gray-100" do %>
@@ -103,8 +114,6 @@
     </div>
   </div>
 
-  <%= render partial: 'shared/post_form', locals: { post: @post } %>
-
   <nav class="hidden lg:flex justify-end w-full flex-wrap text-base mt-3">
     <%= link_to send(@user_path, current_user), 
       class: "flex mr-5 hover:text-gray-900 dark:text-gray-200" do %>
@@ -128,19 +137,27 @@
       </span>
     <% end %>
 
-    <button data-action="click->form-modal#open" class="flex mr-5 hover:text-gray-900 dark:text-gray-200">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
-      </svg>
-      <span><%= t('defaults.dogrun_post') %></span>
-    </button>
+    <% if !current_user.guest? %>
+      <%= link_to send(@article_post_path), data: { turbo_frame: "article_post_form_modal" }, class: "flex mr-5 hover:text-gray-900 dark:text-gray-200" do %>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+        </svg>
+        <%= t('defaults.dogrun_post') %>
+      <% end %>
+    <% else %>
+      <div class="flex mr-5 hover:text-gray-900 text-gray-400 opacity-75">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
+        </svg>
+        <span><%= t('defaults.dogrun_post') %></span>
+      </div>
+    <% end %>
 
     <%= link_to send(@encount_dogs_path), 
         class: "flex mr-5 hover:text-gray-900 dark:text-gray-200" do %>
       <svg class="w-5 h-5 mx-1" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
         <path d="M104,140a12,12,0,1,1-12-12A12,12,0,0,1,104,140Zm60-12a12,12,0,1,0,12,12A12,12,0,0,0,164,128Zm68.7,16a16.1,16.1,0,0,1-6.7,1.4,15.6,15.6,0,0,1-10-3.6V184a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V141.8a15.6,15.6,0,0,1-10,3.6,16.1,16.1,0,0,1-6.7-1.4,15.8,15.8,0,0,1-9.1-17.6L30.6,38.9A16.1,16.1,0,0,1,50.2,26.3L105,40h46l54.8-13.7a16.1,16.1,0,0,1,19.6,12.6l16.4,87.5A15.8,15.8,0,0,1,232.7,144ZM200,184V122L148.1,56H107.9L56,122v62a24.1,24.1,0,0,0,24,24h40V195.3l-13.7-13.6a8.1,8.1,0,0,1,11.4-11.4L128,180.7l10.3-10.4a8.1,8.1,0,0,1,11.4,11.4L136,195.3V208h40A24.1,24.1,0,0,0,200,184Z" fill="currentColor"></path>
       </svg>
-    
       <span class="flex items-center">
         <%= t('defaults.encount_list') %>
         <%= new_encount_dog_count_badge %>

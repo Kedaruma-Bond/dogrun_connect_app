@@ -53,15 +53,11 @@ Rails.application.routes.draw do
     get 'registration_numbers/have_registration_card', to: 'registration_numbers#have_registration_card'
     get 'registration_numbers/not_have_registration_card', to: 'registration_numbers#not_have_registration_card' 
     
-    resources :posts, only: %i[create] do
-      member do
-        resource :article, only: %i[new create]
-        resource :embed, only: %i[new create]
-      end
-    end
-    
     get 'signup', to: 'users#new', as: :signup
     
+    get 'article_post', to: 'article_post#new'
+    post 'article_post', to: 'article_post#create'
+
     get 'dog_fully_registration/form_selection', to: 'dog_fully_registration#form_selection'
     get 'dog_fully_registration/have_registration_card', to: 'dog_fully_registration#have_registration_card'
     get 'dog_fully_registration/not_have_registration_card', to: 'dog_fully_registration#not_have_registration_card'
@@ -114,14 +110,10 @@ Rails.application.routes.draw do
     get 'registration_numbers/have_registration_card', to: 'registration_numbers#have_registration_card'
     get 'registration_numbers/not_have_registration_card', to: 'registration_numbers#not_have_registration_card' 
     
-    resources :posts, only: %i[create] do
-      member do
-        resource :article, only: %i[new create]
-        resource :embed, only: %i[new create]
-      end
-    end
-    
     get 'signup', to: 'users#new', as: :signup
+
+    get 'article_post', to: 'article_post#new'
+    post 'article_post', to: 'article_post#create'
 
     get 'dog_fully_registration/form_selection', to: 'dog_fully_registration#form_selection'
     get 'dog_fully_registration/have_registration_card', to: 'dog_fully_registration#have_registration_card'

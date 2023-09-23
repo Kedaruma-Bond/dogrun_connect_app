@@ -1,4 +1,4 @@
-<%= simple_form_for dog_fully_registration, url:send(dog_fully_registration_path), data: { controller: 'disable', "disable-with-value": t('defaults.processing') } do |f| %>
+<%= simple_form_for dog_fully_registration, url: send(dog_fully_registration_path), data: { controller: 'disable', "disable-with-value": t('defaults.processing') } do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <section class="text-gray-600 body-font">
     <div class="container px-3 py-3 mx-auto flex flex-col">

@@ -1,6 +1,5 @@
 class Reon::EncountDogsController < Reon::DogrunPlaceController
   include Pagy::Backend
-  before_action :set_new_post, only: %i[index edit search]
   before_action :set_encount_dogs, only: %i[index search]
   before_action :set_q, only: %i[index search]
   before_action :correct_user_check, only: %i[edit update destroy]

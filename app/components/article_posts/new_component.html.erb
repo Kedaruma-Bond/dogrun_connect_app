@@ -1,0 +1,11 @@
+<%= turbo_frame_tag "article_post_form_modal" do %>
+  <div data-controller="turbo-form-modal lightbox" data-turbo-form-modal-target="modal" data-action="turbo:submit-end->turbo-form-modal#submitEnd" 
+    class="animate-fade-in flex items-center justify-center fixed z-30 inset-0 h-full p-3">
+    <button data-action="turbo-form-modal#hideModal" class="cursor-default w-full h-full fixed inset-0 bg-gray-700 bg-opacity-50"></button>
+    <%= turbo_frame_modal_close_button %>
+    <div class="turbo-form-modal bg-purple-200 backdrop-blur bg-opacity-80">
+      <%= simple_format(@title, { class: 'text-xl font-bold text-center my-3 text-gray-700' }, { wrapper_tag: "div" } ) %>
+      <%= content %>
+    </div>
+  </div>
+<% end %>

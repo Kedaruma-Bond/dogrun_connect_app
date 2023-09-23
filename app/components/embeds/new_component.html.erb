@@ -1,8 +1,0 @@
-<% content_for(:title, @title) %>
-<div class="max-w-5xl md:mx-auto sm:px-6 lg:px-8">
-  <div class="bg-purple-200 w-full shadow rounded p-4 sm:p-10">
-    <%= simple_format(@title, { class: 'text-2xl font-bold text-center mb-3 text-gray-700' }, { wrapper_tag: "div" } ) %>
-    <%= render "shared/refer_to_app_sns" %>
-    <%= content %>
-  </div>
-</div>

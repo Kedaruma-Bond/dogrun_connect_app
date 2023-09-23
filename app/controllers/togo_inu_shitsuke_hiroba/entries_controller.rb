@@ -1,6 +1,5 @@
 class TogoInuShitsukeHiroba::EntriesController < TogoInuShitsukeHiroba::DogrunPlaceController
   include Pagy::Backend
-  before_action :set_new_post, only: %i[index search]
   before_action :set_dogs_and_registration_numbers_at_local, only: %i[create update]
   before_action :set_q, only: %i[index search]
   before_action :correct_user_check, only: %i[destroy]

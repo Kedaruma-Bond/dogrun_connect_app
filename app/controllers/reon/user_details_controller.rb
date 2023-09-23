@@ -1,5 +1,4 @@
 class Reon::UserDetailsController < Reon::DogrunPlaceController
-  before_action :set_new_post, only: %i[new edit]
   before_action :check_not_guest
   before_action :correct_user_check, only: %i[edit update destroy]
 

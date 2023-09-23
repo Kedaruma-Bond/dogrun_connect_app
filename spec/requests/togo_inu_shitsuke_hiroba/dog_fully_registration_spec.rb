@@ -198,6 +198,7 @@ RSpec.describe TogoInuShitsukeHiroba::DogFullyRegistrationController, type: :req
   end
 
   describe 'POST #create' do
+    # turbo streamによる配信時に管理者アカウントが必要なので作成
     let!(:admin) { create(:user, :admin, dogrun_place: dogrun_place) }
     
     describe 'ログインしているとき' do

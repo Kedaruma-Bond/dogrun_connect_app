@@ -111,7 +111,7 @@ ja:
         投稿のタイプの選択
       select_it: 選択してください
     entries_table:
-      table_of_entries_latest_max_five: "過去%{times}回の利用状況"
+      table_of_entries_latest_max_five: "過去%{times}回の利用記録"
       playing_together: 一緒に遊んだワンコ
     filming_message_modal:
       title: 撮影OKについて

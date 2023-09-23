@@ -145,4 +145,8 @@ class Admin::PostsController < Admin::BaseController
     def correct_admin_check
       redirect_to admin_root_path, error: t('defaults.not_authorized') unless current_user.grand_admin? ||  @post.dogrun_place == current_user.dogrun_place
     end
+    
+    def set_new_post
+      @post = Post.new
+    end
 end

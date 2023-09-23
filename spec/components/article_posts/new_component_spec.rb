@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe Articles::NewComponent, type: :component do
+RSpec.describe ArticlePosts::NewComponent, type: :component do
   let!(:title) { "Title" }
 
   example '正しくレンダリングされること' do
     render_inline(
-      Articles::NewComponent.new(
+      ArticlePosts::NewComponent.new(
         title: title
       )
     )

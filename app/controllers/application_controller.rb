@@ -48,8 +48,5 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def set_new_post
-      @post = Post.new
-    end
 
 end

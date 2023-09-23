@@ -1,5 +1,4 @@
 class TogoInuShitsukeHiroba::RegistrationNumbersController < TogoInuShitsukeHiroba::DogrunPlaceController
-  before_action :set_new_post, only: %i[new]
   before_action :set_dogs, only: %i[new create]
   before_action :set_registration_number, only: %i[destroy]
   before_action :correct_registration_number_of_dog_owner, only: %i[destroy]
