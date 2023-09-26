@@ -7,6 +7,13 @@
     <% end %>
 
     <div class="absolute top-1/3 md:top-auto md:bottom-1 right-2 flex">
+      <%= link_to send(@entries_record_analysis_path, registration_number), data: { turbo_frame: 'entries_record_analysis_modal'} do %>
+        <button class="edit-button ml-2">
+          <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+            <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm64 192c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V256c0-17.7 14.3-32 32-32zm64-64c0-17.7 14.3-32 32-32s32 14.3 32 32V352c0 17.7-14.3 32-32 32s-32-14.3-32-32V160zM320 288c17.7 0 32 14.3 32 32v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V320c0-17.7 14.3-32 32-32z"/>
+          </svg>
+        </button>
+      <% end %>
       <%= link_to send(dog_profile_path, registration_number.dog), data: { turbo_frame: "dog_profile_modal" } do %>
         <div class="edit-button ml-2">
           <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -14,7 +21,7 @@
           </svg>
         </div>
       <% end %> 
-      <%= link_to send(@edit_dog_path, registration_number.dog.id), data: { turbo_frame: "dog_edit_modal" } do %>
+      <%= link_to send(@edit_dog_path, registration_number.dog), data: { turbo_frame: "dog_edit_modal" } do %>
         <button class="edit-button ml-2">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>

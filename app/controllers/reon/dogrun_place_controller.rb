@@ -51,6 +51,7 @@ class Reon::DogrunPlaceController < ApplicationController
       @fully_not_have_registration_card_path = :reon_dog_fully_registration_not_have_registration_card_path
       @dog_fully_registration_path = :reon_dog_fully_registration_path
       @article_post_path = :reon_article_post_path
+      @entries_record_analysis_path = :entries_record_analysis_reon_registration_number_path
       @dogrun_terms_of_service_page = "https://r.goope.jp/wanko141327/free/riyoukiyaku"
     end
 

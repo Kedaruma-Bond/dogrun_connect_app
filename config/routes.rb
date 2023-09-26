@@ -48,7 +48,11 @@ Rails.application.routes.draw do
       end
     end
     resources :dogs, only: %i[show edit update]
-    resources :registration_numbers, only: %i[new create destroy]
+    resources :registration_numbers, only: %i[new create destroy] do
+      member do
+        get 'entries_record_analysis', to: 'registration_numbers#entries_record_analysis'
+      end
+    end
     get 'registration_numbers/form_selection', to: 'registration_numbers#form_selection'
     get 'registration_numbers/have_registration_card', to: 'registration_numbers#have_registration_card'
     get 'registration_numbers/not_have_registration_card', to: 'registration_numbers#not_have_registration_card' 
@@ -105,7 +109,11 @@ Rails.application.routes.draw do
       end
     end
     resources :dogs, only: %i[show edit update]
-    resources :registration_numbers, only: %i[new create destroy]
+    resources :registration_numbers, only: %i[new create destroy] do
+      member do
+        get 'entries_record_analysis', to: 'registration_numbers#entries_record_analysis'
+      end
+    end
     get 'registration_numbers/form_selection', to: 'registration_numbers#form_selection'
     get 'registration_numbers/have_registration_card', to: 'registration_numbers#have_registration_card'
     get 'registration_numbers/not_have_registration_card', to: 'registration_numbers#not_have_registration_card' 
