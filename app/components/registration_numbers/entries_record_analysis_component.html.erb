@@ -9,10 +9,10 @@
         <div class="items-center lg:flex">
           <div class="w-full lg:w-1/2">
             <div class="flex flex-col justify-center lg:justify-start">
-              <div class="w-32 h-32 mb-3 mx-auto">
+              <div class="w-24 lg:w-32 h-24 lg:h-32 mb-3 mx-auto">
                 <%= dog_thumbnail_for_admin(@dog) %>
               </div>
-              <div class="flex text-gray-700 text-base font-light items-center mx-auto">
+              <div class="hidden lg:flex text-gray-700 text-base font-light items-center mx-auto">
                 <%= @notation_of_registration_number %> : &nbsp;
                 <p class="text-xl font-bold">
                   <% if !@registration_number.nil? %>
@@ -22,7 +22,7 @@
                   <% end %>
                 </p>
               </div>
-              <h2 class="font-bold text-gray-700 text-2xl mb-5 mx-auto">
+              <h2 class="hidden lg:block font-bold text-gray-700 text-2xl mb-5 mx-auto">
                 <%= @dog.name %>
               </h2>
             </div>
