@@ -5,9 +5,9 @@
     <%= turbo_frame_modal_close_button %>
     <div class="turbo-form-modal bg-purple-200 backdrop-blur bg-opacity-80">
 
-      <div class="container px-0 md:px-3 lg:px-6 py-4 lg:py-16 mx-auto">
+      <div class="container px-0 md:px-3 lg:px-4 py-4 lg:py-8 mx-auto">
         <div class="items-center lg:flex">
-          <div class="w-full lg:w-1/2">
+          <div class="w-full lg:w-2/5">
             <div class="flex flex-col justify-center lg:justify-start">
               <div class="w-24 lg:w-32 h-24 lg:h-32 mb-3 mx-auto">
                 <%= dog_thumbnail_for_admin(@dog) %>
@@ -27,12 +27,12 @@
               </h2>
             </div>
             <div class="px-4 flex justify-center text-right">
-              <div class="text-lg lg:text-xl font-normal">
+              <div class="text-lg lg:text-xl font-semibold">
                 <h1 class="text-gray-600">
                   <%= t('local.registration_numbers.entries_record_analysis.in_past_one_year', dogrun_place: @dogrun_place.name) %>
                 </h1>
                 <div class="flex justify-end">
-                <span class="text-blue-700 font-semibold text-3xl lg:text-4xl">
+                <span class="text-blue-700 font-bold text-3xl lg:text-4xl">
                   <%= @entries_of_past_one_year.count %> &nbsp;
                 </span>
                 <h1 class="text-gray-600 items-end flex">
@@ -46,7 +46,7 @@
             </div>
           </div>
 
-          <div class="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
+          <div class="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-3/5">
             <div class="w-full">
               <div class="bg-white border-transparent rounded-lg shadow-xl">
                 <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
