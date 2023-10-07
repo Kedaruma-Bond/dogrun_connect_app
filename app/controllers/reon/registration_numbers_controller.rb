@@ -79,7 +79,6 @@ class Reon::RegistrationNumbersController < Reon::DogrunPlaceController
         notation_of_registration_number: @notation_of_registration_number,
         dogrun_place: @dogrun_place
       ), content_type: "text/html")
-
   end
   
   private

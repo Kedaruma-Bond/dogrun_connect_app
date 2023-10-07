@@ -1,11 +1,11 @@
 <details data-controller="accordion" class="mt-2">
   <summary data-accordion-target="summary" data-action="click->accordion#toggle" class="mt-3 hover:cursor-pointer flex justify-center">
-    <h1 data-accordion-target="openText" class="flex font-bold text-base text-gray-500">
+    <button data-accordion-target="openText" class="flex font-bold text-base text-gray-500">
       <%= t('.show_owner_information')%>
-    </h1>
-    <h1 data-accordion-target="closeText" class="hidden flex font-bold text-base text-gray-500">
+    </button>
+    <button data-accordion-target="closeText" class="hidden font-bold text-base text-gray-500">
       <%= t('.hide_owner_information')%>
-    </h1>
+    </button>
   </summary>
   <div data-accordion-target="content" class="border-2 border-dashed border-gray-500 px-3 py-2 rounded-lg max-w-[245px]">
     <div class="text-left text-gray-500 text-sm font-semibold">

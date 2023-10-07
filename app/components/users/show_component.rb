@@ -15,7 +15,9 @@ class Users::ShowComponent < ApplicationViewComponent
       rns_form_selection_path:,
       notation_of_registration_number:,
       entries_record_analysis_path:,
-      edit_dog_path:
+      edit_dog_path:,
+      user_detail_path:,
+      new_user_detail_path:
     )
     @title = title
     @dogrun_place = dogrun_place
@@ -31,6 +33,8 @@ class Users::ShowComponent < ApplicationViewComponent
     @notation_of_registration_number = notation_of_registration_number
     @entries_record_analysis_path = entries_record_analysis_path
     @edit_dog_path = edit_dog_path
+    @user_detail_path = user_detail_path
+    @new_user_detail_path = new_user_detail_path
   end
 
 end

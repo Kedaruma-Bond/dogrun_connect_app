@@ -33,9 +33,9 @@ class Admin::DashboardsController < Admin::BaseController
     return @entries = nil if params[:q].blank?
 
     if current_user.grand_admin?
-      @entries = @q.result.all
+      @entries = @q.result(distinct: true).all
     else
-      @entries = @q.result.includes(:registration_number).where(registration_numbers: { dogrun_place_id: current_user.dogrun_place_id })
+      @entries = @q.result(distinct: true).includes(:registration_number).where(registration_numbers: { dogrun_place_id: current_user.dogrun_place_id })
     end
   end
   
@@ -74,6 +74,4 @@ class Admin::DashboardsController < Admin::BaseController
       @one_month_ago = @today.prev_day(30)
       @one_year_ago = @today.prev_day(365)
     end
-
-
 end

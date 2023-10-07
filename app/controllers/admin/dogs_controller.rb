@@ -1,8 +1,9 @@
 class Admin::DogsController < Admin::BaseController
   include Pagy::Backend
   before_action :set_dog, only: %i[show edit update]
+  before_action :set_registration_number, only: %i[show update]
   before_action :set_q, only: %i[index search]
-  before_action :set_naming_of_registration_number, only: %i[index show search]
+  before_action :set_naming_of_registration_number, only: %i[index show update search]
   before_action :set_dogrun_place, :check_grand_admin, only: %i[index search]
 
   def index
@@ -10,12 +11,9 @@ class Admin::DogsController < Admin::BaseController
   end
 
   def show
-    if !current_user.grand_admin?
-      @registration_number = RegistrationNumber.where(dog: @dog).find_by(dogrun_place: current_user.dogrun_place)
-      return if @registration_number.nil?
+    return if current_user.grand_admin? || @registration_number.nil?
       
-      @registration_number.update!(acknowledge: true)
-    end
+    @registration_number.update!(acknowledge: true)
   end
 
   def edit
@@ -24,10 +22,15 @@ class Admin::DogsController < Admin::BaseController
 
   def update
     if @dog.update(dog_params)
-      if session[:previous_url].nil?
-        redirect_to admin_dogs_path, success: t('defaults.update_successfully')
-      else
-        redirect_to session[:previous_url], success: t('defaults.update_successfully')
+      respond_to do |format|
+        format.html {
+          if session[:previous_url].nil?
+            redirect_to admin_dogs_path, success: t('defaults.update_successfully')
+          else
+            redirect_to session[:previous_url], success: t('defaults.update_successfully')
+          end
+        }
+        format.turbo_stream { flash.now[:success] = t('defaults.update_successfully') }
       end
     else
       render :edit, status: :unprocessable_entity
@@ -35,7 +38,7 @@ class Admin::DogsController < Admin::BaseController
   end
 
   def search
-    @pagy, @dogs_results = pagy(@q.result)
+    @pagy, @dogs_results = pagy(@q.result(distinct: true))
   end
 
   private
@@ -57,5 +60,9 @@ class Admin::DogsController < Admin::BaseController
     
     def set_dog
       @dog = Dog.find(params[:id])
+    end
+
+    def set_registration_number
+      @registration_number = RegistrationNumber.where(dog: @dog).find_by(dogrun_place: current_user.dogrun_place)
     end
 end

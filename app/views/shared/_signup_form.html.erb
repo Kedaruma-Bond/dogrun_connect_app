@@ -1,37 +1,41 @@
 <%= simple_form_for user, url: send(users_path), data: { controller: "disable", "disable-with-value": t('defaults.processing') } do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-  <div class="w-full flex flex-col mt-4">
+  <div class="w-full flex flex-col mt-4 text-gray-700">
     <div class="md:flex items-center">
       <div class="w-full md:w-1/2 flex flex-col"> 
-        <%= f.label :name, label_html: { class: "font-bold leading-none" } %>
-        <%= f.input :name, input_html: { class: "block w-full sm:w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint: false, error: false %>
+        <%= f.label :name, class: "font-semibold leading-none" %>
+        <%= f.input :name, input_html: { class: "block w-full sm:w-11/12 leading-none p-3 focus:outline-none focus:border-blue-700 mt-1 bg-gray-100 border rounded border-gray-200" }, label: false, hint: false, error: false %>
       </div>
-      <div class="w-full md:w-1/2 flex flex-col mt-7 md:mt-0">
-        <%= f.label :email, label_html: { class: "font-bold leading-none" } %>
-        <%= f.input :email, input_html: { class: "block w-full sm:w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint: false, error: false %>
+      <div class="w-full md:w-1/2 flex flex-col mt-5 md:mt-0">
+        <%= f.label :email, class: "font-semibold leading-none" %>
+        <%= f.input :email, input_html: { class: "block w-full sm:w-11/12 leading-none p-3 focus:outline-none focus:border-blue-700 mt-1 bg-gray-100 border rounded border-gray-200" }, label: false, hint: false, error: false %>
       </div>
     </div>
     <div class="md:flex items-center">
-      <div class="w-full md:w-1/2 flex flex-col mt-7"> 
-        <%= f.label :password, label_html: { class: "font-bold leading-none" } %>
-        <%= f.input :password, input_html: { class: "block w-full sm:w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint: '　', required: true, error: false %>
+      <div class="w-full md:w-1/2 flex flex-col mt-5"> 
+        <%= f.label :password, class: "font-semibold leading-none" %>
+        <%= f.input :password, input_html: { class: "block w-full sm:w-11/12 leading-none p-3 focus:outline-none focus:border-blue-700 mt-1 bg-gray-100 border rounded border-gray-200" }, label: false, hint: '　', required: true, error: false %>
       </div>
-      <div class="w-full md:w-1/2 flex flex-col mt-7"> 
-        <%= f.label :password_confirmation, label_html: { class: "font-bold leading-none" } %>
-        <%= f.input :password_confirmation, input_html: { class: "block w-full sm:w-11/12 leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-100 border rounded border-gray-200" }, label: false, hint_html: { class: "text-sm block" }, hint: t('.password_hint'), required: true, error: false %>
+      <div class="w-full md:w-1/2 flex flex-col mt-0 md:mt-5"> 
+        <%= f.label :password_confirmation, class: "font-semibold leading-none" %>
+        <%= f.input :password_confirmation, input_html: { class: "block w-full sm:w-11/12 leading-none p-3 focus:outline-none focus:border-blue-700 mt-1 bg-gray-100 border rounded border-gray-200" }, label: false, hint_html: { class: "text-sm block font-medium" }, hint: t('.password_hint'), required: true, error: false %>
       </div>
     </div>
     <%= f.hidden_field :deactivation, value: 'account_activated' %>
 
-    <div class="flex mt-7 justify-center text-sm">
-      <%= f.input :agreement, as: :boolean, checked: false, label: false, error: false, input_html: {class: "bg-gray-100 rounded border-gary-300 focus:ring-blue-500 focus:ring-2"} %>
-      <%= f.label :agreement, label_html: { class: "font-bold text-gray-500" } do %>
+    <div class="flex mt-5 justify-center text-sm font-semibold">
+      <%= f.input :agreement, as: :boolean, checked: false,
+        input_html: {
+          class: "bg-gray-100 rounded border-gary-300 focus:ring-blue-500 focus:ring-2" 
+        }, 
+        label: false, error: false %>
+      <%= f.label :agreement do %>
         &nbsp;
-        <a href="/terms_of_service" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-400">
+        <a href="/terms_of_service" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700">
           <%= t('defaults.terms_of_service') %>
         </a>
         と
-        <a href="/privacy_policy" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-400">
+        <a href="/privacy_policy" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700">
           <%= t('defaults.privacy_policy') %>
         </a>
         <br>
@@ -40,7 +44,7 @@
     </div>
   </div>
   <div class="flex items-center justify-center mt-3">
-    <%= f.button :button, class: "flex mt-3 font-bold leading-normal text-white py-4 px-10 bg-blue-700 rounded hover:bg-blue-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-blue-500", data: { "disable-target": "submitButton" } do %>
+    <%= f.button :button, class: "flex mt-3 font-bold leading-normal text-white py-4 px-10 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-600", data: { "disable-target": "submitButton" } do %>
       <%= spinner_icon_for_form_disable_button %>
       <span data-disable-target="buttonText"><%= t('defaults.registration') %></span>
     <% end %>

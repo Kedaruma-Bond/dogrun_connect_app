@@ -7,7 +7,9 @@
         </div>
         <div class="bg-gradient-to-b from-stone-100 to-slate-300">
           <%= area_chart entries_daily, 
-            library: { animation: { startup: true, duration: 1000 } }, 
+            library: { animation: { startup: true, duration: 1000 },
+              chartArea: { left: 70, right: 35, top:35 }
+            }, 
             width: "100%", height: "300px", min: 0, max: "undefined", 
             xmin: one_month_ago, xmax: today, label: false, xtitle: t('.date'), ytitle: t('.total_entries') 
             %>

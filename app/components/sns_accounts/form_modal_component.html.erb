@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "sns_account_form_modal", autoscroll: true, data: { autoscroll_block: "start" } do %>
+<%= turbo_frame_tag "form_modal" do %>
   <%= tag.div data: { controller: "turbo-form-modal", "turbo-form-modal_target": "modal", action: "turbo:submit-end->turbo-form-modal#submitEnd" }, 
       class: "animate-fade-in flex items-center justify-center fixed z-40 inset-0 h-full p-3" do %>
     <button data-action="turbo-form-modal#hideModal" class="cursor-default w-full h-full fixed inset-0 bg-gray-700 bg-opacity-50"></button>

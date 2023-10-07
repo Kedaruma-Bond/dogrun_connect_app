@@ -1,6 +1,6 @@
 class Reon::UserDetailsController < Reon::DogrunPlaceController
   before_action :check_not_guest
-  before_action :correct_user_check, only: %i[edit update destroy]
+  before_action :correct_user_check, only: %i[show edit update destroy]
 
   def new
     @user_detail = UserDetail.new
@@ -41,6 +41,14 @@ class Reon::UserDetailsController < Reon::DogrunPlaceController
         render :new, status: :unprocessable_entity
       end
     end
+  end
+  def show
+    render(
+      UserDetails::ShowComponent.new(
+        user_detail: @user_detail,
+        edit_user_detail_path: @edit_user_detail_path,
+        user_detail_path: @user_detail_path
+      ), content_type: "text/html")
   end
 
   def edit; end

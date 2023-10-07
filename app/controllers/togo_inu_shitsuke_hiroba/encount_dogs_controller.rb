@@ -31,7 +31,7 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
   end
 
   def search
-    @pagy, @encount_dogs_results = pagy(@q.result, link_extra: 'data-turbo-stream="true" data-controller="autoclick"')
+    @pagy, @encount_dogs_results = pagy(@q.result(distinct: true), link_extra: 'data-turbo-stream="true" data-controller="autoclick"')
   end
 
   def destroy

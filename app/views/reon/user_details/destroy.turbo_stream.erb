@@ -1,5 +1,8 @@
 <%= render_turbo_stream_flash_messages %>
 
-<%= turbo_stream.update dom_id(current_user, :user_detail) do %>
-  <%= render partial: "shared/user_detail_part" %>
+<%= turbo_stream.update "user_detail_part" do %>
+  <%= render partial: "shared/user_detail_part",
+    locals: {
+      new_user_detail_path: @new_user_detail_path
+    } %>
 <% end %>

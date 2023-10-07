@@ -7,7 +7,9 @@
     </div>
     <div class="bg-gradient-to-b from-stone-100 to-slate-300">
       <%= area_chart entries_monthly, 
-        library: { animation: { startup: true, duration: 1000 }, colors: ['#6ee7b7'] }, 
+        library: { animation: { startup: true, duration: 1000 }, colors: ['#6ee7b7'],
+          chartArea: { left: 70, right: 35, top: 35 }
+        }, 
         width: "100%", height: "300px", min: 0, max: "undefined", 
         xmin: one_year_ago, xmax: today, label: false, xtitle: t('.month'), ytitle: t('admin.dashboards.daily_entries_graph.total_entries') 
         %>

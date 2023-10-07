@@ -45,11 +45,11 @@ class Reon::UsersController < Reon::DogrunPlaceController
 
   private
 
-  def user_params
-    params.require(:user).permit(
-      :name, :email, :deactivation, :password, :password_confirmation,
-      :agreement
-    )
-  end
+    def user_params
+      params.require(:user).permit(
+        :name, :email, :deactivation, :password, :password_confirmation,
+        :agreement
+      )
+    end
 
 end

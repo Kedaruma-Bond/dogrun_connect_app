@@ -1,6 +1,8 @@
 <% content_for(:title, @title) %>
-<%= turbo_frame_tag "sns_account_form_modal" %>
-<%= turbo_frame_tag "user_detail_form_modal" %>
+<%= turbo_frame_tag "form_modal" %>
+<%#= turbo_frame_tag "sns_account_form_modal" %>
+<%#= turbo_frame_tag "user_detail_form_modal" %>
+<%= turbo_frame_tag "user_detail_show_modal" %>
 <%= turbo_frame_tag "dog_profile_modal" %>
 <%= turbo_frame_tag "dog_edit_modal" %>
 <%= turbo_frame_tag "encount_dog_edit_modal" %>
@@ -8,9 +10,6 @@
 <%= turbo_frame_tag "entries_record_analysis_modal" %>
 <div class="max-w-5xl md:mx-auto sm:px-6 lg:px-8 bg-purple-200 rounded-lg">
   <div class="w-full p-5">
-    <p class="text-2xl md:text-3xl font-bold text-gray-700 text-center my-2">
-      <%= @title %>
-    </p>
     <div class="flex items-center lg:w-3/5 mx-auto sm:flex-row flex-col justify-center">
       <div class="sm:w-32 sm:h-32 h-20 w-20 sm:mr-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="sm:w-16 sm:h-16 w-10 h-10" viewBox="0 0 24 24">
@@ -24,12 +23,33 @@
         <% if !@current_user.guest? %>
           <p class="text-gray-500 leading-relaxed text-base"><%= t('defaults.email') %></p>
           <h2 class="text-lg font-semibold text-gray-700 title-font mb-2 break-all"><%= @current_user.email %></h2>
-          <%= turbo_frame_tag dom_id(@current_user, :user_detail) do %>
-            <%= render partial: "shared/user_detail_part" %>
-          <% end %>
-          <%= turbo_frame_tag dom_id(@current_user, :sns_icons) do %>
-            <%= render partial: "shared/sns_icon_part" %>
-          <% end %>
+          <div class="flex justify-center md:justify-start">
+            <div class="my-auto" id="user_detail_part">
+              <%= render partial: "shared/user_detail_part", 
+                locals: { 
+                  user_detail: @user_detail, 
+                  edit_user_detail_path: @edit_user_detail_path, 
+                  user_detail_path: @user_detail_path,
+                  new_user_detail_path: @new_user_detail_path
+                } %>
+            </div>
+            <div id="sns_account_part">
+              <%= render partial: "shared/sns_account_part", 
+                locals: {
+                  current_user: @current_user,
+                  new_sns_account_path: @new_reon_sns_account_path,
+                  edit_sns_account_path: @edit_sns_account_path,
+                  sns_account_path: @sns_account_path
+                } %>
+            </div>
+          </div>
+          <div id="sns_icon_part">
+            <%= render partial: "shared/sns_icon_part", 
+              locals: { 
+                current_user: @current_user,
+                sns_account: @current_user.sns_account 
+              } %>
+          </div>
         <% end %>
       </div>
     </div>

@@ -37,6 +37,7 @@
         <span class="mx-1"><%= t('defaults.create_post') %></span>
       </button>
     </div>
+    <%= render partial: 'post_form', locals: { post: @post } %>
     <h2 class="text-gray-700 text-sm flex items-end justify-end mr-7 mt-3">
       <%= t('defaults.search_results_is')%>
         <span class="text-xl mr-2 ml-2">
@@ -44,7 +45,6 @@
         </span>
       <%= t('defaults.search_results_unit') %>
     </h2>
-    <%= render partial: 'shared/post_form', locals: { post: @post } %>
     <div class="overflow-x-auto">
       <div class="table my-2 px-2 w-full border-collapse bg-gray-100 rounded-lg">
         <%= render partial: "post_index_table_header" %>

@@ -112,7 +112,7 @@ class Admin::PostsController < Admin::BaseController
 
   def search 
     @publishing_post = Post.is_publishing
-    @pagy, @posts_results = pagy(@q.result)
+    @pagy, @posts_results = pagy(@q.result(distinct: true))
   end
 
   private

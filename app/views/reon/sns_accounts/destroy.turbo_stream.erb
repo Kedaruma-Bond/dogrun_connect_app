@@ -1,5 +1,13 @@
 <%= render_turbo_stream_flash_messages %>
 
-<%= turbo_stream.update dom_id(current_user, :sns_icons) do %>
-  <%= render partial: "shared/sns_icon_part" %>
+<%= turbo_stream.update "sns_account_part" do %>
+  <%= render partial: "shared/sns_account_part",
+    locals: {
+      new_sns_account_path: @new_sns_account_path
+    } %>
+<% end %>
+
+<%= turbo_stream.replace "sns_icon_part" do %>
+  <div id="sns_icon_part">
+  </div>
 <% end %>

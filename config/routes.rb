@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     get 'route_selection', to: 'users#route_selection'
     get 'fully_route', to: 'users#fully_route'
     get 'minimum_route', to: 'users#minimum_route'
-    resources :user_details, only: %i[new create edit update destroy] do
+    resources :user_details, only: %i[new create show edit update destroy] do
       collection do
         get 'signup_fully_route', to: 'user_details#signup_fully_route'
       end
@@ -103,7 +103,7 @@ Rails.application.routes.draw do
     get 'route_selection', to: 'users#route_selection'
     get 'fully_route', to: 'users#fully_route'
     get 'minimum_route', to: 'users#minimum_route'
-    resources :user_details, only: %i[new create edit update destroy] do
+    resources :user_details, only: %i[new create show edit update destroy] do
       collection do
         get 'signup_fully_route', to: 'user_details#signup_fully_route'
       end

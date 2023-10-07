@@ -24,9 +24,9 @@ module DashboardConcern
       .group(:sex).count.to_h
 
     @sex_type_ratio = {
-      t('admin.dashboards.sex_type_ratio_graph.not_answered') => sex_type_ratio.find{|x| x[0].nil?}[1],
-      t('enums.dog.sex.male') => sex_type_ratio.find{|x| x[0] == "male"}[1],
-      t('enums.dog.sex.female') => sex_type_ratio.find{|x| x[0] == "female"}[1],
+      t('admin.dashboards.sex_type_ratio_graph.not_answered') => sex_type_ratio.find{|x| x[0].blank?}&.[](1),
+      t('enums.dog.sex.male') => sex_type_ratio.find{|x| x[0] == "male"}&.[](1),
+      t('enums.dog.sex.female') => sex_type_ratio.find{|x| x[0] == "female"}&.[](1),
     }
   end
 

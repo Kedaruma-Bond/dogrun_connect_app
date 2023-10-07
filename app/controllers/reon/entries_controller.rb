@@ -179,7 +179,7 @@ class Reon::EntriesController < Reon::DogrunPlaceController
   end
 
   def search
-    @pagy, @entries_results = pagy(@q.result, link_extra: 'data-turbo-stream="true" data-controller="autoclick"')
+    @pagy, @entries_results = pagy(@q.result(distinct: true), link_extra: 'data-turbo-stream="true" data-controller="autoclick"')
   end
 
   def destroy
