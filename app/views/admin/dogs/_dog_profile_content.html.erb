@@ -40,7 +40,7 @@
           </h2>
           <%= render partial: "shared/notice_message", locals: { dog: dog }  %>
           <% if !dog.user.sns_account.nil? %>
-            <%= render partial: "shared/sns_account_icons", locals: { sns_account: dog.user.sns_account } %>
+            <%= render partial: "shared/sns_icon_part", locals: { sns_account: dog.user.sns_account } %>
           <% end %>
           <%= render partial: "owner_information_part", locals: { dog: dog } %>
         </div>

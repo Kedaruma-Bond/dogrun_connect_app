@@ -44,7 +44,7 @@
             <%= render partial: "shared/notice_message", locals: { dog: dog }  %>
           <% end %>
           <% if !user.sns_account.nil? && !correct_user?(user, current_user) %>
-            <%= render partial: "shared/sns_account_icons", locals: { sns_account: user.sns_account } %>
+            <%= render partial: "shared/sns_icon_part", locals: { sns_account: user.sns_account } %>
           <% end %>
           <% if !encount_dog.blank? && !encount_dog.memo.blank? %>
             <div class="mt-3 max-w-[330px]">
