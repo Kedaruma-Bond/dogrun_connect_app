@@ -10,6 +10,10 @@ RSpec.describe Dogs::ShowComponent, type: :component do
   let!(:entries) { [] }
   let!(:num_of_entry_records_to_display) { 5 }
   let!(:dogrun_place) { create(:dogrun_place)}
+  let!(:encount_dog) { create(:encount_dog, dog: dog_2, user: current_user, dogrun_place: dogrun_place) }  
+  let!(:edit_encount_dog_path) { "root_path" }  
+  let!(:entries_record_analysis_path) { "root_path" }
+  let!(:registration_number) { create(:registration_number, dog: dog_1, dogrun_place: dogrun_place) }
 
   describe 'current_userが飼い主のdogの場合' do
     example '正しくレンダリングされること' do
@@ -23,6 +27,10 @@ RSpec.describe Dogs::ShowComponent, type: :component do
           entries: entries,
           num_of_entry_records_to_display: num_of_entry_records_to_display,
           dogrun_place: dogrun_place,
+          encount_dog: encount_dog,
+          edit_encount_dog_path: edit_encount_dog_path,
+          entries_record_analysis_path: entries_record_analysis_path,
+          registration_number: registration_number
         )
       )
 
@@ -42,6 +50,10 @@ RSpec.describe Dogs::ShowComponent, type: :component do
           entries: entries,
           num_of_entry_records_to_display: num_of_entry_records_to_display,
           dogrun_place: dogrun_place,
+          encount_dog: encount_dog,
+          edit_encount_dog_path: edit_encount_dog_path,
+          entries_record_analysis_path: entries_record_analysis_path,
+          registration_number: registration_number
         )
       )
 

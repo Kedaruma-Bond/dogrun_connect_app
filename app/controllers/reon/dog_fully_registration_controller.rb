@@ -1,5 +1,4 @@
 class Reon::DogFullyRegistrationController < Reon::DogrunPlaceController
-  before_action :set_new_post, only: %i[new]
   before_action :check_not_guest
 
   def form_selection

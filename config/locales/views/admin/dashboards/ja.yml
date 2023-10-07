@@ -4,18 +4,32 @@ ja:
     dashboards:
       index:
         title: ダッシュボード
-        dogrun_analytics: Dogrun Analytics
-        total_entries_over_the_past_month: 過去ひと月の利用頭数
-        total_users: 登録者数
+        period_entry_number_search_form: 利用頭数検索
+        total_users: ユーザー数
+        new_users_over_the_past_month: 過去ひと月の新規ユーザー数
         total_registration_dogs: 登録犬頭数
         new_registration_dogs_over_the_past_month: 過去ひと月の新規登録犬頭数
-        dogrun_post_over_the_past_month: 過去ひと月の投稿数
         total_staffs: 登録スタッフ数
+        ranking_of_entry_times_in_the_past_year: 過去１年間利用回数ランキング
+      entries_ranking:
+        ranking_func_not_activated: |
+          過去1年間の利用記録数が300回以上になると
+          ランキング機能が有効になります
+        times: 回
+      sex_type_ratio_graph:
+        sex_type_ratio_of_registration_dogs: 登録犬の雌雄比率
+        not_answered: 未回答
+        male: オス
+        female: メス
+      daily_entries_graph:
         daily_entries_graph: デイリー利用頭数
-        monthly_entries_graph: マンスリー利用頭数
-        total_entries: 利用頭数
         date: 日付
+        total_entries: 利用頭数
+      monthly_entries_graph:
+        monthly_entries_graph: マンスリー利用頭数
         month: 月
+
+
 
 
 

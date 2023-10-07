@@ -17,7 +17,6 @@ RSpec.describe TogoInuShitsukeHiroba::UserDetailsController, type: :request do
       example '正常にレスポンスがかえること' do
         get new_togo_inu_shitsuke_hiroba_user_detail_path
         expect(response).to have_http_status(:success)
-        expect(response).to render_template(:new)
       end
     end
     

@@ -3,7 +3,7 @@
       class: "animate-fade-in flex items-center justify-center fixed z-40 inset-0 h-full p-0" do %>
     <button data-action="turbo-form-modal#hideModal" class="cursor-default w-full h-full fixed inset-0 bg-gray-700 bg-opacity-50"></button>
     <%= turbo_frame_modal_close_button %>
-    <div class="max-h-[770px] overflow-scroll bg-slate-300 shadow-xl rounded-lg border-2 border-gray-700 dark:border-white w-[95%] md:w-auto backdrop-blur bg-opacity-75 p-2">
+    <div class="max-h-full md:max-h-[770px] overflow-y-scroll bg-slate-300 shadow-xl rounded-lg border-2 border-gray-700 dark:border-white w-[95%] md:w-auto backdrop-blur bg-opacity-75 p-2">
       <p class="text-center text-xl md:text-2xl text-gray-700 font-bold mb-0 md:mb-2 pt-1">
         <%= @title %>
       </p>
@@ -32,7 +32,7 @@
       <div class="mt-2 mx-auto px-2 py-1 max-w-min rounded-xl border-2 border-neutral-400
         bg-[url('https://res.cloudinary.com/hryerpkcw/image/upload/f_auto,g_center,q_auto/v1671380081/w4ygbtfdkxu3gzrixk6u.jpg')]
       ">
-        <div class="flex justify-center max-h-[300px] md:max-h-[450px]" data-controller="facebook-sdk">
+        <div class="flex justify-center overflow-y-auto" data-controller="facebook-sdk">
           <%= post_viewing(@post) %>
         </div>
         <div class="mt-2 text-gray-200">

@@ -1,0 +1,72 @@
+<%= turbo_frame_tag "entries_record_analysis_modal" do %>
+    <div data-controller="turbo-form-modal lightbox" data-turbo-form-modal-target="modal" 
+    class="animate-fade-in flex items-center justify-center fixed z-30 inset-0 h-full p-3">
+    <button data-action="turbo-form-modal#hideModal" class="cursor-default w-full h-full fixed inset-0 bg-gray-700 bg-opacity-50"></button>
+    <%= turbo_frame_modal_close_button %>
+    <div class="turbo-form-modal bg-purple-200 backdrop-blur bg-opacity-80">
+
+      <div class="container px-0 md:px-3 lg:px-4 py-4 lg:py-8 mx-auto">
+        <div class="items-center lg:flex">
+          <div class="w-full lg:w-2/5">
+            <div class="flex flex-col justify-center lg:justify-start">
+              <div class="w-24 lg:w-32 h-24 lg:h-32 mb-3 mx-auto">
+                <%= dog_thumbnail_for_admin(@dog) %>
+              </div>
+              <div class="hidden lg:flex text-gray-700 text-base font-light items-center mx-auto">
+                <%= @notation_of_registration_number %> : &nbsp;
+                <p class="text-xl font-bold">
+                  <% if !@registration_number.nil? %>
+                    <%= @registration_number.registration_number %>
+                  <% else %>
+                    -
+                  <% end %>
+                </p>
+              </div>
+              <h2 class="hidden lg:block font-bold text-gray-700 text-2xl mb-5 mx-auto">
+                <%= @dog.name %>
+              </h2>
+            </div>
+            <div class="px-4 flex justify-center text-right">
+              <div class="text-lg lg:text-xl font-semibold">
+                <h1 class="text-gray-600">
+                  <%= t('local.registration_numbers.entries_record_analysis.in_past_one_year', dogrun_place: @dogrun_place.name) %>
+                </h1>
+                <div class="flex justify-end">
+                <span class="text-blue-700 font-bold text-3xl lg:text-4xl">
+                  <%= @entries_of_past_one_year.count %> &nbsp;
+                </span>
+                <h1 class="text-gray-600 items-end flex">
+                  <%= t('local.registration_numbers.entries_record_analysis.times') %>
+                </h1>
+                </div>
+                <h1 class="text-gray-600">
+                  <%= t('local.registration_numbers.entries_record_analysis.used') %>
+                </h1>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-3/5">
+            <div class="w-full">
+              <div class="bg-white border-transparent rounded-lg shadow-xl">
+                <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+                  <h2 class="font-bold uppercase text-gray-600">
+                    <%= t('local.registration_numbers.entries_record_analysis.monthly_entries_graph') %>
+                  </h2>
+                </div>
+                <div class="bg-gradient-to-b from-stone-100 to-slate-300">
+                  <%= column_chart @entries_monthly,
+                    library: { animation: { startup: true, duration: 1000 }, 
+                      backgroundColor: "#e5e7eb",
+                      chartArea: { left: 70, right: 35, top: 35 }
+                    },
+                    width: "100%", height: "300px", min: 0, max: "undefined", xtitle: t('admin.dashboards.monthly_entries_graph.month'), ytitle: t('local.registration_numbers.entries_record_analysis.total_entry_times') 
+                    %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

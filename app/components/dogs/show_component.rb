@@ -10,7 +10,11 @@ class Dogs::ShowComponent < ApplicationViewComponent
     edit_dog_path:,
     entries:,
     num_of_entry_records_to_display:,
-    dogrun_place:
+    dogrun_place:,
+    encount_dog:,
+    edit_encount_dog_path:,
+    entries_record_analysis_path:,
+    registration_number:
   )
     @dog = dog
     @current_user = current_user
@@ -20,6 +24,10 @@ class Dogs::ShowComponent < ApplicationViewComponent
     @entries = entries
     @num_of_entry_records_to_display = num_of_entry_records_to_display
     @dogrun_place = dogrun_place
+    @encount_dog = encount_dog
+    @edit_encount_dog_path = edit_encount_dog_path
+    @entries_record_analysis_path = entries_record_analysis_path
+    @registration_number = registration_number
   end
 
 end

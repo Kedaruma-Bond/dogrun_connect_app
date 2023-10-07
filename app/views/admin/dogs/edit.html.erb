@@ -1,7 +1,10 @@
 <% content_for(:title, t('.title')) %>
-<div class="w-full mx-auto px-1 sm:px-6 lg:px-8 mt-5">
-  <div class="bg-purple-200 w-full shadow rounded p-8 sm:p-10">
-    <h2 class="text-3xl font-bold text-center text-gray-700"><%= t('.title') %></h2>
+<%= turbo_frame_tag "dog_edit_modal" do %>
+<div data-controller="turbo-form-modal lightbox" data-turbo-form-modal-target="modal" data-action="turbo:submit-end->turbo-form-modal#submitEnd" 
+  class="animate-fade-in flex items-center justify-center fixed z-30 inset-0 h-full p-3">
+  <button data-action="turbo-form-modal#hideModal" class="cursor-default w-full h-full fixed inset-0 bg-gray-700 bg-opacity-50"></button>
+  <%= turbo_frame_modal_close_button %>
+  <div class="turbo-form-modal bg-purple-200 backdrop-blur bg-opacity-75">
     <%= simple_form_for @dog, url:admin_dog_path, data: { controller: 'disable', "disable-with-value": t('defaults.processing') } do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <section class="text-gray-600">
@@ -114,11 +117,6 @@
           </div>
         </div>
         <div class="sm:flex mt-3 justify-center">
-          <div class="flex justify-center h-[56px] sm:ml-0 sm:mx-3 mt-0 md:mt-3">
-            <a href="javascript:history.back()" class="flex items-center justify-center font-bold leading-normal text-white px-10 bg-rose-700 rounded hover:bg-rose-600 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none">
-              <span><%= t('defaults.back') %></span>
-            </a>
-          </div>
           <div class="flex justify-center mt-3 sm:mt-0 sm:mx-3">
             <%= f.button :button, data: { "disable-target": "submitButton" },
               class: "flex mt-3 font-bold leading-normal text-white py-4 px-10 bg-emerald-400 rounded hover:bg-emerald-300 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-300" do %>
@@ -131,3 +129,4 @@
     <% end %>
   </div>
 </div>
+<% end %>

@@ -2,7 +2,7 @@ ja:
   local:
     users:
       new:
-        title: 新規登録
+        title: ユーザー登録
         keep_secret: |
           飼い主さんの名前とメールアドレスは
           管理者を除く他のユーザーには閲覧できません

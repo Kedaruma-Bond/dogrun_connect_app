@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-cache-control" content="no-cache">
-    <% if current_page?(controller: "posts", action: "dogrun_board") %>
+    <% if current_page?(controller: "posts", action: "dogrun_board") || current_page?(controller: "dashboards", action: "index") || current_page?(controller: "dashboards", action: "grand_admin_index") %>
       <meta name="turbo-visit-control" content="reload">
     <% end %>
     <%= csrf_meta_tags %>
@@ -11,7 +11,7 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
     <title><%= page_title(yield(:title)) %></title>
     <%= Gon::Base.render_data %>

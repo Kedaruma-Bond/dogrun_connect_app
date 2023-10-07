@@ -13,7 +13,7 @@
           <h3 class="mx-auto w-[225px] flex justify-center p-[4px] text-white rounded-xl font-bold text-xl text-opacity-80 bg-gray-500 backdrop-blur bg-opacity-30" style="box-shadow: inset 1px 3px 6px rgba( 0, 0, 0, 0.5);">
             <%= t('defaults.on_board') %>
           </h3>
-          <%= turbo_frame_tag dom_id(@dogrun_place, "dogrun_board"), src: "posts/dogrun_board" %>
+          <%= turbo_frame_tag dom_id(@dogrun_place, "dogrun_board"), src: "/admin/posts/dogrun_board" %>
         </div>
       </div>
     </div>
@@ -26,7 +26,7 @@
         <span class="mx-1"><%= t('defaults.create_post') %></span>
       </button>
     </div>
-    <%= render partial: 'shared/post_form', locals: { post: @post } %>
+    <%= render partial: 'post_form', locals: { post: @post } %>
     <div class="overflow-x-auto mt-2">
       <div class="table my-2 px-2 w-full border-collapse bg-gray-100 rounded-lg">
         <%= render partial: "post_index_table_header" %>
@@ -34,7 +34,7 @@
           <%= render @posts %>
         <% end %>
       </div>
-      <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>
     </div>
+    <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>
   </div>
 </div>

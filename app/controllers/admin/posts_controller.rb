@@ -112,7 +112,7 @@ class Admin::PostsController < Admin::BaseController
 
   def search 
     @publishing_post = Post.is_publishing
-    @pagy, @posts_results = pagy(@q.result)
+    @pagy, @posts_results = pagy(@q.result(distinct: true))
   end
 
   private
@@ -144,5 +144,9 @@ class Admin::PostsController < Admin::BaseController
 
     def correct_admin_check
       redirect_to admin_root_path, error: t('defaults.not_authorized') unless current_user.grand_admin? ||  @post.dogrun_place == current_user.dogrun_place
+    end
+    
+    def set_new_post
+      @post = Post.new
     end
 end

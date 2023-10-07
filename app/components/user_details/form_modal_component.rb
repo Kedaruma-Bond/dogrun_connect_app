@@ -2,7 +2,9 @@
 
 class UserDetails::FormModalComponent < ApplicationViewComponent
   
-  def initialize(title:)
+  def initialize(
+      title:
+    )
     @title = title
   end
   

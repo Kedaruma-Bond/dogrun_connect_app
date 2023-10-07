@@ -41,29 +41,12 @@ ja:
       dog_name: ワンコの名前
       clear: クリア
       owner_comment_placeholder: ワンコの性格等、ドッグランで過ごす際に周りの方に知っておいてもらいたいことなどを記載してください
-      show_more_detail_data_form: 接種証明・鑑札情報の登録フォームを表示
-      hide_more_detail_data_form: 接種証明・鑑札情報の登録フォームを閉じる
       register_rabies_vaccination_certificate: 狂犬病予防接種証明の写真登録
       register_mixed_vaccination_certificate: 混合ワクチン接種証明の写真登録
       choose_a_prefecture: 都道府県を選択してください
       register_license_plate: 鑑札写真登録
-    embed_form:
-      fb: Facebook
-      instagram: Instagram
-      twitter: X(Twitter)
-      select_sns: SNSを選択してください
-      facebook_only_pc: FacebookはPCからしかcodeを取得できません
     user_detail_part:        
-      show_address_and_phone_number: 住所・電話番号を表示する
-      hide_address_and_phone_number: 住所・電話番号を閉じる
       register_address_and_telephone_number: 住所・電話番号登録
-      update_user_detail: 編集
-      delete_user_detail: 削除
-    sns_icon_part: 
-      sns_account: 登録済SNS
-      register_sns_id: SNS登録
-      update_sns_id: SNS編集
-      delete_sns_id: SNS削除
     registered_dog:
       destroy_confirm: |
         このワンコの登録を
@@ -111,7 +94,7 @@ ja:
         投稿のタイプの選択
       select_it: 選択してください
     entries_table:
-      table_of_entries_latest_max_five: "過去%{times}回の利用状況"
+      table_of_entries_latest_max_five: "過去%{times}回の利用記録"
       playing_together: 一緒に遊んだワンコ
     filming_message_modal:
       title: 撮影OKについて

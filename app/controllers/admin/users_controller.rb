@@ -40,7 +40,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def search
-    @pagy, @users_results = pagy(@q.result)
+    @pagy, @users_results = pagy(@q.result(distinct: true))
   end
 
   def deactivation

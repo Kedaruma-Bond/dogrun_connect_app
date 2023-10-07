@@ -39,7 +39,7 @@ class Admin::RegistrationNumbersController < Admin::BaseController
   end
 
   def search
-    @pagy, @registration_numbers_results = pagy(@q.result)
+    @pagy, @registration_numbers_results = pagy(@q.result(distinct: true))
   end
 
   private

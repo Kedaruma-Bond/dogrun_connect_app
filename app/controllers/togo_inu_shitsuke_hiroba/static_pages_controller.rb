@@ -1,6 +1,5 @@
 class TogoInuShitsukeHiroba::StaticPagesController < TogoInuShitsukeHiroba::DogrunPlaceController
   skip_before_action :require_login, :is_account_deactivated?, only: %i[top]
-  before_action :set_new_post, only: %i[top]
   before_action :set_dogs_and_registration_numbers_at_local, only: %i[top_contents]
   before_action :get_dogrun_entry_data, only: %i[top_contents]
 

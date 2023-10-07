@@ -1,0 +1,22 @@
+<%= simple_form_for article_post, url: send(article_post_path), data: { controller: 'preview disable', "disable-with-value": t('defaults.posting') } do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="text-gray-600 w-full flex flex-col mt-4">
+    <%= f.label :content, class: "text-base font-semibold" %>
+    <%= f.text_area :content, class: "h-52 text-base leading-none text-gray-600 p-3 focus:oultine-none focus:border-blue-700 bg-gray-100 border rounded border-gray-200" %>
+  </div>
+  <div class="text-gray-600 items-center justify-center w-full md:w-1/3 mt-4">
+      <%= f.label :photo, class: "text-base font-semibold" %>
+      <%= f.input :photo, as: :file, direct_upload: true, input_html: { data: { "preview-target": "imageUploader", action: "preview#updatePreview"}, class: "block w-full px-3 py-1.5 text-white font-normal bg-gray-700 bg-clip-padding rounded border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-gray-400 focus:border-blue-600 focus:outline-none" }, label: false, hint: false, error: false %>
+  </div>
+  <div class="flex-shrink-0 mx-auto mb-3">
+    <%= article_photo_for_preview(article_post) %>
+  </div>
+  <%= f.hidden_field :post_type, value: "article" %>
+  <%= f.hidden_field :publish_status, value: "non_publish" %>
+  <div class="flex justify-center mt-9 sm:mt-0 sm:ml-3">
+    <%= f.button :button, class: "flex font-bold leading-none text-white py-4 px-12 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-500", data: { "disable-target": "submitButton" } do %>
+      <%= spinner_icon_for_form_disable_button %>
+      <span data-disable-target="buttonText" class="my-auto"><%= t('defaults.post') %></span>
+    <% end %>
+  </div>
+<% end %>

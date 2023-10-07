@@ -42,26 +42,26 @@ Rails.application.routes.draw do
     get 'route_selection', to: 'users#route_selection'
     get 'fully_route', to: 'users#fully_route'
     get 'minimum_route', to: 'users#minimum_route'
-    resources :user_details, only: %i[new create edit update destroy] do
+    resources :user_details, only: %i[new create show edit update destroy] do
       collection do
         get 'signup_fully_route', to: 'user_details#signup_fully_route'
       end
     end
     resources :dogs, only: %i[show edit update]
-    resources :registration_numbers, only: %i[new create destroy]
+    resources :registration_numbers, only: %i[new create destroy] do
+      member do
+        get 'entries_record_analysis', to: 'registration_numbers#entries_record_analysis'
+      end
+    end
     get 'registration_numbers/form_selection', to: 'registration_numbers#form_selection'
     get 'registration_numbers/have_registration_card', to: 'registration_numbers#have_registration_card'
     get 'registration_numbers/not_have_registration_card', to: 'registration_numbers#not_have_registration_card' 
     
-    resources :posts, only: %i[create] do
-      member do
-        resource :article, only: %i[new create]
-        resource :embed, only: %i[new create]
-      end
-    end
-    
     get 'signup', to: 'users#new', as: :signup
     
+    get 'article_post', to: 'article_post#new'
+    post 'article_post', to: 'article_post#create'
+
     get 'dog_fully_registration/form_selection', to: 'dog_fully_registration#form_selection'
     get 'dog_fully_registration/have_registration_card', to: 'dog_fully_registration#have_registration_card'
     get 'dog_fully_registration/not_have_registration_card', to: 'dog_fully_registration#not_have_registration_card'
@@ -103,25 +103,25 @@ Rails.application.routes.draw do
     get 'route_selection', to: 'users#route_selection'
     get 'fully_route', to: 'users#fully_route'
     get 'minimum_route', to: 'users#minimum_route'
-    resources :user_details, only: %i[new create edit update destroy] do
+    resources :user_details, only: %i[new create show edit update destroy] do
       collection do
         get 'signup_fully_route', to: 'user_details#signup_fully_route'
       end
     end
     resources :dogs, only: %i[show edit update]
-    resources :registration_numbers, only: %i[new create destroy]
+    resources :registration_numbers, only: %i[new create destroy] do
+      member do
+        get 'entries_record_analysis', to: 'registration_numbers#entries_record_analysis'
+      end
+    end
     get 'registration_numbers/form_selection', to: 'registration_numbers#form_selection'
     get 'registration_numbers/have_registration_card', to: 'registration_numbers#have_registration_card'
     get 'registration_numbers/not_have_registration_card', to: 'registration_numbers#not_have_registration_card' 
     
-    resources :posts, only: %i[create] do
-      member do
-        resource :article, only: %i[new create]
-        resource :embed, only: %i[new create]
-      end
-    end
-    
     get 'signup', to: 'users#new', as: :signup
+
+    get 'article_post', to: 'article_post#new'
+    post 'article_post', to: 'article_post#create'
 
     get 'dog_fully_registration/form_selection', to: 'dog_fully_registration#form_selection'
     get 'dog_fully_registration/have_registration_card', to: 'dog_fully_registration#have_registration_card'
@@ -138,6 +138,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'dashboards#index'
+    get 'grand_admin_index', to: 'dashboards#grand_admin_index', as: :grand_admin_index
+    get 'entries_count', to: 'dashboards#entries_count', as: :entries_count
+    get 'entries_ranking', to: 'dashboards#entries_ranking', as: :entries_ranking
+
     resources :dogrun_places, only: %i[index new create edit update show] do
       member do
         patch 'force_closed', to: 'dogrun_places#force_closed'

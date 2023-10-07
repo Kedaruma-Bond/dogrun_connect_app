@@ -1,4 +1,4 @@
-<section>
+<section data-turbo_frame="dog_profile_path"> 
   <div class="w-full px-2">
     <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-gray-600 text-gray-300 bg-opacity-75">
       <div class="rounded-t mb-0 px-4 py-3 border-0">
@@ -56,7 +56,7 @@
                     <ul class="flex">
                       <% encounts_at_this_entry(entries[t], dogrun_place).each do |dog| %>
                         <li class="w-12 h-12 mx-1">
-                          <%= link_to send(dog_profile_path, dog), data: { turbo_frame: "dog_profile_path" } do %>
+                          <%= link_to send(dog_profile_path, dog) do %>
                             <%= dog_thumbnail(dog, current_user) %>
                           <% end %>
                         </li>

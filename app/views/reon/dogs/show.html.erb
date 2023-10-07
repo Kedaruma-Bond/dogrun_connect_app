@@ -7,6 +7,10 @@
     entries: @entries,
     num_of_entry_records_to_display: @num_of_entry_records_to_display,
     dogrun_place: @dogrun_place,
+    encount_dog: @encount_dog,
+    edit_encount_dog_path: @edit_encount_dog_path,
+    entries_record_analysis_path: @entries_record_analysis_path,
+    registration_number: @registration_number,
     ) do %>
 <%= render partial: "shared/dog_profile_contents", locals: {
       registration_number_notation: I18n.t('reon.registration_number'),
@@ -15,7 +19,6 @@
       current_user: current_user,
       registration_number: @registration_number,
       encount_dog: @encount_dog,
-      edit_encount_dog_path: @edit_encount_dog_path,
       dog_profile_path: @dog_profile_path,
     } %>
 <% end %>

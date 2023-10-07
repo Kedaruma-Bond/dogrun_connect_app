@@ -1,6 +1,5 @@
 class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::DogrunPlaceController
   include Pagy::Backend
-  before_action :set_new_post, only: %i[index edit search]
   before_action :set_encount_dogs, only: %i[index search]
   before_action :set_q, only: %i[index search]
   before_action :correct_user_check, only: %i[edit update destroy]
@@ -32,7 +31,7 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
   end
 
   def search
-    @pagy, @encount_dogs_results = pagy(@q.result, link_extra: 'data-turbo-stream="true" data-controller="autoclick"')
+    @pagy, @encount_dogs_results = pagy(@q.result(distinct: true), link_extra: 'data-turbo-stream="true" data-controller="autoclick"')
   end
 
   def destroy

@@ -4,6 +4,7 @@ export default class extends Controller {
   static targets = ['summary', 'content', 'openText', 'closeText']
 
   connect() {
+    this.closeTextTarget.classList.add("hidden")
     this.resetState()
   }
 

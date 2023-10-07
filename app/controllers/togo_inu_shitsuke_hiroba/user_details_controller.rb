@@ -1,7 +1,6 @@
 class TogoInuShitsukeHiroba::UserDetailsController < TogoInuShitsukeHiroba::DogrunPlaceController
-  before_action :set_new_post, only: %i[new edit]
   before_action :check_not_guest
-  before_action :correct_user_check, only: %i[edit update destroy]
+  before_action :correct_user_check, only: %i[show edit update destroy]
 
   def new
     @user_detail = UserDetail.new
@@ -44,6 +43,15 @@ class TogoInuShitsukeHiroba::UserDetailsController < TogoInuShitsukeHiroba::Dogr
     end
   end
 
+  def show
+    render(
+      UserDetails::ShowComponent.new(
+        user_detail: @user_detail,
+        edit_user_detail_path: @edit_user_detail_path,
+        user_detail_path: @user_detail_path
+      ), content_type: "text/html")
+  end
+
   def edit; end
 
   def update
@@ -76,4 +84,5 @@ class TogoInuShitsukeHiroba::UserDetailsController < TogoInuShitsukeHiroba::Dogr
       @user_detail = UserDetail.find(params[:id])
       redirect_to send(@user_path, current_user), error: t('defaults.not_authorized') unless @user_detail.user == current_user
     end
+
 end

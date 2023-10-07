@@ -1,0 +1,50 @@
+<%= simple_form_for [dogrun_name, user_detail], data: { controller: 'disable address-autofil', "address-autofil-apikey-value": set_postcodejp_apikey, "disable-with-value": t('defaults.processing') } do |f|  %>
+  <%= render 'shared/error_messages_for_modal', object: f.object %>
+  <%= simple_format(t('defaults.these_information_is_not_viewable'), class: "font-bold text-red-500 text-sm text-center" )%>
+  <div class="mt-1">
+    <%= f.input :zip_code, 
+      input_html: { 
+        data: { "address_autofil_target": 'zipcode', action: "change->address-autofil#fetchAddress" }, 
+        class: "block w-full leading-none text-gray-700 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200" 
+      }, 
+      label: UserDetail.human_attribute_name(:zip_code), 
+      label_html: { class: "text-gray-700 font-semibold" }, 
+      hint: false, error: false %>
+  </div>
+  <div class="mt-4">
+    <%= f.input :address_1, as: :text, 
+      input_html: { 
+        data: { "address_autofil_target": 'address' }, 
+        rows: 2, 
+        class: "block w-full leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200"
+      }, 
+      label: UserDetail.human_attribute_name(:address_1), 
+      label_html: { class: "text-gray-700 font-semibold" },
+      hint: false, error: false %>
+  </div>
+  <div class="mt-4">
+    <%= f.input :address_2, as: :text, 
+      input_html: { 
+        rows: 2,
+        class: "block w-full leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200" 
+      }, 
+      label: UserDetail.human_attribute_name(:address_2), 
+      label_html: { class: "text-gray-700 font-semibold" },
+      hint: false, error: false %>
+  </div>
+  <div class="mt-4">
+    <%= f.input :phone_number, 
+      input_html: { 
+        class: "block w-full leading-none text-gray-900 p-3 focus:outline-none focus:border-blue-700 mt-2 bg-gray-100 border rounded border-gray-200"
+      }, 
+      label: UserDetail.human_attribute_name(:phone_number), 
+      label_html: { class: "text-gray-700 font-semibold" },
+      hint: false, error: false %>
+  </div>
+  <div class="flex justify-center mt-3 sm:mt-0 sm:mx-3">
+    <%= f.button :button, class: "flex mt-3 font-bold leading-normal text-white py-4 px-10 bg-emerald-400 rounded hover:bg-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 focus:outline-none disabled:cursor-not-allowed disabled:bg-emerald-500", data: { "disable-target": "submitButton" } do %>
+      <%= spinner_icon_for_form_disable_button %>
+      <span data-disable-target="buttonText"><%= t'defaults.registration' %></span>
+    <% end %>
+  </div>
+<% end %>

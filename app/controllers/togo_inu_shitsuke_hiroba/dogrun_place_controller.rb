@@ -50,10 +50,8 @@ class TogoInuShitsukeHiroba::DogrunPlaceController < ApplicationController
       @fully_have_registration_card_path = :togo_inu_shitsuke_hiroba_dog_fully_registration_have_registration_card_path
       @fully_not_have_registration_card_path = :togo_inu_shitsuke_hiroba_dog_fully_registration_not_have_registration_card_path
       @dog_fully_registration_path = :togo_inu_shitsuke_hiroba_dog_fully_registration_path
-      @new_article_path = :new_togo_inu_shitsuke_hiroba_article_path
-      @article_path = :togo_inu_shitsuke_hiroba_article_path
-      @new_embed_path = :new_togo_inu_shitsuke_hiroba_embed_path
-      @embed_path = :togo_inu_shitsuke_hiroba_embed_path
+      @article_post_path = :togo_inu_shitsuke_hiroba_article_post_path
+      @entries_record_analysis_path = :entries_record_analysis_togo_inu_shitsuke_hiroba_registration_number_path
       @dogrun_terms_of_service_page = "https://www.facebook.com/story.php?story_fbid=pfbid02NPCqT28XjCE6mcyBzvtmj8R7qmrqWfuzdtAVoS1LM1KnUa7j9jGafEHy7aHc2WMXl&id=100083200337421"
     end
 

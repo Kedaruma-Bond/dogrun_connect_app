@@ -1,0 +1,26 @@
+<div class="w-full md:w-1/2 p-6">
+  <div class="bg-white border-transparent rounded-lg shadow-xl">
+    <div class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2">
+      <h2 class="font-bold uppercase text-gray-600">
+        <%= t('.sex_type_ratio_of_registration_dogs') %>
+      </h2>
+    </div>
+    <div class="bg-gradient-to-b from-stone-100 to-slate-300">
+      <%= pie_chart sex_type_ratio, colors: ["#64748b", "#0ea5e9", "#f472b6"], 
+        library: { 
+          fontSize: 18,
+          backgroundColor: "#e2e8f0",
+          legend: { 
+            position: 'top', 
+            textStyle: {
+              color: "#374151",
+              fontSize: 15,
+              bold: true
+            },
+          },
+        },
+        label: false
+      %>
+    </div>
+  </div>
+</div>

@@ -43,11 +43,13 @@ RSpec.describe TogoInuShitsukeHiroba::StaticPagesController, type: :request do
   end
 
   describe 'GET #top_contents' do
+    
     context 'ログインしているとき' do
+      let!(:other) { create(:user, :general) }
       let!(:dog_1) { create(:dog, :castrated, :public_view) }
       let!(:rn_1) { create(:registration_number, dog: dog_1, dogrun_place: dogrun_place) }
       let!(:entry_1) { create(:entry, registration_number: rn_1, dog: dog_1, exit_at: nil) }
-      let!(:dog_2) { create(:dog, :castrated, :non_public) }
+      let!(:dog_2) { create(:dog, :castrated, :non_public, user: other) }
       let!(:rn_2) { create(:registration_number, dog: dog_2, dogrun_place: dogrun_place) }
       let!(:entry_2) { create(:entry, registration_number: rn_2, dog: dog_2, exit_at: nil) }
 

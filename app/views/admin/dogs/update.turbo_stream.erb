@@ -1,0 +1,5 @@
+<%= render_turbo_stream_flash_messages %>
+
+<%= turbo_stream.replace "dog_profile_content" do %>
+  <%= render partial: "dog_profile_content", locals: { dog: @dog, registration_number: @registration_number, naming_of_registration_number: @naming_of_registration_number } %>
+<% end %>

@@ -109,7 +109,7 @@ class Admin::EntriesController < Admin::BaseController
 
   def search
     set_num_of_playing_dogs
-    @pagy, @entries_results = pagy(@q.result)
+    @pagy, @entries_results = pagy(@q.result(distinct: true))
   end
 
   private

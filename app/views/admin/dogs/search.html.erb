@@ -1,5 +1,6 @@
 <% content_for(:title, t('.title')) %>
 <%= turbo_frame_tag "dog_profile_modal" %>
+<%= turbo_frame_tag "dog_edit_modal" %>
 <div class="container bg-gray-300 w-full flex flex-col">
   <div class="py-2 px-2">
     <h2 class="mt-2 ml-2 text-xl font-bold"><%= t('.title') %></h2>
@@ -18,7 +19,7 @@
           <%= render @dogs_results %>
         </div>
       </div>
-      <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>
     </div>
+    <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>
   </div>
 </div>

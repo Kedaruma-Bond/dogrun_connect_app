@@ -13,7 +13,7 @@ export default class extends Controller {
     setTimeout(() => {
       this.element.parentElement.removeAttribute("src")
       this.element.remove()
-    }, 300)
+    }, 150)
   }
 
   submitEnd(event) {

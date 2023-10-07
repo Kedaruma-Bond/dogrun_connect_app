@@ -1,6 +1,7 @@
 <%= turbo_stream_from @dogrun_place, "admin_entries_index" %>
 <% content_for(:title, t('.title')) %>
 <%= turbo_frame_tag "dog_profile_modal" %>
+<%= turbo_frame_tag "dog_edit_modal" %>
 <%= turbo_frame_tag "exit_command_selector_modal" %>
 <div class="bg-gray-300 w-full container">
   <div class="py-2 px-2">
@@ -19,7 +20,7 @@
           <%= render @entries %>
         <% end %>
       </div>
-      <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>
     </div>
+    <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>
   </div>
 </div>

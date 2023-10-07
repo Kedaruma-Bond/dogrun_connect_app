@@ -9,3 +9,9 @@ ja:
           登録できるワンコがいません
       form:
         registration_is_done_one_by_one: 登録は一頭ずつ実施します
+      entries_record_analysis:
+        in_past_one_year: "%{dogrun_place} を過去1年間で"
+        times: 回
+        used: 利用しています
+        total_entry_times: 利用回数
+        monthly_entries_graph: マンスリー利用回数

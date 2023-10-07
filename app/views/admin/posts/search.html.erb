@@ -12,7 +12,7 @@
           <h3 class="mx-auto w-2/3 flex justify-center p-[4px] text-white rounded-xl font-bold text-xl text-opacity-80 bg-gray-500 backdrop-blur bg-opacity-30" style="box-shadow: inset 1px 3px 6px rgba( 0, 0, 0, 0.5);">
             <%= t('defaults.on_board') %>
           </h3>
-          <%= turbo_frame_tag dom_id(@dogrun_place, "dogrun_board"), src: "posts/dogrun_board" %>
+          <%= turbo_frame_tag dom_id(@dogrun_place, "dogrun_board"), src: "/admin/posts/dogrun_board" %>
         </div>
       </div>
       <% if !@publishing_post.blank? %>
@@ -37,6 +37,7 @@
         <span class="mx-1"><%= t('defaults.create_post') %></span>
       </button>
     </div>
+    <%= render partial: 'post_form', locals: { post: @post } %>
     <h2 class="text-gray-700 text-sm flex items-end justify-end mr-7 mt-3">
       <%= t('defaults.search_results_is')%>
         <span class="text-xl mr-2 ml-2">
@@ -44,7 +45,6 @@
         </span>
       <%= t('defaults.search_results_unit') %>
     </h2>
-    <%= render partial: 'shared/post_form', locals: { post: @post } %>
     <div class="overflow-x-auto">
       <div class="table my-2 px-2 w-full border-collapse bg-gray-100 rounded-lg">
         <%= render partial: "post_index_table_header" %>
@@ -52,7 +52,7 @@
           <%= render @posts_results %>
         <% end %>
       </div>
-      <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>
     </div>
+    <%= render partial: "shared/pagination", locals: { pagy: @pagy } %>
   </div>
 </div>

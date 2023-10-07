@@ -1,4 +1,0 @@
-<%= render Articles::NewComponent.new(
-    title: I18n.t('local.articles.new.title')) do %>
-    <%= render partial: "shared/article_form", locals: { article: @article, article_path: @article_path, top_path: @top_path } %>
-<% end %>

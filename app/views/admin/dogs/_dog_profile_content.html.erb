@@ -1,0 +1,163 @@
+<section class="text-gray-600 body-font" id="dog_profile_content">
+  <div class="container px-3 py-3 mx-auto flex flex-col">
+    <div class="flex flex-col sm:flex-row mt-3">
+      <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
+        <div class="relative w-40 h-40 flex-shrink-0 mx-auto mb-3 md:md-0 inline-flex items-center justify-center">
+          <% if dog.thumbnail.present? %>
+            <%= link_to "#", data: { "lightbox-source-param": dog.thumbnail_preview, action: "lightbox#handleOpen" } do %>
+              <%= dog_thumbnail_for_admin(dog) %>
+            <% end %>
+          <% else %>
+            <%= dog_thumbnail_for_admin(dog) %>
+          <% end %>
+          <div class="absolute top-0 -left-1">
+            <%= birthday_marker(dog) %>
+          </div>
+          <% if dog.filming_approval? %>
+            <div class="flex mb-2 absolute -bottom-3 -right-2">
+              <%= render partial: "shared/filming_approval" %>
+              <% if dog.sns_post_approval? %>
+                <%= render partial: "shared/sns_post_approval" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <% if !current_user.grand_admin? %>
+          <div class="text-gray-700 text-base font-light">
+            <%= naming_of_registration_number %>
+            <p class="text-xl font-bold">
+              <% if !registration_number.nil? %>
+                <%= registration_number.registration_number %>
+              <% else %>
+                -
+              <% end %>
+            </p>
+          </div>
+        <% end %>
+        <div class="flex flex-col items-center text-center justify-center mt-3">
+          <h2 class="font-bold text-gray-700 text-2xl mb-2">
+            <%= dog.name %>
+          </h2>
+          <%= render partial: "shared/notice_message", locals: { dog: dog }  %>
+          <% if !dog.user.sns_account.nil? %>
+            <%= render partial: "shared/sns_icon_part", locals: { sns_account: dog.user.sns_account } %>
+          <% end %>
+          <%= render partial: "owner_information_part", locals: { dog: dog } %>
+        </div>
+      </div>
+      <div class="sm:w-2/3 sm:pl-8 sm:py-2 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
+        <div class="grid grid-cols-3 md:grid-cols-2 gap-2 mb-3">
+          <div class="col-span-2 md:col-span-1 flex-raw flex-shrink-0 items-start justify-center mb-0">
+            <p class="text-gray-700 text-base font-light">
+              <%= t'defaults.birthday' %>
+            </p>
+            <h1 class="mt-1 text-lg font-bold text-gray-700">
+              <% if dog.birthday.blank? %>
+                -
+              <% else %>
+                <%= l dog.birthday, format: :long2 %>
+              <% end %>
+            </h1>
+          </div>
+          <div class="flex flex-col flex-shrink-0 items-start md:justify-center mb-0">
+            <p class="text-gray-700 text-base font-light">
+              <%= t'defaults.age' %>
+            </p>
+            <div class="flex">
+              <h1 class="mt-1 text-lg font-bold text-gray-700">
+                <% if dog.birthday.blank? %>
+                  -
+                <% else %>
+                  <%= dog.age %>
+                <% end %>
+              </h1>
+              <p class="text-xs pt-4 font-light"><%= t'defaults.age_unit' %></p>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-6">
+          <p class="text-gray-700 text-base font-light">
+            <%= t'defaults.breed' %>
+          </p>
+          <h1 class="mt-1 text-lg font-bold md:text-xl text-gray-700">
+            <% if dog.breed == '' %>
+              -
+            <% else %>
+              <%= dog.breed %>
+            <% end %>
+          </h1>
+        </div>
+        <div class="grid grid-cols-2 gap-2 mb-3">
+          <div class="flex-raw flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
+            <p class="text-gray-700 text-base font-light">
+              <%= t'defaults.sex' %>
+            </p>
+            <h1 class="mt-1 text-xl font-bold text-gray-700">
+              <% if dog.sex == 'male' %>
+                <%= t'enums.dog.sex.male' %>
+              <% elsif dog.sex == 'female' %>
+                <%= t'enums.dog.sex.female' %>
+              <% else %>
+                -
+              <% end %>
+            </h1>
+          </div>
+          <div class="flex flex-col flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
+            <p class="text-gray-700 text-base font-light">
+              <%= t'defaults.weight' %>
+            </p>
+            <div class="flex">
+              <h1 class="mt-1 text-xl font-bold text-gray-700 px-2">
+                <% if dog.weight == nil %>
+                  -
+                <% else %>
+                  <%= dog.weight %>
+                <% end %>
+              </h1>
+              <p class="text-xs pt-4"><%= t'defaults.weight_unit' %></p>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2 mb-3">
+          <div class="flex-raw flex-shrink-0 items-center md:items-start md:justify-center mb-3 md:mb-0">
+            <p class="text-gray-700 text-base font-light">
+              <%= t'defaults.castration' %>
+            </p>
+            <h1 class="mt-1 text-xl font-bold text-gray-700 mx-auto">
+              <% if dog.castration == 'castrated' %>
+                <%= t'enums.dog.castration.castrated' %>
+              <% else %>
+                <%= t'enums.dog.castration.non_castrated' %>
+              <% end %>
+            </h1>
+          </div>
+          <div class="flex-row flex-shrink-0 items-center md:items-start md:justify-center md:mr-2 mb-3 md:mb-0">
+            <p class="text-gray-700 text-base font-light">
+              <%= t'defaults.public' %>
+            </p>
+            <h1 class="mt-1 text-xl font-bold text-gray-700">
+              <% if dog.public == 'public_view' %>
+                <%= t'enums.dog.public.public_view' %>
+              <% else %>
+                <%= t'enums.dog.public.non_public' %>
+              <% end %>
+            </h1>
+          </div>
+        </div>
+        <% if not dog.owner_comment.blank? %>
+          <div class="grid grid-cols-1">
+            <div class="justify-center md:justify-start mb-3">
+              <p class="text-gray-700 text-base font-light">
+                <%= t'defaults.owner_comment' %>
+              </p>
+              <div class="mt-1">
+                <%= simple_format(dog.owner_comment, class: "text-lg text-gray-700 font-bold text-left") %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <%= render partial: "shared/dog_more_detail_data", locals: { dog: dog }%>
+      </div>
+    </div>
+  </div>
+</section>

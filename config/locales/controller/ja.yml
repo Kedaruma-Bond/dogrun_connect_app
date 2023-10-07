@@ -266,6 +266,9 @@ ja:
   activemodel:
     attributes:
       # form objectを使用する場合はlocaleはここに書く
+      article_post:
+        content: 内容
+        photo: 添付写真
       dog_registration:
         registration_number: 番号
         name: ワンコの名前

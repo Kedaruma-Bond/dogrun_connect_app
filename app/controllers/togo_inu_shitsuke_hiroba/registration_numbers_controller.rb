@@ -1,8 +1,7 @@
 class TogoInuShitsukeHiroba::RegistrationNumbersController < TogoInuShitsukeHiroba::DogrunPlaceController
-  before_action :set_new_post, only: %i[new]
   before_action :set_dogs, only: %i[new create]
-  before_action :set_registration_number, only: %i[destroy]
-  before_action :correct_registration_number_of_dog_owner, only: %i[destroy]
+  before_action :set_registration_number, only: %i[destroy entries_record_analysis]
+  before_action :correct_registration_number_of_dog_owner, only: %i[destroy entries_record_analysis]
 
   def form_selection
     @confirmation = I18n.t('local.dog_registrations.form_selection.confirmation', registration_card: I18n.t('togo_inu_shitsuke_hiroba.registration_card'))
@@ -51,6 +50,35 @@ class TogoInuShitsukeHiroba::RegistrationNumbersController < TogoInuShitsukeHiro
       format.html { redirect_to send(@user_path, current_user), success: t('local.registration_numbers.destroy_successfully'), status: :see_other }
       format.json { header :no_content }
     end
+  end
+
+  def entries_record_analysis
+    today = Date.today
+    one_year_ago = today.prev_day(365)
+    @entries_of_past_one_year = Entry.where(registration_number: @registration_number).where(created_at: one_year_ago..today.end_of_day)
+    entries_monthly = @entries_of_past_one_year.map do |e|
+      e.entry_at.strftime('%Y-%m')
+    end
+
+    entries_monthly = entries_monthly.each_with_object(Hash.new(0)){|v,o| o[v]+=1}
+    all_months = (one_year_ago..today).to_a.map { |date| date.beginning_of_month }.uniq
+
+    @entries_monthly = all_months.map do |month|
+      month_key = month.strftime('%Y-%m')
+      [month_key, entries_monthly[month_key] || 0]
+    end.to_h 
+
+    @notation_of_registration_number = I18n.t('togo_inu_shitsuke_hiroba.registration_number')
+
+    render(
+      RegistrationNumbers::EntriesRecordAnalysisComponent.new(
+        registration_number: @registration_number,
+        dog: @registration_number.dog,
+        entries_of_past_one_year: @entries_of_past_one_year,
+        entries_monthly: @entries_monthly,
+        notation_of_registration_number: @notation_of_registration_number,
+        dogrun_place: @dogrun_place
+      ), content_type: "text/html")
   end
 
   private

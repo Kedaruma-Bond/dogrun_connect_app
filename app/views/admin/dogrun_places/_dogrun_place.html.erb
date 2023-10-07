@@ -53,7 +53,7 @@
   </div>
   <div class="table-cell px-6 py-4 align-middle flex justify-center items-center">
     <% if !dogrun_place.sns_account.blank? %>
-      <%= render partial: "shared/sns_account_icons", locals: { sns_account: dogrun_place.sns_account } %>
+      <%= render partial: "shared/sns_icon_part", locals: { sns_account: dogrun_place.sns_account } %>
     <% else %>
     -
     <% end %>

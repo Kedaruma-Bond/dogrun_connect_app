@@ -10,7 +10,11 @@ class Admin::SessionsController < Admin::BaseController
     @user = login(params[:session][:email], params[:session][:password])
 
     if @user
-      redirect_to admin_root_path, success: t('.admin_login')
+      if @user.grand_admin?
+        redirect_to admin_grand_admin_index_path, success: t('.admin_login')
+      else
+        redirect_to admin_root_path, success: t('.admin_login')
+      end
     else
       flash.now[:error] = t('.login_fail')
       render :new, status: :unprocessable_entity
