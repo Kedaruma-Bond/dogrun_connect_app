@@ -1,53 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* @tailwind paginations; */
 
-@layer paginations {
-  .pagy-nav {
-    display: flex;
+.pagy-nav {
+  display: flex;
+}
+
+.pagy-nav .page {
+  margin-left: 0.5rem;
+}
+
+.pagy-nav .page a,
+.pagy-nav .page.active,
+.pagy-nav .page.prev.disabled,
+.pagy-nav .page.next.disabled {
+  @apply block rounded-lg px-3 py-2 text-sm text-gray-500 font-semibold bg-gray-200 shadow-md;
+  &:hover{
+    @apply bg-gray-300;
   }
-
-  .pagy-nav .page {
-    margin-left: 0.5rem;
+  &:active{
+    @apply bg-gray-400 text-white;
   }
+}
 
-  .pagy-nav .page a,
-  .pagy-nav .page.active,
-  .pagy-nav .page.prev.disabled,
-  .pagy-nav .page.next.disabled {
-    @apply block rounded-lg px-3 py-2 text-sm text-gray-500 font-semibold bg-gray-200 shadow-md;
-    &:hover{
-      @apply bg-gray-300;
-    }
-    &:active{
-      @apply bg-gray-400 text-white;
-    }
+.pagy-nav .page.gap {
+  @apply mt-0.5;
+}
+
+.pagy-nav .page.prev.disabled,
+.pagy-nav .page.next.disabled {
+  @apply text-gray-400 cursor-default;
+  &:hover {
+    @apply text-gray-400 bg-gray-200;
   }
-
-  .pagy-nav .page.gap {
-    @apply mt-0.5;
+  &:active {
+    @apply text-gray-400 bg-gray-200;
   }
+}
 
-  .pagy-nav .page.prev.disabled,
-  .pagy-nav .page.next.disabled {
-    @apply text-gray-400 cursor-default;
-    &:hover {
-      @apply text-gray-400 bg-gray-200;
-    }
-    &:active {
-      @apply text-gray-400 bg-gray-200;
-    }
+.pagy-nav .page.active {
+  @apply text-white cursor-default bg-gray-400;
+  &:hover {
+    @apply text-white bg-gray-400;
   }
-
-  .pagy-nav .page.active {
-    @apply text-white cursor-default bg-gray-400;
-    &:hover {
-      @apply text-white bg-gray-400;
-    }
-    &:active {
-      @apply bg-gray-400 text-white;
-    }
+  &:active {
+    @apply bg-gray-400 text-white;
   }
 }
 
