@@ -1,5 +1,5 @@
 <%= render_turbo_stream_flash_messages %>
 
 <%= turbo_stream.update dom_id(@dogrun_place, :sns_icons) do %>
-  <%= render partial: "admin/dogrun_places/sns_icon_part", locals: { dogrun_place: @dogrun_place } %>
+  <%= render partial: "admin/dogrun_places/dogrun_place_sns_part", locals: { dogrun_place: @dogrun_place } %>
 <% end %>

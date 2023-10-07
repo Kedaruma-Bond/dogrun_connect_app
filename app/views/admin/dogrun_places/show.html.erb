@@ -1,5 +1,5 @@
 <% content_for(:title, t('.title')) %>
-<%= turbo_frame_tag "sns_account_form_modal" %>
+<%= turbo_frame_tag "form_modal" %>
 <div class="w-full mx-auto px-1 sm:px-3 lg:px-0">
   <div class="bg-purple-200 w-full h-full shadow rounded py-1 px-8 sm:px-10">
     <div class="sticky top-[92%] float-right z-50 opacity-80">
@@ -48,7 +48,7 @@
                 <% end %>
               </h2>
               <%= turbo_frame_tag dom_id(@dogrun_place, :sns_icons) do %>
-                <%= render partial: "sns_icon_part", locals: { dogrun_place: @dogrun_place } %>
+                <%= render partial: "dogrun_place_sns_part", locals: { dogrun_place: @dogrun_place } %>
               <% end %>
             </div>
             <div class="flex items-center justify-center mt-4">
