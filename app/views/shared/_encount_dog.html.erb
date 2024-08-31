@@ -8,7 +8,7 @@
     <% end %>
   </div>
   <div class="absolute right-2 top-[35%]">
-    <%= link_to send(edit_encount_dog_path, encount_dog), data: { turbo_frame: "encount_dog_edit_modal" } do %>
+    <%= link_to send(edit_encount_dog_path, encount_dog), data: { "turbo_stream": true } do %>
       <button class="edit-button">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
@@ -19,7 +19,9 @@
   <div class="relative w-1/3 my-auto ml-1">
     <%= link_to send(dog_profile_path, encount_dog.dog), data: { turbo_frame: "dog_profile_modal" } do %>
       <div class="w-28 h-28">
-        <%= new_encount_dog_badge(encount_dog) %>
+        <%= turbo_frame_tag dom_id(encount_dog, :new_encount_dog_badge) do %>
+          <%= new_encount_dog_badge(encount_dog) %>
+        <% end %>
         <%= encount_dog_thumbnail(encount_dog.dog, encount_dog) %>
       </div>
     <% end %>

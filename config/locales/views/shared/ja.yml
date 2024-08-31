@@ -1,5 +1,12 @@
 ja:
   shared:
+    explain_of_encount_list_modal:
+      title: エンカウントリストとは
+      body: |
+        出会ったワンコを記録するリストです。
+        同じドッグランで10〜15分以上一緒に過ごすとリストにそのワンコが追加されます🐕
+        出会ったワンコのサムネの縁に色をつけたり、ワンコの印象や自分のワンコと相性などのメモを残すことができます。
+        ドッグランであまり関わらなかった等で印象に残らなかった場合、削除することもできます。
     birthday_message_modal:
       title: Happy Birthday!🎉
       body: |
@@ -89,10 +96,6 @@ ja:
         投稿の仕方については
         アプリのSNSに詳しい動画が
         ありますのでご参照ください
-    post_form:
-      select_post_type: |
-        投稿のタイプの選択
-      select_it: 選択してください
     entries_table:
       table_of_entries_latest_max_five: "過去%{times}回の利用記録"
       playing_together: 一緒に遊んだワンコ
