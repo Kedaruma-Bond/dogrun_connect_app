@@ -10,7 +10,10 @@ class TogoInuShitsukeHiroba::EncountDogsController < TogoInuShitsukeHiroba::Dogr
 
   def edit
     @encount_dog.update!(acknowledge: true)
-    session[:previous_url] = request.referer
+    respond_to do |format|
+      format.html { session[:previous_url] = request.referer }
+      format.turbo_stream
+    end
   end
 
   def update

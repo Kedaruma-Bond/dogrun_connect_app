@@ -1,4 +1,5 @@
-<%= turbo_frame_tag "encount_dog_edit_modal" do %>
+<%#= turbo_frame_tag "encount_dog_edit_modal" do %>
+<%= turbo_frame_tag "form_modal" do %>
   <div data-controller="turbo-form-modal" data-turbo-form-modal-target="modal" data-action="turbo:submit-end->turbo-form-modal#submitEnd" 
     class="animate-fade-in flex items-center justify-center fixed z-40 inset-0 h-full p-3">
     <button data-action="turbo-form-modal#hideModal" class="cursor-default w-full h-full fixed inset-0 bg-gray-700 bg-opacity-50"></button>

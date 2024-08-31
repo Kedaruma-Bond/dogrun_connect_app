@@ -1,4 +1,4 @@
-<header class="sticky top-0 z-20 bg-gray-200/[.85] dark:bg-gray-900/[.85] w-full flex relative justify-between items-center mx-auto px-2 lg:px-12 h-16 text-gray-600"
+<header id="login_navbar" class="sticky top-0 z-20 bg-gray-200/[.85] dark:bg-gray-900/[.85] w-full flex justify-between items-center mx-auto px-2 lg:px-12 h-16 text-gray-600"
   data-controller="form-modal"
   >
   <!-- logo -->
@@ -25,7 +25,7 @@
       </button>
     </div>
     <div data-action="click->menu#close">
-      <button data-menu-target="close_button" type="button" class="hidden inline-flex justify-center w-full px-2 py-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500", id="options-menu" aria-haspopup="true" aria-expanded="true">                                                                                                                 
+      <button data-menu-target="close_button" type="button" class="hidden justify-center w-full px-2 py-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500", id="options-menu" aria-haspopup="true" aria-expanded="true">                                                                                                                 
         <svg class="w-10 h-10 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
@@ -116,7 +116,7 @@
 
   <nav class="hidden lg:flex justify-end w-full flex-wrap text-base mt-3">
     <%= link_to send(@user_path, current_user), 
-      class: "flex mr-5 hover:text-gray-900 dark:text-gray-200" do %>
+      class: "flex mr-5 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-400" do %>
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
       </svg>
@@ -128,7 +128,7 @@
     <% end %>
 
     <%= link_to send(@entries_path), 
-        class: "flex mr-5 hover:text-gray-900 dark:text-gray-200" do %>
+        class: "flex mr-5 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-400" do %>
       <svg class="w-6 h-6 mx-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"></path>
       </svg>
@@ -138,7 +138,7 @@
     <% end %>
 
     <% if !current_user.guest? %>
-      <%= link_to send(@article_post_path), data: { turbo_frame: "article_post_form_modal" }, class: "flex mr-5 hover:text-gray-900 dark:text-gray-200" do %>
+      <%= link_to send(@article_post_path), data: { turbo_frame: "article_post_form_modal" }, class: "flex mr-5 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-400" do %>
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
         </svg>
@@ -154,7 +154,7 @@
     <% end %>
 
     <%= link_to send(@encount_dogs_path), 
-        class: "flex mr-5 hover:text-gray-900 dark:text-gray-200" do %>
+        class: "flex mr-5 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-400" do %>
       <svg class="w-5 h-5 mx-1" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
         <path d="M104,140a12,12,0,1,1-12-12A12,12,0,0,1,104,140Zm60-12a12,12,0,1,0,12,12A12,12,0,0,0,164,128Zm68.7,16a16.1,16.1,0,0,1-6.7,1.4,15.6,15.6,0,0,1-10-3.6V184a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V141.8a15.6,15.6,0,0,1-10,3.6,16.1,16.1,0,0,1-6.7-1.4,15.8,15.8,0,0,1-9.1-17.6L30.6,38.9A16.1,16.1,0,0,1,50.2,26.3L105,40h46l54.8-13.7a16.1,16.1,0,0,1,19.6,12.6l16.4,87.5A15.8,15.8,0,0,1,232.7,144ZM200,184V122L148.1,56H107.9L56,122v62a24.1,24.1,0,0,0,24,24h40V195.3l-13.7-13.6a8.1,8.1,0,0,1,11.4-11.4L128,180.7l10.3-10.4a8.1,8.1,0,0,1,11.4,11.4L136,195.3V208h40A24.1,24.1,0,0,0,200,184Z" fill="currentColor"></path>
       </svg>
@@ -164,7 +164,7 @@
       </span>
     <% end %>
     
-    <%= link_to send(@logout_path), data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation') }, class: "flex mr-5 hover:text-gray-900 dark:text-gray-200" do %>
+    <%= link_to send(@logout_path), data: { turbo_method: :delete, turbo_confirm: t('.logout_confirmation') }, class: "flex mr-5 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-400" do %>
       <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M12 12H19M19 12L16 15M19 12L16 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M19 6V5C19 3.89543 18.1046 3 17 3H7C5.89543 3 5 3.89543 5 5V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>

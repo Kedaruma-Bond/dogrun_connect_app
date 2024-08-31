@@ -6,9 +6,6 @@ ja:
       encount_dogrun: 出会ったドッグラン
       until_now: 今までに
       unit_of_encount_dogs: 頭のワンコと出会いました
-      explain_encount_dogs: |
-        同じドッグランで10〜15分以上一緒に過ごすと
-        リストにそのワンコが追加されます🐕
       search_results_are: 検索結果は
       unit_of_search_encount_dogs: 頭です
   users:

@@ -11,7 +11,16 @@
 <% end %>
 
 <%= turbo_stream.replace "encount_dog_memo" do %>
-  <%= simple_format(@encount_dog.memo, class: "text-lg text-gray-700 font-bold text-left", id: "encount_dog_memo") %>
+  <% if !@encount_dog.memo.blank? %>
+    <div class="mt-3 max-w-[330px]">
+      <p class="text-gray-700 text-base font-light">
+        <%= t'defaults.encount_dog_memo' %>
+      </p>
+      <div class="mt-1">
+        <%= simple_format(@encount_dog.memo, class: "text-lg text-gray-700 font-bold text-left") %>
+      </div>
+    </div>
+  <% end %>
 <% end %>
 
 <%= turbo_stream.replace "dog_profile_thumbnail" do %>

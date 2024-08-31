@@ -1,6 +1,10 @@
 ja:
   admin:
     posts:
+      post_form:
+        select_post_type: |
+          投稿のタイプの選択
+        select_it: 選択してください
       index:
         title: ドッグランへの投稿一覧
       form:
