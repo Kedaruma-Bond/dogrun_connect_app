@@ -109,6 +109,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   config.session_store :cookie_store, expire_after: 4.week
 
-  # config.cache_store = :redis_cache_store
-  config.cache_store = :cookie_store
+  config.cache_store = :redis_cache_store
 end
