@@ -11,4 +11,5 @@ production:
   #  ↓ herokuのアドオンでredisを作成するとREDIS_URLという環境変数に自動的にURLを設定してくれる。
   url: <%= ENV['REDIS_URL'] %>
   channel_prefix: dogrun_connect_production
+  ssl: true
 
