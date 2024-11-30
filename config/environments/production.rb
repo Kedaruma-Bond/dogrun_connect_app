@@ -109,5 +109,9 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   config.session_store :cookie_store, expire_after: 4.week
 
-  config.cache_store = :redis_cache_store
+  # config.cache_store = :redis_cache_store
+  config.cache_store = :redis_cache_store, {
+  url: ENV['REDIS_URL'],
+  ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE }
+  }
 end
