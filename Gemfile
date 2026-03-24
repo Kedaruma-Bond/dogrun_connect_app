@@ -54,6 +54,8 @@ gem 'image_processing', '~> 1.2'
 
 # ログイン機能
 gem 'sorcery'
+# 外部認証
+# gem 'oauth2', '~> 2.0' 
 # i18n
 gem 'rails-i18n'
 # フォームを簡単に書く
