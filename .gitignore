@@ -39,3 +39,6 @@ public/sitemap.xml.gz
 
 # Ignore spec/example file
 spec/examples.txt
+
+# Ignore vscode/setting.jsonß
+.vscode/settings.json
