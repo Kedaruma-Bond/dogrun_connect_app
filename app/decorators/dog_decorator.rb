@@ -125,7 +125,7 @@ module DogDecorator
   end
 
   def thumbnail_preview
-    Cloudinary::Utils.cloudinary_url(thumbnail.key, gravity: :auto, quarity_auto: :good, fetch_format: :auto)
+    Cloudinary::Utils.cloudinary_url(thumbnail.key, gravity: :auto, quality_auto: :good, fetch_format: :auto)
   end
 
   def rabies_vaccination_certificate_preview
